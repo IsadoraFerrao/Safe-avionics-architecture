@@ -1,0 +1,144 @@
+\hypertarget{der__length__object__identifier_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/pk/asn1/der/object\+\_\+identifier/der\+\_\+length\+\_\+object\+\_\+identifier.c File Reference}
+\label{der__length__object__identifier_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/asn1/der/object\_identifier/der\_length\_object\_identifier.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/asn1/der/object\_identifier/der\_length\_object\_identifier.c}}
+
+
+A\+S\+N.\+1 D\+ER, get length of Object Identifier, Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for der\+\_\+length\+\_\+object\+\_\+identifier.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+unsigned long \mbox{\hyperlink{der__length__object__identifier_8c_aef2413878ded8dc303e150d31fca294d}{der\+\_\+object\+\_\+identifier\+\_\+bits}} (unsigned long x)
+\item 
+int \mbox{\hyperlink{der__length__object__identifier_8c_ae1fe5b2cd3f20a693cc571a2a8fc9af0}{der\+\_\+length\+\_\+object\+\_\+identifier}} (const unsigned long $\ast$words, unsigned long nwords, unsigned long $\ast$outlen)
+\begin{DoxyCompactList}\small\item\em Gets length of D\+ER encoding of Object Identifier. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A\+S\+N.\+1 D\+ER, get length of Object Identifier, Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{der__length__object__identifier_8c_ae1fe5b2cd3f20a693cc571a2a8fc9af0}\label{der__length__object__identifier_8c_ae1fe5b2cd3f20a693cc571a2a8fc9af0}} 
+\index{der\_length\_object\_identifier.c@{der\_length\_object\_identifier.c}!der\_length\_object\_identifier@{der\_length\_object\_identifier}}
+\index{der\_length\_object\_identifier@{der\_length\_object\_identifier}!der\_length\_object\_identifier.c@{der\_length\_object\_identifier.c}}
+\subsubsection{\texorpdfstring{der\_length\_object\_identifier()}{der\_length\_object\_identifier()}}
+{\footnotesize\ttfamily int der\+\_\+length\+\_\+object\+\_\+identifier (\begin{DoxyParamCaption}\item[{const unsigned long $\ast$}]{words,  }\item[{unsigned long}]{nwords,  }\item[{unsigned long $\ast$}]{outlen }\end{DoxyParamCaption})}
+
+
+
+Gets length of D\+ER encoding of Object Identifier. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nwords} & The number of O\+ID words \\
+\hline
+{\em words} & The actual O\+ID words to get the size of \\
+\hline
+{\em outlen} & \mbox{[}out\mbox{]} The length of the D\+ER encoding for the given string \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 38 of file der\+\_\+length\+\_\+object\+\_\+identifier.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{39 \{}
+\DoxyCodeLine{40    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} y, z, t, wordbuf;}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{42    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(words  != NULL);}
+\DoxyCodeLine{43    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(outlen != NULL);}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46    \textcolor{comment}{/* must be >= 2 words */}}
+\DoxyCodeLine{47    \textcolor{keywordflow}{if} (nwords < 2) \{}
+\DoxyCodeLine{48       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{49    \}}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{51    \textcolor{comment}{/* word1 = 0,1,2 and word2 0..39 */}}
+\DoxyCodeLine{52    \textcolor{keywordflow}{if} (words[0] > 2 || (words[0] < 2 \&\& words[1] > 39)) \{}
+\DoxyCodeLine{53       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{54    \}}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{56    \textcolor{comment}{/* leading word is the first two */}}
+\DoxyCodeLine{57    z = 0;}
+\DoxyCodeLine{58    wordbuf = words[0] * 40 + words[1];}
+\DoxyCodeLine{59    \textcolor{keywordflow}{for} (y = 1; y < nwords; y++) \{}
+\DoxyCodeLine{60        t = \mbox{\hyperlink{der__length__object__identifier_8c_aef2413878ded8dc303e150d31fca294d}{der\_object\_identifier\_bits}}(wordbuf);}
+\DoxyCodeLine{61        z += t/7 + ((t\%7) ? 1 : 0) + (wordbuf == 0 ? 1 : 0);}
+\DoxyCodeLine{62        \textcolor{keywordflow}{if} (y < nwords - 1) \{}
+\DoxyCodeLine{63           \textcolor{comment}{/* grab next word */}}
+\DoxyCodeLine{64           wordbuf = words[y+1];}
+\DoxyCodeLine{65        \}}
+\DoxyCodeLine{66    \}}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{68    \textcolor{comment}{/* now depending on the length our length encoding changes */}}
+\DoxyCodeLine{69    \textcolor{keywordflow}{if} (z < 128) \{}
+\DoxyCodeLine{70       z += 2;}
+\DoxyCodeLine{71    \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (z < 256) \{}
+\DoxyCodeLine{72       z += 3;}
+\DoxyCodeLine{73    \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (z < 65536UL) \{}
+\DoxyCodeLine{74       z += 4;}
+\DoxyCodeLine{75    \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{76       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{77    \}}
+\DoxyCodeLine{78 }
+\DoxyCodeLine{79    *outlen = z;}
+\DoxyCodeLine{80    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{81 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+A\+RG, C\+R\+Y\+P\+T\+\_\+\+OK, der\+\_\+object\+\_\+identifier\+\_\+bits(), and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+
+
+Referenced by der\+\_\+decode\+\_\+choice(), der\+\_\+decode\+\_\+custom\+\_\+type\+\_\+ex(), der\+\_\+decode\+\_\+sequence\+\_\+flexi(), der\+\_\+encode\+\_\+object\+\_\+identifier(), der\+\_\+length\+\_\+custom\+\_\+type(), and der\+\_\+length\+\_\+sequence\+\_\+ex().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2
+\mbox{\Hypertarget{der__length__object__identifier_8c_aef2413878ded8dc303e150d31fca294d}\label{der__length__object__identifier_8c_aef2413878ded8dc303e150d31fca294d}} 
+\index{der\_length\_object\_identifier.c@{der\_length\_object\_identifier.c}!der\_object\_identifier\_bits@{der\_object\_identifier\_bits}}
+\index{der\_object\_identifier\_bits@{der\_object\_identifier\_bits}!der\_length\_object\_identifier.c@{der\_length\_object\_identifier.c}}
+\subsubsection{\texorpdfstring{der\_object\_identifier\_bits()}{der\_object\_identifier\_bits()}}
+{\footnotesize\ttfamily unsigned long der\+\_\+object\+\_\+identifier\+\_\+bits (\begin{DoxyParamCaption}\item[{unsigned long}]{x }\end{DoxyParamCaption})}
+
+
+
+Definition at line 18 of file der\+\_\+length\+\_\+object\+\_\+identifier.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{19 \{}
+\DoxyCodeLine{20    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}};}
+\DoxyCodeLine{21    x \&= 0xFFFFFFFF;}
+\DoxyCodeLine{22    \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}  = 0;}
+\DoxyCodeLine{23    \textcolor{keywordflow}{while} (x) \{}
+\DoxyCodeLine{24      ++\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}};}
+\DoxyCodeLine{25      x >>= 1;}
+\DoxyCodeLine{26    \}}
+\DoxyCodeLine{27    \textcolor{keywordflow}{return} \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}};}
+\DoxyCodeLine{28 \}}
+
+\end{DoxyCode}
+
+
+References c.
+
+
+
+Referenced by der\+\_\+encode\+\_\+object\+\_\+identifier(), and der\+\_\+length\+\_\+object\+\_\+identifier().
+
+Here is the caller graph for this function\+:
+% FIG 3

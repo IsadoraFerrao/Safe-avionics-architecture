@@ -1,0 +1,20 @@
+digraph "ecc_set_curve_by_size"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node17 [label="ecc_set_curve_by_size",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node17 -> Node18 [color="midnightblue",fontsize="10",style="solid"];
+  Node18 [label="ecc_find_curve",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ecc__find__curve_8c.html#ad928083861ba212cb0c270bcf10b0403",tooltip=" "];
+  Node18 -> Node19 [color="midnightblue",fontsize="10",style="solid"];
+  Node19 [label="_name_match",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ecc__find__curve_8c.html#a78e7ebed1017ea1869d0a9eb80fcfb0f",tooltip=" "];
+  Node18 -> Node20 [color="midnightblue",fontsize="10",style="solid"];
+  Node20 [label="XSTRCMP",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cfg_8h.html#a5d6e3d69e1d3f54de008b963bba3c6b3",tooltip=" "];
+  Node17 -> Node21 [color="midnightblue",fontsize="10",style="solid"];
+  Node21 [label="ecc_set_curve",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ecc__set__curve_8c.html#ae59e3d6f85b87d050df0ece7c6f5c661",tooltip=" "];
+  Node21 -> Node22 [color="midnightblue",fontsize="10",style="solid"];
+  Node22 [label="ecc_free",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ecc__free_8c.html#a73cd81ea7d3b24f2d9ef309c4b22e3b7",tooltip="Free an ECC key from memory."];
+  Node21 -> Node23 [color="midnightblue",fontsize="10",style="solid"];
+  Node23 [label="pk_oid_str_to_num",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__private_8h.html#ad99c87d19f50f703708d36a931fe5df6",tooltip=" "];
+}

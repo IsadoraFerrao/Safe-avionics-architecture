@@ -1,0 +1,567 @@
+\hypertarget{tiger_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/hashes/tiger.c File Reference}
+\label{tiger_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/hashes/tiger.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/hashes/tiger.c}}
+
+
+Tiger hash function, Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for tiger.\+c\+:
+% FIG 0
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}}~(\mbox{\hyperlink{tiger_8c_a2b1cea27eee14b746b74f8e218eb7a26}{table}})
+\item 
+\#define \mbox{\hyperlink{tiger_8c_aa4652e2d6053d420dcbea07a113db5fe}{t2}}~(\mbox{\hyperlink{tiger_8c_a2b1cea27eee14b746b74f8e218eb7a26}{table}}+256)
+\item 
+\#define \mbox{\hyperlink{tiger_8c_a71a491fa5f35065b954a3001ebed0f28}{t3}}~(\mbox{\hyperlink{tiger_8c_a2b1cea27eee14b746b74f8e218eb7a26}{table}}+256$\ast$2)
+\item 
+\#define \mbox{\hyperlink{tiger_8c_a49808b2a2a734d04d911b470650d62ce}{t4}}~(\mbox{\hyperlink{tiger_8c_a2b1cea27eee14b746b74f8e218eb7a26}{table}}+256$\ast$3)
+\item 
+\#define \mbox{\hyperlink{tiger_8c_a2eb6f9e0395b47b8d5e3eeae4fe0c116}{I\+N\+L\+I\+NE}}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{tiger_8c_a98146289b638fc60971c44d303e65eb0}{tiger\+\_\+round}} (\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}} $\ast$a, \mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}} $\ast$b, \mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}} $\ast$\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, \mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}} x, int \mbox{\hyperlink{tfm__desc_8c_a7050c53d3ede33130b5137ee21872390}{mul}})
+\item 
+static void \mbox{\hyperlink{tiger_8c_ab74ad5f4fbf4c27a861ac02a2a674dfb}{pass}} (\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}} $\ast$a, \mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}} $\ast$b, \mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}} $\ast$\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, const \mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}} $\ast$x, int \mbox{\hyperlink{tfm__desc_8c_a7050c53d3ede33130b5137ee21872390}{mul}})
+\item 
+static void \mbox{\hyperlink{tiger_8c_afa30304433be66822b4ce1f6ce21048c}{key\+\_\+schedule}} (\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}} $\ast$x)
+\item 
+static int \mbox{\hyperlink{tiger_8c_a72d428871e09b73599cbb6a5df320cbf}{tiger\+\_\+compress}} (\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$md, const unsigned char $\ast$buf)
+\item 
+int \mbox{\hyperlink{tiger_8c_a82f8bacbe19155dfd2dba8f659820964}{tiger\+\_\+init}} (\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$md)
+\begin{DoxyCompactList}\small\item\em Initialize the hash state. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{tiger_8c_adfc27934bf313afeb8d3498b04cb9c88}{tiger\+\_\+process}} (\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$md, const unsigned char $\ast$in, unsigned long inlen)
+\begin{DoxyCompactList}\small\item\em Process a block of memory though the hash. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{tiger_8c_a7d4feae8785f35a28c0bfb1487fca55c}{tiger\+\_\+done}} (\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$md, unsigned char $\ast$out)
+\begin{DoxyCompactList}\small\item\em Terminate the hash to get the digest. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{tiger_8c_a0c726827797846b3a94b64983f1b3dad}{tiger\+\_\+test}} (void)
+\begin{DoxyCompactList}\small\item\em Self-\/test the hash. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const struct \mbox{\hyperlink{structltc__hash__descriptor}{ltc\+\_\+hash\+\_\+descriptor}} \mbox{\hyperlink{tiger_8c_a44eec4b5ea7ebd749996709dcbb7fa02}{tiger\+\_\+desc}}
+\item 
+static const \mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}} \mbox{\hyperlink{tiger_8c_a2b1cea27eee14b746b74f8e218eb7a26}{table}} \mbox{[}4 $\ast$256\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Tiger hash function, Tom St Denis. 
+
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{tiger_8c_a2eb6f9e0395b47b8d5e3eeae4fe0c116}\label{tiger_8c_a2eb6f9e0395b47b8d5e3eeae4fe0c116}} 
+\index{tiger.c@{tiger.c}!INLINE@{INLINE}}
+\index{INLINE@{INLINE}!tiger.c@{tiger.c}}
+\subsubsection{\texorpdfstring{INLINE}{INLINE}}
+{\footnotesize\ttfamily \#define I\+N\+L\+I\+NE}
+
+
+
+Definition at line 559 of file tiger.\+c.
+
+\mbox{\Hypertarget{tiger_8c_a65f7891fccbfcf7d08964555630773b3}\label{tiger_8c_a65f7891fccbfcf7d08964555630773b3}} 
+\index{tiger.c@{tiger.c}!t1@{t1}}
+\index{t1@{t1}!tiger.c@{tiger.c}}
+\subsubsection{\texorpdfstring{t1}{t1}}
+{\footnotesize\ttfamily \#define t1~(\mbox{\hyperlink{tiger_8c_a2b1cea27eee14b746b74f8e218eb7a26}{table}})}
+
+
+
+Definition at line 37 of file tiger.\+c.
+
+\mbox{\Hypertarget{tiger_8c_aa4652e2d6053d420dcbea07a113db5fe}\label{tiger_8c_aa4652e2d6053d420dcbea07a113db5fe}} 
+\index{tiger.c@{tiger.c}!t2@{t2}}
+\index{t2@{t2}!tiger.c@{tiger.c}}
+\subsubsection{\texorpdfstring{t2}{t2}}
+{\footnotesize\ttfamily \#define t2~(\mbox{\hyperlink{tiger_8c_a2b1cea27eee14b746b74f8e218eb7a26}{table}}+256)}
+
+
+
+Definition at line 38 of file tiger.\+c.
+
+\mbox{\Hypertarget{tiger_8c_a71a491fa5f35065b954a3001ebed0f28}\label{tiger_8c_a71a491fa5f35065b954a3001ebed0f28}} 
+\index{tiger.c@{tiger.c}!t3@{t3}}
+\index{t3@{t3}!tiger.c@{tiger.c}}
+\subsubsection{\texorpdfstring{t3}{t3}}
+{\footnotesize\ttfamily \#define t3~(\mbox{\hyperlink{tiger_8c_a2b1cea27eee14b746b74f8e218eb7a26}{table}}+256$\ast$2)}
+
+
+
+Definition at line 39 of file tiger.\+c.
+
+\mbox{\Hypertarget{tiger_8c_a49808b2a2a734d04d911b470650d62ce}\label{tiger_8c_a49808b2a2a734d04d911b470650d62ce}} 
+\index{tiger.c@{tiger.c}!t4@{t4}}
+\index{t4@{t4}!tiger.c@{tiger.c}}
+\subsubsection{\texorpdfstring{t4}{t4}}
+{\footnotesize\ttfamily \#define t4~(\mbox{\hyperlink{tiger_8c_a2b1cea27eee14b746b74f8e218eb7a26}{table}}+256$\ast$3)}
+
+
+
+Definition at line 40 of file tiger.\+c.
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{tiger_8c_afa30304433be66822b4ce1f6ce21048c}\label{tiger_8c_afa30304433be66822b4ce1f6ce21048c}} 
+\index{tiger.c@{tiger.c}!key\_schedule@{key\_schedule}}
+\index{key\_schedule@{key\_schedule}!tiger.c@{tiger.c}}
+\subsubsection{\texorpdfstring{key\_schedule()}{key\_schedule()}}
+{\footnotesize\ttfamily static void key\+\_\+schedule (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}} $\ast$}]{x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 590 of file tiger.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{591 \{}
+\DoxyCodeLine{592     x[0] -= x[7] \string^ \mbox{\hyperlink{tomcrypt__cfg_8h_a7d8e211582dff82d00fc171834e3dc67}{CONST64}}(0xA5A5A5A5A5A5A5A5);}
+\DoxyCodeLine{593     x[1] \string^= x[0];}
+\DoxyCodeLine{594     x[2] += x[1];}
+\DoxyCodeLine{595     x[3] -= x[2] \string^ ((~x[1])<<19);}
+\DoxyCodeLine{596     x[4] \string^= x[3];}
+\DoxyCodeLine{597     x[5] += x[4];}
+\DoxyCodeLine{598     x[6] -= x[5] \string^ ((~x[4])>>23);}
+\DoxyCodeLine{599     x[7] \string^= x[6];}
+\DoxyCodeLine{600     x[0] += x[7];}
+\DoxyCodeLine{601     x[1] -= x[0] \string^ ((~x[7])<<19);}
+\DoxyCodeLine{602     x[2] \string^= x[1];}
+\DoxyCodeLine{603     x[3] += x[2];}
+\DoxyCodeLine{604     x[4] -= x[3] \string^ ((~x[2])>>23);}
+\DoxyCodeLine{605     x[5] \string^= x[4];}
+\DoxyCodeLine{606     x[6] += x[5];}
+\DoxyCodeLine{607     x[7] -= x[6] \string^ \mbox{\hyperlink{tomcrypt__cfg_8h_a7d8e211582dff82d00fc171834e3dc67}{CONST64}}(0x0123456789ABCDEF);}
+\DoxyCodeLine{608 \}}
+
+\end{DoxyCode}
+
+
+References C\+O\+N\+S\+T64.
+
+
+
+Referenced by tiger\+\_\+compress().
+
+Here is the caller graph for this function\+:
+% FIG 1
+\mbox{\Hypertarget{tiger_8c_ab74ad5f4fbf4c27a861ac02a2a674dfb}\label{tiger_8c_ab74ad5f4fbf4c27a861ac02a2a674dfb}} 
+\index{tiger.c@{tiger.c}!pass@{pass}}
+\index{pass@{pass}!tiger.c@{tiger.c}}
+\subsubsection{\texorpdfstring{pass()}{pass()}}
+{\footnotesize\ttfamily static void pass (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}} $\ast$}]{a,  }\item[{\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}} $\ast$}]{b,  }\item[{\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}} $\ast$}]{c,  }\item[{const \mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}} $\ast$}]{x,  }\item[{int}]{mul }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 577 of file tiger.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{578 \{}
+\DoxyCodeLine{579    \mbox{\hyperlink{tiger_8c_a98146289b638fc60971c44d303e65eb0}{tiger\_round}}(a,b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},x[0],\mbox{\hyperlink{gmp__desc_8c_a7050c53d3ede33130b5137ee21872390}{mul}});}
+\DoxyCodeLine{580    \mbox{\hyperlink{tiger_8c_a98146289b638fc60971c44d303e65eb0}{tiger\_round}}(b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},a,x[1],\mbox{\hyperlink{gmp__desc_8c_a7050c53d3ede33130b5137ee21872390}{mul}});}
+\DoxyCodeLine{581    \mbox{\hyperlink{tiger_8c_a98146289b638fc60971c44d303e65eb0}{tiger\_round}}(\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},a,b,x[2],\mbox{\hyperlink{gmp__desc_8c_a7050c53d3ede33130b5137ee21872390}{mul}});}
+\DoxyCodeLine{582    \mbox{\hyperlink{tiger_8c_a98146289b638fc60971c44d303e65eb0}{tiger\_round}}(a,b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},x[3],\mbox{\hyperlink{gmp__desc_8c_a7050c53d3ede33130b5137ee21872390}{mul}});}
+\DoxyCodeLine{583    \mbox{\hyperlink{tiger_8c_a98146289b638fc60971c44d303e65eb0}{tiger\_round}}(b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},a,x[4],\mbox{\hyperlink{gmp__desc_8c_a7050c53d3ede33130b5137ee21872390}{mul}});}
+\DoxyCodeLine{584    \mbox{\hyperlink{tiger_8c_a98146289b638fc60971c44d303e65eb0}{tiger\_round}}(\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},a,b,x[5],\mbox{\hyperlink{gmp__desc_8c_a7050c53d3ede33130b5137ee21872390}{mul}});}
+\DoxyCodeLine{585    \mbox{\hyperlink{tiger_8c_a98146289b638fc60971c44d303e65eb0}{tiger\_round}}(a,b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},x[6],\mbox{\hyperlink{gmp__desc_8c_a7050c53d3ede33130b5137ee21872390}{mul}});}
+\DoxyCodeLine{586    \mbox{\hyperlink{tiger_8c_a98146289b638fc60971c44d303e65eb0}{tiger\_round}}(b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},a,x[7],\mbox{\hyperlink{gmp__desc_8c_a7050c53d3ede33130b5137ee21872390}{mul}});}
+\DoxyCodeLine{587 \}}
+
+\end{DoxyCode}
+
+
+References c, mul(), and tiger\+\_\+round().
+
+
+
+Referenced by tiger\+\_\+compress().
+
+Here is the call graph for this function\+:
+% FIG 2
+Here is the caller graph for this function\+:
+% FIG 3
+\mbox{\Hypertarget{tiger_8c_a72d428871e09b73599cbb6a5df320cbf}\label{tiger_8c_a72d428871e09b73599cbb6a5df320cbf}} 
+\index{tiger.c@{tiger.c}!tiger\_compress@{tiger\_compress}}
+\index{tiger\_compress@{tiger\_compress}!tiger.c@{tiger.c}}
+\subsubsection{\texorpdfstring{tiger\_compress()}{tiger\_compress()}}
+{\footnotesize\ttfamily static int tiger\+\_\+compress (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$}]{md,  }\item[{const unsigned char $\ast$}]{buf }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 613 of file tiger.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{615 \{}
+\DoxyCodeLine{616     \mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}} a, b, \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, x[8];}
+\DoxyCodeLine{617     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} i;}
+\DoxyCodeLine{618 }
+\DoxyCodeLine{619     \textcolor{comment}{/* load words */}}
+\DoxyCodeLine{620     \textcolor{keywordflow}{for} (i = 0; i < 8; i++) \{}
+\DoxyCodeLine{621         LOAD64L(x[i],\&buf[8*i]);}
+\DoxyCodeLine{622     \}}
+\DoxyCodeLine{623     a = md->tiger.state[0];}
+\DoxyCodeLine{624     b = md->tiger.state[1];}
+\DoxyCodeLine{625     \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} = md->tiger.state[2];}
+\DoxyCodeLine{626 }
+\DoxyCodeLine{627     \mbox{\hyperlink{tiger_8c_ab74ad5f4fbf4c27a861ac02a2a674dfb}{pass}}(\&a,\&b,\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},x,5);}
+\DoxyCodeLine{628     \mbox{\hyperlink{tiger_8c_afa30304433be66822b4ce1f6ce21048c}{key\_schedule}}(x);}
+\DoxyCodeLine{629     \mbox{\hyperlink{tiger_8c_ab74ad5f4fbf4c27a861ac02a2a674dfb}{pass}}(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},\&a,\&b,x,7);}
+\DoxyCodeLine{630     \mbox{\hyperlink{tiger_8c_afa30304433be66822b4ce1f6ce21048c}{key\_schedule}}(x);}
+\DoxyCodeLine{631     \mbox{\hyperlink{tiger_8c_ab74ad5f4fbf4c27a861ac02a2a674dfb}{pass}}(\&b,\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},\&a,x,9);}
+\DoxyCodeLine{632 }
+\DoxyCodeLine{633     \textcolor{comment}{/* store state */}}
+\DoxyCodeLine{634     md->tiger.state[0] = a \string^ md->tiger.state[0];}
+\DoxyCodeLine{635     md->tiger.state[1] = b - md->tiger.state[1];}
+\DoxyCodeLine{636     md->tiger.state[2] = \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} + md->tiger.state[2];}
+\DoxyCodeLine{637 }
+\DoxyCodeLine{638     \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{639 \}}
+
+\end{DoxyCode}
+
+
+References c, C\+R\+Y\+P\+T\+\_\+\+OK, key\+\_\+schedule(), and pass().
+
+
+
+Referenced by tiger\+\_\+done().
+
+Here is the call graph for this function\+:
+% FIG 4
+Here is the caller graph for this function\+:
+% FIG 5
+\mbox{\Hypertarget{tiger_8c_a7d4feae8785f35a28c0bfb1487fca55c}\label{tiger_8c_a7d4feae8785f35a28c0bfb1487fca55c}} 
+\index{tiger.c@{tiger.c}!tiger\_done@{tiger\_done}}
+\index{tiger\_done@{tiger\_done}!tiger.c@{tiger.c}}
+\subsubsection{\texorpdfstring{tiger\_done()}{tiger\_done()}}
+{\footnotesize\ttfamily int tiger\+\_\+done (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$}]{md,  }\item[{unsigned char $\ast$}]{out }\end{DoxyParamCaption})}
+
+
+
+Terminate the hash to get the digest. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em md} & The hash state \\
+\hline
+{\em out} & \mbox{[}out\mbox{]} The destination of the hash (24 bytes) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 682 of file tiger.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{683 \{}
+\DoxyCodeLine{684     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(md  != NULL);}
+\DoxyCodeLine{685     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(out != NULL);}
+\DoxyCodeLine{686 }
+\DoxyCodeLine{687     \textcolor{keywordflow}{if} (md->tiger.curlen >= \textcolor{keyword}{sizeof}(md->tiger.buf)) \{}
+\DoxyCodeLine{688        \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{689     \}}
+\DoxyCodeLine{690 }
+\DoxyCodeLine{691     \textcolor{comment}{/* increase the length of the message */}}
+\DoxyCodeLine{692     md->tiger.length += md->tiger.curlen * 8;}
+\DoxyCodeLine{693 }
+\DoxyCodeLine{694     \textcolor{comment}{/* append the '1' bit */}}
+\DoxyCodeLine{695     md->tiger.buf[md->tiger.curlen++] = (\textcolor{keywordtype}{unsigned} char)0x01;}
+\DoxyCodeLine{696 }
+\DoxyCodeLine{697     \textcolor{comment}{/* if the length is currently above 56 bytes we append zeros}}
+\DoxyCodeLine{698 \textcolor{comment}{     * then compress.  Then we can fall back to padding zeros and length}}
+\DoxyCodeLine{699 \textcolor{comment}{     * encoding like normal. */}}
+\DoxyCodeLine{700     \textcolor{keywordflow}{if} (md->tiger.curlen > 56) \{}
+\DoxyCodeLine{701         \textcolor{keywordflow}{while} (md->tiger.curlen < 64) \{}
+\DoxyCodeLine{702             md->tiger.buf[md->tiger.curlen++] = (\textcolor{keywordtype}{unsigned} char)0;}
+\DoxyCodeLine{703         \}}
+\DoxyCodeLine{704         \mbox{\hyperlink{tiger_8c_a72d428871e09b73599cbb6a5df320cbf}{tiger\_compress}}(md, md->tiger.buf);}
+\DoxyCodeLine{705         md->tiger.curlen = 0;}
+\DoxyCodeLine{706     \}}
+\DoxyCodeLine{707 }
+\DoxyCodeLine{708     \textcolor{comment}{/* pad upto 56 bytes of zeroes */}}
+\DoxyCodeLine{709     \textcolor{keywordflow}{while} (md->tiger.curlen < 56) \{}
+\DoxyCodeLine{710         md->tiger.buf[md->tiger.curlen++] = (\textcolor{keywordtype}{unsigned} char)0;}
+\DoxyCodeLine{711     \}}
+\DoxyCodeLine{712 }
+\DoxyCodeLine{713     \textcolor{comment}{/* store length */}}
+\DoxyCodeLine{714     STORE64L(md->tiger.length, md->tiger.buf+56);}
+\DoxyCodeLine{715     \mbox{\hyperlink{tiger_8c_a72d428871e09b73599cbb6a5df320cbf}{tiger\_compress}}(md, md->tiger.buf);}
+\DoxyCodeLine{716 }
+\DoxyCodeLine{717     \textcolor{comment}{/* copy output */}}
+\DoxyCodeLine{718     STORE64L(md->tiger.state[0], \&out[0]);}
+\DoxyCodeLine{719     STORE64L(md->tiger.state[1], \&out[8]);}
+\DoxyCodeLine{720     STORE64L(md->tiger.state[2], \&out[16]);}
+\DoxyCodeLine{721 \textcolor{preprocessor}{\#ifdef LTC\_CLEAN\_STACK}}
+\DoxyCodeLine{722     \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(md, \textcolor{keyword}{sizeof}(\mbox{\hyperlink{unionHash__state}{hash\_state}}));}
+\DoxyCodeLine{723 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{724 }
+\DoxyCodeLine{725     \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{726 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+A\+RG, C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, tiger\+\_\+compress(), and zeromem().
+
+
+
+Referenced by tiger\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 6
+Here is the caller graph for this function\+:
+% FIG 7
+\mbox{\Hypertarget{tiger_8c_a82f8bacbe19155dfd2dba8f659820964}\label{tiger_8c_a82f8bacbe19155dfd2dba8f659820964}} 
+\index{tiger.c@{tiger.c}!tiger\_init@{tiger\_init}}
+\index{tiger\_init@{tiger\_init}!tiger.c@{tiger.c}}
+\subsubsection{\texorpdfstring{tiger\_init()}{tiger\_init()}}
+{\footnotesize\ttfamily int tiger\+\_\+init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$}]{md }\end{DoxyParamCaption})}
+
+
+
+Initialize the hash state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em md} & The hash state you wish to initialize \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 656 of file tiger.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{657 \{}
+\DoxyCodeLine{658     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(md != NULL);}
+\DoxyCodeLine{659     md->tiger.state[0] = \mbox{\hyperlink{tomcrypt__cfg_8h_a7d8e211582dff82d00fc171834e3dc67}{CONST64}}(0x0123456789ABCDEF);}
+\DoxyCodeLine{660     md->tiger.state[1] = \mbox{\hyperlink{tomcrypt__cfg_8h_a7d8e211582dff82d00fc171834e3dc67}{CONST64}}(0xFEDCBA9876543210);}
+\DoxyCodeLine{661     md->tiger.state[2] = \mbox{\hyperlink{tomcrypt__cfg_8h_a7d8e211582dff82d00fc171834e3dc67}{CONST64}}(0xF096A5B4C3B2E187);}
+\DoxyCodeLine{662     md->tiger.curlen = 0;}
+\DoxyCodeLine{663     md->tiger.length = 0;}
+\DoxyCodeLine{664     \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{665 \}}
+
+\end{DoxyCode}
+
+
+References C\+O\+N\+S\+T64, C\+R\+Y\+P\+T\+\_\+\+OK, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+
+
+Referenced by tiger\+\_\+test().
+
+Here is the caller graph for this function\+:
+% FIG 8
+\mbox{\Hypertarget{tiger_8c_adfc27934bf313afeb8d3498b04cb9c88}\label{tiger_8c_adfc27934bf313afeb8d3498b04cb9c88}} 
+\index{tiger.c@{tiger.c}!tiger\_process@{tiger\_process}}
+\index{tiger\_process@{tiger\_process}!tiger.c@{tiger.c}}
+\subsubsection{\texorpdfstring{tiger\_process()}{tiger\_process()}}
+{\footnotesize\ttfamily int tiger\+\_\+process (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$}]{md,  }\item[{const unsigned char $\ast$}]{in,  }\item[{unsigned long}]{inlen }\end{DoxyParamCaption})}
+
+
+
+Process a block of memory though the hash. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em md} & The hash state \\
+\hline
+{\em in} & The data to hash \\
+\hline
+{\em inlen} & The length of the data (octets) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 674 of file tiger.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{683 \{}
+
+\end{DoxyCode}
+
+
+Referenced by tiger\+\_\+test().
+
+Here is the caller graph for this function\+:
+% FIG 9
+\mbox{\Hypertarget{tiger_8c_a98146289b638fc60971c44d303e65eb0}\label{tiger_8c_a98146289b638fc60971c44d303e65eb0}} 
+\index{tiger.c@{tiger.c}!tiger\_round@{tiger\_round}}
+\index{tiger\_round@{tiger\_round}!tiger.c@{tiger.c}}
+\subsubsection{\texorpdfstring{tiger\_round()}{tiger\_round()}}
+{\footnotesize\ttfamily static void tiger\+\_\+round (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}} $\ast$}]{a,  }\item[{\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}} $\ast$}]{b,  }\item[{\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}} $\ast$}]{c,  }\item[{\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}}}]{x,  }\item[{int}]{mul }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 563 of file tiger.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{564 \{}
+\DoxyCodeLine{565     \mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}} tmp;}
+\DoxyCodeLine{566     tmp = (*\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} \string^= x);}
+\DoxyCodeLine{567            *a -= \mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}}[\mbox{\hyperlink{tomcrypt__private_8h_a319cb143574102827d3b0055ded27533}{LTC\_BYTE}}(tmp, 0)] \string^ \mbox{\hyperlink{tiger_8c_aa4652e2d6053d420dcbea07a113db5fe}{t2}}[\mbox{\hyperlink{tomcrypt__private_8h_a319cb143574102827d3b0055ded27533}{LTC\_BYTE}}(tmp, 2)] \string^ \mbox{\hyperlink{tiger_8c_a71a491fa5f35065b954a3001ebed0f28}{t3}}[\mbox{\hyperlink{tomcrypt__private_8h_a319cb143574102827d3b0055ded27533}{LTC\_BYTE}}(tmp, 4)] \string^ \mbox{\hyperlink{tiger_8c_a49808b2a2a734d04d911b470650d62ce}{t4}}[\mbox{\hyperlink{tomcrypt__private_8h_a319cb143574102827d3b0055ded27533}{LTC\_BYTE}}(tmp, 6)];}
+\DoxyCodeLine{568     tmp = (*b += \mbox{\hyperlink{tiger_8c_a49808b2a2a734d04d911b470650d62ce}{t4}}[\mbox{\hyperlink{tomcrypt__private_8h_a319cb143574102827d3b0055ded27533}{LTC\_BYTE}}(tmp, 1)] \string^ \mbox{\hyperlink{tiger_8c_a71a491fa5f35065b954a3001ebed0f28}{t3}}[\mbox{\hyperlink{tomcrypt__private_8h_a319cb143574102827d3b0055ded27533}{LTC\_BYTE}}(tmp, 3)] \string^ \mbox{\hyperlink{tiger_8c_aa4652e2d6053d420dcbea07a113db5fe}{t2}}[\mbox{\hyperlink{tomcrypt__private_8h_a319cb143574102827d3b0055ded27533}{LTC\_BYTE}}(tmp,5)] \string^ \mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}}[\mbox{\hyperlink{tomcrypt__private_8h_a319cb143574102827d3b0055ded27533}{LTC\_BYTE}}(tmp,7)]);}
+\DoxyCodeLine{569     \textcolor{keywordflow}{switch} (\mbox{\hyperlink{gmp__desc_8c_a7050c53d3ede33130b5137ee21872390}{mul}}) \{}
+\DoxyCodeLine{570         \textcolor{keywordflow}{case} 5:  *b = (tmp << 2) + tmp; \textcolor{keywordflow}{break};}
+\DoxyCodeLine{571         \textcolor{keywordflow}{case} 7:  *b = (tmp << 3) - tmp; \textcolor{keywordflow}{break};}
+\DoxyCodeLine{572         \textcolor{keywordflow}{case} 9:  *b = (tmp << 3) + tmp; \textcolor{keywordflow}{break};}
+\DoxyCodeLine{573     \}}
+\DoxyCodeLine{574 \}}
+
+\end{DoxyCode}
+
+
+References c, L\+T\+C\+\_\+\+B\+Y\+TE, mul(), t1, t2, t3, and t4.
+
+
+
+Referenced by pass().
+
+Here is the call graph for this function\+:
+% FIG 10
+Here is the caller graph for this function\+:
+% FIG 11
+\mbox{\Hypertarget{tiger_8c_a0c726827797846b3a94b64983f1b3dad}\label{tiger_8c_a0c726827797846b3a94b64983f1b3dad}} 
+\index{tiger.c@{tiger.c}!tiger\_test@{tiger\_test}}
+\index{tiger\_test@{tiger\_test}!tiger.c@{tiger.c}}
+\subsubsection{\texorpdfstring{tiger\_test()}{tiger\_test()}}
+{\footnotesize\ttfamily int tiger\+\_\+test (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Self-\/test the hash. 
+
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful, C\+R\+Y\+P\+T\+\_\+\+N\+OP if self-\/tests have been disabled 
+\end{DoxyReturn}
+
+
+Definition at line 732 of file tiger.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{733 \{}
+\DoxyCodeLine{734 \textcolor{preprocessor}{ \#ifndef LTC\_TEST}}
+\DoxyCodeLine{735     \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cac43a7799c7fd5f515172da6cfc0f9cf5}{CRYPT\_NOP}};}
+\DoxyCodeLine{736 \textcolor{preprocessor}{ \#else}}
+\DoxyCodeLine{737   \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{738       \textcolor{keyword}{const} \textcolor{keywordtype}{char} *msg;}
+\DoxyCodeLine{739       \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} hash[24];}
+\DoxyCodeLine{740   \} tests[] = \{}
+\DoxyCodeLine{741     \{ \textcolor{stringliteral}{""},}
+\DoxyCodeLine{742      \{ 0x32, 0x93, 0xac, 0x63, 0x0c, 0x13, 0xf0, 0x24,}
+\DoxyCodeLine{743        0x5f, 0x92, 0xbb, 0xb1, 0x76, 0x6e, 0x16, 0x16,}
+\DoxyCodeLine{744        0x7a, 0x4e, 0x58, 0x49, 0x2d, 0xde, 0x73, 0xf3 \}}
+\DoxyCodeLine{745     \},}
+\DoxyCodeLine{746     \{ \textcolor{stringliteral}{"abc"},}
+\DoxyCodeLine{747      \{ 0x2a, 0xab, 0x14, 0x84, 0xe8, 0xc1, 0x58, 0xf2,}
+\DoxyCodeLine{748        0xbf, 0xb8, 0xc5, 0xff, 0x41, 0xb5, 0x7a, 0x52,}
+\DoxyCodeLine{749        0x51, 0x29, 0x13, 0x1c, 0x95, 0x7b, 0x5f, 0x93 \}}
+\DoxyCodeLine{750     \},}
+\DoxyCodeLine{751     \{ \textcolor{stringliteral}{"Tiger"},}
+\DoxyCodeLine{752      \{ 0xdd, 0x00, 0x23, 0x07, 0x99, 0xf5, 0x00, 0x9f,}
+\DoxyCodeLine{753        0xec, 0x6d, 0xeb, 0xc8, 0x38, 0xbb, 0x6a, 0x27,}
+\DoxyCodeLine{754        0xdf, 0x2b, 0x9d, 0x6f, 0x11, 0x0c, 0x79, 0x37 \}}
+\DoxyCodeLine{755     \},}
+\DoxyCodeLine{756     \{ \textcolor{stringliteral}{"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+-"},}
+\DoxyCodeLine{757      \{ 0xf7, 0x1c, 0x85, 0x83, 0x90, 0x2a, 0xfb, 0x87,}
+\DoxyCodeLine{758        0x9e, 0xdf, 0xe6, 0x10, 0xf8, 0x2c, 0x0d, 0x47,}
+\DoxyCodeLine{759        0x86, 0xa3, 0xa5, 0x34, 0x50, 0x44, 0x86, 0xb5 \}}
+\DoxyCodeLine{760     \},}
+\DoxyCodeLine{761     \{ \textcolor{stringliteral}{"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+-ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+-"},}
+\DoxyCodeLine{762      \{ 0xc5, 0x40, 0x34, 0xe5, 0xb4, 0x3e, 0xb8, 0x00,}
+\DoxyCodeLine{763        0x58, 0x48, 0xa7, 0xe0, 0xae, 0x6a, 0xac, 0x76,}
+\DoxyCodeLine{764        0xe4, 0xff, 0x59, 0x0a, 0xe7, 0x15, 0xfd, 0x25 \}}
+\DoxyCodeLine{765     \},}
+\DoxyCodeLine{766   \};}
+\DoxyCodeLine{767 }
+\DoxyCodeLine{768   \textcolor{keywordtype}{int} i;}
+\DoxyCodeLine{769   \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} tmp[24];}
+\DoxyCodeLine{770   \mbox{\hyperlink{unionHash__state}{hash\_state}} md;}
+\DoxyCodeLine{771 }
+\DoxyCodeLine{772   \textcolor{keywordflow}{for} (i = 0; i < (int)(\textcolor{keyword}{sizeof}(tests) / \textcolor{keyword}{sizeof}(tests[0])); i++) \{}
+\DoxyCodeLine{773       \mbox{\hyperlink{tiger_8c_a82f8bacbe19155dfd2dba8f659820964}{tiger\_init}}(\&md);}
+\DoxyCodeLine{774       \mbox{\hyperlink{tiger_8c_adfc27934bf313afeb8d3498b04cb9c88}{tiger\_process}}(\&md, (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *)tests[i].msg, (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long})strlen(tests[i].msg));}
+\DoxyCodeLine{775       \mbox{\hyperlink{tiger_8c_a7d4feae8785f35a28c0bfb1487fca55c}{tiger\_done}}(\&md, tmp);}
+\DoxyCodeLine{776       \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(tmp, \textcolor{keyword}{sizeof}(tmp), tests[i].hash, \textcolor{keyword}{sizeof}(tests[i].hash), \textcolor{stringliteral}{"TIGER"}, i)) \{}
+\DoxyCodeLine{777           \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{778       \}}
+\DoxyCodeLine{779   \}}
+\DoxyCodeLine{780   \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{781 \textcolor{preprocessor}{  \#endif}}
+\DoxyCodeLine{782 \}}
+
+\end{DoxyCode}
+
+
+References compare\+\_\+testvector(), C\+R\+Y\+P\+T\+\_\+\+F\+A\+I\+L\+\_\+\+T\+E\+S\+T\+V\+E\+C\+T\+OR, C\+R\+Y\+P\+T\+\_\+\+N\+OP, C\+R\+Y\+P\+T\+\_\+\+OK, tiger\+\_\+done(), tiger\+\_\+init(), and tiger\+\_\+process().
+
+Here is the call graph for this function\+:
+% FIG 12
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{tiger_8c_a2b1cea27eee14b746b74f8e218eb7a26}\label{tiger_8c_a2b1cea27eee14b746b74f8e218eb7a26}} 
+\index{tiger.c@{tiger.c}!table@{table}}
+\index{table@{table}!tiger.c@{tiger.c}}
+\subsubsection{\texorpdfstring{table}{table}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}} table\mbox{[}4 $\ast$256\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 42 of file tiger.\+c.
+
+\mbox{\Hypertarget{tiger_8c_a44eec4b5ea7ebd749996709dcbb7fa02}\label{tiger_8c_a44eec4b5ea7ebd749996709dcbb7fa02}} 
+\index{tiger.c@{tiger.c}!tiger\_desc@{tiger\_desc}}
+\index{tiger\_desc@{tiger\_desc}!tiger.c@{tiger.c}}
+\subsubsection{\texorpdfstring{tiger\_desc}{tiger\_desc}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structltc__hash__descriptor}{ltc\+\_\+hash\+\_\+descriptor}} tiger\+\_\+desc}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    \textcolor{stringliteral}{"tiger"},}
+\DoxyCodeLine{    1,}
+\DoxyCodeLine{    24,}
+\DoxyCodeLine{    64,}
+\DoxyCodeLine{}
+\DoxyCodeLine{    }
+\DoxyCodeLine{   \{ 1, 3, 6, 1, 4, 1, 11591, 12, 2,  \},}
+\DoxyCodeLine{   9,}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \&\mbox{\hyperlink{tiger_8c_a82f8bacbe19155dfd2dba8f659820964}{tiger\_init}},}
+\DoxyCodeLine{    \&\mbox{\hyperlink{tiger_8c_adfc27934bf313afeb8d3498b04cb9c88}{tiger\_process}},}
+\DoxyCodeLine{    \&\mbox{\hyperlink{tiger_8c_a7d4feae8785f35a28c0bfb1487fca55c}{tiger\_done}},}
+\DoxyCodeLine{    \&\mbox{\hyperlink{tiger_8c_a0c726827797846b3a94b64983f1b3dad}{tiger\_test}},}
+\DoxyCodeLine{    NULL}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line 19 of file tiger.\+c.
+
+
+
+Referenced by register\+\_\+all\+\_\+hashes(), and yarrow\+\_\+start().
+

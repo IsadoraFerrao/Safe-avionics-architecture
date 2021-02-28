@@ -1,0 +1,10 @@
+digraph "rc5_setup"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node10 [label="rc5_setup",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Initialize the LTC_RC5 block cipher."];
+  Node10 -> Node11 [color="midnightblue",fontsize="10",style="solid"];
+  Node11 [label="XMEMCPY",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cfg_8h.html#a7691dd48d60d5fc6daf2fa7ec4c55e12",tooltip=" "];
+}

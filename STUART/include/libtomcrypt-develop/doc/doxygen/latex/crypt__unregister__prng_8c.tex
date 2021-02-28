@@ -1,0 +1,72 @@
+\hypertarget{crypt__unregister__prng_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/misc/crypt/crypt\+\_\+unregister\+\_\+prng.c File Reference}
+\label{crypt__unregister__prng_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/misc/crypt/crypt\_unregister\_prng.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/misc/crypt/crypt\_unregister\_prng.c}}
+
+
+Unregister a P\+R\+NG, Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for crypt\+\_\+unregister\+\_\+prng.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{crypt__unregister__prng_8c_ab51832cb0a438973a7033a80085b329d}{unregister\+\_\+prng}} (const struct \mbox{\hyperlink{structltc__prng__descriptor}{ltc\+\_\+prng\+\_\+descriptor}} $\ast$prng)
+\begin{DoxyCompactList}\small\item\em Unregister a P\+R\+NG from the descriptor table. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Unregister a P\+R\+NG, Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{crypt__unregister__prng_8c_ab51832cb0a438973a7033a80085b329d}\label{crypt__unregister__prng_8c_ab51832cb0a438973a7033a80085b329d}} 
+\index{crypt\_unregister\_prng.c@{crypt\_unregister\_prng.c}!unregister\_prng@{unregister\_prng}}
+\index{unregister\_prng@{unregister\_prng}!crypt\_unregister\_prng.c@{crypt\_unregister\_prng.c}}
+\subsubsection{\texorpdfstring{unregister\_prng()}{unregister\_prng()}}
+{\footnotesize\ttfamily int unregister\+\_\+prng (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structltc__prng__descriptor}{ltc\+\_\+prng\+\_\+descriptor}} $\ast$}]{prng }\end{DoxyParamCaption})}
+
+
+
+Unregister a P\+R\+NG from the descriptor table. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em prng} & The P\+R\+NG descriptor to remove \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK on success 
+\end{DoxyReturn}
+
+
+Definition at line 21 of file crypt\+\_\+unregister\+\_\+prng.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{22 \{}
+\DoxyCodeLine{23    \textcolor{keywordtype}{int} x;}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(prng != NULL);}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27    \textcolor{comment}{/* is it already registered? */}}
+\DoxyCodeLine{28    \mbox{\hyperlink{tomcrypt__custom_8h_a427a107414e4d775fbf23f4a499f4a31}{LTC\_MUTEX\_LOCK}}(\&ltc\_prng\_mutex);}
+\DoxyCodeLine{29    \textcolor{keywordflow}{for} (x = 0; x < \mbox{\hyperlink{tomcrypt_8h_a9ad1b4a1e4f7381611cfd2ae6620a727}{TAB\_SIZE}}; x++) \{}
+\DoxyCodeLine{30        \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__cfg_8h_a372b974ec0ac07abcd55297554fe540f}{XMEMCMP}}(\&\mbox{\hyperlink{tomcrypt__prng_8h_ac03ee9f603bf966f3afb3f6be156239b}{prng\_descriptor}}[x], prng, \textcolor{keyword}{sizeof}(\textcolor{keyword}{struct} \mbox{\hyperlink{structltc__prng__descriptor}{ltc\_prng\_descriptor}})) == 0) \{}
+\DoxyCodeLine{31           \mbox{\hyperlink{tomcrypt__prng_8h_ac03ee9f603bf966f3afb3f6be156239b}{prng\_descriptor}}[x].\mbox{\hyperlink{structltc__prng__descriptor_a56124a50c35eebe647ae285e14c0d147}{name}} = NULL;}
+\DoxyCodeLine{32           \mbox{\hyperlink{tomcrypt__custom_8h_acdf267be91b178b4fafe8f992d57a7f1}{LTC\_MUTEX\_UNLOCK}}(\&ltc\_prng\_mutex);}
+\DoxyCodeLine{33           \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{34        \}}
+\DoxyCodeLine{35    \}}
+\DoxyCodeLine{36    \mbox{\hyperlink{tomcrypt__custom_8h_acdf267be91b178b4fafe8f992d57a7f1}{LTC\_MUTEX\_UNLOCK}}(\&ltc\_prng\_mutex);}
+\DoxyCodeLine{37    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca03c22220d7538be04455cd2aa6ddf9da}{CRYPT\_ERROR}};}
+\DoxyCodeLine{38 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+E\+R\+R\+OR, C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, L\+T\+C\+\_\+\+M\+U\+T\+E\+X\+\_\+\+L\+O\+CK, L\+T\+C\+\_\+\+M\+U\+T\+E\+X\+\_\+\+U\+N\+L\+O\+CK, ltc\+\_\+prng\+\_\+descriptor\+::name, prng\+\_\+descriptor, T\+A\+B\+\_\+\+S\+I\+ZE, and X\+M\+E\+M\+C\+M\+P().
+
+Here is the call graph for this function\+:
+% FIG 1

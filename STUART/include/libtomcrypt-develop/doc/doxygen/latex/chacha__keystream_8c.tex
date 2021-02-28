@@ -1,0 +1,61 @@
+\hypertarget{chacha__keystream_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/stream/chacha/chacha\+\_\+keystream.c File Reference}
+\label{chacha__keystream_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/stream/chacha/chacha\_keystream.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/stream/chacha/chacha\_keystream.c}}
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for chacha\+\_\+keystream.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{chacha__keystream_8c_a3a29ed9997a58d432f9e8ddca7b90bdd}{chacha\+\_\+keystream}} (chacha\+\_\+state $\ast$st, unsigned char $\ast$out, unsigned long outlen)
+\begin{DoxyCompactList}\small\item\em Generate a stream of random bytes via Cha\+Cha. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{chacha__keystream_8c_a3a29ed9997a58d432f9e8ddca7b90bdd}\label{chacha__keystream_8c_a3a29ed9997a58d432f9e8ddca7b90bdd}} 
+\index{chacha\_keystream.c@{chacha\_keystream.c}!chacha\_keystream@{chacha\_keystream}}
+\index{chacha\_keystream@{chacha\_keystream}!chacha\_keystream.c@{chacha\_keystream.c}}
+\subsubsection{\texorpdfstring{chacha\_keystream()}{chacha\_keystream()}}
+{\footnotesize\ttfamily int chacha\+\_\+keystream (\begin{DoxyParamCaption}\item[{chacha\+\_\+state $\ast$}]{st,  }\item[{unsigned char $\ast$}]{out,  }\item[{unsigned long}]{outlen }\end{DoxyParamCaption})}
+
+
+
+Generate a stream of random bytes via Cha\+Cha. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em st} & The Cha\+Cha20 state \\
+\hline
+{\em out} & \mbox{[}out\mbox{]} The output buffer \\
+\hline
+{\em outlen} & The output length \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK on success 
+\end{DoxyReturn}
+
+
+Definition at line 26 of file chacha\+\_\+keystream.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{27 \{}
+\DoxyCodeLine{28    \textcolor{keywordflow}{if} (outlen == 0) \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}; \textcolor{comment}{/* nothing to do */}}
+\DoxyCodeLine{29    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(out != NULL);}
+\DoxyCodeLine{30    \mbox{\hyperlink{tomcrypt__cfg_8h_aa3c34a6f6c61de7da9258b5a30e32c2f}{XMEMSET}}(out, 0, outlen);}
+\DoxyCodeLine{31    \textcolor{keywordflow}{return} \mbox{\hyperlink{chacha__crypt_8c_a1b1272fcac65a1e6a1ee555891b7c95e}{chacha\_crypt}}(st, out, outlen, out);}
+\DoxyCodeLine{32 \}}
+
+\end{DoxyCode}
+
+
+References chacha\+\_\+crypt(), C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, and X\+M\+E\+M\+S\+E\+T().
+
+
+
+Referenced by chacha20\+\_\+prng\+\_\+add\+\_\+entropy(), chacha20\+\_\+prng\+\_\+read(), and chacha20poly1305\+\_\+setiv().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2

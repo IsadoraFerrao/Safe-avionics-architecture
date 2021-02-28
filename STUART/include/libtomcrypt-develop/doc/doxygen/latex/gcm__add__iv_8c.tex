@@ -1,0 +1,124 @@
+\hypertarget{gcm__add__iv_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/encauth/gcm/gcm\+\_\+add\+\_\+iv.c File Reference}
+\label{gcm__add__iv_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/encauth/gcm/gcm\_add\_iv.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/encauth/gcm/gcm\_add\_iv.c}}
+
+
+G\+CM implementation, add IV data to the state, by Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for gcm\+\_\+add\+\_\+iv.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{gcm__add__iv_8c_a05c018a26305857461c773ce2e458fc5}{gcm\+\_\+add\+\_\+iv}} (gcm\+\_\+state $\ast$gcm, const unsigned char $\ast$IV, unsigned long I\+Vlen)
+\begin{DoxyCompactList}\small\item\em Add IV data to the G\+CM state. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+G\+CM implementation, add IV data to the state, by Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{gcm__add__iv_8c_a05c018a26305857461c773ce2e458fc5}\label{gcm__add__iv_8c_a05c018a26305857461c773ce2e458fc5}} 
+\index{gcm\_add\_iv.c@{gcm\_add\_iv.c}!gcm\_add\_iv@{gcm\_add\_iv}}
+\index{gcm\_add\_iv@{gcm\_add\_iv}!gcm\_add\_iv.c@{gcm\_add\_iv.c}}
+\subsubsection{\texorpdfstring{gcm\_add\_iv()}{gcm\_add\_iv()}}
+{\footnotesize\ttfamily int gcm\+\_\+add\+\_\+iv (\begin{DoxyParamCaption}\item[{gcm\+\_\+state $\ast$}]{gcm,  }\item[{const unsigned char $\ast$}]{IV,  }\item[{unsigned long}]{I\+Vlen }\end{DoxyParamCaption})}
+
+
+
+Add IV data to the G\+CM state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gcm} & The G\+CM state \\
+\hline
+{\em IV} & The initial value data to add \\
+\hline
+{\em I\+Vlen} & The length of the IV \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK on success 
+\end{DoxyReturn}
+
+
+Definition at line 25 of file gcm\+\_\+add\+\_\+iv.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{27 \{}
+\DoxyCodeLine{28    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} x, y;}
+\DoxyCodeLine{29    \textcolor{keywordtype}{int}           err;}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(gcm != NULL);}
+\DoxyCodeLine{32    \textcolor{keywordflow}{if} (IVlen > 0) \{}
+\DoxyCodeLine{33       \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(IV  != NULL);}
+\DoxyCodeLine{34    \}}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36    \textcolor{comment}{/* must be in IV mode */}}
+\DoxyCodeLine{37    \textcolor{keywordflow}{if} (gcm->mode != LTC\_GCM\_MODE\_IV) \{}
+\DoxyCodeLine{38       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{39    \}}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41    \textcolor{keywordflow}{if} (gcm->buflen >= 16 || gcm->buflen < 0) \{}
+\DoxyCodeLine{42       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{43    \}}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_ac30eb68934c4ca07205344dc9d159221}{cipher\_is\_valid}}(gcm->cipher)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{46       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{47    \}}
+\DoxyCodeLine{48 }
+\DoxyCodeLine{49 }
+\DoxyCodeLine{50    \textcolor{comment}{/* trip the ivmode flag */}}
+\DoxyCodeLine{51    \textcolor{keywordflow}{if} (IVlen + gcm->buflen > 12) \{}
+\DoxyCodeLine{52       gcm->ivmode |= 1;}
+\DoxyCodeLine{53    \}}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55    x = 0;}
+\DoxyCodeLine{56 \textcolor{preprocessor}{\#ifdef LTC\_FAST}}
+\DoxyCodeLine{57    \textcolor{keywordflow}{if} (gcm->buflen == 0) \{}
+\DoxyCodeLine{58       \textcolor{keywordflow}{for} (x = 0; x < (IVlen \& ~15); x += 16) \{}
+\DoxyCodeLine{59           \textcolor{keywordflow}{for} (y = 0; y < 16; y += \textcolor{keyword}{sizeof}(LTC\_FAST\_TYPE)) \{}
+\DoxyCodeLine{60               *(LTC\_FAST\_TYPE\_PTR\_CAST(\&gcm->X[y])) \string^= *(LTC\_FAST\_TYPE\_PTR\_CAST(\&IV[x + y]));}
+\DoxyCodeLine{61           \}}
+\DoxyCodeLine{62           \mbox{\hyperlink{gcm__mult__h_8c_a198e51a3d6b56455cc781d140ebd6f6d}{gcm\_mult\_h}}(gcm, gcm->X);}
+\DoxyCodeLine{63           gcm->totlen += 128;}
+\DoxyCodeLine{64       \}}
+\DoxyCodeLine{65       IV += x;}
+\DoxyCodeLine{66    \}}
+\DoxyCodeLine{67 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{68 }
+\DoxyCodeLine{69    \textcolor{comment}{/* start adding IV data to the state */}}
+\DoxyCodeLine{70    \textcolor{keywordflow}{for} (; x < IVlen; x++) \{}
+\DoxyCodeLine{71        gcm->buf[gcm->buflen++] = *IV++;}
+\DoxyCodeLine{72 }
+\DoxyCodeLine{73       \textcolor{keywordflow}{if} (gcm->buflen == 16) \{}
+\DoxyCodeLine{74          \textcolor{comment}{/* GF mult it */}}
+\DoxyCodeLine{75          \textcolor{keywordflow}{for} (y = 0; y < 16; y++) \{}
+\DoxyCodeLine{76              gcm->X[y] \string^= gcm->buf[y];}
+\DoxyCodeLine{77          \}}
+\DoxyCodeLine{78          \mbox{\hyperlink{gcm__mult__h_8c_a198e51a3d6b56455cc781d140ebd6f6d}{gcm\_mult\_h}}(gcm, gcm->X);}
+\DoxyCodeLine{79          gcm->buflen = 0;}
+\DoxyCodeLine{80          gcm->totlen += 128;}
+\DoxyCodeLine{81       \}}
+\DoxyCodeLine{82    \}}
+\DoxyCodeLine{83 }
+\DoxyCodeLine{84    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{85 \}}
+
+\end{DoxyCode}
+
+
+References cipher\+\_\+is\+\_\+valid(), C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+A\+RG, C\+R\+Y\+P\+T\+\_\+\+OK, gcm\+\_\+mult\+\_\+h(), and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+
+
+Referenced by gcm\+\_\+memory(), and gcm\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2

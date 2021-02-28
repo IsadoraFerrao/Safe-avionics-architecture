@@ -1,0 +1,10 @@
+digraph "blake2b_160_init"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node10 [label="blake2b_160_init",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Initialize the hash state."];
+  Node10 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 [label="blake2b_160_test",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$blake2b_8c.html#ada54df5eb119d8d34e55c004c98fa1c5",tooltip="Self-test the hash."];
+}

@@ -1,0 +1,43 @@
+digraph "rabbit_test"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node65 [label="rabbit_test",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node65 -> Node66 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node66 [label="compare_testvector",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__misc_8h.html#a7764a7f27897c6182335752df00b5f8e",tooltip="Compare two test-vectors."];
+  Node66 -> Node67 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node67 [label="XMEMCMP",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cfg_8h.html#a372b974ec0ac07abcd55297554fe540f",tooltip=" "];
+  Node65 -> Node68 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node68 [label="rabbit_crypt",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rabbit_8c.html#a5391d40531a20557491ef7d58fb93cda",tooltip=" "];
+  Node68 -> Node69 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node69 [label="_rabbit_gen_1_block",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rabbit_8c.html#a5908dd91ace42986a5ee525efe536246",tooltip=" "];
+  Node69 -> Node70 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node70 [label="_rabbit_next_state",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rabbit_8c.html#a84f7be2f4dd286fbda438d0d94d5db8f",tooltip=" "];
+  Node70 -> Node71 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node71 [label="_rabbit_g_func",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rabbit_8c.html#abe3d301de5a1b8aace3b7d5e71fabe10",tooltip=" "];
+  Node65 -> Node72 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node72 [label="rabbit_done",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rabbit_8c.html#a931b3a1f3f35366a90bc7c7b994cac92",tooltip=" "];
+  Node72 -> Node73 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node73 [label="zeromem",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__misc_8h.html#a63b6e188713790263bfd3612fe8b398f",tooltip="Zero a block of memory."];
+  Node65 -> Node74 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node74 [label="rabbit_memory",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rabbit__memory_8c.html#a10314f2825525c0c69881907d65ab91b",tooltip="Encrypt (or decrypt) bytes of ciphertext (or plaintext) with Rabbit."];
+  Node74 -> Node75 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node75 [label="rabbit_setup",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rabbit_8c.html#ac522e3bb890d2fe32276a4a596371461",tooltip=" "];
+  Node75 -> Node70 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node75 -> Node76 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node76 [label="XMEMCPY",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cfg_8h.html#a7691dd48d60d5fc6daf2fa7ec4c55e12",tooltip=" "];
+  Node75 -> Node77 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node77 [label="XMEMSET",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cfg_8h.html#aa3c34a6f6c61de7da9258b5a30e32c2f",tooltip=" "];
+  Node75 -> Node73 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node74 -> Node78 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node78 [label="rabbit_setiv",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rabbit_8c.html#ac6f6bf7b05fa527a8fed39dcae781cec",tooltip=" "];
+  Node78 -> Node70 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node78 -> Node76 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node78 -> Node77 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node74 -> Node68 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node74 -> Node72 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node65 -> Node78 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node65 -> Node75 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}

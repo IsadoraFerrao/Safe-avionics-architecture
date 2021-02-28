@@ -1,0 +1,25 @@
+digraph "setup_mix"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node34 [label="setup_mix",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node34 -> Node35 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node35 [label="rijndael_setup",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$aes_8c.html#a3b2fab908c22514c91332a5c9a3d7166",tooltip="Initialize the AES (Rijndael) block cipher."];
+  Node35 -> Node36 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node36 [label="_fortuna_reseed",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$fortuna_8c.html#aad833baa2e75f93d847e5a7ac30ea4d2",tooltip=" "];
+  Node36 -> Node37 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node37 [label="fortuna_ready",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$fortuna_8c.html#a635d034d99b51a38b4a71fae3880b48f",tooltip="Make the PRNG ready to read from."];
+  Node36 -> Node38 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node38 [label="fortuna_read",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$fortuna_8c.html#a19149fcfc926ab81d4acebfcf39b78f7",tooltip="Read from the PRNG."];
+  Node35 -> Node38 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node35 -> Node39 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node39 [label="fortuna_start",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$fortuna_8c.html#a54822f5e172e6f2a025448f6e9430e22",tooltip="Start the PRNG."];
+  Node39 -> Node40 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node40 [label="fortuna_import",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$fortuna_8c.html#ad9f529aaecf6646cac5e5eaa2d1f418d",tooltip="Import a PRNG state."];
+  Node35 -> Node41 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node41 [label="rijndael_test",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$aes_8c.html#a787877f61031ca3855283ee7755f1b46",tooltip="Performs a self-test of the AES block cipher."];
+  Node41 -> Node42 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node42 [label="fortuna_test",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$fortuna_8c.html#a02a8621eda36a40059ce155007b6f6c3",tooltip="PRNG self-test."];
+}

@@ -1,0 +1,12 @@
+digraph "ecc_import_subject_public_key_info"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node91 [label="ecc_import_subject\l_public_key_info",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node91 -> Node92 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node92 [label="ecc_import_openssl",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ecc__import__openssl_8c.html#a62e764a9d768652402f730abef32780a",tooltip=" "];
+  Node91 -> Node93 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node93 [label="ecc_import_x509",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ecc__import__x509_8c.html#abd7477bc1144cdfd4f9e2da835eefbf6",tooltip="Import an ECC key from a X.509 certificate."];
+}

@@ -1,0 +1,657 @@
+\hypertarget{skipjack_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/ciphers/skipjack.c File Reference}
+\label{skipjack_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/ciphers/skipjack.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/ciphers/skipjack.c}}
+
+
+Skipjack Implementation by Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for skipjack.\+c\+:
+% FIG 0
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{skipjack_8c_acdb0c66a96e431b581597e999d03305a}{R\+U\+L\+E\+\_\+A}}
+\item 
+\#define \mbox{\hyperlink{skipjack_8c_a2e68755e2aec77e04a5c0d022be41b0a}{R\+U\+L\+E\+\_\+B}}
+\item 
+\#define \mbox{\hyperlink{skipjack_8c_a8137ac5422074b48d37776d954a6bbcb}{R\+U\+L\+E\+\_\+\+A1}}
+\item 
+\#define \mbox{\hyperlink{skipjack_8c_a4a69a24271273c3295d9b4d3ea6cf4ff}{R\+U\+L\+E\+\_\+\+B1}}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{skipjack_8c_a54947ca21c229acf88db02d31020e703}{skipjack\+\_\+setup}} (const unsigned char $\ast$key, int keylen, int num\+\_\+rounds, \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)
+\begin{DoxyCompactList}\small\item\em Initialize the Skipjack block cipher. \end{DoxyCompactList}\item 
+static unsigned \mbox{\hyperlink{skipjack_8c_a315e89368ff2b7d901edeb387dd9b562}{g\+\_\+func}} (unsigned w, int $\ast$kp, const unsigned char $\ast$key)
+\item 
+static unsigned \mbox{\hyperlink{skipjack_8c_a8a5622042b0d280a34261e49f8547dc1}{ig\+\_\+func}} (unsigned w, int $\ast$kp, const unsigned char $\ast$key)
+\item 
+int \mbox{\hyperlink{skipjack_8c_a86ca265f2f0190f0d60fa5f6f9ddefdf}{skipjack\+\_\+ecb\+\_\+encrypt}} (const unsigned char $\ast$pt, unsigned char $\ast$ct, const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)
+\begin{DoxyCompactList}\small\item\em Encrypts a block of text with Skipjack. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{skipjack_8c_a8a41ed6e0aa006b445b6793568600541}{skipjack\+\_\+ecb\+\_\+decrypt}} (const unsigned char $\ast$ct, unsigned char $\ast$pt, const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)
+\begin{DoxyCompactList}\small\item\em Decrypts a block of text with Skipjack. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{skipjack_8c_aa9c44f10e6f1dbacf9e7547f67b81fc3}{skipjack\+\_\+test}} (void)
+\begin{DoxyCompactList}\small\item\em Performs a self-\/test of the Skipjack block cipher. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{skipjack_8c_a2e71156f5bf93b4020fa6e1da93f30a3}{skipjack\+\_\+done}} (\mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)
+\begin{DoxyCompactList}\small\item\em Terminate the context. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{skipjack_8c_a4ce0b9329d721107c79627f1899ff6ae}{skipjack\+\_\+keysize}} (int $\ast$keysize)
+\begin{DoxyCompactList}\small\item\em Gets suitable key size. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const struct \mbox{\hyperlink{structltc__cipher__descriptor}{ltc\+\_\+cipher\+\_\+descriptor}} \mbox{\hyperlink{skipjack_8c_a15ea2ed4036004060ddc9e763fea84de}{skipjack\+\_\+desc}}
+\item 
+static const unsigned char \mbox{\hyperlink{skipjack_8c_abbb6f385c467cfd964a68eeb6caaa04f}{sbox}} \mbox{[}256\mbox{]}
+\item 
+static const int \mbox{\hyperlink{skipjack_8c_aa3d362f0ac4eb868536f861c770172b4}{keystep}} \mbox{[}$\,$\mbox{]} = \{ 1, 2, 3, 4, 5, 6, 7, 8, 9, 0 \}
+\item 
+static const int \mbox{\hyperlink{skipjack_8c_a8466b0c490052f0be1abb6c048dbcc42}{ikeystep}} \mbox{[}$\,$\mbox{]} = \{ 9, 0, 1, 2, 3, 4, 5, 6, 7, 8 \}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Skipjack Implementation by Tom St Denis. 
+
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{skipjack_8c_acdb0c66a96e431b581597e999d03305a}\label{skipjack_8c_acdb0c66a96e431b581597e999d03305a}} 
+\index{skipjack.c@{skipjack.c}!RULE\_A@{RULE\_A}}
+\index{RULE\_A@{RULE\_A}!skipjack.c@{skipjack.c}}
+\subsubsection{\texorpdfstring{RULE\_A}{RULE\_A}}
+{\footnotesize\ttfamily \#define R\+U\+L\+E\+\_\+A}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{tmp = \mbox{\hyperlink{skipjack_8c_a315e89368ff2b7d901edeb387dd9b562}{g\_func}}(w1, \&kp, skey->skipjack.key);      \(\backslash\)}
+\DoxyCodeLine{   w1  = tmp \string^ w4 \string^ x;                            \(\backslash\)}
+\DoxyCodeLine{   w4  = w3; w3 = w2;                             \(\backslash\)}
+\DoxyCodeLine{   w2  = tmp;}
+
+\end{DoxyCode}
+
+
+Definition at line 88 of file skipjack.\+c.
+
+\mbox{\Hypertarget{skipjack_8c_a8137ac5422074b48d37776d954a6bbcb}\label{skipjack_8c_a8137ac5422074b48d37776d954a6bbcb}} 
+\index{skipjack.c@{skipjack.c}!RULE\_A1@{RULE\_A1}}
+\index{RULE\_A1@{RULE\_A1}!skipjack.c@{skipjack.c}}
+\subsubsection{\texorpdfstring{RULE\_A1}{RULE\_A1}}
+{\footnotesize\ttfamily \#define R\+U\+L\+E\+\_\+\+A1}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{tmp = w1 \string^ w2 \string^ x;                             \(\backslash\)}
+\DoxyCodeLine{   w1  = \mbox{\hyperlink{skipjack_8c_a8a5622042b0d280a34261e49f8547dc1}{ig\_func}}(w2, \&kp, skey->skipjack.key);     \(\backslash\)}
+\DoxyCodeLine{   w2  = w3; w3 = w4; w4 = tmp;}
+
+\end{DoxyCode}
+
+
+Definition at line 100 of file skipjack.\+c.
+
+\mbox{\Hypertarget{skipjack_8c_a2e68755e2aec77e04a5c0d022be41b0a}\label{skipjack_8c_a2e68755e2aec77e04a5c0d022be41b0a}} 
+\index{skipjack.c@{skipjack.c}!RULE\_B@{RULE\_B}}
+\index{RULE\_B@{RULE\_B}!skipjack.c@{skipjack.c}}
+\subsubsection{\texorpdfstring{RULE\_B}{RULE\_B}}
+{\footnotesize\ttfamily \#define R\+U\+L\+E\+\_\+B}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{tmp  = \mbox{\hyperlink{skipjack_8c_a315e89368ff2b7d901edeb387dd9b562}{g\_func}}(w1, \&kp, skey->skipjack.key);     \(\backslash\)}
+\DoxyCodeLine{   tmp1 = w4; w4  = w3;                           \(\backslash\)}
+\DoxyCodeLine{   w3   = w1 \string^ w2 \string^ x;                            \(\backslash\)}
+\DoxyCodeLine{   w1   = tmp1; w2 = tmp;}
+
+\end{DoxyCode}
+
+
+Definition at line 94 of file skipjack.\+c.
+
+\mbox{\Hypertarget{skipjack_8c_a4a69a24271273c3295d9b4d3ea6cf4ff}\label{skipjack_8c_a4a69a24271273c3295d9b4d3ea6cf4ff}} 
+\index{skipjack.c@{skipjack.c}!RULE\_B1@{RULE\_B1}}
+\index{RULE\_B1@{RULE\_B1}!skipjack.c@{skipjack.c}}
+\subsubsection{\texorpdfstring{RULE\_B1}{RULE\_B1}}
+{\footnotesize\ttfamily \#define R\+U\+L\+E\+\_\+\+B1}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{tmp = \mbox{\hyperlink{skipjack_8c_a8a5622042b0d280a34261e49f8547dc1}{ig\_func}}(w2, \&kp, skey->skipjack.key);     \(\backslash\)}
+\DoxyCodeLine{   w2  = tmp \string^ w3 \string^ x;                            \(\backslash\)}
+\DoxyCodeLine{   w3  = w4; w4 = w1; w1 = tmp;}
+
+\end{DoxyCode}
+
+
+Definition at line 105 of file skipjack.\+c.
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{skipjack_8c_a315e89368ff2b7d901edeb387dd9b562}\label{skipjack_8c_a315e89368ff2b7d901edeb387dd9b562}} 
+\index{skipjack.c@{skipjack.c}!g\_func@{g\_func}}
+\index{g\_func@{g\_func}!skipjack.c@{skipjack.c}}
+\subsubsection{\texorpdfstring{g\_func()}{g\_func()}}
+{\footnotesize\ttfamily static unsigned g\+\_\+func (\begin{DoxyParamCaption}\item[{unsigned}]{w,  }\item[{int $\ast$}]{kp,  }\item[{const unsigned char $\ast$}]{key }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 110 of file skipjack.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{111 \{}
+\DoxyCodeLine{112    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} g1,g2;}
+\DoxyCodeLine{113 }
+\DoxyCodeLine{114    g1 = (w >> 8) \& 255; g2 = w \& 255;}
+\DoxyCodeLine{115    g1 \string^= \mbox{\hyperlink{skipjack_8c_abbb6f385c467cfd964a68eeb6caaa04f}{sbox}}[g2\string^key[*kp]]; *kp = \mbox{\hyperlink{skipjack_8c_aa3d362f0ac4eb868536f861c770172b4}{keystep}}[*kp];}
+\DoxyCodeLine{116    g2 \string^= \mbox{\hyperlink{skipjack_8c_abbb6f385c467cfd964a68eeb6caaa04f}{sbox}}[g1\string^key[*kp]]; *kp = \mbox{\hyperlink{skipjack_8c_aa3d362f0ac4eb868536f861c770172b4}{keystep}}[*kp];}
+\DoxyCodeLine{117    g1 \string^= \mbox{\hyperlink{skipjack_8c_abbb6f385c467cfd964a68eeb6caaa04f}{sbox}}[g2\string^key[*kp]]; *kp = \mbox{\hyperlink{skipjack_8c_aa3d362f0ac4eb868536f861c770172b4}{keystep}}[*kp];}
+\DoxyCodeLine{118    g2 \string^= \mbox{\hyperlink{skipjack_8c_abbb6f385c467cfd964a68eeb6caaa04f}{sbox}}[g1\string^key[*kp]]; *kp = \mbox{\hyperlink{skipjack_8c_aa3d362f0ac4eb868536f861c770172b4}{keystep}}[*kp];}
+\DoxyCodeLine{119    \textcolor{keywordflow}{return} ((\textcolor{keywordtype}{unsigned})g1<<8)|(\textcolor{keywordtype}{unsigned})g2;}
+\DoxyCodeLine{120 \}}
+
+\end{DoxyCode}
+
+
+References keystep, and sbox.
+
+\mbox{\Hypertarget{skipjack_8c_a8a5622042b0d280a34261e49f8547dc1}\label{skipjack_8c_a8a5622042b0d280a34261e49f8547dc1}} 
+\index{skipjack.c@{skipjack.c}!ig\_func@{ig\_func}}
+\index{ig\_func@{ig\_func}!skipjack.c@{skipjack.c}}
+\subsubsection{\texorpdfstring{ig\_func()}{ig\_func()}}
+{\footnotesize\ttfamily static unsigned ig\+\_\+func (\begin{DoxyParamCaption}\item[{unsigned}]{w,  }\item[{int $\ast$}]{kp,  }\item[{const unsigned char $\ast$}]{key }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 122 of file skipjack.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{123 \{}
+\DoxyCodeLine{124    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} g1,g2;}
+\DoxyCodeLine{125 }
+\DoxyCodeLine{126    g1 = (w >> 8) \& 255; g2 = w \& 255;}
+\DoxyCodeLine{127    *kp = \mbox{\hyperlink{skipjack_8c_a8466b0c490052f0be1abb6c048dbcc42}{ikeystep}}[*kp]; g2 \string^= \mbox{\hyperlink{skipjack_8c_abbb6f385c467cfd964a68eeb6caaa04f}{sbox}}[g1\string^key[*kp]];}
+\DoxyCodeLine{128    *kp = \mbox{\hyperlink{skipjack_8c_a8466b0c490052f0be1abb6c048dbcc42}{ikeystep}}[*kp]; g1 \string^= \mbox{\hyperlink{skipjack_8c_abbb6f385c467cfd964a68eeb6caaa04f}{sbox}}[g2\string^key[*kp]];}
+\DoxyCodeLine{129    *kp = \mbox{\hyperlink{skipjack_8c_a8466b0c490052f0be1abb6c048dbcc42}{ikeystep}}[*kp]; g2 \string^= \mbox{\hyperlink{skipjack_8c_abbb6f385c467cfd964a68eeb6caaa04f}{sbox}}[g1\string^key[*kp]];}
+\DoxyCodeLine{130    *kp = \mbox{\hyperlink{skipjack_8c_a8466b0c490052f0be1abb6c048dbcc42}{ikeystep}}[*kp]; g1 \string^= \mbox{\hyperlink{skipjack_8c_abbb6f385c467cfd964a68eeb6caaa04f}{sbox}}[g2\string^key[*kp]];}
+\DoxyCodeLine{131    \textcolor{keywordflow}{return} ((\textcolor{keywordtype}{unsigned})g1<<8)|(\textcolor{keywordtype}{unsigned})g2;}
+\DoxyCodeLine{132 \}}
+
+\end{DoxyCode}
+
+
+References ikeystep, and sbox.
+
+\mbox{\Hypertarget{skipjack_8c_a2e71156f5bf93b4020fa6e1da93f30a3}\label{skipjack_8c_a2e71156f5bf93b4020fa6e1da93f30a3}} 
+\index{skipjack.c@{skipjack.c}!skipjack\_done@{skipjack\_done}}
+\index{skipjack\_done@{skipjack\_done}!skipjack.c@{skipjack.c}}
+\subsubsection{\texorpdfstring{skipjack\_done()}{skipjack\_done()}}
+{\footnotesize\ttfamily void skipjack\+\_\+done (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$}]{skey }\end{DoxyParamCaption})}
+
+
+
+Terminate the context. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em skey} & The scheduled key \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 318 of file skipjack.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{319 \{}
+\DoxyCodeLine{320   \mbox{\hyperlink{tomcrypt__macros_8h_accde4b007facd646a8327f8e64b2d1e0}{LTC\_UNUSED\_PARAM}}(skey);}
+\DoxyCodeLine{321 \}}
+
+\end{DoxyCode}
+
+
+References L\+T\+C\+\_\+\+U\+N\+U\+S\+E\+D\+\_\+\+P\+A\+R\+AM.
+
+\mbox{\Hypertarget{skipjack_8c_a8a41ed6e0aa006b445b6793568600541}\label{skipjack_8c_a8a41ed6e0aa006b445b6793568600541}} 
+\index{skipjack.c@{skipjack.c}!skipjack\_ecb\_decrypt@{skipjack\_ecb\_decrypt}}
+\index{skipjack\_ecb\_decrypt@{skipjack\_ecb\_decrypt}!skipjack.c@{skipjack.c}}
+\subsubsection{\texorpdfstring{skipjack\_ecb\_decrypt()}{skipjack\_ecb\_decrypt()}}
+{\footnotesize\ttfamily int skipjack\+\_\+ecb\+\_\+decrypt (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{ct,  }\item[{unsigned char $\ast$}]{pt,  }\item[{const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$}]{skey }\end{DoxyParamCaption})}
+
+
+
+Decrypts a block of text with Skipjack. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ct} & The input ciphertext (8 bytes) \\
+\hline
+{\em pt} & The output plaintext (8 bytes) \\
+\hline
+{\em skey} & The key as scheduled \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 208 of file skipjack.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{210 \{}
+\DoxyCodeLine{211    \textcolor{keywordtype}{unsigned} w1,w2,w3,w4,tmp;}
+\DoxyCodeLine{212    \textcolor{keywordtype}{int} x, kp;}
+\DoxyCodeLine{213 }
+\DoxyCodeLine{214    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(pt   != NULL);}
+\DoxyCodeLine{215    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(ct   != NULL);}
+\DoxyCodeLine{216    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(skey != NULL);}
+\DoxyCodeLine{217 }
+\DoxyCodeLine{218    \textcolor{comment}{/* load block */}}
+\DoxyCodeLine{219    w1 = ((unsigned)ct[0]<<8)|ct[1];}
+\DoxyCodeLine{220    w2 = ((unsigned)ct[2]<<8)|ct[3];}
+\DoxyCodeLine{221    w3 = ((unsigned)ct[4]<<8)|ct[5];}
+\DoxyCodeLine{222    w4 = ((unsigned)ct[6]<<8)|ct[7];}
+\DoxyCodeLine{223 }
+\DoxyCodeLine{224    \textcolor{comment}{/* 8 rounds of RULE B\string^-1}}
+\DoxyCodeLine{225 \textcolor{comment}{}}
+\DoxyCodeLine{226 \textcolor{comment}{      Note the value "kp = 8" comes from "kp = (32 * 4) mod 10" where 32*4 is 128 which mod 10 is 8}}
+\DoxyCodeLine{227 \textcolor{comment}{    */}}
+\DoxyCodeLine{228    \textcolor{keywordflow}{for} (x = 32, kp = 8; x > 24; x--) \{}
+\DoxyCodeLine{229        \mbox{\hyperlink{skipjack_8c_a4a69a24271273c3295d9b4d3ea6cf4ff}{RULE\_B1}};}
+\DoxyCodeLine{230    \}}
+\DoxyCodeLine{231 }
+\DoxyCodeLine{232    \textcolor{comment}{/* 8 rounds of RULE A\string^-1 */}}
+\DoxyCodeLine{233    \textcolor{keywordflow}{for} (; x > 16; x--) \{}
+\DoxyCodeLine{234        \mbox{\hyperlink{skipjack_8c_a8137ac5422074b48d37776d954a6bbcb}{RULE\_A1}};}
+\DoxyCodeLine{235    \}}
+\DoxyCodeLine{236 }
+\DoxyCodeLine{237 }
+\DoxyCodeLine{238    \textcolor{comment}{/* 8 rounds of RULE B\string^-1 */}}
+\DoxyCodeLine{239    \textcolor{keywordflow}{for} (; x > 8; x--) \{}
+\DoxyCodeLine{240        \mbox{\hyperlink{skipjack_8c_a4a69a24271273c3295d9b4d3ea6cf4ff}{RULE\_B1}};}
+\DoxyCodeLine{241    \}}
+\DoxyCodeLine{242 }
+\DoxyCodeLine{243    \textcolor{comment}{/* 8 rounds of RULE A\string^-1 */}}
+\DoxyCodeLine{244    \textcolor{keywordflow}{for} (; x > 0; x--) \{}
+\DoxyCodeLine{245        \mbox{\hyperlink{skipjack_8c_a8137ac5422074b48d37776d954a6bbcb}{RULE\_A1}};}
+\DoxyCodeLine{246    \}}
+\DoxyCodeLine{247 }
+\DoxyCodeLine{248    \textcolor{comment}{/* store block */}}
+\DoxyCodeLine{249    pt[0] = (w1>>8)\&255; pt[1] = w1\&255;}
+\DoxyCodeLine{250    pt[2] = (w2>>8)\&255; pt[3] = w2\&255;}
+\DoxyCodeLine{251    pt[4] = (w3>>8)\&255; pt[5] = w3\&255;}
+\DoxyCodeLine{252    pt[6] = (w4>>8)\&255; pt[7] = w4\&255;}
+\DoxyCodeLine{253 }
+\DoxyCodeLine{254    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{255 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, R\+U\+L\+E\+\_\+\+A1, and R\+U\+L\+E\+\_\+\+B1.
+
+
+
+Referenced by skipjack\+\_\+test().
+
+Here is the caller graph for this function\+:
+% FIG 1
+\mbox{\Hypertarget{skipjack_8c_a86ca265f2f0190f0d60fa5f6f9ddefdf}\label{skipjack_8c_a86ca265f2f0190f0d60fa5f6f9ddefdf}} 
+\index{skipjack.c@{skipjack.c}!skipjack\_ecb\_encrypt@{skipjack\_ecb\_encrypt}}
+\index{skipjack\_ecb\_encrypt@{skipjack\_ecb\_encrypt}!skipjack.c@{skipjack.c}}
+\subsubsection{\texorpdfstring{skipjack\_ecb\_encrypt()}{skipjack\_ecb\_encrypt()}}
+{\footnotesize\ttfamily int skipjack\+\_\+ecb\+\_\+encrypt (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{pt,  }\item[{unsigned char $\ast$}]{ct,  }\item[{const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$}]{skey }\end{DoxyParamCaption})}
+
+
+
+Encrypts a block of text with Skipjack. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pt} & The input plaintext (8 bytes) \\
+\hline
+{\em ct} & The output ciphertext (8 bytes) \\
+\hline
+{\em skey} & The key as scheduled \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 144 of file skipjack.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{146 \{}
+\DoxyCodeLine{147    \textcolor{keywordtype}{unsigned} w1,w2,w3,w4,tmp,tmp1;}
+\DoxyCodeLine{148    \textcolor{keywordtype}{int} x, kp;}
+\DoxyCodeLine{149 }
+\DoxyCodeLine{150    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(pt   != NULL);}
+\DoxyCodeLine{151    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(ct   != NULL);}
+\DoxyCodeLine{152    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(skey != NULL);}
+\DoxyCodeLine{153 }
+\DoxyCodeLine{154    \textcolor{comment}{/* load block */}}
+\DoxyCodeLine{155    w1 = ((unsigned)pt[0]<<8)|pt[1];}
+\DoxyCodeLine{156    w2 = ((unsigned)pt[2]<<8)|pt[3];}
+\DoxyCodeLine{157    w3 = ((unsigned)pt[4]<<8)|pt[5];}
+\DoxyCodeLine{158    w4 = ((unsigned)pt[6]<<8)|pt[7];}
+\DoxyCodeLine{159 }
+\DoxyCodeLine{160    \textcolor{comment}{/* 8 rounds of RULE A */}}
+\DoxyCodeLine{161    \textcolor{keywordflow}{for} (x = 1, kp = 0; x < 9; x++) \{}
+\DoxyCodeLine{162        \mbox{\hyperlink{skipjack_8c_acdb0c66a96e431b581597e999d03305a}{RULE\_A}};}
+\DoxyCodeLine{163    \}}
+\DoxyCodeLine{164 }
+\DoxyCodeLine{165    \textcolor{comment}{/* 8 rounds of RULE B */}}
+\DoxyCodeLine{166    \textcolor{keywordflow}{for} (; x < 17; x++) \{}
+\DoxyCodeLine{167        \mbox{\hyperlink{skipjack_8c_a2e68755e2aec77e04a5c0d022be41b0a}{RULE\_B}};}
+\DoxyCodeLine{168    \}}
+\DoxyCodeLine{169 }
+\DoxyCodeLine{170    \textcolor{comment}{/* 8 rounds of RULE A */}}
+\DoxyCodeLine{171    \textcolor{keywordflow}{for} (; x < 25; x++) \{}
+\DoxyCodeLine{172        \mbox{\hyperlink{skipjack_8c_acdb0c66a96e431b581597e999d03305a}{RULE\_A}};}
+\DoxyCodeLine{173    \}}
+\DoxyCodeLine{174 }
+\DoxyCodeLine{175    \textcolor{comment}{/* 8 rounds of RULE B */}}
+\DoxyCodeLine{176    \textcolor{keywordflow}{for} (; x < 33; x++) \{}
+\DoxyCodeLine{177        \mbox{\hyperlink{skipjack_8c_a2e68755e2aec77e04a5c0d022be41b0a}{RULE\_B}};}
+\DoxyCodeLine{178    \}}
+\DoxyCodeLine{179 }
+\DoxyCodeLine{180    \textcolor{comment}{/* store block */}}
+\DoxyCodeLine{181    ct[0] = (w1>>8)\&255; ct[1] = w1\&255;}
+\DoxyCodeLine{182    ct[2] = (w2>>8)\&255; ct[3] = w2\&255;}
+\DoxyCodeLine{183    ct[4] = (w3>>8)\&255; ct[5] = w3\&255;}
+\DoxyCodeLine{184    ct[6] = (w4>>8)\&255; ct[7] = w4\&255;}
+\DoxyCodeLine{185 }
+\DoxyCodeLine{186    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{187 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, R\+U\+L\+E\+\_\+A, and R\+U\+L\+E\+\_\+B.
+
+
+
+Referenced by skipjack\+\_\+test().
+
+Here is the caller graph for this function\+:
+% FIG 2
+\mbox{\Hypertarget{skipjack_8c_a4ce0b9329d721107c79627f1899ff6ae}\label{skipjack_8c_a4ce0b9329d721107c79627f1899ff6ae}} 
+\index{skipjack.c@{skipjack.c}!skipjack\_keysize@{skipjack\_keysize}}
+\index{skipjack\_keysize@{skipjack\_keysize}!skipjack.c@{skipjack.c}}
+\subsubsection{\texorpdfstring{skipjack\_keysize()}{skipjack\_keysize()}}
+{\footnotesize\ttfamily int skipjack\+\_\+keysize (\begin{DoxyParamCaption}\item[{int $\ast$}]{keysize }\end{DoxyParamCaption})}
+
+
+
+Gets suitable key size. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em keysize} & \mbox{[}in/out\mbox{]} The length of the recommended key (in bytes). This function will store the suitable size back in this variable. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if the input key size is acceptable. 
+\end{DoxyReturn}
+
+
+Definition at line 328 of file skipjack.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{329 \{}
+\DoxyCodeLine{330    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(keysize != NULL);}
+\DoxyCodeLine{331    \textcolor{keywordflow}{if} (*keysize < 10) \{}
+\DoxyCodeLine{332       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caafed43f3b625e72191e08e65b4bb5e02}{CRYPT\_INVALID\_KEYSIZE}};}
+\DoxyCodeLine{333    \}}
+\DoxyCodeLine{334    \textcolor{keywordflow}{if} (*keysize > 10) \{}
+\DoxyCodeLine{335       *keysize = 10;}
+\DoxyCodeLine{336    \}}
+\DoxyCodeLine{337    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{338 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+K\+E\+Y\+S\+I\+ZE, C\+R\+Y\+P\+T\+\_\+\+OK, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+\mbox{\Hypertarget{skipjack_8c_a54947ca21c229acf88db02d31020e703}\label{skipjack_8c_a54947ca21c229acf88db02d31020e703}} 
+\index{skipjack.c@{skipjack.c}!skipjack\_setup@{skipjack\_setup}}
+\index{skipjack\_setup@{skipjack\_setup}!skipjack.c@{skipjack.c}}
+\subsubsection{\texorpdfstring{skipjack\_setup()}{skipjack\_setup()}}
+{\footnotesize\ttfamily int skipjack\+\_\+setup (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{key,  }\item[{int}]{keylen,  }\item[{int}]{num\+\_\+rounds,  }\item[{\mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$}]{skey }\end{DoxyParamCaption})}
+
+
+
+Initialize the Skipjack block cipher. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The symmetric key you wish to pass \\
+\hline
+{\em keylen} & The key length in bytes \\
+\hline
+{\em num\+\_\+rounds} & The number of rounds desired (0 for default) \\
+\hline
+{\em skey} & The key in as scheduled by this function. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 65 of file skipjack.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{66 \{}
+\DoxyCodeLine{67    \textcolor{keywordtype}{int} x;}
+\DoxyCodeLine{68 }
+\DoxyCodeLine{69    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(key  != NULL);}
+\DoxyCodeLine{70    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(skey != NULL);}
+\DoxyCodeLine{71 }
+\DoxyCodeLine{72    \textcolor{keywordflow}{if} (keylen != 10) \{}
+\DoxyCodeLine{73       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caafed43f3b625e72191e08e65b4bb5e02}{CRYPT\_INVALID\_KEYSIZE}};}
+\DoxyCodeLine{74    \}}
+\DoxyCodeLine{75 }
+\DoxyCodeLine{76    \textcolor{keywordflow}{if} (num\_rounds != 32 \&\& num\_rounds != 0) \{}
+\DoxyCodeLine{77       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca69aff0280b5845d03130f8700009caf5}{CRYPT\_INVALID\_ROUNDS}};}
+\DoxyCodeLine{78    \}}
+\DoxyCodeLine{79 }
+\DoxyCodeLine{80    \textcolor{comment}{/* make sure the key is in range for platforms where CHAR\_BIT != 8 */}}
+\DoxyCodeLine{81    \textcolor{keywordflow}{for} (x = 0; x < 10; x++) \{}
+\DoxyCodeLine{82        skey->skipjack.key[x] = key[x] \& 255;}
+\DoxyCodeLine{83    \}}
+\DoxyCodeLine{84 }
+\DoxyCodeLine{85    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{86 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+K\+E\+Y\+S\+I\+ZE, C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+R\+O\+U\+N\+DS, C\+R\+Y\+P\+T\+\_\+\+OK, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+
+
+Referenced by skipjack\+\_\+test().
+
+Here is the caller graph for this function\+:
+% FIG 3
+\mbox{\Hypertarget{skipjack_8c_aa9c44f10e6f1dbacf9e7547f67b81fc3}\label{skipjack_8c_aa9c44f10e6f1dbacf9e7547f67b81fc3}} 
+\index{skipjack.c@{skipjack.c}!skipjack\_test@{skipjack\_test}}
+\index{skipjack\_test@{skipjack\_test}!skipjack.c@{skipjack.c}}
+\subsubsection{\texorpdfstring{skipjack\_test()}{skipjack\_test()}}
+{\footnotesize\ttfamily int skipjack\+\_\+test (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Performs a self-\/test of the Skipjack block cipher. 
+
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if functional, C\+R\+Y\+P\+T\+\_\+\+N\+OP if self-\/test has been disabled 
+\end{DoxyReturn}
+
+
+Definition at line 270 of file skipjack.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{271 \{}
+\DoxyCodeLine{272 \textcolor{preprocessor}{ \#ifndef LTC\_TEST}}
+\DoxyCodeLine{273     \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cac43a7799c7fd5f515172da6cfc0f9cf5}{CRYPT\_NOP}};}
+\DoxyCodeLine{274 \textcolor{preprocessor}{ \#else}}
+\DoxyCodeLine{275    \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{276        \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} key[10], pt[8], ct[8];}
+\DoxyCodeLine{277    \} tests[] = \{}
+\DoxyCodeLine{278    \{}
+\DoxyCodeLine{279        \{ 0x00, 0x99, 0x88, 0x77, 0x66, 0x55, 0x44, 0x33, 0x22, 0x11 \},}
+\DoxyCodeLine{280        \{ 0x33, 0x22, 0x11, 0x00, 0xdd, 0xcc, 0xbb, 0xaa \},}
+\DoxyCodeLine{281        \{ 0x25, 0x87, 0xca, 0xe2, 0x7a, 0x12, 0xd3, 0x00 \}}
+\DoxyCodeLine{282    \}}
+\DoxyCodeLine{283    \};}
+\DoxyCodeLine{284    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} buf[2][8];}
+\DoxyCodeLine{285    \textcolor{keywordtype}{int} x, y, err;}
+\DoxyCodeLine{286    \mbox{\hyperlink{unionSymmetric__key}{symmetric\_key}} key;}
+\DoxyCodeLine{287 }
+\DoxyCodeLine{288    \textcolor{keywordflow}{for} (x = 0; x < (int)(\textcolor{keyword}{sizeof}(tests) / \textcolor{keyword}{sizeof}(tests[0])); x++) \{}
+\DoxyCodeLine{289       \textcolor{comment}{/* setup key */}}
+\DoxyCodeLine{290       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{skipjack_8c_a54947ca21c229acf88db02d31020e703}{skipjack\_setup}}(tests[x].key, 10, 0, \&key)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{291          \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{292       \}}
+\DoxyCodeLine{293 }
+\DoxyCodeLine{294       \textcolor{comment}{/* encrypt and decrypt */}}
+\DoxyCodeLine{295       \mbox{\hyperlink{skipjack_8c_a86ca265f2f0190f0d60fa5f6f9ddefdf}{skipjack\_ecb\_encrypt}}(tests[x].pt, buf[0], \&key);}
+\DoxyCodeLine{296       \mbox{\hyperlink{skipjack_8c_a8a41ed6e0aa006b445b6793568600541}{skipjack\_ecb\_decrypt}}(buf[0], buf[1], \&key);}
+\DoxyCodeLine{297 }
+\DoxyCodeLine{298       \textcolor{comment}{/* compare */}}
+\DoxyCodeLine{299       \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(buf[0], 8, tests[x].ct, 8, \textcolor{stringliteral}{"Skipjack Encrypt"}, x) != 0 ||}
+\DoxyCodeLine{300             \mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(buf[1], 8, tests[x].pt, 8, \textcolor{stringliteral}{"Skipjack Decrypt"}, x) != 0) \{}
+\DoxyCodeLine{301          \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{302       \}}
+\DoxyCodeLine{303 }
+\DoxyCodeLine{304       \textcolor{comment}{/* now see if we can encrypt all zero bytes 1000 times, decrypt and come back where we started */}}
+\DoxyCodeLine{305       \textcolor{keywordflow}{for} (y = 0; y < 8; y++) buf[0][y] = 0;}
+\DoxyCodeLine{306       \textcolor{keywordflow}{for} (y = 0; y < 1000; y++) \mbox{\hyperlink{skipjack_8c_a86ca265f2f0190f0d60fa5f6f9ddefdf}{skipjack\_ecb\_encrypt}}(buf[0], buf[0], \&key);}
+\DoxyCodeLine{307       \textcolor{keywordflow}{for} (y = 0; y < 1000; y++) \mbox{\hyperlink{skipjack_8c_a8a41ed6e0aa006b445b6793568600541}{skipjack\_ecb\_decrypt}}(buf[0], buf[0], \&key);}
+\DoxyCodeLine{308       \textcolor{keywordflow}{for} (y = 0; y < 8; y++) \textcolor{keywordflow}{if} (buf[0][y] != 0) \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{309    \}}
+\DoxyCodeLine{310 }
+\DoxyCodeLine{311    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{312 \textcolor{preprocessor}{  \#endif}}
+\DoxyCodeLine{313 \}}
+
+\end{DoxyCode}
+
+
+References compare\+\_\+testvector(), C\+R\+Y\+P\+T\+\_\+\+F\+A\+I\+L\+\_\+\+T\+E\+S\+T\+V\+E\+C\+T\+OR, C\+R\+Y\+P\+T\+\_\+\+N\+OP, C\+R\+Y\+P\+T\+\_\+\+OK, skipjack\+\_\+ecb\+\_\+decrypt(), skipjack\+\_\+ecb\+\_\+encrypt(), and skipjack\+\_\+setup().
+
+Here is the call graph for this function\+:
+% FIG 4
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{skipjack_8c_a8466b0c490052f0be1abb6c048dbcc42}\label{skipjack_8c_a8466b0c490052f0be1abb6c048dbcc42}} 
+\index{skipjack.c@{skipjack.c}!ikeystep@{ikeystep}}
+\index{ikeystep@{ikeystep}!skipjack.c@{skipjack.c}}
+\subsubsection{\texorpdfstring{ikeystep}{ikeystep}}
+{\footnotesize\ttfamily const int ikeystep\mbox{[}$\,$\mbox{]} = \{ 9, 0, 1, 2, 3, 4, 5, 6, 7, 8 \}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 55 of file skipjack.\+c.
+
+
+
+Referenced by ig\+\_\+func().
+
+\mbox{\Hypertarget{skipjack_8c_aa3d362f0ac4eb868536f861c770172b4}\label{skipjack_8c_aa3d362f0ac4eb868536f861c770172b4}} 
+\index{skipjack.c@{skipjack.c}!keystep@{keystep}}
+\index{keystep@{keystep}!skipjack.c@{skipjack.c}}
+\subsubsection{\texorpdfstring{keystep}{keystep}}
+{\footnotesize\ttfamily const int keystep\mbox{[}$\,$\mbox{]} = \{ 1, 2, 3, 4, 5, 6, 7, 8, 9, 0 \}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 52 of file skipjack.\+c.
+
+
+
+Referenced by g\+\_\+func().
+
+\mbox{\Hypertarget{skipjack_8c_abbb6f385c467cfd964a68eeb6caaa04f}\label{skipjack_8c_abbb6f385c467cfd964a68eeb6caaa04f}} 
+\index{skipjack.c@{skipjack.c}!sbox@{sbox}}
+\index{sbox@{sbox}!skipjack.c@{skipjack.c}}
+\subsubsection{\texorpdfstring{sbox}{sbox}}
+{\footnotesize\ttfamily const unsigned char sbox\mbox{[}256\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{   0xa3,0xd7,0x09,0x83,0xf8,0x48,0xf6,0xf4,0xb3,0x21,0x15,0x78,0x99,0xb1,0xaf,0xf9,}
+\DoxyCodeLine{   0xe7,0x2d,0x4d,0x8a,0xce,0x4c,0xca,0x2e,0x52,0x95,0xd9,0x1e,0x4e,0x38,0x44,0x28,}
+\DoxyCodeLine{   0x0a,0xdf,0x02,0xa0,0x17,0xf1,0x60,0x68,0x12,0xb7,0x7a,0xc3,0xe9,0xfa,0x3d,0x53,}
+\DoxyCodeLine{   0x96,0x84,0x6b,0xba,0xf2,0x63,0x9a,0x19,0x7c,0xae,0xe5,0xf5,0xf7,0x16,0x6a,0xa2,}
+\DoxyCodeLine{   0x39,0xb6,0x7b,0x0f,0xc1,0x93,0x81,0x1b,0xee,0xb4,0x1a,0xea,0xd0,0x91,0x2f,0xb8,}
+\DoxyCodeLine{   0x55,0xb9,0xda,0x85,0x3f,0x41,0xbf,0xe0,0x5a,0x58,0x80,0x5f,0x66,0x0b,0xd8,0x90,}
+\DoxyCodeLine{   0x35,0xd5,0xc0,0xa7,0x33,0x06,0x65,0x69,0x45,0x00,0x94,0x56,0x6d,0x98,0x9b,0x76,}
+\DoxyCodeLine{   0x97,0xfc,0xb2,0xc2,0xb0,0xfe,0xdb,0x20,0xe1,0xeb,0xd6,0xe4,0xdd,0x47,0x4a,0x1d,}
+\DoxyCodeLine{   0x42,0xed,0x9e,0x6e,0x49,0x3c,0xcd,0x43,0x27,0xd2,0x07,0xd4,0xde,0xc7,0x67,0x18,}
+\DoxyCodeLine{   0x89,0xcb,0x30,0x1f,0x8d,0xc6,0x8f,0xaa,0xc8,0x74,0xdc,0xc9,0x5d,0x5c,0x31,0xa4,}
+\DoxyCodeLine{   0x70,0x88,0x61,0x2c,0x9f,0x0d,0x2b,0x87,0x50,0x82,0x54,0x64,0x26,0x7d,0x03,0x40,}
+\DoxyCodeLine{   0x34,0x4b,0x1c,0x73,0xd1,0xc4,0xfd,0x3b,0xcc,0xfb,0x7f,0xab,0xe6,0x3e,0x5b,0xa5,}
+\DoxyCodeLine{   0xad,0x04,0x23,0x9c,0x14,0x51,0x22,0xf0,0x29,0x79,0x71,0x7e,0xff,0x8c,0x0e,0xe2,}
+\DoxyCodeLine{   0x0c,0xef,0xbc,0x72,0x75,0x6f,0x37,0xa1,0xec,0xd3,0x8e,0x62,0x8b,0x86,0x10,0xe8,}
+\DoxyCodeLine{   0x08,0x77,0x11,0xbe,0x92,0x4f,0x24,0xc5,0x32,0x36,0x9d,0xcf,0xf3,0xa6,0xbb,0xac,}
+\DoxyCodeLine{   0x5e,0x6c,0xa9,0x13,0x57,0x25,0xb5,0xe3,0xbd,0xa8,0x3a,0x01,0x05,0x59,0x2a,0x46}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line 32 of file skipjack.\+c.
+
+
+
+Referenced by g\+\_\+func(), and ig\+\_\+func().
+
+\mbox{\Hypertarget{skipjack_8c_a15ea2ed4036004060ddc9e763fea84de}\label{skipjack_8c_a15ea2ed4036004060ddc9e763fea84de}} 
+\index{skipjack.c@{skipjack.c}!skipjack\_desc@{skipjack\_desc}}
+\index{skipjack\_desc@{skipjack\_desc}!skipjack.c@{skipjack.c}}
+\subsubsection{\texorpdfstring{skipjack\_desc}{skipjack\_desc}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structltc__cipher__descriptor}{ltc\+\_\+cipher\+\_\+descriptor}} skipjack\+\_\+desc}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    \textcolor{stringliteral}{"skipjack"},}
+\DoxyCodeLine{    17,}
+\DoxyCodeLine{    10, 10, 8, 32,}
+\DoxyCodeLine{    \&\mbox{\hyperlink{skipjack_8c_a54947ca21c229acf88db02d31020e703}{skipjack\_setup}},}
+\DoxyCodeLine{    \&\mbox{\hyperlink{skipjack_8c_a86ca265f2f0190f0d60fa5f6f9ddefdf}{skipjack\_ecb\_encrypt}},}
+\DoxyCodeLine{    \&\mbox{\hyperlink{skipjack_8c_a8a41ed6e0aa006b445b6793568600541}{skipjack\_ecb\_decrypt}},}
+\DoxyCodeLine{    \&\mbox{\hyperlink{skipjack_8c_aa9c44f10e6f1dbacf9e7547f67b81fc3}{skipjack\_test}},}
+\DoxyCodeLine{    \&\mbox{\hyperlink{skipjack_8c_a2e71156f5bf93b4020fa6e1da93f30a3}{skipjack\_done}},}
+\DoxyCodeLine{    \&\mbox{\hyperlink{skipjack_8c_a4ce0b9329d721107c79627f1899ff6ae}{skipjack\_keysize}},}
+\DoxyCodeLine{    NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line 18 of file skipjack.\+c.
+
+
+
+Referenced by register\+\_\+all\+\_\+ciphers().
+

@@ -1,0 +1,73 @@
+\hypertarget{der__sequence__shrink_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/pk/asn1/der/sequence/der\+\_\+sequence\+\_\+shrink.c File Reference}
+\label{der__sequence__shrink_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/asn1/der/sequence/der\_sequence\_shrink.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/asn1/der/sequence/der\_sequence\_shrink.c}}
+
+
+Free memory allocated for C\+O\+N\+S\+T\+R\+U\+C\+T\+ED, S\+ET or S\+E\+Q\+U\+E\+N\+CE elements by \mbox{\hyperlink{der__decode__sequence__flexi_8c_acec68888a6eae3b64f54b37cfb43d9b1}{der\+\_\+decode\+\_\+sequence\+\_\+flexi()}}, Steffen Jaeckel.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for der\+\_\+sequence\+\_\+shrink.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{der__sequence__shrink_8c_a26aaabaa3f9ae66b9cdd094d2ebc6869}{der\+\_\+sequence\+\_\+shrink}} (ltc\+\_\+asn1\+\_\+list $\ast$in)
+\begin{DoxyCompactList}\small\item\em Free memory allocated for C\+O\+N\+S\+T\+R\+U\+C\+T\+ED, S\+ET or S\+E\+Q\+U\+E\+N\+CE elements by \mbox{\hyperlink{der__decode__sequence__flexi_8c_acec68888a6eae3b64f54b37cfb43d9b1}{der\+\_\+decode\+\_\+sequence\+\_\+flexi()}} \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Free memory allocated for C\+O\+N\+S\+T\+R\+U\+C\+T\+ED, S\+ET or S\+E\+Q\+U\+E\+N\+CE elements by \mbox{\hyperlink{der__decode__sequence__flexi_8c_acec68888a6eae3b64f54b37cfb43d9b1}{der\+\_\+decode\+\_\+sequence\+\_\+flexi()}}, Steffen Jaeckel. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{der__sequence__shrink_8c_a26aaabaa3f9ae66b9cdd094d2ebc6869}\label{der__sequence__shrink_8c_a26aaabaa3f9ae66b9cdd094d2ebc6869}} 
+\index{der\_sequence\_shrink.c@{der\_sequence\_shrink.c}!der\_sequence\_shrink@{der\_sequence\_shrink}}
+\index{der\_sequence\_shrink@{der\_sequence\_shrink}!der\_sequence\_shrink.c@{der\_sequence\_shrink.c}}
+\subsubsection{\texorpdfstring{der\_sequence\_shrink()}{der\_sequence\_shrink()}}
+{\footnotesize\ttfamily void der\+\_\+sequence\+\_\+shrink (\begin{DoxyParamCaption}\item[{ltc\+\_\+asn1\+\_\+list $\ast$}]{in }\end{DoxyParamCaption})}
+
+
+
+Free memory allocated for C\+O\+N\+S\+T\+R\+U\+C\+T\+ED, S\+ET or S\+E\+Q\+U\+E\+N\+CE elements by \mbox{\hyperlink{der__decode__sequence__flexi_8c_acec68888a6eae3b64f54b37cfb43d9b1}{der\+\_\+decode\+\_\+sequence\+\_\+flexi()}} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em in} & The list to shrink \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 23 of file der\+\_\+sequence\+\_\+shrink.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{24 \{}
+\DoxyCodeLine{25    \textcolor{keywordflow}{if} (!in) \textcolor{keywordflow}{return};}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27    \textcolor{comment}{/* now walk the list and free stuff */}}
+\DoxyCodeLine{28    \textcolor{keywordflow}{while} (in != NULL) \{}
+\DoxyCodeLine{29       \textcolor{comment}{/* is there a child? */}}
+\DoxyCodeLine{30       \textcolor{keywordflow}{if} (in->child) \{}
+\DoxyCodeLine{31          \mbox{\hyperlink{der__sequence__shrink_8c_a26aaabaa3f9ae66b9cdd094d2ebc6869}{der\_sequence\_shrink}}(in->child);}
+\DoxyCodeLine{32       \}}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34       \textcolor{keywordflow}{switch} (in->type) \{}
+\DoxyCodeLine{35          \textcolor{keywordflow}{case} LTC\_ASN1\_CUSTOM\_TYPE:}
+\DoxyCodeLine{36          \textcolor{keywordflow}{case} LTC\_ASN1\_SET:}
+\DoxyCodeLine{37          \textcolor{keywordflow}{case} LTC\_ASN1\_SEQUENCE : \textcolor{keywordflow}{if} (in->data != NULL) \{ \mbox{\hyperlink{tomcrypt__cfg_8h_a260d66fc0690e0502cf3bfe7b5244b75}{XFREE}}(in->data); in->data = NULL; \} \textcolor{keywordflow}{break};}
+\DoxyCodeLine{38          \textcolor{keywordflow}{default}: \textcolor{keywordflow}{break};}
+\DoxyCodeLine{39       \}}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41       \textcolor{comment}{/* move to next and free current */}}
+\DoxyCodeLine{42       in = in->next;}
+\DoxyCodeLine{43    \}}
+\DoxyCodeLine{44 \}}
+
+\end{DoxyCode}
+
+
+References X\+F\+R\+E\+E().
+
+Here is the call graph for this function\+:
+% FIG 1

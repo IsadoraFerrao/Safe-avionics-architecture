@@ -1,0 +1,736 @@
+\hypertarget{rmd256_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/hashes/rmd256.c File Reference}
+\label{rmd256_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/hashes/rmd256.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/hashes/rmd256.c}}
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for rmd256.\+c\+:
+% FIG 0
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{rmd256_8c_a96d73bbd7af15cb1fc38c3f4a3bd82e9}{F}}(x,  y,  z)~((x) $^\wedge$ (y) $^\wedge$ (z))
+\item 
+\#define \mbox{\hyperlink{rmd256_8c_ad96b7cf3182ce2ba85e5a7a93b12c441}{G}}(x,  y,  z)~(((x) \& (y)) $\vert$ ($\sim$(x) \& (z)))
+\item 
+\#define \mbox{\hyperlink{rmd256_8c_ae42219072d798876e6b08e6b78614ff6}{H}}(x,  y,  z)~(((x) $\vert$ $\sim$(y)) $^\wedge$ (z))
+\item 
+\#define \mbox{\hyperlink{rmd256_8c_ac0eafdc9ee161b71e7af98af736952fd}{I}}(x,  y,  z)~(((x) \& (z)) $\vert$ ((y) \& $\sim$(z)))
+\item 
+\#define \mbox{\hyperlink{rmd256_8c_ac8846e6b450b9fd8ff8699b9d7656feb}{FF}}(a,  b,  \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},  d,  x,  s)
+\item 
+\#define \mbox{\hyperlink{rmd256_8c_a6153ad9d538a19797c766281645a35b4}{GG}}(a,  b,  \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},  d,  x,  s)
+\item 
+\#define \mbox{\hyperlink{rmd256_8c_a34a9d762b33890e7285161614e71a20c}{HH}}(a,  b,  \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},  d,  x,  s)
+\item 
+\#define \mbox{\hyperlink{rmd256_8c_ad668d5fa4246c1d6781f7f9116818d09}{II}}(a,  b,  \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},  d,  x,  s)
+\item 
+\#define \mbox{\hyperlink{rmd256_8c_a4d1cc6ca59e10102ae27f911a6efa322}{F\+FF}}(a,  b,  \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},  d,  x,  s)
+\item 
+\#define \mbox{\hyperlink{rmd256_8c_a0406104a85bd0f6ca568ac067b86383a}{G\+GG}}(a,  b,  \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},  d,  x,  s)
+\item 
+\#define \mbox{\hyperlink{rmd256_8c_a24c3f93d5b7ba8fd016e138e6e303578}{H\+HH}}(a,  b,  \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},  d,  x,  s)
+\item 
+\#define \mbox{\hyperlink{rmd256_8c_a6b24627c29fe59d176e2949341c25f4c}{I\+II}}(a,  b,  \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},  d,  x,  s)
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{rmd256_8c_a1591fc8fe329badd3002668f110ec7ad}{rmd256\+\_\+compress}} (\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$md, const unsigned char $\ast$buf)
+\item 
+int \mbox{\hyperlink{rmd256_8c_a5506043676d38bd44fd061dd99ff8a8c}{rmd256\+\_\+init}} (\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$md)
+\begin{DoxyCompactList}\small\item\em Initialize the hash state. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{rmd256_8c_a60de9f820869977132163301f0ca6e91}{rmd256\+\_\+process}} (\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$md, const unsigned char $\ast$in, unsigned long inlen)
+\begin{DoxyCompactList}\small\item\em Process a block of memory though the hash. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{rmd256_8c_a3010e302d495c08706fd06789d563705}{rmd256\+\_\+done}} (\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$md, unsigned char $\ast$out)
+\begin{DoxyCompactList}\small\item\em Terminate the hash to get the digest. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{rmd256_8c_a5f04ba52292e7e88dd6f4d32bebf796e}{rmd256\+\_\+test}} (void)
+\begin{DoxyCompactList}\small\item\em Self-\/test the hash. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const struct \mbox{\hyperlink{structltc__hash__descriptor}{ltc\+\_\+hash\+\_\+descriptor}} \mbox{\hyperlink{rmd256_8c_afdfd681cdf38928449039232133c5081}{rmd256\+\_\+desc}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{rmd256_8c_a96d73bbd7af15cb1fc38c3f4a3bd82e9}\label{rmd256_8c_a96d73bbd7af15cb1fc38c3f4a3bd82e9}} 
+\index{rmd256.c@{rmd256.c}!F@{F}}
+\index{F@{F}!rmd256.c@{rmd256.c}}
+\subsubsection{\texorpdfstring{F}{F}}
+{\footnotesize\ttfamily \#define F(\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{y,  }\item[{}]{z }\end{DoxyParamCaption})~((x) $^\wedge$ (y) $^\wedge$ (z))}
+
+
+
+Definition at line 37 of file rmd256.\+c.
+
+\mbox{\Hypertarget{rmd256_8c_ac8846e6b450b9fd8ff8699b9d7656feb}\label{rmd256_8c_ac8846e6b450b9fd8ff8699b9d7656feb}} 
+\index{rmd256.c@{rmd256.c}!FF@{FF}}
+\index{FF@{FF}!rmd256.c@{rmd256.c}}
+\subsubsection{\texorpdfstring{FF}{FF}}
+{\footnotesize\ttfamily \#define FF(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{b,  }\item[{}]{\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},  }\item[{}]{d,  }\item[{}]{x,  }\item[{}]{s }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(a) += \mbox{\hyperlink{rmd256_8c_a96d73bbd7af15cb1fc38c3f4a3bd82e9}{F}}((b), (\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}), (d)) + (x);\(\backslash\)}
+\DoxyCodeLine{      (a) = \mbox{\hyperlink{tomcrypt__macros_8h_a39d625dc0b148466a72c13737e063d86}{ROLc}}((a), (s));}
+
+\end{DoxyCode}
+
+
+Definition at line 43 of file rmd256.\+c.
+
+\mbox{\Hypertarget{rmd256_8c_a4d1cc6ca59e10102ae27f911a6efa322}\label{rmd256_8c_a4d1cc6ca59e10102ae27f911a6efa322}} 
+\index{rmd256.c@{rmd256.c}!FFF@{FFF}}
+\index{FFF@{FFF}!rmd256.c@{rmd256.c}}
+\subsubsection{\texorpdfstring{FFF}{FFF}}
+{\footnotesize\ttfamily \#define F\+FF(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{b,  }\item[{}]{\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},  }\item[{}]{d,  }\item[{}]{x,  }\item[{}]{s }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(a) += \mbox{\hyperlink{rmd256_8c_a96d73bbd7af15cb1fc38c3f4a3bd82e9}{F}}((b), (\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}), (d)) + (x);\(\backslash\)}
+\DoxyCodeLine{      (a) = \mbox{\hyperlink{tomcrypt__macros_8h_a39d625dc0b148466a72c13737e063d86}{ROLc}}((a), (s));}
+
+\end{DoxyCode}
+
+
+Definition at line 59 of file rmd256.\+c.
+
+\mbox{\Hypertarget{rmd256_8c_ad96b7cf3182ce2ba85e5a7a93b12c441}\label{rmd256_8c_ad96b7cf3182ce2ba85e5a7a93b12c441}} 
+\index{rmd256.c@{rmd256.c}!G@{G}}
+\index{G@{G}!rmd256.c@{rmd256.c}}
+\subsubsection{\texorpdfstring{G}{G}}
+{\footnotesize\ttfamily \#define G(\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{y,  }\item[{}]{z }\end{DoxyParamCaption})~(((x) \& (y)) $\vert$ ($\sim$(x) \& (z)))}
+
+
+
+Definition at line 38 of file rmd256.\+c.
+
+\mbox{\Hypertarget{rmd256_8c_a6153ad9d538a19797c766281645a35b4}\label{rmd256_8c_a6153ad9d538a19797c766281645a35b4}} 
+\index{rmd256.c@{rmd256.c}!GG@{GG}}
+\index{GG@{GG}!rmd256.c@{rmd256.c}}
+\subsubsection{\texorpdfstring{GG}{GG}}
+{\footnotesize\ttfamily \#define GG(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{b,  }\item[{}]{\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},  }\item[{}]{d,  }\item[{}]{x,  }\item[{}]{s }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(a) += \mbox{\hyperlink{rmd256_8c_ad96b7cf3182ce2ba85e5a7a93b12c441}{G}}((b), (\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}), (d)) + (x) + 0x5a827999UL;\(\backslash\)}
+\DoxyCodeLine{      (a) = \mbox{\hyperlink{tomcrypt__macros_8h_a39d625dc0b148466a72c13737e063d86}{ROLc}}((a), (s));}
+
+\end{DoxyCode}
+
+
+Definition at line 47 of file rmd256.\+c.
+
+\mbox{\Hypertarget{rmd256_8c_a0406104a85bd0f6ca568ac067b86383a}\label{rmd256_8c_a0406104a85bd0f6ca568ac067b86383a}} 
+\index{rmd256.c@{rmd256.c}!GGG@{GGG}}
+\index{GGG@{GGG}!rmd256.c@{rmd256.c}}
+\subsubsection{\texorpdfstring{GGG}{GGG}}
+{\footnotesize\ttfamily \#define G\+GG(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{b,  }\item[{}]{\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},  }\item[{}]{d,  }\item[{}]{x,  }\item[{}]{s }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(a) += \mbox{\hyperlink{rmd256_8c_ad96b7cf3182ce2ba85e5a7a93b12c441}{G}}((b), (\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}), (d)) + (x) + 0x6d703ef3UL;\(\backslash\)}
+\DoxyCodeLine{      (a) = \mbox{\hyperlink{tomcrypt__macros_8h_a39d625dc0b148466a72c13737e063d86}{ROLc}}((a), (s));}
+
+\end{DoxyCode}
+
+
+Definition at line 63 of file rmd256.\+c.
+
+\mbox{\Hypertarget{rmd256_8c_ae42219072d798876e6b08e6b78614ff6}\label{rmd256_8c_ae42219072d798876e6b08e6b78614ff6}} 
+\index{rmd256.c@{rmd256.c}!H@{H}}
+\index{H@{H}!rmd256.c@{rmd256.c}}
+\subsubsection{\texorpdfstring{H}{H}}
+{\footnotesize\ttfamily \#define H(\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{y,  }\item[{}]{z }\end{DoxyParamCaption})~(((x) $\vert$ $\sim$(y)) $^\wedge$ (z))}
+
+
+
+Definition at line 39 of file rmd256.\+c.
+
+\mbox{\Hypertarget{rmd256_8c_a34a9d762b33890e7285161614e71a20c}\label{rmd256_8c_a34a9d762b33890e7285161614e71a20c}} 
+\index{rmd256.c@{rmd256.c}!HH@{HH}}
+\index{HH@{HH}!rmd256.c@{rmd256.c}}
+\subsubsection{\texorpdfstring{HH}{HH}}
+{\footnotesize\ttfamily \#define HH(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{b,  }\item[{}]{\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},  }\item[{}]{d,  }\item[{}]{x,  }\item[{}]{s }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(a) += \mbox{\hyperlink{rmd256_8c_ae42219072d798876e6b08e6b78614ff6}{H}}((b), (\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}), (d)) + (x) + 0x6ed9eba1UL;\(\backslash\)}
+\DoxyCodeLine{      (a) = \mbox{\hyperlink{tomcrypt__macros_8h_a39d625dc0b148466a72c13737e063d86}{ROLc}}((a), (s));}
+
+\end{DoxyCode}
+
+
+Definition at line 51 of file rmd256.\+c.
+
+\mbox{\Hypertarget{rmd256_8c_a24c3f93d5b7ba8fd016e138e6e303578}\label{rmd256_8c_a24c3f93d5b7ba8fd016e138e6e303578}} 
+\index{rmd256.c@{rmd256.c}!HHH@{HHH}}
+\index{HHH@{HHH}!rmd256.c@{rmd256.c}}
+\subsubsection{\texorpdfstring{HHH}{HHH}}
+{\footnotesize\ttfamily \#define H\+HH(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{b,  }\item[{}]{\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},  }\item[{}]{d,  }\item[{}]{x,  }\item[{}]{s }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(a) += \mbox{\hyperlink{rmd256_8c_ae42219072d798876e6b08e6b78614ff6}{H}}((b), (\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}), (d)) + (x) + 0x5c4dd124UL;\(\backslash\)}
+\DoxyCodeLine{      (a) = \mbox{\hyperlink{tomcrypt__macros_8h_a39d625dc0b148466a72c13737e063d86}{ROLc}}((a), (s));}
+
+\end{DoxyCode}
+
+
+Definition at line 67 of file rmd256.\+c.
+
+\mbox{\Hypertarget{rmd256_8c_ac0eafdc9ee161b71e7af98af736952fd}\label{rmd256_8c_ac0eafdc9ee161b71e7af98af736952fd}} 
+\index{rmd256.c@{rmd256.c}!I@{I}}
+\index{I@{I}!rmd256.c@{rmd256.c}}
+\subsubsection{\texorpdfstring{I}{I}}
+{\footnotesize\ttfamily \#define I(\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{y,  }\item[{}]{z }\end{DoxyParamCaption})~(((x) \& (z)) $\vert$ ((y) \& $\sim$(z)))}
+
+
+
+Definition at line 40 of file rmd256.\+c.
+
+\mbox{\Hypertarget{rmd256_8c_ad668d5fa4246c1d6781f7f9116818d09}\label{rmd256_8c_ad668d5fa4246c1d6781f7f9116818d09}} 
+\index{rmd256.c@{rmd256.c}!II@{II}}
+\index{II@{II}!rmd256.c@{rmd256.c}}
+\subsubsection{\texorpdfstring{II}{II}}
+{\footnotesize\ttfamily \#define II(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{b,  }\item[{}]{\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},  }\item[{}]{d,  }\item[{}]{x,  }\item[{}]{s }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(a) += \mbox{\hyperlink{rmd256_8c_ac0eafdc9ee161b71e7af98af736952fd}{I}}((b), (\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}), (d)) + (x) + 0x8f1bbcdcUL;\(\backslash\)}
+\DoxyCodeLine{      (a) = \mbox{\hyperlink{tomcrypt__macros_8h_a39d625dc0b148466a72c13737e063d86}{ROLc}}((a), (s));}
+
+\end{DoxyCode}
+
+
+Definition at line 55 of file rmd256.\+c.
+
+\mbox{\Hypertarget{rmd256_8c_a6b24627c29fe59d176e2949341c25f4c}\label{rmd256_8c_a6b24627c29fe59d176e2949341c25f4c}} 
+\index{rmd256.c@{rmd256.c}!III@{III}}
+\index{III@{III}!rmd256.c@{rmd256.c}}
+\subsubsection{\texorpdfstring{III}{III}}
+{\footnotesize\ttfamily \#define I\+II(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{b,  }\item[{}]{\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},  }\item[{}]{d,  }\item[{}]{x,  }\item[{}]{s }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(a) += \mbox{\hyperlink{rmd256_8c_ac0eafdc9ee161b71e7af98af736952fd}{I}}((b), (\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}), (d)) + (x) + 0x50a28be6UL;\(\backslash\)}
+\DoxyCodeLine{      (a) = \mbox{\hyperlink{tomcrypt__macros_8h_a39d625dc0b148466a72c13737e063d86}{ROLc}}((a), (s));}
+
+\end{DoxyCode}
+
+
+Definition at line 71 of file rmd256.\+c.
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{rmd256_8c_a1591fc8fe329badd3002668f110ec7ad}\label{rmd256_8c_a1591fc8fe329badd3002668f110ec7ad}} 
+\index{rmd256.c@{rmd256.c}!rmd256\_compress@{rmd256\_compress}}
+\index{rmd256\_compress@{rmd256\_compress}!rmd256.c@{rmd256.c}}
+\subsubsection{\texorpdfstring{rmd256\_compress()}{rmd256\_compress()}}
+{\footnotesize\ttfamily static int rmd256\+\_\+compress (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$}]{md,  }\item[{const unsigned char $\ast$}]{buf }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 78 of file rmd256.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{80 \{}
+\DoxyCodeLine{81    \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} aa,bb,cc,dd,aaa,bbb,ccc,ddd,tmp,X[16];}
+\DoxyCodeLine{82    \textcolor{keywordtype}{int} i;}
+\DoxyCodeLine{83 }
+\DoxyCodeLine{84    \textcolor{comment}{/* load words X */}}
+\DoxyCodeLine{85    \textcolor{keywordflow}{for} (i = 0; i < 16; i++)\{}
+\DoxyCodeLine{86       LOAD32L(X[i], buf + (4 * i));}
+\DoxyCodeLine{87    \}}
+\DoxyCodeLine{88 }
+\DoxyCodeLine{89    \textcolor{comment}{/* load state */}}
+\DoxyCodeLine{90    aa = md->rmd256.state[0];}
+\DoxyCodeLine{91    bb = md->rmd256.state[1];}
+\DoxyCodeLine{92    cc = md->rmd256.state[2];}
+\DoxyCodeLine{93    dd = md->rmd256.state[3];}
+\DoxyCodeLine{94    aaa = md->rmd256.state[4];}
+\DoxyCodeLine{95    bbb = md->rmd256.state[5];}
+\DoxyCodeLine{96    ccc = md->rmd256.state[6];}
+\DoxyCodeLine{97    ddd = md->rmd256.state[7];}
+\DoxyCodeLine{98 }
+\DoxyCodeLine{99    \textcolor{comment}{/* round 1 */}}
+\DoxyCodeLine{100    \mbox{\hyperlink{rmd256_8c_ac8846e6b450b9fd8ff8699b9d7656feb}{FF}}(aa, bb, cc, dd, X[ 0], 11);}
+\DoxyCodeLine{101    \mbox{\hyperlink{rmd256_8c_ac8846e6b450b9fd8ff8699b9d7656feb}{FF}}(dd, aa, bb, cc, X[ 1], 14);}
+\DoxyCodeLine{102    \mbox{\hyperlink{rmd256_8c_ac8846e6b450b9fd8ff8699b9d7656feb}{FF}}(cc, dd, aa, bb, X[ 2], 15);}
+\DoxyCodeLine{103    \mbox{\hyperlink{rmd256_8c_ac8846e6b450b9fd8ff8699b9d7656feb}{FF}}(bb, cc, dd, aa, X[ 3], 12);}
+\DoxyCodeLine{104    \mbox{\hyperlink{rmd256_8c_ac8846e6b450b9fd8ff8699b9d7656feb}{FF}}(aa, bb, cc, dd, X[ 4],  5);}
+\DoxyCodeLine{105    \mbox{\hyperlink{rmd256_8c_ac8846e6b450b9fd8ff8699b9d7656feb}{FF}}(dd, aa, bb, cc, X[ 5],  8);}
+\DoxyCodeLine{106    \mbox{\hyperlink{rmd256_8c_ac8846e6b450b9fd8ff8699b9d7656feb}{FF}}(cc, dd, aa, bb, X[ 6],  7);}
+\DoxyCodeLine{107    \mbox{\hyperlink{rmd256_8c_ac8846e6b450b9fd8ff8699b9d7656feb}{FF}}(bb, cc, dd, aa, X[ 7],  9);}
+\DoxyCodeLine{108    \mbox{\hyperlink{rmd256_8c_ac8846e6b450b9fd8ff8699b9d7656feb}{FF}}(aa, bb, cc, dd, X[ 8], 11);}
+\DoxyCodeLine{109    \mbox{\hyperlink{rmd256_8c_ac8846e6b450b9fd8ff8699b9d7656feb}{FF}}(dd, aa, bb, cc, X[ 9], 13);}
+\DoxyCodeLine{110    \mbox{\hyperlink{rmd256_8c_ac8846e6b450b9fd8ff8699b9d7656feb}{FF}}(cc, dd, aa, bb, X[10], 14);}
+\DoxyCodeLine{111    \mbox{\hyperlink{rmd256_8c_ac8846e6b450b9fd8ff8699b9d7656feb}{FF}}(bb, cc, dd, aa, X[11], 15);}
+\DoxyCodeLine{112    \mbox{\hyperlink{rmd256_8c_ac8846e6b450b9fd8ff8699b9d7656feb}{FF}}(aa, bb, cc, dd, X[12],  6);}
+\DoxyCodeLine{113    \mbox{\hyperlink{rmd256_8c_ac8846e6b450b9fd8ff8699b9d7656feb}{FF}}(dd, aa, bb, cc, X[13],  7);}
+\DoxyCodeLine{114    \mbox{\hyperlink{rmd256_8c_ac8846e6b450b9fd8ff8699b9d7656feb}{FF}}(cc, dd, aa, bb, X[14],  9);}
+\DoxyCodeLine{115    \mbox{\hyperlink{rmd256_8c_ac8846e6b450b9fd8ff8699b9d7656feb}{FF}}(bb, cc, dd, aa, X[15],  8);}
+\DoxyCodeLine{116 }
+\DoxyCodeLine{117    \textcolor{comment}{/* parallel round 1 */}}
+\DoxyCodeLine{118    \mbox{\hyperlink{rmd256_8c_a6b24627c29fe59d176e2949341c25f4c}{III}}(aaa, bbb, ccc, ddd, X[ 5],  8);}
+\DoxyCodeLine{119    \mbox{\hyperlink{rmd256_8c_a6b24627c29fe59d176e2949341c25f4c}{III}}(ddd, aaa, bbb, ccc, X[14],  9);}
+\DoxyCodeLine{120    \mbox{\hyperlink{rmd256_8c_a6b24627c29fe59d176e2949341c25f4c}{III}}(ccc, ddd, aaa, bbb, X[ 7],  9);}
+\DoxyCodeLine{121    \mbox{\hyperlink{rmd256_8c_a6b24627c29fe59d176e2949341c25f4c}{III}}(bbb, ccc, ddd, aaa, X[ 0], 11);}
+\DoxyCodeLine{122    \mbox{\hyperlink{rmd256_8c_a6b24627c29fe59d176e2949341c25f4c}{III}}(aaa, bbb, ccc, ddd, X[ 9], 13);}
+\DoxyCodeLine{123    \mbox{\hyperlink{rmd256_8c_a6b24627c29fe59d176e2949341c25f4c}{III}}(ddd, aaa, bbb, ccc, X[ 2], 15);}
+\DoxyCodeLine{124    \mbox{\hyperlink{rmd256_8c_a6b24627c29fe59d176e2949341c25f4c}{III}}(ccc, ddd, aaa, bbb, X[11], 15);}
+\DoxyCodeLine{125    \mbox{\hyperlink{rmd256_8c_a6b24627c29fe59d176e2949341c25f4c}{III}}(bbb, ccc, ddd, aaa, X[ 4],  5);}
+\DoxyCodeLine{126    \mbox{\hyperlink{rmd256_8c_a6b24627c29fe59d176e2949341c25f4c}{III}}(aaa, bbb, ccc, ddd, X[13],  7);}
+\DoxyCodeLine{127    \mbox{\hyperlink{rmd256_8c_a6b24627c29fe59d176e2949341c25f4c}{III}}(ddd, aaa, bbb, ccc, X[ 6],  7);}
+\DoxyCodeLine{128    \mbox{\hyperlink{rmd256_8c_a6b24627c29fe59d176e2949341c25f4c}{III}}(ccc, ddd, aaa, bbb, X[15],  8);}
+\DoxyCodeLine{129    \mbox{\hyperlink{rmd256_8c_a6b24627c29fe59d176e2949341c25f4c}{III}}(bbb, ccc, ddd, aaa, X[ 8], 11);}
+\DoxyCodeLine{130    \mbox{\hyperlink{rmd256_8c_a6b24627c29fe59d176e2949341c25f4c}{III}}(aaa, bbb, ccc, ddd, X[ 1], 14);}
+\DoxyCodeLine{131    \mbox{\hyperlink{rmd256_8c_a6b24627c29fe59d176e2949341c25f4c}{III}}(ddd, aaa, bbb, ccc, X[10], 14);}
+\DoxyCodeLine{132    \mbox{\hyperlink{rmd256_8c_a6b24627c29fe59d176e2949341c25f4c}{III}}(ccc, ddd, aaa, bbb, X[ 3], 12);}
+\DoxyCodeLine{133    \mbox{\hyperlink{rmd256_8c_a6b24627c29fe59d176e2949341c25f4c}{III}}(bbb, ccc, ddd, aaa, X[12],  6);}
+\DoxyCodeLine{134 }
+\DoxyCodeLine{135    tmp = aa; aa = aaa; aaa = tmp;}
+\DoxyCodeLine{136 }
+\DoxyCodeLine{137    \textcolor{comment}{/* round 2 */}}
+\DoxyCodeLine{138    \mbox{\hyperlink{rmd256_8c_a6153ad9d538a19797c766281645a35b4}{GG}}(aa, bb, cc, dd, X[ 7],  7);}
+\DoxyCodeLine{139    \mbox{\hyperlink{rmd256_8c_a6153ad9d538a19797c766281645a35b4}{GG}}(dd, aa, bb, cc, X[ 4],  6);}
+\DoxyCodeLine{140    \mbox{\hyperlink{rmd256_8c_a6153ad9d538a19797c766281645a35b4}{GG}}(cc, dd, aa, bb, X[13],  8);}
+\DoxyCodeLine{141    \mbox{\hyperlink{rmd256_8c_a6153ad9d538a19797c766281645a35b4}{GG}}(bb, cc, dd, aa, X[ 1], 13);}
+\DoxyCodeLine{142    \mbox{\hyperlink{rmd256_8c_a6153ad9d538a19797c766281645a35b4}{GG}}(aa, bb, cc, dd, X[10], 11);}
+\DoxyCodeLine{143    \mbox{\hyperlink{rmd256_8c_a6153ad9d538a19797c766281645a35b4}{GG}}(dd, aa, bb, cc, X[ 6],  9);}
+\DoxyCodeLine{144    \mbox{\hyperlink{rmd256_8c_a6153ad9d538a19797c766281645a35b4}{GG}}(cc, dd, aa, bb, X[15],  7);}
+\DoxyCodeLine{145    \mbox{\hyperlink{rmd256_8c_a6153ad9d538a19797c766281645a35b4}{GG}}(bb, cc, dd, aa, X[ 3], 15);}
+\DoxyCodeLine{146    \mbox{\hyperlink{rmd256_8c_a6153ad9d538a19797c766281645a35b4}{GG}}(aa, bb, cc, dd, X[12],  7);}
+\DoxyCodeLine{147    \mbox{\hyperlink{rmd256_8c_a6153ad9d538a19797c766281645a35b4}{GG}}(dd, aa, bb, cc, X[ 0], 12);}
+\DoxyCodeLine{148    \mbox{\hyperlink{rmd256_8c_a6153ad9d538a19797c766281645a35b4}{GG}}(cc, dd, aa, bb, X[ 9], 15);}
+\DoxyCodeLine{149    \mbox{\hyperlink{rmd256_8c_a6153ad9d538a19797c766281645a35b4}{GG}}(bb, cc, dd, aa, X[ 5],  9);}
+\DoxyCodeLine{150    \mbox{\hyperlink{rmd256_8c_a6153ad9d538a19797c766281645a35b4}{GG}}(aa, bb, cc, dd, X[ 2], 11);}
+\DoxyCodeLine{151    \mbox{\hyperlink{rmd256_8c_a6153ad9d538a19797c766281645a35b4}{GG}}(dd, aa, bb, cc, X[14],  7);}
+\DoxyCodeLine{152    \mbox{\hyperlink{rmd256_8c_a6153ad9d538a19797c766281645a35b4}{GG}}(cc, dd, aa, bb, X[11], 13);}
+\DoxyCodeLine{153    \mbox{\hyperlink{rmd256_8c_a6153ad9d538a19797c766281645a35b4}{GG}}(bb, cc, dd, aa, X[ 8], 12);}
+\DoxyCodeLine{154 }
+\DoxyCodeLine{155    \textcolor{comment}{/* parallel round 2 */}}
+\DoxyCodeLine{156    \mbox{\hyperlink{rmd256_8c_a24c3f93d5b7ba8fd016e138e6e303578}{HHH}}(aaa, bbb, ccc, ddd, X[ 6],  9);}
+\DoxyCodeLine{157    \mbox{\hyperlink{rmd256_8c_a24c3f93d5b7ba8fd016e138e6e303578}{HHH}}(ddd, aaa, bbb, ccc, X[11], 13);}
+\DoxyCodeLine{158    \mbox{\hyperlink{rmd256_8c_a24c3f93d5b7ba8fd016e138e6e303578}{HHH}}(ccc, ddd, aaa, bbb, X[ 3], 15);}
+\DoxyCodeLine{159    \mbox{\hyperlink{rmd256_8c_a24c3f93d5b7ba8fd016e138e6e303578}{HHH}}(bbb, ccc, ddd, aaa, X[ 7],  7);}
+\DoxyCodeLine{160    \mbox{\hyperlink{rmd256_8c_a24c3f93d5b7ba8fd016e138e6e303578}{HHH}}(aaa, bbb, ccc, ddd, X[ 0], 12);}
+\DoxyCodeLine{161    \mbox{\hyperlink{rmd256_8c_a24c3f93d5b7ba8fd016e138e6e303578}{HHH}}(ddd, aaa, bbb, ccc, X[13],  8);}
+\DoxyCodeLine{162    \mbox{\hyperlink{rmd256_8c_a24c3f93d5b7ba8fd016e138e6e303578}{HHH}}(ccc, ddd, aaa, bbb, X[ 5],  9);}
+\DoxyCodeLine{163    \mbox{\hyperlink{rmd256_8c_a24c3f93d5b7ba8fd016e138e6e303578}{HHH}}(bbb, ccc, ddd, aaa, X[10], 11);}
+\DoxyCodeLine{164    \mbox{\hyperlink{rmd256_8c_a24c3f93d5b7ba8fd016e138e6e303578}{HHH}}(aaa, bbb, ccc, ddd, X[14],  7);}
+\DoxyCodeLine{165    \mbox{\hyperlink{rmd256_8c_a24c3f93d5b7ba8fd016e138e6e303578}{HHH}}(ddd, aaa, bbb, ccc, X[15],  7);}
+\DoxyCodeLine{166    \mbox{\hyperlink{rmd256_8c_a24c3f93d5b7ba8fd016e138e6e303578}{HHH}}(ccc, ddd, aaa, bbb, X[ 8], 12);}
+\DoxyCodeLine{167    \mbox{\hyperlink{rmd256_8c_a24c3f93d5b7ba8fd016e138e6e303578}{HHH}}(bbb, ccc, ddd, aaa, X[12],  7);}
+\DoxyCodeLine{168    \mbox{\hyperlink{rmd256_8c_a24c3f93d5b7ba8fd016e138e6e303578}{HHH}}(aaa, bbb, ccc, ddd, X[ 4],  6);}
+\DoxyCodeLine{169    \mbox{\hyperlink{rmd256_8c_a24c3f93d5b7ba8fd016e138e6e303578}{HHH}}(ddd, aaa, bbb, ccc, X[ 9], 15);}
+\DoxyCodeLine{170    \mbox{\hyperlink{rmd256_8c_a24c3f93d5b7ba8fd016e138e6e303578}{HHH}}(ccc, ddd, aaa, bbb, X[ 1], 13);}
+\DoxyCodeLine{171    \mbox{\hyperlink{rmd256_8c_a24c3f93d5b7ba8fd016e138e6e303578}{HHH}}(bbb, ccc, ddd, aaa, X[ 2], 11);}
+\DoxyCodeLine{172 }
+\DoxyCodeLine{173    tmp = bb; bb = bbb; bbb = tmp;}
+\DoxyCodeLine{174 }
+\DoxyCodeLine{175    \textcolor{comment}{/* round 3 */}}
+\DoxyCodeLine{176    \mbox{\hyperlink{rmd256_8c_a34a9d762b33890e7285161614e71a20c}{HH}}(aa, bb, cc, dd, X[ 3], 11);}
+\DoxyCodeLine{177    \mbox{\hyperlink{rmd256_8c_a34a9d762b33890e7285161614e71a20c}{HH}}(dd, aa, bb, cc, X[10], 13);}
+\DoxyCodeLine{178    \mbox{\hyperlink{rmd256_8c_a34a9d762b33890e7285161614e71a20c}{HH}}(cc, dd, aa, bb, X[14],  6);}
+\DoxyCodeLine{179    \mbox{\hyperlink{rmd256_8c_a34a9d762b33890e7285161614e71a20c}{HH}}(bb, cc, dd, aa, X[ 4],  7);}
+\DoxyCodeLine{180    \mbox{\hyperlink{rmd256_8c_a34a9d762b33890e7285161614e71a20c}{HH}}(aa, bb, cc, dd, X[ 9], 14);}
+\DoxyCodeLine{181    \mbox{\hyperlink{rmd256_8c_a34a9d762b33890e7285161614e71a20c}{HH}}(dd, aa, bb, cc, X[15],  9);}
+\DoxyCodeLine{182    \mbox{\hyperlink{rmd256_8c_a34a9d762b33890e7285161614e71a20c}{HH}}(cc, dd, aa, bb, X[ 8], 13);}
+\DoxyCodeLine{183    \mbox{\hyperlink{rmd256_8c_a34a9d762b33890e7285161614e71a20c}{HH}}(bb, cc, dd, aa, X[ 1], 15);}
+\DoxyCodeLine{184    \mbox{\hyperlink{rmd256_8c_a34a9d762b33890e7285161614e71a20c}{HH}}(aa, bb, cc, dd, X[ 2], 14);}
+\DoxyCodeLine{185    \mbox{\hyperlink{rmd256_8c_a34a9d762b33890e7285161614e71a20c}{HH}}(dd, aa, bb, cc, X[ 7],  8);}
+\DoxyCodeLine{186    \mbox{\hyperlink{rmd256_8c_a34a9d762b33890e7285161614e71a20c}{HH}}(cc, dd, aa, bb, X[ 0], 13);}
+\DoxyCodeLine{187    \mbox{\hyperlink{rmd256_8c_a34a9d762b33890e7285161614e71a20c}{HH}}(bb, cc, dd, aa, X[ 6],  6);}
+\DoxyCodeLine{188    \mbox{\hyperlink{rmd256_8c_a34a9d762b33890e7285161614e71a20c}{HH}}(aa, bb, cc, dd, X[13],  5);}
+\DoxyCodeLine{189    \mbox{\hyperlink{rmd256_8c_a34a9d762b33890e7285161614e71a20c}{HH}}(dd, aa, bb, cc, X[11], 12);}
+\DoxyCodeLine{190    \mbox{\hyperlink{rmd256_8c_a34a9d762b33890e7285161614e71a20c}{HH}}(cc, dd, aa, bb, X[ 5],  7);}
+\DoxyCodeLine{191    \mbox{\hyperlink{rmd256_8c_a34a9d762b33890e7285161614e71a20c}{HH}}(bb, cc, dd, aa, X[12],  5);}
+\DoxyCodeLine{192 }
+\DoxyCodeLine{193    \textcolor{comment}{/* parallel round 3 */}}
+\DoxyCodeLine{194    \mbox{\hyperlink{rmd256_8c_a0406104a85bd0f6ca568ac067b86383a}{GGG}}(aaa, bbb, ccc, ddd, X[15],  9);}
+\DoxyCodeLine{195    \mbox{\hyperlink{rmd256_8c_a0406104a85bd0f6ca568ac067b86383a}{GGG}}(ddd, aaa, bbb, ccc, X[ 5],  7);}
+\DoxyCodeLine{196    \mbox{\hyperlink{rmd256_8c_a0406104a85bd0f6ca568ac067b86383a}{GGG}}(ccc, ddd, aaa, bbb, X[ 1], 15);}
+\DoxyCodeLine{197    \mbox{\hyperlink{rmd256_8c_a0406104a85bd0f6ca568ac067b86383a}{GGG}}(bbb, ccc, ddd, aaa, X[ 3], 11);}
+\DoxyCodeLine{198    \mbox{\hyperlink{rmd256_8c_a0406104a85bd0f6ca568ac067b86383a}{GGG}}(aaa, bbb, ccc, ddd, X[ 7],  8);}
+\DoxyCodeLine{199    \mbox{\hyperlink{rmd256_8c_a0406104a85bd0f6ca568ac067b86383a}{GGG}}(ddd, aaa, bbb, ccc, X[14],  6);}
+\DoxyCodeLine{200    \mbox{\hyperlink{rmd256_8c_a0406104a85bd0f6ca568ac067b86383a}{GGG}}(ccc, ddd, aaa, bbb, X[ 6],  6);}
+\DoxyCodeLine{201    \mbox{\hyperlink{rmd256_8c_a0406104a85bd0f6ca568ac067b86383a}{GGG}}(bbb, ccc, ddd, aaa, X[ 9], 14);}
+\DoxyCodeLine{202    \mbox{\hyperlink{rmd256_8c_a0406104a85bd0f6ca568ac067b86383a}{GGG}}(aaa, bbb, ccc, ddd, X[11], 12);}
+\DoxyCodeLine{203    \mbox{\hyperlink{rmd256_8c_a0406104a85bd0f6ca568ac067b86383a}{GGG}}(ddd, aaa, bbb, ccc, X[ 8], 13);}
+\DoxyCodeLine{204    \mbox{\hyperlink{rmd256_8c_a0406104a85bd0f6ca568ac067b86383a}{GGG}}(ccc, ddd, aaa, bbb, X[12],  5);}
+\DoxyCodeLine{205    \mbox{\hyperlink{rmd256_8c_a0406104a85bd0f6ca568ac067b86383a}{GGG}}(bbb, ccc, ddd, aaa, X[ 2], 14);}
+\DoxyCodeLine{206    \mbox{\hyperlink{rmd256_8c_a0406104a85bd0f6ca568ac067b86383a}{GGG}}(aaa, bbb, ccc, ddd, X[10], 13);}
+\DoxyCodeLine{207    \mbox{\hyperlink{rmd256_8c_a0406104a85bd0f6ca568ac067b86383a}{GGG}}(ddd, aaa, bbb, ccc, X[ 0], 13);}
+\DoxyCodeLine{208    \mbox{\hyperlink{rmd256_8c_a0406104a85bd0f6ca568ac067b86383a}{GGG}}(ccc, ddd, aaa, bbb, X[ 4],  7);}
+\DoxyCodeLine{209    \mbox{\hyperlink{rmd256_8c_a0406104a85bd0f6ca568ac067b86383a}{GGG}}(bbb, ccc, ddd, aaa, X[13],  5);}
+\DoxyCodeLine{210 }
+\DoxyCodeLine{211    tmp = cc; cc = ccc; ccc = tmp;}
+\DoxyCodeLine{212 }
+\DoxyCodeLine{213    \textcolor{comment}{/* round 4 */}}
+\DoxyCodeLine{214    \mbox{\hyperlink{rmd256_8c_ad668d5fa4246c1d6781f7f9116818d09}{II}}(aa, bb, cc, dd, X[ 1], 11);}
+\DoxyCodeLine{215    \mbox{\hyperlink{rmd256_8c_ad668d5fa4246c1d6781f7f9116818d09}{II}}(dd, aa, bb, cc, X[ 9], 12);}
+\DoxyCodeLine{216    \mbox{\hyperlink{rmd256_8c_ad668d5fa4246c1d6781f7f9116818d09}{II}}(cc, dd, aa, bb, X[11], 14);}
+\DoxyCodeLine{217    \mbox{\hyperlink{rmd256_8c_ad668d5fa4246c1d6781f7f9116818d09}{II}}(bb, cc, dd, aa, X[10], 15);}
+\DoxyCodeLine{218    \mbox{\hyperlink{rmd256_8c_ad668d5fa4246c1d6781f7f9116818d09}{II}}(aa, bb, cc, dd, X[ 0], 14);}
+\DoxyCodeLine{219    \mbox{\hyperlink{rmd256_8c_ad668d5fa4246c1d6781f7f9116818d09}{II}}(dd, aa, bb, cc, X[ 8], 15);}
+\DoxyCodeLine{220    \mbox{\hyperlink{rmd256_8c_ad668d5fa4246c1d6781f7f9116818d09}{II}}(cc, dd, aa, bb, X[12],  9);}
+\DoxyCodeLine{221    \mbox{\hyperlink{rmd256_8c_ad668d5fa4246c1d6781f7f9116818d09}{II}}(bb, cc, dd, aa, X[ 4],  8);}
+\DoxyCodeLine{222    \mbox{\hyperlink{rmd256_8c_ad668d5fa4246c1d6781f7f9116818d09}{II}}(aa, bb, cc, dd, X[13],  9);}
+\DoxyCodeLine{223    \mbox{\hyperlink{rmd256_8c_ad668d5fa4246c1d6781f7f9116818d09}{II}}(dd, aa, bb, cc, X[ 3], 14);}
+\DoxyCodeLine{224    \mbox{\hyperlink{rmd256_8c_ad668d5fa4246c1d6781f7f9116818d09}{II}}(cc, dd, aa, bb, X[ 7],  5);}
+\DoxyCodeLine{225    \mbox{\hyperlink{rmd256_8c_ad668d5fa4246c1d6781f7f9116818d09}{II}}(bb, cc, dd, aa, X[15],  6);}
+\DoxyCodeLine{226    \mbox{\hyperlink{rmd256_8c_ad668d5fa4246c1d6781f7f9116818d09}{II}}(aa, bb, cc, dd, X[14],  8);}
+\DoxyCodeLine{227    \mbox{\hyperlink{rmd256_8c_ad668d5fa4246c1d6781f7f9116818d09}{II}}(dd, aa, bb, cc, X[ 5],  6);}
+\DoxyCodeLine{228    \mbox{\hyperlink{rmd256_8c_ad668d5fa4246c1d6781f7f9116818d09}{II}}(cc, dd, aa, bb, X[ 6],  5);}
+\DoxyCodeLine{229    \mbox{\hyperlink{rmd256_8c_ad668d5fa4246c1d6781f7f9116818d09}{II}}(bb, cc, dd, aa, X[ 2], 12);}
+\DoxyCodeLine{230 }
+\DoxyCodeLine{231    \textcolor{comment}{/* parallel round 4 */}}
+\DoxyCodeLine{232    \mbox{\hyperlink{rmd256_8c_a4d1cc6ca59e10102ae27f911a6efa322}{FFF}}(aaa, bbb, ccc, ddd, X[ 8], 15);}
+\DoxyCodeLine{233    \mbox{\hyperlink{rmd256_8c_a4d1cc6ca59e10102ae27f911a6efa322}{FFF}}(ddd, aaa, bbb, ccc, X[ 6],  5);}
+\DoxyCodeLine{234    \mbox{\hyperlink{rmd256_8c_a4d1cc6ca59e10102ae27f911a6efa322}{FFF}}(ccc, ddd, aaa, bbb, X[ 4],  8);}
+\DoxyCodeLine{235    \mbox{\hyperlink{rmd256_8c_a4d1cc6ca59e10102ae27f911a6efa322}{FFF}}(bbb, ccc, ddd, aaa, X[ 1], 11);}
+\DoxyCodeLine{236    \mbox{\hyperlink{rmd256_8c_a4d1cc6ca59e10102ae27f911a6efa322}{FFF}}(aaa, bbb, ccc, ddd, X[ 3], 14);}
+\DoxyCodeLine{237    \mbox{\hyperlink{rmd256_8c_a4d1cc6ca59e10102ae27f911a6efa322}{FFF}}(ddd, aaa, bbb, ccc, X[11], 14);}
+\DoxyCodeLine{238    \mbox{\hyperlink{rmd256_8c_a4d1cc6ca59e10102ae27f911a6efa322}{FFF}}(ccc, ddd, aaa, bbb, X[15],  6);}
+\DoxyCodeLine{239    \mbox{\hyperlink{rmd256_8c_a4d1cc6ca59e10102ae27f911a6efa322}{FFF}}(bbb, ccc, ddd, aaa, X[ 0], 14);}
+\DoxyCodeLine{240    \mbox{\hyperlink{rmd256_8c_a4d1cc6ca59e10102ae27f911a6efa322}{FFF}}(aaa, bbb, ccc, ddd, X[ 5],  6);}
+\DoxyCodeLine{241    \mbox{\hyperlink{rmd256_8c_a4d1cc6ca59e10102ae27f911a6efa322}{FFF}}(ddd, aaa, bbb, ccc, X[12],  9);}
+\DoxyCodeLine{242    \mbox{\hyperlink{rmd256_8c_a4d1cc6ca59e10102ae27f911a6efa322}{FFF}}(ccc, ddd, aaa, bbb, X[ 2], 12);}
+\DoxyCodeLine{243    \mbox{\hyperlink{rmd256_8c_a4d1cc6ca59e10102ae27f911a6efa322}{FFF}}(bbb, ccc, ddd, aaa, X[13],  9);}
+\DoxyCodeLine{244    \mbox{\hyperlink{rmd256_8c_a4d1cc6ca59e10102ae27f911a6efa322}{FFF}}(aaa, bbb, ccc, ddd, X[ 9], 12);}
+\DoxyCodeLine{245    \mbox{\hyperlink{rmd256_8c_a4d1cc6ca59e10102ae27f911a6efa322}{FFF}}(ddd, aaa, bbb, ccc, X[ 7],  5);}
+\DoxyCodeLine{246    \mbox{\hyperlink{rmd256_8c_a4d1cc6ca59e10102ae27f911a6efa322}{FFF}}(ccc, ddd, aaa, bbb, X[10], 15);}
+\DoxyCodeLine{247    \mbox{\hyperlink{rmd256_8c_a4d1cc6ca59e10102ae27f911a6efa322}{FFF}}(bbb, ccc, ddd, aaa, X[14],  8);}
+\DoxyCodeLine{248 }
+\DoxyCodeLine{249    tmp = dd; dd = ddd; ddd = tmp;}
+\DoxyCodeLine{250 }
+\DoxyCodeLine{251    \textcolor{comment}{/* combine results */}}
+\DoxyCodeLine{252    md->rmd256.state[0] += aa;}
+\DoxyCodeLine{253    md->rmd256.state[1] += bb;}
+\DoxyCodeLine{254    md->rmd256.state[2] += cc;}
+\DoxyCodeLine{255    md->rmd256.state[3] += dd;}
+\DoxyCodeLine{256    md->rmd256.state[4] += aaa;}
+\DoxyCodeLine{257    md->rmd256.state[5] += bbb;}
+\DoxyCodeLine{258    md->rmd256.state[6] += ccc;}
+\DoxyCodeLine{259    md->rmd256.state[7] += ddd;}
+\DoxyCodeLine{260 }
+\DoxyCodeLine{261    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{262 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, FF, F\+FF, GG, G\+GG, HH, H\+HH, II, and I\+II.
+
+
+
+Referenced by rmd256\+\_\+done().
+
+Here is the caller graph for this function\+:
+% FIG 1
+\mbox{\Hypertarget{rmd256_8c_a3010e302d495c08706fd06789d563705}\label{rmd256_8c_a3010e302d495c08706fd06789d563705}} 
+\index{rmd256.c@{rmd256.c}!rmd256\_done@{rmd256\_done}}
+\index{rmd256\_done@{rmd256\_done}!rmd256.c@{rmd256.c}}
+\subsubsection{\texorpdfstring{rmd256\_done()}{rmd256\_done()}}
+{\footnotesize\ttfamily int rmd256\+\_\+done (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$}]{md,  }\item[{unsigned char $\ast$}]{out }\end{DoxyParamCaption})}
+
+
+
+Terminate the hash to get the digest. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em md} & The hash state \\
+\hline
+{\em out} & \mbox{[}out\mbox{]} The destination of the hash (16 bytes) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 310 of file rmd256.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{311 \{}
+\DoxyCodeLine{312     \textcolor{keywordtype}{int} i;}
+\DoxyCodeLine{313 }
+\DoxyCodeLine{314     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(md  != NULL);}
+\DoxyCodeLine{315     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(out != NULL);}
+\DoxyCodeLine{316 }
+\DoxyCodeLine{317     \textcolor{keywordflow}{if} (md->rmd256.curlen >= \textcolor{keyword}{sizeof}(md->rmd256.buf)) \{}
+\DoxyCodeLine{318        \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{319     \}}
+\DoxyCodeLine{320 }
+\DoxyCodeLine{321 }
+\DoxyCodeLine{322     \textcolor{comment}{/* increase the length of the message */}}
+\DoxyCodeLine{323     md->rmd256.length += md->rmd256.curlen * 8;}
+\DoxyCodeLine{324 }
+\DoxyCodeLine{325     \textcolor{comment}{/* append the '1' bit */}}
+\DoxyCodeLine{326     md->rmd256.buf[md->rmd256.curlen++] = (\textcolor{keywordtype}{unsigned} char)0x80;}
+\DoxyCodeLine{327 }
+\DoxyCodeLine{328     \textcolor{comment}{/* if the length is currently above 56 bytes we append zeros}}
+\DoxyCodeLine{329 \textcolor{comment}{     * then compress.  Then we can fall back to padding zeros and length}}
+\DoxyCodeLine{330 \textcolor{comment}{     * encoding like normal.}}
+\DoxyCodeLine{331 \textcolor{comment}{     */}}
+\DoxyCodeLine{332     \textcolor{keywordflow}{if} (md->rmd256.curlen > 56) \{}
+\DoxyCodeLine{333         \textcolor{keywordflow}{while} (md->rmd256.curlen < 64) \{}
+\DoxyCodeLine{334             md->rmd256.buf[md->rmd256.curlen++] = (\textcolor{keywordtype}{unsigned} char)0;}
+\DoxyCodeLine{335         \}}
+\DoxyCodeLine{336         \mbox{\hyperlink{rmd256_8c_a1591fc8fe329badd3002668f110ec7ad}{rmd256\_compress}}(md, md->rmd256.buf);}
+\DoxyCodeLine{337         md->rmd256.curlen = 0;}
+\DoxyCodeLine{338     \}}
+\DoxyCodeLine{339 }
+\DoxyCodeLine{340     \textcolor{comment}{/* pad upto 56 bytes of zeroes */}}
+\DoxyCodeLine{341     \textcolor{keywordflow}{while} (md->rmd256.curlen < 56) \{}
+\DoxyCodeLine{342         md->rmd256.buf[md->rmd256.curlen++] = (\textcolor{keywordtype}{unsigned} char)0;}
+\DoxyCodeLine{343     \}}
+\DoxyCodeLine{344 }
+\DoxyCodeLine{345     \textcolor{comment}{/* store length */}}
+\DoxyCodeLine{346     STORE64L(md->rmd256.length, md->rmd256.buf+56);}
+\DoxyCodeLine{347     \mbox{\hyperlink{rmd256_8c_a1591fc8fe329badd3002668f110ec7ad}{rmd256\_compress}}(md, md->rmd256.buf);}
+\DoxyCodeLine{348 }
+\DoxyCodeLine{349     \textcolor{comment}{/* copy output */}}
+\DoxyCodeLine{350     \textcolor{keywordflow}{for} (i = 0; i < 8; i++) \{}
+\DoxyCodeLine{351         STORE32L(md->rmd256.state[i], out+(4*i));}
+\DoxyCodeLine{352     \}}
+\DoxyCodeLine{353 \textcolor{preprocessor}{\#ifdef LTC\_CLEAN\_STACK}}
+\DoxyCodeLine{354     \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(md, \textcolor{keyword}{sizeof}(\mbox{\hyperlink{unionHash__state}{hash\_state}}));}
+\DoxyCodeLine{355 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{356    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{357 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+A\+RG, C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, rmd256\+\_\+compress(), and zeromem().
+
+
+
+Referenced by rmd256\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 2
+Here is the caller graph for this function\+:
+% FIG 3
+\mbox{\Hypertarget{rmd256_8c_a5506043676d38bd44fd061dd99ff8a8c}\label{rmd256_8c_a5506043676d38bd44fd061dd99ff8a8c}} 
+\index{rmd256.c@{rmd256.c}!rmd256\_init@{rmd256\_init}}
+\index{rmd256\_init@{rmd256\_init}!rmd256.c@{rmd256.c}}
+\subsubsection{\texorpdfstring{rmd256\_init()}{rmd256\_init()}}
+{\footnotesize\ttfamily int rmd256\+\_\+init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$}]{md }\end{DoxyParamCaption})}
+
+
+
+Initialize the hash state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em md} & The hash state you wish to initialize \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 279 of file rmd256.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{280 \{}
+\DoxyCodeLine{281    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(md != NULL);}
+\DoxyCodeLine{282    md->rmd256.state[0] = 0x67452301UL;}
+\DoxyCodeLine{283    md->rmd256.state[1] = 0xefcdab89UL;}
+\DoxyCodeLine{284    md->rmd256.state[2] = 0x98badcfeUL;}
+\DoxyCodeLine{285    md->rmd256.state[3] = 0x10325476UL;}
+\DoxyCodeLine{286    md->rmd256.state[4] = 0x76543210UL;}
+\DoxyCodeLine{287    md->rmd256.state[5] = 0xfedcba98UL;}
+\DoxyCodeLine{288    md->rmd256.state[6] = 0x89abcdefUL;}
+\DoxyCodeLine{289    md->rmd256.state[7] = 0x01234567UL;}
+\DoxyCodeLine{290    md->rmd256.curlen   = 0;}
+\DoxyCodeLine{291    md->rmd256.length   = 0;}
+\DoxyCodeLine{292    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{293 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+
+
+Referenced by rmd256\+\_\+test().
+
+Here is the caller graph for this function\+:
+% FIG 4
+\mbox{\Hypertarget{rmd256_8c_a60de9f820869977132163301f0ca6e91}\label{rmd256_8c_a60de9f820869977132163301f0ca6e91}} 
+\index{rmd256.c@{rmd256.c}!rmd256\_process@{rmd256\_process}}
+\index{rmd256\_process@{rmd256\_process}!rmd256.c@{rmd256.c}}
+\subsubsection{\texorpdfstring{rmd256\_process()}{rmd256\_process()}}
+{\footnotesize\ttfamily int rmd256\+\_\+process (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$}]{md,  }\item[{const unsigned char $\ast$}]{in,  }\item[{unsigned long}]{inlen }\end{DoxyParamCaption})}
+
+
+
+Process a block of memory though the hash. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em md} & The hash state \\
+\hline
+{\em in} & The data to hash \\
+\hline
+{\em inlen} & The length of the data (octets) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 302 of file rmd256.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{311 \{}
+
+\end{DoxyCode}
+
+
+Referenced by rmd256\+\_\+test().
+
+Here is the caller graph for this function\+:
+% FIG 5
+\mbox{\Hypertarget{rmd256_8c_a5f04ba52292e7e88dd6f4d32bebf796e}\label{rmd256_8c_a5f04ba52292e7e88dd6f4d32bebf796e}} 
+\index{rmd256.c@{rmd256.c}!rmd256\_test@{rmd256\_test}}
+\index{rmd256\_test@{rmd256\_test}!rmd256.c@{rmd256.c}}
+\subsubsection{\texorpdfstring{rmd256\_test()}{rmd256\_test()}}
+{\footnotesize\ttfamily int rmd256\+\_\+test (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Self-\/test the hash. 
+
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful, C\+R\+Y\+P\+T\+\_\+\+N\+OP if self-\/tests have been disabled 
+\end{DoxyReturn}
+
+
+Definition at line 363 of file rmd256.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{364 \{}
+\DoxyCodeLine{365 \textcolor{preprocessor}{\#ifndef LTC\_TEST}}
+\DoxyCodeLine{366    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cac43a7799c7fd5f515172da6cfc0f9cf5}{CRYPT\_NOP}};}
+\DoxyCodeLine{367 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{368    \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{369         \textcolor{keyword}{const} \textcolor{keywordtype}{char} *msg;}
+\DoxyCodeLine{370         \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} hash[32];}
+\DoxyCodeLine{371    \} tests[] = \{}
+\DoxyCodeLine{372    \{ \textcolor{stringliteral}{""},}
+\DoxyCodeLine{373      \{ 0x02, 0xba, 0x4c, 0x4e, 0x5f, 0x8e, 0xcd, 0x18,}
+\DoxyCodeLine{374        0x77, 0xfc, 0x52, 0xd6, 0x4d, 0x30, 0xe3, 0x7a,}
+\DoxyCodeLine{375        0x2d, 0x97, 0x74, 0xfb, 0x1e, 0x5d, 0x02, 0x63,}
+\DoxyCodeLine{376        0x80, 0xae, 0x01, 0x68, 0xe3, 0xc5, 0x52, 0x2d \}}
+\DoxyCodeLine{377    \},}
+\DoxyCodeLine{378    \{ \textcolor{stringliteral}{"a"},}
+\DoxyCodeLine{379      \{ 0xf9, 0x33, 0x3e, 0x45, 0xd8, 0x57, 0xf5, 0xd9,}
+\DoxyCodeLine{380        0x0a, 0x91, 0xba, 0xb7, 0x0a, 0x1e, 0xba, 0x0c,}
+\DoxyCodeLine{381        0xfb, 0x1b, 0xe4, 0xb0, 0x78, 0x3c, 0x9a, 0xcf,}
+\DoxyCodeLine{382        0xcd, 0x88, 0x3a, 0x91, 0x34, 0x69, 0x29, 0x25 \}}
+\DoxyCodeLine{383    \},}
+\DoxyCodeLine{384    \{ \textcolor{stringliteral}{"abc"},}
+\DoxyCodeLine{385      \{ 0xaf, 0xbd, 0x6e, 0x22, 0x8b, 0x9d, 0x8c, 0xbb,}
+\DoxyCodeLine{386        0xce, 0xf5, 0xca, 0x2d, 0x03, 0xe6, 0xdb, 0xa1,}
+\DoxyCodeLine{387        0x0a, 0xc0, 0xbc, 0x7d, 0xcb, 0xe4, 0x68, 0x0e,}
+\DoxyCodeLine{388        0x1e, 0x42, 0xd2, 0xe9, 0x75, 0x45, 0x9b, 0x65 \}}
+\DoxyCodeLine{389    \},}
+\DoxyCodeLine{390    \{ \textcolor{stringliteral}{"message digest"},}
+\DoxyCodeLine{391      \{ 0x87, 0xe9, 0x71, 0x75, 0x9a, 0x1c, 0xe4, 0x7a,}
+\DoxyCodeLine{392        0x51, 0x4d, 0x5c, 0x91, 0x4c, 0x39, 0x2c, 0x90,}
+\DoxyCodeLine{393        0x18, 0xc7, 0xc4, 0x6b, 0xc1, 0x44, 0x65, 0x55,}
+\DoxyCodeLine{394        0x4a, 0xfc, 0xdf, 0x54, 0xa5, 0x07, 0x0c, 0x0e \}}
+\DoxyCodeLine{395    \},}
+\DoxyCodeLine{396    \{ \textcolor{stringliteral}{"abcdefghijklmnopqrstuvwxyz"},}
+\DoxyCodeLine{397      \{ 0x64, 0x9d, 0x30, 0x34, 0x75, 0x1e, 0xa2, 0x16,}
+\DoxyCodeLine{398        0x77, 0x6b, 0xf9, 0xa1, 0x8a, 0xcc, 0x81, 0xbc,}
+\DoxyCodeLine{399        0x78, 0x96, 0x11, 0x8a, 0x51, 0x97, 0x96, 0x87,}
+\DoxyCodeLine{400        0x82, 0xdd, 0x1f, 0xd9, 0x7d, 0x8d, 0x51, 0x33 \}}
+\DoxyCodeLine{401    \},}
+\DoxyCodeLine{402    \{ \textcolor{stringliteral}{"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"},}
+\DoxyCodeLine{403      \{ 0x57, 0x40, 0xa4, 0x08, 0xac, 0x16, 0xb7, 0x20,}
+\DoxyCodeLine{404        0xb8, 0x44, 0x24, 0xae, 0x93, 0x1c, 0xbb, 0x1f,}
+\DoxyCodeLine{405        0xe3, 0x63, 0xd1, 0xd0, 0xbf, 0x40, 0x17, 0xf1,}
+\DoxyCodeLine{406        0xa8, 0x9f, 0x7e, 0xa6, 0xde, 0x77, 0xa0, 0xb8 \}}
+\DoxyCodeLine{407    \}}
+\DoxyCodeLine{408    \};}
+\DoxyCodeLine{409 }
+\DoxyCodeLine{410    \textcolor{keywordtype}{int} i;}
+\DoxyCodeLine{411    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} tmp[32];}
+\DoxyCodeLine{412    \mbox{\hyperlink{unionHash__state}{hash\_state}} md;}
+\DoxyCodeLine{413 }
+\DoxyCodeLine{414    \textcolor{keywordflow}{for} (i = 0; i < (int)(\textcolor{keyword}{sizeof}(tests)/\textcolor{keyword}{sizeof}(tests[0])); i++) \{}
+\DoxyCodeLine{415        \mbox{\hyperlink{rmd256_8c_a5506043676d38bd44fd061dd99ff8a8c}{rmd256\_init}}(\&md);}
+\DoxyCodeLine{416        \mbox{\hyperlink{rmd256_8c_a60de9f820869977132163301f0ca6e91}{rmd256\_process}}(\&md, (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *)tests[i].msg, strlen(tests[i].msg));}
+\DoxyCodeLine{417        \mbox{\hyperlink{rmd256_8c_a3010e302d495c08706fd06789d563705}{rmd256\_done}}(\&md, tmp);}
+\DoxyCodeLine{418        \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(tmp, \textcolor{keyword}{sizeof}(tmp), tests[i].hash, \textcolor{keyword}{sizeof}(tests[i].hash), \textcolor{stringliteral}{"RIPEMD256"}, i)) \{}
+\DoxyCodeLine{419           \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{420        \}}
+\DoxyCodeLine{421    \}}
+\DoxyCodeLine{422    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{423 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{424 \}}
+
+\end{DoxyCode}
+
+
+References compare\+\_\+testvector(), C\+R\+Y\+P\+T\+\_\+\+F\+A\+I\+L\+\_\+\+T\+E\+S\+T\+V\+E\+C\+T\+OR, C\+R\+Y\+P\+T\+\_\+\+N\+OP, C\+R\+Y\+P\+T\+\_\+\+OK, rmd256\+\_\+done(), rmd256\+\_\+init(), and rmd256\+\_\+process().
+
+Here is the call graph for this function\+:
+% FIG 6
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{rmd256_8c_afdfd681cdf38928449039232133c5081}\label{rmd256_8c_afdfd681cdf38928449039232133c5081}} 
+\index{rmd256.c@{rmd256.c}!rmd256\_desc@{rmd256\_desc}}
+\index{rmd256\_desc@{rmd256\_desc}!rmd256.c@{rmd256.c}}
+\subsubsection{\texorpdfstring{rmd256\_desc}{rmd256\_desc}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structltc__hash__descriptor}{ltc\+\_\+hash\+\_\+descriptor}} rmd256\+\_\+desc}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    \textcolor{stringliteral}{"rmd256"},}
+\DoxyCodeLine{    13,}
+\DoxyCodeLine{    32,}
+\DoxyCodeLine{    64,}
+\DoxyCodeLine{}
+\DoxyCodeLine{    }
+\DoxyCodeLine{   \{ 1, 3, 36, 3, 2, 3 \},}
+\DoxyCodeLine{   6,}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \&\mbox{\hyperlink{rmd256_8c_a5506043676d38bd44fd061dd99ff8a8c}{rmd256\_init}},}
+\DoxyCodeLine{    \&\mbox{\hyperlink{rmd256_8c_a60de9f820869977132163301f0ca6e91}{rmd256\_process}},}
+\DoxyCodeLine{    \&\mbox{\hyperlink{rmd256_8c_a3010e302d495c08706fd06789d563705}{rmd256\_done}},}
+\DoxyCodeLine{    \&\mbox{\hyperlink{rmd256_8c_a5f04ba52292e7e88dd6f4d32bebf796e}{rmd256\_test}},}
+\DoxyCodeLine{    NULL}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+\begin{DoxyParams}{Parameters}
+{\em rmd256.\+c} & R\+L\+T\+C\+\_\+\+M\+D256 Hash function \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 18 of file rmd256.\+c.
+
+
+
+Referenced by register\+\_\+all\+\_\+hashes(), and yarrow\+\_\+start().
+

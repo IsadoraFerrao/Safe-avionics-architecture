@@ -1,0 +1,160 @@
+\hypertarget{der__encode__asn1__length_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/pk/asn1/der/general/der\+\_\+encode\+\_\+asn1\+\_\+length.c File Reference}
+\label{der__encode__asn1__length_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/asn1/der/general/der\_encode\_asn1\_length.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/asn1/der/general/der\_encode\_asn1\_length.c}}
+
+
+A\+S\+N.\+1 D\+ER, encode the A\+S\+N.\+1 length field, Steffen Jaeckel.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for der\+\_\+encode\+\_\+asn1\+\_\+length.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{der__encode__asn1__length_8c_ae0b6c1f1188a5aa201aa84de9a659550}{der\+\_\+encode\+\_\+asn1\+\_\+length}} (unsigned long \mbox{\hyperlink{pmac__init_8c_afed088663f8704004425cdae2120b9b3}{len}}, unsigned char $\ast$out, unsigned long $\ast$outlen)
+\begin{DoxyCompactList}\small\item\em Encode the A\+S\+N.\+1 length field. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A\+S\+N.\+1 D\+ER, encode the A\+S\+N.\+1 length field, Steffen Jaeckel. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{der__encode__asn1__length_8c_ae0b6c1f1188a5aa201aa84de9a659550}\label{der__encode__asn1__length_8c_ae0b6c1f1188a5aa201aa84de9a659550}} 
+\index{der\_encode\_asn1\_length.c@{der\_encode\_asn1\_length.c}!der\_encode\_asn1\_length@{der\_encode\_asn1\_length}}
+\index{der\_encode\_asn1\_length@{der\_encode\_asn1\_length}!der\_encode\_asn1\_length.c@{der\_encode\_asn1\_length.c}}
+\subsubsection{\texorpdfstring{der\_encode\_asn1\_length()}{der\_encode\_asn1\_length()}}
+{\footnotesize\ttfamily int der\+\_\+encode\+\_\+asn1\+\_\+length (\begin{DoxyParamCaption}\item[{unsigned long}]{len,  }\item[{unsigned char $\ast$}]{out,  }\item[{unsigned long $\ast$}]{outlen }\end{DoxyParamCaption})}
+
+
+
+Encode the A\+S\+N.\+1 length field. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em len} & The length to encode \\
+\hline
+{\em out} & Where to write the length field to \\
+\hline
+{\em outlen} & \mbox{[}in/out\mbox{]} The size of out available/written \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 24 of file der\+\_\+encode\+\_\+asn1\+\_\+length.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{25 \{}
+\DoxyCodeLine{26    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} x, y;}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(outlen != NULL);}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30    x = \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}};}
+\DoxyCodeLine{31    y = 0;}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33    \textcolor{keywordflow}{while}(x != 0) \{}
+\DoxyCodeLine{34       y++;}
+\DoxyCodeLine{35       x >>= 8;}
+\DoxyCodeLine{36    \}}
+\DoxyCodeLine{37    \textcolor{keywordflow}{if} (y == 0) \{}
+\DoxyCodeLine{38       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca001cb5383cce7c4581790abe472e816f}{CRYPT\_PK\_ASN1\_ERROR}};}
+\DoxyCodeLine{39    \}}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41    \textcolor{keywordflow}{if} (out == NULL) \{}
+\DoxyCodeLine{42       \textcolor{keywordflow}{if} (\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}} < 128) \{}
+\DoxyCodeLine{43          x = y;}
+\DoxyCodeLine{44       \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{45          x = y + 1;}
+\DoxyCodeLine{46       \}}
+\DoxyCodeLine{47    \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{48       \textcolor{keywordflow}{if} (*outlen < y) \{}
+\DoxyCodeLine{49          \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caccd878f5599f3036ffe759dbe1a1ac16}{CRYPT\_BUFFER\_OVERFLOW}};}
+\DoxyCodeLine{50       \}}
+\DoxyCodeLine{51       x = 0;}
+\DoxyCodeLine{52       \textcolor{keywordflow}{if} (\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}} < 128) \{}
+\DoxyCodeLine{53          out[x++] = (\textcolor{keywordtype}{unsigned} char)\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}};}
+\DoxyCodeLine{54       \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}} <= 0xffUL) \{}
+\DoxyCodeLine{55          out[x++] = 0x81;}
+\DoxyCodeLine{56          out[x++] = (\textcolor{keywordtype}{unsigned} char)\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}};}
+\DoxyCodeLine{57       \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}} <= 0xffffUL) \{}
+\DoxyCodeLine{58          out[x++] = 0x82;}
+\DoxyCodeLine{59          out[x++] = (\textcolor{keywordtype}{unsigned} char)((\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}>>8UL)\&255);}
+\DoxyCodeLine{60          out[x++] = (\textcolor{keywordtype}{unsigned} char)(\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}\&255);}
+\DoxyCodeLine{61       \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}} <= 0xffffffUL) \{}
+\DoxyCodeLine{62          out[x++] = 0x83;}
+\DoxyCodeLine{63          out[x++] = (\textcolor{keywordtype}{unsigned} char)((\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}>>16UL)\&255);}
+\DoxyCodeLine{64          out[x++] = (\textcolor{keywordtype}{unsigned} char)((\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}>>8UL)\&255);}
+\DoxyCodeLine{65          out[x++] = (\textcolor{keywordtype}{unsigned} char)(\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}\&255);}
+\DoxyCodeLine{66 \textcolor{preprocessor}{      \#if ULONG\_MAX != ULLONG\_MAX}}
+\DoxyCodeLine{67       \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{68          out[x++] = 0x84;}
+\DoxyCodeLine{69          out[x++] = (\textcolor{keywordtype}{unsigned} char)((\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}>>24UL)\&255);}
+\DoxyCodeLine{70          out[x++] = (\textcolor{keywordtype}{unsigned} char)((\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}>>16UL)\&255);}
+\DoxyCodeLine{71          out[x++] = (\textcolor{keywordtype}{unsigned} char)((\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}>>8UL)\&255);}
+\DoxyCodeLine{72          out[x++] = (\textcolor{keywordtype}{unsigned} char)(\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}\&255);}
+\DoxyCodeLine{73       \}}
+\DoxyCodeLine{74 \textcolor{preprocessor}{      \#else}}
+\DoxyCodeLine{75       \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}} <= 0xffffffffUL) \{}
+\DoxyCodeLine{76          out[x++] = 0x84;}
+\DoxyCodeLine{77          out[x++] = (\textcolor{keywordtype}{unsigned} char)((\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}>>24UL)\&255);}
+\DoxyCodeLine{78          out[x++] = (\textcolor{keywordtype}{unsigned} char)((\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}>>16UL)\&255);}
+\DoxyCodeLine{79          out[x++] = (\textcolor{keywordtype}{unsigned} char)((\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}>>8UL)\&255);}
+\DoxyCodeLine{80          out[x++] = (\textcolor{keywordtype}{unsigned} char)(\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}\&255);}
+\DoxyCodeLine{81       \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}} <= 0xffffffffffULL) \{}
+\DoxyCodeLine{82          out[x++] = 0x85;}
+\DoxyCodeLine{83          out[x++] = (\textcolor{keywordtype}{unsigned} char)((\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}>>32ULL)\&255);}
+\DoxyCodeLine{84          out[x++] = (\textcolor{keywordtype}{unsigned} char)((\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}>>24ULL)\&255);}
+\DoxyCodeLine{85          out[x++] = (\textcolor{keywordtype}{unsigned} char)((\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}>>16ULL)\&255);}
+\DoxyCodeLine{86          out[x++] = (\textcolor{keywordtype}{unsigned} char)((\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}>>8ULL)\&255);}
+\DoxyCodeLine{87          out[x++] = (\textcolor{keywordtype}{unsigned} char)(\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}\&255);}
+\DoxyCodeLine{88       \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}} <= 0xffffffffffffULL) \{}
+\DoxyCodeLine{89          out[x++] = 0x86;}
+\DoxyCodeLine{90          out[x++] = (\textcolor{keywordtype}{unsigned} char)((\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}>>40ULL)\&255);}
+\DoxyCodeLine{91          out[x++] = (\textcolor{keywordtype}{unsigned} char)((\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}>>32ULL)\&255);}
+\DoxyCodeLine{92          out[x++] = (\textcolor{keywordtype}{unsigned} char)((\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}>>24ULL)\&255);}
+\DoxyCodeLine{93          out[x++] = (\textcolor{keywordtype}{unsigned} char)((\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}>>16ULL)\&255);}
+\DoxyCodeLine{94          out[x++] = (\textcolor{keywordtype}{unsigned} char)((\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}>>8ULL)\&255);}
+\DoxyCodeLine{95          out[x++] = (\textcolor{keywordtype}{unsigned} char)(\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}\&255);}
+\DoxyCodeLine{96       \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}} <= 0xffffffffffffffULL) \{}
+\DoxyCodeLine{97          out[x++] = 0x87;}
+\DoxyCodeLine{98          out[x++] = (\textcolor{keywordtype}{unsigned} char)((\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}>>48ULL)\&255);}
+\DoxyCodeLine{99          out[x++] = (\textcolor{keywordtype}{unsigned} char)((\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}>>40ULL)\&255);}
+\DoxyCodeLine{100          out[x++] = (\textcolor{keywordtype}{unsigned} char)((\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}>>32ULL)\&255);}
+\DoxyCodeLine{101          out[x++] = (\textcolor{keywordtype}{unsigned} char)((\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}>>24ULL)\&255);}
+\DoxyCodeLine{102          out[x++] = (\textcolor{keywordtype}{unsigned} char)((\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}>>16ULL)\&255);}
+\DoxyCodeLine{103          out[x++] = (\textcolor{keywordtype}{unsigned} char)((\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}>>8ULL)\&255);}
+\DoxyCodeLine{104          out[x++] = (\textcolor{keywordtype}{unsigned} char)(\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}\&255);}
+\DoxyCodeLine{105       \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{106          out[x++] = 0x88;}
+\DoxyCodeLine{107          out[x++] = (\textcolor{keywordtype}{unsigned} char)((\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}>>56ULL)\&255);}
+\DoxyCodeLine{108          out[x++] = (\textcolor{keywordtype}{unsigned} char)((\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}>>48ULL)\&255);}
+\DoxyCodeLine{109          out[x++] = (\textcolor{keywordtype}{unsigned} char)((\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}>>40ULL)\&255);}
+\DoxyCodeLine{110          out[x++] = (\textcolor{keywordtype}{unsigned} char)((\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}>>32ULL)\&255);}
+\DoxyCodeLine{111          out[x++] = (\textcolor{keywordtype}{unsigned} char)((\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}>>24ULL)\&255);}
+\DoxyCodeLine{112          out[x++] = (\textcolor{keywordtype}{unsigned} char)((\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}>>16ULL)\&255);}
+\DoxyCodeLine{113          out[x++] = (\textcolor{keywordtype}{unsigned} char)((\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}>>8ULL)\&255);}
+\DoxyCodeLine{114          out[x++] = (\textcolor{keywordtype}{unsigned} char)(\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}\&255);}
+\DoxyCodeLine{115       \}}
+\DoxyCodeLine{116 \textcolor{preprocessor}{      \#endif}}
+\DoxyCodeLine{117    \}}
+\DoxyCodeLine{118    *outlen = x;}
+\DoxyCodeLine{119 }
+\DoxyCodeLine{120    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{121 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+O\+V\+E\+R\+F\+L\+OW, C\+R\+Y\+P\+T\+\_\+\+P\+K\+\_\+\+A\+S\+N1\+\_\+\+E\+R\+R\+OR, len, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+
+
+Referenced by der\+\_\+encode\+\_\+bit\+\_\+string(), der\+\_\+encode\+\_\+custom\+\_\+type(), der\+\_\+encode\+\_\+ia5\+\_\+string(), der\+\_\+encode\+\_\+integer(), der\+\_\+encode\+\_\+object\+\_\+identifier(), der\+\_\+encode\+\_\+octet\+\_\+string(), der\+\_\+encode\+\_\+printable\+\_\+string(), der\+\_\+encode\+\_\+raw\+\_\+bit\+\_\+string(), der\+\_\+encode\+\_\+sequence\+\_\+ex(), der\+\_\+encode\+\_\+utf8\+\_\+string(), and der\+\_\+length\+\_\+asn1\+\_\+length().
+
+Here is the caller graph for this function\+:
+% FIG 1

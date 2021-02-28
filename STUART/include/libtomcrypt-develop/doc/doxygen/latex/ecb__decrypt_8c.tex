@@ -1,0 +1,87 @@
+\hypertarget{ecb__decrypt_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/modes/ecb/ecb\+\_\+decrypt.c File Reference}
+\label{ecb__decrypt_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/modes/ecb/ecb\_decrypt.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/modes/ecb/ecb\_decrypt.c}}
+
+
+E\+CB implementation, decrypt a block, Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for ecb\+\_\+decrypt.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{ecb__decrypt_8c_a9de0df7e24e885f110ffcfd554466d5d}{ecb\+\_\+decrypt}} (const unsigned char $\ast$ct, unsigned char $\ast$pt, unsigned long \mbox{\hyperlink{pmac__init_8c_afed088663f8704004425cdae2120b9b3}{len}}, symmetric\+\_\+\+E\+CB $\ast$ecb)
+\begin{DoxyCompactList}\small\item\em E\+CB decrypt. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+E\+CB implementation, decrypt a block, Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{ecb__decrypt_8c_a9de0df7e24e885f110ffcfd554466d5d}\label{ecb__decrypt_8c_a9de0df7e24e885f110ffcfd554466d5d}} 
+\index{ecb\_decrypt.c@{ecb\_decrypt.c}!ecb\_decrypt@{ecb\_decrypt}}
+\index{ecb\_decrypt@{ecb\_decrypt}!ecb\_decrypt.c@{ecb\_decrypt.c}}
+\subsubsection{\texorpdfstring{ecb\_decrypt()}{ecb\_decrypt()}}
+{\footnotesize\ttfamily int ecb\+\_\+decrypt (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{ct,  }\item[{unsigned char $\ast$}]{pt,  }\item[{unsigned long}]{len,  }\item[{symmetric\+\_\+\+E\+CB $\ast$}]{ecb }\end{DoxyParamCaption})}
+
+
+
+E\+CB decrypt. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ct} & Ciphertext \\
+\hline
+{\em pt} & \mbox{[}out\mbox{]} Plaintext \\
+\hline
+{\em len} & The number of octets to process (must be multiple of the cipher block size) \\
+\hline
+{\em ecb} & E\+CB state \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 26 of file ecb\+\_\+decrypt.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{27 \{}
+\DoxyCodeLine{28    \textcolor{keywordtype}{int} err;}
+\DoxyCodeLine{29    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(pt != NULL);}
+\DoxyCodeLine{30    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(ct != NULL);}
+\DoxyCodeLine{31    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(ecb != NULL);}
+\DoxyCodeLine{32    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_ac30eb68934c4ca07205344dc9d159221}{cipher\_is\_valid}}(ecb->cipher)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{33        \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{34    \}}
+\DoxyCodeLine{35    \textcolor{keywordflow}{if} (\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}} \% \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[ecb->cipher].\mbox{\hyperlink{structltc__cipher__descriptor_afa2af7325fd3a834910dd92e8c9acf49}{block\_length}}) \{}
+\DoxyCodeLine{36       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{37    \}}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39    \textcolor{comment}{/* check for accel */}}
+\DoxyCodeLine{40    \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[ecb->cipher].\mbox{\hyperlink{structltc__cipher__descriptor_a58a17db0160fa95e4e7ca31aa78baa5d}{accel\_ecb\_decrypt}} != NULL) \{}
+\DoxyCodeLine{41       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[ecb->cipher].\mbox{\hyperlink{structltc__cipher__descriptor_a58a17db0160fa95e4e7ca31aa78baa5d}{accel\_ecb\_decrypt}}(ct, pt, \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}} / \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[ecb->cipher].\mbox{\hyperlink{structltc__cipher__descriptor_afa2af7325fd3a834910dd92e8c9acf49}{block\_length}}, \&ecb->key);}
+\DoxyCodeLine{42    \}}
+\DoxyCodeLine{43    \textcolor{keywordflow}{while} (\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}) \{}
+\DoxyCodeLine{44       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[ecb->cipher].\mbox{\hyperlink{structltc__cipher__descriptor_a812d7f58f347982989dc3eace19aba27}{ecb\_decrypt}}(ct, pt, \&ecb->key)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{45          \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{46       \}}
+\DoxyCodeLine{47       pt  += \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[ecb->cipher].\mbox{\hyperlink{structltc__cipher__descriptor_afa2af7325fd3a834910dd92e8c9acf49}{block\_length}};}
+\DoxyCodeLine{48       ct  += \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[ecb->cipher].\mbox{\hyperlink{structltc__cipher__descriptor_afa2af7325fd3a834910dd92e8c9acf49}{block\_length}};}
+\DoxyCodeLine{49       \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}} -= \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[ecb->cipher].\mbox{\hyperlink{structltc__cipher__descriptor_afa2af7325fd3a834910dd92e8c9acf49}{block\_length}};}
+\DoxyCodeLine{50    \}}
+\DoxyCodeLine{51    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{52 \}}
+
+\end{DoxyCode}
+
+
+References ltc\+\_\+cipher\+\_\+descriptor\+::accel\+\_\+ecb\+\_\+decrypt, ltc\+\_\+cipher\+\_\+descriptor\+::block\+\_\+length, cipher\+\_\+descriptor, cipher\+\_\+is\+\_\+valid(), C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+A\+RG, C\+R\+Y\+P\+T\+\_\+\+OK, ltc\+\_\+cipher\+\_\+descriptor\+::ecb\+\_\+decrypt, len, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+Here is the call graph for this function\+:
+% FIG 1

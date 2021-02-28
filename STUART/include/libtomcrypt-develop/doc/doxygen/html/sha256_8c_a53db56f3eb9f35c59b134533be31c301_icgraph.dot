@@ -1,0 +1,35 @@
+digraph "sha256_done"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node19 [label="sha256_done",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Terminate the hash to get the digest."];
+  Node19 -> Node20 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node20 [label="_fortuna_reseed",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$fortuna_8c.html#aad833baa2e75f93d847e5a7ac30ea4d2",tooltip=" "];
+  Node20 -> Node21 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node21 [label="fortuna_ready",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$fortuna_8c.html#a635d034d99b51a38b4a71fae3880b48f",tooltip="Make the PRNG ready to read from."];
+  Node20 -> Node22 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node22 [label="fortuna_read",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$fortuna_8c.html#a19149fcfc926ab81d4acebfcf39b78f7",tooltip="Read from the PRNG."];
+  Node19 -> Node23 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node23 [label="_sha256",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$xsalsa20__test_8c.html#a7fcfbd99a01c14c1da60a10132de39a1",tooltip=" "];
+  Node23 -> Node24 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node24 [label="xsalsa20_test",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$xsalsa20__test_8c.html#a3a6ef542e6adb8439f75d3ac042ac0e5",tooltip=" "];
+  Node19 -> Node25 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node25 [label="fortuna_done",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$fortuna_8c.html#ab875173ff3316ba29598b7fb3b03f186",tooltip="Terminate the PRNG."];
+  Node19 -> Node26 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node26 [label="fortuna_start",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$fortuna_8c.html#a54822f5e172e6f2a025448f6e9430e22",tooltip="Start the PRNG."];
+  Node26 -> Node27 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node27 [label="fortuna_import",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$fortuna_8c.html#ad9f529aaecf6646cac5e5eaa2d1f418d",tooltip="Import a PRNG state."];
+  Node19 -> Node28 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node28 [label="fortuna_update_seed",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$fortuna_8c.html#a8a0df3516c28ad940932db01cfa194f9",tooltip="\"Update Seed File\"-compliant update of K"];
+  Node28 -> Node27 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node19 -> Node29 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node29 [label="sha224_done",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sha224_8c.html#a94aaf81f5c96e00fc5f6cf2332a5bfe1",tooltip="Terminate the hash to get the digest."];
+  Node29 -> Node30 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node30 [label="sha224_test",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sha224_8c.html#ad76aa20d487739f22aeb5e576edb978b",tooltip="Self-test the hash."];
+  Node19 -> Node31 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node31 [label="sha256_test",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sha256_8c.html#a3a9304ee8cdb3aaa8fc90f0b70592e7b",tooltip="Self-test the hash."];
+  Node31 -> Node32 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node32 [label="fortuna_test",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$fortuna_8c.html#a02a8621eda36a40059ce155007b6f6c3",tooltip="PRNG self-test."];
+}

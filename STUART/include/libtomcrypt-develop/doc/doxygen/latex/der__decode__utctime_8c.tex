@@ -1,0 +1,193 @@
+\hypertarget{der__decode__utctime_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/pk/asn1/der/utctime/der\+\_\+decode\+\_\+utctime.c File Reference}
+\label{der__decode__utctime_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/asn1/der/utctime/der\_decode\_utctime.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/asn1/der/utctime/der\_decode\_utctime.c}}
+
+
+A\+S\+N.\+1 D\+ER, decode a U\+T\+C\+T\+I\+ME, Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for der\+\_\+decode\+\_\+utctime.\+c\+:
+% FIG 0
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{der__decode__utctime_8c_a3d80a0d240593aa7e5b1b1dfb643f766}{D\+E\+C\+O\+D\+E\+\_\+V}}(y,  max)
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{der__decode__utctime_8c_aa391ed207680ef2c210dd556712d0492}{\+\_\+char\+\_\+to\+\_\+int}} (unsigned char x)
+\item 
+int \mbox{\hyperlink{der__decode__utctime_8c_a228dad2e418af24965b9b16188d61aac}{der\+\_\+decode\+\_\+utctime}} (const unsigned char $\ast$in, unsigned long $\ast$inlen, ltc\+\_\+utctime $\ast$out)
+\begin{DoxyCompactList}\small\item\em Decodes a U\+TC time structure in D\+ER format (reads all 6 valid encoding formats) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A\+S\+N.\+1 D\+ER, decode a U\+T\+C\+T\+I\+ME, Tom St Denis. 
+
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{der__decode__utctime_8c_a3d80a0d240593aa7e5b1b1dfb643f766}\label{der__decode__utctime_8c_a3d80a0d240593aa7e5b1b1dfb643f766}} 
+\index{der\_decode\_utctime.c@{der\_decode\_utctime.c}!DECODE\_V@{DECODE\_V}}
+\index{DECODE\_V@{DECODE\_V}!der\_decode\_utctime.c@{der\_decode\_utctime.c}}
+\subsubsection{\texorpdfstring{DECODE\_V}{DECODE\_V}}
+{\footnotesize\ttfamily \#define D\+E\+C\+O\+D\+E\+\_\+V(\begin{DoxyParamCaption}\item[{}]{y,  }\item[{}]{max }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{y  = \mbox{\hyperlink{der__decode__utctime_8c_aa391ed207680ef2c210dd556712d0492}{\_char\_to\_int}}(buf[x])*10 + \mbox{\hyperlink{der__decode__utctime_8c_aa391ed207680ef2c210dd556712d0492}{\_char\_to\_int}}(buf[x+1]); \(\backslash\)}
+\DoxyCodeLine{   if (y >= max) \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca980088f10ffe9009aec286038a9e79da}{CRYPT\_INVALID\_PACKET}};           \(\backslash\)}
+\DoxyCodeLine{   x += 2;}
+
+\end{DoxyCode}
+
+
+Definition at line 35 of file der\+\_\+decode\+\_\+utctime.\+c.
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{der__decode__utctime_8c_aa391ed207680ef2c210dd556712d0492}\label{der__decode__utctime_8c_aa391ed207680ef2c210dd556712d0492}} 
+\index{der\_decode\_utctime.c@{der\_decode\_utctime.c}!\_char\_to\_int@{\_char\_to\_int}}
+\index{\_char\_to\_int@{\_char\_to\_int}!der\_decode\_utctime.c@{der\_decode\_utctime.c}}
+\subsubsection{\texorpdfstring{\_char\_to\_int()}{\_char\_to\_int()}}
+{\footnotesize\ttfamily static int \+\_\+char\+\_\+to\+\_\+int (\begin{DoxyParamCaption}\item[{unsigned char}]{x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 18 of file der\+\_\+decode\+\_\+utctime.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{19 \{}
+\DoxyCodeLine{20    \textcolor{keywordflow}{switch} (x)  \{}
+\DoxyCodeLine{21       \textcolor{keywordflow}{case} \textcolor{charliteral}{'0'}: \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{22       \textcolor{keywordflow}{case} \textcolor{charliteral}{'1'}: \textcolor{keywordflow}{return} 1;}
+\DoxyCodeLine{23       \textcolor{keywordflow}{case} \textcolor{charliteral}{'2'}: \textcolor{keywordflow}{return} 2;}
+\DoxyCodeLine{24       \textcolor{keywordflow}{case} \textcolor{charliteral}{'3'}: \textcolor{keywordflow}{return} 3;}
+\DoxyCodeLine{25       \textcolor{keywordflow}{case} \textcolor{charliteral}{'4'}: \textcolor{keywordflow}{return} 4;}
+\DoxyCodeLine{26       \textcolor{keywordflow}{case} \textcolor{charliteral}{'5'}: \textcolor{keywordflow}{return} 5;}
+\DoxyCodeLine{27       \textcolor{keywordflow}{case} \textcolor{charliteral}{'6'}: \textcolor{keywordflow}{return} 6;}
+\DoxyCodeLine{28       \textcolor{keywordflow}{case} \textcolor{charliteral}{'7'}: \textcolor{keywordflow}{return} 7;}
+\DoxyCodeLine{29       \textcolor{keywordflow}{case} \textcolor{charliteral}{'8'}: \textcolor{keywordflow}{return} 8;}
+\DoxyCodeLine{30       \textcolor{keywordflow}{case} \textcolor{charliteral}{'9'}: \textcolor{keywordflow}{return} 9;}
+\DoxyCodeLine{31       \textcolor{keywordflow}{default}:  \textcolor{keywordflow}{return} 100;}
+\DoxyCodeLine{32    \}}
+\DoxyCodeLine{33 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{der__decode__utctime_8c_a228dad2e418af24965b9b16188d61aac}\label{der__decode__utctime_8c_a228dad2e418af24965b9b16188d61aac}} 
+\index{der\_decode\_utctime.c@{der\_decode\_utctime.c}!der\_decode\_utctime@{der\_decode\_utctime}}
+\index{der\_decode\_utctime@{der\_decode\_utctime}!der\_decode\_utctime.c@{der\_decode\_utctime.c}}
+\subsubsection{\texorpdfstring{der\_decode\_utctime()}{der\_decode\_utctime()}}
+{\footnotesize\ttfamily int der\+\_\+decode\+\_\+utctime (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{in,  }\item[{unsigned long $\ast$}]{inlen,  }\item[{ltc\+\_\+utctime $\ast$}]{out }\end{DoxyParamCaption})}
+
+
+
+Decodes a U\+TC time structure in D\+ER format (reads all 6 valid encoding formats) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em in} & Input buffer \\
+\hline
+{\em inlen} & Length of input buffer in octets \\
+\hline
+{\em out} & \mbox{[}out\mbox{]} Destination of U\+TC time structure \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 47 of file der\+\_\+decode\+\_\+utctime.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{49 \{}
+\DoxyCodeLine{50    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} buf[32] = \{ 0 \}; \textcolor{comment}{/* initialize as all zeroes */}}
+\DoxyCodeLine{51    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} x;}
+\DoxyCodeLine{52    \textcolor{keywordtype}{int}           y;}
+\DoxyCodeLine{53 }
+\DoxyCodeLine{54    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(in    != NULL);}
+\DoxyCodeLine{55    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(inlen != NULL);}
+\DoxyCodeLine{56    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(out   != NULL);}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{58    \textcolor{comment}{/* check header */}}
+\DoxyCodeLine{59    \textcolor{keywordflow}{if} (*inlen < 2UL || (in[1] >= \textcolor{keyword}{sizeof}(buf)) || ((in[1] + 2UL) > *inlen)) \{}
+\DoxyCodeLine{60       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca980088f10ffe9009aec286038a9e79da}{CRYPT\_INVALID\_PACKET}};}
+\DoxyCodeLine{61    \}}
+\DoxyCodeLine{62 }
+\DoxyCodeLine{63    \textcolor{comment}{/* decode the string */}}
+\DoxyCodeLine{64    \textcolor{keywordflow}{for} (x = 0; x < in[1]; x++) \{}
+\DoxyCodeLine{65        y = \mbox{\hyperlink{der__length__ia5__string_8c_a52dbde67731f9a92da76ff73f6c960de}{der\_ia5\_value\_decode}}(in[x+2]);}
+\DoxyCodeLine{66        \textcolor{keywordflow}{if} (y == -1) \{}
+\DoxyCodeLine{67           \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca980088f10ffe9009aec286038a9e79da}{CRYPT\_INVALID\_PACKET}};}
+\DoxyCodeLine{68        \}}
+\DoxyCodeLine{69        buf[x] = y;}
+\DoxyCodeLine{70    \}}
+\DoxyCodeLine{71    *inlen = 2 + x;}
+\DoxyCodeLine{72 }
+\DoxyCodeLine{73 }
+\DoxyCodeLine{74    \textcolor{comment}{/* possible encodings are}}
+\DoxyCodeLine{75 \textcolor{comment}{YYMMDDhhmmZ}}
+\DoxyCodeLine{76 \textcolor{comment}{YYMMDDhhmm+hh'mm'}}
+\DoxyCodeLine{77 \textcolor{comment}{YYMMDDhhmm-hh'mm'}}
+\DoxyCodeLine{78 \textcolor{comment}{YYMMDDhhmmssZ}}
+\DoxyCodeLine{79 \textcolor{comment}{YYMMDDhhmmss+hh'mm'}}
+\DoxyCodeLine{80 \textcolor{comment}{YYMMDDhhmmss-hh'mm'}}
+\DoxyCodeLine{81 \textcolor{comment}{}}
+\DoxyCodeLine{82 \textcolor{comment}{    So let's do a trivial decode upto [including] mm}}
+\DoxyCodeLine{83 \textcolor{comment}{   */}}
+\DoxyCodeLine{84 }
+\DoxyCodeLine{85     x = 0;}
+\DoxyCodeLine{86     \mbox{\hyperlink{der__decode__utctime_8c_a3d80a0d240593aa7e5b1b1dfb643f766}{DECODE\_V}}(out->YY, 100);}
+\DoxyCodeLine{87     \mbox{\hyperlink{der__decode__utctime_8c_a3d80a0d240593aa7e5b1b1dfb643f766}{DECODE\_V}}(out->MM, 13);}
+\DoxyCodeLine{88     \mbox{\hyperlink{der__decode__utctime_8c_a3d80a0d240593aa7e5b1b1dfb643f766}{DECODE\_V}}(out->DD, 32);}
+\DoxyCodeLine{89     \mbox{\hyperlink{der__decode__utctime_8c_a3d80a0d240593aa7e5b1b1dfb643f766}{DECODE\_V}}(out->hh, 24);}
+\DoxyCodeLine{90     \mbox{\hyperlink{der__decode__utctime_8c_a3d80a0d240593aa7e5b1b1dfb643f766}{DECODE\_V}}(out->mm, 60);}
+\DoxyCodeLine{91 }
+\DoxyCodeLine{92     \textcolor{comment}{/* clear timezone and seconds info */}}
+\DoxyCodeLine{93     out->off\_dir = out->off\_hh = out->off\_mm = out->ss = 0;}
+\DoxyCodeLine{94 }
+\DoxyCodeLine{95     \textcolor{comment}{/* now is it Z, +, - or 0-9 */}}
+\DoxyCodeLine{96     \textcolor{keywordflow}{if} (buf[x] == \textcolor{charliteral}{'Z'}) \{}
+\DoxyCodeLine{97        \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{98     \}}
+\DoxyCodeLine{99     \textcolor{keywordflow}{if} (buf[x] == \textcolor{charliteral}{'+'} || buf[x] == \textcolor{charliteral}{'-'}) \{}
+\DoxyCodeLine{100        out->off\_dir = (buf[x++] == \textcolor{charliteral}{'+'}) ? 0 : 1;}
+\DoxyCodeLine{101        \mbox{\hyperlink{der__decode__utctime_8c_a3d80a0d240593aa7e5b1b1dfb643f766}{DECODE\_V}}(out->off\_hh, 24);}
+\DoxyCodeLine{102        \mbox{\hyperlink{der__decode__utctime_8c_a3d80a0d240593aa7e5b1b1dfb643f766}{DECODE\_V}}(out->off\_mm, 60);}
+\DoxyCodeLine{103        \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{104     \}}
+\DoxyCodeLine{105 }
+\DoxyCodeLine{106     \textcolor{comment}{/* decode seconds */}}
+\DoxyCodeLine{107     \mbox{\hyperlink{der__decode__utctime_8c_a3d80a0d240593aa7e5b1b1dfb643f766}{DECODE\_V}}(out->ss, 60);}
+\DoxyCodeLine{108 }
+\DoxyCodeLine{109     \textcolor{comment}{/* now is it Z, +, - */}}
+\DoxyCodeLine{110     \textcolor{keywordflow}{if} (buf[x] == \textcolor{charliteral}{'Z'}) \{}
+\DoxyCodeLine{111        \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{112     \}}
+\DoxyCodeLine{113     \textcolor{keywordflow}{if} (buf[x] == \textcolor{charliteral}{'+'} || buf[x] == \textcolor{charliteral}{'-'}) \{}
+\DoxyCodeLine{114        out->off\_dir = (buf[x++] == \textcolor{charliteral}{'+'}) ? 0 : 1;}
+\DoxyCodeLine{115        \mbox{\hyperlink{der__decode__utctime_8c_a3d80a0d240593aa7e5b1b1dfb643f766}{DECODE\_V}}(out->off\_hh, 24);}
+\DoxyCodeLine{116        \mbox{\hyperlink{der__decode__utctime_8c_a3d80a0d240593aa7e5b1b1dfb643f766}{DECODE\_V}}(out->off\_mm, 60);}
+\DoxyCodeLine{117        \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{118     \}}
+\DoxyCodeLine{119     \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca980088f10ffe9009aec286038a9e79da}{CRYPT\_INVALID\_PACKET}};}
+\DoxyCodeLine{120 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+P\+A\+C\+K\+ET, C\+R\+Y\+P\+T\+\_\+\+OK, D\+E\+C\+O\+D\+E\+\_\+V, der\+\_\+ia5\+\_\+value\+\_\+decode(), and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+
+
+Referenced by der\+\_\+decode\+\_\+choice(), der\+\_\+decode\+\_\+custom\+\_\+type\+\_\+ex(), and der\+\_\+decode\+\_\+sequence\+\_\+flexi().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2

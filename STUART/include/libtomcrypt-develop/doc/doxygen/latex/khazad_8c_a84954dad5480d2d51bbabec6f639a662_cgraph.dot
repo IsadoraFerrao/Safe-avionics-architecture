@@ -1,0 +1,21 @@
+digraph "khazad_test"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node20 [label="khazad_test",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Performs a self-test of the Khazad block cipher."];
+  Node20 -> Node21 [color="midnightblue",fontsize="10",style="solid"];
+  Node21 [label="compare_testvector",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__misc_8h.html#a7764a7f27897c6182335752df00b5f8e",tooltip="Compare two test-vectors."];
+  Node21 -> Node22 [color="midnightblue",fontsize="10",style="solid"];
+  Node22 [label="XMEMCMP",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cfg_8h.html#a372b974ec0ac07abcd55297554fe540f",tooltip=" "];
+  Node20 -> Node23 [color="midnightblue",fontsize="10",style="solid"];
+  Node23 [label="khazad_ecb_decrypt",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$khazad_8c.html#ae1333252a34f625c3b6acfc2805b3b92",tooltip="Decrypts a block of text with Khazad."];
+  Node23 -> Node24 [color="midnightblue",fontsize="10",style="solid"];
+  Node24 [label="khazad_crypt",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$khazad_8c.html#ac33b9c32bf8c340b2c5bb15190e0460b",tooltip=" "];
+  Node20 -> Node25 [color="midnightblue",fontsize="10",style="solid"];
+  Node25 [label="khazad_ecb_encrypt",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$khazad_8c.html#a5a1f47614a0573ea67f9dcc1d9a7143c",tooltip="Encrypts a block of text with Khazad."];
+  Node25 -> Node24 [color="midnightblue",fontsize="10",style="solid"];
+  Node20 -> Node26 [color="midnightblue",fontsize="10",style="solid"];
+  Node26 [label="khazad_setup",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$khazad_8c.html#a26a57d1e83a16b6abe994f43b570a62b",tooltip="Initialize the Khazad block cipher."];
+}

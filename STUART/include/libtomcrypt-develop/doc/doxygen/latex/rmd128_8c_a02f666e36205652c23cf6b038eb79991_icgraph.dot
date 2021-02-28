@@ -1,0 +1,10 @@
+digraph "rmd128_process"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node13 [label="rmd128_process",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Process a block of memory though the hash."];
+  Node13 -> Node14 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node14 [label="rmd128_test",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rmd128_8c.html#aa5ff888d315ec47dde1dcc6723635754",tooltip="Self-test the hash."];
+}

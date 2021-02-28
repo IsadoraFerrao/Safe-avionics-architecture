@@ -1,0 +1,19 @@
+digraph "_fortuna_update_iv"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node18 [label="_fortuna_update_iv",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node18 -> Node19 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node19 [label="_fortuna_reseed",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$fortuna_8c.html#aad833baa2e75f93d847e5a7ac30ea4d2",tooltip=" "];
+  Node19 -> Node20 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node20 [label="fortuna_read",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$fortuna_8c.html#a19149fcfc926ab81d4acebfcf39b78f7",tooltip="Read from the PRNG."];
+  Node19 -> Node21 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node21 [label="fortuna_ready",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$fortuna_8c.html#a635d034d99b51a38b4a71fae3880b48f",tooltip="Make the PRNG ready to read from."];
+  Node18 -> Node20 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node18 -> Node22 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node22 [label="fortuna_update_seed",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$fortuna_8c.html#a8a0df3516c28ad940932db01cfa194f9",tooltip="\"Update Seed File\"-compliant update of K"];
+  Node22 -> Node23 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node23 [label="fortuna_import",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$fortuna_8c.html#ad9f529aaecf6646cac5e5eaa2d1f418d",tooltip="Import a PRNG state."];
+}

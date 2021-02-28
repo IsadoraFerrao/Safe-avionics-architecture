@@ -1,0 +1,12 @@
+digraph "ocb_done_encrypt"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node9 [label="ocb_done_encrypt",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Terminate an encryption OCB state."];
+  Node9 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node10 [label="ocb_encrypt_authenticate\l_memory",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ocb__encrypt__authenticate__memory_8c.html#a6dc818f74acf81f66cd2f25b5f0024b6",tooltip="Encrypt and generate an authentication code for a buffer of memory."];
+  Node10 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node11 [label="ocb_test",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ocb__test_8c.html#afbc7c6139aaabac9146afff688bafbb9",tooltip="Test the OCB protocol."];
+}

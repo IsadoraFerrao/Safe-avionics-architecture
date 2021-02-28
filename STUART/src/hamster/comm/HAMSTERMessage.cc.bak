@@ -1,0 +1,104 @@
+/*
+ * Copyright (C) 2017     Critical Embedded System Laboratory (LSEC)
+ * 
+ * This program is free software; you can redistribute it and/or modify it 
+ * under the terms of the GNU Lesser General Public License as published by the
+ * Free Software Foundation; either version 2 of the License, or (at your 
+ * option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful, but WITHOUT 
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or 
+ * FITNESS FOR A PARTICULAR PURPOSE.
+ * 
+ * See the GNU Lesser General Public License for more details.
+ * <http://www.gnu.org/licenses/>
+ */
+
+/* 
+ * \file    HAMSTERMessage.cc
+ * \author: Mariana Rodrigues   rodrigues.mariana@gmail.com
+ * \copyright GNU Lesser General Public License.
+ */
+
+#include <cstring>
+
+#include "HAMSTERMessage.h"
+
+namespace hamster{
+namespace comm{
+
+HAMSTERMessage::HAMSTERMessage(HAMSTER_MESSAGE_DIRECTION dir,HAMSTER_MESSAGE_CODE code):direction(dir),message_code(code) {
+    this->message_payload = new char[MAX_BUFFER_SIZE];
+    sprintf((char *) &(this->message_payload[message_buffer_index]),"%8x",(uint32_t) code);
+    this->message_buffer_index += 8;
+    message_payload[message_buffer_index] = '\0';
+}
+
+HAMSTERMessage::HAMSTERMessage(HAMSTER_MESSAGE_DIRECTION dir,char * buffer):direction(dir){
+    this->message_payload = buffer;
+    this->extractCode();
+}
+
+HAMSTERMessage::HAMSTERMessage(HAMSTER_MESSAGE_DIRECTION dir,HAMSTER_MESSAGE_CODE code, int buffer_size):direction(dir),message_code(code) {
+    this->message_payload = new char[buffer_size];
+    sprintf((char *) &(this->message_payload[message_buffer_index]),"%8x",(uint32_t) code);
+    this->message_buffer_index += 8;
+    message_payload[message_buffer_index] = '\0';
+}
+
+HAMSTERMessage::HAMSTERMessage(const HAMSTERMessage& orig) {
+    this->direction = orig.direction;
+    this->message_payload = orig.message_payload;
+    this->message_buffer_index = orig.message_buffer_index;
+    this->message_code= orig.message_code;
+    this->message_payload_size = orig.message_payload_size;
+    this->recipient = orig.recipient;
+}
+
+HAMSTERMessage::~HAMSTERMessage() {
+}
+
+uint8_t HAMSTERMessage::remainingSize(){
+    return (this->message_payload_size - sizeof(message_code) - this->message_buffer_index);
+}
+
+HAMSTER_RETURN HAMSTERMessage::addToPayload(int8_t value){
+    if(remainingSize() >= sizeof(value)){
+        // Serialize value in bytes
+        message_buffer_index += sizeof(value);
+    }
+}
+//HAMSTER_RETURN HAMSTERMessage::addToPayload(uint32_t value){
+//
+//}
+HAMSTER_RETURN HAMSTERMessage::addToPayload(char * string){
+    uint8_t size = strlen(string);
+    if(remainingSize() >= size){
+        this->message_payload[message_buffer_index] = size;
+        message_buffer_index++;
+        strncpy((char *) &(message_payload[message_buffer_index]),string,size);
+        message_buffer_index += size;
+        message_payload[message_buffer_index] = '\0';
+    }
+}
+
+HAMSTER_MESSAGE_CODE HAMSTERMessage::extractCode(){
+    uint32_t code;
+    
+    sscanf(this->message_payload,"%8x",&code);
+    this->message_code = static_cast<HAMSTER_MESSAGE_CODE>(code);
+    message_buffer_index += 8;
+}
+
+char * HAMSTERMessage::extractStringFromPayload(){
+    char size;
+    
+    sscanf((char *) &(message_payload[message_buffer_index]),"%c",&size);
+    this->message_buffer_index++;
+    char * str = new char[size];
+    strncpy(str,(char *) &(message_payload[message_buffer_index]),size);
+    return str;
+}
+
+} /* namespace comm */
+} /* namespace hamster */

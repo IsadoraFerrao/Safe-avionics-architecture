@@ -1,0 +1,66 @@
+\hypertarget{crypt__find__cipher__id_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/misc/crypt/crypt\+\_\+find\+\_\+cipher\+\_\+id.c File Reference}
+\label{crypt__find__cipher__id_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/misc/crypt/crypt\_find\_cipher\_id.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/misc/crypt/crypt\_find\_cipher\_id.c}}
+
+
+Find cipher by ID, Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for crypt\+\_\+find\+\_\+cipher\+\_\+id.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{crypt__find__cipher__id_8c_aa38dbe448d907f5cf9b6554c2e52776b}{find\+\_\+cipher\+\_\+id}} (unsigned char ID)
+\begin{DoxyCompactList}\small\item\em Find a cipher by ID number. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Find cipher by ID, Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{crypt__find__cipher__id_8c_aa38dbe448d907f5cf9b6554c2e52776b}\label{crypt__find__cipher__id_8c_aa38dbe448d907f5cf9b6554c2e52776b}} 
+\index{crypt\_find\_cipher\_id.c@{crypt\_find\_cipher\_id.c}!find\_cipher\_id@{find\_cipher\_id}}
+\index{find\_cipher\_id@{find\_cipher\_id}!crypt\_find\_cipher\_id.c@{crypt\_find\_cipher\_id.c}}
+\subsubsection{\texorpdfstring{find\_cipher\_id()}{find\_cipher\_id()}}
+{\footnotesize\ttfamily int find\+\_\+cipher\+\_\+id (\begin{DoxyParamCaption}\item[{unsigned char}]{ID }\end{DoxyParamCaption})}
+
+
+
+Find a cipher by ID number. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ID} & The ID (not same as index) of the cipher to find \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+$>$= 0 if found, -\/1 if not present 
+\end{DoxyReturn}
+
+
+Definition at line 21 of file crypt\+\_\+find\+\_\+cipher\+\_\+id.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{22 \{}
+\DoxyCodeLine{23    \textcolor{keywordtype}{int} x;}
+\DoxyCodeLine{24    \mbox{\hyperlink{tomcrypt__custom_8h_a427a107414e4d775fbf23f4a499f4a31}{LTC\_MUTEX\_LOCK}}(\&ltc\_cipher\_mutex);}
+\DoxyCodeLine{25    \textcolor{keywordflow}{for} (x = 0; x < \mbox{\hyperlink{tomcrypt_8h_a9ad1b4a1e4f7381611cfd2ae6620a727}{TAB\_SIZE}}; x++) \{}
+\DoxyCodeLine{26        \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[x].ID == ID) \{}
+\DoxyCodeLine{27           x = (\mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[x].\mbox{\hyperlink{structltc__cipher__descriptor_af0cf296468366b502b0584af87168058}{name}} == NULL) ? -1 : x;}
+\DoxyCodeLine{28           \mbox{\hyperlink{tomcrypt__custom_8h_acdf267be91b178b4fafe8f992d57a7f1}{LTC\_MUTEX\_UNLOCK}}(\&ltc\_cipher\_mutex);}
+\DoxyCodeLine{29           \textcolor{keywordflow}{return} x;}
+\DoxyCodeLine{30        \}}
+\DoxyCodeLine{31    \}}
+\DoxyCodeLine{32    \mbox{\hyperlink{tomcrypt__custom_8h_acdf267be91b178b4fafe8f992d57a7f1}{LTC\_MUTEX\_UNLOCK}}(\&ltc\_cipher\_mutex);}
+\DoxyCodeLine{33    \textcolor{keywordflow}{return} -1;}
+\DoxyCodeLine{34 \}}
+
+\end{DoxyCode}
+
+
+References cipher\+\_\+descriptor, L\+T\+C\+\_\+\+M\+U\+T\+E\+X\+\_\+\+L\+O\+CK, L\+T\+C\+\_\+\+M\+U\+T\+E\+X\+\_\+\+U\+N\+L\+O\+CK, ltc\+\_\+cipher\+\_\+descriptor\+::name, and T\+A\+B\+\_\+\+S\+I\+ZE.
+

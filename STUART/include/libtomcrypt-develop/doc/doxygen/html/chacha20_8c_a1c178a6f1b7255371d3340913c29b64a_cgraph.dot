@@ -1,0 +1,55 @@
+digraph "chacha20_prng_test"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node56 [label="chacha20_prng_test",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="PRNG self-test."];
+  Node56 -> Node57 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node57 [label="chacha20_prng_add_entropy",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$chacha20_8c.html#ae75ffa7e5ccf945ae352f106fb3b3f13",tooltip="Add entropy to the PRNG state."];
+  Node57 -> Node58 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node58 [label="chacha_ivctr64",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$chacha__ivctr64_8c.html#a2575d8a5708351cc77001ae00e77a132",tooltip="Set IV + counter data to the ChaCha state."];
+  Node57 -> Node59 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node59 [label="chacha_keystream",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$chacha__keystream_8c.html#a3a29ed9997a58d432f9e8ddca7b90bdd",tooltip="Generate a stream of random bytes via ChaCha."];
+  Node59 -> Node60 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node60 [label="XMEMSET",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cfg_8h.html#aa3c34a6f6c61de7da9258b5a30e32c2f",tooltip=" "];
+  Node59 -> Node61 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node61 [label="chacha_crypt",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$chacha__crypt_8c.html#a1b1272fcac65a1e6a1ee555891b7c95e",tooltip="Encrypt (or decrypt) bytes of ciphertext (or plaintext) with ChaCha."];
+  Node61 -> Node62 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node62 [label="_chacha_block",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$chacha__crypt_8c.html#a0f59b85d38348fa6829e4cedb228c594",tooltip=" "];
+  Node62 -> Node63 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node63 [label="XMEMCPY",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cfg_8h.html#a7691dd48d60d5fc6daf2fa7ec4c55e12",tooltip=" "];
+  Node62 -> Node64 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node64 [label="rounds",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$kseed_8c.html#a51da46362a22c8107683876e9c12ec82",tooltip=" "];
+  Node57 -> Node65 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node65 [label="chacha_setup",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$chacha__setup_8c.html#aaaad339dc43c455ff5cc2df1960ddfeb",tooltip="Initialize an ChaCha context (only the key)"];
+  Node65 -> Node64 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node57 -> Node66 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node66 [label="zeromem",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__misc_8h.html#a63b6e188713790263bfd3612fe8b398f",tooltip="Zero a block of memory."];
+  Node56 -> Node67 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node67 [label="chacha20_prng_done",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$chacha20_8c.html#ac4c6ba884d06287d4e168743899a058b",tooltip="Terminate the PRNG."];
+  Node67 -> Node68 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node68 [label="chacha_done",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$chacha__done_8c.html#a4936c207e7ef938d31047954fae30e39",tooltip="Terminate and clear ChaCha state."];
+  Node68 -> Node60 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node56 -> Node69 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node69 [label="chacha20_prng_export",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$chacha20_8c.html#a91e9ef4c395ab95e10838e117e5aa1a1",tooltip="Export the PRNG state."];
+  Node56 -> Node70 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node70 [label="chacha20_prng_import",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$chacha20_8c.html#aec1d8ebf9e796fe1223995e48d665a92",tooltip="Import a PRNG state."];
+  Node70 -> Node57 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node70 -> Node71 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node71 [label="chacha20_prng_start",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$chacha20_8c.html#aa52a7cb95c35a702f9cbf374bacf9530",tooltip="Start the PRNG."];
+  Node71 -> Node60 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node56 -> Node72 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node72 [label="chacha20_prng_read",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$chacha20_8c.html#a5adfff638ebc7c30cd3840ddd6807c30",tooltip="Read from the PRNG."];
+  Node72 -> Node59 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node56 -> Node73 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node73 [label="chacha20_prng_ready",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$chacha20_8c.html#a4d83a788328b93577373da5036f9e3ff",tooltip="Make the PRNG ready to read from."];
+  Node73 -> Node58 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node73 -> Node65 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node73 -> Node60 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node56 -> Node71 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node56 -> Node74 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node74 [label="compare_testvector",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__misc_8h.html#a7764a7f27897c6182335752df00b5f8e",tooltip="Compare two test-vectors."];
+  Node74 -> Node75 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node75 [label="XMEMCMP",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cfg_8h.html#a372b974ec0ac07abcd55297554fe540f",tooltip=" "];
+}

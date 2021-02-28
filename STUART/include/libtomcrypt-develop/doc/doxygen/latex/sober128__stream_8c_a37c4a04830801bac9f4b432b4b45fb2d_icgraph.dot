@@ -1,0 +1,17 @@
+digraph "sober128_stream_done"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node91 [label="sober128_stream_done",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Terminate and clear Sober128 state."];
+  Node91 -> Node92 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node92 [label="sober128_done",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sober128_8c.html#a3cfcf62a0dfb3a105430d3a0c753605f",tooltip="Terminate the PRNG."];
+  Node92 -> Node93 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node93 [label="sober128_test",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sober128_8c.html#ae89334392b56e0cb75d493a5bdba60b7",tooltip="PRNG self-test."];
+  Node91 -> Node94 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node94 [label="sober128_stream_memory",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sober128__stream__memory_8c.html#a81dcb5a025f5672c4866d6d7cc906910",tooltip="Encrypt (or decrypt) bytes of ciphertext (or plaintext) with SOBER128."];
+  Node94 -> Node95 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node95 [label="sober128_stream_test",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sober128__test_8c.html#a8e3db22bfcfb2f1aab3756833983d15b",tooltip=" "];
+  Node91 -> Node95 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+}

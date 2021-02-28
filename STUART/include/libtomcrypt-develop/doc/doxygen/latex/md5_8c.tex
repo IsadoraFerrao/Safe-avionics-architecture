@@ -1,0 +1,556 @@
+\hypertarget{md5_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/hashes/md5.c File Reference}
+\label{md5_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/hashes/md5.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/hashes/md5.c}}
+
+
+L\+T\+C\+\_\+\+M\+D5 hash function by Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for md5.\+c\+:
+% FIG 0
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{md5_8c_a96d73bbd7af15cb1fc38c3f4a3bd82e9}{F}}(x,  y,  z)~(z $^\wedge$ (x \& (y $^\wedge$ z)))
+\item 
+\#define \mbox{\hyperlink{md5_8c_ad96b7cf3182ce2ba85e5a7a93b12c441}{G}}(x,  y,  z)~(y $^\wedge$ (z \& (y $^\wedge$ x)))
+\item 
+\#define \mbox{\hyperlink{md5_8c_ae42219072d798876e6b08e6b78614ff6}{H}}(x,  y,  z)~(x$^\wedge$y$^\wedge$z)
+\item 
+\#define \mbox{\hyperlink{md5_8c_ac0eafdc9ee161b71e7af98af736952fd}{I}}(x,  y,  z)~(y$^\wedge$(x$\vert$($\sim$z)))
+\item 
+\#define \mbox{\hyperlink{md5_8c_a50ab746b38571ef3da2c49cc033cc7bd}{FF}}(a,  b,  \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},  d,  M,  s,  t)~a = (a + \mbox{\hyperlink{camellia_8c_aa64e124c7480791e82c5254ab4f24269}{F}}(b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d) + M + t); a = \mbox{\hyperlink{tomcrypt__macros_8h_a39d625dc0b148466a72c13737e063d86}{R\+O\+Lc}}(a, s) + b;
+\item 
+\#define \mbox{\hyperlink{md5_8c_a5e30950204c89f2dd001c124d741f561}{GG}}(a,  b,  \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},  d,  M,  s,  t)~a = (a + \mbox{\hyperlink{rmd320_8c_ad96b7cf3182ce2ba85e5a7a93b12c441}{G}}(b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d) + M + t); a = \mbox{\hyperlink{tomcrypt__macros_8h_a39d625dc0b148466a72c13737e063d86}{R\+O\+Lc}}(a, s) + b;
+\item 
+\#define \mbox{\hyperlink{md5_8c_ad58b217cb85e4d271e69d4e082ef0a39}{HH}}(a,  b,  \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},  d,  M,  s,  t)~a = (a + \mbox{\hyperlink{rmd320_8c_ae42219072d798876e6b08e6b78614ff6}{H}}(b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d) + M + t); a = \mbox{\hyperlink{tomcrypt__macros_8h_a39d625dc0b148466a72c13737e063d86}{R\+O\+Lc}}(a, s) + b;
+\item 
+\#define \mbox{\hyperlink{md5_8c_a94a463919a196f6b27bbebffc958b849}{II}}(a,  b,  \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},  d,  M,  s,  t)~a = (a + \mbox{\hyperlink{rmd320_8c_ac0eafdc9ee161b71e7af98af736952fd}{I}}(b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d) + M + t); a = \mbox{\hyperlink{tomcrypt__macros_8h_a39d625dc0b148466a72c13737e063d86}{R\+O\+Lc}}(a, s) + b;
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{md5_8c_a13039bc44beba940f197675cf3568429}{md5\+\_\+compress}} (\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$md, const unsigned char $\ast$buf)
+\item 
+int \mbox{\hyperlink{md5_8c_a26c1379e5ead2590effec89de6b8cd11}{md5\+\_\+init}} (\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$md)
+\begin{DoxyCompactList}\small\item\em Initialize the hash state. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{md5_8c_ac5600f48172219a87b375fa91987ae3b}{md5\+\_\+process}} (\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$md, const unsigned char $\ast$in, unsigned long inlen)
+\begin{DoxyCompactList}\small\item\em Process a block of memory though the hash. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{md5_8c_aee76a4c9f37bfe88d943301f3fa8126f}{md5\+\_\+done}} (\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$md, unsigned char $\ast$out)
+\begin{DoxyCompactList}\small\item\em Terminate the hash to get the digest. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{md5_8c_aa489642a9ce4699bc79abfef98a7afa3}{md5\+\_\+test}} (void)
+\begin{DoxyCompactList}\small\item\em Self-\/test the hash. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const struct \mbox{\hyperlink{structltc__hash__descriptor}{ltc\+\_\+hash\+\_\+descriptor}} \mbox{\hyperlink{md5_8c_a70c38ffa9636c7aa5e6d83d061da20b4}{md5\+\_\+desc}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+L\+T\+C\+\_\+\+M\+D5 hash function by Tom St Denis. 
+
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{md5_8c_a96d73bbd7af15cb1fc38c3f4a3bd82e9}\label{md5_8c_a96d73bbd7af15cb1fc38c3f4a3bd82e9}} 
+\index{md5.c@{md5.c}!F@{F}}
+\index{F@{F}!md5.c@{md5.c}}
+\subsubsection{\texorpdfstring{F}{F}}
+{\footnotesize\ttfamily \#define F(\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{y,  }\item[{}]{z }\end{DoxyParamCaption})~(z $^\wedge$ (x \& (y $^\wedge$ z)))}
+
+
+
+Definition at line 37 of file md5.\+c.
+
+\mbox{\Hypertarget{md5_8c_a50ab746b38571ef3da2c49cc033cc7bd}\label{md5_8c_a50ab746b38571ef3da2c49cc033cc7bd}} 
+\index{md5.c@{md5.c}!FF@{FF}}
+\index{FF@{FF}!md5.c@{md5.c}}
+\subsubsection{\texorpdfstring{FF}{FF}}
+{\footnotesize\ttfamily \#define FF(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{b,  }\item[{}]{\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},  }\item[{}]{d,  }\item[{}]{M,  }\item[{}]{s,  }\item[{}]{t }\end{DoxyParamCaption})~a = (a + \mbox{\hyperlink{camellia_8c_aa64e124c7480791e82c5254ab4f24269}{F}}(b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d) + M + t); a = \mbox{\hyperlink{tomcrypt__macros_8h_a39d625dc0b148466a72c13737e063d86}{R\+O\+Lc}}(a, s) + b;}
+
+
+
+Definition at line 83 of file md5.\+c.
+
+\mbox{\Hypertarget{md5_8c_ad96b7cf3182ce2ba85e5a7a93b12c441}\label{md5_8c_ad96b7cf3182ce2ba85e5a7a93b12c441}} 
+\index{md5.c@{md5.c}!G@{G}}
+\index{G@{G}!md5.c@{md5.c}}
+\subsubsection{\texorpdfstring{G}{G}}
+{\footnotesize\ttfamily \#define G(\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{y,  }\item[{}]{z }\end{DoxyParamCaption})~(y $^\wedge$ (z \& (y $^\wedge$ x)))}
+
+
+
+Definition at line 38 of file md5.\+c.
+
+\mbox{\Hypertarget{md5_8c_a5e30950204c89f2dd001c124d741f561}\label{md5_8c_a5e30950204c89f2dd001c124d741f561}} 
+\index{md5.c@{md5.c}!GG@{GG}}
+\index{GG@{GG}!md5.c@{md5.c}}
+\subsubsection{\texorpdfstring{GG}{GG}}
+{\footnotesize\ttfamily \#define GG(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{b,  }\item[{}]{\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},  }\item[{}]{d,  }\item[{}]{M,  }\item[{}]{s,  }\item[{}]{t }\end{DoxyParamCaption})~a = (a + \mbox{\hyperlink{rmd320_8c_ad96b7cf3182ce2ba85e5a7a93b12c441}{G}}(b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d) + M + t); a = \mbox{\hyperlink{tomcrypt__macros_8h_a39d625dc0b148466a72c13737e063d86}{R\+O\+Lc}}(a, s) + b;}
+
+
+
+Definition at line 86 of file md5.\+c.
+
+\mbox{\Hypertarget{md5_8c_ae42219072d798876e6b08e6b78614ff6}\label{md5_8c_ae42219072d798876e6b08e6b78614ff6}} 
+\index{md5.c@{md5.c}!H@{H}}
+\index{H@{H}!md5.c@{md5.c}}
+\subsubsection{\texorpdfstring{H}{H}}
+{\footnotesize\ttfamily \#define H(\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{y,  }\item[{}]{z }\end{DoxyParamCaption})~(x$^\wedge$y$^\wedge$z)}
+
+
+
+Definition at line 39 of file md5.\+c.
+
+\mbox{\Hypertarget{md5_8c_ad58b217cb85e4d271e69d4e082ef0a39}\label{md5_8c_ad58b217cb85e4d271e69d4e082ef0a39}} 
+\index{md5.c@{md5.c}!HH@{HH}}
+\index{HH@{HH}!md5.c@{md5.c}}
+\subsubsection{\texorpdfstring{HH}{HH}}
+{\footnotesize\ttfamily \#define HH(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{b,  }\item[{}]{\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},  }\item[{}]{d,  }\item[{}]{M,  }\item[{}]{s,  }\item[{}]{t }\end{DoxyParamCaption})~a = (a + \mbox{\hyperlink{rmd320_8c_ae42219072d798876e6b08e6b78614ff6}{H}}(b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d) + M + t); a = \mbox{\hyperlink{tomcrypt__macros_8h_a39d625dc0b148466a72c13737e063d86}{R\+O\+Lc}}(a, s) + b;}
+
+
+
+Definition at line 89 of file md5.\+c.
+
+\mbox{\Hypertarget{md5_8c_ac0eafdc9ee161b71e7af98af736952fd}\label{md5_8c_ac0eafdc9ee161b71e7af98af736952fd}} 
+\index{md5.c@{md5.c}!I@{I}}
+\index{I@{I}!md5.c@{md5.c}}
+\subsubsection{\texorpdfstring{I}{I}}
+{\footnotesize\ttfamily \#define I(\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{y,  }\item[{}]{z }\end{DoxyParamCaption})~(y$^\wedge$(x$\vert$($\sim$z)))}
+
+
+
+Definition at line 40 of file md5.\+c.
+
+\mbox{\Hypertarget{md5_8c_a94a463919a196f6b27bbebffc958b849}\label{md5_8c_a94a463919a196f6b27bbebffc958b849}} 
+\index{md5.c@{md5.c}!II@{II}}
+\index{II@{II}!md5.c@{md5.c}}
+\subsubsection{\texorpdfstring{II}{II}}
+{\footnotesize\ttfamily \#define II(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{b,  }\item[{}]{\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},  }\item[{}]{d,  }\item[{}]{M,  }\item[{}]{s,  }\item[{}]{t }\end{DoxyParamCaption})~a = (a + \mbox{\hyperlink{rmd320_8c_ac0eafdc9ee161b71e7af98af736952fd}{I}}(b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d) + M + t); a = \mbox{\hyperlink{tomcrypt__macros_8h_a39d625dc0b148466a72c13737e063d86}{R\+O\+Lc}}(a, s) + b;}
+
+
+
+Definition at line 92 of file md5.\+c.
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{md5_8c_a13039bc44beba940f197675cf3568429}\label{md5_8c_a13039bc44beba940f197675cf3568429}} 
+\index{md5.c@{md5.c}!md5\_compress@{md5\_compress}}
+\index{md5\_compress@{md5\_compress}!md5.c@{md5.c}}
+\subsubsection{\texorpdfstring{md5\_compress()}{md5\_compress()}}
+{\footnotesize\ttfamily static int md5\+\_\+compress (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$}]{md,  }\item[{const unsigned char $\ast$}]{buf }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 101 of file md5.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{103 \{}
+\DoxyCodeLine{104     \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} i, W[16], a, b, \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, d;}
+\DoxyCodeLine{105 \textcolor{preprocessor}{\#ifdef LTC\_SMALL\_CODE}}
+\DoxyCodeLine{106     \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} t;}
+\DoxyCodeLine{107 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{108 }
+\DoxyCodeLine{109     \textcolor{comment}{/* copy the state into 512-bits into W[0..15] */}}
+\DoxyCodeLine{110     \textcolor{keywordflow}{for} (i = 0; i < 16; i++) \{}
+\DoxyCodeLine{111         LOAD32L(W[i], buf + (4*i));}
+\DoxyCodeLine{112     \}}
+\DoxyCodeLine{113 }
+\DoxyCodeLine{114     \textcolor{comment}{/* copy state */}}
+\DoxyCodeLine{115     a = md->md5.state[0];}
+\DoxyCodeLine{116     b = md->md5.state[1];}
+\DoxyCodeLine{117     \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} = md->md5.state[2];}
+\DoxyCodeLine{118     d = md->md5.state[3];}
+\DoxyCodeLine{119 }
+\DoxyCodeLine{120 \textcolor{preprocessor}{\#ifdef LTC\_SMALL\_CODE}}
+\DoxyCodeLine{121     \textcolor{keywordflow}{for} (i = 0; i < 16; ++i) \{}
+\DoxyCodeLine{122         \mbox{\hyperlink{md5_8c_a50ab746b38571ef3da2c49cc033cc7bd}{FF}}(a,b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d,W[Worder[i]],Rorder[i],Korder[i]);}
+\DoxyCodeLine{123         t = d; d = \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}; \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} = b; b = a; a = t;}
+\DoxyCodeLine{124     \}}
+\DoxyCodeLine{125 }
+\DoxyCodeLine{126     \textcolor{keywordflow}{for} (; i < 32; ++i) \{}
+\DoxyCodeLine{127         \mbox{\hyperlink{md5_8c_a5e30950204c89f2dd001c124d741f561}{GG}}(a,b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d,W[Worder[i]],Rorder[i],Korder[i]);}
+\DoxyCodeLine{128         t = d; d = \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}; \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} = b; b = a; a = t;}
+\DoxyCodeLine{129     \}}
+\DoxyCodeLine{130 }
+\DoxyCodeLine{131     \textcolor{keywordflow}{for} (; i < 48; ++i) \{}
+\DoxyCodeLine{132         \mbox{\hyperlink{md5_8c_ad58b217cb85e4d271e69d4e082ef0a39}{HH}}(a,b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d,W[Worder[i]],Rorder[i],Korder[i]);}
+\DoxyCodeLine{133         t = d; d = \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}; \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} = b; b = a; a = t;}
+\DoxyCodeLine{134     \}}
+\DoxyCodeLine{135 }
+\DoxyCodeLine{136     \textcolor{keywordflow}{for} (; i < 64; ++i) \{}
+\DoxyCodeLine{137         \mbox{\hyperlink{md5_8c_a94a463919a196f6b27bbebffc958b849}{II}}(a,b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d,W[Worder[i]],Rorder[i],Korder[i]);}
+\DoxyCodeLine{138         t = d; d = \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}; \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} = b; b = a; a = t;}
+\DoxyCodeLine{139     \}}
+\DoxyCodeLine{140 }
+\DoxyCodeLine{141 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{142     \mbox{\hyperlink{md5_8c_a50ab746b38571ef3da2c49cc033cc7bd}{FF}}(a,b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d,W[0],7,0xd76aa478UL)}
+\DoxyCodeLine{143     \mbox{\hyperlink{md5_8c_a50ab746b38571ef3da2c49cc033cc7bd}{FF}}(d,a,b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},W[1],12,0xe8c7b756UL)}
+\DoxyCodeLine{144     \mbox{\hyperlink{md5_8c_a50ab746b38571ef3da2c49cc033cc7bd}{FF}}(\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d,a,b,W[2],17,0x242070dbUL)}
+\DoxyCodeLine{145     \mbox{\hyperlink{md5_8c_a50ab746b38571ef3da2c49cc033cc7bd}{FF}}(b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d,a,W[3],22,0xc1bdceeeUL)}
+\DoxyCodeLine{146     \mbox{\hyperlink{md5_8c_a50ab746b38571ef3da2c49cc033cc7bd}{FF}}(a,b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d,W[4],7,0xf57c0fafUL)}
+\DoxyCodeLine{147     \mbox{\hyperlink{md5_8c_a50ab746b38571ef3da2c49cc033cc7bd}{FF}}(d,a,b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},W[5],12,0x4787c62aUL)}
+\DoxyCodeLine{148     \mbox{\hyperlink{md5_8c_a50ab746b38571ef3da2c49cc033cc7bd}{FF}}(\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d,a,b,W[6],17,0xa8304613UL)}
+\DoxyCodeLine{149     \mbox{\hyperlink{md5_8c_a50ab746b38571ef3da2c49cc033cc7bd}{FF}}(b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d,a,W[7],22,0xfd469501UL)}
+\DoxyCodeLine{150     \mbox{\hyperlink{md5_8c_a50ab746b38571ef3da2c49cc033cc7bd}{FF}}(a,b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d,W[8],7,0x698098d8UL)}
+\DoxyCodeLine{151     \mbox{\hyperlink{md5_8c_a50ab746b38571ef3da2c49cc033cc7bd}{FF}}(d,a,b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},W[9],12,0x8b44f7afUL)}
+\DoxyCodeLine{152     \mbox{\hyperlink{md5_8c_a50ab746b38571ef3da2c49cc033cc7bd}{FF}}(\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d,a,b,W[10],17,0xffff5bb1UL)}
+\DoxyCodeLine{153     \mbox{\hyperlink{md5_8c_a50ab746b38571ef3da2c49cc033cc7bd}{FF}}(b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d,a,W[11],22,0x895cd7beUL)}
+\DoxyCodeLine{154     \mbox{\hyperlink{md5_8c_a50ab746b38571ef3da2c49cc033cc7bd}{FF}}(a,b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d,W[12],7,0x6b901122UL)}
+\DoxyCodeLine{155     \mbox{\hyperlink{md5_8c_a50ab746b38571ef3da2c49cc033cc7bd}{FF}}(d,a,b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},W[13],12,0xfd987193UL)}
+\DoxyCodeLine{156     \mbox{\hyperlink{md5_8c_a50ab746b38571ef3da2c49cc033cc7bd}{FF}}(\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d,a,b,W[14],17,0xa679438eUL)}
+\DoxyCodeLine{157     \mbox{\hyperlink{md5_8c_a50ab746b38571ef3da2c49cc033cc7bd}{FF}}(b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d,a,W[15],22,0x49b40821UL)}
+\DoxyCodeLine{158     \mbox{\hyperlink{md5_8c_a5e30950204c89f2dd001c124d741f561}{GG}}(a,b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d,W[1],5,0xf61e2562UL)}
+\DoxyCodeLine{159     \mbox{\hyperlink{md5_8c_a5e30950204c89f2dd001c124d741f561}{GG}}(d,a,b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},W[6],9,0xc040b340UL)}
+\DoxyCodeLine{160     \mbox{\hyperlink{md5_8c_a5e30950204c89f2dd001c124d741f561}{GG}}(\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d,a,b,W[11],14,0x265e5a51UL)}
+\DoxyCodeLine{161     \mbox{\hyperlink{md5_8c_a5e30950204c89f2dd001c124d741f561}{GG}}(b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d,a,W[0],20,0xe9b6c7aaUL)}
+\DoxyCodeLine{162     \mbox{\hyperlink{md5_8c_a5e30950204c89f2dd001c124d741f561}{GG}}(a,b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d,W[5],5,0xd62f105dUL)}
+\DoxyCodeLine{163     \mbox{\hyperlink{md5_8c_a5e30950204c89f2dd001c124d741f561}{GG}}(d,a,b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},W[10],9,0x02441453UL)}
+\DoxyCodeLine{164     \mbox{\hyperlink{md5_8c_a5e30950204c89f2dd001c124d741f561}{GG}}(\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d,a,b,W[15],14,0xd8a1e681UL)}
+\DoxyCodeLine{165     \mbox{\hyperlink{md5_8c_a5e30950204c89f2dd001c124d741f561}{GG}}(b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d,a,W[4],20,0xe7d3fbc8UL)}
+\DoxyCodeLine{166     \mbox{\hyperlink{md5_8c_a5e30950204c89f2dd001c124d741f561}{GG}}(a,b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d,W[9],5,0x21e1cde6UL)}
+\DoxyCodeLine{167     \mbox{\hyperlink{md5_8c_a5e30950204c89f2dd001c124d741f561}{GG}}(d,a,b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},W[14],9,0xc33707d6UL)}
+\DoxyCodeLine{168     \mbox{\hyperlink{md5_8c_a5e30950204c89f2dd001c124d741f561}{GG}}(\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d,a,b,W[3],14,0xf4d50d87UL)}
+\DoxyCodeLine{169     \mbox{\hyperlink{md5_8c_a5e30950204c89f2dd001c124d741f561}{GG}}(b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d,a,W[8],20,0x455a14edUL)}
+\DoxyCodeLine{170     \mbox{\hyperlink{md5_8c_a5e30950204c89f2dd001c124d741f561}{GG}}(a,b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d,W[13],5,0xa9e3e905UL)}
+\DoxyCodeLine{171     \mbox{\hyperlink{md5_8c_a5e30950204c89f2dd001c124d741f561}{GG}}(d,a,b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},W[2],9,0xfcefa3f8UL)}
+\DoxyCodeLine{172     \mbox{\hyperlink{md5_8c_a5e30950204c89f2dd001c124d741f561}{GG}}(\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d,a,b,W[7],14,0x676f02d9UL)}
+\DoxyCodeLine{173     \mbox{\hyperlink{md5_8c_a5e30950204c89f2dd001c124d741f561}{GG}}(b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d,a,W[12],20,0x8d2a4c8aUL)}
+\DoxyCodeLine{174     \mbox{\hyperlink{md5_8c_ad58b217cb85e4d271e69d4e082ef0a39}{HH}}(a,b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d,W[5],4,0xfffa3942UL)}
+\DoxyCodeLine{175     \mbox{\hyperlink{md5_8c_ad58b217cb85e4d271e69d4e082ef0a39}{HH}}(d,a,b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},W[8],11,0x8771f681UL)}
+\DoxyCodeLine{176     \mbox{\hyperlink{md5_8c_ad58b217cb85e4d271e69d4e082ef0a39}{HH}}(\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d,a,b,W[11],16,0x6d9d6122UL)}
+\DoxyCodeLine{177     \mbox{\hyperlink{md5_8c_ad58b217cb85e4d271e69d4e082ef0a39}{HH}}(b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d,a,W[14],23,0xfde5380cUL)}
+\DoxyCodeLine{178     \mbox{\hyperlink{md5_8c_ad58b217cb85e4d271e69d4e082ef0a39}{HH}}(a,b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d,W[1],4,0xa4beea44UL)}
+\DoxyCodeLine{179     \mbox{\hyperlink{md5_8c_ad58b217cb85e4d271e69d4e082ef0a39}{HH}}(d,a,b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},W[4],11,0x4bdecfa9UL)}
+\DoxyCodeLine{180     \mbox{\hyperlink{md5_8c_ad58b217cb85e4d271e69d4e082ef0a39}{HH}}(\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d,a,b,W[7],16,0xf6bb4b60UL)}
+\DoxyCodeLine{181     \mbox{\hyperlink{md5_8c_ad58b217cb85e4d271e69d4e082ef0a39}{HH}}(b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d,a,W[10],23,0xbebfbc70UL)}
+\DoxyCodeLine{182     \mbox{\hyperlink{md5_8c_ad58b217cb85e4d271e69d4e082ef0a39}{HH}}(a,b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d,W[13],4,0x289b7ec6UL)}
+\DoxyCodeLine{183     \mbox{\hyperlink{md5_8c_ad58b217cb85e4d271e69d4e082ef0a39}{HH}}(d,a,b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},W[0],11,0xeaa127faUL)}
+\DoxyCodeLine{184     \mbox{\hyperlink{md5_8c_ad58b217cb85e4d271e69d4e082ef0a39}{HH}}(\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d,a,b,W[3],16,0xd4ef3085UL)}
+\DoxyCodeLine{185     \mbox{\hyperlink{md5_8c_ad58b217cb85e4d271e69d4e082ef0a39}{HH}}(b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d,a,W[6],23,0x04881d05UL)}
+\DoxyCodeLine{186     \mbox{\hyperlink{md5_8c_ad58b217cb85e4d271e69d4e082ef0a39}{HH}}(a,b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d,W[9],4,0xd9d4d039UL)}
+\DoxyCodeLine{187     \mbox{\hyperlink{md5_8c_ad58b217cb85e4d271e69d4e082ef0a39}{HH}}(d,a,b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},W[12],11,0xe6db99e5UL)}
+\DoxyCodeLine{188     \mbox{\hyperlink{md5_8c_ad58b217cb85e4d271e69d4e082ef0a39}{HH}}(\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d,a,b,W[15],16,0x1fa27cf8UL)}
+\DoxyCodeLine{189     \mbox{\hyperlink{md5_8c_ad58b217cb85e4d271e69d4e082ef0a39}{HH}}(b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d,a,W[2],23,0xc4ac5665UL)}
+\DoxyCodeLine{190     \mbox{\hyperlink{md5_8c_a94a463919a196f6b27bbebffc958b849}{II}}(a,b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d,W[0],6,0xf4292244UL)}
+\DoxyCodeLine{191     \mbox{\hyperlink{md5_8c_a94a463919a196f6b27bbebffc958b849}{II}}(d,a,b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},W[7],10,0x432aff97UL)}
+\DoxyCodeLine{192     \mbox{\hyperlink{md5_8c_a94a463919a196f6b27bbebffc958b849}{II}}(\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d,a,b,W[14],15,0xab9423a7UL)}
+\DoxyCodeLine{193     \mbox{\hyperlink{md5_8c_a94a463919a196f6b27bbebffc958b849}{II}}(b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d,a,W[5],21,0xfc93a039UL)}
+\DoxyCodeLine{194     \mbox{\hyperlink{md5_8c_a94a463919a196f6b27bbebffc958b849}{II}}(a,b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d,W[12],6,0x655b59c3UL)}
+\DoxyCodeLine{195     \mbox{\hyperlink{md5_8c_a94a463919a196f6b27bbebffc958b849}{II}}(d,a,b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},W[3],10,0x8f0ccc92UL)}
+\DoxyCodeLine{196     \mbox{\hyperlink{md5_8c_a94a463919a196f6b27bbebffc958b849}{II}}(\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d,a,b,W[10],15,0xffeff47dUL)}
+\DoxyCodeLine{197     \mbox{\hyperlink{md5_8c_a94a463919a196f6b27bbebffc958b849}{II}}(b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d,a,W[1],21,0x85845dd1UL)}
+\DoxyCodeLine{198     \mbox{\hyperlink{md5_8c_a94a463919a196f6b27bbebffc958b849}{II}}(a,b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d,W[8],6,0x6fa87e4fUL)}
+\DoxyCodeLine{199     \mbox{\hyperlink{md5_8c_a94a463919a196f6b27bbebffc958b849}{II}}(d,a,b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},W[15],10,0xfe2ce6e0UL)}
+\DoxyCodeLine{200     \mbox{\hyperlink{md5_8c_a94a463919a196f6b27bbebffc958b849}{II}}(\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d,a,b,W[6],15,0xa3014314UL)}
+\DoxyCodeLine{201     \mbox{\hyperlink{md5_8c_a94a463919a196f6b27bbebffc958b849}{II}}(b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d,a,W[13],21,0x4e0811a1UL)}
+\DoxyCodeLine{202     \mbox{\hyperlink{md5_8c_a94a463919a196f6b27bbebffc958b849}{II}}(a,b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d,W[4],6,0xf7537e82UL)}
+\DoxyCodeLine{203     \mbox{\hyperlink{md5_8c_a94a463919a196f6b27bbebffc958b849}{II}}(d,a,b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},W[11],10,0xbd3af235UL)}
+\DoxyCodeLine{204     \mbox{\hyperlink{md5_8c_a94a463919a196f6b27bbebffc958b849}{II}}(\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d,a,b,W[2],15,0x2ad7d2bbUL)}
+\DoxyCodeLine{205     \mbox{\hyperlink{md5_8c_a94a463919a196f6b27bbebffc958b849}{II}}(b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d,a,W[9],21,0xeb86d391UL)}
+\DoxyCodeLine{206 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{207 }
+\DoxyCodeLine{208     md->md5.state[0] = md->md5.state[0] + a;}
+\DoxyCodeLine{209     md->md5.state[1] = md->md5.state[1] + b;}
+\DoxyCodeLine{210     md->md5.state[2] = md->md5.state[2] + \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}};}
+\DoxyCodeLine{211     md->md5.state[3] = md->md5.state[3] + d;}
+\DoxyCodeLine{212 }
+\DoxyCodeLine{213     \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{214 \}}
+
+\end{DoxyCode}
+
+
+References c, C\+R\+Y\+P\+T\+\_\+\+OK, FF, GG, HH, and II.
+
+
+
+Referenced by md5\+\_\+done().
+
+Here is the caller graph for this function\+:
+% FIG 1
+\mbox{\Hypertarget{md5_8c_aee76a4c9f37bfe88d943301f3fa8126f}\label{md5_8c_aee76a4c9f37bfe88d943301f3fa8126f}} 
+\index{md5.c@{md5.c}!md5\_done@{md5\_done}}
+\index{md5\_done@{md5\_done}!md5.c@{md5.c}}
+\subsubsection{\texorpdfstring{md5\_done()}{md5\_done()}}
+{\footnotesize\ttfamily int md5\+\_\+done (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$}]{md,  }\item[{unsigned char $\ast$}]{out }\end{DoxyParamCaption})}
+
+
+
+Terminate the hash to get the digest. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em md} & The hash state \\
+\hline
+{\em out} & \mbox{[}out\mbox{]} The destination of the hash (16 bytes) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 258 of file md5.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{259 \{}
+\DoxyCodeLine{260     \textcolor{keywordtype}{int} i;}
+\DoxyCodeLine{261 }
+\DoxyCodeLine{262     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(md  != NULL);}
+\DoxyCodeLine{263     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(out != NULL);}
+\DoxyCodeLine{264 }
+\DoxyCodeLine{265     \textcolor{keywordflow}{if} (md->md5.curlen >= \textcolor{keyword}{sizeof}(md->md5.buf)) \{}
+\DoxyCodeLine{266        \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{267     \}}
+\DoxyCodeLine{268 }
+\DoxyCodeLine{269 }
+\DoxyCodeLine{270     \textcolor{comment}{/* increase the length of the message */}}
+\DoxyCodeLine{271     md->md5.length += md->md5.curlen * 8;}
+\DoxyCodeLine{272 }
+\DoxyCodeLine{273     \textcolor{comment}{/* append the '1' bit */}}
+\DoxyCodeLine{274     md->md5.buf[md->md5.curlen++] = (\textcolor{keywordtype}{unsigned} char)0x80;}
+\DoxyCodeLine{275 }
+\DoxyCodeLine{276     \textcolor{comment}{/* if the length is currently above 56 bytes we append zeros}}
+\DoxyCodeLine{277 \textcolor{comment}{     * then compress.  Then we can fall back to padding zeros and length}}
+\DoxyCodeLine{278 \textcolor{comment}{     * encoding like normal.}}
+\DoxyCodeLine{279 \textcolor{comment}{     */}}
+\DoxyCodeLine{280     \textcolor{keywordflow}{if} (md->md5.curlen > 56) \{}
+\DoxyCodeLine{281         \textcolor{keywordflow}{while} (md->md5.curlen < 64) \{}
+\DoxyCodeLine{282             md->md5.buf[md->md5.curlen++] = (\textcolor{keywordtype}{unsigned} char)0;}
+\DoxyCodeLine{283         \}}
+\DoxyCodeLine{284         \mbox{\hyperlink{md5_8c_a13039bc44beba940f197675cf3568429}{md5\_compress}}(md, md->md5.buf);}
+\DoxyCodeLine{285         md->md5.curlen = 0;}
+\DoxyCodeLine{286     \}}
+\DoxyCodeLine{287 }
+\DoxyCodeLine{288     \textcolor{comment}{/* pad upto 56 bytes of zeroes */}}
+\DoxyCodeLine{289     \textcolor{keywordflow}{while} (md->md5.curlen < 56) \{}
+\DoxyCodeLine{290         md->md5.buf[md->md5.curlen++] = (\textcolor{keywordtype}{unsigned} char)0;}
+\DoxyCodeLine{291     \}}
+\DoxyCodeLine{292 }
+\DoxyCodeLine{293     \textcolor{comment}{/* store length */}}
+\DoxyCodeLine{294     STORE64L(md->md5.length, md->md5.buf+56);}
+\DoxyCodeLine{295     \mbox{\hyperlink{md5_8c_a13039bc44beba940f197675cf3568429}{md5\_compress}}(md, md->md5.buf);}
+\DoxyCodeLine{296 }
+\DoxyCodeLine{297     \textcolor{comment}{/* copy output */}}
+\DoxyCodeLine{298     \textcolor{keywordflow}{for} (i = 0; i < 4; i++) \{}
+\DoxyCodeLine{299         STORE32L(md->md5.state[i], out+(4*i));}
+\DoxyCodeLine{300     \}}
+\DoxyCodeLine{301 \textcolor{preprocessor}{\#ifdef LTC\_CLEAN\_STACK}}
+\DoxyCodeLine{302     \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(md, \textcolor{keyword}{sizeof}(\mbox{\hyperlink{unionHash__state}{hash\_state}}));}
+\DoxyCodeLine{303 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{304     \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{305 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+A\+RG, C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, md5\+\_\+compress(), and zeromem().
+
+
+
+Referenced by md5\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 2
+Here is the caller graph for this function\+:
+% FIG 3
+\mbox{\Hypertarget{md5_8c_a26c1379e5ead2590effec89de6b8cd11}\label{md5_8c_a26c1379e5ead2590effec89de6b8cd11}} 
+\index{md5.c@{md5.c}!md5\_init@{md5\_init}}
+\index{md5\_init@{md5\_init}!md5.c@{md5.c}}
+\subsubsection{\texorpdfstring{md5\_init()}{md5\_init()}}
+{\footnotesize\ttfamily int md5\+\_\+init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$}]{md }\end{DoxyParamCaption})}
+
+
+
+Initialize the hash state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em md} & The hash state you wish to initialize \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 231 of file md5.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{232 \{}
+\DoxyCodeLine{233    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(md != NULL);}
+\DoxyCodeLine{234    md->md5.state[0] = 0x67452301UL;}
+\DoxyCodeLine{235    md->md5.state[1] = 0xefcdab89UL;}
+\DoxyCodeLine{236    md->md5.state[2] = 0x98badcfeUL;}
+\DoxyCodeLine{237    md->md5.state[3] = 0x10325476UL;}
+\DoxyCodeLine{238    md->md5.curlen = 0;}
+\DoxyCodeLine{239    md->md5.length = 0;}
+\DoxyCodeLine{240    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{241 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+
+
+Referenced by md5\+\_\+test().
+
+Here is the caller graph for this function\+:
+% FIG 4
+\mbox{\Hypertarget{md5_8c_ac5600f48172219a87b375fa91987ae3b}\label{md5_8c_ac5600f48172219a87b375fa91987ae3b}} 
+\index{md5.c@{md5.c}!md5\_process@{md5\_process}}
+\index{md5\_process@{md5\_process}!md5.c@{md5.c}}
+\subsubsection{\texorpdfstring{md5\_process()}{md5\_process()}}
+{\footnotesize\ttfamily int md5\+\_\+process (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$}]{md,  }\item[{const unsigned char $\ast$}]{in,  }\item[{unsigned long}]{inlen }\end{DoxyParamCaption})}
+
+
+
+Process a block of memory though the hash. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em md} & The hash state \\
+\hline
+{\em in} & The data to hash \\
+\hline
+{\em inlen} & The length of the data (octets) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 250 of file md5.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{259 \{}
+
+\end{DoxyCode}
+
+
+Referenced by md5\+\_\+test().
+
+Here is the caller graph for this function\+:
+% FIG 5
+\mbox{\Hypertarget{md5_8c_aa489642a9ce4699bc79abfef98a7afa3}\label{md5_8c_aa489642a9ce4699bc79abfef98a7afa3}} 
+\index{md5.c@{md5.c}!md5\_test@{md5\_test}}
+\index{md5\_test@{md5\_test}!md5.c@{md5.c}}
+\subsubsection{\texorpdfstring{md5\_test()}{md5\_test()}}
+{\footnotesize\ttfamily int md5\+\_\+test (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Self-\/test the hash. 
+
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful, C\+R\+Y\+P\+T\+\_\+\+N\+OP if self-\/tests have been disabled 
+\end{DoxyReturn}
+
+
+Definition at line 311 of file md5.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{312 \{}
+\DoxyCodeLine{313 \textcolor{preprocessor}{ \#ifndef LTC\_TEST}}
+\DoxyCodeLine{314     \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cac43a7799c7fd5f515172da6cfc0f9cf5}{CRYPT\_NOP}};}
+\DoxyCodeLine{315 \textcolor{preprocessor}{ \#else}}
+\DoxyCodeLine{316   \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{317       \textcolor{keyword}{const} \textcolor{keywordtype}{char} *msg;}
+\DoxyCodeLine{318       \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} hash[16];}
+\DoxyCodeLine{319   \} tests[] = \{}
+\DoxyCodeLine{320     \{ \textcolor{stringliteral}{""},}
+\DoxyCodeLine{321       \{ 0xd4, 0x1d, 0x8c, 0xd9, 0x8f, 0x00, 0xb2, 0x04,}
+\DoxyCodeLine{322         0xe9, 0x80, 0x09, 0x98, 0xec, 0xf8, 0x42, 0x7e \} \},}
+\DoxyCodeLine{323     \{ \textcolor{stringliteral}{"a"},}
+\DoxyCodeLine{324       \{0x0c, 0xc1, 0x75, 0xb9, 0xc0, 0xf1, 0xb6, 0xa8,}
+\DoxyCodeLine{325        0x31, 0xc3, 0x99, 0xe2, 0x69, 0x77, 0x26, 0x61 \} \},}
+\DoxyCodeLine{326     \{ \textcolor{stringliteral}{"abc"},}
+\DoxyCodeLine{327       \{ 0x90, 0x01, 0x50, 0x98, 0x3c, 0xd2, 0x4f, 0xb0,}
+\DoxyCodeLine{328         0xd6, 0x96, 0x3f, 0x7d, 0x28, 0xe1, 0x7f, 0x72 \} \},}
+\DoxyCodeLine{329     \{ \textcolor{stringliteral}{"message digest"},}
+\DoxyCodeLine{330       \{ 0xf9, 0x6b, 0x69, 0x7d, 0x7c, 0xb7, 0x93, 0x8d,}
+\DoxyCodeLine{331         0x52, 0x5a, 0x2f, 0x31, 0xaa, 0xf1, 0x61, 0xd0 \} \},}
+\DoxyCodeLine{332     \{ \textcolor{stringliteral}{"abcdefghijklmnopqrstuvwxyz"},}
+\DoxyCodeLine{333       \{ 0xc3, 0xfc, 0xd3, 0xd7, 0x61, 0x92, 0xe4, 0x00,}
+\DoxyCodeLine{334         0x7d, 0xfb, 0x49, 0x6c, 0xca, 0x67, 0xe1, 0x3b \} \},}
+\DoxyCodeLine{335     \{ \textcolor{stringliteral}{"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"},}
+\DoxyCodeLine{336       \{ 0xd1, 0x74, 0xab, 0x98, 0xd2, 0x77, 0xd9, 0xf5,}
+\DoxyCodeLine{337         0xa5, 0x61, 0x1c, 0x2c, 0x9f, 0x41, 0x9d, 0x9f \} \},}
+\DoxyCodeLine{338     \{ \textcolor{stringliteral}{"12345678901234567890123456789012345678901234567890123456789012345678901234567890"},}
+\DoxyCodeLine{339       \{ 0x57, 0xed, 0xf4, 0xa2, 0x2b, 0xe3, 0xc9, 0x55,}
+\DoxyCodeLine{340         0xac, 0x49, 0xda, 0x2e, 0x21, 0x07, 0xb6, 0x7a \} \},}
+\DoxyCodeLine{341     \{ NULL, \{ 0 \} \}}
+\DoxyCodeLine{342   \};}
+\DoxyCodeLine{343 }
+\DoxyCodeLine{344   \textcolor{keywordtype}{int} i;}
+\DoxyCodeLine{345   \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} tmp[16];}
+\DoxyCodeLine{346   \mbox{\hyperlink{unionHash__state}{hash\_state}} md;}
+\DoxyCodeLine{347 }
+\DoxyCodeLine{348   \textcolor{keywordflow}{for} (i = 0; tests[i].msg != NULL; i++) \{}
+\DoxyCodeLine{349       \mbox{\hyperlink{md5_8c_a26c1379e5ead2590effec89de6b8cd11}{md5\_init}}(\&md);}
+\DoxyCodeLine{350       \mbox{\hyperlink{md5_8c_ac5600f48172219a87b375fa91987ae3b}{md5\_process}}(\&md, (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *)tests[i].msg, (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long})strlen(tests[i].msg));}
+\DoxyCodeLine{351       \mbox{\hyperlink{md5_8c_aee76a4c9f37bfe88d943301f3fa8126f}{md5\_done}}(\&md, tmp);}
+\DoxyCodeLine{352       \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(tmp, \textcolor{keyword}{sizeof}(tmp), tests[i].hash, \textcolor{keyword}{sizeof}(tests[i].hash), \textcolor{stringliteral}{"MD5"}, i)) \{}
+\DoxyCodeLine{353          \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{354       \}}
+\DoxyCodeLine{355   \}}
+\DoxyCodeLine{356   \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{357 \textcolor{preprocessor}{ \#endif}}
+\DoxyCodeLine{358 \}}
+
+\end{DoxyCode}
+
+
+References compare\+\_\+testvector(), C\+R\+Y\+P\+T\+\_\+\+F\+A\+I\+L\+\_\+\+T\+E\+S\+T\+V\+E\+C\+T\+OR, C\+R\+Y\+P\+T\+\_\+\+N\+OP, C\+R\+Y\+P\+T\+\_\+\+OK, md5\+\_\+done(), md5\+\_\+init(), and md5\+\_\+process().
+
+Here is the call graph for this function\+:
+% FIG 6
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{md5_8c_a70c38ffa9636c7aa5e6d83d061da20b4}\label{md5_8c_a70c38ffa9636c7aa5e6d83d061da20b4}} 
+\index{md5.c@{md5.c}!md5\_desc@{md5\_desc}}
+\index{md5\_desc@{md5\_desc}!md5.c@{md5.c}}
+\subsubsection{\texorpdfstring{md5\_desc}{md5\_desc}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structltc__hash__descriptor}{ltc\+\_\+hash\+\_\+descriptor}} md5\+\_\+desc}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    \textcolor{stringliteral}{"md5"},}
+\DoxyCodeLine{    3,}
+\DoxyCodeLine{    16,}
+\DoxyCodeLine{    64,}
+\DoxyCodeLine{}
+\DoxyCodeLine{    }
+\DoxyCodeLine{   \{ 1, 2, 840, 113549, 2, 5,  \},}
+\DoxyCodeLine{   6,}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \&\mbox{\hyperlink{md5_8c_a26c1379e5ead2590effec89de6b8cd11}{md5\_init}},}
+\DoxyCodeLine{    \&\mbox{\hyperlink{md5_8c_ac5600f48172219a87b375fa91987ae3b}{md5\_process}},}
+\DoxyCodeLine{    \&\mbox{\hyperlink{md5_8c_aee76a4c9f37bfe88d943301f3fa8126f}{md5\_done}},}
+\DoxyCodeLine{    \&\mbox{\hyperlink{md5_8c_aa489642a9ce4699bc79abfef98a7afa3}{md5\_test}},}
+\DoxyCodeLine{    NULL}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line 19 of file md5.\+c.
+
+
+
+Referenced by register\+\_\+all\+\_\+hashes(), and yarrow\+\_\+start().
+

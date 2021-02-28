@@ -1,0 +1,34 @@
+digraph "pkcs12_kdf"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node0 [label="pkcs12_kdf",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node0 -> Node1 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 [label="hash_memory",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$hash__memory_8c.html#a8672bf28488595ef1519a6754498869c",tooltip="Hash a block of memory and store the digest."];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="hash_is_valid",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__hash_8h.html#a79647f22bf48bfa7de03fe5fc958c846",tooltip=" "];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="init",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$gmp__desc_8c.html#a4f8948d7c94899bf8ddee4721114d593",tooltip=" "];
+  Node3 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="XCALLOC",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cfg_8h.html#a151dda14cd7acae31eaf1102b0cc0685",tooltip=" "];
+  Node1 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="XFREE",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cfg_8h.html#a260d66fc0690e0502cf3bfe7b5244b75",tooltip=" "];
+  Node1 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="XMALLOC",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cfg_8h.html#af363355f38fbaacdefacf270436ae1c9",tooltip=" "];
+  Node1 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="zeromem",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__misc_8h.html#a63b6e188713790263bfd3612fe8b398f",tooltip="Zero a block of memory."];
+  Node0 -> Node8 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="hash_memory_multi",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$hash__memory__multi_8c.html#a85566393d0f13710bafc9501361eff06",tooltip="Hash multiple (non-adjacent) blocks of memory at once."];
+  Node8 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node0 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node0 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node0 -> Node9 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="XMEMCPY",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cfg_8h.html#a7691dd48d60d5fc6daf2fa7ec4c55e12",tooltip=" "];
+  Node0 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}

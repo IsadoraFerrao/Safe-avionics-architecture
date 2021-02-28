@@ -1,0 +1,71 @@
+\hypertarget{dsa__generate__key_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/pk/dsa/dsa\+\_\+generate\+\_\+key.c File Reference}
+\label{dsa__generate__key_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/dsa/dsa\_generate\_key.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/dsa/dsa\_generate\_key.c}}
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for dsa\+\_\+generate\+\_\+key.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{dsa__generate__key_8c_a97b1aaf6fd598e3ea9d82523614158c9}{dsa\+\_\+generate\+\_\+key}} (\mbox{\hyperlink{structprng__state}{prng\+\_\+state}} $\ast$prng, int wprng, dsa\+\_\+key $\ast$key)
+\begin{DoxyCompactList}\small\item\em Create a D\+SA key. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{dsa__generate__key_8c_a97b1aaf6fd598e3ea9d82523614158c9}\label{dsa__generate__key_8c_a97b1aaf6fd598e3ea9d82523614158c9}} 
+\index{dsa\_generate\_key.c@{dsa\_generate\_key.c}!dsa\_generate\_key@{dsa\_generate\_key}}
+\index{dsa\_generate\_key@{dsa\_generate\_key}!dsa\_generate\_key.c@{dsa\_generate\_key.c}}
+\subsubsection{\texorpdfstring{dsa\_generate\_key()}{dsa\_generate\_key()}}
+{\footnotesize\ttfamily int dsa\+\_\+generate\+\_\+key (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structprng__state}{prng\+\_\+state}} $\ast$}]{prng,  }\item[{int}]{wprng,  }\item[{dsa\+\_\+key $\ast$}]{key }\end{DoxyParamCaption})}
+
+
+
+Create a D\+SA key. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em prng} & An active P\+R\+NG state \\
+\hline
+{\em wprng} & The index of the P\+R\+NG desired \\
+\hline
+{\em key} & \mbox{[}in/out\mbox{]} Where to store the created key \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful. 
+\end{DoxyReturn}
+
+
+Definition at line 25 of file dsa\+\_\+generate\+\_\+key.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{26 \{}
+\DoxyCodeLine{27   \textcolor{keywordtype}{int} err;}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29   \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(key         != NULL);}
+\DoxyCodeLine{30   \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(\mbox{\hyperlink{tomcrypt__math_8h_a3d38c44518c63b7a8abd0938f3d41c65}{ltc\_mp}}.\mbox{\hyperlink{structltc__math__descriptor_a8838126de4a27e382f91096e369a2728}{name}} != NULL);}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32   \textcolor{comment}{/* so now we have our DH structure, generator g, order q, modulus p}}
+\DoxyCodeLine{33 \textcolor{comment}{     Now we need a random exponent [mod q] and it's power g\string^x mod p}}
+\DoxyCodeLine{34 \textcolor{comment}{   */}}
+\DoxyCodeLine{35   \textcolor{comment}{/* private key x should be from range: 1 <= x <= q-1 (see FIPS 186-4 B.1.2) */}}
+\DoxyCodeLine{36   \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a8050acf530841fb2da3b667204039856}{rand\_bn\_upto}}(key->x, key->q, prng, wprng)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})          \{ \textcolor{keywordflow}{return} err; \}}
+\DoxyCodeLine{37   \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a4fb1221fbef91bf8163390e3cfb82085}{mp\_exptmod}}(key->g, key->x, key->p, key->y)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})            \{ \textcolor{keywordflow}{return} err; \}}
+\DoxyCodeLine{38   key->type = \mbox{\hyperlink{tomcrypt__pk_8h_afb69d121a43f5ae8b47e6b83611d9272a7295b3dea2c5277912c6e040e1c96649}{PK\_PRIVATE}};}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{40   \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{41 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, ltc\+\_\+mp, mp\+\_\+exptmod, ltc\+\_\+math\+\_\+descriptor\+::name, P\+K\+\_\+\+P\+R\+I\+V\+A\+TE, and rand\+\_\+bn\+\_\+upto().
+
+
+
+Referenced by dsa\+\_\+make\+\_\+key().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2

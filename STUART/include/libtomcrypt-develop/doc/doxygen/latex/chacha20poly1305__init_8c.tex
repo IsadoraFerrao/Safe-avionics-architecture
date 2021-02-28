@@ -1,0 +1,58 @@
+\hypertarget{chacha20poly1305__init_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/encauth/chachapoly/chacha20poly1305\+\_\+init.c File Reference}
+\label{chacha20poly1305__init_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/encauth/chachapoly/chacha20poly1305\_init.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/encauth/chachapoly/chacha20poly1305\_init.c}}
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for chacha20poly1305\+\_\+init.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{chacha20poly1305__init_8c_ad0aad316cf9723ac9147f3c402ca5ef7}{chacha20poly1305\+\_\+init}} (chacha20poly1305\+\_\+state $\ast$st, const unsigned char $\ast$key, unsigned long keylen)
+\begin{DoxyCompactList}\small\item\em Initialize an Cha\+Cha20\+Poly1305 context (only the key) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{chacha20poly1305__init_8c_ad0aad316cf9723ac9147f3c402ca5ef7}\label{chacha20poly1305__init_8c_ad0aad316cf9723ac9147f3c402ca5ef7}} 
+\index{chacha20poly1305\_init.c@{chacha20poly1305\_init.c}!chacha20poly1305\_init@{chacha20poly1305\_init}}
+\index{chacha20poly1305\_init@{chacha20poly1305\_init}!chacha20poly1305\_init.c@{chacha20poly1305\_init.c}}
+\subsubsection{\texorpdfstring{chacha20poly1305\_init()}{chacha20poly1305\_init()}}
+{\footnotesize\ttfamily int chacha20poly1305\+\_\+init (\begin{DoxyParamCaption}\item[{chacha20poly1305\+\_\+state $\ast$}]{st,  }\item[{const unsigned char $\ast$}]{key,  }\item[{unsigned long}]{keylen }\end{DoxyParamCaption})}
+
+
+
+Initialize an Cha\+Cha20\+Poly1305 context (only the key) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em st} & \mbox{[}out\mbox{]} The destination of the Cha\+Cha20\+Poly1305 state \\
+\hline
+{\em key} & The secret key \\
+\hline
+{\em keylen} & The length of the secret key (octets) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 21 of file chacha20poly1305\+\_\+init.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{22 \{}
+\DoxyCodeLine{23    \textcolor{keywordflow}{return} \mbox{\hyperlink{chacha__setup_8c_aaaad339dc43c455ff5cc2df1960ddfeb}{chacha\_setup}}(\&st->chacha, key, keylen, 20);}
+\DoxyCodeLine{24 \}}
+
+\end{DoxyCode}
+
+
+References chacha\+\_\+setup().
+
+
+
+Referenced by chacha20poly1305\+\_\+memory(), and chacha20poly1305\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2

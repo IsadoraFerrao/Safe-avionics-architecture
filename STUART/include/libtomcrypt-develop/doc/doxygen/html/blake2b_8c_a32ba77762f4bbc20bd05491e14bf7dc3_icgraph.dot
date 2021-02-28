@@ -1,0 +1,30 @@
+digraph "blake2b_set_lastnode"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node284 [label="blake2b_set_lastnode",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node284 -> Node285 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node285 [label="blake2b_set_lastblock",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$blake2b_8c.html#a708b739af8a84facdea8e166a98d4dd4",tooltip=" "];
+  Node285 -> Node286 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node286 [label="blake2b_done",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$blake2b_8c.html#a0f0734cf05cdaa86e4658738c06653c2",tooltip="Terminate the hash to get the digest."];
+  Node286 -> Node287 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node287 [label="blake2b_160_test",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$blake2b_8c.html#ada54df5eb119d8d34e55c004c98fa1c5",tooltip="Self-test the hash."];
+  Node286 -> Node288 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node288 [label="blake2b_256_test",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$blake2b_8c.html#a53be5fcfcd1910bf5aae5013563e396b",tooltip="Self-test the hash."];
+  Node286 -> Node289 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node289 [label="blake2b_384_test",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$blake2b_8c.html#a7e9931db13f3096dc2521ecc353539c4",tooltip="Self-test the hash."];
+  Node286 -> Node290 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node290 [label="blake2b_512_test",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$blake2b_8c.html#ad2bd405cb693aaaef5ea8811859eddd0",tooltip="Self-test the hash."];
+  Node286 -> Node291 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node291 [label="blake2bmac_done",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$blake2bmac_8c.html#a9e287a6617ddcbeae84b0f486990aa11",tooltip="Terminate a BLAKE2B MAC session."];
+  Node291 -> Node292 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node292 [label="blake2bmac_file",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$blake2bmac__file_8c.html#a372c957a4b186ee3a6f737eacfd0b9b3",tooltip="BLAKE2B MAC a file."];
+  Node291 -> Node293 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node293 [label="blake2bmac_memory",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$blake2bmac__memory_8c.html#a77f61ab09e05bfd6b7953ec24b3f55c0",tooltip="BLAKE2B MAC a block of memory to produce the authentication tag."];
+  Node291 -> Node294 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node294 [label="blake2bmac_memory_multi",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$blake2bmac__memory__multi_8c.html#aec804c047997d283f5b0d8ec8b8c20c0",tooltip="BLAKE2B MAC multiple blocks of memory to produce the authentication tag."];
+  Node291 -> Node295 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node295 [label="blake2bmac_test",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$blake2bmac__test_8c.html#ad73d93774d527ef21c4fa0da9bafbb60",tooltip=" "];
+}

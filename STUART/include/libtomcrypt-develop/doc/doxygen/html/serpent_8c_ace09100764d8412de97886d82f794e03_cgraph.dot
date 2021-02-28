@@ -1,0 +1,32 @@
+digraph "serpent_test"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node36 [label="serpent_test",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node36 -> Node37 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node37 [label="compare_testvector",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__misc_8h.html#a7764a7f27897c6182335752df00b5f8e",tooltip="Compare two test-vectors."];
+  Node37 -> Node38 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node38 [label="XMEMCMP",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cfg_8h.html#a372b974ec0ac07abcd55297554fe540f",tooltip=" "];
+  Node36 -> Node39 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node39 [label="serpent_ecb_decrypt",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$serpent_8c.html#a46de2073180230ec624b901f27572557",tooltip=" "];
+  Node39 -> Node40 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node40 [label="_dec_block",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$serpent_8c.html#a4c10773b4ec04ccb45a5e11610bc2dca",tooltip=" "];
+  Node39 -> Node41 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node41 [label="burn_stack",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__misc_8h.html#aea4187c8bba7b6cd9a358041089680ac",tooltip="Burn some stack memory."];
+  Node41 -> Node42 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node42 [label="zeromem",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__misc_8h.html#a63b6e188713790263bfd3612fe8b398f",tooltip="Zero a block of memory."];
+  Node36 -> Node43 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node43 [label="serpent_ecb_encrypt",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$serpent_8c.html#ab8c192997dc75850afe136b72d39a0f2",tooltip=" "];
+  Node43 -> Node44 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node44 [label="_enc_block",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$serpent_8c.html#a02dcf84f5a34c8c7c25ea6867b97c69d",tooltip=" "];
+  Node43 -> Node41 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node36 -> Node45 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node45 [label="serpent_setup",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$serpent_8c.html#a760fbf5d7d4d33e3f3510e372b1d8630",tooltip=" "];
+  Node45 -> Node46 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node46 [label="_setup_key",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$serpent_8c.html#a99215b029ae4d768772f33a10887e9d1",tooltip=" "];
+  Node46 -> Node47 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node47 [label="rounds",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$kseed_8c.html#a51da46362a22c8107683876e9c12ec82",tooltip=" "];
+  Node45 -> Node41 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}

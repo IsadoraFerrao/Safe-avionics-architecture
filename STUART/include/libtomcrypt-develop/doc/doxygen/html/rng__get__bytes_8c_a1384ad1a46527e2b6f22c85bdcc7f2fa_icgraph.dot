@@ -1,0 +1,21 @@
+digraph "_rng_nix"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node10 [label="_rng_nix",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node10 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 [label="rng_get_bytes",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rng__get__bytes_8c.html#ace80a0f11a76e7ebd59c2188b2ec2520",tooltip="Read the system RNG."];
+  Node11 -> Node12 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node12 [label="_padding_padded_length",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$padding__pad_8c.html#a3c21f068a2c5cddb668c007bff50b865",tooltip="Determine the to-be-padded length."];
+  Node12 -> Node13 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node13 [label="padding_pad",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$padding__pad_8c.html#a8f102a5979403348430452eaf82bb878",tooltip="Add padding to data."];
+  Node11 -> Node13 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 -> Node14 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node14 [label="rng_make_prng",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rng__make__prng_8c.html#a97e605483ea5f5f9ea4067dafae5801b",tooltip="Create a PRNG from a RNG."];
+  Node11 -> Node15 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node15 [label="sprng_read",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sprng_8c.html#aa1d27aff270d1c3257568390ca7ead5a",tooltip="Read from the PRNG."];
+  Node15 -> Node16 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node16 [label="sprng_test",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sprng_8c.html#ac44fd3f790e155219847fd31d6389836",tooltip="PRNG self-test."];
+}

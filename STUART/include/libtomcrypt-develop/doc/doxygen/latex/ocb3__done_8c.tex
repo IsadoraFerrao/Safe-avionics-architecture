@@ -1,0 +1,126 @@
+\hypertarget{ocb3__done_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/encauth/ocb3/ocb3\+\_\+done.c File Reference}
+\label{ocb3__done_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/encauth/ocb3/ocb3\_done.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/encauth/ocb3/ocb3\_done.c}}
+
+
+O\+CB implementation, I\+N\+T\+E\+R\+N\+AL O\+N\+LY helper, by Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for ocb3\+\_\+done.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{ocb3__done_8c_aeec4c3c1decbfde2980246d568c43b1f}{ocb3\+\_\+done}} (ocb3\+\_\+state $\ast$ocb, unsigned char $\ast$tag, unsigned long $\ast$taglen)
+\begin{DoxyCompactList}\small\item\em Finish O\+CB processing and compute the tag. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+O\+CB implementation, I\+N\+T\+E\+R\+N\+AL O\+N\+LY helper, by Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{ocb3__done_8c_aeec4c3c1decbfde2980246d568c43b1f}\label{ocb3__done_8c_aeec4c3c1decbfde2980246d568c43b1f}} 
+\index{ocb3\_done.c@{ocb3\_done.c}!ocb3\_done@{ocb3\_done}}
+\index{ocb3\_done@{ocb3\_done}!ocb3\_done.c@{ocb3\_done.c}}
+\subsubsection{\texorpdfstring{ocb3\_done()}{ocb3\_done()}}
+{\footnotesize\ttfamily int ocb3\+\_\+done (\begin{DoxyParamCaption}\item[{ocb3\+\_\+state $\ast$}]{ocb,  }\item[{unsigned char $\ast$}]{tag,  }\item[{unsigned long $\ast$}]{taglen }\end{DoxyParamCaption})}
+
+
+
+Finish O\+CB processing and compute the tag. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ocb} & The O\+CB state \\
+\hline
+{\em tag} & \mbox{[}out\mbox{]} The destination for the authentication tag \\
+\hline
+{\em taglen} & \mbox{[}in/out\mbox{]} The max size and resulting size of the authentication tag \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 25 of file ocb3\+\_\+done.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{26 \{}
+\DoxyCodeLine{27    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} tmp[\mbox{\hyperlink{tomcrypt_8h_ab59933beebb2b857c992b93cf53f0d10}{MAXBLOCKSIZE}}];}
+\DoxyCodeLine{28    \textcolor{keywordtype}{int} err, x;}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(ocb    != NULL);}
+\DoxyCodeLine{31    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(tag    != NULL);}
+\DoxyCodeLine{32    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(taglen != NULL);}
+\DoxyCodeLine{33    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_ac30eb68934c4ca07205344dc9d159221}{cipher\_is\_valid}}(ocb->cipher)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{34       \textcolor{keywordflow}{goto} LBL\_ERR;}
+\DoxyCodeLine{35    \}}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37    \textcolor{comment}{/* check taglen */}}
+\DoxyCodeLine{38    \textcolor{keywordflow}{if} ((\textcolor{keywordtype}{int})*taglen < ocb->tag\_len) \{}
+\DoxyCodeLine{39       *taglen = (\textcolor{keywordtype}{unsigned} long)ocb->tag\_len;}
+\DoxyCodeLine{40       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caccd878f5599f3036ffe759dbe1a1ac16}{CRYPT\_BUFFER\_OVERFLOW}};}
+\DoxyCodeLine{41    \}}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{43    \textcolor{comment}{/* finalize AAD processing */}}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45    \textcolor{keywordflow}{if} (ocb->adata\_buffer\_bytes>0) \{}
+\DoxyCodeLine{46      \textcolor{comment}{/* Offset\_* = Offset\_m xor L\_* */}}
+\DoxyCodeLine{47      \mbox{\hyperlink{ocb3__int__xor__blocks_8c_a5bf6caa4615657cdfd8f8941620a987c}{ocb3\_int\_xor\_blocks}}(ocb->aOffset\_current, ocb->aOffset\_current, ocb->L\_star, ocb->block\_len);}
+\DoxyCodeLine{48 }
+\DoxyCodeLine{49      \textcolor{comment}{/* CipherInput = (A\_* || 1 || zeros(127-bitlen(A\_*))) xor Offset\_* */}}
+\DoxyCodeLine{50      \mbox{\hyperlink{ocb3__int__xor__blocks_8c_a5bf6caa4615657cdfd8f8941620a987c}{ocb3\_int\_xor\_blocks}}(tmp, ocb->adata\_buffer, ocb->aOffset\_current, ocb->adata\_buffer\_bytes);}
+\DoxyCodeLine{51      \textcolor{keywordflow}{for}(x=ocb->adata\_buffer\_bytes; x<ocb->block\_len; x++) \{}
+\DoxyCodeLine{52        \textcolor{keywordflow}{if} (x == ocb->adata\_buffer\_bytes) \{}
+\DoxyCodeLine{53          tmp[x] = 0x80 \string^ ocb->aOffset\_current[x];}
+\DoxyCodeLine{54        \}}
+\DoxyCodeLine{55        \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{56          tmp[x] = 0x00 \string^ ocb->aOffset\_current[x];}
+\DoxyCodeLine{57        \}}
+\DoxyCodeLine{58      \}}
+\DoxyCodeLine{59 }
+\DoxyCodeLine{60      \textcolor{comment}{/* Sum = Sum\_m xor ENCIPHER(K, CipherInput) */}}
+\DoxyCodeLine{61      \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[ocb->cipher].\mbox{\hyperlink{structltc__cipher__descriptor_a46141d86abe22a7c8d382c62a894dd63}{ecb\_encrypt}}(tmp, tmp, \&ocb->key)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{62        \textcolor{keywordflow}{goto} LBL\_ERR;}
+\DoxyCodeLine{63      \}}
+\DoxyCodeLine{64      \mbox{\hyperlink{ocb3__int__xor__blocks_8c_a5bf6caa4615657cdfd8f8941620a987c}{ocb3\_int\_xor\_blocks}}(ocb->aSum\_current, ocb->aSum\_current, tmp, ocb->block\_len);}
+\DoxyCodeLine{65    \}}
+\DoxyCodeLine{66 }
+\DoxyCodeLine{67    \textcolor{comment}{/* finalize TAG computing */}}
+\DoxyCodeLine{68 }
+\DoxyCodeLine{69    \textcolor{comment}{/* at this point ocb->aSum\_current = HASH(K, A) */}}
+\DoxyCodeLine{70    \textcolor{comment}{/* tag = tag \string^ HASH(K, A) */}}
+\DoxyCodeLine{71    \mbox{\hyperlink{ocb3__int__xor__blocks_8c_a5bf6caa4615657cdfd8f8941620a987c}{ocb3\_int\_xor\_blocks}}(tmp, ocb->tag\_part, ocb->aSum\_current, ocb->block\_len);}
+\DoxyCodeLine{72 }
+\DoxyCodeLine{73    \textcolor{comment}{/* copy tag bytes */}}
+\DoxyCodeLine{74    \textcolor{keywordflow}{for}(x = 0; x < ocb->tag\_len; x++) tag[x] = tmp[x];}
+\DoxyCodeLine{75    *taglen = (\textcolor{keywordtype}{unsigned} long)ocb->tag\_len;}
+\DoxyCodeLine{76 }
+\DoxyCodeLine{77    err = \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{78 }
+\DoxyCodeLine{79 LBL\_ERR:}
+\DoxyCodeLine{80 \#ifdef LTC\_CLEAN\_STACK}
+\DoxyCodeLine{81    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(tmp, \mbox{\hyperlink{tomcrypt_8h_ab59933beebb2b857c992b93cf53f0d10}{MAXBLOCKSIZE}});}
+\DoxyCodeLine{82    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(ocb, \textcolor{keyword}{sizeof}(*ocb));}
+\DoxyCodeLine{83 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{84 }
+\DoxyCodeLine{85    \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{86 \}}
+
+\end{DoxyCode}
+
+
+References cipher\+\_\+descriptor, cipher\+\_\+is\+\_\+valid(), C\+R\+Y\+P\+T\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+O\+V\+E\+R\+F\+L\+OW, C\+R\+Y\+P\+T\+\_\+\+OK, ltc\+\_\+cipher\+\_\+descriptor\+::ecb\+\_\+encrypt, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, M\+A\+X\+B\+L\+O\+C\+K\+S\+I\+ZE, ocb3\+\_\+int\+\_\+xor\+\_\+blocks(), and zeromem().
+
+
+
+Referenced by ocb3\+\_\+decrypt\+\_\+verify\+\_\+memory(), ocb3\+\_\+encrypt\+\_\+authenticate\+\_\+memory(), and ocb3\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2

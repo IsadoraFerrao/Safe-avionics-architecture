@@ -1,0 +1,47 @@
+digraph "rc4_test"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node46 [label="rc4_test",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="PRNG self-test."];
+  Node46 -> Node47 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node47 [label="compare_testvector",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__misc_8h.html#a7764a7f27897c6182335752df00b5f8e",tooltip="Compare two test-vectors."];
+  Node47 -> Node48 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node48 [label="XMEMCMP",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cfg_8h.html#a372b974ec0ac07abcd55297554fe540f",tooltip=" "];
+  Node46 -> Node49 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node49 [label="rc4_add_entropy",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rc4_8c.html#a4f610c15f71bd7133905ba8c42b25085",tooltip="Add entropy to the PRNG state."];
+  Node49 -> Node50 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node50 [label="rc4_stream_keystream",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rc4__stream_8c.html#a51958ea4c995703c6f9596af8507c136",tooltip="Generate a stream of random bytes via RC4."];
+  Node50 -> Node51 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node51 [label="XMEMSET",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cfg_8h.html#aa3c34a6f6c61de7da9258b5a30e32c2f",tooltip=" "];
+  Node50 -> Node52 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node52 [label="rc4_stream_crypt",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rc4__stream_8c.html#a0a9515051ae76dc9e68c8eb2c31537d7",tooltip="Encrypt (or decrypt) bytes of ciphertext (or plaintext) with RC4."];
+  Node49 -> Node53 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node53 [label="rc4_stream_setup",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rc4__stream_8c.html#a4f9ba9106b0ee28cffced552636662a2",tooltip="Initialize an RC4 context (only the key)"];
+  Node49 -> Node54 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node54 [label="zeromem",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__misc_8h.html#a63b6e188713790263bfd3612fe8b398f",tooltip="Zero a block of memory."];
+  Node46 -> Node55 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node55 [label="rc4_done",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rc4_8c.html#a952a774c3bf86fc6b351bfd1fcfa7558",tooltip="Terminate the PRNG."];
+  Node55 -> Node56 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node56 [label="rc4_stream_done",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rc4__stream_8c.html#ade109a0be5199381ba2f0b9627d0a9f6",tooltip="Terminate and clear RC4 state."];
+  Node56 -> Node51 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node46 -> Node57 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node57 [label="rc4_export",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rc4_8c.html#ab734b7565ee735e487a23ab72774ef4d",tooltip="Export the PRNG state."];
+  Node46 -> Node58 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node58 [label="rc4_import",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rc4_8c.html#ad11a03b9a6aabff43cb59d46d1eef7ce",tooltip="Import a PRNG state."];
+  Node58 -> Node49 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node58 -> Node59 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node59 [label="rc4_start",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rc4_8c.html#a8bfd80b8ba38e3eb896eb3d3caa59cd7",tooltip="Start the PRNG."];
+  Node59 -> Node51 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node46 -> Node60 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node60 [label="rc4_read",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rc4_8c.html#a672bb35f2b7ef86d24499ef90ea2676a",tooltip="Read from the PRNG."];
+  Node60 -> Node50 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node46 -> Node61 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node61 [label="rc4_ready",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rc4_8c.html#a2736422ebc97697aacbc3fd53ce82da6",tooltip="Make the PRNG ready to read from."];
+  Node61 -> Node50 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node61 -> Node53 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node61 -> Node62 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node62 [label="XMEMCPY",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cfg_8h.html#a7691dd48d60d5fc6daf2fa7ec4c55e12",tooltip=" "];
+  Node46 -> Node59 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}

@@ -1,0 +1,126 @@
+\hypertarget{chacha__setup_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/stream/chacha/chacha\+\_\+setup.c File Reference}
+\label{chacha__setup_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/stream/chacha/chacha\_setup.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/stream/chacha/chacha\_setup.c}}
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for chacha\+\_\+setup.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{chacha__setup_8c_aaaad339dc43c455ff5cc2df1960ddfeb}{chacha\+\_\+setup}} (chacha\+\_\+state $\ast$st, const unsigned char $\ast$key, unsigned long keylen, int \mbox{\hyperlink{kseed_8c_a51da46362a22c8107683876e9c12ec82}{rounds}})
+\begin{DoxyCompactList}\small\item\em Initialize an Cha\+Cha context (only the key) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static const char $\ast$const \mbox{\hyperlink{chacha__setup_8c_ab81c48bb4772895768c00a0eb47264e3}{sigma}} = \char`\"{}expand 32-\/byte k\char`\"{}
+\item 
+static const char $\ast$const \mbox{\hyperlink{chacha__setup_8c_a1f6fc6547ab6902d585fc2482ffeb229}{tau}} = \char`\"{}expand 16-\/byte k\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{chacha__setup_8c_aaaad339dc43c455ff5cc2df1960ddfeb}\label{chacha__setup_8c_aaaad339dc43c455ff5cc2df1960ddfeb}} 
+\index{chacha\_setup.c@{chacha\_setup.c}!chacha\_setup@{chacha\_setup}}
+\index{chacha\_setup@{chacha\_setup}!chacha\_setup.c@{chacha\_setup.c}}
+\subsubsection{\texorpdfstring{chacha\_setup()}{chacha\_setup()}}
+{\footnotesize\ttfamily int chacha\+\_\+setup (\begin{DoxyParamCaption}\item[{chacha\+\_\+state $\ast$}]{st,  }\item[{const unsigned char $\ast$}]{key,  }\item[{unsigned long}]{keylen,  }\item[{int}]{rounds }\end{DoxyParamCaption})}
+
+
+
+Initialize an Cha\+Cha context (only the key) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em st} & \mbox{[}out\mbox{]} The destination of the Cha\+Cha state \\
+\hline
+{\em key} & The secret key \\
+\hline
+{\em keylen} & The length of the secret key (octets) \\
+\hline
+{\em rounds} & Number of rounds (e.\+g. 20 for Cha\+Cha20) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 30 of file chacha\+\_\+setup.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{31 \{}
+\DoxyCodeLine{32    \textcolor{keyword}{const} \textcolor{keywordtype}{char} *\mbox{\hyperlink{xsalsa20__setup_8c_a73154adcaa67df7928473b83b93a205d}{constants}};}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(st  != NULL);}
+\DoxyCodeLine{35    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(key != NULL);}
+\DoxyCodeLine{36    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(keylen == 32 || keylen == 16);}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{38    \textcolor{keywordflow}{if} (\mbox{\hyperlink{kseed_8c_a51da46362a22c8107683876e9c12ec82}{rounds}} == 0) \mbox{\hyperlink{kseed_8c_a51da46362a22c8107683876e9c12ec82}{rounds}} = 20;}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{40    LOAD32L(st->input[4], key + 0);}
+\DoxyCodeLine{41    LOAD32L(st->input[5], key + 4);}
+\DoxyCodeLine{42    LOAD32L(st->input[6], key + 8);}
+\DoxyCodeLine{43    LOAD32L(st->input[7], key + 12);}
+\DoxyCodeLine{44    \textcolor{keywordflow}{if} (keylen == 32) \{ \textcolor{comment}{/* 256bit */}}
+\DoxyCodeLine{45       key += 16;}
+\DoxyCodeLine{46       \mbox{\hyperlink{xsalsa20__setup_8c_a73154adcaa67df7928473b83b93a205d}{constants}} = \mbox{\hyperlink{chacha__setup_8c_ab81c48bb4772895768c00a0eb47264e3}{sigma}};}
+\DoxyCodeLine{47    \} \textcolor{keywordflow}{else} \{ \textcolor{comment}{/* 128bit */}}
+\DoxyCodeLine{48       \mbox{\hyperlink{xsalsa20__setup_8c_a73154adcaa67df7928473b83b93a205d}{constants}} = \mbox{\hyperlink{chacha__setup_8c_a1f6fc6547ab6902d585fc2482ffeb229}{tau}};}
+\DoxyCodeLine{49    \}}
+\DoxyCodeLine{50    LOAD32L(st->input[8],  key + 0);}
+\DoxyCodeLine{51    LOAD32L(st->input[9],  key + 4);}
+\DoxyCodeLine{52    LOAD32L(st->input[10], key + 8);}
+\DoxyCodeLine{53    LOAD32L(st->input[11], key + 12);}
+\DoxyCodeLine{54    LOAD32L(st->input[0],  \mbox{\hyperlink{xsalsa20__setup_8c_a73154adcaa67df7928473b83b93a205d}{constants}} + 0);}
+\DoxyCodeLine{55    LOAD32L(st->input[1],  \mbox{\hyperlink{xsalsa20__setup_8c_a73154adcaa67df7928473b83b93a205d}{constants}} + 4);}
+\DoxyCodeLine{56    LOAD32L(st->input[2],  \mbox{\hyperlink{xsalsa20__setup_8c_a73154adcaa67df7928473b83b93a205d}{constants}} + 8);}
+\DoxyCodeLine{57    LOAD32L(st->input[3],  \mbox{\hyperlink{xsalsa20__setup_8c_a73154adcaa67df7928473b83b93a205d}{constants}} + 12);}
+\DoxyCodeLine{58    st->rounds = \mbox{\hyperlink{kseed_8c_a51da46362a22c8107683876e9c12ec82}{rounds}}; \textcolor{comment}{/* e.g. 20 for chacha20 */}}
+\DoxyCodeLine{59    st->ivlen = 0; \textcolor{comment}{/* will be set later by chacha\_ivctr(32|64) */}}
+\DoxyCodeLine{60    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{61 \}}
+
+\end{DoxyCode}
+
+
+References constants, C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, rounds(), sigma, and tau.
+
+
+
+Referenced by chacha20\+\_\+prng\+\_\+add\+\_\+entropy(), chacha20\+\_\+prng\+\_\+ready(), chacha20poly1305\+\_\+init(), chacha\+\_\+memory(), and chacha\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{chacha__setup_8c_ab81c48bb4772895768c00a0eb47264e3}\label{chacha__setup_8c_ab81c48bb4772895768c00a0eb47264e3}} 
+\index{chacha\_setup.c@{chacha\_setup.c}!sigma@{sigma}}
+\index{sigma@{sigma}!chacha\_setup.c@{chacha\_setup.c}}
+\subsubsection{\texorpdfstring{sigma}{sigma}}
+{\footnotesize\ttfamily const char$\ast$ const sigma = \char`\"{}expand 32-\/byte k\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 19 of file chacha\+\_\+setup.\+c.
+
+
+
+Referenced by chacha\+\_\+setup().
+
+\mbox{\Hypertarget{chacha__setup_8c_a1f6fc6547ab6902d585fc2482ffeb229}\label{chacha__setup_8c_a1f6fc6547ab6902d585fc2482ffeb229}} 
+\index{chacha\_setup.c@{chacha\_setup.c}!tau@{tau}}
+\index{tau@{tau}!chacha\_setup.c@{chacha\_setup.c}}
+\subsubsection{\texorpdfstring{tau}{tau}}
+{\footnotesize\ttfamily const char$\ast$ const tau = \char`\"{}expand 16-\/byte k\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 20 of file chacha\+\_\+setup.\+c.
+
+
+
+Referenced by chacha\+\_\+setup().
+

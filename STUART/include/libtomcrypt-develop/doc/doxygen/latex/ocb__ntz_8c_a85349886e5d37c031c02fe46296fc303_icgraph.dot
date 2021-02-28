@@ -1,0 +1,29 @@
+digraph "ocb_ntz"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node1 [label="ocb_ntz",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Returns the number of leading zero bits [from lsb up]."];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node2 [label="ocb_shift_xor",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ocb__shift__xor_8c.html#a516c53bd11c00b98b911778b136f3658",tooltip="Compute the shift/xor for OCB (internal function)"];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node3 [label="ocb_decrypt",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ocb__decrypt_8c.html#aeaa8219f1336e85eff7fba017ea1d6ef",tooltip="Decrypt a block with OCB."];
+  Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node4 [label="ocb_decrypt_verify\l_memory",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ocb__decrypt__verify__memory_8c.html#a54a8c51becc57a9eded7c6da4479ac10",tooltip="Decrypt and compare the tag with OCB."];
+  Node4 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node5 [label="ocb_test",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ocb__test_8c.html#afbc7c6139aaabac9146afff688bafbb9",tooltip="Test the OCB protocol."];
+  Node2 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node6 [label="ocb_encrypt",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ocb__encrypt_8c.html#a5b4272f3b7881406e40a13ec05ce5aa2",tooltip="Encrypt a block of data with OCB."];
+  Node6 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node7 [label="ocb_encrypt_authenticate\l_memory",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ocb__encrypt__authenticate__memory_8c.html#a6dc818f74acf81f66cd2f25b5f0024b6",tooltip="Encrypt and generate an authentication code for a buffer of memory."];
+  Node7 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node2 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node8 [label="s_ocb_done",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$s__ocb__done_8c.html#a0e6dd21746be44a0949d16b9e1ac796d",tooltip="Shared code to finish an OCB stream."];
+  Node8 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node9 [label="ocb_done_decrypt",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ocb__done__decrypt_8c.html#a9f8c7f1d6dd8025f8b4375841707a096",tooltip="Terminate a decrypting OCB state."];
+  Node9 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node8 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node10 [label="ocb_done_encrypt",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ocb__done__encrypt_8c.html#aab90ede8c55c4f4a167a26dd2095556e",tooltip="Terminate an encryption OCB state."];
+  Node10 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+}

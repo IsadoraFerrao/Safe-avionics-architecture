@@ -1,0 +1,99 @@
+\hypertarget{base16__encode_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/misc/base16/base16\+\_\+encode.c File Reference}
+\label{base16__encode_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/misc/base16/base16\_encode.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/misc/base16/base16\_encode.c}}
+
+
+Base16/\+Hex encode a string, Steffen Jaeckel.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for base16\+\_\+encode.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{base16__encode_8c_a5ead637258668446bee3e9d676cc5ace}{base16\+\_\+encode}} (const unsigned char $\ast$in, unsigned long inlen, char $\ast$out, unsigned long $\ast$outlen, unsigned int options)
+\begin{DoxyCompactList}\small\item\em Base16 encode a buffer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Base16/\+Hex encode a string, Steffen Jaeckel. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{base16__encode_8c_a5ead637258668446bee3e9d676cc5ace}\label{base16__encode_8c_a5ead637258668446bee3e9d676cc5ace}} 
+\index{base16\_encode.c@{base16\_encode.c}!base16\_encode@{base16\_encode}}
+\index{base16\_encode@{base16\_encode}!base16\_encode.c@{base16\_encode.c}}
+\subsubsection{\texorpdfstring{base16\_encode()}{base16\_encode()}}
+{\footnotesize\ttfamily int base16\+\_\+encode (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{in,  }\item[{unsigned long}]{inlen,  }\item[{char $\ast$}]{out,  }\item[{unsigned long $\ast$}]{outlen,  }\item[{unsigned int}]{options }\end{DoxyParamCaption})}
+
+
+
+Base16 encode a buffer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em in} & The input buffer to encode \\
+\hline
+{\em inlen} & The length of the input buffer \\
+\hline
+{\em out} & \mbox{[}out\mbox{]} The destination of the Base16 encoded data \\
+\hline
+{\em outlen} & \mbox{[}in/out\mbox{]} The max size and resulting size of the encoded data \\
+\hline
+{\em options} & Output \textquotesingle{}a-\/f\textquotesingle{} on 0 and \textquotesingle{}A-\/F\textquotesingle{} otherwise. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 28 of file base16\+\_\+encode.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{31 \{}
+\DoxyCodeLine{32    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} i, x;}
+\DoxyCodeLine{33    \textcolor{keyword}{const} \textcolor{keywordtype}{char} *alphabet;}
+\DoxyCodeLine{34    \textcolor{keyword}{const} \textcolor{keywordtype}{char} *alphabets[2] = \{}
+\DoxyCodeLine{35       \textcolor{stringliteral}{"0123456789abcdef"},}
+\DoxyCodeLine{36       \textcolor{stringliteral}{"0123456789ABCDEF"},}
+\DoxyCodeLine{37    \};}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(in     != NULL);}
+\DoxyCodeLine{40    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(out    != NULL);}
+\DoxyCodeLine{41    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(outlen != NULL);}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{43    \textcolor{comment}{/* check the sizes */}}
+\DoxyCodeLine{44    x = inlen * 2 + 1;}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46    \textcolor{keywordflow}{if} (x < inlen) \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca3a147cc0bbea3f8779364ad00c2678b4}{CRYPT\_OVERFLOW}};}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48    \textcolor{keywordflow}{if} (*outlen < x) \{}
+\DoxyCodeLine{49       *outlen = x;}
+\DoxyCodeLine{50       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caccd878f5599f3036ffe759dbe1a1ac16}{CRYPT\_BUFFER\_OVERFLOW}};}
+\DoxyCodeLine{51    \}}
+\DoxyCodeLine{52    x--;}
+\DoxyCodeLine{53    *outlen = x; \textcolor{comment}{/* returning the length without terminating NUL */}}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55    \textcolor{keywordflow}{if} (options == 0) \{}
+\DoxyCodeLine{56       alphabet = alphabets[0];}
+\DoxyCodeLine{57    \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{58       alphabet = alphabets[1];}
+\DoxyCodeLine{59    \}}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{61    \textcolor{keywordflow}{for} (i = 0; i < x; i += 2) \{}
+\DoxyCodeLine{62       out[i]   = alphabet[(in[i/2] >> 4) \& 0x0f];}
+\DoxyCodeLine{63       out[i+1] = alphabet[in[i/2] \& 0x0f];}
+\DoxyCodeLine{64    \}}
+\DoxyCodeLine{65    out[x] = \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{66 }
+\DoxyCodeLine{67    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{68 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+O\+V\+E\+R\+F\+L\+OW, C\+R\+Y\+P\+T\+\_\+\+OK, C\+R\+Y\+P\+T\+\_\+\+O\+V\+E\+R\+F\+L\+OW, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+

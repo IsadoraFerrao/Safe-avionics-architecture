@@ -1,0 +1,10 @@
+digraph "poly1305_process"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node34 [label="poly1305_process",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Process data through POLY1305."];
+  Node34 -> Node35 [color="midnightblue",fontsize="10",style="solid"];
+  Node35 [label="_poly1305_block",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$poly1305_8c.html#af2b454846eb0342729e1d878e31c5cf6",tooltip=" "];
+}

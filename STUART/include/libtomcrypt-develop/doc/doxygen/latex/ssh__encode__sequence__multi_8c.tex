@@ -1,0 +1,201 @@
+\hypertarget{ssh__encode__sequence__multi_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/misc/ssh/ssh\+\_\+encode\+\_\+sequence\+\_\+multi.c File Reference}
+\label{ssh__encode__sequence__multi_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/misc/ssh/ssh\_encode\_sequence\_multi.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/misc/ssh/ssh\_encode\_sequence\_multi.c}}
+
+
+S\+SH data type representation as per R\+F\+C4251, Russ Williams.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdarg.\+h$>$}\newline
+Include dependency graph for ssh\+\_\+encode\+\_\+sequence\+\_\+multi.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{ssh__encode__sequence__multi_8c_a1e0938f25dc78460bd85d46cf7fce5d7}{ssh\+\_\+encode\+\_\+sequence\+\_\+multi}} (unsigned char $\ast$out, unsigned long $\ast$outlen,...)
+\begin{DoxyCompactList}\small\item\em Encode a S\+SH sequence using a VA list. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+S\+SH data type representation as per R\+F\+C4251, Russ Williams. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{ssh__encode__sequence__multi_8c_a1e0938f25dc78460bd85d46cf7fce5d7}\label{ssh__encode__sequence__multi_8c_a1e0938f25dc78460bd85d46cf7fce5d7}} 
+\index{ssh\_encode\_sequence\_multi.c@{ssh\_encode\_sequence\_multi.c}!ssh\_encode\_sequence\_multi@{ssh\_encode\_sequence\_multi}}
+\index{ssh\_encode\_sequence\_multi@{ssh\_encode\_sequence\_multi}!ssh\_encode\_sequence\_multi.c@{ssh\_encode\_sequence\_multi.c}}
+\subsubsection{\texorpdfstring{ssh\_encode\_sequence\_multi()}{ssh\_encode\_sequence\_multi()}}
+{\footnotesize\ttfamily int ssh\+\_\+encode\+\_\+sequence\+\_\+multi (\begin{DoxyParamCaption}\item[{unsigned char $\ast$}]{out,  }\item[{unsigned long $\ast$}]{outlen,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+
+
+Encode a S\+SH sequence using a VA list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em out} & \mbox{[}out\mbox{]} Destination for data \\
+\hline
+{\em outlen} & \mbox{[}in/out\mbox{]} Length of buffer and resulting length of output \\
+\hline
+\end{DoxyParams}
+\begin{DoxyRemark}{Remarks}
+$<$...$>$ is of the form $<$type, data$>$ (int, void$\ast$) 
+\end{DoxyRemark}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK on success 
+\end{DoxyReturn}
+
+
+Definition at line 26 of file ssh\+\_\+encode\+\_\+sequence\+\_\+multi.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{27 \{}
+\DoxyCodeLine{28    \textcolor{keywordtype}{int}           err;}
+\DoxyCodeLine{29    va\_list       args;}
+\DoxyCodeLine{30    \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}}       size;}
+\DoxyCodeLine{31    ssh\_data\_type type;}
+\DoxyCodeLine{32    \textcolor{keywordtype}{void}         *vdata;}
+\DoxyCodeLine{33    \textcolor{keyword}{const} \textcolor{keywordtype}{char}   *sdata;}
+\DoxyCodeLine{34    \textcolor{keywordtype}{int}           idata;}
+\DoxyCodeLine{35    \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}}       u32data;}
+\DoxyCodeLine{36    \mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}}       u64data;}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{38    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(out    != NULL);}
+\DoxyCodeLine{39    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(outlen != NULL);}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41    \textcolor{comment}{/* Check values and calculate output size */}}
+\DoxyCodeLine{42    size = 0;}
+\DoxyCodeLine{43    va\_start(args, outlen);}
+\DoxyCodeLine{44    \textcolor{keywordflow}{while} ((type = (ssh\_data\_type)va\_arg(args, \textcolor{keywordtype}{int})) != LTC\_SSHDATA\_EOL) \{}
+\DoxyCodeLine{45       \textcolor{keywordflow}{switch} (type) \{}
+\DoxyCodeLine{46          \textcolor{keywordflow}{case} LTC\_SSHDATA\_BYTE:}
+\DoxyCodeLine{47          \textcolor{keywordflow}{case} LTC\_SSHDATA\_BOOLEAN: \textcolor{comment}{/* Both stored as 1 byte */}}
+\DoxyCodeLine{48             \mbox{\hyperlink{tomcrypt__macros_8h_accde4b007facd646a8327f8e64b2d1e0}{LTC\_UNUSED\_PARAM}}( va\_arg(args, \textcolor{keywordtype}{int}) );}
+\DoxyCodeLine{49             size++;}
+\DoxyCodeLine{50             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{51          \textcolor{keywordflow}{case} LTC\_SSHDATA\_UINT32:}
+\DoxyCodeLine{52             \mbox{\hyperlink{tomcrypt__macros_8h_accde4b007facd646a8327f8e64b2d1e0}{LTC\_UNUSED\_PARAM}}( va\_arg(args, \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}}) );}
+\DoxyCodeLine{53             size += 4;}
+\DoxyCodeLine{54             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{55          \textcolor{keywordflow}{case} LTC\_SSHDATA\_UINT64:}
+\DoxyCodeLine{56             \mbox{\hyperlink{tomcrypt__macros_8h_accde4b007facd646a8327f8e64b2d1e0}{LTC\_UNUSED\_PARAM}}( va\_arg(args, \mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}}) );}
+\DoxyCodeLine{57             size += 8;}
+\DoxyCodeLine{58             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{59          \textcolor{keywordflow}{case} LTC\_SSHDATA\_STRING:}
+\DoxyCodeLine{60          \textcolor{keywordflow}{case} LTC\_SSHDATA\_NAMELIST:}
+\DoxyCodeLine{61             sdata = va\_arg(args, \textcolor{keywordtype}{char}*);}
+\DoxyCodeLine{62             size += 4;}
+\DoxyCodeLine{63             size += strlen(sdata);}
+\DoxyCodeLine{64             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{65          \textcolor{keywordflow}{case} LTC\_SSHDATA\_MPINT:}
+\DoxyCodeLine{66             vdata = va\_arg(args, \textcolor{keywordtype}{void}*);}
+\DoxyCodeLine{67             \textcolor{comment}{/* Calculate size */}}
+\DoxyCodeLine{68             size += 4;}
+\DoxyCodeLine{69             \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__private_8h_a910040068490f9f6e5185c970ab869c9}{mp\_iszero}}(vdata) != \mbox{\hyperlink{tomcrypt__math_8h_acc2da047f8fb30a3e2b2403aac617fe0}{LTC\_MP\_YES}}) \{}
+\DoxyCodeLine{70                size += \mbox{\hyperlink{tomcrypt__private_8h_ad301148bb24f43a8c7003a6976dfaa5a}{mp\_unsigned\_bin\_size}}(vdata);}
+\DoxyCodeLine{71                \textcolor{keywordflow}{if} ((\mbox{\hyperlink{tomcrypt__private_8h_afa1671e20e699f66319ed2e8d9119e7e}{mp\_count\_bits}}(vdata) \& 7) == 0) size++; \textcolor{comment}{/* Zero padding if high bit set */}}
+\DoxyCodeLine{72             \}}
+\DoxyCodeLine{73             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{74 }
+\DoxyCodeLine{75          \textcolor{keywordflow}{case} LTC\_SSHDATA\_EOL: \textcolor{comment}{/* Should never get here */}}
+\DoxyCodeLine{76             err = \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{77             \textcolor{keywordflow}{goto} error;}
+\DoxyCodeLine{78       \}}
+\DoxyCodeLine{79    \}}
+\DoxyCodeLine{80    va\_end(args);}
+\DoxyCodeLine{81 }
+\DoxyCodeLine{82    \textcolor{comment}{/* Check we have sufficient space */}}
+\DoxyCodeLine{83    \textcolor{keywordflow}{if} (*outlen < size) \{}
+\DoxyCodeLine{84       *outlen = size;}
+\DoxyCodeLine{85       err = \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caccd878f5599f3036ffe759dbe1a1ac16}{CRYPT\_BUFFER\_OVERFLOW}};}
+\DoxyCodeLine{86       \textcolor{keywordflow}{goto} errornoargs;}
+\DoxyCodeLine{87    \}}
+\DoxyCodeLine{88    *outlen = size;}
+\DoxyCodeLine{89 }
+\DoxyCodeLine{90    \textcolor{comment}{/* Encode values into buffer */}}
+\DoxyCodeLine{91    va\_start(args, outlen);}
+\DoxyCodeLine{92    \textcolor{keywordflow}{while} ((type = (ssh\_data\_type)va\_arg(args, \textcolor{keywordtype}{int})) != LTC\_SSHDATA\_EOL) \{}
+\DoxyCodeLine{93       \textcolor{keywordflow}{switch} (type) \{}
+\DoxyCodeLine{94          \textcolor{keywordflow}{case} LTC\_SSHDATA\_BYTE:}
+\DoxyCodeLine{95             idata = va\_arg(args, \textcolor{keywordtype}{int});}
+\DoxyCodeLine{96 }
+\DoxyCodeLine{97             *out++ = (\textcolor{keywordtype}{unsigned} char)(idata \& 255);}
+\DoxyCodeLine{98             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{99          \textcolor{keywordflow}{case} LTC\_SSHDATA\_BOOLEAN:}
+\DoxyCodeLine{100             idata = va\_arg(args, \textcolor{keywordtype}{int});}
+\DoxyCodeLine{101 }
+\DoxyCodeLine{102             \textcolor{comment}{/*}}
+\DoxyCodeLine{103 \textcolor{comment}{               The value 0 represents FALSE, and the value 1 represents TRUE.  All non-zero values MUST be}}
+\DoxyCodeLine{104 \textcolor{comment}{               interpreted as TRUE; however, applications MUST NOT store values other than 0 and 1.}}
+\DoxyCodeLine{105 \textcolor{comment}{            */}}
+\DoxyCodeLine{106             *out++ = (idata)?1:0;}
+\DoxyCodeLine{107             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{108          \textcolor{keywordflow}{case} LTC\_SSHDATA\_UINT32:}
+\DoxyCodeLine{109             u32data = va\_arg(args, \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}});}
+\DoxyCodeLine{110             STORE32H(u32data, out);}
+\DoxyCodeLine{111             out += 4;}
+\DoxyCodeLine{112             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{113          \textcolor{keywordflow}{case} LTC\_SSHDATA\_UINT64:}
+\DoxyCodeLine{114             u64data = va\_arg(args, \mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}});}
+\DoxyCodeLine{115             STORE64H(u64data, out);}
+\DoxyCodeLine{116             out += 8;}
+\DoxyCodeLine{117             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{118          \textcolor{keywordflow}{case} LTC\_SSHDATA\_STRING:}
+\DoxyCodeLine{119          \textcolor{keywordflow}{case} LTC\_SSHDATA\_NAMELIST:}
+\DoxyCodeLine{120             sdata = va\_arg(args, \textcolor{keywordtype}{char}*);}
+\DoxyCodeLine{121             size = strlen(sdata);}
+\DoxyCodeLine{122             STORE32H(size, out);}
+\DoxyCodeLine{123             out += 4;}
+\DoxyCodeLine{124             \mbox{\hyperlink{tomcrypt__custom_8h_a6746ebb3c59f81468d961836e198ef8b}{XSTRNCPY}}((\textcolor{keywordtype}{char} *)out, sdata, size);}
+\DoxyCodeLine{125             out += size;}
+\DoxyCodeLine{126             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{127          \textcolor{keywordflow}{case} LTC\_SSHDATA\_MPINT:}
+\DoxyCodeLine{128             vdata = va\_arg(args, \textcolor{keywordtype}{void}*);}
+\DoxyCodeLine{129             \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__private_8h_a910040068490f9f6e5185c970ab869c9}{mp\_iszero}}(vdata) == \mbox{\hyperlink{tomcrypt__math_8h_acc2da047f8fb30a3e2b2403aac617fe0}{LTC\_MP\_YES}}) \{}
+\DoxyCodeLine{130                STORE32H(0, out);}
+\DoxyCodeLine{131                out += 4;}
+\DoxyCodeLine{132             \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{133                size = \mbox{\hyperlink{tomcrypt__private_8h_ad301148bb24f43a8c7003a6976dfaa5a}{mp\_unsigned\_bin\_size}}(vdata);}
+\DoxyCodeLine{134                \textcolor{keywordflow}{if} ((\mbox{\hyperlink{tomcrypt__private_8h_afa1671e20e699f66319ed2e8d9119e7e}{mp\_count\_bits}}(vdata) \& 7) == 0) \{}
+\DoxyCodeLine{135                   \textcolor{comment}{/* Zero padding if high bit set */}}
+\DoxyCodeLine{136                   STORE32H(size+1, out);}
+\DoxyCodeLine{137                   out += 4;}
+\DoxyCodeLine{138                   *out++ = 0;}
+\DoxyCodeLine{139                \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{140                   STORE32H(size, out);}
+\DoxyCodeLine{141                   out += 4;}
+\DoxyCodeLine{142                \}}
+\DoxyCodeLine{143                \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a376a4d31dcfeb65c069db0485b9602f8}{mp\_to\_unsigned\_bin}}(vdata, out)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{144                   err = \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca03c22220d7538be04455cd2aa6ddf9da}{CRYPT\_ERROR}};}
+\DoxyCodeLine{145                   \textcolor{keywordflow}{goto} error;}
+\DoxyCodeLine{146                \}}
+\DoxyCodeLine{147                out += size;}
+\DoxyCodeLine{148             \}}
+\DoxyCodeLine{149             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{150 }
+\DoxyCodeLine{151          \textcolor{keywordflow}{case} LTC\_SSHDATA\_EOL: \textcolor{comment}{/* Should never get here */}}
+\DoxyCodeLine{152             err = \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{153             \textcolor{keywordflow}{goto} error;}
+\DoxyCodeLine{154       \}}
+\DoxyCodeLine{155    \}}
+\DoxyCodeLine{156    err = \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{157 }
+\DoxyCodeLine{158 error:}
+\DoxyCodeLine{159    va\_end(args);}
+\DoxyCodeLine{160 errornoargs:}
+\DoxyCodeLine{161    \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{162 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+O\+V\+E\+R\+F\+L\+OW, C\+R\+Y\+P\+T\+\_\+\+E\+R\+R\+OR, C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+A\+RG, C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, L\+T\+C\+\_\+\+M\+P\+\_\+\+Y\+ES, L\+T\+C\+\_\+\+U\+N\+U\+S\+E\+D\+\_\+\+P\+A\+R\+AM, mp\+\_\+count\+\_\+bits, mp\+\_\+iszero, mp\+\_\+to\+\_\+unsigned\+\_\+bin, mp\+\_\+unsigned\+\_\+bin\+\_\+size, and X\+S\+T\+R\+N\+C\+PY.
+
+
+
+Referenced by ecc\+\_\+sign\+\_\+hash\+\_\+ex().
+
+Here is the caller graph for this function\+:
+% FIG 1

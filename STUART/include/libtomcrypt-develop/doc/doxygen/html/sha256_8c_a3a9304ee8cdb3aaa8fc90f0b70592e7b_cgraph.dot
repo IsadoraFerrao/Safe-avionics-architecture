@@ -1,0 +1,22 @@
+digraph "sha256_test"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node59 [label="sha256_test",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Self-test the hash."];
+  Node59 -> Node60 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node60 [label="compare_testvector",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__misc_8h.html#a7764a7f27897c6182335752df00b5f8e",tooltip="Compare two test-vectors."];
+  Node60 -> Node61 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node61 [label="XMEMCMP",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cfg_8h.html#a372b974ec0ac07abcd55297554fe540f",tooltip=" "];
+  Node59 -> Node62 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node62 [label="sha256_done",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sha256_8c.html#a53db56f3eb9f35c59b134533be31c301",tooltip="Terminate the hash to get the digest."];
+  Node62 -> Node63 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node63 [label="sha256_compress",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sha256_8c.html#ac87e8a7c22810735390e70611006bfe5",tooltip=" "];
+  Node62 -> Node64 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node64 [label="zeromem",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__misc_8h.html#a63b6e188713790263bfd3612fe8b398f",tooltip="Zero a block of memory."];
+  Node59 -> Node65 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node65 [label="sha256_init",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sha256_8c.html#a6290ad544b02c822c2ca6c30b8d1ee07",tooltip="Initialize the hash state."];
+  Node59 -> Node66 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node66 [label="sha256_process",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sha256_8c.html#a8b983a80c9edd5d997a3937963ae7856",tooltip="Process a block of memory though the hash."];
+}

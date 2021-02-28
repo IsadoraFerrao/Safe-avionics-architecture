@@ -1,0 +1,173 @@
+\hypertarget{s__ocb__done_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/encauth/ocb/s\+\_\+ocb\+\_\+done.c File Reference}
+\label{s__ocb__done_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/encauth/ocb/s\_ocb\_done.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/encauth/ocb/s\_ocb\_done.c}}
+
+
+O\+CB implementation, internal helper, by Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for s\+\_\+ocb\+\_\+done.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{s__ocb__done_8c_a0e6dd21746be44a0949d16b9e1ac796d}{s\+\_\+ocb\+\_\+done}} (ocb\+\_\+state $\ast$ocb, const unsigned char $\ast$pt, unsigned long ptlen, unsigned char $\ast$ct, unsigned char $\ast$tag, unsigned long $\ast$taglen, int mode)
+\begin{DoxyCompactList}\small\item\em Shared code to finish an O\+CB stream. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+O\+CB implementation, internal helper, by Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{s__ocb__done_8c_a0e6dd21746be44a0949d16b9e1ac796d}\label{s__ocb__done_8c_a0e6dd21746be44a0949d16b9e1ac796d}} 
+\index{s\_ocb\_done.c@{s\_ocb\_done.c}!s\_ocb\_done@{s\_ocb\_done}}
+\index{s\_ocb\_done@{s\_ocb\_done}!s\_ocb\_done.c@{s\_ocb\_done.c}}
+\subsubsection{\texorpdfstring{s\_ocb\_done()}{s\_ocb\_done()}}
+{\footnotesize\ttfamily int s\+\_\+ocb\+\_\+done (\begin{DoxyParamCaption}\item[{ocb\+\_\+state $\ast$}]{ocb,  }\item[{const unsigned char $\ast$}]{pt,  }\item[{unsigned long}]{ptlen,  }\item[{unsigned char $\ast$}]{ct,  }\item[{unsigned char $\ast$}]{tag,  }\item[{unsigned long $\ast$}]{taglen,  }\item[{int}]{mode }\end{DoxyParamCaption})}
+
+
+
+Shared code to finish an O\+CB stream. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ocb} & The O\+CB state \\
+\hline
+{\em pt} & The remaining plaintext \mbox{[}or input\mbox{]} \\
+\hline
+{\em ptlen} & The length of the input (octets) \\
+\hline
+{\em ct} & \mbox{[}out\mbox{]} The output buffer \\
+\hline
+{\em tag} & \mbox{[}out\mbox{]} The destination for the authentication tag \\
+\hline
+{\em taglen} & \mbox{[}in/out\mbox{]} The max size and resulting size of the authentication tag \\
+\hline
+{\em mode} & The mode we are terminating, 0==encrypt, 1==decrypt \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 37 of file s\+\_\+ocb\+\_\+done.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{40 \{}
+\DoxyCodeLine{41    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *Z, *Y, *X;}
+\DoxyCodeLine{42    \textcolor{keywordtype}{int} err, x;}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(ocb    != NULL);}
+\DoxyCodeLine{45    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(pt     != NULL);}
+\DoxyCodeLine{46    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(ct     != NULL);}
+\DoxyCodeLine{47    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(tag    != NULL);}
+\DoxyCodeLine{48    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(taglen != NULL);}
+\DoxyCodeLine{49    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_ac30eb68934c4ca07205344dc9d159221}{cipher\_is\_valid}}(ocb->cipher)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{50       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{51    \}}
+\DoxyCodeLine{52    \textcolor{keywordflow}{if} (ocb->block\_len != \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[ocb->cipher].\mbox{\hyperlink{structltc__cipher__descriptor_afa2af7325fd3a834910dd92e8c9acf49}{block\_length}} ||}
+\DoxyCodeLine{53        (\textcolor{keywordtype}{int})ptlen > ocb->block\_len || (\textcolor{keywordtype}{int})ptlen < 0) \{}
+\DoxyCodeLine{54       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{55    \}}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{57    \textcolor{comment}{/* allocate ram */}}
+\DoxyCodeLine{58    Z = \mbox{\hyperlink{tomcrypt__cfg_8h_af363355f38fbaacdefacf270436ae1c9}{XMALLOC}}(\mbox{\hyperlink{tomcrypt_8h_ab59933beebb2b857c992b93cf53f0d10}{MAXBLOCKSIZE}});}
+\DoxyCodeLine{59    Y = \mbox{\hyperlink{tomcrypt__cfg_8h_af363355f38fbaacdefacf270436ae1c9}{XMALLOC}}(\mbox{\hyperlink{tomcrypt_8h_ab59933beebb2b857c992b93cf53f0d10}{MAXBLOCKSIZE}});}
+\DoxyCodeLine{60    X = \mbox{\hyperlink{tomcrypt__cfg_8h_af363355f38fbaacdefacf270436ae1c9}{XMALLOC}}(\mbox{\hyperlink{tomcrypt_8h_ab59933beebb2b857c992b93cf53f0d10}{MAXBLOCKSIZE}});}
+\DoxyCodeLine{61    \textcolor{keywordflow}{if} (X == NULL || Y == NULL || Z == NULL) \{}
+\DoxyCodeLine{62       \textcolor{keywordflow}{if} (X != NULL) \{}
+\DoxyCodeLine{63          \mbox{\hyperlink{tomcrypt__cfg_8h_a260d66fc0690e0502cf3bfe7b5244b75}{XFREE}}(X);}
+\DoxyCodeLine{64       \}}
+\DoxyCodeLine{65       \textcolor{keywordflow}{if} (Y != NULL) \{}
+\DoxyCodeLine{66          \mbox{\hyperlink{tomcrypt__cfg_8h_a260d66fc0690e0502cf3bfe7b5244b75}{XFREE}}(Y);}
+\DoxyCodeLine{67       \}}
+\DoxyCodeLine{68       \textcolor{keywordflow}{if} (Z != NULL) \{}
+\DoxyCodeLine{69          \mbox{\hyperlink{tomcrypt__cfg_8h_a260d66fc0690e0502cf3bfe7b5244b75}{XFREE}}(Z);}
+\DoxyCodeLine{70       \}}
+\DoxyCodeLine{71       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca0ce0d27adc7ea10b74b7ea904b8bfa82}{CRYPT\_MEM}};}
+\DoxyCodeLine{72    \}}
+\DoxyCodeLine{73 }
+\DoxyCodeLine{74    \textcolor{comment}{/* compute X[m] = len(pt[m]) XOR Lr XOR Z[m] */}}
+\DoxyCodeLine{75    \mbox{\hyperlink{ocb__shift__xor_8c_a516c53bd11c00b98b911778b136f3658}{ocb\_shift\_xor}}(ocb, X);}
+\DoxyCodeLine{76    \mbox{\hyperlink{tomcrypt__cfg_8h_a7691dd48d60d5fc6daf2fa7ec4c55e12}{XMEMCPY}}(Z, X, ocb->block\_len);}
+\DoxyCodeLine{77 }
+\DoxyCodeLine{78    X[ocb->block\_len-1] \string^= (ptlen*8)\&255;}
+\DoxyCodeLine{79    X[ocb->block\_len-2] \string^= ((ptlen*8)>>8)\&255;}
+\DoxyCodeLine{80    \textcolor{keywordflow}{for} (x = 0; x < ocb->block\_len; x++) \{}
+\DoxyCodeLine{81        X[x] \string^= ocb->Lr[x];}
+\DoxyCodeLine{82    \}}
+\DoxyCodeLine{83 }
+\DoxyCodeLine{84    \textcolor{comment}{/* Y[m] = E(X[m])) */}}
+\DoxyCodeLine{85    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[ocb->cipher].\mbox{\hyperlink{structltc__cipher__descriptor_a46141d86abe22a7c8d382c62a894dd63}{ecb\_encrypt}}(X, Y, \&ocb->key)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{86       \textcolor{keywordflow}{goto} error;}
+\DoxyCodeLine{87    \}}
+\DoxyCodeLine{88 }
+\DoxyCodeLine{89    \textcolor{keywordflow}{if} (mode == 1) \{}
+\DoxyCodeLine{90       \textcolor{comment}{/* decrypt mode, so let's xor it first */}}
+\DoxyCodeLine{91       \textcolor{comment}{/* xor C[m] into checksum */}}
+\DoxyCodeLine{92       \textcolor{keywordflow}{for} (x = 0; x < (int)ptlen; x++) \{}
+\DoxyCodeLine{93          ocb->checksum[x] \string^= ct[x];}
+\DoxyCodeLine{94       \}}
+\DoxyCodeLine{95    \}}
+\DoxyCodeLine{96 }
+\DoxyCodeLine{97    \textcolor{comment}{/* C[m] = P[m] xor Y[m] */}}
+\DoxyCodeLine{98    \textcolor{keywordflow}{for} (x = 0; x < (int)ptlen; x++) \{}
+\DoxyCodeLine{99        ct[x] = pt[x] \string^ Y[x];}
+\DoxyCodeLine{100    \}}
+\DoxyCodeLine{101 }
+\DoxyCodeLine{102    \textcolor{keywordflow}{if} (mode == 0) \{}
+\DoxyCodeLine{103       \textcolor{comment}{/* encrypt mode */}}
+\DoxyCodeLine{104       \textcolor{comment}{/* xor C[m] into checksum */}}
+\DoxyCodeLine{105       \textcolor{keywordflow}{for} (x = 0; x < (int)ptlen; x++) \{}
+\DoxyCodeLine{106           ocb->checksum[x] \string^= ct[x];}
+\DoxyCodeLine{107       \}}
+\DoxyCodeLine{108    \}}
+\DoxyCodeLine{109 }
+\DoxyCodeLine{110    \textcolor{comment}{/* xor Y[m] and Z[m] into checksum */}}
+\DoxyCodeLine{111    \textcolor{keywordflow}{for} (x = 0; x < ocb->block\_len; x++) \{}
+\DoxyCodeLine{112        ocb->checksum[x] \string^= Y[x] \string^ Z[x];}
+\DoxyCodeLine{113    \}}
+\DoxyCodeLine{114 }
+\DoxyCodeLine{115    \textcolor{comment}{/* encrypt checksum, er... tag!! */}}
+\DoxyCodeLine{116    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[ocb->cipher].\mbox{\hyperlink{structltc__cipher__descriptor_a46141d86abe22a7c8d382c62a894dd63}{ecb\_encrypt}}(ocb->checksum, X, \&ocb->key)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{117       \textcolor{keywordflow}{goto} error;}
+\DoxyCodeLine{118    \}}
+\DoxyCodeLine{119    \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[ocb->cipher].\mbox{\hyperlink{structltc__cipher__descriptor_a0ad1c101005c70a69e40fded0e606191}{done}}(\&ocb->key);}
+\DoxyCodeLine{120 }
+\DoxyCodeLine{121    \textcolor{comment}{/* now store it */}}
+\DoxyCodeLine{122    \textcolor{keywordflow}{for} (x = 0; x < ocb->block\_len \&\& x < (int)*taglen; x++) \{}
+\DoxyCodeLine{123        tag[x] = X[x];}
+\DoxyCodeLine{124    \}}
+\DoxyCodeLine{125    *taglen = x;}
+\DoxyCodeLine{126 }
+\DoxyCodeLine{127 \textcolor{preprocessor}{\#ifdef LTC\_CLEAN\_STACK}}
+\DoxyCodeLine{128    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(X, \mbox{\hyperlink{tomcrypt_8h_ab59933beebb2b857c992b93cf53f0d10}{MAXBLOCKSIZE}});}
+\DoxyCodeLine{129    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(Y, \mbox{\hyperlink{tomcrypt_8h_ab59933beebb2b857c992b93cf53f0d10}{MAXBLOCKSIZE}});}
+\DoxyCodeLine{130    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(Z, \mbox{\hyperlink{tomcrypt_8h_ab59933beebb2b857c992b93cf53f0d10}{MAXBLOCKSIZE}});}
+\DoxyCodeLine{131    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(ocb, \textcolor{keyword}{sizeof}(*ocb));}
+\DoxyCodeLine{132 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{133 error:}
+\DoxyCodeLine{134    \mbox{\hyperlink{tomcrypt__cfg_8h_a260d66fc0690e0502cf3bfe7b5244b75}{XFREE}}(X);}
+\DoxyCodeLine{135    \mbox{\hyperlink{tomcrypt__cfg_8h_a260d66fc0690e0502cf3bfe7b5244b75}{XFREE}}(Y);}
+\DoxyCodeLine{136    \mbox{\hyperlink{tomcrypt__cfg_8h_a260d66fc0690e0502cf3bfe7b5244b75}{XFREE}}(Z);}
+\DoxyCodeLine{137 }
+\DoxyCodeLine{138    \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{139 \}}
+
+\end{DoxyCode}
+
+
+References ltc\+\_\+cipher\+\_\+descriptor\+::block\+\_\+length, cipher\+\_\+descriptor, cipher\+\_\+is\+\_\+valid(), C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+A\+RG, C\+R\+Y\+P\+T\+\_\+\+M\+EM, C\+R\+Y\+P\+T\+\_\+\+OK, ltc\+\_\+cipher\+\_\+descriptor\+::done, ltc\+\_\+cipher\+\_\+descriptor\+::ecb\+\_\+encrypt, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, M\+A\+X\+B\+L\+O\+C\+K\+S\+I\+ZE, ocb\+\_\+shift\+\_\+xor(), X\+F\+R\+E\+E(), X\+M\+A\+L\+L\+O\+C(), X\+M\+E\+M\+C\+P\+Y(), and zeromem().
+
+
+
+Referenced by ocb\+\_\+done\+\_\+decrypt(), and ocb\+\_\+done\+\_\+encrypt().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2

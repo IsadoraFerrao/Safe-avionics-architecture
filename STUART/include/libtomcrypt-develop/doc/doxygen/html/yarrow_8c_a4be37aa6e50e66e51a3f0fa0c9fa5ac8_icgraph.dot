@@ -1,0 +1,12 @@
+digraph "yarrow_start"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node45 [label="yarrow_start",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Start the PRNG."];
+  Node45 -> Node46 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node46 [label="yarrow_import",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$yarrow_8c.html#aa4abeeec501ff7cc5d002bf2ea495865",tooltip="Import a PRNG state."];
+  Node45 -> Node47 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node47 [label="yarrow_test",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$yarrow_8c.html#a015eaaca3b133390535d3be2fced5cc1",tooltip="PRNG self-test."];
+}

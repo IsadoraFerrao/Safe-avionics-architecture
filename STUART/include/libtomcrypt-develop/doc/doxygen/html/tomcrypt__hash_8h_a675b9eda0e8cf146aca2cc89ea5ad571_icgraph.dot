@@ -1,0 +1,22 @@
+digraph "register_hash"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node151 [label="register_hash",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Register a hash with the descriptor table."];
+  Node151 -> Node152 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node152 [label="_dsa_make_params",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dsa__generate__pqg_8c.html#ad38793673d78a4d45177d5b839e1e16b",tooltip="Create DSA parameters (INTERNAL ONLY, not part of public API)"];
+  Node152 -> Node153 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node153 [label="dsa_generate_pqg",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dsa__generate__pqg_8c.html#aa25c2f74420daea058431d3ad4b2340d",tooltip="Generate DSA parameters p, q & g."];
+  Node153 -> Node154 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node154 [label="dsa_make_key",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dsa__make__key_8c.html#a9b48ea999f1e23e839ae5b62aab985c6",tooltip="Old-style creation of a DSA key."];
+  Node151 -> Node155 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node155 [label="crypt_fsa",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$crypt__fsa_8c.html#aefa03a9ea8721b2d7c4ec148f3124c03",tooltip=" "];
+  Node151 -> Node156 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node156 [label="yarrow_start",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$yarrow_8c.html#a4be37aa6e50e66e51a3f0fa0c9fa5ac8",tooltip="Start the PRNG."];
+  Node156 -> Node157 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node157 [label="yarrow_import",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$yarrow_8c.html#aa4abeeec501ff7cc5d002bf2ea495865",tooltip="Import a PRNG state."];
+  Node156 -> Node158 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node158 [label="yarrow_test",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$yarrow_8c.html#a015eaaca3b133390535d3be2fced5cc1",tooltip="PRNG self-test."];
+}

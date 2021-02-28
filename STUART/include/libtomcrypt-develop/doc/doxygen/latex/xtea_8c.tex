@@ -1,0 +1,445 @@
+\hypertarget{xtea_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/ciphers/xtea.c File Reference}
+\label{xtea_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/ciphers/xtea.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/ciphers/xtea.c}}
+
+
+Implementation of L\+T\+C\+\_\+\+X\+T\+EA, Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for xtea.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{xtea_8c_a08772c5eec26a2bcb83a3ff57d70b22d}{xtea\+\_\+setup}} (const unsigned char $\ast$key, int keylen, int num\+\_\+rounds, \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)
+\item 
+int \mbox{\hyperlink{xtea_8c_ad188d78b79e8c15611cbc5807b3f0015}{xtea\+\_\+ecb\+\_\+encrypt}} (const unsigned char $\ast$pt, unsigned char $\ast$ct, const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)
+\begin{DoxyCompactList}\small\item\em Encrypts a block of text with L\+T\+C\+\_\+\+X\+T\+EA. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{xtea_8c_a0ae633673b839322bc256f4a75319f3b}{xtea\+\_\+ecb\+\_\+decrypt}} (const unsigned char $\ast$ct, unsigned char $\ast$pt, const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)
+\begin{DoxyCompactList}\small\item\em Decrypts a block of text with L\+T\+C\+\_\+\+X\+T\+EA. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{xtea_8c_a97b4884ac816d1f98373dfbc65f9f978}{xtea\+\_\+test}} (void)
+\begin{DoxyCompactList}\small\item\em Performs a self-\/test of the L\+T\+C\+\_\+\+X\+T\+EA block cipher. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{xtea_8c_a8f64af8424ec6f70782e3e5ee5e24803}{xtea\+\_\+done}} (\mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)
+\begin{DoxyCompactList}\small\item\em Terminate the context. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{xtea_8c_ac39433792856f6a68add660068a5ca95}{xtea\+\_\+keysize}} (int $\ast$keysize)
+\begin{DoxyCompactList}\small\item\em Gets suitable key size. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const struct \mbox{\hyperlink{structltc__cipher__descriptor}{ltc\+\_\+cipher\+\_\+descriptor}} \mbox{\hyperlink{xtea_8c_a6fe160700a333cae733af99b30449aef}{xtea\+\_\+desc}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Implementation of L\+T\+C\+\_\+\+X\+T\+EA, Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{xtea_8c_a8f64af8424ec6f70782e3e5ee5e24803}\label{xtea_8c_a8f64af8424ec6f70782e3e5ee5e24803}} 
+\index{xtea.c@{xtea.c}!xtea\_done@{xtea\_done}}
+\index{xtea\_done@{xtea\_done}!xtea.c@{xtea.c}}
+\subsubsection{\texorpdfstring{xtea\_done()}{xtea\_done()}}
+{\footnotesize\ttfamily void xtea\+\_\+done (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$}]{skey }\end{DoxyParamCaption})}
+
+
+
+Terminate the context. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em skey} & The scheduled key \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 233 of file xtea.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{234 \{}
+\DoxyCodeLine{235   \mbox{\hyperlink{tomcrypt__macros_8h_accde4b007facd646a8327f8e64b2d1e0}{LTC\_UNUSED\_PARAM}}(skey);}
+\DoxyCodeLine{236 \}}
+
+\end{DoxyCode}
+
+
+References L\+T\+C\+\_\+\+U\+N\+U\+S\+E\+D\+\_\+\+P\+A\+R\+AM.
+
+\mbox{\Hypertarget{xtea_8c_a0ae633673b839322bc256f4a75319f3b}\label{xtea_8c_a0ae633673b839322bc256f4a75319f3b}} 
+\index{xtea.c@{xtea.c}!xtea\_ecb\_decrypt@{xtea\_ecb\_decrypt}}
+\index{xtea\_ecb\_decrypt@{xtea\_ecb\_decrypt}!xtea.c@{xtea.c}}
+\subsubsection{\texorpdfstring{xtea\_ecb\_decrypt()}{xtea\_ecb\_decrypt()}}
+{\footnotesize\ttfamily int xtea\+\_\+ecb\+\_\+decrypt (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{ct,  }\item[{unsigned char $\ast$}]{pt,  }\item[{const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$}]{skey }\end{DoxyParamCaption})}
+
+
+
+Decrypts a block of text with L\+T\+C\+\_\+\+X\+T\+EA. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ct} & The input ciphertext (8 bytes) \\
+\hline
+{\em pt} & The output plaintext (8 bytes) \\
+\hline
+{\em skey} & The key as scheduled \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 110 of file xtea.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{111 \{}
+\DoxyCodeLine{112    \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} y, z;}
+\DoxyCodeLine{113    \textcolor{keywordtype}{int} r;}
+\DoxyCodeLine{114 }
+\DoxyCodeLine{115    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(pt   != NULL);}
+\DoxyCodeLine{116    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(ct   != NULL);}
+\DoxyCodeLine{117    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(skey != NULL);}
+\DoxyCodeLine{118 }
+\DoxyCodeLine{119    LOAD32H(y, \&ct[0]);}
+\DoxyCodeLine{120    LOAD32H(z, \&ct[4]);}
+\DoxyCodeLine{121    \textcolor{keywordflow}{for} (r = 31; r >= 0; r -= 4) \{}
+\DoxyCodeLine{122        z = (z - ((((y<<4)\string^(y>>5)) + y) \string^ skey->xtea.B[r])) \& 0xFFFFFFFFUL;}
+\DoxyCodeLine{123        y = (y - ((((z<<4)\string^(z>>5)) + z) \string^ skey->xtea.A[r])) \& 0xFFFFFFFFUL;}
+\DoxyCodeLine{124 }
+\DoxyCodeLine{125        z = (z - ((((y<<4)\string^(y>>5)) + y) \string^ skey->xtea.B[r-1])) \& 0xFFFFFFFFUL;}
+\DoxyCodeLine{126        y = (y - ((((z<<4)\string^(z>>5)) + z) \string^ skey->xtea.A[r-1])) \& 0xFFFFFFFFUL;}
+\DoxyCodeLine{127 }
+\DoxyCodeLine{128        z = (z - ((((y<<4)\string^(y>>5)) + y) \string^ skey->xtea.B[r-2])) \& 0xFFFFFFFFUL;}
+\DoxyCodeLine{129        y = (y - ((((z<<4)\string^(z>>5)) + z) \string^ skey->xtea.A[r-2])) \& 0xFFFFFFFFUL;}
+\DoxyCodeLine{130 }
+\DoxyCodeLine{131        z = (z - ((((y<<4)\string^(y>>5)) + y) \string^ skey->xtea.B[r-3])) \& 0xFFFFFFFFUL;}
+\DoxyCodeLine{132        y = (y - ((((z<<4)\string^(z>>5)) + z) \string^ skey->xtea.A[r-3])) \& 0xFFFFFFFFUL;}
+\DoxyCodeLine{133    \}}
+\DoxyCodeLine{134    STORE32H(y, \&pt[0]);}
+\DoxyCodeLine{135    STORE32H(z, \&pt[4]);}
+\DoxyCodeLine{136    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{137 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+
+
+Referenced by xtea\+\_\+test().
+
+Here is the caller graph for this function\+:
+% FIG 1
+\mbox{\Hypertarget{xtea_8c_ad188d78b79e8c15611cbc5807b3f0015}\label{xtea_8c_ad188d78b79e8c15611cbc5807b3f0015}} 
+\index{xtea.c@{xtea.c}!xtea\_ecb\_encrypt@{xtea\_ecb\_encrypt}}
+\index{xtea\_ecb\_encrypt@{xtea\_ecb\_encrypt}!xtea.c@{xtea.c}}
+\subsubsection{\texorpdfstring{xtea\_ecb\_encrypt()}{xtea\_ecb\_encrypt()}}
+{\footnotesize\ttfamily int xtea\+\_\+ecb\+\_\+encrypt (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{pt,  }\item[{unsigned char $\ast$}]{ct,  }\item[{const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$}]{skey }\end{DoxyParamCaption})}
+
+
+
+Encrypts a block of text with L\+T\+C\+\_\+\+X\+T\+EA. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pt} & The input plaintext (8 bytes) \\
+\hline
+{\em ct} & The output ciphertext (8 bytes) \\
+\hline
+{\em skey} & The key as scheduled \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 74 of file xtea.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{75 \{}
+\DoxyCodeLine{76    \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} y, z;}
+\DoxyCodeLine{77    \textcolor{keywordtype}{int} r;}
+\DoxyCodeLine{78 }
+\DoxyCodeLine{79    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(pt   != NULL);}
+\DoxyCodeLine{80    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(ct   != NULL);}
+\DoxyCodeLine{81    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(skey != NULL);}
+\DoxyCodeLine{82 }
+\DoxyCodeLine{83    LOAD32H(y, \&pt[0]);}
+\DoxyCodeLine{84    LOAD32H(z, \&pt[4]);}
+\DoxyCodeLine{85    \textcolor{keywordflow}{for} (r = 0; r < 32; r += 4) \{}
+\DoxyCodeLine{86        y = (y + ((((z<<4)\string^(z>>5)) + z) \string^ skey->xtea.A[r])) \& 0xFFFFFFFFUL;}
+\DoxyCodeLine{87        z = (z + ((((y<<4)\string^(y>>5)) + y) \string^ skey->xtea.B[r])) \& 0xFFFFFFFFUL;}
+\DoxyCodeLine{88 }
+\DoxyCodeLine{89        y = (y + ((((z<<4)\string^(z>>5)) + z) \string^ skey->xtea.A[r+1])) \& 0xFFFFFFFFUL;}
+\DoxyCodeLine{90        z = (z + ((((y<<4)\string^(y>>5)) + y) \string^ skey->xtea.B[r+1])) \& 0xFFFFFFFFUL;}
+\DoxyCodeLine{91 }
+\DoxyCodeLine{92        y = (y + ((((z<<4)\string^(z>>5)) + z) \string^ skey->xtea.A[r+2])) \& 0xFFFFFFFFUL;}
+\DoxyCodeLine{93        z = (z + ((((y<<4)\string^(y>>5)) + y) \string^ skey->xtea.B[r+2])) \& 0xFFFFFFFFUL;}
+\DoxyCodeLine{94 }
+\DoxyCodeLine{95        y = (y + ((((z<<4)\string^(z>>5)) + z) \string^ skey->xtea.A[r+3])) \& 0xFFFFFFFFUL;}
+\DoxyCodeLine{96        z = (z + ((((y<<4)\string^(y>>5)) + y) \string^ skey->xtea.B[r+3])) \& 0xFFFFFFFFUL;}
+\DoxyCodeLine{97    \}}
+\DoxyCodeLine{98    STORE32H(y, \&ct[0]);}
+\DoxyCodeLine{99    STORE32H(z, \&ct[4]);}
+\DoxyCodeLine{100    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{101 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+
+
+Referenced by xtea\+\_\+test().
+
+Here is the caller graph for this function\+:
+% FIG 2
+\mbox{\Hypertarget{xtea_8c_ac39433792856f6a68add660068a5ca95}\label{xtea_8c_ac39433792856f6a68add660068a5ca95}} 
+\index{xtea.c@{xtea.c}!xtea\_keysize@{xtea\_keysize}}
+\index{xtea\_keysize@{xtea\_keysize}!xtea.c@{xtea.c}}
+\subsubsection{\texorpdfstring{xtea\_keysize()}{xtea\_keysize()}}
+{\footnotesize\ttfamily int xtea\+\_\+keysize (\begin{DoxyParamCaption}\item[{int $\ast$}]{keysize }\end{DoxyParamCaption})}
+
+
+
+Gets suitable key size. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em keysize} & \mbox{[}in/out\mbox{]} The length of the recommended key (in bytes). This function will store the suitable size back in this variable. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if the input key size is acceptable. 
+\end{DoxyReturn}
+
+
+Definition at line 243 of file xtea.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{244 \{}
+\DoxyCodeLine{245    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(keysize != NULL);}
+\DoxyCodeLine{246    \textcolor{keywordflow}{if} (*keysize < 16) \{}
+\DoxyCodeLine{247       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caafed43f3b625e72191e08e65b4bb5e02}{CRYPT\_INVALID\_KEYSIZE}};}
+\DoxyCodeLine{248    \}}
+\DoxyCodeLine{249    *keysize = 16;}
+\DoxyCodeLine{250    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{251 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+K\+E\+Y\+S\+I\+ZE, C\+R\+Y\+P\+T\+\_\+\+OK, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+\mbox{\Hypertarget{xtea_8c_a08772c5eec26a2bcb83a3ff57d70b22d}\label{xtea_8c_a08772c5eec26a2bcb83a3ff57d70b22d}} 
+\index{xtea.c@{xtea.c}!xtea\_setup@{xtea\_setup}}
+\index{xtea\_setup@{xtea\_setup}!xtea.c@{xtea.c}}
+\subsubsection{\texorpdfstring{xtea\_setup()}{xtea\_setup()}}
+{\footnotesize\ttfamily int xtea\+\_\+setup (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{key,  }\item[{int}]{keylen,  }\item[{int}]{num\+\_\+rounds,  }\item[{\mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$}]{skey }\end{DoxyParamCaption})}
+
+
+
+Definition at line 32 of file xtea.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{33 \{}
+\DoxyCodeLine{34    \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} x, sum, \mbox{\hyperlink{sha512_8c_a2d167a3caf30de6442abc69780199a52}{K}}[4];}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(key != NULL);}
+\DoxyCodeLine{37    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(skey != NULL);}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39    \textcolor{comment}{/* check arguments */}}
+\DoxyCodeLine{40    \textcolor{keywordflow}{if} (keylen != 16) \{}
+\DoxyCodeLine{41       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caafed43f3b625e72191e08e65b4bb5e02}{CRYPT\_INVALID\_KEYSIZE}};}
+\DoxyCodeLine{42    \}}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44    \textcolor{keywordflow}{if} (num\_rounds != 0 \&\& num\_rounds != 32) \{}
+\DoxyCodeLine{45       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca69aff0280b5845d03130f8700009caf5}{CRYPT\_INVALID\_ROUNDS}};}
+\DoxyCodeLine{46    \}}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48    \textcolor{comment}{/* load key */}}
+\DoxyCodeLine{49    LOAD32H(\mbox{\hyperlink{sha512_8c_a2d167a3caf30de6442abc69780199a52}{K}}[0], key+0);}
+\DoxyCodeLine{50    LOAD32H(\mbox{\hyperlink{sha512_8c_a2d167a3caf30de6442abc69780199a52}{K}}[1], key+4);}
+\DoxyCodeLine{51    LOAD32H(\mbox{\hyperlink{sha512_8c_a2d167a3caf30de6442abc69780199a52}{K}}[2], key+8);}
+\DoxyCodeLine{52    LOAD32H(\mbox{\hyperlink{sha512_8c_a2d167a3caf30de6442abc69780199a52}{K}}[3], key+12);}
+\DoxyCodeLine{53 }
+\DoxyCodeLine{54    \textcolor{keywordflow}{for} (x = sum = 0; x < 32; x++) \{}
+\DoxyCodeLine{55        skey->xtea.A[x] = (sum + \mbox{\hyperlink{sha512_8c_a2d167a3caf30de6442abc69780199a52}{K}}[sum\&3]) \& 0xFFFFFFFFUL;}
+\DoxyCodeLine{56        sum = (sum + 0x9E3779B9UL) \& 0xFFFFFFFFUL;}
+\DoxyCodeLine{57        skey->xtea.B[x] = (sum + \mbox{\hyperlink{sha512_8c_a2d167a3caf30de6442abc69780199a52}{K}}[(sum>>11)\&3]) \& 0xFFFFFFFFUL;}
+\DoxyCodeLine{58    \}}
+\DoxyCodeLine{59 }
+\DoxyCodeLine{60 \textcolor{preprocessor}{\#ifdef LTC\_CLEAN\_STACK}}
+\DoxyCodeLine{61    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(\&\mbox{\hyperlink{sha512_8c_a2d167a3caf30de6442abc69780199a52}{K}}, \textcolor{keyword}{sizeof}(\mbox{\hyperlink{sha512_8c_a2d167a3caf30de6442abc69780199a52}{K}}));}
+\DoxyCodeLine{62 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{63 }
+\DoxyCodeLine{64    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{65 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+K\+E\+Y\+S\+I\+ZE, C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+R\+O\+U\+N\+DS, C\+R\+Y\+P\+T\+\_\+\+OK, K, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, and zeromem().
+
+
+
+Referenced by xtea\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 3
+Here is the caller graph for this function\+:
+% FIG 4
+\mbox{\Hypertarget{xtea_8c_a97b4884ac816d1f98373dfbc65f9f978}\label{xtea_8c_a97b4884ac816d1f98373dfbc65f9f978}} 
+\index{xtea.c@{xtea.c}!xtea\_test@{xtea\_test}}
+\index{xtea\_test@{xtea\_test}!xtea.c@{xtea.c}}
+\subsubsection{\texorpdfstring{xtea\_test()}{xtea\_test()}}
+{\footnotesize\ttfamily int xtea\+\_\+test (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Performs a self-\/test of the L\+T\+C\+\_\+\+X\+T\+EA block cipher. 
+
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if functional, C\+R\+Y\+P\+T\+\_\+\+N\+OP if self-\/test has been disabled 
+\end{DoxyReturn}
+
+
+Definition at line 143 of file xtea.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{144 \{}
+\DoxyCodeLine{145 \textcolor{preprocessor}{ \#ifndef LTC\_TEST}}
+\DoxyCodeLine{146     \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cac43a7799c7fd5f515172da6cfc0f9cf5}{CRYPT\_NOP}};}
+\DoxyCodeLine{147 \textcolor{preprocessor}{ \#else}}
+\DoxyCodeLine{148     \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{149         \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} key[16], pt[8], ct[8];}
+\DoxyCodeLine{150     \} tests[] = \{}
+\DoxyCodeLine{151        \{}
+\DoxyCodeLine{152          \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{153            0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{154          \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{155          \{ 0xde, 0xe9, 0xd4, 0xd8, 0xf7, 0x13, 0x1e, 0xd9 \}}
+\DoxyCodeLine{156        \}, \{}
+\DoxyCodeLine{157          \{ 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x02,}
+\DoxyCodeLine{158            0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00, 0x04 \},}
+\DoxyCodeLine{159          \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{160          \{ 0xa5, 0x97, 0xab, 0x41, 0x76, 0x01, 0x4d, 0x72 \}}
+\DoxyCodeLine{161        \}, \{}
+\DoxyCodeLine{162          \{ 0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00, 0x04,}
+\DoxyCodeLine{163            0x00, 0x00, 0x00, 0x05, 0x00, 0x00, 0x00, 0x06 \},}
+\DoxyCodeLine{164          \{ 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x02 \},}
+\DoxyCodeLine{165          \{ 0xb1, 0xfd, 0x5d, 0xa9, 0xcc, 0x6d, 0xc9, 0xdc \}}
+\DoxyCodeLine{166        \}, \{}
+\DoxyCodeLine{167          \{ 0x78, 0x69, 0x5a, 0x4b, 0x3c, 0x2d, 0x1e, 0x0f,}
+\DoxyCodeLine{168            0xf0, 0xe1, 0xd2, 0xc3, 0xb4, 0xa5, 0x96, 0x87 \},}
+\DoxyCodeLine{169          \{ 0xf0, 0xe1, 0xd2, 0xc3, 0xb4, 0xa5, 0x96, 0x87 \},}
+\DoxyCodeLine{170          \{ 0x70, 0x4b, 0x31, 0x34, 0x47, 0x44, 0xdf, 0xab \}}
+\DoxyCodeLine{171        \}, \{}
+\DoxyCodeLine{172          \{ 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07,}
+\DoxyCodeLine{173            0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f \},}
+\DoxyCodeLine{174          \{ 0x41, 0x42, 0x43, 0x44, 0x45, 0x46, 0x47, 0x48 \},}
+\DoxyCodeLine{175          \{ 0x49, 0x7d, 0xf3, 0xd0, 0x72, 0x61, 0x2c, 0xb5 \}}
+\DoxyCodeLine{176        \}, \{}
+\DoxyCodeLine{177          \{ 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07,}
+\DoxyCodeLine{178            0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f \},}
+\DoxyCodeLine{179          \{ 0x41, 0x41, 0x41, 0x41, 0x41, 0x41, 0x41, 0x41 \},}
+\DoxyCodeLine{180          \{ 0xe7, 0x8f, 0x2d, 0x13, 0x74, 0x43, 0x41, 0xd8 \}}
+\DoxyCodeLine{181        \}, \{}
+\DoxyCodeLine{182          \{ 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07,}
+\DoxyCodeLine{183            0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f \},}
+\DoxyCodeLine{184          \{ 0x5a, 0x5b, 0x6e, 0x27, 0x89, 0x48, 0xd7, 0x7f \},}
+\DoxyCodeLine{185          \{ 0x41, 0x41, 0x41, 0x41, 0x41, 0x41, 0x41, 0x41 \}}
+\DoxyCodeLine{186        \}, \{}
+\DoxyCodeLine{187          \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{188            0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{189          \{ 0x41, 0x42, 0x43, 0x44, 0x45, 0x46, 0x47, 0x48 \},}
+\DoxyCodeLine{190          \{ 0xa0, 0x39, 0x05, 0x89, 0xf8, 0xb8, 0xef, 0xa5 \}}
+\DoxyCodeLine{191        \}, \{}
+\DoxyCodeLine{192          \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{193            0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{194          \{ 0x41, 0x41, 0x41, 0x41, 0x41, 0x41, 0x41, 0x41 \},}
+\DoxyCodeLine{195          \{ 0xed, 0x23, 0x37, 0x5a, 0x82, 0x1a, 0x8c, 0x2d \}}
+\DoxyCodeLine{196        \}, \{}
+\DoxyCodeLine{197          \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{198            0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{199          \{ 0x70, 0xe1, 0x22, 0x5d, 0x6e, 0x4e, 0x76, 0x55 \},}
+\DoxyCodeLine{200          \{ 0x41, 0x41, 0x41, 0x41, 0x41, 0x41, 0x41, 0x41 \}}
+\DoxyCodeLine{201        \}}
+\DoxyCodeLine{202     \};}
+\DoxyCodeLine{203    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} tmp[2][8];}
+\DoxyCodeLine{204    \mbox{\hyperlink{unionSymmetric__key}{symmetric\_key}} skey;}
+\DoxyCodeLine{205    \textcolor{keywordtype}{int} i, err, y;}
+\DoxyCodeLine{206    \textcolor{keywordflow}{for} (i = 0; i < (int)(\textcolor{keyword}{sizeof}(tests)/\textcolor{keyword}{sizeof}(tests[0])); i++) \{}
+\DoxyCodeLine{207        \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(\&skey, \textcolor{keyword}{sizeof}(skey));}
+\DoxyCodeLine{208        \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{xtea_8c_a08772c5eec26a2bcb83a3ff57d70b22d}{xtea\_setup}}(tests[i].key, 16, 0, \&skey)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})  \{}
+\DoxyCodeLine{209           \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{210        \}}
+\DoxyCodeLine{211        \mbox{\hyperlink{xtea_8c_ad188d78b79e8c15611cbc5807b3f0015}{xtea\_ecb\_encrypt}}(tests[i].pt, tmp[0], \&skey);}
+\DoxyCodeLine{212        \mbox{\hyperlink{xtea_8c_a0ae633673b839322bc256f4a75319f3b}{xtea\_ecb\_decrypt}}(tmp[0], tmp[1], \&skey);}
+\DoxyCodeLine{213 }
+\DoxyCodeLine{214        \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(tmp[0], 8, tests[i].ct, 8, \textcolor{stringliteral}{"XTEA Encrypt"}, i) != 0 ||}
+\DoxyCodeLine{215              \mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(tmp[1], 8, tests[i].pt, 8, \textcolor{stringliteral}{"XTEA Decrypt"}, i) != 0) \{}
+\DoxyCodeLine{216           \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{217        \}}
+\DoxyCodeLine{218 }
+\DoxyCodeLine{219       \textcolor{comment}{/* now see if we can encrypt all zero bytes 1000 times, decrypt and come back where we started */}}
+\DoxyCodeLine{220       \textcolor{keywordflow}{for} (y = 0; y < 8; y++) tmp[0][y] = 0;}
+\DoxyCodeLine{221       \textcolor{keywordflow}{for} (y = 0; y < 1000; y++) \mbox{\hyperlink{xtea_8c_ad188d78b79e8c15611cbc5807b3f0015}{xtea\_ecb\_encrypt}}(tmp[0], tmp[0], \&skey);}
+\DoxyCodeLine{222       \textcolor{keywordflow}{for} (y = 0; y < 1000; y++) \mbox{\hyperlink{xtea_8c_a0ae633673b839322bc256f4a75319f3b}{xtea\_ecb\_decrypt}}(tmp[0], tmp[0], \&skey);}
+\DoxyCodeLine{223       \textcolor{keywordflow}{for} (y = 0; y < 8; y++) \textcolor{keywordflow}{if} (tmp[0][y] != 0) \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{224    \} \textcolor{comment}{/* for */}}
+\DoxyCodeLine{225 }
+\DoxyCodeLine{226    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{227 \textcolor{preprocessor}{ \#endif}}
+\DoxyCodeLine{228 \}}
+
+\end{DoxyCode}
+
+
+References compare\+\_\+testvector(), C\+R\+Y\+P\+T\+\_\+\+F\+A\+I\+L\+\_\+\+T\+E\+S\+T\+V\+E\+C\+T\+OR, C\+R\+Y\+P\+T\+\_\+\+N\+OP, C\+R\+Y\+P\+T\+\_\+\+OK, xtea\+\_\+ecb\+\_\+decrypt(), xtea\+\_\+ecb\+\_\+encrypt(), xtea\+\_\+setup(), and zeromem().
+
+Here is the call graph for this function\+:
+% FIG 5
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{xtea_8c_a6fe160700a333cae733af99b30449aef}\label{xtea_8c_a6fe160700a333cae733af99b30449aef}} 
+\index{xtea.c@{xtea.c}!xtea\_desc@{xtea\_desc}}
+\index{xtea\_desc@{xtea\_desc}!xtea.c@{xtea.c}}
+\subsubsection{\texorpdfstring{xtea\_desc}{xtea\_desc}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structltc__cipher__descriptor}{ltc\+\_\+cipher\+\_\+descriptor}} xtea\+\_\+desc}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    \textcolor{stringliteral}{"xtea"},}
+\DoxyCodeLine{    1,}
+\DoxyCodeLine{    16, 16, 8, 32,}
+\DoxyCodeLine{    \&\mbox{\hyperlink{xtea_8c_a08772c5eec26a2bcb83a3ff57d70b22d}{xtea\_setup}},}
+\DoxyCodeLine{    \&\mbox{\hyperlink{xtea_8c_ad188d78b79e8c15611cbc5807b3f0015}{xtea\_ecb\_encrypt}},}
+\DoxyCodeLine{    \&\mbox{\hyperlink{xtea_8c_a0ae633673b839322bc256f4a75319f3b}{xtea\_ecb\_decrypt}},}
+\DoxyCodeLine{    \&\mbox{\hyperlink{xtea_8c_a97b4884ac816d1f98373dfbc65f9f978}{xtea\_test}},}
+\DoxyCodeLine{    \&\mbox{\hyperlink{xtea_8c_a8f64af8424ec6f70782e3e5ee5e24803}{xtea\_done}},}
+\DoxyCodeLine{    \&\mbox{\hyperlink{xtea_8c_ac39433792856f6a68add660068a5ca95}{xtea\_keysize}},}
+\DoxyCodeLine{    NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line 18 of file xtea.\+c.
+
+
+
+Referenced by register\+\_\+all\+\_\+ciphers(), and yarrow\+\_\+start().
+

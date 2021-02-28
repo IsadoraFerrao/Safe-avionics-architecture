@@ -1,0 +1,13 @@
+digraph "sosemanuk_setup"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node39 [label="sosemanuk_setup",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node39 -> Node40 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node40 [label="sosemanuk_memory",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sosemanuk__memory_8c.html#af5bb4d327884d7b137ddf18366f8d47d",tooltip="Encrypt (or decrypt) bytes of ciphertext (or plaintext) with Sosemanuk."];
+  Node40 -> Node41 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node41 [label="sosemanuk_test",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sosemanuk__test_8c.html#a56d20dc99a9bd776ac8f303c19e8c15b",tooltip=" "];
+  Node39 -> Node41 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+}

@@ -1,0 +1,42 @@
+\hypertarget{crypt__argchk_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/misc/crypt/crypt\+\_\+argchk.c File Reference}
+\label{crypt__argchk_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/misc/crypt/crypt\_argchk.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/misc/crypt/crypt\_argchk.c}}
+
+
+Perform argument checking, Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for crypt\+\_\+argchk.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{crypt__argchk_8c_a0b7940cf16cca41a3ad7ea40ac46e037}{crypt\+\_\+argchk}} (const char $\ast$v, const char $\ast$s, int d)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Perform argument checking, Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{crypt__argchk_8c_a0b7940cf16cca41a3ad7ea40ac46e037}\label{crypt__argchk_8c_a0b7940cf16cca41a3ad7ea40ac46e037}} 
+\index{crypt\_argchk.c@{crypt\_argchk.c}!crypt\_argchk@{crypt\_argchk}}
+\index{crypt\_argchk@{crypt\_argchk}!crypt\_argchk.c@{crypt\_argchk.c}}
+\subsubsection{\texorpdfstring{crypt\_argchk()}{crypt\_argchk()}}
+{\footnotesize\ttfamily void crypt\+\_\+argchk (\begin{DoxyParamCaption}\item[{const char $\ast$}]{v,  }\item[{const char $\ast$}]{s,  }\item[{int}]{d }\end{DoxyParamCaption})}
+
+
+
+Definition at line 17 of file crypt\+\_\+argchk.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{18 \{}
+\DoxyCodeLine{19  fprintf(stderr, \textcolor{stringliteral}{"LTC\_ARGCHK '\%s' failure on line \%d of file \%s\(\backslash\)n"},}
+\DoxyCodeLine{20          v, d, s);}
+\DoxyCodeLine{21  abort();}
+\DoxyCodeLine{22 \}}
+
+\end{DoxyCode}

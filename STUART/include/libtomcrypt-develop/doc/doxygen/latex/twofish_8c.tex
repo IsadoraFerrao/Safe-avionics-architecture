@@ -1,0 +1,843 @@
+\hypertarget{twofish_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/ciphers/twofish/twofish.c File Reference}
+\label{twofish_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/ciphers/twofish/twofish.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/ciphers/twofish/twofish.c}}
+
+
+Implementation of Twofish by Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}twofish\+\_\+tab.\+c\char`\"{}}\newline
+Include dependency graph for twofish.\+c\+:
+% FIG 0
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{twofish_8c_a26ad21363cd0246a426b58cbd1a206c2}{R\+S\+\_\+\+P\+O\+LY}}~0x14D
+\item 
+\#define \mbox{\hyperlink{twofish_8c_a3d50b74dbd2d41922ad8fb988cc7ffdb}{\+\_\+\+\_\+\+L\+T\+C\+\_\+\+T\+W\+O\+F\+I\+S\+H\+\_\+\+T\+A\+B\+\_\+\+C\+\_\+\+\_\+}}
+\item 
+\#define \mbox{\hyperlink{twofish_8c_a8b02607e1b8d8cb964dc6af6b751dafe}{sbox}}(i,  x)~((\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})S\+B\+OX\mbox{[}i\mbox{]}\mbox{[}(x)\&255\mbox{]})
+\item 
+\#define \mbox{\hyperlink{twofish_8c_aef29e5eb98ff3d6a2be23bf81b099b3e}{mds\+\_\+column\+\_\+mult}}(x,  i)~mds\+\_\+tab\mbox{[}i\mbox{]}\mbox{[}x\mbox{]}
+\item 
+\#define \mbox{\hyperlink{twofish_8c_af2b86a69eee8c4bd7031e2ee5ed48fe2}{g\+\_\+func}}(x,  dum)~(\mbox{\hyperlink{cast5_8c_ac5ae33c73384e98f5e5d584fc265113b}{S1}}\mbox{[}\mbox{\hyperlink{tomcrypt__private_8h_a319cb143574102827d3b0055ded27533}{L\+T\+C\+\_\+\+B\+Y\+TE}}(x,0)\mbox{]} $^\wedge$ \mbox{\hyperlink{cast5_8c_a0dbb0f93665db2dab6bd396393a28e89}{S2}}\mbox{[}\mbox{\hyperlink{tomcrypt__private_8h_a319cb143574102827d3b0055ded27533}{L\+T\+C\+\_\+\+B\+Y\+TE}}(x,1)\mbox{]} $^\wedge$ \mbox{\hyperlink{cast5_8c_a998f1fda39497e5dd85c5317a757fd68}{S3}}\mbox{[}\mbox{\hyperlink{tomcrypt__private_8h_a319cb143574102827d3b0055ded27533}{L\+T\+C\+\_\+\+B\+Y\+TE}}(x,2)\mbox{]} $^\wedge$ \mbox{\hyperlink{cast5_8c_a8957c7e73629e51b04170d187cdfe2b5}{S4}}\mbox{[}\mbox{\hyperlink{tomcrypt__private_8h_a319cb143574102827d3b0055ded27533}{L\+T\+C\+\_\+\+B\+Y\+TE}}(x,3)\mbox{]})
+\item 
+\#define \mbox{\hyperlink{twofish_8c_a9260e8db7b9363d96c9fa8552963d17d}{g1\+\_\+func}}(x,  dum)~(\mbox{\hyperlink{cast5_8c_a0dbb0f93665db2dab6bd396393a28e89}{S2}}\mbox{[}\mbox{\hyperlink{tomcrypt__private_8h_a319cb143574102827d3b0055ded27533}{L\+T\+C\+\_\+\+B\+Y\+TE}}(x,0)\mbox{]} $^\wedge$ \mbox{\hyperlink{cast5_8c_a998f1fda39497e5dd85c5317a757fd68}{S3}}\mbox{[}\mbox{\hyperlink{tomcrypt__private_8h_a319cb143574102827d3b0055ded27533}{L\+T\+C\+\_\+\+B\+Y\+TE}}(x,1)\mbox{]} $^\wedge$ \mbox{\hyperlink{cast5_8c_a8957c7e73629e51b04170d187cdfe2b5}{S4}}\mbox{[}\mbox{\hyperlink{tomcrypt__private_8h_a319cb143574102827d3b0055ded27533}{L\+T\+C\+\_\+\+B\+Y\+TE}}(x,2)\mbox{]} $^\wedge$ \mbox{\hyperlink{cast5_8c_ac5ae33c73384e98f5e5d584fc265113b}{S1}}\mbox{[}\mbox{\hyperlink{tomcrypt__private_8h_a319cb143574102827d3b0055ded27533}{L\+T\+C\+\_\+\+B\+Y\+TE}}(x,3)\mbox{]})
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} \mbox{\hyperlink{twofish_8c_a50cb6cae0fa9050493e161c50a750fa2}{gf\+\_\+mult}} (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} a, \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} b, \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} p)
+\item 
+static void \mbox{\hyperlink{twofish_8c_a763a9e4ecf80c1b4ebc325eb99d85ecf}{mds\+\_\+mult}} (const unsigned char $\ast$in, unsigned char $\ast$out)
+\item 
+static void \mbox{\hyperlink{twofish_8c_a7f70548f6884301f7bf4bcaa5f3ae8f5}{rs\+\_\+mult}} (const unsigned char $\ast$in, unsigned char $\ast$out)
+\item 
+static void \mbox{\hyperlink{twofish_8c_a68bf5e20c943002d66781398f2409185}{h\+\_\+func}} (const unsigned char $\ast$in, unsigned char $\ast$out, const unsigned char $\ast$M, int k, int offset)
+\item 
+int \mbox{\hyperlink{twofish_8c_abd553d986cc2dd70dfc13e44eea72038}{twofish\+\_\+setup}} (const unsigned char $\ast$key, int keylen, int num\+\_\+rounds, \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)
+\begin{DoxyCompactList}\small\item\em Initialize the Twofish block cipher. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{twofish_8c_abf79befc0f00a6080f661f3819297c26}{twofish\+\_\+ecb\+\_\+encrypt}} (const unsigned char $\ast$pt, unsigned char $\ast$ct, const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)
+\begin{DoxyCompactList}\small\item\em Encrypts a block of text with Twofish. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{twofish_8c_a914f4501da8d30f0dc4a884e859605be}{twofish\+\_\+ecb\+\_\+decrypt}} (const unsigned char $\ast$ct, unsigned char $\ast$pt, const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)
+\begin{DoxyCompactList}\small\item\em Decrypts a block of text with Twofish. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{twofish_8c_a5a6367e9c441b1a3b04542383d3c5654}{twofish\+\_\+test}} (void)
+\begin{DoxyCompactList}\small\item\em Performs a self-\/test of the Twofish block cipher. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{twofish_8c_aebe8b86fa6a5f1b72ccf9d7705dd8c38}{twofish\+\_\+done}} (\mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)
+\begin{DoxyCompactList}\small\item\em Terminate the context. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{twofish_8c_ad1b8812e42987225fd29ebc171848dc5}{twofish\+\_\+keysize}} (int $\ast$keysize)
+\begin{DoxyCompactList}\small\item\em Gets suitable key size. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const struct \mbox{\hyperlink{structltc__cipher__descriptor}{ltc\+\_\+cipher\+\_\+descriptor}} \mbox{\hyperlink{twofish_8c_af0de9cc3deb118ab8ca14f7ff6d52fd3}{twofish\+\_\+desc}}
+\item 
+static const unsigned char \mbox{\hyperlink{twofish_8c_abc55ce95a4e481ea468b82c105c8147d}{RS}} \mbox{[}4\mbox{]}\mbox{[}8\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Implementation of Twofish by Tom St Denis. 
+
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{twofish_8c_a3d50b74dbd2d41922ad8fb988cc7ffdb}\label{twofish_8c_a3d50b74dbd2d41922ad8fb988cc7ffdb}} 
+\index{twofish.c@{twofish.c}!\_\_LTC\_TWOFISH\_TAB\_C\_\_@{\_\_LTC\_TWOFISH\_TAB\_C\_\_}}
+\index{\_\_LTC\_TWOFISH\_TAB\_C\_\_@{\_\_LTC\_TWOFISH\_TAB\_C\_\_}!twofish.c@{twofish.c}}
+\subsubsection{\texorpdfstring{\_\_LTC\_TWOFISH\_TAB\_C\_\_}{\_\_LTC\_TWOFISH\_TAB\_C\_\_}}
+{\footnotesize\ttfamily \#define \+\_\+\+\_\+\+L\+T\+C\+\_\+\+T\+W\+O\+F\+I\+S\+H\+\_\+\+T\+A\+B\+\_\+\+C\+\_\+\+\_\+}
+
+
+
+Definition at line 67 of file twofish.\+c.
+
+\mbox{\Hypertarget{twofish_8c_a9260e8db7b9363d96c9fa8552963d17d}\label{twofish_8c_a9260e8db7b9363d96c9fa8552963d17d}} 
+\index{twofish.c@{twofish.c}!g1\_func@{g1\_func}}
+\index{g1\_func@{g1\_func}!twofish.c@{twofish.c}}
+\subsubsection{\texorpdfstring{g1\_func}{g1\_func}}
+{\footnotesize\ttfamily \#define g1\+\_\+func(\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{dum }\end{DoxyParamCaption})~(\mbox{\hyperlink{cast5_8c_a0dbb0f93665db2dab6bd396393a28e89}{S2}}\mbox{[}\mbox{\hyperlink{tomcrypt__private_8h_a319cb143574102827d3b0055ded27533}{L\+T\+C\+\_\+\+B\+Y\+TE}}(x,0)\mbox{]} $^\wedge$ \mbox{\hyperlink{cast5_8c_a998f1fda39497e5dd85c5317a757fd68}{S3}}\mbox{[}\mbox{\hyperlink{tomcrypt__private_8h_a319cb143574102827d3b0055ded27533}{L\+T\+C\+\_\+\+B\+Y\+TE}}(x,1)\mbox{]} $^\wedge$ \mbox{\hyperlink{cast5_8c_a8957c7e73629e51b04170d187cdfe2b5}{S4}}\mbox{[}\mbox{\hyperlink{tomcrypt__private_8h_a319cb143574102827d3b0055ded27533}{L\+T\+C\+\_\+\+B\+Y\+TE}}(x,2)\mbox{]} $^\wedge$ \mbox{\hyperlink{cast5_8c_ac5ae33c73384e98f5e5d584fc265113b}{S1}}\mbox{[}\mbox{\hyperlink{tomcrypt__private_8h_a319cb143574102827d3b0055ded27533}{L\+T\+C\+\_\+\+B\+Y\+TE}}(x,3)\mbox{]})}
+
+
+
+Definition at line 286 of file twofish.\+c.
+
+\mbox{\Hypertarget{twofish_8c_af2b86a69eee8c4bd7031e2ee5ed48fe2}\label{twofish_8c_af2b86a69eee8c4bd7031e2ee5ed48fe2}} 
+\index{twofish.c@{twofish.c}!g\_func@{g\_func}}
+\index{g\_func@{g\_func}!twofish.c@{twofish.c}}
+\subsubsection{\texorpdfstring{g\_func}{g\_func}}
+{\footnotesize\ttfamily \#define g\+\_\+func(\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{dum }\end{DoxyParamCaption})~(\mbox{\hyperlink{cast5_8c_ac5ae33c73384e98f5e5d584fc265113b}{S1}}\mbox{[}\mbox{\hyperlink{tomcrypt__private_8h_a319cb143574102827d3b0055ded27533}{L\+T\+C\+\_\+\+B\+Y\+TE}}(x,0)\mbox{]} $^\wedge$ \mbox{\hyperlink{cast5_8c_a0dbb0f93665db2dab6bd396393a28e89}{S2}}\mbox{[}\mbox{\hyperlink{tomcrypt__private_8h_a319cb143574102827d3b0055ded27533}{L\+T\+C\+\_\+\+B\+Y\+TE}}(x,1)\mbox{]} $^\wedge$ \mbox{\hyperlink{cast5_8c_a998f1fda39497e5dd85c5317a757fd68}{S3}}\mbox{[}\mbox{\hyperlink{tomcrypt__private_8h_a319cb143574102827d3b0055ded27533}{L\+T\+C\+\_\+\+B\+Y\+TE}}(x,2)\mbox{]} $^\wedge$ \mbox{\hyperlink{cast5_8c_a8957c7e73629e51b04170d187cdfe2b5}{S4}}\mbox{[}\mbox{\hyperlink{tomcrypt__private_8h_a319cb143574102827d3b0055ded27533}{L\+T\+C\+\_\+\+B\+Y\+TE}}(x,3)\mbox{]})}
+
+
+
+Definition at line 285 of file twofish.\+c.
+
+\mbox{\Hypertarget{twofish_8c_aef29e5eb98ff3d6a2be23bf81b099b3e}\label{twofish_8c_aef29e5eb98ff3d6a2be23bf81b099b3e}} 
+\index{twofish.c@{twofish.c}!mds\_column\_mult@{mds\_column\_mult}}
+\index{mds\_column\_mult@{mds\_column\_mult}!twofish.c@{twofish.c}}
+\subsubsection{\texorpdfstring{mds\_column\_mult}{mds\_column\_mult}}
+{\footnotesize\ttfamily \#define mds\+\_\+column\+\_\+mult(\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{i }\end{DoxyParamCaption})~mds\+\_\+tab\mbox{[}i\mbox{]}\mbox{[}x\mbox{]}}
+
+
+
+Definition at line 202 of file twofish.\+c.
+
+\mbox{\Hypertarget{twofish_8c_a26ad21363cd0246a426b58cbd1a206c2}\label{twofish_8c_a26ad21363cd0246a426b58cbd1a206c2}} 
+\index{twofish.c@{twofish.c}!RS\_POLY@{RS\_POLY}}
+\index{RS\_POLY@{RS\_POLY}!twofish.c@{twofish.c}}
+\subsubsection{\texorpdfstring{RS\_POLY}{RS\_POLY}}
+{\footnotesize\ttfamily \#define R\+S\+\_\+\+P\+O\+LY~0x14D}
+
+
+
+Definition at line 44 of file twofish.\+c.
+
+\mbox{\Hypertarget{twofish_8c_a8b02607e1b8d8cb964dc6af6b751dafe}\label{twofish_8c_a8b02607e1b8d8cb964dc6af6b751dafe}} 
+\index{twofish.c@{twofish.c}!sbox@{sbox}}
+\index{sbox@{sbox}!twofish.c@{twofish.c}}
+\subsubsection{\texorpdfstring{sbox}{sbox}}
+{\footnotesize\ttfamily \#define sbox(\begin{DoxyParamCaption}\item[{}]{i,  }\item[{}]{x }\end{DoxyParamCaption})~((\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})S\+B\+OX\mbox{[}i\mbox{]}\mbox{[}(x)\&255\mbox{]})}
+
+
+
+Definition at line 70 of file twofish.\+c.
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{twofish_8c_a50cb6cae0fa9050493e161c50a750fa2}\label{twofish_8c_a50cb6cae0fa9050493e161c50a750fa2}} 
+\index{twofish.c@{twofish.c}!gf\_mult@{gf\_mult}}
+\index{gf\_mult@{gf\_mult}!twofish.c@{twofish.c}}
+\subsubsection{\texorpdfstring{gf\_mult()}{gf\_mult()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} gf\+\_\+mult (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}}}]{a,  }\item[{\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}}}]{b,  }\item[{\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}}}]{p }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 143 of file twofish.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{144 \{}
+\DoxyCodeLine{145    \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} result, B[2], P[2];}
+\DoxyCodeLine{146 }
+\DoxyCodeLine{147    P[1] = p;}
+\DoxyCodeLine{148    B[1] = b;}
+\DoxyCodeLine{149    result = P[0] = B[0] = 0;}
+\DoxyCodeLine{150 }
+\DoxyCodeLine{151    \textcolor{comment}{/* unrolled branchless GF multiplier */}}
+\DoxyCodeLine{152    result \string^= B[a\&1]; a >>= 1;  B[1] = P[B[1]>>7] \string^ (B[1] << 1);}
+\DoxyCodeLine{153    result \string^= B[a\&1]; a >>= 1;  B[1] = P[B[1]>>7] \string^ (B[1] << 1);}
+\DoxyCodeLine{154    result \string^= B[a\&1]; a >>= 1;  B[1] = P[B[1]>>7] \string^ (B[1] << 1);}
+\DoxyCodeLine{155    result \string^= B[a\&1]; a >>= 1;  B[1] = P[B[1]>>7] \string^ (B[1] << 1);}
+\DoxyCodeLine{156    result \string^= B[a\&1]; a >>= 1;  B[1] = P[B[1]>>7] \string^ (B[1] << 1);}
+\DoxyCodeLine{157    result \string^= B[a\&1]; a >>= 1;  B[1] = P[B[1]>>7] \string^ (B[1] << 1);}
+\DoxyCodeLine{158    result \string^= B[a\&1]; a >>= 1;  B[1] = P[B[1]>>7] \string^ (B[1] << 1);}
+\DoxyCodeLine{159    result \string^= B[a\&1];}
+\DoxyCodeLine{160 }
+\DoxyCodeLine{161    \textcolor{keywordflow}{return} result;}
+\DoxyCodeLine{162 \}}
+
+\end{DoxyCode}
+
+
+Referenced by rs\+\_\+mult().
+
+Here is the caller graph for this function\+:
+% FIG 1
+\mbox{\Hypertarget{twofish_8c_a68bf5e20c943002d66781398f2409185}\label{twofish_8c_a68bf5e20c943002d66781398f2409185}} 
+\index{twofish.c@{twofish.c}!h\_func@{h\_func}}
+\index{h\_func@{h\_func}!twofish.c@{twofish.c}}
+\subsubsection{\texorpdfstring{h\_func()}{h\_func()}}
+{\footnotesize\ttfamily static void h\+\_\+func (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{in,  }\item[{unsigned char $\ast$}]{out,  }\item[{const unsigned char $\ast$}]{M,  }\item[{int}]{k,  }\item[{int}]{offset }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 244 of file twofish.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{245 \{}
+\DoxyCodeLine{246   \textcolor{keywordtype}{int} x;}
+\DoxyCodeLine{247   \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} y[4];}
+\DoxyCodeLine{248   \textcolor{keywordflow}{for} (x = 0; x < 4; x++) \{}
+\DoxyCodeLine{249       y[x] = in[x];}
+\DoxyCodeLine{250   \}}
+\DoxyCodeLine{251   \textcolor{keywordflow}{switch} (k) \{}
+\DoxyCodeLine{252      \textcolor{keywordflow}{case} 4:}
+\DoxyCodeLine{253             y[0] = (\textcolor{keywordtype}{unsigned} char)(\mbox{\hyperlink{twofish_8c_a8b02607e1b8d8cb964dc6af6b751dafe}{sbox}}(1, (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})y[0]) \string^ M[4 * (6 + offset) + 0]);}
+\DoxyCodeLine{254             y[1] = (\textcolor{keywordtype}{unsigned} char)(\mbox{\hyperlink{twofish_8c_a8b02607e1b8d8cb964dc6af6b751dafe}{sbox}}(0, (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})y[1]) \string^ M[4 * (6 + offset) + 1]);}
+\DoxyCodeLine{255             y[2] = (\textcolor{keywordtype}{unsigned} char)(\mbox{\hyperlink{twofish_8c_a8b02607e1b8d8cb964dc6af6b751dafe}{sbox}}(0, (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})y[2]) \string^ M[4 * (6 + offset) + 2]);}
+\DoxyCodeLine{256             y[3] = (\textcolor{keywordtype}{unsigned} char)(\mbox{\hyperlink{twofish_8c_a8b02607e1b8d8cb964dc6af6b751dafe}{sbox}}(1, (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})y[3]) \string^ M[4 * (6 + offset) + 3]);}
+\DoxyCodeLine{257             \textcolor{comment}{/* FALLTHROUGH */}}
+\DoxyCodeLine{258      \textcolor{keywordflow}{case} 3:}
+\DoxyCodeLine{259             y[0] = (\textcolor{keywordtype}{unsigned} char)(\mbox{\hyperlink{twofish_8c_a8b02607e1b8d8cb964dc6af6b751dafe}{sbox}}(1, (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})y[0]) \string^ M[4 * (4 + offset) + 0]);}
+\DoxyCodeLine{260             y[1] = (\textcolor{keywordtype}{unsigned} char)(\mbox{\hyperlink{twofish_8c_a8b02607e1b8d8cb964dc6af6b751dafe}{sbox}}(1, (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})y[1]) \string^ M[4 * (4 + offset) + 1]);}
+\DoxyCodeLine{261             y[2] = (\textcolor{keywordtype}{unsigned} char)(\mbox{\hyperlink{twofish_8c_a8b02607e1b8d8cb964dc6af6b751dafe}{sbox}}(0, (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})y[2]) \string^ M[4 * (4 + offset) + 2]);}
+\DoxyCodeLine{262             y[3] = (\textcolor{keywordtype}{unsigned} char)(\mbox{\hyperlink{twofish_8c_a8b02607e1b8d8cb964dc6af6b751dafe}{sbox}}(0, (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})y[3]) \string^ M[4 * (4 + offset) + 3]);}
+\DoxyCodeLine{263             \textcolor{comment}{/* FALLTHROUGH */}}
+\DoxyCodeLine{264      \textcolor{keywordflow}{case} 2:}
+\DoxyCodeLine{265             y[0] = (\textcolor{keywordtype}{unsigned} char)(\mbox{\hyperlink{twofish_8c_a8b02607e1b8d8cb964dc6af6b751dafe}{sbox}}(1, \mbox{\hyperlink{twofish_8c_a8b02607e1b8d8cb964dc6af6b751dafe}{sbox}}(0, \mbox{\hyperlink{twofish_8c_a8b02607e1b8d8cb964dc6af6b751dafe}{sbox}}(0, (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})y[0]) \string^ M[4 * (2 + offset) + 0]) \string^ M[4 * (0 + offset) + 0]));}
+\DoxyCodeLine{266             y[1] = (\textcolor{keywordtype}{unsigned} char)(\mbox{\hyperlink{twofish_8c_a8b02607e1b8d8cb964dc6af6b751dafe}{sbox}}(0, \mbox{\hyperlink{twofish_8c_a8b02607e1b8d8cb964dc6af6b751dafe}{sbox}}(0, \mbox{\hyperlink{twofish_8c_a8b02607e1b8d8cb964dc6af6b751dafe}{sbox}}(1, (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})y[1]) \string^ M[4 * (2 + offset) + 1]) \string^ M[4 * (0 + offset) + 1]));}
+\DoxyCodeLine{267             y[2] = (\textcolor{keywordtype}{unsigned} char)(\mbox{\hyperlink{twofish_8c_a8b02607e1b8d8cb964dc6af6b751dafe}{sbox}}(1, \mbox{\hyperlink{twofish_8c_a8b02607e1b8d8cb964dc6af6b751dafe}{sbox}}(1, \mbox{\hyperlink{twofish_8c_a8b02607e1b8d8cb964dc6af6b751dafe}{sbox}}(0, (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})y[2]) \string^ M[4 * (2 + offset) + 2]) \string^ M[4 * (0 + offset) + 2]));}
+\DoxyCodeLine{268             y[3] = (\textcolor{keywordtype}{unsigned} char)(\mbox{\hyperlink{twofish_8c_a8b02607e1b8d8cb964dc6af6b751dafe}{sbox}}(0, \mbox{\hyperlink{twofish_8c_a8b02607e1b8d8cb964dc6af6b751dafe}{sbox}}(1, \mbox{\hyperlink{twofish_8c_a8b02607e1b8d8cb964dc6af6b751dafe}{sbox}}(1, (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})y[3]) \string^ M[4 * (2 + offset) + 3]) \string^ M[4 * (0 + offset) + 3]));}
+\DoxyCodeLine{269             \textcolor{comment}{/* FALLTHROUGH */}}
+\DoxyCodeLine{270   \}}
+\DoxyCodeLine{271   \mbox{\hyperlink{twofish_8c_a763a9e4ecf80c1b4ebc325eb99d85ecf}{mds\_mult}}(y, out);}
+\DoxyCodeLine{272 \}}
+
+\end{DoxyCode}
+
+
+References mds\+\_\+mult(), and sbox.
+
+
+
+Referenced by twofish\+\_\+setup().
+
+Here is the call graph for this function\+:
+% FIG 2
+Here is the caller graph for this function\+:
+% FIG 3
+\mbox{\Hypertarget{twofish_8c_a763a9e4ecf80c1b4ebc325eb99d85ecf}\label{twofish_8c_a763a9e4ecf80c1b4ebc325eb99d85ecf}} 
+\index{twofish.c@{twofish.c}!mds\_mult@{mds\_mult}}
+\index{mds\_mult@{mds\_mult}!twofish.c@{twofish.c}}
+\subsubsection{\texorpdfstring{mds\_mult()}{mds\_mult()}}
+{\footnotesize\ttfamily static void mds\+\_\+mult (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{in,  }\item[{unsigned char $\ast$}]{out }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 207 of file twofish.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{208 \{}
+\DoxyCodeLine{209   \textcolor{keywordtype}{int} x;}
+\DoxyCodeLine{210   \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} tmp;}
+\DoxyCodeLine{211   \textcolor{keywordflow}{for} (tmp = x = 0; x < 4; x++) \{}
+\DoxyCodeLine{212       tmp \string^= \mbox{\hyperlink{twofish_8c_aef29e5eb98ff3d6a2be23bf81b099b3e}{mds\_column\_mult}}(in[x], x);}
+\DoxyCodeLine{213   \}}
+\DoxyCodeLine{214   STORE32L(tmp, out);}
+\DoxyCodeLine{215 \}}
+
+\end{DoxyCode}
+
+
+References mds\+\_\+column\+\_\+mult.
+
+
+
+Referenced by h\+\_\+func().
+
+Here is the caller graph for this function\+:
+% FIG 4
+\mbox{\Hypertarget{twofish_8c_a7f70548f6884301f7bf4bcaa5f3ae8f5}\label{twofish_8c_a7f70548f6884301f7bf4bcaa5f3ae8f5}} 
+\index{twofish.c@{twofish.c}!rs\_mult@{rs\_mult}}
+\index{rs\_mult@{rs\_mult}!twofish.c@{twofish.c}}
+\subsubsection{\texorpdfstring{rs\_mult()}{rs\_mult()}}
+{\footnotesize\ttfamily static void rs\+\_\+mult (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{in,  }\item[{unsigned char $\ast$}]{out }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 230 of file twofish.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{231 \{}
+\DoxyCodeLine{232   \textcolor{keywordtype}{int} x, y;}
+\DoxyCodeLine{233   \textcolor{keywordflow}{for} (x = 0; x < 4; x++) \{}
+\DoxyCodeLine{234       out[x] = 0;}
+\DoxyCodeLine{235       \textcolor{keywordflow}{for} (y = 0; y < 8; y++) \{}
+\DoxyCodeLine{236           out[x] \string^= \mbox{\hyperlink{twofish_8c_a50cb6cae0fa9050493e161c50a750fa2}{gf\_mult}}(in[y], \mbox{\hyperlink{twofish_8c_abc55ce95a4e481ea468b82c105c8147d}{RS}}[x][y], \mbox{\hyperlink{twofish_8c_a26ad21363cd0246a426b58cbd1a206c2}{RS\_POLY}});}
+\DoxyCodeLine{237       \}}
+\DoxyCodeLine{238   \}}
+\DoxyCodeLine{239 \}}
+
+\end{DoxyCode}
+
+
+References gf\+\_\+mult(), RS, and R\+S\+\_\+\+P\+O\+LY.
+
+
+
+Referenced by twofish\+\_\+setup().
+
+Here is the call graph for this function\+:
+% FIG 5
+Here is the caller graph for this function\+:
+% FIG 6
+\mbox{\Hypertarget{twofish_8c_aebe8b86fa6a5f1b72ccf9d7705dd8c38}\label{twofish_8c_aebe8b86fa6a5f1b72ccf9d7705dd8c38}} 
+\index{twofish.c@{twofish.c}!twofish\_done@{twofish\_done}}
+\index{twofish\_done@{twofish\_done}!twofish.c@{twofish.c}}
+\subsubsection{\texorpdfstring{twofish\_done()}{twofish\_done()}}
+{\footnotesize\ttfamily void twofish\+\_\+done (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$}]{skey }\end{DoxyParamCaption})}
+
+
+
+Terminate the context. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em skey} & The scheduled key \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 683 of file twofish.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{684 \{}
+\DoxyCodeLine{685   \mbox{\hyperlink{tomcrypt__macros_8h_accde4b007facd646a8327f8e64b2d1e0}{LTC\_UNUSED\_PARAM}}(skey);}
+\DoxyCodeLine{686 \}}
+
+\end{DoxyCode}
+
+
+References L\+T\+C\+\_\+\+U\+N\+U\+S\+E\+D\+\_\+\+P\+A\+R\+AM.
+
+\mbox{\Hypertarget{twofish_8c_a914f4501da8d30f0dc4a884e859605be}\label{twofish_8c_a914f4501da8d30f0dc4a884e859605be}} 
+\index{twofish.c@{twofish.c}!twofish\_ecb\_decrypt@{twofish\_ecb\_decrypt}}
+\index{twofish\_ecb\_decrypt@{twofish\_ecb\_decrypt}!twofish.c@{twofish.c}}
+\subsubsection{\texorpdfstring{twofish\_ecb\_decrypt()}{twofish\_ecb\_decrypt()}}
+{\footnotesize\ttfamily int twofish\+\_\+ecb\+\_\+decrypt (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{ct,  }\item[{unsigned char $\ast$}]{pt,  }\item[{const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$}]{skey }\end{DoxyParamCaption})}
+
+
+
+Decrypts a block of text with Twofish. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ct} & The input ciphertext (16 bytes) \\
+\hline
+{\em pt} & The output plaintext (16 bytes) \\
+\hline
+{\em skey} & The key as scheduled \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 547 of file twofish.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{549 \{}
+\DoxyCodeLine{550     \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} a,b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d,ta,tb,tc,td,\mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}},\mbox{\hyperlink{tiger_8c_aa4652e2d6053d420dcbea07a113db5fe}{t2}};}
+\DoxyCodeLine{551     \textcolor{keyword}{const} \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} *k;}
+\DoxyCodeLine{552     \textcolor{keywordtype}{int} r;}
+\DoxyCodeLine{553 \textcolor{preprocessor}{\#if !defined(LTC\_TWOFISH\_SMALL) \&\& !defined(\_\_GNUC\_\_)}}
+\DoxyCodeLine{554     \textcolor{keyword}{const} \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} *\mbox{\hyperlink{sosemanuk_8c_ab9578ef02669318f0403f120bc0280d7}{S1}}, *\mbox{\hyperlink{sosemanuk_8c_a6bedac3e63cf44ab1b3091a78d21e297}{S2}}, *\mbox{\hyperlink{sosemanuk_8c_a6d22d6fb54f8c3cb615bf66829a94a13}{S3}}, *\mbox{\hyperlink{sosemanuk_8c_a57b2a1dee95346d5a213ec826d787186}{S4}};}
+\DoxyCodeLine{555 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{556 }
+\DoxyCodeLine{557     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(pt   != NULL);}
+\DoxyCodeLine{558     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(ct   != NULL);}
+\DoxyCodeLine{559     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(skey != NULL);}
+\DoxyCodeLine{560 }
+\DoxyCodeLine{561 \textcolor{preprocessor}{\#if !defined(LTC\_TWOFISH\_SMALL) \&\& !defined(\_\_GNUC\_\_)}}
+\DoxyCodeLine{562     \mbox{\hyperlink{sosemanuk_8c_ab9578ef02669318f0403f120bc0280d7}{S1}} = skey->twofish.S[0];}
+\DoxyCodeLine{563     \mbox{\hyperlink{sosemanuk_8c_a6bedac3e63cf44ab1b3091a78d21e297}{S2}} = skey->twofish.S[1];}
+\DoxyCodeLine{564     \mbox{\hyperlink{sosemanuk_8c_a6d22d6fb54f8c3cb615bf66829a94a13}{S3}} = skey->twofish.S[2];}
+\DoxyCodeLine{565     \mbox{\hyperlink{sosemanuk_8c_a57b2a1dee95346d5a213ec826d787186}{S4}} = skey->twofish.S[3];}
+\DoxyCodeLine{566 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{567 }
+\DoxyCodeLine{568     \textcolor{comment}{/* load input */}}
+\DoxyCodeLine{569     LOAD32L(ta,\&ct[0]); LOAD32L(tb,\&ct[4]);}
+\DoxyCodeLine{570     LOAD32L(tc,\&ct[8]); LOAD32L(td,\&ct[12]);}
+\DoxyCodeLine{571 }
+\DoxyCodeLine{572     \textcolor{comment}{/* undo undo final swap */}}
+\DoxyCodeLine{573     a = tc \string^ skey->twofish.K[6];}
+\DoxyCodeLine{574     b = td \string^ skey->twofish.K[7];}
+\DoxyCodeLine{575     \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} = ta \string^ skey->twofish.K[4];}
+\DoxyCodeLine{576     d = tb \string^ skey->twofish.K[5];}
+\DoxyCodeLine{577 }
+\DoxyCodeLine{578     k = skey->twofish.K + 36;}
+\DoxyCodeLine{579     \textcolor{keywordflow}{for} (r = 8; r != 0; --r) \{}
+\DoxyCodeLine{580         \mbox{\hyperlink{tiger_8c_aa4652e2d6053d420dcbea07a113db5fe}{t2}} = \mbox{\hyperlink{twofish_8c_a9260e8db7b9363d96c9fa8552963d17d}{g1\_func}}(d, skey);}
+\DoxyCodeLine{581         \mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}} = \mbox{\hyperlink{twofish_8c_af2b86a69eee8c4bd7031e2ee5ed48fe2}{g\_func}}(\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, skey) + \mbox{\hyperlink{tiger_8c_aa4652e2d6053d420dcbea07a113db5fe}{t2}};}
+\DoxyCodeLine{582         a = \mbox{\hyperlink{tomcrypt__macros_8h_a39d625dc0b148466a72c13737e063d86}{ROLc}}(a, 1) \string^ (\mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}} + k[2]);}
+\DoxyCodeLine{583         b = \mbox{\hyperlink{tomcrypt__macros_8h_adb04fb3f7c1736d29125ad0f179b1068}{RORc}}(b \string^ (\mbox{\hyperlink{tiger_8c_aa4652e2d6053d420dcbea07a113db5fe}{t2}} + \mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}} + k[3]), 1);}
+\DoxyCodeLine{584 }
+\DoxyCodeLine{585         \mbox{\hyperlink{tiger_8c_aa4652e2d6053d420dcbea07a113db5fe}{t2}} = \mbox{\hyperlink{twofish_8c_a9260e8db7b9363d96c9fa8552963d17d}{g1\_func}}(b, skey);}
+\DoxyCodeLine{586         \mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}} = \mbox{\hyperlink{twofish_8c_af2b86a69eee8c4bd7031e2ee5ed48fe2}{g\_func}}(a, skey) + \mbox{\hyperlink{tiger_8c_aa4652e2d6053d420dcbea07a113db5fe}{t2}};}
+\DoxyCodeLine{587         \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} = \mbox{\hyperlink{tomcrypt__macros_8h_a39d625dc0b148466a72c13737e063d86}{ROLc}}(\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, 1) \string^ (\mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}} + k[0]);}
+\DoxyCodeLine{588         d = \mbox{\hyperlink{tomcrypt__macros_8h_adb04fb3f7c1736d29125ad0f179b1068}{RORc}}(d \string^ (\mbox{\hyperlink{tiger_8c_aa4652e2d6053d420dcbea07a113db5fe}{t2}} +  \mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}} + k[1]), 1);}
+\DoxyCodeLine{589         k -= 4;}
+\DoxyCodeLine{590     \}}
+\DoxyCodeLine{591 }
+\DoxyCodeLine{592     \textcolor{comment}{/* pre-white */}}
+\DoxyCodeLine{593     a \string^= skey->twofish.K[0];}
+\DoxyCodeLine{594     b \string^= skey->twofish.K[1];}
+\DoxyCodeLine{595     \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} \string^= skey->twofish.K[2];}
+\DoxyCodeLine{596     d \string^= skey->twofish.K[3];}
+\DoxyCodeLine{597 }
+\DoxyCodeLine{598     \textcolor{comment}{/* store */}}
+\DoxyCodeLine{599     STORE32L(a, \&pt[0]); STORE32L(b, \&pt[4]);}
+\DoxyCodeLine{600     STORE32L(\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, \&pt[8]); STORE32L(d, \&pt[12]);}
+\DoxyCodeLine{601     \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{602 \}}
+
+\end{DoxyCode}
+
+
+References c, C\+R\+Y\+P\+T\+\_\+\+OK, g1\+\_\+func, g\+\_\+func, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, R\+O\+Lc, R\+O\+Rc, S1, S2, S3, S4, t1, and t2.
+
+
+
+Referenced by twofish\+\_\+test().
+
+Here is the caller graph for this function\+:
+% FIG 7
+\mbox{\Hypertarget{twofish_8c_abf79befc0f00a6080f661f3819297c26}\label{twofish_8c_abf79befc0f00a6080f661f3819297c26}} 
+\index{twofish.c@{twofish.c}!twofish\_ecb\_encrypt@{twofish\_ecb\_encrypt}}
+\index{twofish\_ecb\_encrypt@{twofish\_ecb\_encrypt}!twofish.c@{twofish.c}}
+\subsubsection{\texorpdfstring{twofish\_ecb\_encrypt()}{twofish\_ecb\_encrypt()}}
+{\footnotesize\ttfamily int twofish\+\_\+ecb\+\_\+encrypt (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{pt,  }\item[{unsigned char $\ast$}]{ct,  }\item[{const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$}]{skey }\end{DoxyParamCaption})}
+
+
+
+Encrypts a block of text with Twofish. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pt} & The input plaintext (16 bytes) \\
+\hline
+{\em ct} & The output ciphertext (16 bytes) \\
+\hline
+{\em skey} & The key as scheduled \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 473 of file twofish.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{475 \{}
+\DoxyCodeLine{476     \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} a,b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d,ta,tb,tc,td,\mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}},\mbox{\hyperlink{tiger_8c_aa4652e2d6053d420dcbea07a113db5fe}{t2}};}
+\DoxyCodeLine{477     \textcolor{keyword}{const} \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} *k;}
+\DoxyCodeLine{478     \textcolor{keywordtype}{int} r;}
+\DoxyCodeLine{479 \textcolor{preprocessor}{\#if !defined(LTC\_TWOFISH\_SMALL) \&\& !defined(\_\_GNUC\_\_)}}
+\DoxyCodeLine{480     \textcolor{keyword}{const} \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} *\mbox{\hyperlink{sosemanuk_8c_ab9578ef02669318f0403f120bc0280d7}{S1}}, *\mbox{\hyperlink{sosemanuk_8c_a6bedac3e63cf44ab1b3091a78d21e297}{S2}}, *\mbox{\hyperlink{sosemanuk_8c_a6d22d6fb54f8c3cb615bf66829a94a13}{S3}}, *\mbox{\hyperlink{sosemanuk_8c_a57b2a1dee95346d5a213ec826d787186}{S4}};}
+\DoxyCodeLine{481 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{482 }
+\DoxyCodeLine{483     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(pt   != NULL);}
+\DoxyCodeLine{484     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(ct   != NULL);}
+\DoxyCodeLine{485     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(skey != NULL);}
+\DoxyCodeLine{486 }
+\DoxyCodeLine{487 \textcolor{preprocessor}{\#if !defined(LTC\_TWOFISH\_SMALL) \&\& !defined(\_\_GNUC\_\_)}}
+\DoxyCodeLine{488     \mbox{\hyperlink{sosemanuk_8c_ab9578ef02669318f0403f120bc0280d7}{S1}} = skey->twofish.S[0];}
+\DoxyCodeLine{489     \mbox{\hyperlink{sosemanuk_8c_a6bedac3e63cf44ab1b3091a78d21e297}{S2}} = skey->twofish.S[1];}
+\DoxyCodeLine{490     \mbox{\hyperlink{sosemanuk_8c_a6d22d6fb54f8c3cb615bf66829a94a13}{S3}} = skey->twofish.S[2];}
+\DoxyCodeLine{491     \mbox{\hyperlink{sosemanuk_8c_a57b2a1dee95346d5a213ec826d787186}{S4}} = skey->twofish.S[3];}
+\DoxyCodeLine{492 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{493 }
+\DoxyCodeLine{494     LOAD32L(a,\&pt[0]); LOAD32L(b,\&pt[4]);}
+\DoxyCodeLine{495     LOAD32L(\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},\&pt[8]); LOAD32L(d,\&pt[12]);}
+\DoxyCodeLine{496     a \string^= skey->twofish.K[0];}
+\DoxyCodeLine{497     b \string^= skey->twofish.K[1];}
+\DoxyCodeLine{498     \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} \string^= skey->twofish.K[2];}
+\DoxyCodeLine{499     d \string^= skey->twofish.K[3];}
+\DoxyCodeLine{500 }
+\DoxyCodeLine{501     k  = skey->twofish.K + 8;}
+\DoxyCodeLine{502     \textcolor{keywordflow}{for} (r = 8; r != 0; --r) \{}
+\DoxyCodeLine{503         \mbox{\hyperlink{tiger_8c_aa4652e2d6053d420dcbea07a113db5fe}{t2}} = \mbox{\hyperlink{twofish_8c_a9260e8db7b9363d96c9fa8552963d17d}{g1\_func}}(b, skey);}
+\DoxyCodeLine{504         \mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}} = \mbox{\hyperlink{twofish_8c_af2b86a69eee8c4bd7031e2ee5ed48fe2}{g\_func}}(a, skey) + \mbox{\hyperlink{tiger_8c_aa4652e2d6053d420dcbea07a113db5fe}{t2}};}
+\DoxyCodeLine{505         \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}  = \mbox{\hyperlink{tomcrypt__macros_8h_adb04fb3f7c1736d29125ad0f179b1068}{RORc}}(\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} \string^ (\mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}} + k[0]), 1);}
+\DoxyCodeLine{506         d  = \mbox{\hyperlink{tomcrypt__macros_8h_a39d625dc0b148466a72c13737e063d86}{ROLc}}(d, 1) \string^ (\mbox{\hyperlink{tiger_8c_aa4652e2d6053d420dcbea07a113db5fe}{t2}} + \mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}} + k[1]);}
+\DoxyCodeLine{507 }
+\DoxyCodeLine{508         \mbox{\hyperlink{tiger_8c_aa4652e2d6053d420dcbea07a113db5fe}{t2}} = \mbox{\hyperlink{twofish_8c_a9260e8db7b9363d96c9fa8552963d17d}{g1\_func}}(d, skey);}
+\DoxyCodeLine{509         \mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}} = \mbox{\hyperlink{twofish_8c_af2b86a69eee8c4bd7031e2ee5ed48fe2}{g\_func}}(\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, skey) + \mbox{\hyperlink{tiger_8c_aa4652e2d6053d420dcbea07a113db5fe}{t2}};}
+\DoxyCodeLine{510         a  = \mbox{\hyperlink{tomcrypt__macros_8h_adb04fb3f7c1736d29125ad0f179b1068}{RORc}}(a \string^ (\mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}} + k[2]), 1);}
+\DoxyCodeLine{511         b  = \mbox{\hyperlink{tomcrypt__macros_8h_a39d625dc0b148466a72c13737e063d86}{ROLc}}(b, 1) \string^ (\mbox{\hyperlink{tiger_8c_aa4652e2d6053d420dcbea07a113db5fe}{t2}} + \mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}} + k[3]);}
+\DoxyCodeLine{512         k += 4;}
+\DoxyCodeLine{513     \}}
+\DoxyCodeLine{514 }
+\DoxyCodeLine{515     \textcolor{comment}{/* output with "undo last swap" */}}
+\DoxyCodeLine{516     ta = \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} \string^ skey->twofish.K[4];}
+\DoxyCodeLine{517     tb = d \string^ skey->twofish.K[5];}
+\DoxyCodeLine{518     tc = a \string^ skey->twofish.K[6];}
+\DoxyCodeLine{519     td = b \string^ skey->twofish.K[7];}
+\DoxyCodeLine{520 }
+\DoxyCodeLine{521     \textcolor{comment}{/* store output */}}
+\DoxyCodeLine{522     STORE32L(ta,\&ct[0]); STORE32L(tb,\&ct[4]);}
+\DoxyCodeLine{523     STORE32L(tc,\&ct[8]); STORE32L(td,\&ct[12]);}
+\DoxyCodeLine{524 }
+\DoxyCodeLine{525     \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{526 \}}
+
+\end{DoxyCode}
+
+
+References c, C\+R\+Y\+P\+T\+\_\+\+OK, g1\+\_\+func, g\+\_\+func, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, R\+O\+Lc, R\+O\+Rc, S1, S2, S3, S4, t1, and t2.
+
+
+
+Referenced by twofish\+\_\+test().
+
+Here is the caller graph for this function\+:
+% FIG 8
+\mbox{\Hypertarget{twofish_8c_ad1b8812e42987225fd29ebc171848dc5}\label{twofish_8c_ad1b8812e42987225fd29ebc171848dc5}} 
+\index{twofish.c@{twofish.c}!twofish\_keysize@{twofish\_keysize}}
+\index{twofish\_keysize@{twofish\_keysize}!twofish.c@{twofish.c}}
+\subsubsection{\texorpdfstring{twofish\_keysize()}{twofish\_keysize()}}
+{\footnotesize\ttfamily int twofish\+\_\+keysize (\begin{DoxyParamCaption}\item[{int $\ast$}]{keysize }\end{DoxyParamCaption})}
+
+
+
+Gets suitable key size. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em keysize} & \mbox{[}in/out\mbox{]} The length of the recommended key (in bytes). This function will store the suitable size back in this variable. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if the input key size is acceptable. 
+\end{DoxyReturn}
+
+
+Definition at line 693 of file twofish.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{694 \{}
+\DoxyCodeLine{695    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(keysize);}
+\DoxyCodeLine{696    \textcolor{keywordflow}{if} (*keysize < 16) \{}
+\DoxyCodeLine{697       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caafed43f3b625e72191e08e65b4bb5e02}{CRYPT\_INVALID\_KEYSIZE}};}
+\DoxyCodeLine{698    \}}
+\DoxyCodeLine{699    \textcolor{keywordflow}{if} (*keysize < 24) \{}
+\DoxyCodeLine{700       *keysize = 16;}
+\DoxyCodeLine{701       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{702    \}}
+\DoxyCodeLine{703    \textcolor{keywordflow}{if} (*keysize < 32) \{}
+\DoxyCodeLine{704       *keysize = 24;}
+\DoxyCodeLine{705       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{706    \}}
+\DoxyCodeLine{707    *keysize = 32;}
+\DoxyCodeLine{708    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{709 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+K\+E\+Y\+S\+I\+ZE, C\+R\+Y\+P\+T\+\_\+\+OK, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+\mbox{\Hypertarget{twofish_8c_abd553d986cc2dd70dfc13e44eea72038}\label{twofish_8c_abd553d986cc2dd70dfc13e44eea72038}} 
+\index{twofish.c@{twofish.c}!twofish\_setup@{twofish\_setup}}
+\index{twofish\_setup@{twofish\_setup}!twofish.c@{twofish.c}}
+\subsubsection{\texorpdfstring{twofish\_setup()}{twofish\_setup()}}
+{\footnotesize\ttfamily int twofish\+\_\+setup (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{key,  }\item[{int}]{keylen,  }\item[{int}]{num\+\_\+rounds,  }\item[{\mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$}]{skey }\end{DoxyParamCaption})}
+
+
+
+Initialize the Twofish block cipher. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The symmetric key you wish to pass \\
+\hline
+{\em keylen} & The key length in bytes \\
+\hline
+{\em num\+\_\+rounds} & The number of rounds desired (0 for default) \\
+\hline
+{\em skey} & The key in as scheduled by this function. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 346 of file twofish.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{348 \{}
+\DoxyCodeLine{349 \textcolor{preprocessor}{\#ifndef LTC\_TWOFISH\_SMALL}}
+\DoxyCodeLine{350    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} \mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[4*4], tmpx0, tmpx1;}
+\DoxyCodeLine{351 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{352    \textcolor{keywordtype}{int} k, x, y;}
+\DoxyCodeLine{353    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} tmp[4], tmp2[4], M[8*4];}
+\DoxyCodeLine{354    \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} A, B;}
+\DoxyCodeLine{355 }
+\DoxyCodeLine{356    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(key  != NULL);}
+\DoxyCodeLine{357    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(skey != NULL);}
+\DoxyCodeLine{358 }
+\DoxyCodeLine{359    \textcolor{comment}{/* invalid arguments? */}}
+\DoxyCodeLine{360    \textcolor{keywordflow}{if} (num\_rounds != 16 \&\& num\_rounds != 0) \{}
+\DoxyCodeLine{361       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca69aff0280b5845d03130f8700009caf5}{CRYPT\_INVALID\_ROUNDS}};}
+\DoxyCodeLine{362    \}}
+\DoxyCodeLine{363 }
+\DoxyCodeLine{364    \textcolor{keywordflow}{if} (keylen != 16 \&\& keylen != 24 \&\& keylen != 32) \{}
+\DoxyCodeLine{365       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caafed43f3b625e72191e08e65b4bb5e02}{CRYPT\_INVALID\_KEYSIZE}};}
+\DoxyCodeLine{366    \}}
+\DoxyCodeLine{367 }
+\DoxyCodeLine{368    \textcolor{comment}{/* k = keysize/64 [but since our keysize is in bytes...] */}}
+\DoxyCodeLine{369    k = keylen / 8;}
+\DoxyCodeLine{370 }
+\DoxyCodeLine{371    \textcolor{comment}{/* copy the key into M */}}
+\DoxyCodeLine{372    \textcolor{keywordflow}{for} (x = 0; x < keylen; x++) \{}
+\DoxyCodeLine{373        M[x] = key[x] \& 255;}
+\DoxyCodeLine{374    \}}
+\DoxyCodeLine{375 }
+\DoxyCodeLine{376    \textcolor{comment}{/* create the S[..] words */}}
+\DoxyCodeLine{377 \textcolor{preprocessor}{\#ifndef LTC\_TWOFISH\_SMALL}}
+\DoxyCodeLine{378    \textcolor{keywordflow}{for} (x = 0; x < k; x++) \{}
+\DoxyCodeLine{379        \mbox{\hyperlink{twofish_8c_a7f70548f6884301f7bf4bcaa5f3ae8f5}{rs\_mult}}(M+(x*8), \mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}+(x*4));}
+\DoxyCodeLine{380    \}}
+\DoxyCodeLine{381 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{382    \textcolor{keywordflow}{for} (x = 0; x < k; x++) \{}
+\DoxyCodeLine{383        \mbox{\hyperlink{twofish_8c_a7f70548f6884301f7bf4bcaa5f3ae8f5}{rs\_mult}}(M+(x*8), skey->twofish.S+(x*4));}
+\DoxyCodeLine{384    \}}
+\DoxyCodeLine{385 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{386 }
+\DoxyCodeLine{387    \textcolor{comment}{/* make subkeys */}}
+\DoxyCodeLine{388    \textcolor{keywordflow}{for} (x = 0; x < 20; x++) \{}
+\DoxyCodeLine{389        \textcolor{comment}{/* A = h(p * 2x, Me) */}}
+\DoxyCodeLine{390        \textcolor{keywordflow}{for} (y = 0; y < 4; y++) \{}
+\DoxyCodeLine{391            tmp[y] = x+x;}
+\DoxyCodeLine{392        \}}
+\DoxyCodeLine{393        \mbox{\hyperlink{twofish_8c_a68bf5e20c943002d66781398f2409185}{h\_func}}(tmp, tmp2, M, k, 0);}
+\DoxyCodeLine{394        LOAD32L(A, tmp2);}
+\DoxyCodeLine{395 }
+\DoxyCodeLine{396        \textcolor{comment}{/* B = ROL(h(p * (2x + 1), Mo), 8) */}}
+\DoxyCodeLine{397        \textcolor{keywordflow}{for} (y = 0; y < 4; y++) \{}
+\DoxyCodeLine{398            tmp[y] = (\textcolor{keywordtype}{unsigned} char)(x+x+1);}
+\DoxyCodeLine{399        \}}
+\DoxyCodeLine{400        \mbox{\hyperlink{twofish_8c_a68bf5e20c943002d66781398f2409185}{h\_func}}(tmp, tmp2, M, k, 1);}
+\DoxyCodeLine{401        LOAD32L(B, tmp2);}
+\DoxyCodeLine{402        B = \mbox{\hyperlink{tomcrypt__macros_8h_a39d625dc0b148466a72c13737e063d86}{ROLc}}(B, 8);}
+\DoxyCodeLine{403 }
+\DoxyCodeLine{404        \textcolor{comment}{/* K[2i]   = A + B */}}
+\DoxyCodeLine{405        skey->twofish.K[x+x] = (A + B) \& 0xFFFFFFFFUL;}
+\DoxyCodeLine{406 }
+\DoxyCodeLine{407        \textcolor{comment}{/* K[2i+1] = (A + 2B) <<< 9 */}}
+\DoxyCodeLine{408        skey->twofish.K[x+x+1] = \mbox{\hyperlink{tomcrypt__macros_8h_a39d625dc0b148466a72c13737e063d86}{ROLc}}(B + B + A, 9);}
+\DoxyCodeLine{409    \}}
+\DoxyCodeLine{410 }
+\DoxyCodeLine{411 \textcolor{preprocessor}{\#ifndef LTC\_TWOFISH\_SMALL}}
+\DoxyCodeLine{412    \textcolor{comment}{/* make the sboxes (large ram variant) */}}
+\DoxyCodeLine{413    \textcolor{keywordflow}{if} (k == 2) \{}
+\DoxyCodeLine{414         \textcolor{keywordflow}{for} (x = 0; x < 256; x++) \{}
+\DoxyCodeLine{415            tmpx0 = (\textcolor{keywordtype}{unsigned} char)\mbox{\hyperlink{twofish_8c_a8b02607e1b8d8cb964dc6af6b751dafe}{sbox}}(0, x);}
+\DoxyCodeLine{416            tmpx1 = (\textcolor{keywordtype}{unsigned} char)\mbox{\hyperlink{twofish_8c_a8b02607e1b8d8cb964dc6af6b751dafe}{sbox}}(1, x);}
+\DoxyCodeLine{417            skey->twofish.S[0][x] = \mbox{\hyperlink{twofish_8c_aef29e5eb98ff3d6a2be23bf81b099b3e}{mds\_column\_mult}}(\mbox{\hyperlink{twofish_8c_a8b02607e1b8d8cb964dc6af6b751dafe}{sbox}}(1, (\mbox{\hyperlink{twofish_8c_a8b02607e1b8d8cb964dc6af6b751dafe}{sbox}}(0, tmpx0 \string^ \mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[0]) \string^ \mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[4])),0);}
+\DoxyCodeLine{418            skey->twofish.S[1][x] = \mbox{\hyperlink{twofish_8c_aef29e5eb98ff3d6a2be23bf81b099b3e}{mds\_column\_mult}}(\mbox{\hyperlink{twofish_8c_a8b02607e1b8d8cb964dc6af6b751dafe}{sbox}}(0, (\mbox{\hyperlink{twofish_8c_a8b02607e1b8d8cb964dc6af6b751dafe}{sbox}}(0, tmpx1 \string^ \mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[1]) \string^ \mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[5])),1);}
+\DoxyCodeLine{419            skey->twofish.S[2][x] = \mbox{\hyperlink{twofish_8c_aef29e5eb98ff3d6a2be23bf81b099b3e}{mds\_column\_mult}}(\mbox{\hyperlink{twofish_8c_a8b02607e1b8d8cb964dc6af6b751dafe}{sbox}}(1, (\mbox{\hyperlink{twofish_8c_a8b02607e1b8d8cb964dc6af6b751dafe}{sbox}}(1, tmpx0 \string^ \mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[2]) \string^ \mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[6])),2);}
+\DoxyCodeLine{420            skey->twofish.S[3][x] = \mbox{\hyperlink{twofish_8c_aef29e5eb98ff3d6a2be23bf81b099b3e}{mds\_column\_mult}}(\mbox{\hyperlink{twofish_8c_a8b02607e1b8d8cb964dc6af6b751dafe}{sbox}}(0, (\mbox{\hyperlink{twofish_8c_a8b02607e1b8d8cb964dc6af6b751dafe}{sbox}}(1, tmpx1 \string^ \mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[3]) \string^ \mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[7])),3);}
+\DoxyCodeLine{421         \}}
+\DoxyCodeLine{422    \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (k == 3) \{}
+\DoxyCodeLine{423         \textcolor{keywordflow}{for} (x = 0; x < 256; x++) \{}
+\DoxyCodeLine{424            tmpx0 = (\textcolor{keywordtype}{unsigned} char)\mbox{\hyperlink{twofish_8c_a8b02607e1b8d8cb964dc6af6b751dafe}{sbox}}(0, x);}
+\DoxyCodeLine{425            tmpx1 = (\textcolor{keywordtype}{unsigned} char)\mbox{\hyperlink{twofish_8c_a8b02607e1b8d8cb964dc6af6b751dafe}{sbox}}(1, x);}
+\DoxyCodeLine{426            skey->twofish.S[0][x] = \mbox{\hyperlink{twofish_8c_aef29e5eb98ff3d6a2be23bf81b099b3e}{mds\_column\_mult}}(\mbox{\hyperlink{twofish_8c_a8b02607e1b8d8cb964dc6af6b751dafe}{sbox}}(1, (\mbox{\hyperlink{twofish_8c_a8b02607e1b8d8cb964dc6af6b751dafe}{sbox}}(0, \mbox{\hyperlink{twofish_8c_a8b02607e1b8d8cb964dc6af6b751dafe}{sbox}}(0, tmpx1 \string^ \mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[0]) \string^ \mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[4]) \string^ \mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[8])),0);}
+\DoxyCodeLine{427            skey->twofish.S[1][x] = \mbox{\hyperlink{twofish_8c_aef29e5eb98ff3d6a2be23bf81b099b3e}{mds\_column\_mult}}(\mbox{\hyperlink{twofish_8c_a8b02607e1b8d8cb964dc6af6b751dafe}{sbox}}(0, (\mbox{\hyperlink{twofish_8c_a8b02607e1b8d8cb964dc6af6b751dafe}{sbox}}(0, \mbox{\hyperlink{twofish_8c_a8b02607e1b8d8cb964dc6af6b751dafe}{sbox}}(1, tmpx1 \string^ \mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[1]) \string^ \mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[5]) \string^ \mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[9])),1);}
+\DoxyCodeLine{428            skey->twofish.S[2][x] = \mbox{\hyperlink{twofish_8c_aef29e5eb98ff3d6a2be23bf81b099b3e}{mds\_column\_mult}}(\mbox{\hyperlink{twofish_8c_a8b02607e1b8d8cb964dc6af6b751dafe}{sbox}}(1, (\mbox{\hyperlink{twofish_8c_a8b02607e1b8d8cb964dc6af6b751dafe}{sbox}}(1, \mbox{\hyperlink{twofish_8c_a8b02607e1b8d8cb964dc6af6b751dafe}{sbox}}(0, tmpx0 \string^ \mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[2]) \string^ \mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[6]) \string^ \mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[10])),2);}
+\DoxyCodeLine{429            skey->twofish.S[3][x] = \mbox{\hyperlink{twofish_8c_aef29e5eb98ff3d6a2be23bf81b099b3e}{mds\_column\_mult}}(\mbox{\hyperlink{twofish_8c_a8b02607e1b8d8cb964dc6af6b751dafe}{sbox}}(0, (\mbox{\hyperlink{twofish_8c_a8b02607e1b8d8cb964dc6af6b751dafe}{sbox}}(1, \mbox{\hyperlink{twofish_8c_a8b02607e1b8d8cb964dc6af6b751dafe}{sbox}}(1, tmpx0 \string^ \mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[3]) \string^ \mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[7]) \string^ \mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[11])),3);}
+\DoxyCodeLine{430         \}}
+\DoxyCodeLine{431    \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{432         \textcolor{keywordflow}{for} (x = 0; x < 256; x++) \{}
+\DoxyCodeLine{433            tmpx0 = (\textcolor{keywordtype}{unsigned} char)\mbox{\hyperlink{twofish_8c_a8b02607e1b8d8cb964dc6af6b751dafe}{sbox}}(0, x);}
+\DoxyCodeLine{434            tmpx1 = (\textcolor{keywordtype}{unsigned} char)\mbox{\hyperlink{twofish_8c_a8b02607e1b8d8cb964dc6af6b751dafe}{sbox}}(1, x);}
+\DoxyCodeLine{435            skey->twofish.S[0][x] = \mbox{\hyperlink{twofish_8c_aef29e5eb98ff3d6a2be23bf81b099b3e}{mds\_column\_mult}}(\mbox{\hyperlink{twofish_8c_a8b02607e1b8d8cb964dc6af6b751dafe}{sbox}}(1, (\mbox{\hyperlink{twofish_8c_a8b02607e1b8d8cb964dc6af6b751dafe}{sbox}}(0, \mbox{\hyperlink{twofish_8c_a8b02607e1b8d8cb964dc6af6b751dafe}{sbox}}(0, \mbox{\hyperlink{twofish_8c_a8b02607e1b8d8cb964dc6af6b751dafe}{sbox}}(1, tmpx1 \string^ \mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[0]) \string^ \mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[4]) \string^ \mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[8]) \string^ \mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[12])),0);}
+\DoxyCodeLine{436            skey->twofish.S[1][x] = \mbox{\hyperlink{twofish_8c_aef29e5eb98ff3d6a2be23bf81b099b3e}{mds\_column\_mult}}(\mbox{\hyperlink{twofish_8c_a8b02607e1b8d8cb964dc6af6b751dafe}{sbox}}(0, (\mbox{\hyperlink{twofish_8c_a8b02607e1b8d8cb964dc6af6b751dafe}{sbox}}(0, \mbox{\hyperlink{twofish_8c_a8b02607e1b8d8cb964dc6af6b751dafe}{sbox}}(1, \mbox{\hyperlink{twofish_8c_a8b02607e1b8d8cb964dc6af6b751dafe}{sbox}}(1, tmpx0 \string^ \mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[1]) \string^ \mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[5]) \string^ \mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[9]) \string^ \mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[13])),1);}
+\DoxyCodeLine{437            skey->twofish.S[2][x] = \mbox{\hyperlink{twofish_8c_aef29e5eb98ff3d6a2be23bf81b099b3e}{mds\_column\_mult}}(\mbox{\hyperlink{twofish_8c_a8b02607e1b8d8cb964dc6af6b751dafe}{sbox}}(1, (\mbox{\hyperlink{twofish_8c_a8b02607e1b8d8cb964dc6af6b751dafe}{sbox}}(1, \mbox{\hyperlink{twofish_8c_a8b02607e1b8d8cb964dc6af6b751dafe}{sbox}}(0, \mbox{\hyperlink{twofish_8c_a8b02607e1b8d8cb964dc6af6b751dafe}{sbox}}(0, tmpx0 \string^ \mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[2]) \string^ \mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[6]) \string^ \mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[10]) \string^ \mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[14])),2);}
+\DoxyCodeLine{438            skey->twofish.S[3][x] = \mbox{\hyperlink{twofish_8c_aef29e5eb98ff3d6a2be23bf81b099b3e}{mds\_column\_mult}}(\mbox{\hyperlink{twofish_8c_a8b02607e1b8d8cb964dc6af6b751dafe}{sbox}}(0, (\mbox{\hyperlink{twofish_8c_a8b02607e1b8d8cb964dc6af6b751dafe}{sbox}}(1, \mbox{\hyperlink{twofish_8c_a8b02607e1b8d8cb964dc6af6b751dafe}{sbox}}(1, \mbox{\hyperlink{twofish_8c_a8b02607e1b8d8cb964dc6af6b751dafe}{sbox}}(0, tmpx1 \string^ \mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[3]) \string^ \mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[7]) \string^ \mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[11]) \string^ \mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[15])),3);}
+\DoxyCodeLine{439         \}}
+\DoxyCodeLine{440    \}}
+\DoxyCodeLine{441 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{442    \textcolor{comment}{/* where to start in the sbox layers */}}
+\DoxyCodeLine{443    \textcolor{comment}{/* small ram variant */}}
+\DoxyCodeLine{444    \textcolor{keywordflow}{switch} (k) \{}
+\DoxyCodeLine{445          \textcolor{keywordflow}{case} 4 : skey->twofish.start = 0; \textcolor{keywordflow}{break};}
+\DoxyCodeLine{446          \textcolor{keywordflow}{case} 3 : skey->twofish.start = 1; \textcolor{keywordflow}{break};}
+\DoxyCodeLine{447          \textcolor{keywordflow}{default}: skey->twofish.start = 2; \textcolor{keywordflow}{break};}
+\DoxyCodeLine{448    \}}
+\DoxyCodeLine{449 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{450    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{451 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+K\+E\+Y\+S\+I\+ZE, C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+R\+O\+U\+N\+DS, C\+R\+Y\+P\+T\+\_\+\+OK, h\+\_\+func(), L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, mds\+\_\+column\+\_\+mult, R\+O\+Lc, rs\+\_\+mult(), S, and sbox.
+
+
+
+Referenced by twofish\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 9
+Here is the caller graph for this function\+:
+% FIG 10
+\mbox{\Hypertarget{twofish_8c_a5a6367e9c441b1a3b04542383d3c5654}\label{twofish_8c_a5a6367e9c441b1a3b04542383d3c5654}} 
+\index{twofish.c@{twofish.c}!twofish\_test@{twofish\_test}}
+\index{twofish\_test@{twofish\_test}!twofish.c@{twofish.c}}
+\subsubsection{\texorpdfstring{twofish\_test()}{twofish\_test()}}
+{\footnotesize\ttfamily int twofish\+\_\+test (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Performs a self-\/test of the Twofish block cipher. 
+
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if functional, C\+R\+Y\+P\+T\+\_\+\+N\+OP if self-\/test has been disabled 
+\end{DoxyReturn}
+
+
+Definition at line 617 of file twofish.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{618 \{}
+\DoxyCodeLine{619 \textcolor{preprocessor}{ \#ifndef LTC\_TEST}}
+\DoxyCodeLine{620     \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cac43a7799c7fd5f515172da6cfc0f9cf5}{CRYPT\_NOP}};}
+\DoxyCodeLine{621 \textcolor{preprocessor}{ \#else}}
+\DoxyCodeLine{622  \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{623      \textcolor{keywordtype}{int} keylen;}
+\DoxyCodeLine{624      \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} key[32], pt[16], ct[16];}
+\DoxyCodeLine{625  \} tests[] = \{}
+\DoxyCodeLine{626    \{ 16,}
+\DoxyCodeLine{627      \{ 0x9F, 0x58, 0x9F, 0x5C, 0xF6, 0x12, 0x2C, 0x32,}
+\DoxyCodeLine{628        0xB6, 0xBF, 0xEC, 0x2F, 0x2A, 0xE8, 0xC3, 0x5A \},}
+\DoxyCodeLine{629      \{ 0xD4, 0x91, 0xDB, 0x16, 0xE7, 0xB1, 0xC3, 0x9E,}
+\DoxyCodeLine{630        0x86, 0xCB, 0x08, 0x6B, 0x78, 0x9F, 0x54, 0x19 \},}
+\DoxyCodeLine{631      \{ 0x01, 0x9F, 0x98, 0x09, 0xDE, 0x17, 0x11, 0x85,}
+\DoxyCodeLine{632        0x8F, 0xAA, 0xC3, 0xA3, 0xBA, 0x20, 0xFB, 0xC3 \}}
+\DoxyCodeLine{633    \}, \{}
+\DoxyCodeLine{634      24,}
+\DoxyCodeLine{635      \{ 0x88, 0xB2, 0xB2, 0x70, 0x6B, 0x10, 0x5E, 0x36,}
+\DoxyCodeLine{636        0xB4, 0x46, 0xBB, 0x6D, 0x73, 0x1A, 0x1E, 0x88,}
+\DoxyCodeLine{637        0xEF, 0xA7, 0x1F, 0x78, 0x89, 0x65, 0xBD, 0x44 \},}
+\DoxyCodeLine{638      \{ 0x39, 0xDA, 0x69, 0xD6, 0xBA, 0x49, 0x97, 0xD5,}
+\DoxyCodeLine{639        0x85, 0xB6, 0xDC, 0x07, 0x3C, 0xA3, 0x41, 0xB2 \},}
+\DoxyCodeLine{640      \{ 0x18, 0x2B, 0x02, 0xD8, 0x14, 0x97, 0xEA, 0x45,}
+\DoxyCodeLine{641        0xF9, 0xDA, 0xAC, 0xDC, 0x29, 0x19, 0x3A, 0x65 \}}
+\DoxyCodeLine{642    \}, \{}
+\DoxyCodeLine{643      32,}
+\DoxyCodeLine{644      \{ 0xD4, 0x3B, 0xB7, 0x55, 0x6E, 0xA3, 0x2E, 0x46,}
+\DoxyCodeLine{645        0xF2, 0xA2, 0x82, 0xB7, 0xD4, 0x5B, 0x4E, 0x0D,}
+\DoxyCodeLine{646        0x57, 0xFF, 0x73, 0x9D, 0x4D, 0xC9, 0x2C, 0x1B,}
+\DoxyCodeLine{647        0xD7, 0xFC, 0x01, 0x70, 0x0C, 0xC8, 0x21, 0x6F \},}
+\DoxyCodeLine{648      \{ 0x90, 0xAF, 0xE9, 0x1B, 0xB2, 0x88, 0x54, 0x4F,}
+\DoxyCodeLine{649        0x2C, 0x32, 0xDC, 0x23, 0x9B, 0x26, 0x35, 0xE6 \},}
+\DoxyCodeLine{650      \{ 0x6C, 0xB4, 0x56, 0x1C, 0x40, 0xBF, 0x0A, 0x97,}
+\DoxyCodeLine{651        0x05, 0x93, 0x1C, 0xB6, 0xD4, 0x08, 0xE7, 0xFA \}}
+\DoxyCodeLine{652    \}}
+\DoxyCodeLine{653 \};}
+\DoxyCodeLine{654 }
+\DoxyCodeLine{655 }
+\DoxyCodeLine{656   \mbox{\hyperlink{unionSymmetric__key}{symmetric\_key}} key;}
+\DoxyCodeLine{657   \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} tmp[2][16];}
+\DoxyCodeLine{658   \textcolor{keywordtype}{int} err, i, y;}
+\DoxyCodeLine{659 }
+\DoxyCodeLine{660   \textcolor{keywordflow}{for} (i = 0; i < (int)(\textcolor{keyword}{sizeof}(tests)/\textcolor{keyword}{sizeof}(tests[0])); i++) \{}
+\DoxyCodeLine{661     \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{twofish_8c_abd553d986cc2dd70dfc13e44eea72038}{twofish\_setup}}(tests[i].key, tests[i].keylen, 0, \&key)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{662        \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{663     \}}
+\DoxyCodeLine{664     \mbox{\hyperlink{twofish_8c_abf79befc0f00a6080f661f3819297c26}{twofish\_ecb\_encrypt}}(tests[i].pt, tmp[0], \&key);}
+\DoxyCodeLine{665     \mbox{\hyperlink{twofish_8c_a914f4501da8d30f0dc4a884e859605be}{twofish\_ecb\_decrypt}}(tmp[0], tmp[1], \&key);}
+\DoxyCodeLine{666     \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(tmp[0], 16, tests[i].ct, 16, \textcolor{stringliteral}{"Twofish Encrypt"}, i) != 0 ||}
+\DoxyCodeLine{667           \mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(tmp[1], 16, tests[i].pt, 16, \textcolor{stringliteral}{"Twofish Decrypt"}, i) != 0) \{}
+\DoxyCodeLine{668        \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{669     \}}
+\DoxyCodeLine{670     \textcolor{comment}{/* now see if we can encrypt all zero bytes 1000 times, decrypt and come back where we started */}}
+\DoxyCodeLine{671     \textcolor{keywordflow}{for} (y = 0; y < 16; y++) tmp[0][y] = 0;}
+\DoxyCodeLine{672     \textcolor{keywordflow}{for} (y = 0; y < 1000; y++) \mbox{\hyperlink{twofish_8c_abf79befc0f00a6080f661f3819297c26}{twofish\_ecb\_encrypt}}(tmp[0], tmp[0], \&key);}
+\DoxyCodeLine{673     \textcolor{keywordflow}{for} (y = 0; y < 1000; y++) \mbox{\hyperlink{twofish_8c_a914f4501da8d30f0dc4a884e859605be}{twofish\_ecb\_decrypt}}(tmp[0], tmp[0], \&key);}
+\DoxyCodeLine{674     \textcolor{keywordflow}{for} (y = 0; y < 16; y++) \textcolor{keywordflow}{if} (tmp[0][y] != 0) \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{675   \}}
+\DoxyCodeLine{676   \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{677 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{678 \}}
+
+\end{DoxyCode}
+
+
+References compare\+\_\+testvector(), C\+R\+Y\+P\+T\+\_\+\+F\+A\+I\+L\+\_\+\+T\+E\+S\+T\+V\+E\+C\+T\+OR, C\+R\+Y\+P\+T\+\_\+\+N\+OP, C\+R\+Y\+P\+T\+\_\+\+OK, twofish\+\_\+ecb\+\_\+decrypt(), twofish\+\_\+ecb\+\_\+encrypt(), and twofish\+\_\+setup().
+
+Here is the call graph for this function\+:
+% FIG 11
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{twofish_8c_abc55ce95a4e481ea468b82c105c8147d}\label{twofish_8c_abc55ce95a4e481ea468b82c105c8147d}} 
+\index{twofish.c@{twofish.c}!RS@{RS}}
+\index{RS@{RS}!twofish.c@{twofish.c}}
+\subsubsection{\texorpdfstring{RS}{RS}}
+{\footnotesize\ttfamily const unsigned char RS\mbox{[}4\mbox{]}\mbox{[}8\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    \{ 0x01, 0xA4, 0x55, 0x87, 0x5A, 0x58, 0xDB, 0x9E \},}
+\DoxyCodeLine{    \{ 0xA4, 0x56, 0x82, 0xF3, 0X1E, 0XC6, 0X68, 0XE5 \},}
+\DoxyCodeLine{    \{ 0X02, 0XA1, 0XFC, 0XC1, 0X47, 0XAE, 0X3D, 0X19 \},}
+\DoxyCodeLine{    \{ 0XA4, 0X55, 0X87, 0X5A, 0X58, 0XDB, 0X9E, 0X03 \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line 48 of file twofish.\+c.
+
+
+
+Referenced by rs\+\_\+mult().
+
+\mbox{\Hypertarget{twofish_8c_af0de9cc3deb118ab8ca14f7ff6d52fd3}\label{twofish_8c_af0de9cc3deb118ab8ca14f7ff6d52fd3}} 
+\index{twofish.c@{twofish.c}!twofish\_desc@{twofish\_desc}}
+\index{twofish\_desc@{twofish\_desc}!twofish.c@{twofish.c}}
+\subsubsection{\texorpdfstring{twofish\_desc}{twofish\_desc}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structltc__cipher__descriptor}{ltc\+\_\+cipher\+\_\+descriptor}} twofish\+\_\+desc}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    \textcolor{stringliteral}{"twofish"},}
+\DoxyCodeLine{    7,}
+\DoxyCodeLine{    16, 32, 16, 16,}
+\DoxyCodeLine{    \&\mbox{\hyperlink{twofish_8c_abd553d986cc2dd70dfc13e44eea72038}{twofish\_setup}},}
+\DoxyCodeLine{    \&\mbox{\hyperlink{twofish_8c_abf79befc0f00a6080f661f3819297c26}{twofish\_ecb\_encrypt}},}
+\DoxyCodeLine{    \&\mbox{\hyperlink{twofish_8c_a914f4501da8d30f0dc4a884e859605be}{twofish\_ecb\_decrypt}},}
+\DoxyCodeLine{    \&\mbox{\hyperlink{twofish_8c_a5a6367e9c441b1a3b04542383d3c5654}{twofish\_test}},}
+\DoxyCodeLine{    \&\mbox{\hyperlink{twofish_8c_aebe8b86fa6a5f1b72ccf9d7705dd8c38}{twofish\_done}},}
+\DoxyCodeLine{    \&\mbox{\hyperlink{twofish_8c_ad1b8812e42987225fd29ebc171848dc5}{twofish\_keysize}},}
+\DoxyCodeLine{    NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line 25 of file twofish.\+c.
+
+
+
+Referenced by register\+\_\+all\+\_\+ciphers(), and yarrow\+\_\+start().
+

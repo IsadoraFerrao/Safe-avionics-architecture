@@ -1,0 +1,16 @@
+digraph "xcbc_process"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node2 [label="xcbc_process",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Process data through XCBC-MAC."];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="xcbc_file",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$xcbc__file_8c.html#ae7e1146329a4421da93ed0590857e232",tooltip="XCBC a file."];
+  Node2 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="xcbc_memory",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$xcbc__memory_8c.html#a5b34b1c0334478c5bf640ecce5b12f42",tooltip="XCBC-MAC a block of memory."];
+  Node4 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="xcbc_test",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$xcbc__test_8c.html#a7154e3fde1d58dad1b721962dea2a782",tooltip="Test XCBC-MAC mode Return CRYPT_OK on succes."];
+  Node2 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="xcbc_memory_multi",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$xcbc__memory__multi_8c.html#a46c4a78219a0eeaaf8be3f599f8a3bba",tooltip="XCBC multiple blocks of memory."];
+}

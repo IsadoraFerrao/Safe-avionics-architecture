@@ -1,0 +1,12 @@
+digraph "dsa_set_pqg"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node4 [label="dsa_set_pqg",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Import DSA's p, q & g from raw numbers."];
+  Node4 -> Node5 [color="midnightblue",fontsize="10",style="solid"];
+  Node5 [label="dsa_free",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dsa__free_8c.html#aa303a866d72fa5c2967b7d26410ec69c",tooltip="Free a DSA key."];
+  Node4 -> Node6 [color="midnightblue",fontsize="10",style="solid"];
+  Node6 [label="dsa_int_validate_pqg",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__private_8h.html#a78787aeedd134c0e586d4a42a83c89c2",tooltip="Non-complex part (no primality testing) of the validation of DSA params (p, q, g)"];
+}

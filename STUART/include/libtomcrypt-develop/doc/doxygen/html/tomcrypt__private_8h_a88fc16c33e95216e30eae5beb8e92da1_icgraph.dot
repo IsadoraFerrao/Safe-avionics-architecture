@@ -1,0 +1,16 @@
+digraph "dh_check_pubkey"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node502 [label="dh_check_pubkey",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Check DH public key (INTERNAL ONLY, not part of public API)"];
+  Node502 -> Node503 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node503 [label="dh_generate_key",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dh__generate__key_8c.html#ab1d01a4bd250336b21aff7a863d785de",tooltip=" "];
+  Node502 -> Node504 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node504 [label="dh_import",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dh__import_8c.html#aeae7c65a0d0671f62d259baa98160874",tooltip="Import a DH key from a binary packet."];
+  Node502 -> Node505 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node505 [label="dh_set_key",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dh__set_8c.html#a608aa2ac033bf5a6636a7fcd2194af92",tooltip="Import DH public or private key part from raw numbers."];
+  Node502 -> Node506 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node506 [label="dh_shared_secret",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dh__shared__secret_8c.html#a2d6ead331cafc3fe8060eb02635d5c38",tooltip="Create a DH shared secret."];
+}

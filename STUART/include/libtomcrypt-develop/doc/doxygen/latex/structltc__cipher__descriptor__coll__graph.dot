@@ -1,0 +1,13 @@
+digraph "ltc_cipher_descriptor"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="ltc_cipher_descriptor",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="cipher descriptor table, last entry has \"name == NULL\" to mark the end of table"];
+  Node2 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" done" ];
+  Node2 [label="void(*)(symmetric_key\l *skey)",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+  Node3 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" ID\nname" ];
+  Node3 [label="char",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+  Node4 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" accel_ecb_decrypt\naccel_gcm_memory\nblock_length\nxcbc_memory\naccel_ctr_encrypt\ntest\necb_encrypt\ndefault_rounds\nmax_key_length\naccel_cbc_decrypt\n..." ];
+  Node4 [label="int",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+}

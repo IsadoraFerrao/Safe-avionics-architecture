@@ -1,0 +1,91 @@
+\hypertarget{ccm__done_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/encauth/ccm/ccm\+\_\+done.c File Reference}
+\label{ccm__done_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/encauth/ccm/ccm\_done.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/encauth/ccm/ccm\_done.c}}
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for ccm\+\_\+done.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{ccm__done_8c_a3c42ef38537c89debe10d69e0cfabed9}{ccm\+\_\+done}} (ccm\+\_\+state $\ast$ccm, unsigned char $\ast$tag, unsigned long $\ast$taglen)
+\begin{DoxyCompactList}\small\item\em Terminate a C\+CM stream. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{ccm__done_8c_a3c42ef38537c89debe10d69e0cfabed9}\label{ccm__done_8c_a3c42ef38537c89debe10d69e0cfabed9}} 
+\index{ccm\_done.c@{ccm\_done.c}!ccm\_done@{ccm\_done}}
+\index{ccm\_done@{ccm\_done}!ccm\_done.c@{ccm\_done.c}}
+\subsubsection{\texorpdfstring{ccm\_done()}{ccm\_done()}}
+{\footnotesize\ttfamily int ccm\+\_\+done (\begin{DoxyParamCaption}\item[{ccm\+\_\+state $\ast$}]{ccm,  }\item[{unsigned char $\ast$}]{tag,  }\item[{unsigned long $\ast$}]{taglen }\end{DoxyParamCaption})}
+
+
+
+Terminate a C\+CM stream. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ccm} & The C\+CM state \\
+\hline
+{\em tag} & \mbox{[}out\mbox{]} The destination for the M\+AC tag \\
+\hline
+{\em taglen} & \mbox{[}in/out\mbox{]} The length of the M\+AC tag \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK on success 
+\end{DoxyReturn}
+
+
+Definition at line 20 of file ccm\+\_\+done.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{22 \{}
+\DoxyCodeLine{23    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} x, y;}
+\DoxyCodeLine{24    \textcolor{keywordtype}{int}            err;}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(ccm != NULL);}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28    \textcolor{comment}{/* Check all data have been processed */}}
+\DoxyCodeLine{29    \textcolor{keywordflow}{if} (ccm->ptlen != ccm->current\_ptlen) \{}
+\DoxyCodeLine{30       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca03c22220d7538be04455cd2aa6ddf9da}{CRYPT\_ERROR}};}
+\DoxyCodeLine{31    \}}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(tag    != NULL);}
+\DoxyCodeLine{34    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(taglen != NULL);}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36    \textcolor{keywordflow}{if} (ccm->x != 0) \{}
+\DoxyCodeLine{37       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[ccm->cipher].\mbox{\hyperlink{structltc__cipher__descriptor_a46141d86abe22a7c8d382c62a894dd63}{ecb\_encrypt}}(ccm->PAD, ccm->PAD, \&ccm->K)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{38          \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{39       \}}
+\DoxyCodeLine{40    \}}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{42    \textcolor{comment}{/* setup CTR for the TAG (zero the count) */}}
+\DoxyCodeLine{43    \textcolor{keywordflow}{for} (y = 15; y > 15 - ccm->L; y--) \{}
+\DoxyCodeLine{44       ccm->ctr[y] = 0x00;}
+\DoxyCodeLine{45    \}}
+\DoxyCodeLine{46    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[ccm->cipher].\mbox{\hyperlink{structltc__cipher__descriptor_a46141d86abe22a7c8d382c62a894dd63}{ecb\_encrypt}}(ccm->ctr, ccm->CTRPAD, \&ccm->K)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{47       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{48    \}}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{50    \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[ccm->cipher].\mbox{\hyperlink{structltc__cipher__descriptor_a0ad1c101005c70a69e40fded0e606191}{done}}(\&ccm->K);}
+\DoxyCodeLine{51 }
+\DoxyCodeLine{52    \textcolor{comment}{/* store the TAG */}}
+\DoxyCodeLine{53    \textcolor{keywordflow}{for} (x = 0; x < 16 \&\& x < *taglen; x++) \{}
+\DoxyCodeLine{54       tag[x] = ccm->PAD[x] \string^ ccm->CTRPAD[x];}
+\DoxyCodeLine{55    \}}
+\DoxyCodeLine{56    *taglen = x;}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{58    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{59 \}}
+
+\end{DoxyCode}
+
+
+References cipher\+\_\+descriptor, C\+R\+Y\+P\+T\+\_\+\+E\+R\+R\+OR, C\+R\+Y\+P\+T\+\_\+\+OK, ltc\+\_\+cipher\+\_\+descriptor\+::done, ltc\+\_\+cipher\+\_\+descriptor\+::ecb\+\_\+encrypt, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+
+
+Referenced by ccm\+\_\+test().
+
+Here is the caller graph for this function\+:
+% FIG 1

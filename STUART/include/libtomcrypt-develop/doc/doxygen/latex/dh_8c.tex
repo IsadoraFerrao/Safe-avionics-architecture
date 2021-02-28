@@ -1,0 +1,69 @@
+\hypertarget{dh_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/pk/dh/dh.c File Reference}
+\label{dh_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/dh/dh.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/dh/dh.c}}
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for dh.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{dh_8c_a8e77cc9da20891bec4832998b1c379ab}{dh\+\_\+get\+\_\+groupsize}} (const dh\+\_\+key $\ast$key)
+\begin{DoxyCompactList}\small\item\em Returns the DH group size (octets) for given key. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const \mbox{\hyperlink{structltc__dh__set__type}{ltc\+\_\+dh\+\_\+set\+\_\+type}} \mbox{\hyperlink{dh_8c_a45c19266abadb7a8a27dc330b000cfc4}{ltc\+\_\+dh\+\_\+sets}} \mbox{[}$\,$\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{dh_8c_a8e77cc9da20891bec4832998b1c379ab}\label{dh_8c_a8e77cc9da20891bec4832998b1c379ab}} 
+\index{dh.c@{dh.c}!dh\_get\_groupsize@{dh\_get\_groupsize}}
+\index{dh\_get\_groupsize@{dh\_get\_groupsize}!dh.c@{dh.c}}
+\subsubsection{\texorpdfstring{dh\_get\_groupsize()}{dh\_get\_groupsize()}}
+{\footnotesize\ttfamily int dh\+\_\+get\+\_\+groupsize (\begin{DoxyParamCaption}\item[{const dh\+\_\+key $\ast$}]{key }\end{DoxyParamCaption})}
+
+
+
+Returns the DH group size (octets) for given key. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The DH key to get the size of \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The group size in octets (0 on error) 
+\end{DoxyReturn}
+
+
+Definition at line 227 of file dh.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{228 \{}
+\DoxyCodeLine{229    \textcolor{keywordflow}{if} (key == NULL) \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{230    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt__private_8h_ad301148bb24f43a8c7003a6976dfaa5a}{mp\_unsigned\_bin\_size}}(key->prime);}
+\DoxyCodeLine{231 \}}
+
+\end{DoxyCode}
+
+
+References mp\+\_\+unsigned\+\_\+bin\+\_\+size.
+
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{dh_8c_a45c19266abadb7a8a27dc330b000cfc4}\label{dh_8c_a45c19266abadb7a8a27dc330b000cfc4}} 
+\index{dh.c@{dh.c}!ltc\_dh\_sets@{ltc\_dh\_sets}}
+\index{ltc\_dh\_sets@{ltc\_dh\_sets}!dh.c@{dh.c}}
+\subsubsection{\texorpdfstring{ltc\_dh\_sets}{ltc\_dh\_sets}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{structltc__dh__set__type}{ltc\+\_\+dh\+\_\+set\+\_\+type}} ltc\+\_\+dh\+\_\+sets\mbox{[}$\,$\mbox{]}}
+
+
+
+Definition at line 15 of file dh.\+c.
+
+
+
+Referenced by dh\+\_\+set\+\_\+pg\+\_\+groupsize().
+

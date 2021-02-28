@@ -1,0 +1,516 @@
+\hypertarget{sha1_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/hashes/sha1.c File Reference}
+\label{sha1_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/hashes/sha1.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/hashes/sha1.c}}
+
+
+L\+T\+C\+\_\+\+S\+H\+A1 code by Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for sha1.\+c\+:
+% FIG 0
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{sha1_8c_aaefb24d5edbae9ebbaae9896fa48f46b}{F0}}(x,  y,  z)~(z $^\wedge$ (x \& (y $^\wedge$ z)))
+\item 
+\#define \mbox{\hyperlink{sha1_8c_a3c2b6b2959faadfcf644757cb570b734}{F1}}(x,  y,  z)~(x $^\wedge$ y $^\wedge$ z)
+\item 
+\#define \mbox{\hyperlink{sha1_8c_ae131b09a86bdafd00f48095647e80a00}{F2}}(x,  y,  z)~((x \& y) $\vert$ (z \& (x $\vert$ y)))
+\item 
+\#define \mbox{\hyperlink{sha1_8c_a8f6625b749e5fe36981ee2d149229b98}{F3}}(x,  y,  z)~(x $^\wedge$ y $^\wedge$ z)
+\item 
+\#define \mbox{\hyperlink{sha1_8c_a307fb21b8e88de3fd71cd5acc6a9af88}{F\+F0}}(a,  b,  \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},  d,  e,  i)~e = (\mbox{\hyperlink{tomcrypt__macros_8h_a39d625dc0b148466a72c13737e063d86}{R\+O\+Lc}}(a, 5) + \mbox{\hyperlink{sha1_8c_aaefb24d5edbae9ebbaae9896fa48f46b}{F0}}(b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d) + e + W\mbox{[}i\mbox{]} + 0x5a827999\+U\+L); b = R\+O\+Lc(b, 30);
+\item 
+\#define \mbox{\hyperlink{sha1_8c_aee2dd4961d74263c3eed5780004a01ca}{F\+F1}}(a,  b,  \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},  d,  e,  i)~e = (\mbox{\hyperlink{tomcrypt__macros_8h_a39d625dc0b148466a72c13737e063d86}{R\+O\+Lc}}(a, 5) + \mbox{\hyperlink{sha1_8c_a3c2b6b2959faadfcf644757cb570b734}{F1}}(b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d) + e + W\mbox{[}i\mbox{]} + 0x6ed9eba1\+U\+L); b = R\+O\+Lc(b, 30);
+\item 
+\#define \mbox{\hyperlink{sha1_8c_a033e79e2e207e5af728daad7d7012f77}{F\+F2}}(a,  b,  \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},  d,  e,  i)~e = (\mbox{\hyperlink{tomcrypt__macros_8h_a39d625dc0b148466a72c13737e063d86}{R\+O\+Lc}}(a, 5) + \mbox{\hyperlink{sha1_8c_ae131b09a86bdafd00f48095647e80a00}{F2}}(b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d) + e + W\mbox{[}i\mbox{]} + 0x8f1bbcdc\+U\+L); b = R\+O\+Lc(b, 30);
+\item 
+\#define \mbox{\hyperlink{sha1_8c_a67df893952d4ab63e97480b42f1d083e}{F\+F3}}(a,  b,  \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},  d,  e,  i)~e = (\mbox{\hyperlink{tomcrypt__macros_8h_a39d625dc0b148466a72c13737e063d86}{R\+O\+Lc}}(a, 5) + \mbox{\hyperlink{sha1_8c_a8f6625b749e5fe36981ee2d149229b98}{F3}}(b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d) + e + W\mbox{[}i\mbox{]} + 0xca62c1d6\+U\+L); b = R\+O\+Lc(b, 30);
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{sha1_8c_a8132febc9c55c87720acc39e4d4c8dec}{sha1\+\_\+compress}} (\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$md, const unsigned char $\ast$buf)
+\item 
+int \mbox{\hyperlink{sha1_8c_af64ddcb1aca4cd861589b69c2d206bf2}{sha1\+\_\+init}} (\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$md)
+\begin{DoxyCompactList}\small\item\em Initialize the hash state. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{sha1_8c_a8c9087d2e73227964c0155eac20ea449}{sha1\+\_\+process}} (\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$md, const unsigned char $\ast$in, unsigned long inlen)
+\begin{DoxyCompactList}\small\item\em Process a block of memory though the hash. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{sha1_8c_a8c33281a2a14e6495eadd36f7a3f277e}{sha1\+\_\+done}} (\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$md, unsigned char $\ast$out)
+\begin{DoxyCompactList}\small\item\em Terminate the hash to get the digest. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{sha1_8c_a974ff217ba983de0864a96586e9b4b80}{sha1\+\_\+test}} (void)
+\begin{DoxyCompactList}\small\item\em Self-\/test the hash. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const struct \mbox{\hyperlink{structltc__hash__descriptor}{ltc\+\_\+hash\+\_\+descriptor}} \mbox{\hyperlink{sha1_8c_aae521fdbe0f9dea61c37f76ece473360}{sha1\+\_\+desc}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+L\+T\+C\+\_\+\+S\+H\+A1 code by Tom St Denis. 
+
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{sha1_8c_aaefb24d5edbae9ebbaae9896fa48f46b}\label{sha1_8c_aaefb24d5edbae9ebbaae9896fa48f46b}} 
+\index{sha1.c@{sha1.c}!F0@{F0}}
+\index{F0@{F0}!sha1.c@{sha1.c}}
+\subsubsection{\texorpdfstring{F0}{F0}}
+{\footnotesize\ttfamily \#define F0(\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{y,  }\item[{}]{z }\end{DoxyParamCaption})~(z $^\wedge$ (x \& (y $^\wedge$ z)))}
+
+
+
+Definition at line 37 of file sha1.\+c.
+
+\mbox{\Hypertarget{sha1_8c_a3c2b6b2959faadfcf644757cb570b734}\label{sha1_8c_a3c2b6b2959faadfcf644757cb570b734}} 
+\index{sha1.c@{sha1.c}!F1@{F1}}
+\index{F1@{F1}!sha1.c@{sha1.c}}
+\subsubsection{\texorpdfstring{F1}{F1}}
+{\footnotesize\ttfamily \#define F1(\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{y,  }\item[{}]{z }\end{DoxyParamCaption})~(x $^\wedge$ y $^\wedge$ z)}
+
+
+
+Definition at line 38 of file sha1.\+c.
+
+\mbox{\Hypertarget{sha1_8c_ae131b09a86bdafd00f48095647e80a00}\label{sha1_8c_ae131b09a86bdafd00f48095647e80a00}} 
+\index{sha1.c@{sha1.c}!F2@{F2}}
+\index{F2@{F2}!sha1.c@{sha1.c}}
+\subsubsection{\texorpdfstring{F2}{F2}}
+{\footnotesize\ttfamily \#define F2(\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{y,  }\item[{}]{z }\end{DoxyParamCaption})~((x \& y) $\vert$ (z \& (x $\vert$ y)))}
+
+
+
+Definition at line 39 of file sha1.\+c.
+
+\mbox{\Hypertarget{sha1_8c_a8f6625b749e5fe36981ee2d149229b98}\label{sha1_8c_a8f6625b749e5fe36981ee2d149229b98}} 
+\index{sha1.c@{sha1.c}!F3@{F3}}
+\index{F3@{F3}!sha1.c@{sha1.c}}
+\subsubsection{\texorpdfstring{F3}{F3}}
+{\footnotesize\ttfamily \#define F3(\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{y,  }\item[{}]{z }\end{DoxyParamCaption})~(x $^\wedge$ y $^\wedge$ z)}
+
+
+
+Definition at line 40 of file sha1.\+c.
+
+\mbox{\Hypertarget{sha1_8c_a307fb21b8e88de3fd71cd5acc6a9af88}\label{sha1_8c_a307fb21b8e88de3fd71cd5acc6a9af88}} 
+\index{sha1.c@{sha1.c}!FF0@{FF0}}
+\index{FF0@{FF0}!sha1.c@{sha1.c}}
+\subsubsection{\texorpdfstring{FF0}{FF0}}
+{\footnotesize\ttfamily \#define F\+F0(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{b,  }\item[{}]{\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},  }\item[{}]{d,  }\item[{}]{e,  }\item[{}]{i }\end{DoxyParamCaption})~e = (\mbox{\hyperlink{tomcrypt__macros_8h_a39d625dc0b148466a72c13737e063d86}{R\+O\+Lc}}(a, 5) + \mbox{\hyperlink{sha1_8c_aaefb24d5edbae9ebbaae9896fa48f46b}{F0}}(b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d) + e + W\mbox{[}i\mbox{]} + 0x5a827999\+U\+L); b = R\+O\+Lc(b, 30);}
+
+\mbox{\Hypertarget{sha1_8c_aee2dd4961d74263c3eed5780004a01ca}\label{sha1_8c_aee2dd4961d74263c3eed5780004a01ca}} 
+\index{sha1.c@{sha1.c}!FF1@{FF1}}
+\index{FF1@{FF1}!sha1.c@{sha1.c}}
+\subsubsection{\texorpdfstring{FF1}{FF1}}
+{\footnotesize\ttfamily \#define F\+F1(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{b,  }\item[{}]{\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},  }\item[{}]{d,  }\item[{}]{e,  }\item[{}]{i }\end{DoxyParamCaption})~e = (\mbox{\hyperlink{tomcrypt__macros_8h_a39d625dc0b148466a72c13737e063d86}{R\+O\+Lc}}(a, 5) + \mbox{\hyperlink{sha1_8c_a3c2b6b2959faadfcf644757cb570b734}{F1}}(b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d) + e + W\mbox{[}i\mbox{]} + 0x6ed9eba1\+U\+L); b = R\+O\+Lc(b, 30);}
+
+\mbox{\Hypertarget{sha1_8c_a033e79e2e207e5af728daad7d7012f77}\label{sha1_8c_a033e79e2e207e5af728daad7d7012f77}} 
+\index{sha1.c@{sha1.c}!FF2@{FF2}}
+\index{FF2@{FF2}!sha1.c@{sha1.c}}
+\subsubsection{\texorpdfstring{FF2}{FF2}}
+{\footnotesize\ttfamily \#define F\+F2(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{b,  }\item[{}]{\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},  }\item[{}]{d,  }\item[{}]{e,  }\item[{}]{i }\end{DoxyParamCaption})~e = (\mbox{\hyperlink{tomcrypt__macros_8h_a39d625dc0b148466a72c13737e063d86}{R\+O\+Lc}}(a, 5) + \mbox{\hyperlink{sha1_8c_ae131b09a86bdafd00f48095647e80a00}{F2}}(b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d) + e + W\mbox{[}i\mbox{]} + 0x8f1bbcdc\+U\+L); b = R\+O\+Lc(b, 30);}
+
+\mbox{\Hypertarget{sha1_8c_a67df893952d4ab63e97480b42f1d083e}\label{sha1_8c_a67df893952d4ab63e97480b42f1d083e}} 
+\index{sha1.c@{sha1.c}!FF3@{FF3}}
+\index{FF3@{FF3}!sha1.c@{sha1.c}}
+\subsubsection{\texorpdfstring{FF3}{FF3}}
+{\footnotesize\ttfamily \#define F\+F3(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{b,  }\item[{}]{\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},  }\item[{}]{d,  }\item[{}]{e,  }\item[{}]{i }\end{DoxyParamCaption})~e = (\mbox{\hyperlink{tomcrypt__macros_8h_a39d625dc0b148466a72c13737e063d86}{R\+O\+Lc}}(a, 5) + \mbox{\hyperlink{sha1_8c_a8f6625b749e5fe36981ee2d149229b98}{F3}}(b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d) + e + W\mbox{[}i\mbox{]} + 0xca62c1d6\+U\+L); b = R\+O\+Lc(b, 30);}
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{sha1_8c_a8132febc9c55c87720acc39e4d4c8dec}\label{sha1_8c_a8132febc9c55c87720acc39e4d4c8dec}} 
+\index{sha1.c@{sha1.c}!sha1\_compress@{sha1\_compress}}
+\index{sha1\_compress@{sha1\_compress}!sha1.c@{sha1.c}}
+\subsubsection{\texorpdfstring{sha1\_compress()}{sha1\_compress()}}
+{\footnotesize\ttfamily static int sha1\+\_\+compress (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$}]{md,  }\item[{const unsigned char $\ast$}]{buf }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 45 of file sha1.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{47 \{}
+\DoxyCodeLine{48     \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} a,b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d,e,W[80],i;}
+\DoxyCodeLine{49 \textcolor{preprocessor}{\#ifdef LTC\_SMALL\_CODE}}
+\DoxyCodeLine{50     \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} t;}
+\DoxyCodeLine{51 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{53     \textcolor{comment}{/* copy the state into 512-bits into W[0..15] */}}
+\DoxyCodeLine{54     \textcolor{keywordflow}{for} (i = 0; i < 16; i++) \{}
+\DoxyCodeLine{55         LOAD32H(W[i], buf + (4*i));}
+\DoxyCodeLine{56     \}}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{58     \textcolor{comment}{/* copy state */}}
+\DoxyCodeLine{59     a = md->sha1.state[0];}
+\DoxyCodeLine{60     b = md->sha1.state[1];}
+\DoxyCodeLine{61     \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} = md->sha1.state[2];}
+\DoxyCodeLine{62     d = md->sha1.state[3];}
+\DoxyCodeLine{63     e = md->sha1.state[4];}
+\DoxyCodeLine{64 }
+\DoxyCodeLine{65     \textcolor{comment}{/* expand it */}}
+\DoxyCodeLine{66     \textcolor{keywordflow}{for} (i = 16; i < 80; i++) \{}
+\DoxyCodeLine{67         W[i] = \mbox{\hyperlink{tomcrypt__macros_8h_a2e1da5c8810967170c889976d1fe9fa1}{ROL}}(W[i-3] \string^ W[i-8] \string^ W[i-14] \string^ W[i-16], 1);}
+\DoxyCodeLine{68     \}}
+\DoxyCodeLine{69 }
+\DoxyCodeLine{70     \textcolor{comment}{/* compress */}}
+\DoxyCodeLine{71     \textcolor{comment}{/* round one */}}
+\DoxyCodeLine{72 \textcolor{preprocessor}{    \#define FF0(a,b,c,d,e,i) e = (ROLc(a, 5) + F0(b,c,d) + e + W[i] + 0x5a827999UL); b = ROLc(b, 30);}}
+\DoxyCodeLine{73 \textcolor{preprocessor}{    \#define FF1(a,b,c,d,e,i) e = (ROLc(a, 5) + F1(b,c,d) + e + W[i] + 0x6ed9eba1UL); b = ROLc(b, 30);}}
+\DoxyCodeLine{74 \textcolor{preprocessor}{    \#define FF2(a,b,c,d,e,i) e = (ROLc(a, 5) + F2(b,c,d) + e + W[i] + 0x8f1bbcdcUL); b = ROLc(b, 30);}}
+\DoxyCodeLine{75 \textcolor{preprocessor}{    \#define FF3(a,b,c,d,e,i) e = (ROLc(a, 5) + F3(b,c,d) + e + W[i] + 0xca62c1d6UL); b = ROLc(b, 30);}}
+\DoxyCodeLine{76 }
+\DoxyCodeLine{77 \textcolor{preprocessor}{\#ifdef LTC\_SMALL\_CODE}}
+\DoxyCodeLine{78 }
+\DoxyCodeLine{79     \textcolor{keywordflow}{for} (i = 0; i < 20; ) \{}
+\DoxyCodeLine{80        \mbox{\hyperlink{sha1_8c_a307fb21b8e88de3fd71cd5acc6a9af88}{FF0}}(a,b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d,e,i++); t = e; e = d; d = \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}; \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} = b; b = a; a = t;}
+\DoxyCodeLine{81     \}}
+\DoxyCodeLine{82 }
+\DoxyCodeLine{83     \textcolor{keywordflow}{for} (; i < 40; ) \{}
+\DoxyCodeLine{84        \mbox{\hyperlink{sha1_8c_aee2dd4961d74263c3eed5780004a01ca}{FF1}}(a,b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d,e,i++); t = e; e = d; d = \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}; \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} = b; b = a; a = t;}
+\DoxyCodeLine{85     \}}
+\DoxyCodeLine{86 }
+\DoxyCodeLine{87     \textcolor{keywordflow}{for} (; i < 60; ) \{}
+\DoxyCodeLine{88        \mbox{\hyperlink{sha1_8c_a033e79e2e207e5af728daad7d7012f77}{FF2}}(a,b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d,e,i++); t = e; e = d; d = \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}; \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} = b; b = a; a = t;}
+\DoxyCodeLine{89     \}}
+\DoxyCodeLine{90 }
+\DoxyCodeLine{91     \textcolor{keywordflow}{for} (; i < 80; ) \{}
+\DoxyCodeLine{92        \mbox{\hyperlink{sha1_8c_a67df893952d4ab63e97480b42f1d083e}{FF3}}(a,b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d,e,i++); t = e; e = d; d = \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}; \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} = b; b = a; a = t;}
+\DoxyCodeLine{93     \}}
+\DoxyCodeLine{94 }
+\DoxyCodeLine{95 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{96 }
+\DoxyCodeLine{97     \textcolor{keywordflow}{for} (i = 0; i < 20; ) \{}
+\DoxyCodeLine{98        \mbox{\hyperlink{sha1_8c_a307fb21b8e88de3fd71cd5acc6a9af88}{FF0}}(a,b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d,e,i++);}
+\DoxyCodeLine{99        \mbox{\hyperlink{sha1_8c_a307fb21b8e88de3fd71cd5acc6a9af88}{FF0}}(e,a,b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d,i++);}
+\DoxyCodeLine{100        \mbox{\hyperlink{sha1_8c_a307fb21b8e88de3fd71cd5acc6a9af88}{FF0}}(d,e,a,b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},i++);}
+\DoxyCodeLine{101        \mbox{\hyperlink{sha1_8c_a307fb21b8e88de3fd71cd5acc6a9af88}{FF0}}(\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d,e,a,b,i++);}
+\DoxyCodeLine{102        \mbox{\hyperlink{sha1_8c_a307fb21b8e88de3fd71cd5acc6a9af88}{FF0}}(b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d,e,a,i++);}
+\DoxyCodeLine{103     \}}
+\DoxyCodeLine{104 }
+\DoxyCodeLine{105     \textcolor{comment}{/* round two */}}
+\DoxyCodeLine{106     \textcolor{keywordflow}{for} (; i < 40; )  \{}
+\DoxyCodeLine{107        \mbox{\hyperlink{sha1_8c_aee2dd4961d74263c3eed5780004a01ca}{FF1}}(a,b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d,e,i++);}
+\DoxyCodeLine{108        \mbox{\hyperlink{sha1_8c_aee2dd4961d74263c3eed5780004a01ca}{FF1}}(e,a,b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d,i++);}
+\DoxyCodeLine{109        \mbox{\hyperlink{sha1_8c_aee2dd4961d74263c3eed5780004a01ca}{FF1}}(d,e,a,b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},i++);}
+\DoxyCodeLine{110        \mbox{\hyperlink{sha1_8c_aee2dd4961d74263c3eed5780004a01ca}{FF1}}(\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d,e,a,b,i++);}
+\DoxyCodeLine{111        \mbox{\hyperlink{sha1_8c_aee2dd4961d74263c3eed5780004a01ca}{FF1}}(b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d,e,a,i++);}
+\DoxyCodeLine{112     \}}
+\DoxyCodeLine{113 }
+\DoxyCodeLine{114     \textcolor{comment}{/* round three */}}
+\DoxyCodeLine{115     \textcolor{keywordflow}{for} (; i < 60; )  \{}
+\DoxyCodeLine{116        \mbox{\hyperlink{sha1_8c_a033e79e2e207e5af728daad7d7012f77}{FF2}}(a,b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d,e,i++);}
+\DoxyCodeLine{117        \mbox{\hyperlink{sha1_8c_a033e79e2e207e5af728daad7d7012f77}{FF2}}(e,a,b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d,i++);}
+\DoxyCodeLine{118        \mbox{\hyperlink{sha1_8c_a033e79e2e207e5af728daad7d7012f77}{FF2}}(d,e,a,b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},i++);}
+\DoxyCodeLine{119        \mbox{\hyperlink{sha1_8c_a033e79e2e207e5af728daad7d7012f77}{FF2}}(\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d,e,a,b,i++);}
+\DoxyCodeLine{120        \mbox{\hyperlink{sha1_8c_a033e79e2e207e5af728daad7d7012f77}{FF2}}(b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d,e,a,i++);}
+\DoxyCodeLine{121     \}}
+\DoxyCodeLine{122 }
+\DoxyCodeLine{123     \textcolor{comment}{/* round four */}}
+\DoxyCodeLine{124     \textcolor{keywordflow}{for} (; i < 80; )  \{}
+\DoxyCodeLine{125        \mbox{\hyperlink{sha1_8c_a67df893952d4ab63e97480b42f1d083e}{FF3}}(a,b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d,e,i++);}
+\DoxyCodeLine{126        \mbox{\hyperlink{sha1_8c_a67df893952d4ab63e97480b42f1d083e}{FF3}}(e,a,b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d,i++);}
+\DoxyCodeLine{127        \mbox{\hyperlink{sha1_8c_a67df893952d4ab63e97480b42f1d083e}{FF3}}(d,e,a,b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},i++);}
+\DoxyCodeLine{128        \mbox{\hyperlink{sha1_8c_a67df893952d4ab63e97480b42f1d083e}{FF3}}(\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d,e,a,b,i++);}
+\DoxyCodeLine{129        \mbox{\hyperlink{sha1_8c_a67df893952d4ab63e97480b42f1d083e}{FF3}}(b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d,e,a,i++);}
+\DoxyCodeLine{130     \}}
+\DoxyCodeLine{131 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{132 }
+\DoxyCodeLine{133 \textcolor{preprocessor}{    \#undef FF0}}
+\DoxyCodeLine{134 \textcolor{preprocessor}{    \#undef FF1}}
+\DoxyCodeLine{135 \textcolor{preprocessor}{    \#undef FF2}}
+\DoxyCodeLine{136 \textcolor{preprocessor}{    \#undef FF3}}
+\DoxyCodeLine{137 }
+\DoxyCodeLine{138     \textcolor{comment}{/* store */}}
+\DoxyCodeLine{139     md->sha1.state[0] = md->sha1.state[0] + a;}
+\DoxyCodeLine{140     md->sha1.state[1] = md->sha1.state[1] + b;}
+\DoxyCodeLine{141     md->sha1.state[2] = md->sha1.state[2] + \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}};}
+\DoxyCodeLine{142     md->sha1.state[3] = md->sha1.state[3] + d;}
+\DoxyCodeLine{143     md->sha1.state[4] = md->sha1.state[4] + e;}
+\DoxyCodeLine{144 }
+\DoxyCodeLine{145     \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{146 \}}
+
+\end{DoxyCode}
+
+
+References c, C\+R\+Y\+P\+T\+\_\+\+OK, F\+F0, F\+F1, F\+F2, F\+F3, and R\+OL.
+
+
+
+Referenced by sha1\+\_\+done().
+
+Here is the caller graph for this function\+:
+% FIG 1
+\mbox{\Hypertarget{sha1_8c_a8c33281a2a14e6495eadd36f7a3f277e}\label{sha1_8c_a8c33281a2a14e6495eadd36f7a3f277e}} 
+\index{sha1.c@{sha1.c}!sha1\_done@{sha1\_done}}
+\index{sha1\_done@{sha1\_done}!sha1.c@{sha1.c}}
+\subsubsection{\texorpdfstring{sha1\_done()}{sha1\_done()}}
+{\footnotesize\ttfamily int sha1\+\_\+done (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$}]{md,  }\item[{unsigned char $\ast$}]{out }\end{DoxyParamCaption})}
+
+
+
+Terminate the hash to get the digest. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em md} & The hash state \\
+\hline
+{\em out} & \mbox{[}out\mbox{]} The destination of the hash (20 bytes) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 191 of file sha1.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{192 \{}
+\DoxyCodeLine{193     \textcolor{keywordtype}{int} i;}
+\DoxyCodeLine{194 }
+\DoxyCodeLine{195     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(md  != NULL);}
+\DoxyCodeLine{196     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(out != NULL);}
+\DoxyCodeLine{197 }
+\DoxyCodeLine{198     \textcolor{keywordflow}{if} (md->sha1.curlen >= \textcolor{keyword}{sizeof}(md->sha1.buf)) \{}
+\DoxyCodeLine{199        \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{200     \}}
+\DoxyCodeLine{201 }
+\DoxyCodeLine{202     \textcolor{comment}{/* increase the length of the message */}}
+\DoxyCodeLine{203     md->sha1.length += md->sha1.curlen * 8;}
+\DoxyCodeLine{204 }
+\DoxyCodeLine{205     \textcolor{comment}{/* append the '1' bit */}}
+\DoxyCodeLine{206     md->sha1.buf[md->sha1.curlen++] = (\textcolor{keywordtype}{unsigned} char)0x80;}
+\DoxyCodeLine{207 }
+\DoxyCodeLine{208     \textcolor{comment}{/* if the length is currently above 56 bytes we append zeros}}
+\DoxyCodeLine{209 \textcolor{comment}{     * then compress.  Then we can fall back to padding zeros and length}}
+\DoxyCodeLine{210 \textcolor{comment}{     * encoding like normal.}}
+\DoxyCodeLine{211 \textcolor{comment}{     */}}
+\DoxyCodeLine{212     \textcolor{keywordflow}{if} (md->sha1.curlen > 56) \{}
+\DoxyCodeLine{213         \textcolor{keywordflow}{while} (md->sha1.curlen < 64) \{}
+\DoxyCodeLine{214             md->sha1.buf[md->sha1.curlen++] = (\textcolor{keywordtype}{unsigned} char)0;}
+\DoxyCodeLine{215         \}}
+\DoxyCodeLine{216         \mbox{\hyperlink{sha1_8c_a8132febc9c55c87720acc39e4d4c8dec}{sha1\_compress}}(md, md->sha1.buf);}
+\DoxyCodeLine{217         md->sha1.curlen = 0;}
+\DoxyCodeLine{218     \}}
+\DoxyCodeLine{219 }
+\DoxyCodeLine{220     \textcolor{comment}{/* pad upto 56 bytes of zeroes */}}
+\DoxyCodeLine{221     \textcolor{keywordflow}{while} (md->sha1.curlen < 56) \{}
+\DoxyCodeLine{222         md->sha1.buf[md->sha1.curlen++] = (\textcolor{keywordtype}{unsigned} char)0;}
+\DoxyCodeLine{223     \}}
+\DoxyCodeLine{224 }
+\DoxyCodeLine{225     \textcolor{comment}{/* store length */}}
+\DoxyCodeLine{226     STORE64H(md->sha1.length, md->sha1.buf+56);}
+\DoxyCodeLine{227     \mbox{\hyperlink{sha1_8c_a8132febc9c55c87720acc39e4d4c8dec}{sha1\_compress}}(md, md->sha1.buf);}
+\DoxyCodeLine{228 }
+\DoxyCodeLine{229     \textcolor{comment}{/* copy output */}}
+\DoxyCodeLine{230     \textcolor{keywordflow}{for} (i = 0; i < 5; i++) \{}
+\DoxyCodeLine{231         STORE32H(md->sha1.state[i], out+(4*i));}
+\DoxyCodeLine{232     \}}
+\DoxyCodeLine{233 \textcolor{preprocessor}{\#ifdef LTC\_CLEAN\_STACK}}
+\DoxyCodeLine{234     \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(md, \textcolor{keyword}{sizeof}(\mbox{\hyperlink{unionHash__state}{hash\_state}}));}
+\DoxyCodeLine{235 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{236     \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{237 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+A\+RG, C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, sha1\+\_\+compress(), and zeromem().
+
+
+
+Referenced by sha1\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 2
+Here is the caller graph for this function\+:
+% FIG 3
+\mbox{\Hypertarget{sha1_8c_af64ddcb1aca4cd861589b69c2d206bf2}\label{sha1_8c_af64ddcb1aca4cd861589b69c2d206bf2}} 
+\index{sha1.c@{sha1.c}!sha1\_init@{sha1\_init}}
+\index{sha1\_init@{sha1\_init}!sha1.c@{sha1.c}}
+\subsubsection{\texorpdfstring{sha1\_init()}{sha1\_init()}}
+{\footnotesize\ttfamily int sha1\+\_\+init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$}]{md }\end{DoxyParamCaption})}
+
+
+
+Initialize the hash state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em md} & The hash state you wish to initialize \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 163 of file sha1.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{164 \{}
+\DoxyCodeLine{165    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(md != NULL);}
+\DoxyCodeLine{166    md->sha1.state[0] = 0x67452301UL;}
+\DoxyCodeLine{167    md->sha1.state[1] = 0xefcdab89UL;}
+\DoxyCodeLine{168    md->sha1.state[2] = 0x98badcfeUL;}
+\DoxyCodeLine{169    md->sha1.state[3] = 0x10325476UL;}
+\DoxyCodeLine{170    md->sha1.state[4] = 0xc3d2e1f0UL;}
+\DoxyCodeLine{171    md->sha1.curlen = 0;}
+\DoxyCodeLine{172    md->sha1.length = 0;}
+\DoxyCodeLine{173    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{174 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+
+
+Referenced by sha1\+\_\+test().
+
+Here is the caller graph for this function\+:
+% FIG 4
+\mbox{\Hypertarget{sha1_8c_a8c9087d2e73227964c0155eac20ea449}\label{sha1_8c_a8c9087d2e73227964c0155eac20ea449}} 
+\index{sha1.c@{sha1.c}!sha1\_process@{sha1\_process}}
+\index{sha1\_process@{sha1\_process}!sha1.c@{sha1.c}}
+\subsubsection{\texorpdfstring{sha1\_process()}{sha1\_process()}}
+{\footnotesize\ttfamily int sha1\+\_\+process (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$}]{md,  }\item[{const unsigned char $\ast$}]{in,  }\item[{unsigned long}]{inlen }\end{DoxyParamCaption})}
+
+
+
+Process a block of memory though the hash. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em md} & The hash state \\
+\hline
+{\em in} & The data to hash \\
+\hline
+{\em inlen} & The length of the data (octets) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 183 of file sha1.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{192 \{}
+
+\end{DoxyCode}
+
+
+Referenced by sha1\+\_\+test().
+
+Here is the caller graph for this function\+:
+% FIG 5
+\mbox{\Hypertarget{sha1_8c_a974ff217ba983de0864a96586e9b4b80}\label{sha1_8c_a974ff217ba983de0864a96586e9b4b80}} 
+\index{sha1.c@{sha1.c}!sha1\_test@{sha1\_test}}
+\index{sha1\_test@{sha1\_test}!sha1.c@{sha1.c}}
+\subsubsection{\texorpdfstring{sha1\_test()}{sha1\_test()}}
+{\footnotesize\ttfamily int sha1\+\_\+test (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Self-\/test the hash. 
+
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful, C\+R\+Y\+P\+T\+\_\+\+N\+OP if self-\/tests have been disabled 
+\end{DoxyReturn}
+
+
+Definition at line 243 of file sha1.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{244 \{}
+\DoxyCodeLine{245 \textcolor{preprocessor}{ \#ifndef LTC\_TEST}}
+\DoxyCodeLine{246     \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cac43a7799c7fd5f515172da6cfc0f9cf5}{CRYPT\_NOP}};}
+\DoxyCodeLine{247 \textcolor{preprocessor}{ \#else}}
+\DoxyCodeLine{248   \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{249       \textcolor{keyword}{const} \textcolor{keywordtype}{char} *msg;}
+\DoxyCodeLine{250       \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} hash[20];}
+\DoxyCodeLine{251   \} tests[] = \{}
+\DoxyCodeLine{252     \{ \textcolor{stringliteral}{"abc"},}
+\DoxyCodeLine{253       \{ 0xa9, 0x99, 0x3e, 0x36, 0x47, 0x06, 0x81, 0x6a,}
+\DoxyCodeLine{254         0xba, 0x3e, 0x25, 0x71, 0x78, 0x50, 0xc2, 0x6c,}
+\DoxyCodeLine{255         0x9c, 0xd0, 0xd8, 0x9d \}}
+\DoxyCodeLine{256     \},}
+\DoxyCodeLine{257     \{ \textcolor{stringliteral}{"abcdbcdecdefdefgefghfghighijhijkijkljklmklmnlmnomnopnopq"},}
+\DoxyCodeLine{258       \{ 0x84, 0x98, 0x3E, 0x44, 0x1C, 0x3B, 0xD2, 0x6E,}
+\DoxyCodeLine{259         0xBA, 0xAE, 0x4A, 0xA1, 0xF9, 0x51, 0x29, 0xE5,}
+\DoxyCodeLine{260         0xE5, 0x46, 0x70, 0xF1 \}}
+\DoxyCodeLine{261     \}}
+\DoxyCodeLine{262   \};}
+\DoxyCodeLine{263 }
+\DoxyCodeLine{264   \textcolor{keywordtype}{int} i;}
+\DoxyCodeLine{265   \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} tmp[20];}
+\DoxyCodeLine{266   \mbox{\hyperlink{unionHash__state}{hash\_state}} md;}
+\DoxyCodeLine{267 }
+\DoxyCodeLine{268   \textcolor{keywordflow}{for} (i = 0; i < (int)(\textcolor{keyword}{sizeof}(tests) / \textcolor{keyword}{sizeof}(tests[0]));  i++) \{}
+\DoxyCodeLine{269       \mbox{\hyperlink{sha1_8c_af64ddcb1aca4cd861589b69c2d206bf2}{sha1\_init}}(\&md);}
+\DoxyCodeLine{270       \mbox{\hyperlink{sha1_8c_a8c9087d2e73227964c0155eac20ea449}{sha1\_process}}(\&md, (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}*)tests[i].msg, (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long})strlen(tests[i].msg));}
+\DoxyCodeLine{271       \mbox{\hyperlink{sha1_8c_a8c33281a2a14e6495eadd36f7a3f277e}{sha1\_done}}(\&md, tmp);}
+\DoxyCodeLine{272       \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(tmp, \textcolor{keyword}{sizeof}(tmp), tests[i].hash, \textcolor{keyword}{sizeof}(tests[i].hash), \textcolor{stringliteral}{"SHA1"}, i)) \{}
+\DoxyCodeLine{273          \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{274       \}}
+\DoxyCodeLine{275   \}}
+\DoxyCodeLine{276   \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{277 \textcolor{preprocessor}{  \#endif}}
+\DoxyCodeLine{278 \}}
+
+\end{DoxyCode}
+
+
+References compare\+\_\+testvector(), C\+R\+Y\+P\+T\+\_\+\+F\+A\+I\+L\+\_\+\+T\+E\+S\+T\+V\+E\+C\+T\+OR, C\+R\+Y\+P\+T\+\_\+\+N\+OP, C\+R\+Y\+P\+T\+\_\+\+OK, sha1\+\_\+done(), sha1\+\_\+init(), and sha1\+\_\+process().
+
+Here is the call graph for this function\+:
+% FIG 6
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{sha1_8c_aae521fdbe0f9dea61c37f76ece473360}\label{sha1_8c_aae521fdbe0f9dea61c37f76ece473360}} 
+\index{sha1.c@{sha1.c}!sha1\_desc@{sha1\_desc}}
+\index{sha1\_desc@{sha1\_desc}!sha1.c@{sha1.c}}
+\subsubsection{\texorpdfstring{sha1\_desc}{sha1\_desc}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structltc__hash__descriptor}{ltc\+\_\+hash\+\_\+descriptor}} sha1\+\_\+desc}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    \textcolor{stringliteral}{"sha1"},}
+\DoxyCodeLine{    2,}
+\DoxyCodeLine{    20,}
+\DoxyCodeLine{    64,}
+\DoxyCodeLine{}
+\DoxyCodeLine{    }
+\DoxyCodeLine{   \{ 1, 3, 14, 3, 2, 26,  \},}
+\DoxyCodeLine{   6,}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \&\mbox{\hyperlink{sha1_8c_af64ddcb1aca4cd861589b69c2d206bf2}{sha1\_init}},}
+\DoxyCodeLine{    \&\mbox{\hyperlink{sha1_8c_a8c9087d2e73227964c0155eac20ea449}{sha1\_process}},}
+\DoxyCodeLine{    \&\mbox{\hyperlink{sha1_8c_a8c33281a2a14e6495eadd36f7a3f277e}{sha1\_done}},}
+\DoxyCodeLine{    \&\mbox{\hyperlink{sha1_8c_a974ff217ba983de0864a96586e9b4b80}{sha1\_test}},}
+\DoxyCodeLine{    NULL}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line 19 of file sha1.\+c.
+
+
+
+Referenced by register\+\_\+all\+\_\+hashes(), and yarrow\+\_\+start().
+

@@ -1,0 +1,48 @@
+digraph "blake2b_384_test"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node72 [label="blake2b_384_test",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Self-test the hash."];
+  Node72 -> Node73 [color="midnightblue",fontsize="10",style="solid"];
+  Node73 [label="blake2b_384_init",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$blake2b_8c.html#a95985494dcd2c6b0106b3f15499ccf42",tooltip="Initialize the hash state."];
+  Node73 -> Node74 [color="midnightblue",fontsize="10",style="solid"];
+  Node74 [label="blake2b_init",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$blake2b_8c.html#a1f07c7dccb6eb40dfd3c86314c103174",tooltip="Initialize the hash/MAC state."];
+  Node74 -> Node75 [color="midnightblue",fontsize="10",style="solid"];
+  Node75 [label="XMEMSET",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cfg_8h.html#aa3c34a6f6c61de7da9258b5a30e32c2f",tooltip=" "];
+  Node74 -> Node76 [color="midnightblue",fontsize="10",style="solid"];
+  Node76 [label="blake2b_init_param",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$blake2b_8c.html#a64470e489de75554d8cc26b523992cc7",tooltip=" "];
+  Node76 -> Node77 [color="midnightblue",fontsize="10",style="solid"];
+  Node77 [label="blake2b_init0",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$blake2b_8c.html#aea54854ea5c46155d7aac4d3e8688a7d",tooltip=" "];
+  Node77 -> Node75 [color="midnightblue",fontsize="10",style="solid"];
+  Node74 -> Node78 [color="midnightblue",fontsize="10",style="solid"];
+  Node78 [label="XMEMCPY",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cfg_8h.html#a7691dd48d60d5fc6daf2fa7ec4c55e12",tooltip=" "];
+  Node74 -> Node79 [color="midnightblue",fontsize="10",style="solid"];
+  Node79 [label="blake2b_process",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$blake2b_8c.html#abba3140d3bca5aaf1130479604e26580",tooltip="Process a block of memory through the hash."];
+  Node79 -> Node78 [color="midnightblue",fontsize="10",style="solid"];
+  Node79 -> Node80 [color="midnightblue",fontsize="10",style="solid"];
+  Node80 [label="blake2b_increment_counter",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$blake2b_8c.html#a01eb5e19a85d78ffe547b9a828fa8c6f",tooltip=" "];
+  Node79 -> Node81 [color="midnightblue",fontsize="10",style="solid"];
+  Node81 [label="blake2b_compress",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$blake2b_8c.html#aa9f990b9af0db6ace2de60269129214e",tooltip=" "];
+  Node74 -> Node82 [color="midnightblue",fontsize="10",style="solid"];
+  Node82 [label="zeromem",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__misc_8h.html#a63b6e188713790263bfd3612fe8b398f",tooltip="Zero a block of memory."];
+  Node72 -> Node83 [color="midnightblue",fontsize="10",style="solid"];
+  Node83 [label="blake2b_done",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$blake2b_8c.html#a0f0734cf05cdaa86e4658738c06653c2",tooltip="Terminate the hash to get the digest."];
+  Node83 -> Node84 [color="midnightblue",fontsize="10",style="solid"];
+  Node84 [label="blake2b_is_lastblock",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$blake2b_8c.html#a91439516618cfb2e295b99ba65b0bf84",tooltip=" "];
+  Node83 -> Node80 [color="midnightblue",fontsize="10",style="solid"];
+  Node83 -> Node85 [color="midnightblue",fontsize="10",style="solid"];
+  Node85 [label="blake2b_set_lastblock",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$blake2b_8c.html#a708b739af8a84facdea8e166a98d4dd4",tooltip=" "];
+  Node85 -> Node86 [color="midnightblue",fontsize="10",style="solid"];
+  Node86 [label="blake2b_set_lastnode",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$blake2b_8c.html#a32ba77762f4bbc20bd05491e14bf7dc3",tooltip=" "];
+  Node83 -> Node75 [color="midnightblue",fontsize="10",style="solid"];
+  Node83 -> Node81 [color="midnightblue",fontsize="10",style="solid"];
+  Node83 -> Node78 [color="midnightblue",fontsize="10",style="solid"];
+  Node83 -> Node82 [color="midnightblue",fontsize="10",style="solid"];
+  Node72 -> Node79 [color="midnightblue",fontsize="10",style="solid"];
+  Node72 -> Node87 [color="midnightblue",fontsize="10",style="solid"];
+  Node87 [label="compare_testvector",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__misc_8h.html#a7764a7f27897c6182335752df00b5f8e",tooltip="Compare two test-vectors."];
+  Node87 -> Node88 [color="midnightblue",fontsize="10",style="solid"];
+  Node88 [label="XMEMCMP",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cfg_8h.html#a372b974ec0ac07abcd55297554fe540f",tooltip=" "];
+}

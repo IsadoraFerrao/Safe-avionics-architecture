@@ -1,0 +1,68 @@
+\hypertarget{dh__export__key_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/pk/dh/dh\+\_\+export\+\_\+key.c File Reference}
+\label{dh__export__key_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/dh/dh\_export\_key.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/dh/dh\_export\_key.c}}
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for dh\+\_\+export\+\_\+key.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{dh__export__key_8c_a0105686b7d0e5b95f67c3ef4e8daba80}{dh\+\_\+export\+\_\+key}} (void $\ast$out, unsigned long $\ast$outlen, int type, const dh\+\_\+key $\ast$key)
+\begin{DoxyCompactList}\small\item\em Binary export a DH key to a buffer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{dh__export__key_8c_a0105686b7d0e5b95f67c3ef4e8daba80}\label{dh__export__key_8c_a0105686b7d0e5b95f67c3ef4e8daba80}} 
+\index{dh\_export\_key.c@{dh\_export\_key.c}!dh\_export\_key@{dh\_export\_key}}
+\index{dh\_export\_key@{dh\_export\_key}!dh\_export\_key.c@{dh\_export\_key.c}}
+\subsubsection{\texorpdfstring{dh\_export\_key()}{dh\_export\_key()}}
+{\footnotesize\ttfamily int dh\+\_\+export\+\_\+key (\begin{DoxyParamCaption}\item[{void $\ast$}]{out,  }\item[{unsigned long $\ast$}]{outlen,  }\item[{int}]{type,  }\item[{const dh\+\_\+key $\ast$}]{key }\end{DoxyParamCaption})}
+
+
+
+Binary export a DH key to a buffer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em out} & \mbox{[}out\mbox{]} The destination for the key \\
+\hline
+{\em outlen} & \mbox{[}in/out\mbox{]} The max size and resulting size of the DH key \\
+\hline
+{\em type} & Which type of key (P\+K\+\_\+\+P\+R\+I\+V\+A\+TE or P\+K\+\_\+\+P\+U\+B\+L\+IC) \\
+\hline
+{\em key} & The key you wish to export \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 22 of file dh\+\_\+export\+\_\+key.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{23 \{}
+\DoxyCodeLine{24    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}};}
+\DoxyCodeLine{25    \textcolor{keywordtype}{void} *k;}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(out    != NULL);}
+\DoxyCodeLine{28    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(outlen != NULL);}
+\DoxyCodeLine{29    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(key    != NULL);}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31    k = (type == \mbox{\hyperlink{tomcrypt__pk_8h_afb69d121a43f5ae8b47e6b83611d9272a7295b3dea2c5277912c6e040e1c96649}{PK\_PRIVATE}}) ? key->x : key->y;}
+\DoxyCodeLine{32    \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}} = \mbox{\hyperlink{tomcrypt__private_8h_ad301148bb24f43a8c7003a6976dfaa5a}{mp\_unsigned\_bin\_size}}(k);}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34    \textcolor{keywordflow}{if} (*outlen < \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}) \{}
+\DoxyCodeLine{35       *outlen = \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}};}
+\DoxyCodeLine{36       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caccd878f5599f3036ffe759dbe1a1ac16}{CRYPT\_BUFFER\_OVERFLOW}};}
+\DoxyCodeLine{37    \}}
+\DoxyCodeLine{38    *outlen = \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}};}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{40    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt__private_8h_a376a4d31dcfeb65c069db0485b9602f8}{mp\_to\_unsigned\_bin}}(k, out);}
+\DoxyCodeLine{41 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+O\+V\+E\+R\+F\+L\+OW, len, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, mp\+\_\+to\+\_\+unsigned\+\_\+bin, mp\+\_\+unsigned\+\_\+bin\+\_\+size, and P\+K\+\_\+\+P\+R\+I\+V\+A\+TE.
+

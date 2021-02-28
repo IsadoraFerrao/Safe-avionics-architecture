@@ -1,0 +1,15 @@
+digraph "khazad_crypt"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node1 [label="khazad_crypt",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="khazad_ecb_decrypt",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$khazad_8c.html#ae1333252a34f625c3b6acfc2805b3b92",tooltip="Decrypts a block of text with Khazad."];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="khazad_test",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$khazad_8c.html#a84954dad5480d2d51bbabec6f639a662",tooltip="Performs a self-test of the Khazad block cipher."];
+  Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="khazad_ecb_encrypt",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$khazad_8c.html#a5a1f47614a0573ea67f9dcc1d9a7143c",tooltip="Encrypts a block of text with Khazad."];
+  Node4 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}

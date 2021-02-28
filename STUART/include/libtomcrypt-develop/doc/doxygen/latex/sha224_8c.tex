@@ -1,0 +1,234 @@
+\hypertarget{sha224_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/hashes/sha2/sha224.c File Reference}
+\label{sha224_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/hashes/sha2/sha224.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/hashes/sha2/sha224.c}}
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for sha224.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{sha224_8c_a9f835910f28eced8ea5b494b2bc74ea4}{sha224\+\_\+init}} (\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$md)
+\begin{DoxyCompactList}\small\item\em Initialize the hash state. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{sha224_8c_a94aaf81f5c96e00fc5f6cf2332a5bfe1}{sha224\+\_\+done}} (\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$md, unsigned char $\ast$out)
+\begin{DoxyCompactList}\small\item\em Terminate the hash to get the digest. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{sha224_8c_ad76aa20d487739f22aeb5e576edb978b}{sha224\+\_\+test}} (void)
+\begin{DoxyCompactList}\small\item\em Self-\/test the hash. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const struct \mbox{\hyperlink{structltc__hash__descriptor}{ltc\+\_\+hash\+\_\+descriptor}} \mbox{\hyperlink{sha224_8c_a1ca01f6b95871f666745ef6f6b34ccdb}{sha224\+\_\+desc}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{sha224_8c_a94aaf81f5c96e00fc5f6cf2332a5bfe1}\label{sha224_8c_a94aaf81f5c96e00fc5f6cf2332a5bfe1}} 
+\index{sha224.c@{sha224.c}!sha224\_done@{sha224\_done}}
+\index{sha224\_done@{sha224\_done}!sha224.c@{sha224.c}}
+\subsubsection{\texorpdfstring{sha224\_done()}{sha224\_done()}}
+{\footnotesize\ttfamily int sha224\+\_\+done (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$}]{md,  }\item[{unsigned char $\ast$}]{out }\end{DoxyParamCaption})}
+
+
+
+Terminate the hash to get the digest. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em md} & The hash state \\
+\hline
+{\em out} & \mbox{[}out\mbox{]} The destination of the hash (28 bytes) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 65 of file sha224.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{66 \{}
+\DoxyCodeLine{67     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} buf[32];}
+\DoxyCodeLine{68     \textcolor{keywordtype}{int} err;}
+\DoxyCodeLine{69 }
+\DoxyCodeLine{70     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(md  != NULL);}
+\DoxyCodeLine{71     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(out != NULL);}
+\DoxyCodeLine{72 }
+\DoxyCodeLine{73     err = \mbox{\hyperlink{sha256_8c_a53db56f3eb9f35c59b134533be31c301}{sha256\_done}}(md, buf);}
+\DoxyCodeLine{74     \mbox{\hyperlink{tomcrypt__cfg_8h_a7691dd48d60d5fc6daf2fa7ec4c55e12}{XMEMCPY}}(out, buf, 28);}
+\DoxyCodeLine{75 \textcolor{preprocessor}{\#ifdef LTC\_CLEAN\_STACK}}
+\DoxyCodeLine{76     \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(buf, \textcolor{keyword}{sizeof}(buf));}
+\DoxyCodeLine{77 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{78     \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{79 \}}
+
+\end{DoxyCode}
+
+
+References L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, sha256\+\_\+done(), X\+M\+E\+M\+C\+P\+Y(), and zeromem().
+
+
+
+Referenced by sha224\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2
+\mbox{\Hypertarget{sha224_8c_a9f835910f28eced8ea5b494b2bc74ea4}\label{sha224_8c_a9f835910f28eced8ea5b494b2bc74ea4}} 
+\index{sha224.c@{sha224.c}!sha224\_init@{sha224\_init}}
+\index{sha224\_init@{sha224\_init}!sha224.c@{sha224.c}}
+\subsubsection{\texorpdfstring{sha224\_init()}{sha224\_init()}}
+{\footnotesize\ttfamily int sha224\+\_\+init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$}]{md }\end{DoxyParamCaption})}
+
+
+
+Initialize the hash state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em md} & The hash state you wish to initialize \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 42 of file sha224.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{43 \{}
+\DoxyCodeLine{44     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(md != NULL);}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46     md->sha256.curlen = 0;}
+\DoxyCodeLine{47     md->sha256.length = 0;}
+\DoxyCodeLine{48     md->sha256.state[0] = 0xc1059ed8UL;}
+\DoxyCodeLine{49     md->sha256.state[1] = 0x367cd507UL;}
+\DoxyCodeLine{50     md->sha256.state[2] = 0x3070dd17UL;}
+\DoxyCodeLine{51     md->sha256.state[3] = 0xf70e5939UL;}
+\DoxyCodeLine{52     md->sha256.state[4] = 0xffc00b31UL;}
+\DoxyCodeLine{53     md->sha256.state[5] = 0x68581511UL;}
+\DoxyCodeLine{54     md->sha256.state[6] = 0x64f98fa7UL;}
+\DoxyCodeLine{55     md->sha256.state[7] = 0xbefa4fa4UL;}
+\DoxyCodeLine{56     \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{57 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+
+
+Referenced by sha224\+\_\+test().
+
+Here is the caller graph for this function\+:
+% FIG 3
+\mbox{\Hypertarget{sha224_8c_ad76aa20d487739f22aeb5e576edb978b}\label{sha224_8c_ad76aa20d487739f22aeb5e576edb978b}} 
+\index{sha224.c@{sha224.c}!sha224\_test@{sha224\_test}}
+\index{sha224\_test@{sha224\_test}!sha224.c@{sha224.c}}
+\subsubsection{\texorpdfstring{sha224\_test()}{sha224\_test()}}
+{\footnotesize\ttfamily int sha224\+\_\+test (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Self-\/test the hash. 
+
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful, C\+R\+Y\+P\+T\+\_\+\+N\+OP if self-\/tests have been disabled 
+\end{DoxyReturn}
+
+
+Definition at line 85 of file sha224.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{86 \{}
+\DoxyCodeLine{87 \textcolor{preprocessor}{ \#ifndef LTC\_TEST}}
+\DoxyCodeLine{88     \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cac43a7799c7fd5f515172da6cfc0f9cf5}{CRYPT\_NOP}};}
+\DoxyCodeLine{89 \textcolor{preprocessor}{ \#else}}
+\DoxyCodeLine{90   \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{91       \textcolor{keyword}{const} \textcolor{keywordtype}{char} *msg;}
+\DoxyCodeLine{92       \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} hash[28];}
+\DoxyCodeLine{93   \} tests[] = \{}
+\DoxyCodeLine{94     \{ \textcolor{stringliteral}{"abc"},}
+\DoxyCodeLine{95       \{ 0x23, 0x09, 0x7d, 0x22, 0x34, 0x05, 0xd8,}
+\DoxyCodeLine{96         0x22, 0x86, 0x42, 0xa4, 0x77, 0xbd, 0xa2,}
+\DoxyCodeLine{97         0x55, 0xb3, 0x2a, 0xad, 0xbc, 0xe4, 0xbd,}
+\DoxyCodeLine{98         0xa0, 0xb3, 0xf7, 0xe3, 0x6c, 0x9d, 0xa7 \}}
+\DoxyCodeLine{99     \},}
+\DoxyCodeLine{100     \{ \textcolor{stringliteral}{"abcdbcdecdefdefgefghfghighijhijkijkljklmklmnlmnomnopnopq"},}
+\DoxyCodeLine{101       \{ 0x75, 0x38, 0x8b, 0x16, 0x51, 0x27, 0x76,}
+\DoxyCodeLine{102         0xcc, 0x5d, 0xba, 0x5d, 0xa1, 0xfd, 0x89,}
+\DoxyCodeLine{103         0x01, 0x50, 0xb0, 0xc6, 0x45, 0x5c, 0xb4,}
+\DoxyCodeLine{104         0xf5, 0x8b, 0x19, 0x52, 0x52, 0x25, 0x25 \}}
+\DoxyCodeLine{105     \},}
+\DoxyCodeLine{106   \};}
+\DoxyCodeLine{107 }
+\DoxyCodeLine{108   \textcolor{keywordtype}{int} i;}
+\DoxyCodeLine{109   \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} tmp[28];}
+\DoxyCodeLine{110   \mbox{\hyperlink{unionHash__state}{hash\_state}} md;}
+\DoxyCodeLine{111 }
+\DoxyCodeLine{112   \textcolor{keywordflow}{for} (i = 0; i < (int)(\textcolor{keyword}{sizeof}(tests) / \textcolor{keyword}{sizeof}(tests[0])); i++) \{}
+\DoxyCodeLine{113       \mbox{\hyperlink{sha224_8c_a9f835910f28eced8ea5b494b2bc74ea4}{sha224\_init}}(\&md);}
+\DoxyCodeLine{114       sha224\_process(\&md, (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}*)tests[i].msg, (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long})strlen(tests[i].msg));}
+\DoxyCodeLine{115       \mbox{\hyperlink{sha224_8c_a94aaf81f5c96e00fc5f6cf2332a5bfe1}{sha224\_done}}(\&md, tmp);}
+\DoxyCodeLine{116       \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(tmp, \textcolor{keyword}{sizeof}(tmp), tests[i].hash, \textcolor{keyword}{sizeof}(tests[i].hash), \textcolor{stringliteral}{"SHA224"}, i)) \{}
+\DoxyCodeLine{117          \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{118       \}}
+\DoxyCodeLine{119   \}}
+\DoxyCodeLine{120   \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{121 \textcolor{preprocessor}{ \#endif}}
+\DoxyCodeLine{122 \}}
+
+\end{DoxyCode}
+
+
+References compare\+\_\+testvector(), C\+R\+Y\+P\+T\+\_\+\+F\+A\+I\+L\+\_\+\+T\+E\+S\+T\+V\+E\+C\+T\+OR, C\+R\+Y\+P\+T\+\_\+\+N\+OP, C\+R\+Y\+P\+T\+\_\+\+OK, sha224\+\_\+done(), and sha224\+\_\+init().
+
+Here is the call graph for this function\+:
+% FIG 4
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{sha224_8c_a1ca01f6b95871f666745ef6f6b34ccdb}\label{sha224_8c_a1ca01f6b95871f666745ef6f6b34ccdb}} 
+\index{sha224.c@{sha224.c}!sha224\_desc@{sha224\_desc}}
+\index{sha224\_desc@{sha224\_desc}!sha224.c@{sha224.c}}
+\subsubsection{\texorpdfstring{sha224\_desc}{sha224\_desc}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structltc__hash__descriptor}{ltc\+\_\+hash\+\_\+descriptor}} sha224\+\_\+desc}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    \textcolor{stringliteral}{"sha224"},}
+\DoxyCodeLine{    10,}
+\DoxyCodeLine{    28,}
+\DoxyCodeLine{    64,}
+\DoxyCodeLine{}
+\DoxyCodeLine{    }
+\DoxyCodeLine{   \{ 2, 16, 840, 1, 101, 3, 4, 2, 4,  \},}
+\DoxyCodeLine{   9,}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \&\mbox{\hyperlink{sha224_8c_a9f835910f28eced8ea5b494b2bc74ea4}{sha224\_init}},}
+\DoxyCodeLine{    \&\mbox{\hyperlink{sha256_8c_a8b983a80c9edd5d997a3937963ae7856}{sha256\_process}},}
+\DoxyCodeLine{    \&\mbox{\hyperlink{sha224_8c_a94aaf81f5c96e00fc5f6cf2332a5bfe1}{sha224\_done}},}
+\DoxyCodeLine{    \&\mbox{\hyperlink{sha224_8c_ad76aa20d487739f22aeb5e576edb978b}{sha224\_test}},}
+\DoxyCodeLine{    NULL}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+\begin{DoxyParams}{Parameters}
+{\em sha224.\+c} & L\+T\+C\+\_\+\+S\+H\+A-\/224 new N\+I\+ST standard based off of L\+T\+C\+\_\+\+S\+H\+A-\/256 truncated to 224 bits (Tom St Denis) \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 18 of file sha224.\+c.
+
+
+
+Referenced by register\+\_\+all\+\_\+hashes().
+

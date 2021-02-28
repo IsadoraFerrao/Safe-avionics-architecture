@@ -1,0 +1,233 @@
+\hypertarget{pkcs__5__test_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/misc/pkcs5/pkcs\+\_\+5\+\_\+test.c File Reference}
+\label{pkcs__5__test_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/misc/pkcs5/pkcs\_5\_test.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/misc/pkcs5/pkcs\_5\_test.c}}
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for pkcs\+\_\+5\+\_\+test.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{pkcs__5__test_8c_a1a78c0bca3595115dd9272c2026b607e}{pkcs\+\_\+5\+\_\+test}} (void)
+\begin{DoxyCompactList}\small\item\em P\+K\+CS \#5 self-\/test. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{pkcs__5__test_8c_a1a78c0bca3595115dd9272c2026b607e}\label{pkcs__5__test_8c_a1a78c0bca3595115dd9272c2026b607e}} 
+\index{pkcs\_5\_test.c@{pkcs\_5\_test.c}!pkcs\_5\_test@{pkcs\_5\_test}}
+\index{pkcs\_5\_test@{pkcs\_5\_test}!pkcs\_5\_test.c@{pkcs\_5\_test.c}}
+\subsubsection{\texorpdfstring{pkcs\_5\_test()}{pkcs\_5\_test()}}
+{\footnotesize\ttfamily int pkcs\+\_\+5\+\_\+test (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+P\+K\+CS \#5 self-\/test. 
+
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful, C\+R\+Y\+P\+T\+\_\+\+N\+OP if tests have been disabled. 
+\end{DoxyReturn}
+
+
+Definition at line 31 of file pkcs\+\_\+5\+\_\+test.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{32 \{}
+\DoxyCodeLine{33 \textcolor{preprocessor}{ \#ifndef LTC\_TEST}}
+\DoxyCodeLine{34     \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cac43a7799c7fd5f515172da6cfc0f9cf5}{CRYPT\_NOP}};}
+\DoxyCodeLine{35 \textcolor{preprocessor}{ \#else}}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37     \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{38         \textcolor{keyword}{const} \textcolor{keywordtype}{char}* P;}
+\DoxyCodeLine{39         \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} P\_len;}
+\DoxyCodeLine{40         \textcolor{keyword}{const} \textcolor{keywordtype}{char}* \mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}};}
+\DoxyCodeLine{41         \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} S\_len;}
+\DoxyCodeLine{42         \textcolor{keywordtype}{int} \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}};}
+\DoxyCodeLine{43         \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} dkLen;}
+\DoxyCodeLine{44         \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} DK[40];}
+\DoxyCodeLine{45     \} case\_item;}
+\DoxyCodeLine{46 }
+\DoxyCodeLine{47     \textcolor{keyword}{static} \textcolor{keyword}{const} case\_item cases\_5\_2[] = \{}
+\DoxyCodeLine{48         \{}
+\DoxyCodeLine{49             \textcolor{stringliteral}{"password"},}
+\DoxyCodeLine{50             8,}
+\DoxyCodeLine{51             \textcolor{stringliteral}{"salt"},}
+\DoxyCodeLine{52             4,}
+\DoxyCodeLine{53             1,}
+\DoxyCodeLine{54             20,}
+\DoxyCodeLine{55             \{ 0x0c, 0x60, 0xc8, 0x0f, 0x96, 0x1f, 0x0e, 0x71,}
+\DoxyCodeLine{56               0xf3, 0xa9, 0xb5, 0x24, 0xaf, 0x60, 0x12, 0x06,}
+\DoxyCodeLine{57               0x2f, 0xe0, 0x37, 0xa6 \}}
+\DoxyCodeLine{58         \},}
+\DoxyCodeLine{59         \{}
+\DoxyCodeLine{60             \textcolor{stringliteral}{"password"},}
+\DoxyCodeLine{61             8,}
+\DoxyCodeLine{62             \textcolor{stringliteral}{"salt"},}
+\DoxyCodeLine{63             4,}
+\DoxyCodeLine{64             2,}
+\DoxyCodeLine{65             20,}
+\DoxyCodeLine{66             \{ 0xea, 0x6c, 0x01, 0x4d, 0xc7, 0x2d, 0x6f, 0x8c,}
+\DoxyCodeLine{67               0xcd, 0x1e, 0xd9, 0x2a, 0xce, 0x1d, 0x41, 0xf0,}
+\DoxyCodeLine{68               0xd8, 0xde, 0x89, 0x57 \}}
+\DoxyCodeLine{69         \},}
+\DoxyCodeLine{70 \textcolor{preprocessor}{\#ifdef LTC\_TEST\_EXT}}
+\DoxyCodeLine{71         \{}
+\DoxyCodeLine{72             \textcolor{stringliteral}{"password"},}
+\DoxyCodeLine{73             8,}
+\DoxyCodeLine{74             \textcolor{stringliteral}{"salt"},}
+\DoxyCodeLine{75             4,}
+\DoxyCodeLine{76             4096,}
+\DoxyCodeLine{77             20,}
+\DoxyCodeLine{78             \{ 0x4b, 0x00, 0x79, 0x01, 0xb7, 0x65, 0x48, 0x9a,}
+\DoxyCodeLine{79               0xbe, 0xad, 0x49, 0xd9, 0x26, 0xf7, 0x21, 0xd0,}
+\DoxyCodeLine{80               0x65, 0xa4, 0x29, 0xc1 \}}
+\DoxyCodeLine{81         \},}
+\DoxyCodeLine{82         \{}
+\DoxyCodeLine{83             \textcolor{stringliteral}{"password"},}
+\DoxyCodeLine{84             8,}
+\DoxyCodeLine{85             \textcolor{stringliteral}{"salt"},}
+\DoxyCodeLine{86             4,}
+\DoxyCodeLine{87             16777216,}
+\DoxyCodeLine{88             20,}
+\DoxyCodeLine{89             \{ 0xee, 0xfe, 0x3d, 0x61, 0xcd, 0x4d, 0xa4, 0xe4,}
+\DoxyCodeLine{90               0xe9, 0x94, 0x5b, 0x3d, 0x6b, 0xa2, 0x15, 0x8c,}
+\DoxyCodeLine{91               0x26, 0x34, 0xe9, 0x84 \}}
+\DoxyCodeLine{92         \},}
+\DoxyCodeLine{93         \{}
+\DoxyCodeLine{94             \textcolor{stringliteral}{"passwordPASSWORDpassword"},}
+\DoxyCodeLine{95             25,}
+\DoxyCodeLine{96             \textcolor{stringliteral}{"saltSALTsaltSALTsaltSALTsaltSALTsalt"},}
+\DoxyCodeLine{97             36,}
+\DoxyCodeLine{98             4096,}
+\DoxyCodeLine{99             25,}
+\DoxyCodeLine{100             \{ 0x3d, 0x2e, 0xec, 0x4f, 0xe4, 0x1c, 0x84, 0x9b,}
+\DoxyCodeLine{101               0x80, 0xc8, 0xd8, 0x36, 0x62, 0xc0, 0xe4, 0x4a,}
+\DoxyCodeLine{102               0x8b, 0x29, 0x1a, 0x96, 0x4c, 0xf2, 0xf0, 0x70,}
+\DoxyCodeLine{103               0x38 \}}
+\DoxyCodeLine{104         \},}
+\DoxyCodeLine{105         \{}
+\DoxyCodeLine{106             \textcolor{stringliteral}{"pass\(\backslash\)0word"},}
+\DoxyCodeLine{107             9,}
+\DoxyCodeLine{108             \textcolor{stringliteral}{"sa\(\backslash\)0lt"},}
+\DoxyCodeLine{109             5,}
+\DoxyCodeLine{110             4096,}
+\DoxyCodeLine{111             16,}
+\DoxyCodeLine{112             \{ 0x56, 0xfa, 0x6a, 0xa7, 0x55, 0x48, 0x09, 0x9d,}
+\DoxyCodeLine{113               0xcc, 0x37, 0xd7, 0xf0, 0x34, 0x25, 0xe0, 0xc3 \}}
+\DoxyCodeLine{114         \},}
+\DoxyCodeLine{115 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* LTC\_TEST\_EXT */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{116     \};}
+\DoxyCodeLine{117 }
+\DoxyCodeLine{118     \textcolor{keyword}{static} \textcolor{keyword}{const} case\_item cases\_5\_1[] = \{}
+\DoxyCodeLine{119         \{}
+\DoxyCodeLine{120             \textcolor{stringliteral}{"password"},}
+\DoxyCodeLine{121             8,}
+\DoxyCodeLine{122             \textcolor{stringliteral}{"saltsalt"}, \textcolor{comment}{/* must be 8 octects */}}
+\DoxyCodeLine{123             8,          \textcolor{comment}{/* ignored by alg1 */}}
+\DoxyCodeLine{124             1,}
+\DoxyCodeLine{125             20,}
+\DoxyCodeLine{126             \{ 0xca, 0xb8, 0x6d, 0xd6, 0x26, 0x17, 0x10, 0x89, 0x1e, 0x8c,}
+\DoxyCodeLine{127               0xb5, 0x6e, 0xe3, 0x62, 0x56, 0x91, 0xa7, 0x5d, 0xf3, 0x44 \}}
+\DoxyCodeLine{128         \},}
+\DoxyCodeLine{129     \};}
+\DoxyCodeLine{130 }
+\DoxyCodeLine{131     \textcolor{keyword}{static} \textcolor{keyword}{const} case\_item cases\_5\_1o[] = \{}
+\DoxyCodeLine{132         \{}
+\DoxyCodeLine{133             \textcolor{stringliteral}{"password"},}
+\DoxyCodeLine{134             8,}
+\DoxyCodeLine{135             \textcolor{stringliteral}{"saltsalt"}, \textcolor{comment}{/* must be 8 octects */}}
+\DoxyCodeLine{136             8,          \textcolor{comment}{/* ignored by alg1\_openssl */}}
+\DoxyCodeLine{137             1,}
+\DoxyCodeLine{138             20,}
+\DoxyCodeLine{139             \{ 0xca, 0xb8, 0x6d, 0xd6, 0x26, 0x17, 0x10, 0x89, 0x1e, 0x8c,}
+\DoxyCodeLine{140               0xb5, 0x6e, 0xe3, 0x62, 0x56, 0x91, 0xa7, 0x5d, 0xf3, 0x44 \}}
+\DoxyCodeLine{141 }
+\DoxyCodeLine{142         \},}
+\DoxyCodeLine{143         \{}
+\DoxyCodeLine{144             \textcolor{stringliteral}{"password"},}
+\DoxyCodeLine{145             8,}
+\DoxyCodeLine{146             \textcolor{stringliteral}{"saltsalt"}, \textcolor{comment}{/* must be 8 octects */}}
+\DoxyCodeLine{147             8,          \textcolor{comment}{/* ignored by alg1\_openssl */}}
+\DoxyCodeLine{148             1,}
+\DoxyCodeLine{149             30,}
+\DoxyCodeLine{150             \{ 0xca, 0xb8, 0x6d, 0xd6, 0x26, 0x17, 0x10, 0x89, 0x1e, 0x8c,}
+\DoxyCodeLine{151               0xb5, 0x6e, 0xe3, 0x62, 0x56, 0x91, 0xa7, 0x5d, 0xf3, 0x44,}
+\DoxyCodeLine{152               0xf0, 0xbf, 0xf4, 0xc1, 0x2c, 0xf3, 0x59, 0x6f, 0xc0, 0x0b \}}
+\DoxyCodeLine{153 }
+\DoxyCodeLine{154         \}}
+\DoxyCodeLine{155     \};}
+\DoxyCodeLine{156 }
+\DoxyCodeLine{157     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} DK[40];}
+\DoxyCodeLine{158     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} dkLen;}
+\DoxyCodeLine{159     \textcolor{keywordtype}{int} i, err;}
+\DoxyCodeLine{160     \textcolor{keywordtype}{int} tested=0, failed=0;}
+\DoxyCodeLine{161     \textcolor{keywordtype}{int} hash = \mbox{\hyperlink{tomcrypt__hash_8h_a1818254b9c8f09047af3b66ea7f5852b}{find\_hash}}(\textcolor{stringliteral}{"sha1"});}
+\DoxyCodeLine{162     \textcolor{keywordflow}{if} (hash == -1)}
+\DoxyCodeLine{163     \{}
+\DoxyCodeLine{164 \textcolor{preprocessor}{\#ifdef LTC\_TEST\_DBG}}
+\DoxyCodeLine{165       printf(\textcolor{stringliteral}{"PKCS\#5 test failed: 'sha1' hash not found\(\backslash\)n"});}
+\DoxyCodeLine{166 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{167       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca03c22220d7538be04455cd2aa6ddf9da}{CRYPT\_ERROR}};}
+\DoxyCodeLine{168     \}}
+\DoxyCodeLine{169 }
+\DoxyCodeLine{170     \textcolor{comment}{/* testing alg 2 */}}
+\DoxyCodeLine{171     \textcolor{keywordflow}{for}(i=0; i < (int)(\textcolor{keyword}{sizeof}(cases\_5\_2) / \textcolor{keyword}{sizeof}(cases\_5\_2[0])); i++) \{}
+\DoxyCodeLine{172         ++tested;}
+\DoxyCodeLine{173         dkLen = cases\_5\_2[i].dkLen;}
+\DoxyCodeLine{174         \textcolor{keywordflow}{if}((err = \mbox{\hyperlink{pkcs__5__2_8c_a738b05376774b9a5b311a59ec73966f0}{pkcs\_5\_alg2}}((\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}*)cases\_5\_2[i].P, cases\_5\_2[i].P\_len,}
+\DoxyCodeLine{175                               (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}*)cases\_5\_2[i].\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}, cases\_5\_2[i].S\_len,}
+\DoxyCodeLine{176                               cases\_5\_2[i].\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, hash,}
+\DoxyCodeLine{177                               DK, \&dkLen)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{178 \textcolor{preprocessor}{\#ifdef LTC\_TEST\_DBG}}
+\DoxyCodeLine{179             printf(\textcolor{stringliteral}{"\(\backslash\)npkcs\_5\_alg2() \#\%d: Failed/1 (\%s)\(\backslash\)n"}, i, \mbox{\hyperlink{tomcrypt__misc_8h_a3bd8fe097a1951bd18d73b2231c7f700}{error\_to\_string}}(err));}
+\DoxyCodeLine{180 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{181             ++failed;}
+\DoxyCodeLine{182         \}}
+\DoxyCodeLine{183         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(DK, dkLen, cases\_5\_2[i].DK, cases\_5\_2[i].dkLen, \textcolor{stringliteral}{"PKCS\#5\_2"}, i)) \{}
+\DoxyCodeLine{184             ++failed;}
+\DoxyCodeLine{185         \}}
+\DoxyCodeLine{186     \}}
+\DoxyCodeLine{187 }
+\DoxyCodeLine{188     \textcolor{comment}{/* testing alg 1 */}}
+\DoxyCodeLine{189     \textcolor{keywordflow}{for}(i=0; i < (int)(\textcolor{keyword}{sizeof}(cases\_5\_1) / \textcolor{keyword}{sizeof}(case\_item)); i++, tested++) \{}
+\DoxyCodeLine{190         dkLen = cases\_5\_1[i].dkLen;}
+\DoxyCodeLine{191         \textcolor{keywordflow}{if}((err = \mbox{\hyperlink{pkcs__5__1_8c_ad4834c485adb4fc776af355582a96cb6}{pkcs\_5\_alg1}}((\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}*)cases\_5\_1[i].P, cases\_5\_1[i].P\_len,}
+\DoxyCodeLine{192                               (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}*)cases\_5\_1[i].\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}},}
+\DoxyCodeLine{193                               cases\_5\_1[i].\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, hash,}
+\DoxyCodeLine{194                               DK, \&dkLen)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{195 \textcolor{preprocessor}{\#ifdef LTC\_TEST\_DBG}}
+\DoxyCodeLine{196             printf(\textcolor{stringliteral}{"\(\backslash\)npkcs\_5\_alg1() \#\%d: Failed/1 (\%s)\(\backslash\)n"}, i, \mbox{\hyperlink{tomcrypt__misc_8h_a3bd8fe097a1951bd18d73b2231c7f700}{error\_to\_string}}(err));}
+\DoxyCodeLine{197 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{198             ++failed;}
+\DoxyCodeLine{199         \}}
+\DoxyCodeLine{200         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(DK, dkLen, cases\_5\_1[i].DK, cases\_5\_1[i].dkLen, \textcolor{stringliteral}{"PKCS\#5\_1"}, i)) \{}
+\DoxyCodeLine{201             ++failed;}
+\DoxyCodeLine{202         \}}
+\DoxyCodeLine{203     \}}
+\DoxyCodeLine{204 }
+\DoxyCodeLine{205     \textcolor{comment}{/* testing alg 1\_openssl */}}
+\DoxyCodeLine{206     \textcolor{keywordflow}{for}(i = 0; i < (int)(\textcolor{keyword}{sizeof}(cases\_5\_1o) / \textcolor{keyword}{sizeof}(cases\_5\_1o[0])); i++, tested++) \{}
+\DoxyCodeLine{207         dkLen = cases\_5\_1o[i].dkLen;}
+\DoxyCodeLine{208         \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{pkcs__5__1_8c_ac6e1537b6861bbd16dff1469982277f1}{pkcs\_5\_alg1\_openssl}}((\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}*)cases\_5\_1o[i].P, cases\_5\_1o[i].P\_len,}
+\DoxyCodeLine{209                                        (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}*)cases\_5\_1o[i].\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}},}
+\DoxyCodeLine{210                                        cases\_5\_1o[i].\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, hash,}
+\DoxyCodeLine{211                                        DK, \&dkLen)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{212 \textcolor{preprocessor}{\#ifdef LTC\_TEST\_DBG}}
+\DoxyCodeLine{213             printf(\textcolor{stringliteral}{"\(\backslash\)npkcs\_5\_alg1\_openssl() \#\%d: Failed/1 (\%s)\(\backslash\)n"}, i, \mbox{\hyperlink{tomcrypt__misc_8h_a3bd8fe097a1951bd18d73b2231c7f700}{error\_to\_string}}(err));}
+\DoxyCodeLine{214 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{215             ++failed;}
+\DoxyCodeLine{216         \}}
+\DoxyCodeLine{217         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(DK, dkLen, cases\_5\_1o[i].DK, cases\_5\_1o[i].dkLen, \textcolor{stringliteral}{"PKCS\#5\_1o"}, i)) \{}
+\DoxyCodeLine{218             ++failed;}
+\DoxyCodeLine{219         \}}
+\DoxyCodeLine{220     \}}
+\DoxyCodeLine{221 }
+\DoxyCodeLine{222     \textcolor{keywordflow}{return} (failed != 0) ? \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}} : \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{223 \textcolor{preprocessor}{ \#endif}}
+\DoxyCodeLine{224 \}}
+
+\end{DoxyCode}
+
+
+References c, compare\+\_\+testvector(), C\+R\+Y\+P\+T\+\_\+\+E\+R\+R\+OR, C\+R\+Y\+P\+T\+\_\+\+F\+A\+I\+L\+\_\+\+T\+E\+S\+T\+V\+E\+C\+T\+OR, C\+R\+Y\+P\+T\+\_\+\+N\+OP, C\+R\+Y\+P\+T\+\_\+\+OK, error\+\_\+to\+\_\+string(), find\+\_\+hash(), pkcs\+\_\+5\+\_\+alg1(), pkcs\+\_\+5\+\_\+alg1\+\_\+openssl(), pkcs\+\_\+5\+\_\+alg2(), and S.
+
+Here is the call graph for this function\+:
+% FIG 1

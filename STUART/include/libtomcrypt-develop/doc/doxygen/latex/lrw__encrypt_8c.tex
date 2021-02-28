@@ -1,0 +1,81 @@
+\hypertarget{lrw__encrypt_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/modes/lrw/lrw\+\_\+encrypt.c File Reference}
+\label{lrw__encrypt_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/modes/lrw/lrw\_encrypt.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/modes/lrw/lrw\_encrypt.c}}
+
+
+L\+R\+W\+\_\+\+M\+O\+DE implementation, Encrypt blocks, Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for lrw\+\_\+encrypt.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{lrw__encrypt_8c_a5bc5a7a6312a63b6c590139f152ca177}{lrw\+\_\+encrypt}} (const unsigned char $\ast$pt, unsigned char $\ast$ct, unsigned long \mbox{\hyperlink{pmac__init_8c_afed088663f8704004425cdae2120b9b3}{len}}, symmetric\+\_\+\+L\+RW $\ast$lrw)
+\begin{DoxyCompactList}\small\item\em L\+RW encrypt blocks. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+L\+R\+W\+\_\+\+M\+O\+DE implementation, Encrypt blocks, Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{lrw__encrypt_8c_a5bc5a7a6312a63b6c590139f152ca177}\label{lrw__encrypt_8c_a5bc5a7a6312a63b6c590139f152ca177}} 
+\index{lrw\_encrypt.c@{lrw\_encrypt.c}!lrw\_encrypt@{lrw\_encrypt}}
+\index{lrw\_encrypt@{lrw\_encrypt}!lrw\_encrypt.c@{lrw\_encrypt.c}}
+\subsubsection{\texorpdfstring{lrw\_encrypt()}{lrw\_encrypt()}}
+{\footnotesize\ttfamily int lrw\+\_\+encrypt (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{pt,  }\item[{unsigned char $\ast$}]{ct,  }\item[{unsigned long}]{len,  }\item[{symmetric\+\_\+\+L\+RW $\ast$}]{lrw }\end{DoxyParamCaption})}
+
+
+
+L\+RW encrypt blocks. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pt} & The plaintext \\
+\hline
+{\em ct} & \mbox{[}out\mbox{]} The ciphertext \\
+\hline
+{\em len} & The length in octets, must be a multiple of 16 \\
+\hline
+{\em lrw} & The L\+RW state \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 25 of file lrw\+\_\+encrypt.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{26 \{}
+\DoxyCodeLine{27    \textcolor{keywordtype}{int} err;}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(pt  != NULL);}
+\DoxyCodeLine{30    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(ct  != NULL);}
+\DoxyCodeLine{31    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(lrw != NULL);}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_ac30eb68934c4ca07205344dc9d159221}{cipher\_is\_valid}}(lrw->cipher)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{34       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{35    \}}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37    \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[lrw->cipher].\mbox{\hyperlink{structltc__cipher__descriptor_afdd0e85b2d837faac7d4e50a8109cc77}{accel\_lrw\_encrypt}} != NULL) \{}
+\DoxyCodeLine{38       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[lrw->cipher].\mbox{\hyperlink{structltc__cipher__descriptor_afdd0e85b2d837faac7d4e50a8109cc77}{accel\_lrw\_encrypt}}(pt, ct, \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}, lrw->IV, lrw->tweak, \&lrw->key);}
+\DoxyCodeLine{39    \}}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41    \textcolor{keywordflow}{return} \mbox{\hyperlink{lrw__process_8c_a6f5de9c91139715030145308a447204a}{lrw\_process}}(pt, ct, \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}, LRW\_ENCRYPT, lrw);}
+\DoxyCodeLine{42 \}}
+
+\end{DoxyCode}
+
+
+References ltc\+\_\+cipher\+\_\+descriptor\+::accel\+\_\+lrw\+\_\+encrypt, cipher\+\_\+descriptor, cipher\+\_\+is\+\_\+valid(), C\+R\+Y\+P\+T\+\_\+\+OK, len, lrw\+\_\+process(), and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+
+
+Referenced by lrw\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2

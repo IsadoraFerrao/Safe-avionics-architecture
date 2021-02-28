@@ -1,0 +1,18 @@
+digraph "sober128_stream_setiv"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node107 [label="sober128_stream_setiv",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Set IV to the Sober128 state."];
+  Node107 -> Node108 [color="midnightblue",fontsize="10",style="solid"];
+  Node108 [label="BYTE2WORD",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sober128__stream_8c.html#ae7acc8746ffb536a618b77f0e2042807",tooltip=" "];
+  Node107 -> Node109 [color="midnightblue",fontsize="10",style="solid"];
+  Node109 [label="cycle",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sober128__stream_8c.html#a5ee309e1f2da8afec6f25f826763f55d",tooltip=" "];
+  Node107 -> Node110 [color="midnightblue",fontsize="10",style="solid"];
+  Node110 [label="nltap",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sober128__stream_8c.html#aa40918d0bb77cd616f54d859fe3ceb34",tooltip=" "];
+  Node107 -> Node111 [color="midnightblue",fontsize="10",style="solid"];
+  Node111 [label="s128_diffuse",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sober128__stream_8c.html#a90d35fdc987c8472cc4390a3dc4c7777",tooltip=" "];
+  Node107 -> Node112 [color="midnightblue",fontsize="10",style="solid"];
+  Node112 [label="s128_reloadstate",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sober128__stream_8c.html#a658f8c5cee73aa58ecf24133861c084d",tooltip=" "];
+}

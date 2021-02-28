@@ -1,0 +1,86 @@
+\hypertarget{pkcs12__utf8__to__utf16_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/misc/pkcs12/pkcs12\+\_\+utf8\+\_\+to\+\_\+utf16.c File Reference}
+\label{pkcs12__utf8__to__utf16_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/misc/pkcs12/pkcs12\_utf8\_to\_utf16.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/misc/pkcs12/pkcs12\_utf8\_to\_utf16.c}}
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for pkcs12\+\_\+utf8\+\_\+to\+\_\+utf16.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{pkcs12__utf8__to__utf16_8c_af7de8585646f421393f3c744654ae587}{pkcs12\+\_\+utf8\+\_\+to\+\_\+utf16}} (const unsigned char $\ast$in, unsigned long inlen, unsigned char $\ast$out, unsigned long $\ast$outlen)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{pkcs12__utf8__to__utf16_8c_af7de8585646f421393f3c744654ae587}\label{pkcs12__utf8__to__utf16_8c_af7de8585646f421393f3c744654ae587}} 
+\index{pkcs12\_utf8\_to\_utf16.c@{pkcs12\_utf8\_to\_utf16.c}!pkcs12\_utf8\_to\_utf16@{pkcs12\_utf8\_to\_utf16}}
+\index{pkcs12\_utf8\_to\_utf16@{pkcs12\_utf8\_to\_utf16}!pkcs12\_utf8\_to\_utf16.c@{pkcs12\_utf8\_to\_utf16.c}}
+\subsubsection{\texorpdfstring{pkcs12\_utf8\_to\_utf16()}{pkcs12\_utf8\_to\_utf16()}}
+{\footnotesize\ttfamily int pkcs12\+\_\+utf8\+\_\+to\+\_\+utf16 (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{in,  }\item[{unsigned long}]{inlen,  }\item[{unsigned char $\ast$}]{out,  }\item[{unsigned long $\ast$}]{outlen }\end{DoxyParamCaption})}
+
+
+
+Definition at line 14 of file pkcs12\+\_\+utf8\+\_\+to\+\_\+utf16.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{15                                                                           \{}
+\DoxyCodeLine{16    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}} = 0;}
+\DoxyCodeLine{17    \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}* in\_end = in + inlen;}
+\DoxyCodeLine{18    \textcolor{keyword}{const} \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} offset[6] = \{}
+\DoxyCodeLine{19       0x00000000UL, 0x00003080UL, 0x000E2080UL,}
+\DoxyCodeLine{20       0x03C82080UL, 0xFA082080UL, 0x82082080UL}
+\DoxyCodeLine{21    \};}
+\DoxyCodeLine{22    \textcolor{keywordtype}{int} err = \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca03c22220d7538be04455cd2aa6ddf9da}{CRYPT\_ERROR}};}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(in     != NULL);}
+\DoxyCodeLine{25    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(out    != NULL);}
+\DoxyCodeLine{26    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(outlen != NULL);}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28    \textcolor{keywordflow}{while} (in < in\_end) \{}
+\DoxyCodeLine{29       \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} ch = 0;}
+\DoxyCodeLine{30       \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short} extra = 0; \textcolor{comment}{/* 0 */}}
+\DoxyCodeLine{31       \textcolor{keywordflow}{if} (*in >= 192) extra++;  \textcolor{comment}{/* 1 */}}
+\DoxyCodeLine{32       \textcolor{keywordflow}{if} (*in >= 224) extra++;  \textcolor{comment}{/* 2 */}}
+\DoxyCodeLine{33       \textcolor{keywordflow}{if} (*in >= 240) extra++;  \textcolor{comment}{/* 3 */}}
+\DoxyCodeLine{34       \textcolor{keywordflow}{if} (*in >= 248) extra++;  \textcolor{comment}{/* 4 */}}
+\DoxyCodeLine{35       \textcolor{keywordflow}{if} (*in >= 252) extra++;  \textcolor{comment}{/* 5 */}}
+\DoxyCodeLine{36       \textcolor{keywordflow}{if} (in + extra >= in\_end) \textcolor{keywordflow}{goto} ERROR;}
+\DoxyCodeLine{37       \textcolor{keywordflow}{switch} (extra) \{}
+\DoxyCodeLine{38          \textcolor{keywordflow}{case} 5: ch += *in++; ch <<= 6;}
+\DoxyCodeLine{39          \textcolor{comment}{/* FALLTHROUGH */}}
+\DoxyCodeLine{40          \textcolor{keywordflow}{case} 4: ch += *in++; ch <<= 6;}
+\DoxyCodeLine{41          \textcolor{comment}{/* FALLTHROUGH */}}
+\DoxyCodeLine{42          \textcolor{keywordflow}{case} 3: ch += *in++; ch <<= 6;}
+\DoxyCodeLine{43          \textcolor{comment}{/* FALLTHROUGH */}}
+\DoxyCodeLine{44          \textcolor{keywordflow}{case} 2: ch += *in++; ch <<= 6;}
+\DoxyCodeLine{45          \textcolor{comment}{/* FALLTHROUGH */}}
+\DoxyCodeLine{46          \textcolor{keywordflow}{case} 1: ch += *in++; ch <<= 6;}
+\DoxyCodeLine{47          \textcolor{comment}{/* FALLTHROUGH */}}
+\DoxyCodeLine{48          \textcolor{keywordflow}{case} 0: ch += *in++;}
+\DoxyCodeLine{49       \}}
+\DoxyCodeLine{50       ch -= offset[extra];}
+\DoxyCodeLine{51       \textcolor{keywordflow}{if} (ch > 0xFFFF) \textcolor{keywordflow}{goto} ERROR;}
+\DoxyCodeLine{52       \textcolor{keywordflow}{if} (*outlen >= \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}} + 2) \{}
+\DoxyCodeLine{53          out[\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}] = (\textcolor{keywordtype}{unsigned} short)((ch >> 8) \& 0xFF);}
+\DoxyCodeLine{54          out[\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}} + 1] = (\textcolor{keywordtype}{unsigned} char)(ch \& 0xFF);}
+\DoxyCodeLine{55       \}}
+\DoxyCodeLine{56       \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}} += 2;}
+\DoxyCodeLine{57    \}}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{59    err = \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}} > *outlen ? \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caccd878f5599f3036ffe759dbe1a1ac16}{CRYPT\_BUFFER\_OVERFLOW}} : \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{60    *outlen = \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}};}
+\DoxyCodeLine{61 ERROR:}
+\DoxyCodeLine{62    \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{63 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+O\+V\+E\+R\+F\+L\+OW, C\+R\+Y\+P\+T\+\_\+\+E\+R\+R\+OR, C\+R\+Y\+P\+T\+\_\+\+OK, len, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+
+
+Referenced by \+\_\+pkcs\+\_\+12\+\_\+wrap().
+
+Here is the caller graph for this function\+:
+% FIG 1

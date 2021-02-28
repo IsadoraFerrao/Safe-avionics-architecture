@@ -1,0 +1,60 @@
+\hypertarget{rsa__free_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/pk/rsa/rsa\+\_\+free.c File Reference}
+\label{rsa__free_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/rsa/rsa\_free.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/rsa/rsa\_free.c}}
+
+
+Free an R\+SA key, Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for rsa\+\_\+free.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{rsa__free_8c_a56f84788895f943be14b89e50c72f911}{rsa\+\_\+free}} (\mbox{\hyperlink{tomcrypt__math_8h_a99eca413acdcc914993162bd18cba437}{rsa\+\_\+key}} $\ast$key)
+\begin{DoxyCompactList}\small\item\em Free an R\+SA key from memory. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Free an R\+SA key, Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{rsa__free_8c_a56f84788895f943be14b89e50c72f911}\label{rsa__free_8c_a56f84788895f943be14b89e50c72f911}} 
+\index{rsa\_free.c@{rsa\_free.c}!rsa\_free@{rsa\_free}}
+\index{rsa\_free@{rsa\_free}!rsa\_free.c@{rsa\_free.c}}
+\subsubsection{\texorpdfstring{rsa\_free()}{rsa\_free()}}
+{\footnotesize\ttfamily void rsa\+\_\+free (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__math_8h_a99eca413acdcc914993162bd18cba437}{rsa\+\_\+key}} $\ast$}]{key }\end{DoxyParamCaption})}
+
+
+
+Free an R\+SA key from memory. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The R\+SA key to free \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 22 of file rsa\+\_\+free.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{23 \{}
+\DoxyCodeLine{24    \mbox{\hyperlink{tomcrypt__argchk_8h_a67a6e5d66d0c7d80ddf5c583054608bd}{LTC\_ARGCHKVD}}(key != NULL);}
+\DoxyCodeLine{25    \mbox{\hyperlink{tomcrypt__private_8h_ad0d492c0676e4944383a7ae9e9ebd63b}{mp\_cleanup\_multi}}(\&key->q, \&key->p, \&key->qP, \&key->dP, \&key->dQ, \&key->N, \&key->d, \&key->e, NULL);}
+\DoxyCodeLine{26 \}}
+
+\end{DoxyCode}
+
+
+References L\+T\+C\+\_\+\+A\+R\+G\+C\+H\+K\+VD, and mp\+\_\+cleanup\+\_\+multi.
+
+
+
+Referenced by rsa\+\_\+import\+\_\+pkcs8(), rsa\+\_\+import\+\_\+x509(), rsa\+\_\+make\+\_\+key(), rsa\+\_\+set\+\_\+crt\+\_\+params(), rsa\+\_\+set\+\_\+factors(), and rsa\+\_\+set\+\_\+key().
+
+Here is the caller graph for this function\+:
+% FIG 1

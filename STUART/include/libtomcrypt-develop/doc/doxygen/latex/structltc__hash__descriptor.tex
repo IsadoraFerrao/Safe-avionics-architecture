@@ -1,0 +1,270 @@
+\hypertarget{structltc__hash__descriptor}{}\section{ltc\+\_\+hash\+\_\+descriptor Struct Reference}
+\label{structltc__hash__descriptor}\index{ltc\_hash\_descriptor@{ltc\_hash\_descriptor}}
+
+
+hash descriptor  
+
+
+
+
+{\ttfamily \#include $<$tomcrypt\+\_\+hash.\+h$>$}
+
+
+
+Collaboration diagram for ltc\+\_\+hash\+\_\+descriptor\+:
+% FIG 0
+\subsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+const char $\ast$ \mbox{\hyperlink{structltc__hash__descriptor_a34074c695cfb4df7f2a899cf518b4bab}{name}}
+\begin{DoxyCompactList}\small\item\em name of hash \end{DoxyCompactList}\item 
+unsigned char \mbox{\hyperlink{structltc__hash__descriptor_a6c8fd35cf5797e4c312eb7825e73c625}{ID}}
+\begin{DoxyCompactList}\small\item\em internal ID \end{DoxyCompactList}\item 
+unsigned long \mbox{\hyperlink{structltc__hash__descriptor_a49bd027653ff21408cb2661748d719ef}{hashsize}}
+\begin{DoxyCompactList}\small\item\em Size of digest in octets. \end{DoxyCompactList}\item 
+unsigned long \mbox{\hyperlink{structltc__hash__descriptor_ad0ac47c32e536997b59a5571acae2251}{blocksize}}
+\begin{DoxyCompactList}\small\item\em Input block size in octets. \end{DoxyCompactList}\item 
+unsigned long \mbox{\hyperlink{structltc__hash__descriptor_a9ac18099398a5f78a7380eb9b8d435d2}{O\+ID}} \mbox{[}16\mbox{]}
+\begin{DoxyCompactList}\small\item\em A\+S\+N.\+1 O\+ID. \end{DoxyCompactList}\item 
+unsigned long \mbox{\hyperlink{structltc__hash__descriptor_a2e48a295e28804d5f67a4fd90ed4d8de}{O\+I\+Dlen}}
+\begin{DoxyCompactList}\small\item\em Length of D\+ER encoding. \end{DoxyCompactList}\item 
+int($\ast$ \mbox{\hyperlink{structltc__hash__descriptor_a941404c4d446f4aa5ad0900a1b1c6838}{init}} )(\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$hash)
+\begin{DoxyCompactList}\small\item\em Init a hash state. \end{DoxyCompactList}\item 
+int($\ast$ \mbox{\hyperlink{structltc__hash__descriptor_a19f2fbd2b17d1fbe2e5497c54f70d52e}{process}} )(\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$hash, const unsigned char $\ast$in, unsigned long inlen)
+\begin{DoxyCompactList}\small\item\em Process a block of data. \end{DoxyCompactList}\item 
+int($\ast$ \mbox{\hyperlink{structltc__hash__descriptor_a97978ff7b1c57c7e3c8b9a416f1226ed}{done}} )(\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$hash, unsigned char $\ast$out)
+\begin{DoxyCompactList}\small\item\em Produce the digest and store it. \end{DoxyCompactList}\item 
+int($\ast$ \mbox{\hyperlink{structltc__hash__descriptor_ad31143932c117364e5c69cd7c3d62ef2}{test}} )(void)
+\begin{DoxyCompactList}\small\item\em Self-\/test. \end{DoxyCompactList}\item 
+int($\ast$ \mbox{\hyperlink{structltc__hash__descriptor_a550b85ae2a58081a1f1d0add6e51a3cf}{hmac\+\_\+block}} )(const unsigned char $\ast$key, unsigned long keylen, const unsigned char $\ast$in, unsigned long inlen, unsigned char $\ast$out, unsigned long $\ast$outlen)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+hash descriptor 
+
+Definition at line 205 of file tomcrypt\+\_\+hash.\+h.
+
+
+
+\subsection{Field Documentation}
+\mbox{\Hypertarget{structltc__hash__descriptor_ad0ac47c32e536997b59a5571acae2251}\label{structltc__hash__descriptor_ad0ac47c32e536997b59a5571acae2251}} 
+\index{ltc\_hash\_descriptor@{ltc\_hash\_descriptor}!blocksize@{blocksize}}
+\index{blocksize@{blocksize}!ltc\_hash\_descriptor@{ltc\_hash\_descriptor}}
+\subsubsection{\texorpdfstring{blocksize}{blocksize}}
+{\footnotesize\ttfamily unsigned long ltc\+\_\+hash\+\_\+descriptor\+::blocksize}
+
+
+
+Input block size in octets. 
+
+
+
+Definition at line 213 of file tomcrypt\+\_\+hash.\+h.
+
+
+
+Referenced by chc\+\_\+register(), and pkcs12\+\_\+kdf().
+
+\mbox{\Hypertarget{structltc__hash__descriptor_a97978ff7b1c57c7e3c8b9a416f1226ed}\label{structltc__hash__descriptor_a97978ff7b1c57c7e3c8b9a416f1226ed}} 
+\index{ltc\_hash\_descriptor@{ltc\_hash\_descriptor}!done@{done}}
+\index{done@{done}!ltc\_hash\_descriptor@{ltc\_hash\_descriptor}}
+\subsubsection{\texorpdfstring{done}{done}}
+{\footnotesize\ttfamily int($\ast$ ltc\+\_\+hash\+\_\+descriptor\+::done) (\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$hash, unsigned char $\ast$out)}
+
+
+
+Produce the digest and store it. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em hash} & The hash state \\
+\hline
+{\em out} & \mbox{[}out\mbox{]} The destination of the digest \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 236 of file tomcrypt\+\_\+hash.\+h.
+
+
+
+Referenced by hash\+\_\+memory(), hash\+\_\+memory\+\_\+multi(), and yarrow\+\_\+add\+\_\+entropy().
+
+\mbox{\Hypertarget{structltc__hash__descriptor_a49bd027653ff21408cb2661748d719ef}\label{structltc__hash__descriptor_a49bd027653ff21408cb2661748d719ef}} 
+\index{ltc\_hash\_descriptor@{ltc\_hash\_descriptor}!hashsize@{hashsize}}
+\index{hashsize@{hashsize}!ltc\_hash\_descriptor@{ltc\_hash\_descriptor}}
+\subsubsection{\texorpdfstring{hashsize}{hashsize}}
+{\footnotesize\ttfamily unsigned long ltc\+\_\+hash\+\_\+descriptor\+::hashsize}
+
+
+
+Size of digest in octets. 
+
+
+
+Definition at line 211 of file tomcrypt\+\_\+hash.\+h.
+
+
+
+Referenced by \+\_\+dsa\+\_\+make\+\_\+params(), \+\_\+pkcs\+\_\+5\+\_\+alg1\+\_\+common(), chc\+\_\+register(), find\+\_\+hash\+\_\+any(), hash\+\_\+filehandle(), hash\+\_\+memory(), hash\+\_\+memory\+\_\+multi(), hkdf(), hkdf\+\_\+expand(), hmac\+\_\+done(), hmac\+\_\+init(), pkcs12\+\_\+kdf(), pkcs\+\_\+1\+\_\+mgf1(), pkcs\+\_\+1\+\_\+oaep\+\_\+decode(), pkcs\+\_\+1\+\_\+oaep\+\_\+encode(), pkcs\+\_\+1\+\_\+pss\+\_\+decode(), pkcs\+\_\+1\+\_\+pss\+\_\+encode(), rsa\+\_\+sign\+\_\+saltlen\+\_\+get\+\_\+max\+\_\+ex(), yarrow\+\_\+add\+\_\+entropy(), and yarrow\+\_\+ready().
+
+\mbox{\Hypertarget{structltc__hash__descriptor_a550b85ae2a58081a1f1d0add6e51a3cf}\label{structltc__hash__descriptor_a550b85ae2a58081a1f1d0add6e51a3cf}} 
+\index{ltc\_hash\_descriptor@{ltc\_hash\_descriptor}!hmac\_block@{hmac\_block}}
+\index{hmac\_block@{hmac\_block}!ltc\_hash\_descriptor@{ltc\_hash\_descriptor}}
+\subsubsection{\texorpdfstring{hmac\_block}{hmac\_block}}
+{\footnotesize\ttfamily int($\ast$ ltc\+\_\+hash\+\_\+descriptor\+::hmac\+\_\+block) (const unsigned char $\ast$key, unsigned long keylen, const unsigned char $\ast$in, unsigned long inlen, unsigned char $\ast$out, unsigned long $\ast$outlen)}
+
+
+
+Definition at line 243 of file tomcrypt\+\_\+hash.\+h.
+
+
+
+Referenced by hmac\+\_\+memory().
+
+\mbox{\Hypertarget{structltc__hash__descriptor_a6c8fd35cf5797e4c312eb7825e73c625}\label{structltc__hash__descriptor_a6c8fd35cf5797e4c312eb7825e73c625}} 
+\index{ltc\_hash\_descriptor@{ltc\_hash\_descriptor}!ID@{ID}}
+\index{ID@{ID}!ltc\_hash\_descriptor@{ltc\_hash\_descriptor}}
+\subsubsection{\texorpdfstring{ID}{ID}}
+{\footnotesize\ttfamily unsigned char ltc\+\_\+hash\+\_\+descriptor\+::\+ID}
+
+
+
+internal ID 
+
+
+
+Definition at line 209 of file tomcrypt\+\_\+hash.\+h.
+
+\mbox{\Hypertarget{structltc__hash__descriptor_a941404c4d446f4aa5ad0900a1b1c6838}\label{structltc__hash__descriptor_a941404c4d446f4aa5ad0900a1b1c6838}} 
+\index{ltc\_hash\_descriptor@{ltc\_hash\_descriptor}!init@{init}}
+\index{init@{init}!ltc\_hash\_descriptor@{ltc\_hash\_descriptor}}
+\subsubsection{\texorpdfstring{init}{init}}
+{\footnotesize\ttfamily int($\ast$ ltc\+\_\+hash\+\_\+descriptor\+::init) (\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$hash)}
+
+
+
+Init a hash state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em hash} & The hash to initialize \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 223 of file tomcrypt\+\_\+hash.\+h.
+
+
+
+Referenced by yarrow\+\_\+add\+\_\+entropy().
+
+\mbox{\Hypertarget{structltc__hash__descriptor_a34074c695cfb4df7f2a899cf518b4bab}\label{structltc__hash__descriptor_a34074c695cfb4df7f2a899cf518b4bab}} 
+\index{ltc\_hash\_descriptor@{ltc\_hash\_descriptor}!name@{name}}
+\index{name@{name}!ltc\_hash\_descriptor@{ltc\_hash\_descriptor}}
+\subsubsection{\texorpdfstring{name}{name}}
+{\footnotesize\ttfamily const char$\ast$ ltc\+\_\+hash\+\_\+descriptor\+::name}
+
+
+
+name of hash 
+
+
+
+Definition at line 207 of file tomcrypt\+\_\+hash.\+h.
+
+
+
+Referenced by find\+\_\+hash\+\_\+id(), hash\+\_\+is\+\_\+valid(), and unregister\+\_\+hash().
+
+\mbox{\Hypertarget{structltc__hash__descriptor_a9ac18099398a5f78a7380eb9b8d435d2}\label{structltc__hash__descriptor_a9ac18099398a5f78a7380eb9b8d435d2}} 
+\index{ltc\_hash\_descriptor@{ltc\_hash\_descriptor}!OID@{OID}}
+\index{OID@{OID}!ltc\_hash\_descriptor@{ltc\_hash\_descriptor}}
+\subsubsection{\texorpdfstring{OID}{OID}}
+{\footnotesize\ttfamily unsigned long ltc\+\_\+hash\+\_\+descriptor\+::\+O\+ID\mbox{[}16\mbox{]}}
+
+
+
+A\+S\+N.\+1 O\+ID. 
+
+
+
+Definition at line 215 of file tomcrypt\+\_\+hash.\+h.
+
+\mbox{\Hypertarget{structltc__hash__descriptor_a2e48a295e28804d5f67a4fd90ed4d8de}\label{structltc__hash__descriptor_a2e48a295e28804d5f67a4fd90ed4d8de}} 
+\index{ltc\_hash\_descriptor@{ltc\_hash\_descriptor}!OIDlen@{OIDlen}}
+\index{OIDlen@{OIDlen}!ltc\_hash\_descriptor@{ltc\_hash\_descriptor}}
+\subsubsection{\texorpdfstring{OIDlen}{OIDlen}}
+{\footnotesize\ttfamily unsigned long ltc\+\_\+hash\+\_\+descriptor\+::\+O\+I\+Dlen}
+
+
+
+Length of D\+ER encoding. 
+
+
+
+Definition at line 217 of file tomcrypt\+\_\+hash.\+h.
+
+\mbox{\Hypertarget{structltc__hash__descriptor_a19f2fbd2b17d1fbe2e5497c54f70d52e}\label{structltc__hash__descriptor_a19f2fbd2b17d1fbe2e5497c54f70d52e}} 
+\index{ltc\_hash\_descriptor@{ltc\_hash\_descriptor}!process@{process}}
+\index{process@{process}!ltc\_hash\_descriptor@{ltc\_hash\_descriptor}}
+\subsubsection{\texorpdfstring{process}{process}}
+{\footnotesize\ttfamily int($\ast$ ltc\+\_\+hash\+\_\+descriptor\+::process) (\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$hash, const unsigned char $\ast$in, unsigned long inlen)}
+
+
+
+Process a block of data. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em hash} & The hash state \\
+\hline
+{\em in} & The data to hash \\
+\hline
+{\em inlen} & The length of the data (octets) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 230 of file tomcrypt\+\_\+hash.\+h.
+
+
+
+Referenced by hmac\+\_\+process(), and yarrow\+\_\+add\+\_\+entropy().
+
+\mbox{\Hypertarget{structltc__hash__descriptor_ad31143932c117364e5c69cd7c3d62ef2}\label{structltc__hash__descriptor_ad31143932c117364e5c69cd7c3d62ef2}} 
+\index{ltc\_hash\_descriptor@{ltc\_hash\_descriptor}!test@{test}}
+\index{test@{test}!ltc\_hash\_descriptor@{ltc\_hash\_descriptor}}
+\subsubsection{\texorpdfstring{test}{test}}
+{\footnotesize\ttfamily int($\ast$ ltc\+\_\+hash\+\_\+descriptor\+::test) (void)}
+
+
+
+Self-\/test. 
+
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful, C\+R\+Y\+P\+T\+\_\+\+N\+OP if self-\/tests have been disabled 
+\end{DoxyReturn}
+
+
+Definition at line 240 of file tomcrypt\+\_\+hash.\+h.
+
+
+
+Referenced by yarrow\+\_\+test().
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/headers/\mbox{\hyperlink{tomcrypt__hash_8h}{tomcrypt\+\_\+hash.\+h}}\end{DoxyCompactItemize}

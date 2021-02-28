@@ -1,0 +1,26 @@
+digraph "poly1305_init"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node25 [label="poly1305_init",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Initialize an POLY1305 context."];
+  Node25 -> Node26 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node26 [label="chacha20poly1305_setiv",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$chacha20poly1305__setiv_8c.html#aec694a7406b22a534da1706070e98907",tooltip="Set IV + counter data to the ChaCha20Poly1305 state and reset the context."];
+  Node26 -> Node27 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node27 [label="chacha20poly1305_memory",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$chacha20poly1305__memory_8c.html#a1ad9f37fe4a4ac32fad1a1ab97f99d30",tooltip="Process an entire GCM packet in one call."];
+  Node27 -> Node28 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node28 [label="chacha20poly1305_test",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$chacha20poly1305__test_8c.html#a3ed16a3fd7fc440bc9137936ddb99793",tooltip=" "];
+  Node26 -> Node29 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node29 [label="chacha20poly1305_setiv\l_rfc7905",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$chacha20poly1305__setiv__rfc7905_8c.html#aa113643ea24d7f6a06a993ef52eef37b",tooltip="Set IV + counter data (with RFC7905-magic) to the ChaCha20Poly1305 state and reset the context."];
+  Node29 -> Node28 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node26 -> Node28 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node25 -> Node30 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node30 [label="poly1305_file",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$poly1305__file_8c.html#aca704db89279fb2fbe2998b5c7fbf9d4",tooltip="POLY1305 a file."];
+  Node25 -> Node31 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node31 [label="poly1305_memory",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$poly1305__memory_8c.html#a47a72f0367bb1f1fc7127c17cbc3f608",tooltip="POLY1305 a block of memory to produce the authentication tag."];
+  Node25 -> Node32 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node32 [label="poly1305_memory_multi",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$poly1305__memory__multi_8c.html#a6cb8a0f7f61b0494d7f024c162683980",tooltip="POLY1305 multiple blocks of memory to produce the authentication tag."];
+  Node25 -> Node33 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node33 [label="poly1305_test",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$poly1305__test_8c.html#ac69922339d35e0db5506f3ed33d67165",tooltip=" "];
+}

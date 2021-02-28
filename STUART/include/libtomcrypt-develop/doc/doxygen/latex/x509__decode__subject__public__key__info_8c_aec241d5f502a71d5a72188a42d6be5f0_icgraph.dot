@@ -1,0 +1,25 @@
+digraph "x509_decode_subject_public_key_info"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node9 [label="x509_decode_subject\l_public_key_info",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Decode a SubjectPublicKeyInfo."];
+  Node9 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node10 [label="_ecc_import_x509_with\l_curve",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ecc__import__x509_8c.html#adf48b3ba468c0324055e9413a82d39f5",tooltip=" "];
+  Node10 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node11 [label="ecc_import_subject\l_public_key_info",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ecc__import__x509_8c.html#a6e24f3e6a3975c4d9e261a6031cab7b5",tooltip=" "];
+  Node11 -> Node12 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node12 [label="ecc_import_openssl",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ecc__import__openssl_8c.html#a62e764a9d768652402f730abef32780a",tooltip=" "];
+  Node11 -> Node13 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node13 [label="ecc_import_x509",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ecc__import__x509_8c.html#abd7477bc1144cdfd4f9e2da835eefbf6",tooltip="Import an ECC key from a X.509 certificate."];
+  Node9 -> Node14 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node14 [label="_ecc_import_x509_with_oid",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ecc__import__x509_8c.html#a95f6b54b054138d6b43afc3876908bad",tooltip=" "];
+  Node14 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node9 -> Node15 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node15 [label="dsa_import",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dsa__import_8c.html#ab814d8871b40e7f60c3ed6a16990dac2",tooltip="Import a DSA key."];
+  Node9 -> Node16 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node16 [label="rsa_import",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rsa__import_8c.html#aa80aefb08a282afe02c308cc19879d05",tooltip="Import an RSAPublicKey or RSAPrivateKey [two-prime only, only support >= 1024-bit keys,..."];
+  Node9 -> Node17 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node17 [label="rsa_import_x509",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rsa__import__x509_8c.html#af7fd232bdc803e8d3f8a109dc171110d",tooltip="Import an RSA key from a X.509 certificate."];
+}

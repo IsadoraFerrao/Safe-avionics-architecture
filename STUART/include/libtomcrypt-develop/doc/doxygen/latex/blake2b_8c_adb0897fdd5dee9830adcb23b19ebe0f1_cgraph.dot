@@ -1,0 +1,28 @@
+digraph "blake2b_512_init"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node90 [label="blake2b_512_init",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Initialize the hash state."];
+  Node90 -> Node91 [color="midnightblue",fontsize="10",style="solid"];
+  Node91 [label="blake2b_init",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$blake2b_8c.html#a1f07c7dccb6eb40dfd3c86314c103174",tooltip="Initialize the hash/MAC state."];
+  Node91 -> Node92 [color="midnightblue",fontsize="10",style="solid"];
+  Node92 [label="XMEMSET",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cfg_8h.html#aa3c34a6f6c61de7da9258b5a30e32c2f",tooltip=" "];
+  Node91 -> Node93 [color="midnightblue",fontsize="10",style="solid"];
+  Node93 [label="blake2b_init_param",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$blake2b_8c.html#a64470e489de75554d8cc26b523992cc7",tooltip=" "];
+  Node93 -> Node94 [color="midnightblue",fontsize="10",style="solid"];
+  Node94 [label="blake2b_init0",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$blake2b_8c.html#aea54854ea5c46155d7aac4d3e8688a7d",tooltip=" "];
+  Node94 -> Node92 [color="midnightblue",fontsize="10",style="solid"];
+  Node91 -> Node95 [color="midnightblue",fontsize="10",style="solid"];
+  Node95 [label="XMEMCPY",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cfg_8h.html#a7691dd48d60d5fc6daf2fa7ec4c55e12",tooltip=" "];
+  Node91 -> Node96 [color="midnightblue",fontsize="10",style="solid"];
+  Node96 [label="blake2b_process",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$blake2b_8c.html#abba3140d3bca5aaf1130479604e26580",tooltip="Process a block of memory through the hash."];
+  Node96 -> Node95 [color="midnightblue",fontsize="10",style="solid"];
+  Node96 -> Node97 [color="midnightblue",fontsize="10",style="solid"];
+  Node97 [label="blake2b_increment_counter",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$blake2b_8c.html#a01eb5e19a85d78ffe547b9a828fa8c6f",tooltip=" "];
+  Node96 -> Node98 [color="midnightblue",fontsize="10",style="solid"];
+  Node98 [label="blake2b_compress",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$blake2b_8c.html#aa9f990b9af0db6ace2de60269129214e",tooltip=" "];
+  Node91 -> Node99 [color="midnightblue",fontsize="10",style="solid"];
+  Node99 [label="zeromem",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__misc_8h.html#a63b6e188713790263bfd3612fe8b398f",tooltip="Zero a block of memory."];
+}

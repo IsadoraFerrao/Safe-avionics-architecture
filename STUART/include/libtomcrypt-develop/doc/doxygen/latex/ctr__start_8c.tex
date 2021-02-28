@@ -1,0 +1,132 @@
+\hypertarget{ctr__start_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/modes/ctr/ctr\+\_\+start.c File Reference}
+\label{ctr__start_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/modes/ctr/ctr\_start.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/modes/ctr/ctr\_start.c}}
+
+
+C\+TR implementation, start chain, Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for ctr\+\_\+start.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{ctr__start_8c_a8663bae8fb1af7659b5d8e9190fc189f}{ctr\+\_\+start}} (int cipher, const unsigned char $\ast$IV, const unsigned char $\ast$key, int keylen, int num\+\_\+rounds, int ctr\+\_\+mode, symmetric\+\_\+\+C\+TR $\ast$ctr)
+\begin{DoxyCompactList}\small\item\em Initialize a C\+TR context. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+C\+TR implementation, start chain, Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{ctr__start_8c_a8663bae8fb1af7659b5d8e9190fc189f}\label{ctr__start_8c_a8663bae8fb1af7659b5d8e9190fc189f}} 
+\index{ctr\_start.c@{ctr\_start.c}!ctr\_start@{ctr\_start}}
+\index{ctr\_start@{ctr\_start}!ctr\_start.c@{ctr\_start.c}}
+\subsubsection{\texorpdfstring{ctr\_start()}{ctr\_start()}}
+{\footnotesize\ttfamily int ctr\+\_\+start (\begin{DoxyParamCaption}\item[{int}]{cipher,  }\item[{const unsigned char $\ast$}]{IV,  }\item[{const unsigned char $\ast$}]{key,  }\item[{int}]{keylen,  }\item[{int}]{num\+\_\+rounds,  }\item[{int}]{ctr\+\_\+mode,  }\item[{symmetric\+\_\+\+C\+TR $\ast$}]{ctr }\end{DoxyParamCaption})}
+
+
+
+Initialize a C\+TR context. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cipher} & The index of the cipher desired \\
+\hline
+{\em IV} & The initialization vector \\
+\hline
+{\em key} & The secret key \\
+\hline
+{\em keylen} & The length of the secret key (octets) \\
+\hline
+{\em num\+\_\+rounds} & Number of rounds in the cipher desired (0 for default) \\
+\hline
+{\em ctr\+\_\+mode} & The counter mode (C\+T\+R\+\_\+\+C\+O\+U\+N\+T\+E\+R\+\_\+\+L\+I\+T\+T\+L\+E\+\_\+\+E\+N\+D\+I\+AN or C\+T\+R\+\_\+\+C\+O\+U\+N\+T\+E\+R\+\_\+\+B\+I\+G\+\_\+\+E\+N\+D\+I\+AN) \\
+\hline
+{\em ctr} & The C\+TR state to initialize \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 30 of file ctr\+\_\+start.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{35 \{}
+\DoxyCodeLine{36    \textcolor{keywordtype}{int} x, err;}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{38    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(IV  != NULL);}
+\DoxyCodeLine{39    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(key != NULL);}
+\DoxyCodeLine{40    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(ctr != NULL);}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{42    \textcolor{comment}{/* bad param? */}}
+\DoxyCodeLine{43    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_ac30eb68934c4ca07205344dc9d159221}{cipher\_is\_valid}}(cipher)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{44       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{45    \}}
+\DoxyCodeLine{46 }
+\DoxyCodeLine{47    \textcolor{comment}{/* ctrlen == counter width */}}
+\DoxyCodeLine{48    ctr->ctrlen   = (ctr\_mode \& 255) ? (ctr\_mode \& 255) : \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[cipher].\mbox{\hyperlink{structltc__cipher__descriptor_afa2af7325fd3a834910dd92e8c9acf49}{block\_length}};}
+\DoxyCodeLine{49    \textcolor{keywordflow}{if} (ctr->ctrlen > \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[cipher].\mbox{\hyperlink{structltc__cipher__descriptor_afa2af7325fd3a834910dd92e8c9acf49}{block\_length}}) \{}
+\DoxyCodeLine{50       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{51    \}}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{53    \textcolor{keywordflow}{if} ((ctr\_mode \& 0x1000) == CTR\_COUNTER\_BIG\_ENDIAN) \{}
+\DoxyCodeLine{54       ctr->ctrlen = \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[cipher].\mbox{\hyperlink{structltc__cipher__descriptor_afa2af7325fd3a834910dd92e8c9acf49}{block\_length}} - ctr->ctrlen;}
+\DoxyCodeLine{55    \}}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{57    \textcolor{comment}{/* setup cipher */}}
+\DoxyCodeLine{58    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[cipher].\mbox{\hyperlink{multi2_8c_ad0625943f7d847668b869ed827c51d47}{setup}}(key, keylen, num\_rounds, \&ctr->key)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{59       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{60    \}}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{62    \textcolor{comment}{/* copy ctr */}}
+\DoxyCodeLine{63    ctr->blocklen = \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[cipher].\mbox{\hyperlink{structltc__cipher__descriptor_afa2af7325fd3a834910dd92e8c9acf49}{block\_length}};}
+\DoxyCodeLine{64    ctr->cipher   = cipher;}
+\DoxyCodeLine{65    ctr->padlen   = 0;}
+\DoxyCodeLine{66    ctr->mode     = ctr\_mode \& 0x1000;}
+\DoxyCodeLine{67    \textcolor{keywordflow}{for} (x = 0; x < ctr->blocklen; x++) \{}
+\DoxyCodeLine{68        ctr->ctr[x] = IV[x];}
+\DoxyCodeLine{69    \}}
+\DoxyCodeLine{70 }
+\DoxyCodeLine{71    \textcolor{keywordflow}{if} (ctr\_mode \& LTC\_CTR\_RFC3686) \{}
+\DoxyCodeLine{72       \textcolor{comment}{/* increment the IV as per RFC 3686 */}}
+\DoxyCodeLine{73       \textcolor{keywordflow}{if} (ctr->mode == CTR\_COUNTER\_LITTLE\_ENDIAN) \{}
+\DoxyCodeLine{74          \textcolor{comment}{/* little-endian */}}
+\DoxyCodeLine{75          \textcolor{keywordflow}{for} (x = 0; x < ctr->ctrlen; x++) \{}
+\DoxyCodeLine{76              ctr->ctr[x] = (ctr->ctr[x] + (\textcolor{keywordtype}{unsigned} char)1) \& (\textcolor{keywordtype}{unsigned} char)255;}
+\DoxyCodeLine{77              \textcolor{keywordflow}{if} (ctr->ctr[x] != (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char})0) \{}
+\DoxyCodeLine{78                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{79              \}}
+\DoxyCodeLine{80          \}}
+\DoxyCodeLine{81       \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{82          \textcolor{comment}{/* big-endian */}}
+\DoxyCodeLine{83          \textcolor{keywordflow}{for} (x = ctr->blocklen-1; x >= ctr->ctrlen; x--) \{}
+\DoxyCodeLine{84              ctr->ctr[x] = (ctr->ctr[x] + (\textcolor{keywordtype}{unsigned} char)1) \& (\textcolor{keywordtype}{unsigned} char)255;}
+\DoxyCodeLine{85              \textcolor{keywordflow}{if} (ctr->ctr[x] != (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char})0) \{}
+\DoxyCodeLine{86                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{87              \}}
+\DoxyCodeLine{88          \}}
+\DoxyCodeLine{89       \}}
+\DoxyCodeLine{90    \}}
+\DoxyCodeLine{91 }
+\DoxyCodeLine{92    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[ctr->cipher].\mbox{\hyperlink{structltc__cipher__descriptor_a46141d86abe22a7c8d382c62a894dd63}{ecb\_encrypt}}(ctr->ctr, ctr->pad, \&ctr->key);}
+\DoxyCodeLine{93 \}}
+
+\end{DoxyCode}
+
+
+References ltc\+\_\+cipher\+\_\+descriptor\+::block\+\_\+length, cipher\+\_\+descriptor, cipher\+\_\+is\+\_\+valid(), C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+A\+RG, C\+R\+Y\+P\+T\+\_\+\+OK, ltc\+\_\+cipher\+\_\+descriptor\+::ecb\+\_\+encrypt, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, and setup().
+
+
+
+Referenced by ctr\+\_\+test(), eax\+\_\+init(), and yarrow\+\_\+ready().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2

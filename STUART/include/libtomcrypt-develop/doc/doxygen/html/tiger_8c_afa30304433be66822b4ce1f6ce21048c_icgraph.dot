@@ -1,0 +1,14 @@
+digraph "key_schedule"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node1 [label="key_schedule",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="tiger_compress",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tiger_8c.html#a72d428871e09b73599cbb6a5df320cbf",tooltip=" "];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="tiger_done",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tiger_8c.html#a7d4feae8785f35a28c0bfb1487fca55c",tooltip="Terminate the hash to get the digest."];
+  Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="tiger_test",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tiger_8c.html#a0c726827797846b3a94b64983f1b3dad",tooltip="Self-test the hash."];
+}

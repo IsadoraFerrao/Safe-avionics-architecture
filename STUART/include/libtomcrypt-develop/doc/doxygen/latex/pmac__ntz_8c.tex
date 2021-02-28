@@ -1,0 +1,61 @@
+\hypertarget{pmac__ntz_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/mac/pmac/pmac\+\_\+ntz.c File Reference}
+\label{pmac__ntz_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/mac/pmac/pmac\_ntz.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/mac/pmac/pmac\_ntz.c}}
+
+
+P\+M\+AC implementation, internal function, by Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for pmac\+\_\+ntz.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{pmac__ntz_8c_a12492827ca6ed510fa848dc7d1eaedc5}{pmac\+\_\+ntz}} (unsigned long x)
+\begin{DoxyCompactList}\small\item\em Internal P\+M\+AC function. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+P\+M\+AC implementation, internal function, by Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{pmac__ntz_8c_a12492827ca6ed510fa848dc7d1eaedc5}\label{pmac__ntz_8c_a12492827ca6ed510fa848dc7d1eaedc5}} 
+\index{pmac\_ntz.c@{pmac\_ntz.c}!pmac\_ntz@{pmac\_ntz}}
+\index{pmac\_ntz@{pmac\_ntz}!pmac\_ntz.c@{pmac\_ntz.c}}
+\subsubsection{\texorpdfstring{pmac\_ntz()}{pmac\_ntz()}}
+{\footnotesize\ttfamily int pmac\+\_\+ntz (\begin{DoxyParamCaption}\item[{unsigned long}]{x }\end{DoxyParamCaption})}
+
+
+
+Internal P\+M\+AC function. 
+
+
+
+Definition at line 21 of file pmac\+\_\+ntz.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{22 \{}
+\DoxyCodeLine{23    \textcolor{keywordtype}{int} \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}};}
+\DoxyCodeLine{24    x \&= 0xFFFFFFFFUL;}
+\DoxyCodeLine{25    \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} = 0;}
+\DoxyCodeLine{26    \textcolor{keywordflow}{while} ((x \& 1) == 0) \{}
+\DoxyCodeLine{27       ++\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}};}
+\DoxyCodeLine{28       x >>= 1;}
+\DoxyCodeLine{29    \}}
+\DoxyCodeLine{30    \textcolor{keywordflow}{return} \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}};}
+\DoxyCodeLine{31 \}}
+
+\end{DoxyCode}
+
+
+References c.
+
+
+
+Referenced by pmac\+\_\+shift\+\_\+xor().
+
+Here is the caller graph for this function\+:
+% FIG 1

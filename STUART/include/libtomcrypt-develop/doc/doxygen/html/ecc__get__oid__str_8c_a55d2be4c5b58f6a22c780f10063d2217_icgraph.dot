@@ -1,0 +1,16 @@
+digraph "ecc_get_oid_str"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node2 [label="ecc_get_oid_str",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Extract OID as a string from ECC key."];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="ecc_ssh_ecdsa_encode_name",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ecc__ssh__ecdsa__encode__name_8c.html#a5921e9a5a19d09bc948281baf09ea128",tooltip="Curve/OID to SSH+ECDSA name string mapping."];
+  Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="ecc_recover_key",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ecc__recover__key_8c.html#a42d1c0f03dd10a8ea98836bab2c1e6c6",tooltip="Recover ECC public key from signature and hash."];
+  Node3 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="ecc_sign_hash_ex",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ecc__sign__hash_8c.html#a96afaf55b03386145e3061fc42a9636b",tooltip="Sign a message digest."];
+  Node3 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="ecc_verify_hash_ex",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ecc__verify__hash_8c.html#a6c4f6d0c99e8dbcff4e1064179f20214",tooltip="Verify an ECC signature in RFC7518 format."];
+}

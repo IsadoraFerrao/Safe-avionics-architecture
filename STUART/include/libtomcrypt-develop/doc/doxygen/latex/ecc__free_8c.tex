@@ -1,0 +1,65 @@
+\hypertarget{ecc__free_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/pk/ecc/ecc\+\_\+free.c File Reference}
+\label{ecc__free_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/ecc/ecc\_free.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/ecc/ecc\_free.c}}
+
+
+E\+CC Crypto, Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for ecc\+\_\+free.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{ecc__free_8c_a73cd81ea7d3b24f2d9ef309c4b22e3b7}{ecc\+\_\+free}} (ecc\+\_\+key $\ast$key)
+\begin{DoxyCompactList}\small\item\em Free an E\+CC key from memory. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+E\+CC Crypto, Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{ecc__free_8c_a73cd81ea7d3b24f2d9ef309c4b22e3b7}\label{ecc__free_8c_a73cd81ea7d3b24f2d9ef309c4b22e3b7}} 
+\index{ecc\_free.c@{ecc\_free.c}!ecc\_free@{ecc\_free}}
+\index{ecc\_free@{ecc\_free}!ecc\_free.c@{ecc\_free.c}}
+\subsubsection{\texorpdfstring{ecc\_free()}{ecc\_free()}}
+{\footnotesize\ttfamily void ecc\+\_\+free (\begin{DoxyParamCaption}\item[{ecc\+\_\+key $\ast$}]{key }\end{DoxyParamCaption})}
+
+
+
+Free an E\+CC key from memory. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The key you wish to free \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 23 of file ecc\+\_\+free.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{24 \{}
+\DoxyCodeLine{25    \mbox{\hyperlink{tomcrypt__argchk_8h_a67a6e5d66d0c7d80ddf5c583054608bd}{LTC\_ARGCHKVD}}(key != NULL);}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27    \mbox{\hyperlink{tomcrypt__private_8h_ad0d492c0676e4944383a7ae9e9ebd63b}{mp\_cleanup\_multi}}(\&key->dp.prime, \&key->dp.order,}
+\DoxyCodeLine{28                     \&key->dp.A, \&key->dp.B,}
+\DoxyCodeLine{29                     \&key->dp.base.x, \&key->dp.base.y, \&key->dp.base.z,}
+\DoxyCodeLine{30                     \&key->pubkey.x, \&key->pubkey.y, \&key->pubkey.z,}
+\DoxyCodeLine{31                     \&key->k, NULL);}
+\DoxyCodeLine{32 \}}
+
+\end{DoxyCode}
+
+
+References L\+T\+C\+\_\+\+A\+R\+G\+C\+H\+K\+VD, and mp\+\_\+cleanup\+\_\+multi.
+
+
+
+Referenced by ecc\+\_\+copy\+\_\+curve(), ecc\+\_\+decrypt\+\_\+key(), ecc\+\_\+encrypt\+\_\+key(), ecc\+\_\+generate\+\_\+key(), ecc\+\_\+import\+\_\+ex(), ecc\+\_\+import\+\_\+pkcs8(), ecc\+\_\+set\+\_\+curve(), ecc\+\_\+set\+\_\+curve\+\_\+from\+\_\+mpis(), ecc\+\_\+set\+\_\+key(), and ecc\+\_\+sign\+\_\+hash\+\_\+ex().
+
+Here is the caller graph for this function\+:
+% FIG 1

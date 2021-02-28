@@ -1,0 +1,71 @@
+\hypertarget{cbc__done_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/modes/cbc/cbc\+\_\+done.c File Reference}
+\label{cbc__done_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/modes/cbc/cbc\_done.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/modes/cbc/cbc\_done.c}}
+
+
+C\+BC implementation, finish chain, Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for cbc\+\_\+done.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{cbc__done_8c_a13f57f4d9801877029527e4ad3a2dd5f}{cbc\+\_\+done}} (symmetric\+\_\+\+C\+BC $\ast$cbc)
+\begin{DoxyCompactList}\small\item\em Terminate the chain. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+C\+BC implementation, finish chain, Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{cbc__done_8c_a13f57f4d9801877029527e4ad3a2dd5f}\label{cbc__done_8c_a13f57f4d9801877029527e4ad3a2dd5f}} 
+\index{cbc\_done.c@{cbc\_done.c}!cbc\_done@{cbc\_done}}
+\index{cbc\_done@{cbc\_done}!cbc\_done.c@{cbc\_done.c}}
+\subsubsection{\texorpdfstring{cbc\_done()}{cbc\_done()}}
+{\footnotesize\ttfamily int cbc\+\_\+done (\begin{DoxyParamCaption}\item[{symmetric\+\_\+\+C\+BC $\ast$}]{cbc }\end{DoxyParamCaption})}
+
+
+
+Terminate the chain. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cbc} & The C\+BC chain to terminate \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK on success 
+\end{DoxyReturn}
+
+
+Definition at line 22 of file cbc\+\_\+done.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{23 \{}
+\DoxyCodeLine{24    \textcolor{keywordtype}{int} err;}
+\DoxyCodeLine{25    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(cbc != NULL);}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_ac30eb68934c4ca07205344dc9d159221}{cipher\_is\_valid}}(cbc->cipher)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{28       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{29    \}}
+\DoxyCodeLine{30    \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[cbc->cipher].\mbox{\hyperlink{structltc__cipher__descriptor_a0ad1c101005c70a69e40fded0e606191}{done}}(\&cbc->key);}
+\DoxyCodeLine{31    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{32 \}}
+
+\end{DoxyCode}
+
+
+References cipher\+\_\+descriptor, cipher\+\_\+is\+\_\+valid(), C\+R\+Y\+P\+T\+\_\+\+OK, ltc\+\_\+cipher\+\_\+descriptor\+::done, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+
+
+Referenced by pbes\+\_\+decrypt().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2

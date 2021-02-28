@@ -1,0 +1,578 @@
+\hypertarget{sha256_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/hashes/sha2/sha256.c File Reference}
+\label{sha256_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/hashes/sha2/sha256.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/hashes/sha2/sha256.c}}
+
+
+L\+T\+C\+\_\+\+S\+H\+A256 by Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for sha256.\+c\+:
+% FIG 0
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{sha256_8c_ab0a0d1ad13c7e4d3cb38c89f7127c85a}{Ch}}(x,  y,  z)~(z $^\wedge$ (x \& (y $^\wedge$ z)))
+\item 
+\#define \mbox{\hyperlink{sha256_8c_a447cd1d7fb703b62666400976be24bf3}{Maj}}(x,  y,  z)~(((x $\vert$ y) \& z) $\vert$ (x \& y))
+\item 
+\#define \mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}(x,  n)~\mbox{\hyperlink{tomcrypt__macros_8h_adb04fb3f7c1736d29125ad0f179b1068}{R\+O\+Rc}}((x),(n))
+\item 
+\#define \mbox{\hyperlink{sha256_8c_a8fb1dfc3ad6dd07bc99c1962e6583087}{R}}(x,  n)~(((x)\&0x\+F\+F\+F\+F\+F\+F\+F\+F\+U\+L)$>$$>$(n))
+\item 
+\#define \mbox{\hyperlink{sha256_8c_a613f88ad88919b6ed21ff223070f9a21}{Sigma0}}(x)~(\mbox{\hyperlink{sha512_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}(x, 2) $^\wedge$ \mbox{\hyperlink{sha512_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}(x, 13) $^\wedge$ \mbox{\hyperlink{sha512_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}(x, 22))
+\item 
+\#define \mbox{\hyperlink{sha256_8c_a6d34508d6d962274083fcd992fb4e340}{Sigma1}}(x)~(\mbox{\hyperlink{sha512_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}(x, 6) $^\wedge$ \mbox{\hyperlink{sha512_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}(x, 11) $^\wedge$ \mbox{\hyperlink{sha512_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}(x, 25))
+\item 
+\#define \mbox{\hyperlink{sha256_8c_aab39e163b484c43a39b10beda3f6b35f}{Gamma0}}(x)~(\mbox{\hyperlink{sha512_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}(x, 7) $^\wedge$ \mbox{\hyperlink{sha512_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}(x, 18) $^\wedge$ \mbox{\hyperlink{sha512_8c_a8fb1dfc3ad6dd07bc99c1962e6583087}{R}}(x, 3))
+\item 
+\#define \mbox{\hyperlink{sha256_8c_acd7a8e9e37c472f0a570c8c3e7d553ca}{Gamma1}}(x)~(\mbox{\hyperlink{sha512_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}(x, 17) $^\wedge$ \mbox{\hyperlink{sha512_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}(x, 19) $^\wedge$ \mbox{\hyperlink{sha512_8c_a8fb1dfc3ad6dd07bc99c1962e6583087}{R}}(x, 10))
+\item 
+\#define \mbox{\hyperlink{sha256_8c_a4653a54c50b5bbfc17a57857f6cb5713}{R\+ND}}(a,  b,  \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},  d,  e,  f,  g,  h,  i,  ki)
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{sha256_8c_ac87e8a7c22810735390e70611006bfe5}{sha256\+\_\+compress}} (\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$md, const unsigned char $\ast$buf)
+\item 
+int \mbox{\hyperlink{sha256_8c_a6290ad544b02c822c2ca6c30b8d1ee07}{sha256\+\_\+init}} (\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$md)
+\begin{DoxyCompactList}\small\item\em Initialize the hash state. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{sha256_8c_a8b983a80c9edd5d997a3937963ae7856}{sha256\+\_\+process}} (\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$md, const unsigned char $\ast$in, unsigned long inlen)
+\begin{DoxyCompactList}\small\item\em Process a block of memory though the hash. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{sha256_8c_a53db56f3eb9f35c59b134533be31c301}{sha256\+\_\+done}} (\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$md, unsigned char $\ast$out)
+\begin{DoxyCompactList}\small\item\em Terminate the hash to get the digest. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{sha256_8c_a3a9304ee8cdb3aaa8fc90f0b70592e7b}{sha256\+\_\+test}} (void)
+\begin{DoxyCompactList}\small\item\em Self-\/test the hash. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const struct \mbox{\hyperlink{structltc__hash__descriptor}{ltc\+\_\+hash\+\_\+descriptor}} \mbox{\hyperlink{sha256_8c_a06cf2e3df8c7f3f9a7b169d03d6fed92}{sha256\+\_\+desc}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+L\+T\+C\+\_\+\+S\+H\+A256 by Tom St Denis. 
+
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{sha256_8c_ab0a0d1ad13c7e4d3cb38c89f7127c85a}\label{sha256_8c_ab0a0d1ad13c7e4d3cb38c89f7127c85a}} 
+\index{sha256.c@{sha256.c}!Ch@{Ch}}
+\index{Ch@{Ch}!sha256.c@{sha256.c}}
+\subsubsection{\texorpdfstring{Ch}{Ch}}
+{\footnotesize\ttfamily \#define Ch(\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{y,  }\item[{}]{z }\end{DoxyParamCaption})~(z $^\wedge$ (x \& (y $^\wedge$ z)))}
+
+
+
+Definition at line 56 of file sha256.\+c.
+
+\mbox{\Hypertarget{sha256_8c_aab39e163b484c43a39b10beda3f6b35f}\label{sha256_8c_aab39e163b484c43a39b10beda3f6b35f}} 
+\index{sha256.c@{sha256.c}!Gamma0@{Gamma0}}
+\index{Gamma0@{Gamma0}!sha256.c@{sha256.c}}
+\subsubsection{\texorpdfstring{Gamma0}{Gamma0}}
+{\footnotesize\ttfamily \#define Gamma0(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~(\mbox{\hyperlink{sha512_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}(x, 7) $^\wedge$ \mbox{\hyperlink{sha512_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}(x, 18) $^\wedge$ \mbox{\hyperlink{sha512_8c_a8fb1dfc3ad6dd07bc99c1962e6583087}{R}}(x, 3))}
+
+
+
+Definition at line 62 of file sha256.\+c.
+
+\mbox{\Hypertarget{sha256_8c_acd7a8e9e37c472f0a570c8c3e7d553ca}\label{sha256_8c_acd7a8e9e37c472f0a570c8c3e7d553ca}} 
+\index{sha256.c@{sha256.c}!Gamma1@{Gamma1}}
+\index{Gamma1@{Gamma1}!sha256.c@{sha256.c}}
+\subsubsection{\texorpdfstring{Gamma1}{Gamma1}}
+{\footnotesize\ttfamily \#define Gamma1(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~(\mbox{\hyperlink{sha512_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}(x, 17) $^\wedge$ \mbox{\hyperlink{sha512_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}(x, 19) $^\wedge$ \mbox{\hyperlink{sha512_8c_a8fb1dfc3ad6dd07bc99c1962e6583087}{R}}(x, 10))}
+
+
+
+Definition at line 63 of file sha256.\+c.
+
+\mbox{\Hypertarget{sha256_8c_a447cd1d7fb703b62666400976be24bf3}\label{sha256_8c_a447cd1d7fb703b62666400976be24bf3}} 
+\index{sha256.c@{sha256.c}!Maj@{Maj}}
+\index{Maj@{Maj}!sha256.c@{sha256.c}}
+\subsubsection{\texorpdfstring{Maj}{Maj}}
+{\footnotesize\ttfamily \#define Maj(\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{y,  }\item[{}]{z }\end{DoxyParamCaption})~(((x $\vert$ y) \& z) $\vert$ (x \& y))}
+
+
+
+Definition at line 57 of file sha256.\+c.
+
+\mbox{\Hypertarget{sha256_8c_a8fb1dfc3ad6dd07bc99c1962e6583087}\label{sha256_8c_a8fb1dfc3ad6dd07bc99c1962e6583087}} 
+\index{sha256.c@{sha256.c}!R@{R}}
+\index{R@{R}!sha256.c@{sha256.c}}
+\subsubsection{\texorpdfstring{R}{R}}
+{\footnotesize\ttfamily \#define R(\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{n }\end{DoxyParamCaption})~(((x)\&0x\+F\+F\+F\+F\+F\+F\+F\+F\+U\+L)$>$$>$(n))}
+
+
+
+Definition at line 59 of file sha256.\+c.
+
+\mbox{\Hypertarget{sha256_8c_a4653a54c50b5bbfc17a57857f6cb5713}\label{sha256_8c_a4653a54c50b5bbfc17a57857f6cb5713}} 
+\index{sha256.c@{sha256.c}!RND@{RND}}
+\index{RND@{RND}!sha256.c@{sha256.c}}
+\subsubsection{\texorpdfstring{RND}{RND}}
+{\footnotesize\ttfamily \#define R\+ND(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{b,  }\item[{}]{\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},  }\item[{}]{d,  }\item[{}]{e,  }\item[{}]{f,  }\item[{}]{g,  }\item[{}]{h,  }\item[{}]{i,  }\item[{}]{ki }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{t0 = h + \mbox{\hyperlink{sha256_8c_a6d34508d6d962274083fcd992fb4e340}{Sigma1}}(e) + \mbox{\hyperlink{sha256_8c_ab0a0d1ad13c7e4d3cb38c89f7127c85a}{Ch}}(e, f, g) + ki + W[i];   \(\backslash\)}
+\DoxyCodeLine{     t1 = \mbox{\hyperlink{sha256_8c_a613f88ad88919b6ed21ff223070f9a21}{Sigma0}}(a) + \mbox{\hyperlink{sha256_8c_a447cd1d7fb703b62666400976be24bf3}{Maj}}(a, b, \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}});                  \(\backslash\)}
+\DoxyCodeLine{     d += t0;                                        \(\backslash\)}
+\DoxyCodeLine{     h  = t0 + \mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}};}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}\label{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}} 
+\index{sha256.c@{sha256.c}!S@{S}}
+\index{S@{S}!sha256.c@{sha256.c}}
+\subsubsection{\texorpdfstring{S}{S}}
+{\footnotesize\ttfamily \#define S(\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{n }\end{DoxyParamCaption})~\mbox{\hyperlink{tomcrypt__macros_8h_adb04fb3f7c1736d29125ad0f179b1068}{R\+O\+Rc}}((x),(n))}
+
+
+
+Definition at line 58 of file sha256.\+c.
+
+\mbox{\Hypertarget{sha256_8c_a613f88ad88919b6ed21ff223070f9a21}\label{sha256_8c_a613f88ad88919b6ed21ff223070f9a21}} 
+\index{sha256.c@{sha256.c}!Sigma0@{Sigma0}}
+\index{Sigma0@{Sigma0}!sha256.c@{sha256.c}}
+\subsubsection{\texorpdfstring{Sigma0}{Sigma0}}
+{\footnotesize\ttfamily \#define Sigma0(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~(\mbox{\hyperlink{sha512_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}(x, 2) $^\wedge$ \mbox{\hyperlink{sha512_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}(x, 13) $^\wedge$ \mbox{\hyperlink{sha512_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}(x, 22))}
+
+
+
+Definition at line 60 of file sha256.\+c.
+
+\mbox{\Hypertarget{sha256_8c_a6d34508d6d962274083fcd992fb4e340}\label{sha256_8c_a6d34508d6d962274083fcd992fb4e340}} 
+\index{sha256.c@{sha256.c}!Sigma1@{Sigma1}}
+\index{Sigma1@{Sigma1}!sha256.c@{sha256.c}}
+\subsubsection{\texorpdfstring{Sigma1}{Sigma1}}
+{\footnotesize\ttfamily \#define Sigma1(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~(\mbox{\hyperlink{sha512_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}(x, 6) $^\wedge$ \mbox{\hyperlink{sha512_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}(x, 11) $^\wedge$ \mbox{\hyperlink{sha512_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}(x, 25))}
+
+
+
+Definition at line 61 of file sha256.\+c.
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{sha256_8c_ac87e8a7c22810735390e70611006bfe5}\label{sha256_8c_ac87e8a7c22810735390e70611006bfe5}} 
+\index{sha256.c@{sha256.c}!sha256\_compress@{sha256\_compress}}
+\index{sha256\_compress@{sha256\_compress}!sha256.c@{sha256.c}}
+\subsubsection{\texorpdfstring{sha256\_compress()}{sha256\_compress()}}
+{\footnotesize\ttfamily static int sha256\+\_\+compress (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$}]{md,  }\item[{const unsigned char $\ast$}]{buf }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 69 of file sha256.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{71 \{}
+\DoxyCodeLine{72     \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} \mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[8], W[64], t0, \mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}};}
+\DoxyCodeLine{73 \textcolor{preprocessor}{\#ifdef LTC\_SMALL\_CODE}}
+\DoxyCodeLine{74     \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} t;}
+\DoxyCodeLine{75 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{76     \textcolor{keywordtype}{int} i;}
+\DoxyCodeLine{77 }
+\DoxyCodeLine{78     \textcolor{comment}{/* copy state into S */}}
+\DoxyCodeLine{79     \textcolor{keywordflow}{for} (i = 0; i < 8; i++) \{}
+\DoxyCodeLine{80         \mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[i] = md->sha256.state[i];}
+\DoxyCodeLine{81     \}}
+\DoxyCodeLine{82 }
+\DoxyCodeLine{83     \textcolor{comment}{/* copy the state into 512-bits into W[0..15] */}}
+\DoxyCodeLine{84     \textcolor{keywordflow}{for} (i = 0; i < 16; i++) \{}
+\DoxyCodeLine{85         LOAD32H(W[i], buf + (4*i));}
+\DoxyCodeLine{86     \}}
+\DoxyCodeLine{87 }
+\DoxyCodeLine{88     \textcolor{comment}{/* fill W[16..63] */}}
+\DoxyCodeLine{89     \textcolor{keywordflow}{for} (i = 16; i < 64; i++) \{}
+\DoxyCodeLine{90         W[i] = \mbox{\hyperlink{sha256_8c_acd7a8e9e37c472f0a570c8c3e7d553ca}{Gamma1}}(W[i - 2]) + W[i - 7] + \mbox{\hyperlink{sha256_8c_aab39e163b484c43a39b10beda3f6b35f}{Gamma0}}(W[i - 15]) + W[i - 16];}
+\DoxyCodeLine{91     \}}
+\DoxyCodeLine{92 }
+\DoxyCodeLine{93     \textcolor{comment}{/* Compress */}}
+\DoxyCodeLine{94 \textcolor{preprocessor}{\#ifdef LTC\_SMALL\_CODE}}
+\DoxyCodeLine{95 \textcolor{preprocessor}{\#define RND(a,b,c,d,e,f,g,h,i)                         \(\backslash\)}}
+\DoxyCodeLine{96 \textcolor{preprocessor}{     t0 = h + Sigma1(e) + Ch(e, f, g) + K[i] + W[i];   \(\backslash\)}}
+\DoxyCodeLine{97 \textcolor{preprocessor}{     t1 = Sigma0(a) + Maj(a, b, c);                    \(\backslash\)}}
+\DoxyCodeLine{98 \textcolor{preprocessor}{     d += t0;                                          \(\backslash\)}}
+\DoxyCodeLine{99 \textcolor{preprocessor}{     h  = t0 + t1;}}
+\DoxyCodeLine{100 }
+\DoxyCodeLine{101      \textcolor{keywordflow}{for} (i = 0; i < 64; ++i) \{}
+\DoxyCodeLine{102          \mbox{\hyperlink{sha256_8c_a4653a54c50b5bbfc17a57857f6cb5713}{RND}}(\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[0],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[1],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[2],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[3],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[4],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[5],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[6],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[7],i);}
+\DoxyCodeLine{103          t = \mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[7]; \mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[7] = \mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[6]; \mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[6] = \mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[5]; \mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[5] = \mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[4];}
+\DoxyCodeLine{104          \mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[4] = \mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[3]; \mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[3] = \mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[2]; \mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[2] = \mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[1]; \mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[1] = \mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[0]; \mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[0] = t;}
+\DoxyCodeLine{105      \}}
+\DoxyCodeLine{106 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{107 \textcolor{preprocessor}{\#define RND(a,b,c,d,e,f,g,h,i,ki)                    \(\backslash\)}}
+\DoxyCodeLine{108 \textcolor{preprocessor}{     t0 = h + Sigma1(e) + Ch(e, f, g) + ki + W[i];   \(\backslash\)}}
+\DoxyCodeLine{109 \textcolor{preprocessor}{     t1 = Sigma0(a) + Maj(a, b, c);                  \(\backslash\)}}
+\DoxyCodeLine{110 \textcolor{preprocessor}{     d += t0;                                        \(\backslash\)}}
+\DoxyCodeLine{111 \textcolor{preprocessor}{     h  = t0 + t1;}}
+\DoxyCodeLine{112 }
+\DoxyCodeLine{113     \mbox{\hyperlink{sha256_8c_a4653a54c50b5bbfc17a57857f6cb5713}{RND}}(\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[0],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[1],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[2],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[3],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[4],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[5],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[6],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[7],0,0x428a2f98);}
+\DoxyCodeLine{114     \mbox{\hyperlink{sha256_8c_a4653a54c50b5bbfc17a57857f6cb5713}{RND}}(\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[7],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[0],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[1],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[2],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[3],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[4],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[5],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[6],1,0x71374491);}
+\DoxyCodeLine{115     \mbox{\hyperlink{sha256_8c_a4653a54c50b5bbfc17a57857f6cb5713}{RND}}(\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[6],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[7],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[0],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[1],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[2],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[3],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[4],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[5],2,0xb5c0fbcf);}
+\DoxyCodeLine{116     \mbox{\hyperlink{sha256_8c_a4653a54c50b5bbfc17a57857f6cb5713}{RND}}(\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[5],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[6],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[7],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[0],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[1],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[2],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[3],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[4],3,0xe9b5dba5);}
+\DoxyCodeLine{117     \mbox{\hyperlink{sha256_8c_a4653a54c50b5bbfc17a57857f6cb5713}{RND}}(\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[4],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[5],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[6],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[7],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[0],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[1],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[2],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[3],4,0x3956c25b);}
+\DoxyCodeLine{118     \mbox{\hyperlink{sha256_8c_a4653a54c50b5bbfc17a57857f6cb5713}{RND}}(\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[3],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[4],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[5],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[6],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[7],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[0],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[1],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[2],5,0x59f111f1);}
+\DoxyCodeLine{119     \mbox{\hyperlink{sha256_8c_a4653a54c50b5bbfc17a57857f6cb5713}{RND}}(\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[2],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[3],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[4],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[5],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[6],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[7],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[0],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[1],6,0x923f82a4);}
+\DoxyCodeLine{120     \mbox{\hyperlink{sha256_8c_a4653a54c50b5bbfc17a57857f6cb5713}{RND}}(\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[1],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[2],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[3],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[4],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[5],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[6],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[7],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[0],7,0xab1c5ed5);}
+\DoxyCodeLine{121     \mbox{\hyperlink{sha256_8c_a4653a54c50b5bbfc17a57857f6cb5713}{RND}}(\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[0],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[1],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[2],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[3],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[4],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[5],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[6],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[7],8,0xd807aa98);}
+\DoxyCodeLine{122     \mbox{\hyperlink{sha256_8c_a4653a54c50b5bbfc17a57857f6cb5713}{RND}}(\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[7],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[0],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[1],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[2],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[3],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[4],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[5],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[6],9,0x12835b01);}
+\DoxyCodeLine{123     \mbox{\hyperlink{sha256_8c_a4653a54c50b5bbfc17a57857f6cb5713}{RND}}(\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[6],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[7],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[0],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[1],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[2],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[3],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[4],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[5],10,0x243185be);}
+\DoxyCodeLine{124     \mbox{\hyperlink{sha256_8c_a4653a54c50b5bbfc17a57857f6cb5713}{RND}}(\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[5],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[6],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[7],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[0],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[1],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[2],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[3],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[4],11,0x550c7dc3);}
+\DoxyCodeLine{125     \mbox{\hyperlink{sha256_8c_a4653a54c50b5bbfc17a57857f6cb5713}{RND}}(\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[4],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[5],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[6],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[7],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[0],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[1],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[2],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[3],12,0x72be5d74);}
+\DoxyCodeLine{126     \mbox{\hyperlink{sha256_8c_a4653a54c50b5bbfc17a57857f6cb5713}{RND}}(\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[3],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[4],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[5],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[6],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[7],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[0],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[1],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[2],13,0x80deb1fe);}
+\DoxyCodeLine{127     \mbox{\hyperlink{sha256_8c_a4653a54c50b5bbfc17a57857f6cb5713}{RND}}(\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[2],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[3],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[4],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[5],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[6],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[7],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[0],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[1],14,0x9bdc06a7);}
+\DoxyCodeLine{128     \mbox{\hyperlink{sha256_8c_a4653a54c50b5bbfc17a57857f6cb5713}{RND}}(\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[1],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[2],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[3],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[4],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[5],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[6],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[7],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[0],15,0xc19bf174);}
+\DoxyCodeLine{129     \mbox{\hyperlink{sha256_8c_a4653a54c50b5bbfc17a57857f6cb5713}{RND}}(\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[0],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[1],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[2],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[3],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[4],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[5],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[6],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[7],16,0xe49b69c1);}
+\DoxyCodeLine{130     \mbox{\hyperlink{sha256_8c_a4653a54c50b5bbfc17a57857f6cb5713}{RND}}(\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[7],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[0],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[1],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[2],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[3],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[4],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[5],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[6],17,0xefbe4786);}
+\DoxyCodeLine{131     \mbox{\hyperlink{sha256_8c_a4653a54c50b5bbfc17a57857f6cb5713}{RND}}(\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[6],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[7],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[0],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[1],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[2],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[3],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[4],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[5],18,0x0fc19dc6);}
+\DoxyCodeLine{132     \mbox{\hyperlink{sha256_8c_a4653a54c50b5bbfc17a57857f6cb5713}{RND}}(\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[5],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[6],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[7],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[0],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[1],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[2],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[3],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[4],19,0x240ca1cc);}
+\DoxyCodeLine{133     \mbox{\hyperlink{sha256_8c_a4653a54c50b5bbfc17a57857f6cb5713}{RND}}(\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[4],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[5],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[6],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[7],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[0],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[1],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[2],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[3],20,0x2de92c6f);}
+\DoxyCodeLine{134     \mbox{\hyperlink{sha256_8c_a4653a54c50b5bbfc17a57857f6cb5713}{RND}}(\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[3],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[4],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[5],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[6],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[7],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[0],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[1],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[2],21,0x4a7484aa);}
+\DoxyCodeLine{135     \mbox{\hyperlink{sha256_8c_a4653a54c50b5bbfc17a57857f6cb5713}{RND}}(\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[2],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[3],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[4],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[5],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[6],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[7],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[0],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[1],22,0x5cb0a9dc);}
+\DoxyCodeLine{136     \mbox{\hyperlink{sha256_8c_a4653a54c50b5bbfc17a57857f6cb5713}{RND}}(\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[1],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[2],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[3],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[4],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[5],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[6],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[7],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[0],23,0x76f988da);}
+\DoxyCodeLine{137     \mbox{\hyperlink{sha256_8c_a4653a54c50b5bbfc17a57857f6cb5713}{RND}}(\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[0],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[1],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[2],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[3],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[4],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[5],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[6],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[7],24,0x983e5152);}
+\DoxyCodeLine{138     \mbox{\hyperlink{sha256_8c_a4653a54c50b5bbfc17a57857f6cb5713}{RND}}(\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[7],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[0],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[1],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[2],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[3],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[4],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[5],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[6],25,0xa831c66d);}
+\DoxyCodeLine{139     \mbox{\hyperlink{sha256_8c_a4653a54c50b5bbfc17a57857f6cb5713}{RND}}(\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[6],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[7],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[0],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[1],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[2],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[3],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[4],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[5],26,0xb00327c8);}
+\DoxyCodeLine{140     \mbox{\hyperlink{sha256_8c_a4653a54c50b5bbfc17a57857f6cb5713}{RND}}(\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[5],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[6],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[7],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[0],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[1],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[2],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[3],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[4],27,0xbf597fc7);}
+\DoxyCodeLine{141     \mbox{\hyperlink{sha256_8c_a4653a54c50b5bbfc17a57857f6cb5713}{RND}}(\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[4],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[5],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[6],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[7],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[0],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[1],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[2],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[3],28,0xc6e00bf3);}
+\DoxyCodeLine{142     \mbox{\hyperlink{sha256_8c_a4653a54c50b5bbfc17a57857f6cb5713}{RND}}(\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[3],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[4],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[5],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[6],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[7],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[0],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[1],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[2],29,0xd5a79147);}
+\DoxyCodeLine{143     \mbox{\hyperlink{sha256_8c_a4653a54c50b5bbfc17a57857f6cb5713}{RND}}(\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[2],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[3],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[4],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[5],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[6],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[7],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[0],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[1],30,0x06ca6351);}
+\DoxyCodeLine{144     \mbox{\hyperlink{sha256_8c_a4653a54c50b5bbfc17a57857f6cb5713}{RND}}(\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[1],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[2],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[3],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[4],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[5],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[6],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[7],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[0],31,0x14292967);}
+\DoxyCodeLine{145     \mbox{\hyperlink{sha256_8c_a4653a54c50b5bbfc17a57857f6cb5713}{RND}}(\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[0],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[1],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[2],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[3],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[4],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[5],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[6],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[7],32,0x27b70a85);}
+\DoxyCodeLine{146     \mbox{\hyperlink{sha256_8c_a4653a54c50b5bbfc17a57857f6cb5713}{RND}}(\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[7],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[0],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[1],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[2],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[3],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[4],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[5],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[6],33,0x2e1b2138);}
+\DoxyCodeLine{147     \mbox{\hyperlink{sha256_8c_a4653a54c50b5bbfc17a57857f6cb5713}{RND}}(\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[6],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[7],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[0],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[1],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[2],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[3],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[4],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[5],34,0x4d2c6dfc);}
+\DoxyCodeLine{148     \mbox{\hyperlink{sha256_8c_a4653a54c50b5bbfc17a57857f6cb5713}{RND}}(\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[5],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[6],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[7],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[0],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[1],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[2],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[3],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[4],35,0x53380d13);}
+\DoxyCodeLine{149     \mbox{\hyperlink{sha256_8c_a4653a54c50b5bbfc17a57857f6cb5713}{RND}}(\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[4],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[5],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[6],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[7],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[0],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[1],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[2],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[3],36,0x650a7354);}
+\DoxyCodeLine{150     \mbox{\hyperlink{sha256_8c_a4653a54c50b5bbfc17a57857f6cb5713}{RND}}(\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[3],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[4],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[5],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[6],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[7],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[0],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[1],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[2],37,0x766a0abb);}
+\DoxyCodeLine{151     \mbox{\hyperlink{sha256_8c_a4653a54c50b5bbfc17a57857f6cb5713}{RND}}(\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[2],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[3],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[4],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[5],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[6],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[7],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[0],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[1],38,0x81c2c92e);}
+\DoxyCodeLine{152     \mbox{\hyperlink{sha256_8c_a4653a54c50b5bbfc17a57857f6cb5713}{RND}}(\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[1],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[2],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[3],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[4],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[5],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[6],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[7],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[0],39,0x92722c85);}
+\DoxyCodeLine{153     \mbox{\hyperlink{sha256_8c_a4653a54c50b5bbfc17a57857f6cb5713}{RND}}(\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[0],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[1],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[2],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[3],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[4],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[5],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[6],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[7],40,0xa2bfe8a1);}
+\DoxyCodeLine{154     \mbox{\hyperlink{sha256_8c_a4653a54c50b5bbfc17a57857f6cb5713}{RND}}(\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[7],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[0],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[1],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[2],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[3],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[4],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[5],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[6],41,0xa81a664b);}
+\DoxyCodeLine{155     \mbox{\hyperlink{sha256_8c_a4653a54c50b5bbfc17a57857f6cb5713}{RND}}(\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[6],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[7],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[0],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[1],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[2],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[3],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[4],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[5],42,0xc24b8b70);}
+\DoxyCodeLine{156     \mbox{\hyperlink{sha256_8c_a4653a54c50b5bbfc17a57857f6cb5713}{RND}}(\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[5],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[6],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[7],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[0],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[1],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[2],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[3],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[4],43,0xc76c51a3);}
+\DoxyCodeLine{157     \mbox{\hyperlink{sha256_8c_a4653a54c50b5bbfc17a57857f6cb5713}{RND}}(\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[4],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[5],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[6],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[7],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[0],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[1],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[2],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[3],44,0xd192e819);}
+\DoxyCodeLine{158     \mbox{\hyperlink{sha256_8c_a4653a54c50b5bbfc17a57857f6cb5713}{RND}}(\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[3],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[4],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[5],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[6],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[7],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[0],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[1],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[2],45,0xd6990624);}
+\DoxyCodeLine{159     \mbox{\hyperlink{sha256_8c_a4653a54c50b5bbfc17a57857f6cb5713}{RND}}(\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[2],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[3],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[4],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[5],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[6],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[7],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[0],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[1],46,0xf40e3585);}
+\DoxyCodeLine{160     \mbox{\hyperlink{sha256_8c_a4653a54c50b5bbfc17a57857f6cb5713}{RND}}(\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[1],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[2],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[3],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[4],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[5],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[6],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[7],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[0],47,0x106aa070);}
+\DoxyCodeLine{161     \mbox{\hyperlink{sha256_8c_a4653a54c50b5bbfc17a57857f6cb5713}{RND}}(\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[0],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[1],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[2],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[3],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[4],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[5],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[6],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[7],48,0x19a4c116);}
+\DoxyCodeLine{162     \mbox{\hyperlink{sha256_8c_a4653a54c50b5bbfc17a57857f6cb5713}{RND}}(\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[7],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[0],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[1],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[2],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[3],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[4],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[5],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[6],49,0x1e376c08);}
+\DoxyCodeLine{163     \mbox{\hyperlink{sha256_8c_a4653a54c50b5bbfc17a57857f6cb5713}{RND}}(\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[6],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[7],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[0],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[1],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[2],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[3],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[4],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[5],50,0x2748774c);}
+\DoxyCodeLine{164     \mbox{\hyperlink{sha256_8c_a4653a54c50b5bbfc17a57857f6cb5713}{RND}}(\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[5],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[6],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[7],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[0],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[1],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[2],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[3],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[4],51,0x34b0bcb5);}
+\DoxyCodeLine{165     \mbox{\hyperlink{sha256_8c_a4653a54c50b5bbfc17a57857f6cb5713}{RND}}(\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[4],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[5],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[6],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[7],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[0],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[1],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[2],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[3],52,0x391c0cb3);}
+\DoxyCodeLine{166     \mbox{\hyperlink{sha256_8c_a4653a54c50b5bbfc17a57857f6cb5713}{RND}}(\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[3],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[4],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[5],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[6],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[7],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[0],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[1],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[2],53,0x4ed8aa4a);}
+\DoxyCodeLine{167     \mbox{\hyperlink{sha256_8c_a4653a54c50b5bbfc17a57857f6cb5713}{RND}}(\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[2],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[3],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[4],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[5],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[6],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[7],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[0],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[1],54,0x5b9cca4f);}
+\DoxyCodeLine{168     \mbox{\hyperlink{sha256_8c_a4653a54c50b5bbfc17a57857f6cb5713}{RND}}(\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[1],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[2],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[3],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[4],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[5],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[6],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[7],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[0],55,0x682e6ff3);}
+\DoxyCodeLine{169     \mbox{\hyperlink{sha256_8c_a4653a54c50b5bbfc17a57857f6cb5713}{RND}}(\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[0],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[1],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[2],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[3],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[4],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[5],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[6],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[7],56,0x748f82ee);}
+\DoxyCodeLine{170     \mbox{\hyperlink{sha256_8c_a4653a54c50b5bbfc17a57857f6cb5713}{RND}}(\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[7],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[0],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[1],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[2],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[3],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[4],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[5],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[6],57,0x78a5636f);}
+\DoxyCodeLine{171     \mbox{\hyperlink{sha256_8c_a4653a54c50b5bbfc17a57857f6cb5713}{RND}}(\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[6],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[7],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[0],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[1],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[2],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[3],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[4],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[5],58,0x84c87814);}
+\DoxyCodeLine{172     \mbox{\hyperlink{sha256_8c_a4653a54c50b5bbfc17a57857f6cb5713}{RND}}(\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[5],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[6],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[7],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[0],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[1],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[2],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[3],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[4],59,0x8cc70208);}
+\DoxyCodeLine{173     \mbox{\hyperlink{sha256_8c_a4653a54c50b5bbfc17a57857f6cb5713}{RND}}(\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[4],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[5],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[6],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[7],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[0],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[1],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[2],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[3],60,0x90befffa);}
+\DoxyCodeLine{174     \mbox{\hyperlink{sha256_8c_a4653a54c50b5bbfc17a57857f6cb5713}{RND}}(\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[3],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[4],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[5],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[6],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[7],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[0],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[1],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[2],61,0xa4506ceb);}
+\DoxyCodeLine{175     \mbox{\hyperlink{sha256_8c_a4653a54c50b5bbfc17a57857f6cb5713}{RND}}(\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[2],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[3],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[4],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[5],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[6],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[7],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[0],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[1],62,0xbef9a3f7);}
+\DoxyCodeLine{176     \mbox{\hyperlink{sha256_8c_a4653a54c50b5bbfc17a57857f6cb5713}{RND}}(\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[1],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[2],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[3],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[4],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[5],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[6],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[7],\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[0],63,0xc67178f2);}
+\DoxyCodeLine{177 }
+\DoxyCodeLine{178 \textcolor{preprocessor}{\#undef RND}}
+\DoxyCodeLine{179 }
+\DoxyCodeLine{180 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{181 }
+\DoxyCodeLine{182     \textcolor{comment}{/* feedback */}}
+\DoxyCodeLine{183     \textcolor{keywordflow}{for} (i = 0; i < 8; i++) \{}
+\DoxyCodeLine{184         md->sha256.state[i] = md->sha256.state[i] + \mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[i];}
+\DoxyCodeLine{185     \}}
+\DoxyCodeLine{186     \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{187 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, Gamma0, Gamma1, R\+ND, S, and t1.
+
+
+
+Referenced by sha256\+\_\+done().
+
+Here is the caller graph for this function\+:
+% FIG 1
+\mbox{\Hypertarget{sha256_8c_a53db56f3eb9f35c59b134533be31c301}\label{sha256_8c_a53db56f3eb9f35c59b134533be31c301}} 
+\index{sha256.c@{sha256.c}!sha256\_done@{sha256\_done}}
+\index{sha256\_done@{sha256\_done}!sha256.c@{sha256.c}}
+\subsubsection{\texorpdfstring{sha256\_done()}{sha256\_done()}}
+{\footnotesize\ttfamily int sha256\+\_\+done (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$}]{md,  }\item[{unsigned char $\ast$}]{out }\end{DoxyParamCaption})}
+
+
+
+Terminate the hash to get the digest. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em md} & The hash state \\
+\hline
+{\em out} & \mbox{[}out\mbox{]} The destination of the hash (32 bytes) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 236 of file sha256.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{237 \{}
+\DoxyCodeLine{238     \textcolor{keywordtype}{int} i;}
+\DoxyCodeLine{239 }
+\DoxyCodeLine{240     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(md  != NULL);}
+\DoxyCodeLine{241     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(out != NULL);}
+\DoxyCodeLine{242 }
+\DoxyCodeLine{243     \textcolor{keywordflow}{if} (md->sha256.curlen >= \textcolor{keyword}{sizeof}(md->sha256.buf)) \{}
+\DoxyCodeLine{244        \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{245     \}}
+\DoxyCodeLine{246 }
+\DoxyCodeLine{247 }
+\DoxyCodeLine{248     \textcolor{comment}{/* increase the length of the message */}}
+\DoxyCodeLine{249     md->sha256.length += md->sha256.curlen * 8;}
+\DoxyCodeLine{250 }
+\DoxyCodeLine{251     \textcolor{comment}{/* append the '1' bit */}}
+\DoxyCodeLine{252     md->sha256.buf[md->sha256.curlen++] = (\textcolor{keywordtype}{unsigned} char)0x80;}
+\DoxyCodeLine{253 }
+\DoxyCodeLine{254     \textcolor{comment}{/* if the length is currently above 56 bytes we append zeros}}
+\DoxyCodeLine{255 \textcolor{comment}{     * then compress.  Then we can fall back to padding zeros and length}}
+\DoxyCodeLine{256 \textcolor{comment}{     * encoding like normal.}}
+\DoxyCodeLine{257 \textcolor{comment}{     */}}
+\DoxyCodeLine{258     \textcolor{keywordflow}{if} (md->sha256.curlen > 56) \{}
+\DoxyCodeLine{259         \textcolor{keywordflow}{while} (md->sha256.curlen < 64) \{}
+\DoxyCodeLine{260             md->sha256.buf[md->sha256.curlen++] = (\textcolor{keywordtype}{unsigned} char)0;}
+\DoxyCodeLine{261         \}}
+\DoxyCodeLine{262         \mbox{\hyperlink{sha256_8c_ac87e8a7c22810735390e70611006bfe5}{sha256\_compress}}(md, md->sha256.buf);}
+\DoxyCodeLine{263         md->sha256.curlen = 0;}
+\DoxyCodeLine{264     \}}
+\DoxyCodeLine{265 }
+\DoxyCodeLine{266     \textcolor{comment}{/* pad upto 56 bytes of zeroes */}}
+\DoxyCodeLine{267     \textcolor{keywordflow}{while} (md->sha256.curlen < 56) \{}
+\DoxyCodeLine{268         md->sha256.buf[md->sha256.curlen++] = (\textcolor{keywordtype}{unsigned} char)0;}
+\DoxyCodeLine{269     \}}
+\DoxyCodeLine{270 }
+\DoxyCodeLine{271     \textcolor{comment}{/* store length */}}
+\DoxyCodeLine{272     STORE64H(md->sha256.length, md->sha256.buf+56);}
+\DoxyCodeLine{273     \mbox{\hyperlink{sha256_8c_ac87e8a7c22810735390e70611006bfe5}{sha256\_compress}}(md, md->sha256.buf);}
+\DoxyCodeLine{274 }
+\DoxyCodeLine{275     \textcolor{comment}{/* copy output */}}
+\DoxyCodeLine{276     \textcolor{keywordflow}{for} (i = 0; i < 8; i++) \{}
+\DoxyCodeLine{277         STORE32H(md->sha256.state[i], out+(4*i));}
+\DoxyCodeLine{278     \}}
+\DoxyCodeLine{279 \textcolor{preprocessor}{\#ifdef LTC\_CLEAN\_STACK}}
+\DoxyCodeLine{280     \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(md, \textcolor{keyword}{sizeof}(\mbox{\hyperlink{unionHash__state}{hash\_state}}));}
+\DoxyCodeLine{281 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{282     \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{283 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+A\+RG, C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, sha256\+\_\+compress(), and zeromem().
+
+
+
+Referenced by \+\_\+fortuna\+\_\+reseed(), \+\_\+sha256(), fortuna\+\_\+done(), fortuna\+\_\+start(), fortuna\+\_\+update\+\_\+seed(), sha224\+\_\+done(), and sha256\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 2
+Here is the caller graph for this function\+:
+% FIG 3
+\mbox{\Hypertarget{sha256_8c_a6290ad544b02c822c2ca6c30b8d1ee07}\label{sha256_8c_a6290ad544b02c822c2ca6c30b8d1ee07}} 
+\index{sha256.c@{sha256.c}!sha256\_init@{sha256\_init}}
+\index{sha256\_init@{sha256\_init}!sha256.c@{sha256.c}}
+\subsubsection{\texorpdfstring{sha256\_init()}{sha256\_init()}}
+{\footnotesize\ttfamily int sha256\+\_\+init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$}]{md }\end{DoxyParamCaption})}
+
+
+
+Initialize the hash state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em md} & The hash state you wish to initialize \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 204 of file sha256.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{205 \{}
+\DoxyCodeLine{206     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(md != NULL);}
+\DoxyCodeLine{207 }
+\DoxyCodeLine{208     md->sha256.curlen = 0;}
+\DoxyCodeLine{209     md->sha256.length = 0;}
+\DoxyCodeLine{210     md->sha256.state[0] = 0x6A09E667UL;}
+\DoxyCodeLine{211     md->sha256.state[1] = 0xBB67AE85UL;}
+\DoxyCodeLine{212     md->sha256.state[2] = 0x3C6EF372UL;}
+\DoxyCodeLine{213     md->sha256.state[3] = 0xA54FF53AUL;}
+\DoxyCodeLine{214     md->sha256.state[4] = 0x510E527FUL;}
+\DoxyCodeLine{215     md->sha256.state[5] = 0x9B05688CUL;}
+\DoxyCodeLine{216     md->sha256.state[6] = 0x1F83D9ABUL;}
+\DoxyCodeLine{217     md->sha256.state[7] = 0x5BE0CD19UL;}
+\DoxyCodeLine{218     \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{219 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+
+
+Referenced by \+\_\+fortuna\+\_\+reseed(), \+\_\+sha256(), fortuna\+\_\+start(), fortuna\+\_\+update\+\_\+seed(), and sha256\+\_\+test().
+
+Here is the caller graph for this function\+:
+% FIG 4
+\mbox{\Hypertarget{sha256_8c_a8b983a80c9edd5d997a3937963ae7856}\label{sha256_8c_a8b983a80c9edd5d997a3937963ae7856}} 
+\index{sha256.c@{sha256.c}!sha256\_process@{sha256\_process}}
+\index{sha256\_process@{sha256\_process}!sha256.c@{sha256.c}}
+\subsubsection{\texorpdfstring{sha256\_process()}{sha256\_process()}}
+{\footnotesize\ttfamily int sha256\+\_\+process (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$}]{md,  }\item[{const unsigned char $\ast$}]{in,  }\item[{unsigned long}]{inlen }\end{DoxyParamCaption})}
+
+
+
+Process a block of memory though the hash. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em md} & The hash state \\
+\hline
+{\em in} & The data to hash \\
+\hline
+{\em inlen} & The length of the data (octets) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 228 of file sha256.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{237 \{}
+
+\end{DoxyCode}
+
+
+Referenced by \+\_\+fortuna\+\_\+add(), \+\_\+fortuna\+\_\+reseed(), \+\_\+sha256(), fortuna\+\_\+update\+\_\+seed(), and sha256\+\_\+test().
+
+Here is the caller graph for this function\+:
+% FIG 5
+\mbox{\Hypertarget{sha256_8c_a3a9304ee8cdb3aaa8fc90f0b70592e7b}\label{sha256_8c_a3a9304ee8cdb3aaa8fc90f0b70592e7b}} 
+\index{sha256.c@{sha256.c}!sha256\_test@{sha256\_test}}
+\index{sha256\_test@{sha256\_test}!sha256.c@{sha256.c}}
+\subsubsection{\texorpdfstring{sha256\_test()}{sha256\_test()}}
+{\footnotesize\ttfamily int sha256\+\_\+test (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Self-\/test the hash. 
+
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful, C\+R\+Y\+P\+T\+\_\+\+N\+OP if self-\/tests have been disabled 
+\end{DoxyReturn}
+
+
+Definition at line 289 of file sha256.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{290 \{}
+\DoxyCodeLine{291 \textcolor{preprocessor}{ \#ifndef LTC\_TEST}}
+\DoxyCodeLine{292     \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cac43a7799c7fd5f515172da6cfc0f9cf5}{CRYPT\_NOP}};}
+\DoxyCodeLine{293 \textcolor{preprocessor}{ \#else}}
+\DoxyCodeLine{294   \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{295       \textcolor{keyword}{const} \textcolor{keywordtype}{char} *msg;}
+\DoxyCodeLine{296       \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} hash[32];}
+\DoxyCodeLine{297   \} tests[] = \{}
+\DoxyCodeLine{298     \{ \textcolor{stringliteral}{"abc"},}
+\DoxyCodeLine{299       \{ 0xba, 0x78, 0x16, 0xbf, 0x8f, 0x01, 0xcf, 0xea,}
+\DoxyCodeLine{300         0x41, 0x41, 0x40, 0xde, 0x5d, 0xae, 0x22, 0x23,}
+\DoxyCodeLine{301         0xb0, 0x03, 0x61, 0xa3, 0x96, 0x17, 0x7a, 0x9c,}
+\DoxyCodeLine{302         0xb4, 0x10, 0xff, 0x61, 0xf2, 0x00, 0x15, 0xad \}}
+\DoxyCodeLine{303     \},}
+\DoxyCodeLine{304     \{ \textcolor{stringliteral}{"abcdbcdecdefdefgefghfghighijhijkijkljklmklmnlmnomnopnopq"},}
+\DoxyCodeLine{305       \{ 0x24, 0x8d, 0x6a, 0x61, 0xd2, 0x06, 0x38, 0xb8,}
+\DoxyCodeLine{306         0xe5, 0xc0, 0x26, 0x93, 0x0c, 0x3e, 0x60, 0x39,}
+\DoxyCodeLine{307         0xa3, 0x3c, 0xe4, 0x59, 0x64, 0xff, 0x21, 0x67,}
+\DoxyCodeLine{308         0xf6, 0xec, 0xed, 0xd4, 0x19, 0xdb, 0x06, 0xc1 \}}
+\DoxyCodeLine{309     \},}
+\DoxyCodeLine{310   \};}
+\DoxyCodeLine{311 }
+\DoxyCodeLine{312   \textcolor{keywordtype}{int} i;}
+\DoxyCodeLine{313   \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} tmp[32];}
+\DoxyCodeLine{314   \mbox{\hyperlink{unionHash__state}{hash\_state}} md;}
+\DoxyCodeLine{315 }
+\DoxyCodeLine{316   \textcolor{keywordflow}{for} (i = 0; i < (int)(\textcolor{keyword}{sizeof}(tests) / \textcolor{keyword}{sizeof}(tests[0])); i++) \{}
+\DoxyCodeLine{317       \mbox{\hyperlink{sha256_8c_a6290ad544b02c822c2ca6c30b8d1ee07}{sha256\_init}}(\&md);}
+\DoxyCodeLine{318       \mbox{\hyperlink{sha256_8c_a8b983a80c9edd5d997a3937963ae7856}{sha256\_process}}(\&md, (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}*)tests[i].msg, (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long})strlen(tests[i].msg));}
+\DoxyCodeLine{319       \mbox{\hyperlink{sha256_8c_a53db56f3eb9f35c59b134533be31c301}{sha256\_done}}(\&md, tmp);}
+\DoxyCodeLine{320       \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(tmp, \textcolor{keyword}{sizeof}(tmp), tests[i].hash, \textcolor{keyword}{sizeof}(tests[i].hash), \textcolor{stringliteral}{"SHA256"}, i)) \{}
+\DoxyCodeLine{321          \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{322       \}}
+\DoxyCodeLine{323   \}}
+\DoxyCodeLine{324   \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{325 \textcolor{preprocessor}{ \#endif}}
+\DoxyCodeLine{326 \}}
+
+\end{DoxyCode}
+
+
+References compare\+\_\+testvector(), C\+R\+Y\+P\+T\+\_\+\+F\+A\+I\+L\+\_\+\+T\+E\+S\+T\+V\+E\+C\+T\+OR, C\+R\+Y\+P\+T\+\_\+\+N\+OP, C\+R\+Y\+P\+T\+\_\+\+OK, sha256\+\_\+done(), sha256\+\_\+init(), and sha256\+\_\+process().
+
+
+
+Referenced by fortuna\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 6
+Here is the caller graph for this function\+:
+% FIG 7
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{sha256_8c_a06cf2e3df8c7f3f9a7b169d03d6fed92}\label{sha256_8c_a06cf2e3df8c7f3f9a7b169d03d6fed92}} 
+\index{sha256.c@{sha256.c}!sha256\_desc@{sha256\_desc}}
+\index{sha256\_desc@{sha256\_desc}!sha256.c@{sha256.c}}
+\subsubsection{\texorpdfstring{sha256\_desc}{sha256\_desc}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structltc__hash__descriptor}{ltc\+\_\+hash\+\_\+descriptor}} sha256\+\_\+desc}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    \textcolor{stringliteral}{"sha256"},}
+\DoxyCodeLine{    0,}
+\DoxyCodeLine{    32,}
+\DoxyCodeLine{    64,}
+\DoxyCodeLine{}
+\DoxyCodeLine{    }
+\DoxyCodeLine{   \{ 2, 16, 840, 1, 101, 3, 4, 2, 1,  \},}
+\DoxyCodeLine{   9,}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \&\mbox{\hyperlink{sha256_8c_a6290ad544b02c822c2ca6c30b8d1ee07}{sha256\_init}},}
+\DoxyCodeLine{    \&\mbox{\hyperlink{sha256_8c_a8b983a80c9edd5d997a3937963ae7856}{sha256\_process}},}
+\DoxyCodeLine{    \&\mbox{\hyperlink{sha256_8c_a53db56f3eb9f35c59b134533be31c301}{sha256\_done}},}
+\DoxyCodeLine{    \&\mbox{\hyperlink{sha256_8c_a3a9304ee8cdb3aaa8fc90f0b70592e7b}{sha256\_test}},}
+\DoxyCodeLine{    NULL}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line 18 of file sha256.\+c.
+
+
+
+Referenced by \+\_\+dsa\+\_\+make\+\_\+params(), register\+\_\+all\+\_\+hashes(), and yarrow\+\_\+start().
+

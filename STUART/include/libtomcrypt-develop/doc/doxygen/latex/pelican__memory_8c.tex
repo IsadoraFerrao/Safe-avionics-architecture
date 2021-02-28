@@ -1,0 +1,84 @@
+\hypertarget{pelican__memory_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/mac/pelican/pelican\+\_\+memory.c File Reference}
+\label{pelican__memory_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/mac/pelican/pelican\_memory.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/mac/pelican/pelican\_memory.c}}
+
+
+Pelican M\+AC, M\+AC a block of memory, by Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for pelican\+\_\+memory.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{pelican__memory_8c_a1c9283f981146b34e1f61fd18840d6f7}{pelican\+\_\+memory}} (const unsigned char $\ast$key, unsigned long keylen, const unsigned char $\ast$in, unsigned long inlen, unsigned char $\ast$out)
+\begin{DoxyCompactList}\small\item\em Pelican block of memory. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Pelican M\+AC, M\+AC a block of memory, by Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{pelican__memory_8c_a1c9283f981146b34e1f61fd18840d6f7}\label{pelican__memory_8c_a1c9283f981146b34e1f61fd18840d6f7}} 
+\index{pelican\_memory.c@{pelican\_memory.c}!pelican\_memory@{pelican\_memory}}
+\index{pelican\_memory@{pelican\_memory}!pelican\_memory.c@{pelican\_memory.c}}
+\subsubsection{\texorpdfstring{pelican\_memory()}{pelican\_memory()}}
+{\footnotesize\ttfamily int pelican\+\_\+memory (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{key,  }\item[{unsigned long}]{keylen,  }\item[{const unsigned char $\ast$}]{in,  }\item[{unsigned long}]{inlen,  }\item[{unsigned char $\ast$}]{out }\end{DoxyParamCaption})}
+
+
+
+Pelican block of memory. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The key for the M\+AC \\
+\hline
+{\em keylen} & The length of the key (octets) \\
+\hline
+{\em in} & The input to M\+AC \\
+\hline
+{\em inlen} & The length of the input (octets) \\
+\hline
+{\em out} & \mbox{[}out\mbox{]} The output T\+AG \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK on success 
+\end{DoxyReturn}
+
+
+Definition at line 27 of file pelican\+\_\+memory.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{30 \{}
+\DoxyCodeLine{31    pelican\_state *pel;}
+\DoxyCodeLine{32    \textcolor{keywordtype}{int} err;}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34    pel = \mbox{\hyperlink{tomcrypt__cfg_8h_af363355f38fbaacdefacf270436ae1c9}{XMALLOC}}(\textcolor{keyword}{sizeof}(*pel));}
+\DoxyCodeLine{35    \textcolor{keywordflow}{if} (pel == NULL) \{}
+\DoxyCodeLine{36       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca0ce0d27adc7ea10b74b7ea904b8bfa82}{CRYPT\_MEM}};}
+\DoxyCodeLine{37    \}}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{pelican_8c_a0e62b20609006626506ac50406906920}{pelican\_init}}(pel, key, keylen)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{40       \mbox{\hyperlink{tomcrypt__cfg_8h_a260d66fc0690e0502cf3bfe7b5244b75}{XFREE}}(pel);}
+\DoxyCodeLine{41       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{42    \}}
+\DoxyCodeLine{43    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{pelican_8c_aef428c8672b216a7d31256baee8c1a95}{pelican\_process}}(pel, in ,inlen)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{44       \mbox{\hyperlink{tomcrypt__cfg_8h_a260d66fc0690e0502cf3bfe7b5244b75}{XFREE}}(pel);}
+\DoxyCodeLine{45       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{46    \}}
+\DoxyCodeLine{47    err = \mbox{\hyperlink{pelican_8c_a70b6868acfc0b1287d358a8e890e648a}{pelican\_done}}(pel, out);}
+\DoxyCodeLine{48    \mbox{\hyperlink{tomcrypt__cfg_8h_a260d66fc0690e0502cf3bfe7b5244b75}{XFREE}}(pel);}
+\DoxyCodeLine{49    \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{50 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+M\+EM, C\+R\+Y\+P\+T\+\_\+\+OK, pelican\+\_\+done(), pelican\+\_\+init(), pelican\+\_\+process(), X\+F\+R\+E\+E(), and X\+M\+A\+L\+L\+O\+C().
+
+Here is the call graph for this function\+:
+% FIG 1

@@ -1,0 +1,157 @@
+\hypertarget{gcm__add__aad_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/encauth/gcm/gcm\+\_\+add\+\_\+aad.c File Reference}
+\label{gcm__add__aad_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/encauth/gcm/gcm\_add\_aad.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/encauth/gcm/gcm\_add\_aad.c}}
+
+
+G\+CM implementation, Add A\+AD data to the stream, by Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for gcm\+\_\+add\+\_\+aad.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{gcm__add__aad_8c_ab9e6297b575f465e9fac3846f22a2bbd}{gcm\+\_\+add\+\_\+aad}} (gcm\+\_\+state $\ast$gcm, const unsigned char $\ast$adata, unsigned long adatalen)
+\begin{DoxyCompactList}\small\item\em Add A\+AD to the G\+CM state. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+G\+CM implementation, Add A\+AD data to the stream, by Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{gcm__add__aad_8c_ab9e6297b575f465e9fac3846f22a2bbd}\label{gcm__add__aad_8c_ab9e6297b575f465e9fac3846f22a2bbd}} 
+\index{gcm\_add\_aad.c@{gcm\_add\_aad.c}!gcm\_add\_aad@{gcm\_add\_aad}}
+\index{gcm\_add\_aad@{gcm\_add\_aad}!gcm\_add\_aad.c@{gcm\_add\_aad.c}}
+\subsubsection{\texorpdfstring{gcm\_add\_aad()}{gcm\_add\_aad()}}
+{\footnotesize\ttfamily int gcm\+\_\+add\+\_\+aad (\begin{DoxyParamCaption}\item[{gcm\+\_\+state $\ast$}]{gcm,  }\item[{const unsigned char $\ast$}]{adata,  }\item[{unsigned long}]{adatalen }\end{DoxyParamCaption})}
+
+
+
+Add A\+AD to the G\+CM state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gcm} & The G\+CM state \\
+\hline
+{\em adata} & The additional authentication data to add to the G\+CM state \\
+\hline
+{\em adatalen} & The length of the A\+AD data. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK on success 
+\end{DoxyReturn}
+
+
+Definition at line 25 of file gcm\+\_\+add\+\_\+aad.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{27 \{}
+\DoxyCodeLine{28    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} x;}
+\DoxyCodeLine{29    \textcolor{keywordtype}{int}           err;}
+\DoxyCodeLine{30 \textcolor{preprocessor}{\#ifdef LTC\_FAST}}
+\DoxyCodeLine{31    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} y;}
+\DoxyCodeLine{32 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(gcm    != NULL);}
+\DoxyCodeLine{35    \textcolor{keywordflow}{if} (adatalen > 0) \{}
+\DoxyCodeLine{36       \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(adata  != NULL);}
+\DoxyCodeLine{37    \}}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39    \textcolor{keywordflow}{if} (gcm->buflen > 16 || gcm->buflen < 0) \{}
+\DoxyCodeLine{40       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{41    \}}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{43    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_ac30eb68934c4ca07205344dc9d159221}{cipher\_is\_valid}}(gcm->cipher)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{44       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{45    \}}
+\DoxyCodeLine{46 }
+\DoxyCodeLine{47    \textcolor{comment}{/* in IV mode? */}}
+\DoxyCodeLine{48    \textcolor{keywordflow}{if} (gcm->mode == LTC\_GCM\_MODE\_IV) \{}
+\DoxyCodeLine{49       \textcolor{comment}{/* IV length must be > 0 */}}
+\DoxyCodeLine{50       \textcolor{keywordflow}{if} (gcm->buflen == 0 \&\& gcm->totlen == 0) \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca03c22220d7538be04455cd2aa6ddf9da}{CRYPT\_ERROR}};}
+\DoxyCodeLine{51       \textcolor{comment}{/* let's process the IV */}}
+\DoxyCodeLine{52       \textcolor{keywordflow}{if} (gcm->ivmode || gcm->buflen != 12) \{}
+\DoxyCodeLine{53          \textcolor{keywordflow}{for} (x = 0; x < (\textcolor{keywordtype}{unsigned} long)gcm->buflen; x++) \{}
+\DoxyCodeLine{54              gcm->X[x] \string^= gcm->buf[x];}
+\DoxyCodeLine{55          \}}
+\DoxyCodeLine{56          \textcolor{keywordflow}{if} (gcm->buflen) \{}
+\DoxyCodeLine{57             gcm->totlen += gcm->buflen * \mbox{\hyperlink{tomcrypt__cfg_8h_a7d8e211582dff82d00fc171834e3dc67}{CONST64}}(8);}
+\DoxyCodeLine{58             \mbox{\hyperlink{gcm__mult__h_8c_a198e51a3d6b56455cc781d140ebd6f6d}{gcm\_mult\_h}}(gcm, gcm->X);}
+\DoxyCodeLine{59          \}}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{61          \textcolor{comment}{/* mix in the length */}}
+\DoxyCodeLine{62          \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(gcm->buf, 8);}
+\DoxyCodeLine{63          STORE64H(gcm->totlen, gcm->buf+8);}
+\DoxyCodeLine{64          \textcolor{keywordflow}{for} (x = 0; x < 16; x++) \{}
+\DoxyCodeLine{65              gcm->X[x] \string^= gcm->buf[x];}
+\DoxyCodeLine{66          \}}
+\DoxyCodeLine{67          \mbox{\hyperlink{gcm__mult__h_8c_a198e51a3d6b56455cc781d140ebd6f6d}{gcm\_mult\_h}}(gcm, gcm->X);}
+\DoxyCodeLine{68 }
+\DoxyCodeLine{69          \textcolor{comment}{/* copy counter out */}}
+\DoxyCodeLine{70          \mbox{\hyperlink{tomcrypt__cfg_8h_a7691dd48d60d5fc6daf2fa7ec4c55e12}{XMEMCPY}}(gcm->Y, gcm->X, 16);}
+\DoxyCodeLine{71          \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(gcm->X, 16);}
+\DoxyCodeLine{72       \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{73          \mbox{\hyperlink{tomcrypt__cfg_8h_a7691dd48d60d5fc6daf2fa7ec4c55e12}{XMEMCPY}}(gcm->Y, gcm->buf, 12);}
+\DoxyCodeLine{74          gcm->Y[12] = 0;}
+\DoxyCodeLine{75          gcm->Y[13] = 0;}
+\DoxyCodeLine{76          gcm->Y[14] = 0;}
+\DoxyCodeLine{77          gcm->Y[15] = 1;}
+\DoxyCodeLine{78       \}}
+\DoxyCodeLine{79       \mbox{\hyperlink{tomcrypt__cfg_8h_a7691dd48d60d5fc6daf2fa7ec4c55e12}{XMEMCPY}}(gcm->Y\_0, gcm->Y, 16);}
+\DoxyCodeLine{80       \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(gcm->buf, 16);}
+\DoxyCodeLine{81       gcm->buflen = 0;}
+\DoxyCodeLine{82       gcm->totlen = 0;}
+\DoxyCodeLine{83       gcm->mode   = LTC\_GCM\_MODE\_AAD;}
+\DoxyCodeLine{84    \}}
+\DoxyCodeLine{85 }
+\DoxyCodeLine{86    \textcolor{keywordflow}{if} (gcm->mode != LTC\_GCM\_MODE\_AAD || gcm->buflen >= 16) \{}
+\DoxyCodeLine{87       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{88    \}}
+\DoxyCodeLine{89 }
+\DoxyCodeLine{90    x = 0;}
+\DoxyCodeLine{91 \textcolor{preprocessor}{\#ifdef LTC\_FAST}}
+\DoxyCodeLine{92    \textcolor{keywordflow}{if} (gcm->buflen == 0) \{}
+\DoxyCodeLine{93       \textcolor{keywordflow}{for} (x = 0; x < (adatalen \& ~15); x += 16) \{}
+\DoxyCodeLine{94           \textcolor{keywordflow}{for} (y = 0; y < 16; y += \textcolor{keyword}{sizeof}(LTC\_FAST\_TYPE)) \{}
+\DoxyCodeLine{95               *(LTC\_FAST\_TYPE\_PTR\_CAST(\&gcm->X[y])) \string^= *(LTC\_FAST\_TYPE\_PTR\_CAST(\&adata[x + y]));}
+\DoxyCodeLine{96           \}}
+\DoxyCodeLine{97           \mbox{\hyperlink{gcm__mult__h_8c_a198e51a3d6b56455cc781d140ebd6f6d}{gcm\_mult\_h}}(gcm, gcm->X);}
+\DoxyCodeLine{98           gcm->totlen += 128;}
+\DoxyCodeLine{99       \}}
+\DoxyCodeLine{100       adata += x;}
+\DoxyCodeLine{101    \}}
+\DoxyCodeLine{102 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{103 }
+\DoxyCodeLine{104 }
+\DoxyCodeLine{105    \textcolor{comment}{/* start adding AAD data to the state */}}
+\DoxyCodeLine{106    \textcolor{keywordflow}{for} (; x < adatalen; x++) \{}
+\DoxyCodeLine{107       gcm->X[gcm->buflen++] \string^= *adata++;}
+\DoxyCodeLine{108 }
+\DoxyCodeLine{109       \textcolor{keywordflow}{if} (gcm->buflen == 16) \{}
+\DoxyCodeLine{110          \textcolor{comment}{/* GF mult it */}}
+\DoxyCodeLine{111          \mbox{\hyperlink{gcm__mult__h_8c_a198e51a3d6b56455cc781d140ebd6f6d}{gcm\_mult\_h}}(gcm, gcm->X);}
+\DoxyCodeLine{112          gcm->buflen = 0;}
+\DoxyCodeLine{113          gcm->totlen += 128;}
+\DoxyCodeLine{114       \}}
+\DoxyCodeLine{115    \}}
+\DoxyCodeLine{116 }
+\DoxyCodeLine{117    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{118 \}}
+
+\end{DoxyCode}
+
+
+References cipher\+\_\+is\+\_\+valid(), C\+O\+N\+S\+T64, C\+R\+Y\+P\+T\+\_\+\+E\+R\+R\+OR, C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+A\+RG, C\+R\+Y\+P\+T\+\_\+\+OK, gcm\+\_\+mult\+\_\+h(), L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, X\+M\+E\+M\+C\+P\+Y(), and zeromem().
+
+
+
+Referenced by gcm\+\_\+done(), gcm\+\_\+memory(), and gcm\+\_\+process().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2

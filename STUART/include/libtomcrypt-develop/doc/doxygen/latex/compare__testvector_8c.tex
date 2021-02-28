@@ -1,0 +1,95 @@
+\hypertarget{compare__testvector_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/misc/compare\+\_\+testvector.c File Reference}
+\label{compare__testvector_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/misc/compare\_testvector.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/misc/compare\_testvector.c}}
+
+
+Function to compare two testvectors and print a (detailed) error-\/message if required, Steffen Jaeckel.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for compare\+\_\+testvector.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{compare__testvector_8c_a7764a7f27897c6182335752df00b5f8e}{compare\+\_\+testvector}} (const void $\ast$is, const unsigned long is\+\_\+len, const void $\ast$should, const unsigned long should\+\_\+len, const char $\ast$what, int which)
+\begin{DoxyCompactList}\small\item\em Compare two test-\/vectors. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Function to compare two testvectors and print a (detailed) error-\/message if required, Steffen Jaeckel. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{compare__testvector_8c_a7764a7f27897c6182335752df00b5f8e}\label{compare__testvector_8c_a7764a7f27897c6182335752df00b5f8e}} 
+\index{compare\_testvector.c@{compare\_testvector.c}!compare\_testvector@{compare\_testvector}}
+\index{compare\_testvector@{compare\_testvector}!compare\_testvector.c@{compare\_testvector.c}}
+\subsubsection{\texorpdfstring{compare\_testvector()}{compare\_testvector()}}
+{\footnotesize\ttfamily int compare\+\_\+testvector (\begin{DoxyParamCaption}\item[{const void $\ast$}]{is,  }\item[{const unsigned long}]{is\+\_\+len,  }\item[{const void $\ast$}]{should,  }\item[{const unsigned long}]{should\+\_\+len,  }\item[{const char $\ast$}]{what,  }\item[{int}]{which }\end{DoxyParamCaption})}
+
+
+
+Compare two test-\/vectors. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em is} & The data as it is \\
+\hline
+{\em is\+\_\+len} & The length of is \\
+\hline
+{\em should} & The data as it should \\
+\hline
+{\em should\+\_\+len} & The length of should \\
+\hline
+{\em what} & The type of the data \\
+\hline
+{\em which} & The iteration count \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on equality, -\/1 or 1 on difference 
+\end{DoxyReturn}
+
+
+Definition at line 63 of file compare\+\_\+testvector.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{64 \{}
+\DoxyCodeLine{65    \textcolor{keywordtype}{int} res = 0;}
+\DoxyCodeLine{66    \textcolor{keywordflow}{if}(is\_len != should\_len) \{}
+\DoxyCodeLine{67       res = is\_len > should\_len ? -1 : 1;}
+\DoxyCodeLine{68    \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{69       res = \mbox{\hyperlink{tomcrypt__cfg_8h_a372b974ec0ac07abcd55297554fe540f}{XMEMCMP}}(is, should, is\_len);}
+\DoxyCodeLine{70    \}}
+\DoxyCodeLine{71 \textcolor{preprocessor}{\#if defined(LTC\_TEST) \&\& defined(LTC\_TEST\_DBG)}}
+\DoxyCodeLine{72    \textcolor{keywordflow}{if} (res != 0) \{}
+\DoxyCodeLine{73       fprintf(stderr, \textcolor{stringliteral}{"Testvector \#\%i of \%s failed:\(\backslash\)n"}, which, what);}
+\DoxyCodeLine{74       \_print\_hex(\textcolor{stringliteral}{"SHOULD"}, should, should\_len);}
+\DoxyCodeLine{75       \_print\_hex(\textcolor{stringliteral}{"IS    "}, is, is\_len);}
+\DoxyCodeLine{76 \textcolor{preprocessor}{\#if LTC\_TEST\_DBG > 1}}
+\DoxyCodeLine{77    \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{78       fprintf(stderr, \textcolor{stringliteral}{"Testvector \#\%i of \%s passed!\(\backslash\)n"}, which, what);}
+\DoxyCodeLine{79 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{80    \}}
+\DoxyCodeLine{81 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{82    \mbox{\hyperlink{tomcrypt__macros_8h_accde4b007facd646a8327f8e64b2d1e0}{LTC\_UNUSED\_PARAM}}(which);}
+\DoxyCodeLine{83    \mbox{\hyperlink{tomcrypt__macros_8h_accde4b007facd646a8327f8e64b2d1e0}{LTC\_UNUSED\_PARAM}}(what);}
+\DoxyCodeLine{84 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{85 }
+\DoxyCodeLine{86    \textcolor{keywordflow}{return} res;}
+\DoxyCodeLine{87 \}}
+
+\end{DoxyCode}
+
+
+References L\+T\+C\+\_\+\+U\+N\+U\+S\+E\+D\+\_\+\+P\+A\+R\+AM, and X\+M\+E\+M\+C\+M\+P().
+
+
+
+Referenced by adler32\+\_\+test(), anubis\+\_\+test(), blake2b\+\_\+160\+\_\+test(), blake2b\+\_\+256\+\_\+test(), blake2b\+\_\+384\+\_\+test(), blake2b\+\_\+512\+\_\+test(), blake2bmac\+\_\+test(), blake2s\+\_\+128\+\_\+test(), blake2s\+\_\+160\+\_\+test(), blake2s\+\_\+224\+\_\+test(), blake2s\+\_\+256\+\_\+test(), blake2smac\+\_\+test(), blowfish\+\_\+test(), camellia\+\_\+test(), cast5\+\_\+test(), ccm\+\_\+test(), chacha20\+\_\+prng\+\_\+test(), chacha20poly1305\+\_\+test(), chacha\+\_\+test(), chc\+\_\+test(), crc32\+\_\+test(), ctr\+\_\+test(), des3\+\_\+test(), des\+\_\+test(), eax\+\_\+test(), f8\+\_\+test\+\_\+mode(), f9\+\_\+test(), gcm\+\_\+test(), hkdf\+\_\+test(), hmac\+\_\+test(), idea\+\_\+test(), kasumi\+\_\+test(), keccak\+\_\+224\+\_\+test(), keccak\+\_\+256\+\_\+test(), keccak\+\_\+384\+\_\+test(), keccak\+\_\+512\+\_\+test(), khazad\+\_\+test(), kseed\+\_\+test(), lrw\+\_\+test(), md2\+\_\+test(), md4\+\_\+test(), md5\+\_\+test(), multi2\+\_\+test(), noekeon\+\_\+test(), ocb3\+\_\+test(), ocb\+\_\+test(), omac\+\_\+test(), pelican\+\_\+test(), pkcs\+\_\+5\+\_\+test(), pmac\+\_\+test(), poly1305\+\_\+test(), rabbit\+\_\+test(), rc2\+\_\+test(), rc4\+\_\+stream\+\_\+test(), rc4\+\_\+test(), rc5\+\_\+test(), rc6\+\_\+test(), rijndael\+\_\+test(), rmd128\+\_\+test(), rmd160\+\_\+test(), rmd256\+\_\+test(), rmd320\+\_\+test(), safer\+\_\+k64\+\_\+test(), safer\+\_\+sk128\+\_\+test(), safer\+\_\+sk64\+\_\+test(), saferp\+\_\+test(), salsa20\+\_\+test(), serpent\+\_\+test(), sha1\+\_\+test(), sha224\+\_\+test(), sha256\+\_\+test(), sha384\+\_\+test(), sha3\+\_\+224\+\_\+test(), sha3\+\_\+256\+\_\+test(), sha3\+\_\+384\+\_\+test(), sha3\+\_\+512\+\_\+test(), sha3\+\_\+shake\+\_\+test(), sha512\+\_\+224\+\_\+test(), sha512\+\_\+256\+\_\+test(), sha512\+\_\+test(), skipjack\+\_\+test(), sober128\+\_\+stream\+\_\+test(), sober128\+\_\+test(), sosemanuk\+\_\+test(), tiger\+\_\+test(), twofish\+\_\+test(), whirlpool\+\_\+test(), xcbc\+\_\+test(), xsalsa20\+\_\+test(), xtea\+\_\+test(), and xts\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2

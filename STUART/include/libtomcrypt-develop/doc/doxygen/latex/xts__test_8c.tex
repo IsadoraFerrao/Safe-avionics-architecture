@@ -1,0 +1,367 @@
+\hypertarget{xts__test_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/modes/xts/xts\+\_\+test.c File Reference}
+\label{xts__test_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/modes/xts/xts\_test.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/modes/xts/xts\_test.c}}
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for xts\+\_\+test.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{xts__test_8c_a097b3a9b119f5ee53122c2552ef9d70e}{\+\_\+xts\+\_\+test\+\_\+accel\+\_\+xts\+\_\+encrypt}} (const unsigned char $\ast$pt, unsigned char $\ast$ct, unsigned long blocks, unsigned char $\ast$tweak, const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey1, const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey2)
+\item 
+static int \mbox{\hyperlink{xts__test_8c_ac6d3b700cb3534684c81d8975c3c1e49}{\+\_\+xts\+\_\+test\+\_\+accel\+\_\+xts\+\_\+decrypt}} (const unsigned char $\ast$ct, unsigned char $\ast$pt, unsigned long blocks, unsigned char $\ast$tweak, const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey1, const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey2)
+\item 
+int \mbox{\hyperlink{xts__test_8c_a8e893dde81f654451ba645d3a162dc24}{xts\+\_\+test}} (void)
+\begin{DoxyCompactList}\small\item\em Source donated by Elliptic Semiconductor Inc (www.\+ellipticsemi.\+com) to the Lib\+Tom Projects. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{xts__test_8c_ac6d3b700cb3534684c81d8975c3c1e49}\label{xts__test_8c_ac6d3b700cb3534684c81d8975c3c1e49}} 
+\index{xts\_test.c@{xts\_test.c}!\_xts\_test\_accel\_xts\_decrypt@{\_xts\_test\_accel\_xts\_decrypt}}
+\index{\_xts\_test\_accel\_xts\_decrypt@{\_xts\_test\_accel\_xts\_decrypt}!xts\_test.c@{xts\_test.c}}
+\subsubsection{\texorpdfstring{\_xts\_test\_accel\_xts\_decrypt()}{\_xts\_test\_accel\_xts\_decrypt()}}
+{\footnotesize\ttfamily static int \+\_\+xts\+\_\+test\+\_\+accel\+\_\+xts\+\_\+decrypt (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{ct,  }\item[{unsigned char $\ast$}]{pt,  }\item[{unsigned long}]{blocks,  }\item[{unsigned char $\ast$}]{tweak,  }\item[{const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$}]{skey1,  }\item[{const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$}]{skey2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 41 of file xts\+\_\+test.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{43 \{}
+\DoxyCodeLine{44    \textcolor{keywordtype}{int} ret;}
+\DoxyCodeLine{45    symmetric\_xts xts;}
+\DoxyCodeLine{46    int (*orig)(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *,}
+\DoxyCodeLine{47                \textcolor{keywordtype}{unsigned} long , \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *,}
+\DoxyCodeLine{48                \textcolor{keyword}{const} \mbox{\hyperlink{unionSymmetric__key}{symmetric\_key}} *, \textcolor{keyword}{const} \mbox{\hyperlink{unionSymmetric__key}{symmetric\_key}} *);}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{50    \textcolor{comment}{/* AES can be under rijndael or aes... try to find it */}}
+\DoxyCodeLine{51    \textcolor{keywordflow}{if} ((xts.cipher = \mbox{\hyperlink{tomcrypt__cipher_8h_af5c3882342fd65a17239cd04bfdf44e2}{find\_cipher}}(\textcolor{stringliteral}{"aes"})) == -1) \{}
+\DoxyCodeLine{52       \textcolor{keywordflow}{if} ((xts.cipher = \mbox{\hyperlink{tomcrypt__cipher_8h_af5c3882342fd65a17239cd04bfdf44e2}{find\_cipher}}(\textcolor{stringliteral}{"rijndael"})) == -1) \{}
+\DoxyCodeLine{53          \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cac43a7799c7fd5f515172da6cfc0f9cf5}{CRYPT\_NOP}};}
+\DoxyCodeLine{54       \}}
+\DoxyCodeLine{55    \}}
+\DoxyCodeLine{56    orig = \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[xts.cipher].\mbox{\hyperlink{structltc__cipher__descriptor_afc98a5dedcb756fb765403942728b2d4}{accel\_xts\_decrypt}};}
+\DoxyCodeLine{57    \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[xts.cipher].\mbox{\hyperlink{structltc__cipher__descriptor_afc98a5dedcb756fb765403942728b2d4}{accel\_xts\_decrypt}} = NULL;}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{59    \mbox{\hyperlink{tomcrypt__cfg_8h_a7691dd48d60d5fc6daf2fa7ec4c55e12}{XMEMCPY}}(\&xts.key1, skey1, \textcolor{keyword}{sizeof}(\mbox{\hyperlink{unionSymmetric__key}{symmetric\_key}}));}
+\DoxyCodeLine{60    \mbox{\hyperlink{tomcrypt__cfg_8h_a7691dd48d60d5fc6daf2fa7ec4c55e12}{XMEMCPY}}(\&xts.key2, skey2, \textcolor{keyword}{sizeof}(\mbox{\hyperlink{unionSymmetric__key}{symmetric\_key}}));}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{62    ret = \mbox{\hyperlink{xts__decrypt_8c_aeabcddf932f82ff9724fe82c44bb4b7d}{xts\_decrypt}}(ct, blocks << 4, pt, tweak, \&xts);}
+\DoxyCodeLine{63    \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[xts.cipher].\mbox{\hyperlink{structltc__cipher__descriptor_afc98a5dedcb756fb765403942728b2d4}{accel\_xts\_decrypt}} = orig;}
+\DoxyCodeLine{64 }
+\DoxyCodeLine{65    \textcolor{keywordflow}{return} ret;}
+\DoxyCodeLine{66 \}}
+
+\end{DoxyCode}
+
+
+References ltc\+\_\+cipher\+\_\+descriptor\+::accel\+\_\+xts\+\_\+decrypt, cipher\+\_\+descriptor, C\+R\+Y\+P\+T\+\_\+\+N\+OP, find\+\_\+cipher(), X\+M\+E\+M\+C\+P\+Y(), and xts\+\_\+decrypt().
+
+
+
+Referenced by xts\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2
+\mbox{\Hypertarget{xts__test_8c_a097b3a9b119f5ee53122c2552ef9d70e}\label{xts__test_8c_a097b3a9b119f5ee53122c2552ef9d70e}} 
+\index{xts\_test.c@{xts\_test.c}!\_xts\_test\_accel\_xts\_encrypt@{\_xts\_test\_accel\_xts\_encrypt}}
+\index{\_xts\_test\_accel\_xts\_encrypt@{\_xts\_test\_accel\_xts\_encrypt}!xts\_test.c@{xts\_test.c}}
+\subsubsection{\texorpdfstring{\_xts\_test\_accel\_xts\_encrypt()}{\_xts\_test\_accel\_xts\_encrypt()}}
+{\footnotesize\ttfamily static int \+\_\+xts\+\_\+test\+\_\+accel\+\_\+xts\+\_\+encrypt (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{pt,  }\item[{unsigned char $\ast$}]{ct,  }\item[{unsigned long}]{blocks,  }\item[{unsigned char $\ast$}]{tweak,  }\item[{const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$}]{skey1,  }\item[{const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$}]{skey2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 14 of file xts\+\_\+test.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{16 \{}
+\DoxyCodeLine{17    \textcolor{keywordtype}{int} ret;}
+\DoxyCodeLine{18    symmetric\_xts xts;}
+\DoxyCodeLine{19    int (*orig)(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *,}
+\DoxyCodeLine{20                \textcolor{keywordtype}{unsigned} long , \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *,}
+\DoxyCodeLine{21                \textcolor{keyword}{const} \mbox{\hyperlink{unionSymmetric__key}{symmetric\_key}} *, \textcolor{keyword}{const} \mbox{\hyperlink{unionSymmetric__key}{symmetric\_key}} *);}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23    \textcolor{comment}{/* AES can be under rijndael or aes... try to find it */}}
+\DoxyCodeLine{24    \textcolor{keywordflow}{if} ((xts.cipher = \mbox{\hyperlink{tomcrypt__cipher_8h_af5c3882342fd65a17239cd04bfdf44e2}{find\_cipher}}(\textcolor{stringliteral}{"aes"})) == -1) \{}
+\DoxyCodeLine{25       \textcolor{keywordflow}{if} ((xts.cipher = \mbox{\hyperlink{tomcrypt__cipher_8h_af5c3882342fd65a17239cd04bfdf44e2}{find\_cipher}}(\textcolor{stringliteral}{"rijndael"})) == -1) \{}
+\DoxyCodeLine{26          \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cac43a7799c7fd5f515172da6cfc0f9cf5}{CRYPT\_NOP}};}
+\DoxyCodeLine{27       \}}
+\DoxyCodeLine{28    \}}
+\DoxyCodeLine{29    orig = \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[xts.cipher].\mbox{\hyperlink{structltc__cipher__descriptor_a1a0a384c38a8ba920d50cd43d0f016a6}{accel\_xts\_encrypt}};}
+\DoxyCodeLine{30    \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[xts.cipher].\mbox{\hyperlink{structltc__cipher__descriptor_a1a0a384c38a8ba920d50cd43d0f016a6}{accel\_xts\_encrypt}} = NULL;}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32    \mbox{\hyperlink{tomcrypt__cfg_8h_a7691dd48d60d5fc6daf2fa7ec4c55e12}{XMEMCPY}}(\&xts.key1, skey1, \textcolor{keyword}{sizeof}(\mbox{\hyperlink{unionSymmetric__key}{symmetric\_key}}));}
+\DoxyCodeLine{33    \mbox{\hyperlink{tomcrypt__cfg_8h_a7691dd48d60d5fc6daf2fa7ec4c55e12}{XMEMCPY}}(\&xts.key2, skey2, \textcolor{keyword}{sizeof}(\mbox{\hyperlink{unionSymmetric__key}{symmetric\_key}}));}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35    ret = \mbox{\hyperlink{xts__encrypt_8c_a3398bebb10123ed32f4091b6e15cb04c}{xts\_encrypt}}(pt, blocks << 4, ct, tweak, \&xts);}
+\DoxyCodeLine{36    \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[xts.cipher].\mbox{\hyperlink{structltc__cipher__descriptor_a1a0a384c38a8ba920d50cd43d0f016a6}{accel\_xts\_encrypt}} = orig;}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{38    \textcolor{keywordflow}{return} ret;}
+\DoxyCodeLine{39 \}}
+
+\end{DoxyCode}
+
+
+References ltc\+\_\+cipher\+\_\+descriptor\+::accel\+\_\+xts\+\_\+encrypt, cipher\+\_\+descriptor, C\+R\+Y\+P\+T\+\_\+\+N\+OP, find\+\_\+cipher(), X\+M\+E\+M\+C\+P\+Y(), and xts\+\_\+encrypt().
+
+
+
+Referenced by xts\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 3
+Here is the caller graph for this function\+:
+% FIG 4
+\mbox{\Hypertarget{xts__test_8c_a8e893dde81f654451ba645d3a162dc24}\label{xts__test_8c_a8e893dde81f654451ba645d3a162dc24}} 
+\index{xts\_test.c@{xts\_test.c}!xts\_test@{xts\_test}}
+\index{xts\_test@{xts\_test}!xts\_test.c@{xts\_test.c}}
+\subsubsection{\texorpdfstring{xts\_test()}{xts\_test()}}
+{\footnotesize\ttfamily int xts\+\_\+test (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Source donated by Elliptic Semiconductor Inc (www.\+ellipticsemi.\+com) to the Lib\+Tom Projects. 
+
+Returns C\+R\+Y\+P\+T\+\_\+\+OK upon success. 
+
+Definition at line 74 of file xts\+\_\+test.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{75 \{}
+\DoxyCodeLine{76 \textcolor{preprocessor}{\#ifdef LTC\_NO\_TEST}}
+\DoxyCodeLine{77    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cac43a7799c7fd5f515172da6cfc0f9cf5}{CRYPT\_NOP}};}
+\DoxyCodeLine{78 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{79    \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keyword}{struct}}
+\DoxyCodeLine{80    \{}
+\DoxyCodeLine{81       \textcolor{keywordtype}{int} keylen;}
+\DoxyCodeLine{82       \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} key1[32];}
+\DoxyCodeLine{83       \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} key2[32];}
+\DoxyCodeLine{84       \mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}} seqnum;}
+\DoxyCodeLine{85       \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} PTLEN;}
+\DoxyCodeLine{86       \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} PTX[512], CTX[512];}
+\DoxyCodeLine{87    \} tests[] = \{}
+\DoxyCodeLine{88 }
+\DoxyCodeLine{89 \textcolor{comment}{/* \#1 32 byte key, 32 byte PTX */}}
+\DoxyCodeLine{90 \{}
+\DoxyCodeLine{91    32,}
+\DoxyCodeLine{92    \{ 0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00 \},}
+\DoxyCodeLine{93    \{ 0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00 \},}
+\DoxyCodeLine{94    0,}
+\DoxyCodeLine{95    32,}
+\DoxyCodeLine{96    \{ 0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00 \},}
+\DoxyCodeLine{97    \{ 0x91,0x7c,0xf6,0x9e,0xbd,0x68,0xb2,0xec,0x9b,0x9f,0xe9,0xa3,0xea,0xdd,0xa6,0x92,0xcd,0x43,0xd2,0xf5,0x95,0x98,0xed,0x85,0x8c,0x02,0xc2,0x65,0x2f,0xbf,0x92,0x2e \},}
+\DoxyCodeLine{98 \},}
+\DoxyCodeLine{99 }
+\DoxyCodeLine{100 \textcolor{comment}{/* \#2, 32 byte key, 32 byte PTX */}}
+\DoxyCodeLine{101 \{}
+\DoxyCodeLine{102    32,}
+\DoxyCodeLine{103    \{ 0x11,0x11,0x11,0x11,0x11,0x11,0x11,0x11,0x11,0x11,0x11,0x11,0x11,0x11,0x11,0x11 \},}
+\DoxyCodeLine{104    \{ 0x22,0x22,0x22,0x22,0x22,0x22,0x22,0x22,0x22,0x22,0x22,0x22,0x22,0x22,0x22,0x22 \},}
+\DoxyCodeLine{105    \mbox{\hyperlink{tomcrypt__cfg_8h_a7d8e211582dff82d00fc171834e3dc67}{CONST64}}(0x3333333333),}
+\DoxyCodeLine{106    32,}
+\DoxyCodeLine{107    \{ 0x44,0x44,0x44,0x44,0x44,0x44,0x44,0x44,0x44,0x44,0x44,0x44,0x44,0x44,0x44,0x44,0x44,0x44,0x44,0x44,0x44,0x44,0x44,0x44,0x44,0x44,0x44,0x44,0x44,0x44,0x44,0x44 \},}
+\DoxyCodeLine{108    \{ 0xc4,0x54,0x18,0x5e,0x6a,0x16,0x93,0x6e,0x39,0x33,0x40,0x38,0xac,0xef,0x83,0x8b,0xfb,0x18,0x6f,0xff,0x74,0x80,0xad,0xc4,0x28,0x93,0x82,0xec,0xd6,0xd3,0x94,0xf0 \},}
+\DoxyCodeLine{109 \},}
+\DoxyCodeLine{110 }
+\DoxyCodeLine{111 \textcolor{comment}{/* \#5 from xts.7, 32 byte key, 32 byte PTX */}}
+\DoxyCodeLine{112 \{}
+\DoxyCodeLine{113    32,}
+\DoxyCodeLine{114    \{ 0xff,0xfe,0xfd,0xfc,0xfb,0xfa,0xf9,0xf8,0xf7,0xf6,0xf5,0xf4,0xf3,0xf2,0xf1,0xf0 \},}
+\DoxyCodeLine{115    \{ 0xbf,0xbe,0xbd,0xbc,0xbb,0xba,0xb9,0xb8,0xb7,0xb6,0xb5,0xb4,0xb3,0xb2,0xb1,0xb0 \},}
+\DoxyCodeLine{116    \mbox{\hyperlink{tomcrypt__cfg_8h_a7d8e211582dff82d00fc171834e3dc67}{CONST64}}(0x123456789a),}
+\DoxyCodeLine{117    32,}
+\DoxyCodeLine{118    \{ 0x44,0x44,0x44,0x44,0x44,0x44,0x44,0x44,0x44,0x44,0x44,0x44,0x44,0x44,0x44,0x44,0x44,0x44,0x44,0x44,0x44,0x44,0x44,0x44,0x44,0x44,0x44,0x44,0x44,0x44,0x44,0x44 \},}
+\DoxyCodeLine{119    \{ 0xb0,0x1f,0x86,0xf8,0xed,0xc1,0x86,0x37,0x06,0xfa,0x8a,0x42,0x53,0xe3,0x4f,0x28,0xaf,0x31,0x9d,0xe3,0x83,0x34,0x87,0x0f,0x4d,0xd1,0xf9,0x4c,0xbe,0x98,0x32,0xf1 \},}
+\DoxyCodeLine{120 \},}
+\DoxyCodeLine{121 }
+\DoxyCodeLine{122 \textcolor{comment}{/* \#4, 32 byte key, 512 byte PTX  */}}
+\DoxyCodeLine{123 \{}
+\DoxyCodeLine{124    32,}
+\DoxyCodeLine{125    \{ 0x27,0x18,0x28,0x18,0x28,0x45,0x90,0x45,0x23,0x53,0x60,0x28,0x74,0x71,0x35,0x26 \},}
+\DoxyCodeLine{126    \{ 0x31,0x41,0x59,0x26,0x53,0x58,0x97,0x93,0x23,0x84,0x62,0x64,0x33,0x83,0x27,0x95 \},}
+\DoxyCodeLine{127    0,}
+\DoxyCodeLine{128    512,}
+\DoxyCodeLine{129    \{}
+\DoxyCodeLine{130 0x00,0x01,0x02,0x03,0x04,0x05,0x06,0x07,0x08,0x09,0x0a,0x0b,0x0c,0x0d,0x0e,0x0f,0x10,0x11,0x12,0x13,0x14,0x15,0x16,0x17,0x18,0x19,0x1a,0x1b,0x1c,0x1d,0x1e,0x1f,}
+\DoxyCodeLine{131 0x20,0x21,0x22,0x23,0x24,0x25,0x26,0x27,0x28,0x29,0x2a,0x2b,0x2c,0x2d,0x2e,0x2f,0x30,0x31,0x32,0x33,0x34,0x35,0x36,0x37,0x38,0x39,0x3a,0x3b,0x3c,0x3d,0x3e,0x3f,}
+\DoxyCodeLine{132 0x40,0x41,0x42,0x43,0x44,0x45,0x46,0x47,0x48,0x49,0x4a,0x4b,0x4c,0x4d,0x4e,0x4f,0x50,0x51,0x52,0x53,0x54,0x55,0x56,0x57,0x58,0x59,0x5a,0x5b,0x5c,0x5d,0x5e,0x5f,}
+\DoxyCodeLine{133 0x60,0x61,0x62,0x63,0x64,0x65,0x66,0x67,0x68,0x69,0x6a,0x6b,0x6c,0x6d,0x6e,0x6f,0x70,0x71,0x72,0x73,0x74,0x75,0x76,0x77,0x78,0x79,0x7a,0x7b,0x7c,0x7d,0x7e,0x7f,}
+\DoxyCodeLine{134 0x80,0x81,0x82,0x83,0x84,0x85,0x86,0x87,0x88,0x89,0x8a,0x8b,0x8c,0x8d,0x8e,0x8f,0x90,0x91,0x92,0x93,0x94,0x95,0x96,0x97,0x98,0x99,0x9a,0x9b,0x9c,0x9d,0x9e,0x9f,}
+\DoxyCodeLine{135 0xa0,0xa1,0xa2,0xa3,0xa4,0xa5,0xa6,0xa7,0xa8,0xa9,0xaa,0xab,0xac,0xad,0xae,0xaf,0xb0,0xb1,0xb2,0xb3,0xb4,0xb5,0xb6,0xb7,0xb8,0xb9,0xba,0xbb,0xbc,0xbd,0xbe,0xbf,}
+\DoxyCodeLine{136 0xc0,0xc1,0xc2,0xc3,0xc4,0xc5,0xc6,0xc7,0xc8,0xc9,0xca,0xcb,0xcc,0xcd,0xce,0xcf,0xd0,0xd1,0xd2,0xd3,0xd4,0xd5,0xd6,0xd7,0xd8,0xd9,0xda,0xdb,0xdc,0xdd,0xde,0xdf,}
+\DoxyCodeLine{137 0xe0,0xe1,0xe2,0xe3,0xe4,0xe5,0xe6,0xe7,0xe8,0xe9,0xea,0xeb,0xec,0xed,0xee,0xef,0xf0,0xf1,0xf2,0xf3,0xf4,0xf5,0xf6,0xf7,0xf8,0xf9,0xfa,0xfb,0xfc,0xfd,0xfe,0xff,}
+\DoxyCodeLine{138 0x00,0x01,0x02,0x03,0x04,0x05,0x06,0x07,0x08,0x09,0x0a,0x0b,0x0c,0x0d,0x0e,0x0f,0x10,0x11,0x12,0x13,0x14,0x15,0x16,0x17,0x18,0x19,0x1a,0x1b,0x1c,0x1d,0x1e,0x1f,}
+\DoxyCodeLine{139 0x20,0x21,0x22,0x23,0x24,0x25,0x26,0x27,0x28,0x29,0x2a,0x2b,0x2c,0x2d,0x2e,0x2f,0x30,0x31,0x32,0x33,0x34,0x35,0x36,0x37,0x38,0x39,0x3a,0x3b,0x3c,0x3d,0x3e,0x3f,}
+\DoxyCodeLine{140 0x40,0x41,0x42,0x43,0x44,0x45,0x46,0x47,0x48,0x49,0x4a,0x4b,0x4c,0x4d,0x4e,0x4f,0x50,0x51,0x52,0x53,0x54,0x55,0x56,0x57,0x58,0x59,0x5a,0x5b,0x5c,0x5d,0x5e,0x5f,}
+\DoxyCodeLine{141 0x60,0x61,0x62,0x63,0x64,0x65,0x66,0x67,0x68,0x69,0x6a,0x6b,0x6c,0x6d,0x6e,0x6f,0x70,0x71,0x72,0x73,0x74,0x75,0x76,0x77,0x78,0x79,0x7a,0x7b,0x7c,0x7d,0x7e,0x7f,}
+\DoxyCodeLine{142 0x80,0x81,0x82,0x83,0x84,0x85,0x86,0x87,0x88,0x89,0x8a,0x8b,0x8c,0x8d,0x8e,0x8f,0x90,0x91,0x92,0x93,0x94,0x95,0x96,0x97,0x98,0x99,0x9a,0x9b,0x9c,0x9d,0x9e,0x9f,}
+\DoxyCodeLine{143 0xa0,0xa1,0xa2,0xa3,0xa4,0xa5,0xa6,0xa7,0xa8,0xa9,0xaa,0xab,0xac,0xad,0xae,0xaf,0xb0,0xb1,0xb2,0xb3,0xb4,0xb5,0xb6,0xb7,0xb8,0xb9,0xba,0xbb,0xbc,0xbd,0xbe,0xbf,}
+\DoxyCodeLine{144 0xc0,0xc1,0xc2,0xc3,0xc4,0xc5,0xc6,0xc7,0xc8,0xc9,0xca,0xcb,0xcc,0xcd,0xce,0xcf,0xd0,0xd1,0xd2,0xd3,0xd4,0xd5,0xd6,0xd7,0xd8,0xd9,0xda,0xdb,0xdc,0xdd,0xde,0xdf,}
+\DoxyCodeLine{145 0xe0,0xe1,0xe2,0xe3,0xe4,0xe5,0xe6,0xe7,0xe8,0xe9,0xea,0xeb,0xec,0xed,0xee,0xef,0xf0,0xf1,0xf2,0xf3,0xf4,0xf5,0xf6,0xf7,0xf8,0xf9,0xfa,0xfb,0xfc,0xfd,0xfe,0xff,}
+\DoxyCodeLine{146    \},}
+\DoxyCodeLine{147    \{}
+\DoxyCodeLine{148 0x27,0xa7,0x47,0x9b,0xef,0xa1,0xd4,0x76,0x48,0x9f,0x30,0x8c,0xd4,0xcf,0xa6,0xe2,0xa9,0x6e,0x4b,0xbe,0x32,0x08,0xff,0x25,0x28,0x7d,0xd3,0x81,0x96,0x16,0xe8,0x9c,}
+\DoxyCodeLine{149 0xc7,0x8c,0xf7,0xf5,0xe5,0x43,0x44,0x5f,0x83,0x33,0xd8,0xfa,0x7f,0x56,0x00,0x00,0x05,0x27,0x9f,0xa5,0xd8,0xb5,0xe4,0xad,0x40,0xe7,0x36,0xdd,0xb4,0xd3,0x54,0x12,}
+\DoxyCodeLine{150 0x32,0x80,0x63,0xfd,0x2a,0xab,0x53,0xe5,0xea,0x1e,0x0a,0x9f,0x33,0x25,0x00,0xa5,0xdf,0x94,0x87,0xd0,0x7a,0x5c,0x92,0xcc,0x51,0x2c,0x88,0x66,0xc7,0xe8,0x60,0xce,}
+\DoxyCodeLine{151 0x93,0xfd,0xf1,0x66,0xa2,0x49,0x12,0xb4,0x22,0x97,0x61,0x46,0xae,0x20,0xce,0x84,0x6b,0xb7,0xdc,0x9b,0xa9,0x4a,0x76,0x7a,0xae,0xf2,0x0c,0x0d,0x61,0xad,0x02,0x65,}
+\DoxyCodeLine{152 0x5e,0xa9,0x2d,0xc4,0xc4,0xe4,0x1a,0x89,0x52,0xc6,0x51,0xd3,0x31,0x74,0xbe,0x51,0xa1,0x0c,0x42,0x11,0x10,0xe6,0xd8,0x15,0x88,0xed,0xe8,0x21,0x03,0xa2,0x52,0xd8,}
+\DoxyCodeLine{153 0xa7,0x50,0xe8,0x76,0x8d,0xef,0xff,0xed,0x91,0x22,0x81,0x0a,0xae,0xb9,0x9f,0x91,0x72,0xaf,0x82,0xb6,0x04,0xdc,0x4b,0x8e,0x51,0xbc,0xb0,0x82,0x35,0xa6,0xf4,0x34,}
+\DoxyCodeLine{154 0x13,0x32,0xe4,0xca,0x60,0x48,0x2a,0x4b,0xa1,0xa0,0x3b,0x3e,0x65,0x00,0x8f,0xc5,0xda,0x76,0xb7,0x0b,0xf1,0x69,0x0d,0xb4,0xea,0xe2,0x9c,0x5f,0x1b,0xad,0xd0,0x3c,}
+\DoxyCodeLine{155 0x5c,0xcf,0x2a,0x55,0xd7,0x05,0xdd,0xcd,0x86,0xd4,0x49,0x51,0x1c,0xeb,0x7e,0xc3,0x0b,0xf1,0x2b,0x1f,0xa3,0x5b,0x91,0x3f,0x9f,0x74,0x7a,0x8a,0xfd,0x1b,0x13,0x0e,}
+\DoxyCodeLine{156 0x94,0xbf,0xf9,0x4e,0xff,0xd0,0x1a,0x91,0x73,0x5c,0xa1,0x72,0x6a,0xcd,0x0b,0x19,0x7c,0x4e,0x5b,0x03,0x39,0x36,0x97,0xe1,0x26,0x82,0x6f,0xb6,0xbb,0xde,0x8e,0xcc,}
+\DoxyCodeLine{157 0x1e,0x08,0x29,0x85,0x16,0xe2,0xc9,0xed,0x03,0xff,0x3c,0x1b,0x78,0x60,0xf6,0xde,0x76,0xd4,0xce,0xcd,0x94,0xc8,0x11,0x98,0x55,0xef,0x52,0x97,0xca,0x67,0xe9,0xf3,}
+\DoxyCodeLine{158 0xe7,0xff,0x72,0xb1,0xe9,0x97,0x85,0xca,0x0a,0x7e,0x77,0x20,0xc5,0xb3,0x6d,0xc6,0xd7,0x2c,0xac,0x95,0x74,0xc8,0xcb,0xbc,0x2f,0x80,0x1e,0x23,0xe5,0x6f,0xd3,0x44,}
+\DoxyCodeLine{159 0xb0,0x7f,0x22,0x15,0x4b,0xeb,0xa0,0xf0,0x8c,0xe8,0x89,0x1e,0x64,0x3e,0xd9,0x95,0xc9,0x4d,0x9a,0x69,0xc9,0xf1,0xb5,0xf4,0x99,0x02,0x7a,0x78,0x57,0x2a,0xee,0xbd,}
+\DoxyCodeLine{160 0x74,0xd2,0x0c,0xc3,0x98,0x81,0xc2,0x13,0xee,0x77,0x0b,0x10,0x10,0xe4,0xbe,0xa7,0x18,0x84,0x69,0x77,0xae,0x11,0x9f,0x7a,0x02,0x3a,0xb5,0x8c,0xca,0x0a,0xd7,0x52,}
+\DoxyCodeLine{161 0xaf,0xe6,0x56,0xbb,0x3c,0x17,0x25,0x6a,0x9f,0x6e,0x9b,0xf1,0x9f,0xdd,0x5a,0x38,0xfc,0x82,0xbb,0xe8,0x72,0xc5,0x53,0x9e,0xdb,0x60,0x9e,0xf4,0xf7,0x9c,0x20,0x3e,}
+\DoxyCodeLine{162 0xbb,0x14,0x0f,0x2e,0x58,0x3c,0xb2,0xad,0x15,0xb4,0xaa,0x5b,0x65,0x50,0x16,0xa8,0x44,0x92,0x77,0xdb,0xd4,0x77,0xef,0x2c,0x8d,0x6c,0x01,0x7d,0xb7,0x38,0xb1,0x8d,}
+\DoxyCodeLine{163 0xeb,0x4a,0x42,0x7d,0x19,0x23,0xce,0x3f,0xf2,0x62,0x73,0x57,0x79,0xa4,0x18,0xf2,0x0a,0x28,0x2d,0xf9,0x20,0x14,0x7b,0xea,0xbe,0x42,0x1e,0xe5,0x31,0x9d,0x05,0x68,}
+\DoxyCodeLine{164    \}}
+\DoxyCodeLine{165 \},}
+\DoxyCodeLine{166 }
+\DoxyCodeLine{167 \textcolor{comment}{/* \#7, 32 byte key, 17 byte PTX */}}
+\DoxyCodeLine{168 \{}
+\DoxyCodeLine{169    32,}
+\DoxyCodeLine{170    \{ 0xff,0xfe,0xfd,0xfc,0xfb,0xfa,0xf9,0xf8,0xf7,0xf6,0xf5,0xf4,0xf3,0xf2,0xf1,0xf0 \},}
+\DoxyCodeLine{171    \{ 0xbf,0xbe,0xbd,0xbc,0xbb,0xba,0xb9,0xb8,0xb7,0xb6,0xb5,0xb4,0xb3,0xb2,0xb1,0xb0 \},}
+\DoxyCodeLine{172    \mbox{\hyperlink{tomcrypt__cfg_8h_a7d8e211582dff82d00fc171834e3dc67}{CONST64}}(0x123456789a),}
+\DoxyCodeLine{173    17,}
+\DoxyCodeLine{174    \{ 0x00,0x01,0x02,0x03,0x04,0x05,0x06,0x07,0x08,0x09,0x0a,0x0b,0x0c,0x0d,0x0e,0x0f,0x10 \},}
+\DoxyCodeLine{175    \{ 0x6c,0x16,0x25,0xdb,0x46,0x71,0x52,0x2d,0x3d,0x75,0x99,0x60,0x1d,0xe7,0xca,0x09,0xed \},}
+\DoxyCodeLine{176 \},}
+\DoxyCodeLine{177 }
+\DoxyCodeLine{178 \textcolor{comment}{/* \#15, 32 byte key, 25 byte PTX */}}
+\DoxyCodeLine{179 \{}
+\DoxyCodeLine{180    32,}
+\DoxyCodeLine{181    \{ 0xff,0xfe,0xfd,0xfc,0xfb,0xfa,0xf9,0xf8,0xf7,0xf6,0xf5,0xf4,0xf3,0xf2,0xf1,0xf0 \},}
+\DoxyCodeLine{182    \{ 0xbf,0xbe,0xbd,0xbc,0xbb,0xba,0xb9,0xb8,0xb7,0xb6,0xb5,0xb4,0xb3,0xb2,0xb1,0xb0 \},}
+\DoxyCodeLine{183    \mbox{\hyperlink{tomcrypt__cfg_8h_a7d8e211582dff82d00fc171834e3dc67}{CONST64}}(0x123456789a),}
+\DoxyCodeLine{184    25,}
+\DoxyCodeLine{185    \{ 0x00,0x01,0x02,0x03,0x04,0x05,0x06,0x07,0x08,0x09,0x0a,0x0b,0x0c,0x0d,0x0e,0x0f,0x10,0x11,0x12,0x13,0x14,0x15,0x16,0x17,0x18 \},}
+\DoxyCodeLine{186    \{ 0x8f,0x4d,0xcb,0xad,0x55,0x55,0x8d,0x7b,0x4e,0x01,0xd9,0x37,0x9c,0xd4,0xea,0x22,0xed,0xbf,0x9d,0xac,0xe4,0x5d,0x6f,0x6a,0x73 \},}
+\DoxyCodeLine{187 \},}
+\DoxyCodeLine{188 }
+\DoxyCodeLine{189 \textcolor{comment}{/* \#21, 32 byte key, 31 byte PTX */}}
+\DoxyCodeLine{190 \{}
+\DoxyCodeLine{191    32,}
+\DoxyCodeLine{192    \{ 0xff,0xfe,0xfd,0xfc,0xfb,0xfa,0xf9,0xf8,0xf7,0xf6,0xf5,0xf4,0xf3,0xf2,0xf1,0xf0 \},}
+\DoxyCodeLine{193    \{ 0xbf,0xbe,0xbd,0xbc,0xbb,0xba,0xb9,0xb8,0xb7,0xb6,0xb5,0xb4,0xb3,0xb2,0xb1,0xb0 \},}
+\DoxyCodeLine{194    \mbox{\hyperlink{tomcrypt__cfg_8h_a7d8e211582dff82d00fc171834e3dc67}{CONST64}}(0x123456789a),}
+\DoxyCodeLine{195    31,}
+\DoxyCodeLine{196    \{ 0x00,0x01,0x02,0x03,0x04,0x05,0x06,0x07,0x08,0x09,0x0a,0x0b,0x0c,0x0d,0x0e,0x0f,0x10,0x11,0x12,0x13,0x14,0x15,0x16,0x17,0x18,0x19,0x1a,0x1b,0x1c,0x1d,0x1e \},}
+\DoxyCodeLine{197    \{ 0xd0,0x5b,0xc0,0x90,0xa8,0xe0,0x4f,0x1b,0x3d,0x3e,0xcd,0xd5,0xba,0xec,0x0f,0xd4,0xed,0xbf,0x9d,0xac,0xe4,0x5d,0x6f,0x6a,0x73,0x06,0xe6,0x4b,0xe5,0xdd,0x82 \},}
+\DoxyCodeLine{198 \},}
+\DoxyCodeLine{199 }
+\DoxyCodeLine{200 \};}
+\DoxyCodeLine{201    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} OUT[512], Torg[16], T[16];}
+\DoxyCodeLine{202    \mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}} seq;}
+\DoxyCodeLine{203    symmetric\_xts xts;}
+\DoxyCodeLine{204    \textcolor{keywordtype}{int} i, j, k, err, idx;}
+\DoxyCodeLine{205    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}};}
+\DoxyCodeLine{206 }
+\DoxyCodeLine{207    \textcolor{comment}{/* AES can be under rijndael or aes... try to find it */}}
+\DoxyCodeLine{208    \textcolor{keywordflow}{if} ((idx = \mbox{\hyperlink{tomcrypt__cipher_8h_af5c3882342fd65a17239cd04bfdf44e2}{find\_cipher}}(\textcolor{stringliteral}{"aes"})) == -1) \{}
+\DoxyCodeLine{209       \textcolor{keywordflow}{if} ((idx = \mbox{\hyperlink{tomcrypt__cipher_8h_af5c3882342fd65a17239cd04bfdf44e2}{find\_cipher}}(\textcolor{stringliteral}{"rijndael"})) == -1) \{}
+\DoxyCodeLine{210          \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cac43a7799c7fd5f515172da6cfc0f9cf5}{CRYPT\_NOP}};}
+\DoxyCodeLine{211       \}}
+\DoxyCodeLine{212    \}}
+\DoxyCodeLine{213    \textcolor{keywordflow}{for} (k = 0; k < 4; ++k) \{}
+\DoxyCodeLine{214       \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[idx].\mbox{\hyperlink{structltc__cipher__descriptor_a1a0a384c38a8ba920d50cd43d0f016a6}{accel\_xts\_encrypt}} = NULL;}
+\DoxyCodeLine{215       \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[idx].\mbox{\hyperlink{structltc__cipher__descriptor_afc98a5dedcb756fb765403942728b2d4}{accel\_xts\_decrypt}} = NULL;}
+\DoxyCodeLine{216       \textcolor{keywordflow}{if} (k \& 0x1) \{}
+\DoxyCodeLine{217          \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[idx].\mbox{\hyperlink{structltc__cipher__descriptor_a1a0a384c38a8ba920d50cd43d0f016a6}{accel\_xts\_encrypt}} = \mbox{\hyperlink{xts__test_8c_a097b3a9b119f5ee53122c2552ef9d70e}{\_xts\_test\_accel\_xts\_encrypt}};}
+\DoxyCodeLine{218       \}}
+\DoxyCodeLine{219       \textcolor{keywordflow}{if} (k \& 0x2) \{}
+\DoxyCodeLine{220          \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[idx].\mbox{\hyperlink{structltc__cipher__descriptor_afc98a5dedcb756fb765403942728b2d4}{accel\_xts\_decrypt}} = \mbox{\hyperlink{xts__test_8c_ac6d3b700cb3534684c81d8975c3c1e49}{\_xts\_test\_accel\_xts\_decrypt}};}
+\DoxyCodeLine{221       \}}
+\DoxyCodeLine{222       \textcolor{keywordflow}{for} (j = 0; j < 2; j++) \{}
+\DoxyCodeLine{223          \textcolor{keywordflow}{for} (i = 0; i < (int)(\textcolor{keyword}{sizeof}(tests) / \textcolor{keyword}{sizeof}(tests[0])); i++) \{}
+\DoxyCodeLine{224             \textcolor{comment}{/* skip the cases where}}
+\DoxyCodeLine{225 \textcolor{comment}{             * the length is smaller than 2*blocklen}}
+\DoxyCodeLine{226 \textcolor{comment}{             * or the length is not a multiple of 32}}
+\DoxyCodeLine{227 \textcolor{comment}{             */}}
+\DoxyCodeLine{228             \textcolor{keywordflow}{if} ((j == 1) \&\& ((tests[i].PTLEN < 32) || (tests[i].PTLEN \% 32))) \{}
+\DoxyCodeLine{229                \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{230             \}}
+\DoxyCodeLine{231             \textcolor{keywordflow}{if} ((k > 0) \&\& (j == 1)) \{}
+\DoxyCodeLine{232                \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{233             \}}
+\DoxyCodeLine{234             \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}} = tests[i].PTLEN / 2;}
+\DoxyCodeLine{235 }
+\DoxyCodeLine{236             err = \mbox{\hyperlink{xts__init_8c_a3ada94de8100acc3921ad9b1855647bb}{xts\_start}}(idx, tests[i].key1, tests[i].key2, tests[i].keylen / 2, 0, \&xts);}
+\DoxyCodeLine{237             \textcolor{keywordflow}{if} (err != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{238                \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{239             \}}
+\DoxyCodeLine{240 }
+\DoxyCodeLine{241             seq = tests[i].seqnum;}
+\DoxyCodeLine{242             STORE64L(seq, Torg);}
+\DoxyCodeLine{243             \mbox{\hyperlink{tomcrypt__cfg_8h_aa3c34a6f6c61de7da9258b5a30e32c2f}{XMEMSET}}(Torg + 8, 0, 8);}
+\DoxyCodeLine{244 }
+\DoxyCodeLine{245             \mbox{\hyperlink{tomcrypt__cfg_8h_a7691dd48d60d5fc6daf2fa7ec4c55e12}{XMEMCPY}}(T, Torg, \textcolor{keyword}{sizeof}(T));}
+\DoxyCodeLine{246             \textcolor{keywordflow}{if} (j == 0) \{}
+\DoxyCodeLine{247                err = \mbox{\hyperlink{xts__encrypt_8c_a3398bebb10123ed32f4091b6e15cb04c}{xts\_encrypt}}(tests[i].PTX, tests[i].PTLEN, OUT, T, \&xts);}
+\DoxyCodeLine{248                \textcolor{keywordflow}{if} (err != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{249                   \mbox{\hyperlink{xts__done_8c_a1acb51f1a303879e8ff78f67608d68ef}{xts\_done}}(\&xts);}
+\DoxyCodeLine{250                   \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{251                \}}
+\DoxyCodeLine{252             \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{253                err = \mbox{\hyperlink{xts__encrypt_8c_a3398bebb10123ed32f4091b6e15cb04c}{xts\_encrypt}}(tests[i].PTX, \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}, OUT, T, \&xts);}
+\DoxyCodeLine{254                \textcolor{keywordflow}{if} (err != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{255                   \mbox{\hyperlink{xts__done_8c_a1acb51f1a303879e8ff78f67608d68ef}{xts\_done}}(\&xts);}
+\DoxyCodeLine{256                   \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{257                \}}
+\DoxyCodeLine{258                err = \mbox{\hyperlink{xts__encrypt_8c_a3398bebb10123ed32f4091b6e15cb04c}{xts\_encrypt}}(\&tests[i].PTX[\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}], \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}, \&OUT[\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}], T, \&xts);}
+\DoxyCodeLine{259                \textcolor{keywordflow}{if} (err != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{260                   \mbox{\hyperlink{xts__done_8c_a1acb51f1a303879e8ff78f67608d68ef}{xts\_done}}(\&xts);}
+\DoxyCodeLine{261                   \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{262                \}}
+\DoxyCodeLine{263             \}}
+\DoxyCodeLine{264 }
+\DoxyCodeLine{265             \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(OUT, tests[i].PTLEN, tests[i].CTX, tests[i].PTLEN, \textcolor{stringliteral}{"XTS encrypt"}, i)) \{}
+\DoxyCodeLine{266                \mbox{\hyperlink{xts__done_8c_a1acb51f1a303879e8ff78f67608d68ef}{xts\_done}}(\&xts);}
+\DoxyCodeLine{267                \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{268             \}}
+\DoxyCodeLine{269 }
+\DoxyCodeLine{270             \mbox{\hyperlink{tomcrypt__cfg_8h_a7691dd48d60d5fc6daf2fa7ec4c55e12}{XMEMCPY}}(T, Torg, \textcolor{keyword}{sizeof}(T));}
+\DoxyCodeLine{271             \textcolor{keywordflow}{if} (j == 0) \{}
+\DoxyCodeLine{272                err = \mbox{\hyperlink{xts__decrypt_8c_aeabcddf932f82ff9724fe82c44bb4b7d}{xts\_decrypt}}(tests[i].CTX, tests[i].PTLEN, OUT, T, \&xts);}
+\DoxyCodeLine{273                \textcolor{keywordflow}{if} (err != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{274                   \mbox{\hyperlink{xts__done_8c_a1acb51f1a303879e8ff78f67608d68ef}{xts\_done}}(\&xts);}
+\DoxyCodeLine{275                   \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{276                \}}
+\DoxyCodeLine{277             \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{278                err = \mbox{\hyperlink{xts__decrypt_8c_aeabcddf932f82ff9724fe82c44bb4b7d}{xts\_decrypt}}(tests[i].CTX, \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}, OUT, T, \&xts);}
+\DoxyCodeLine{279                \textcolor{keywordflow}{if} (err != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{280                   \mbox{\hyperlink{xts__done_8c_a1acb51f1a303879e8ff78f67608d68ef}{xts\_done}}(\&xts);}
+\DoxyCodeLine{281                   \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{282                \}}
+\DoxyCodeLine{283                err = \mbox{\hyperlink{xts__decrypt_8c_aeabcddf932f82ff9724fe82c44bb4b7d}{xts\_decrypt}}(\&tests[i].CTX[\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}], \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}, \&OUT[\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}], T, \&xts);}
+\DoxyCodeLine{284                \textcolor{keywordflow}{if} (err != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{285                   \mbox{\hyperlink{xts__done_8c_a1acb51f1a303879e8ff78f67608d68ef}{xts\_done}}(\&xts);}
+\DoxyCodeLine{286                   \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{287                \}}
+\DoxyCodeLine{288             \}}
+\DoxyCodeLine{289 }
+\DoxyCodeLine{290             \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(OUT, tests[i].PTLEN, tests[i].PTX, tests[i].PTLEN, \textcolor{stringliteral}{"XTS decrypt"}, i)) \{}
+\DoxyCodeLine{291                \mbox{\hyperlink{xts__done_8c_a1acb51f1a303879e8ff78f67608d68ef}{xts\_done}}(\&xts);}
+\DoxyCodeLine{292                \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{293             \}}
+\DoxyCodeLine{294             \mbox{\hyperlink{xts__done_8c_a1acb51f1a303879e8ff78f67608d68ef}{xts\_done}}(\&xts);}
+\DoxyCodeLine{295          \}}
+\DoxyCodeLine{296       \}}
+\DoxyCodeLine{297    \}}
+\DoxyCodeLine{298    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{299 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{300 \}}
+
+\end{DoxyCode}
+
+
+References \+\_\+xts\+\_\+test\+\_\+accel\+\_\+xts\+\_\+decrypt(), \+\_\+xts\+\_\+test\+\_\+accel\+\_\+xts\+\_\+encrypt(), ltc\+\_\+cipher\+\_\+descriptor\+::accel\+\_\+xts\+\_\+decrypt, ltc\+\_\+cipher\+\_\+descriptor\+::accel\+\_\+xts\+\_\+encrypt, cipher\+\_\+descriptor, compare\+\_\+testvector(), C\+O\+N\+S\+T64, C\+R\+Y\+P\+T\+\_\+\+F\+A\+I\+L\+\_\+\+T\+E\+S\+T\+V\+E\+C\+T\+OR, C\+R\+Y\+P\+T\+\_\+\+N\+OP, C\+R\+Y\+P\+T\+\_\+\+OK, find\+\_\+cipher(), len, X\+M\+E\+M\+C\+P\+Y(), X\+M\+E\+M\+S\+E\+T(), xts\+\_\+decrypt(), xts\+\_\+done(), xts\+\_\+encrypt(), and xts\+\_\+start().
+
+Here is the call graph for this function\+:
+% FIG 5

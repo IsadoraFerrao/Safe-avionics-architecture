@@ -1,0 +1,125 @@
+\hypertarget{xcbc__file_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/mac/xcbc/xcbc\+\_\+file.c File Reference}
+\label{xcbc__file_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/mac/xcbc/xcbc\_file.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/mac/xcbc/xcbc\_file.c}}
+
+
+X\+C\+BC support, process a file, Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for xcbc\+\_\+file.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{xcbc__file_8c_ae7e1146329a4421da93ed0590857e232}{xcbc\+\_\+file}} (int cipher, const unsigned char $\ast$key, unsigned long keylen, const char $\ast$filename, unsigned char $\ast$out, unsigned long $\ast$outlen)
+\begin{DoxyCompactList}\small\item\em X\+C\+BC a file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+X\+C\+BC support, process a file, Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{xcbc__file_8c_ae7e1146329a4421da93ed0590857e232}\label{xcbc__file_8c_ae7e1146329a4421da93ed0590857e232}} 
+\index{xcbc\_file.c@{xcbc\_file.c}!xcbc\_file@{xcbc\_file}}
+\index{xcbc\_file@{xcbc\_file}!xcbc\_file.c@{xcbc\_file.c}}
+\subsubsection{\texorpdfstring{xcbc\_file()}{xcbc\_file()}}
+{\footnotesize\ttfamily int xcbc\+\_\+file (\begin{DoxyParamCaption}\item[{int}]{cipher,  }\item[{const unsigned char $\ast$}]{key,  }\item[{unsigned long}]{keylen,  }\item[{const char $\ast$}]{filename,  }\item[{unsigned char $\ast$}]{out,  }\item[{unsigned long $\ast$}]{outlen }\end{DoxyParamCaption})}
+
+
+
+X\+C\+BC a file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cipher} & The index of the cipher desired \\
+\hline
+{\em key} & The secret key \\
+\hline
+{\em keylen} & The length of the secret key (octets) \\
+\hline
+{\em filename} & The name of the file you wish to X\+C\+BC \\
+\hline
+{\em out} & \mbox{[}out\mbox{]} Where the authentication tag is to be stored \\
+\hline
+{\em outlen} & \mbox{[}in/out\mbox{]} The max size and resulting size of the authentication tag \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful, C\+R\+Y\+P\+T\+\_\+\+N\+OP if file support has been disabled 
+\end{DoxyReturn}
+
+
+Definition at line 28 of file xcbc\+\_\+file.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{32 \{}
+\DoxyCodeLine{33 \textcolor{preprocessor}{\#ifdef LTC\_NO\_FILE}}
+\DoxyCodeLine{34    \mbox{\hyperlink{tomcrypt__macros_8h_accde4b007facd646a8327f8e64b2d1e0}{LTC\_UNUSED\_PARAM}}(cipher);}
+\DoxyCodeLine{35    \mbox{\hyperlink{tomcrypt__macros_8h_accde4b007facd646a8327f8e64b2d1e0}{LTC\_UNUSED\_PARAM}}(key);}
+\DoxyCodeLine{36    \mbox{\hyperlink{tomcrypt__macros_8h_accde4b007facd646a8327f8e64b2d1e0}{LTC\_UNUSED\_PARAM}}(keylen);}
+\DoxyCodeLine{37    \mbox{\hyperlink{tomcrypt__macros_8h_accde4b007facd646a8327f8e64b2d1e0}{LTC\_UNUSED\_PARAM}}(filename);}
+\DoxyCodeLine{38    \mbox{\hyperlink{tomcrypt__macros_8h_accde4b007facd646a8327f8e64b2d1e0}{LTC\_UNUSED\_PARAM}}(out);}
+\DoxyCodeLine{39    \mbox{\hyperlink{tomcrypt__macros_8h_accde4b007facd646a8327f8e64b2d1e0}{LTC\_UNUSED\_PARAM}}(outlen);}
+\DoxyCodeLine{40    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cac43a7799c7fd5f515172da6cfc0f9cf5}{CRYPT\_NOP}};}
+\DoxyCodeLine{41 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{42    \textcolor{keywordtype}{size\_t} x;}
+\DoxyCodeLine{43    \textcolor{keywordtype}{int} err;}
+\DoxyCodeLine{44    xcbc\_state xcbc;}
+\DoxyCodeLine{45    FILE *in;}
+\DoxyCodeLine{46    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *buf;}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(key      != NULL);}
+\DoxyCodeLine{49    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(filename != NULL);}
+\DoxyCodeLine{50    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(out      != NULL);}
+\DoxyCodeLine{51    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(outlen   != NULL);}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{53    \textcolor{keywordflow}{if} ((buf = \mbox{\hyperlink{tomcrypt__cfg_8h_af363355f38fbaacdefacf270436ae1c9}{XMALLOC}}(\mbox{\hyperlink{tomcrypt__custom_8h_ac4fd38d776468eef7213777e70f16124}{LTC\_FILE\_READ\_BUFSIZE}})) == NULL) \{}
+\DoxyCodeLine{54       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca0ce0d27adc7ea10b74b7ea904b8bfa82}{CRYPT\_MEM}};}
+\DoxyCodeLine{55    \}}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{57    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{xcbc__init_8c_a7b787dca2813eeaae1e2ebfd1b601d6d}{xcbc\_init}}(\&xcbc, cipher, key, keylen)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{58       \textcolor{keywordflow}{goto} LBL\_ERR;}
+\DoxyCodeLine{59    \}}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{61    in = fopen(filename, \textcolor{stringliteral}{"rb"});}
+\DoxyCodeLine{62    \textcolor{keywordflow}{if} (in == NULL) \{}
+\DoxyCodeLine{63       err = \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca9c972a504d3de1863b3e7708836bc6d1}{CRYPT\_FILE\_NOTFOUND}};}
+\DoxyCodeLine{64       \textcolor{keywordflow}{goto} LBL\_ERR;}
+\DoxyCodeLine{65    \}}
+\DoxyCodeLine{66 }
+\DoxyCodeLine{67    \textcolor{keywordflow}{do} \{}
+\DoxyCodeLine{68       x = fread(buf, 1, \mbox{\hyperlink{tomcrypt__custom_8h_ac4fd38d776468eef7213777e70f16124}{LTC\_FILE\_READ\_BUFSIZE}}, in);}
+\DoxyCodeLine{69       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{xcbc__process_8c_a9f08ee1fd99fd672009fb6beb8cea142}{xcbc\_process}}(\&xcbc, buf, (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long})x)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{70          fclose(in);}
+\DoxyCodeLine{71          \textcolor{keywordflow}{goto} LBL\_CLEANBUF;}
+\DoxyCodeLine{72       \}}
+\DoxyCodeLine{73    \} \textcolor{keywordflow}{while} (x == \mbox{\hyperlink{tomcrypt__custom_8h_ac4fd38d776468eef7213777e70f16124}{LTC\_FILE\_READ\_BUFSIZE}});}
+\DoxyCodeLine{74 }
+\DoxyCodeLine{75    \textcolor{keywordflow}{if} (fclose(in) != 0) \{}
+\DoxyCodeLine{76       err = \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca03c22220d7538be04455cd2aa6ddf9da}{CRYPT\_ERROR}};}
+\DoxyCodeLine{77       \textcolor{keywordflow}{goto} LBL\_CLEANBUF;}
+\DoxyCodeLine{78    \}}
+\DoxyCodeLine{79 }
+\DoxyCodeLine{80    err = \mbox{\hyperlink{xcbc__done_8c_a396b96e5257706bdbc462d17eb3c4276}{xcbc\_done}}(\&xcbc, out, outlen);}
+\DoxyCodeLine{81 }
+\DoxyCodeLine{82 LBL\_CLEANBUF:}
+\DoxyCodeLine{83    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(buf, \mbox{\hyperlink{tomcrypt__custom_8h_ac4fd38d776468eef7213777e70f16124}{LTC\_FILE\_READ\_BUFSIZE}});}
+\DoxyCodeLine{84 LBL\_ERR:}
+\DoxyCodeLine{85 \textcolor{preprocessor}{\#ifdef LTC\_CLEAN\_STACK}}
+\DoxyCodeLine{86    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(\&xcbc, \textcolor{keyword}{sizeof}(xcbc\_state));}
+\DoxyCodeLine{87 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{88    \mbox{\hyperlink{tomcrypt__cfg_8h_a260d66fc0690e0502cf3bfe7b5244b75}{XFREE}}(buf);}
+\DoxyCodeLine{89    \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{90 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{91 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+E\+R\+R\+OR, C\+R\+Y\+P\+T\+\_\+\+F\+I\+L\+E\+\_\+\+N\+O\+T\+F\+O\+U\+ND, C\+R\+Y\+P\+T\+\_\+\+M\+EM, C\+R\+Y\+P\+T\+\_\+\+N\+OP, C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, L\+T\+C\+\_\+\+F\+I\+L\+E\+\_\+\+R\+E\+A\+D\+\_\+\+B\+U\+F\+S\+I\+ZE, L\+T\+C\+\_\+\+U\+N\+U\+S\+E\+D\+\_\+\+P\+A\+R\+AM, xcbc\+\_\+done(), xcbc\+\_\+init(), xcbc\+\_\+process(), X\+F\+R\+E\+E(), X\+M\+A\+L\+L\+O\+C(), and zeromem().
+
+Here is the call graph for this function\+:
+% FIG 1

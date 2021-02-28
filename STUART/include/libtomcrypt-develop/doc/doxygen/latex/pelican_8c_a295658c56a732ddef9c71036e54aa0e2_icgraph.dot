@@ -1,0 +1,18 @@
+digraph "_four_rounds"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node1 [label="_four_rounds",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node2 [label="pelican_done",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$pelican_8c.html#a70b6868acfc0b1287d358a8e890e648a",tooltip="Terminate Pelican MAC."];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node3 [label="pelican_memory",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$pelican__memory_8c.html#a1c9283f981146b34e1f61fd18840d6f7",tooltip="Pelican block of memory."];
+  Node2 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node4 [label="pelican_test",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$pelican__test_8c.html#aa17b4cc1ebf25aa8011e9abce289629c",tooltip=" "];
+  Node1 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node5 [label="pelican_process",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$pelican_8c.html#aef428c8672b216a7d31256baee8c1a95",tooltip="Process a block of text through Pelican."];
+  Node5 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node5 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+}

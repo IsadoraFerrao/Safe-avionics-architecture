@@ -1,0 +1,62 @@
+\hypertarget{crypt__find__hash__oid_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/misc/crypt/crypt\+\_\+find\+\_\+hash\+\_\+oid.c File Reference}
+\label{crypt__find__hash__oid_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/misc/crypt/crypt\_find\_hash\_oid.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/misc/crypt/crypt\_find\_hash\_oid.c}}
+
+
+Find a hash, Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for crypt\+\_\+find\+\_\+hash\+\_\+oid.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{crypt__find__hash__oid_8c_a962a58b4ffe308210b9810045ea6dbad}{find\+\_\+hash\+\_\+oid}} (const unsigned long $\ast$ID, unsigned long I\+Dlen)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Find a hash, Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{crypt__find__hash__oid_8c_a962a58b4ffe308210b9810045ea6dbad}\label{crypt__find__hash__oid_8c_a962a58b4ffe308210b9810045ea6dbad}} 
+\index{crypt\_find\_hash\_oid.c@{crypt\_find\_hash\_oid.c}!find\_hash\_oid@{find\_hash\_oid}}
+\index{find\_hash\_oid@{find\_hash\_oid}!crypt\_find\_hash\_oid.c@{crypt\_find\_hash\_oid.c}}
+\subsubsection{\texorpdfstring{find\_hash\_oid()}{find\_hash\_oid()}}
+{\footnotesize\ttfamily int find\+\_\+hash\+\_\+oid (\begin{DoxyParamCaption}\item[{const unsigned long $\ast$}]{ID,  }\item[{unsigned long}]{I\+Dlen }\end{DoxyParamCaption})}
+
+
+
+Definition at line 16 of file crypt\+\_\+find\+\_\+hash\+\_\+oid.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{17 \{}
+\DoxyCodeLine{18    \textcolor{keywordtype}{int} x;}
+\DoxyCodeLine{19    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(ID != NULL);}
+\DoxyCodeLine{20    \mbox{\hyperlink{tomcrypt__custom_8h_a427a107414e4d775fbf23f4a499f4a31}{LTC\_MUTEX\_LOCK}}(\&ltc\_hash\_mutex);}
+\DoxyCodeLine{21    \textcolor{keywordflow}{for} (x = 0; x < \mbox{\hyperlink{tomcrypt_8h_a9ad1b4a1e4f7381611cfd2ae6620a727}{TAB\_SIZE}}; x++) \{}
+\DoxyCodeLine{22        \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__hash_8h_ab0e4f02e30a47da79baa9240e79cde92}{hash\_descriptor}}[x].name != NULL \&\& \mbox{\hyperlink{tomcrypt__hash_8h_ab0e4f02e30a47da79baa9240e79cde92}{hash\_descriptor}}[x].OIDlen == IDlen \&\& !\mbox{\hyperlink{tomcrypt__cfg_8h_a372b974ec0ac07abcd55297554fe540f}{XMEMCMP}}(\mbox{\hyperlink{tomcrypt__hash_8h_ab0e4f02e30a47da79baa9240e79cde92}{hash\_descriptor}}[x].\mbox{\hyperlink{ecc__find__curve_8c_a3b9aae9990e63034f7d199729f025b23}{OID}}, ID, \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long}) * IDlen)) \{}
+\DoxyCodeLine{23           \mbox{\hyperlink{tomcrypt__custom_8h_acdf267be91b178b4fafe8f992d57a7f1}{LTC\_MUTEX\_UNLOCK}}(\&ltc\_hash\_mutex);}
+\DoxyCodeLine{24           \textcolor{keywordflow}{return} x;}
+\DoxyCodeLine{25        \}}
+\DoxyCodeLine{26    \}}
+\DoxyCodeLine{27    \mbox{\hyperlink{tomcrypt__custom_8h_acdf267be91b178b4fafe8f992d57a7f1}{LTC\_MUTEX\_UNLOCK}}(\&ltc\_hash\_mutex);}
+\DoxyCodeLine{28    \textcolor{keywordflow}{return} -1;}
+\DoxyCodeLine{29 \}}
+
+\end{DoxyCode}
+
+
+References hash\+\_\+descriptor, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, L\+T\+C\+\_\+\+M\+U\+T\+E\+X\+\_\+\+L\+O\+CK, L\+T\+C\+\_\+\+M\+U\+T\+E\+X\+\_\+\+U\+N\+L\+O\+CK, O\+ID, T\+A\+B\+\_\+\+S\+I\+ZE, and X\+M\+E\+M\+C\+M\+P().
+
+
+
+Referenced by dsa\+\_\+decrypt\+\_\+key(), and ecc\+\_\+decrypt\+\_\+key().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2

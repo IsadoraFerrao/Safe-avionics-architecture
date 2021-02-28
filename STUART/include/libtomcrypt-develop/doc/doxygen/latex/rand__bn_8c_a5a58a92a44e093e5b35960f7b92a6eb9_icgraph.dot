@@ -1,0 +1,36 @@
+digraph "rand_bn_bits"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node5 [label="rand_bn_bits",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Generate a random number N with given bitlength (note: MSB can be 0)"];
+  Node5 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node6 [label="_dsa_make_params",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dsa__generate__pqg_8c.html#ad38793673d78a4d45177d5b839e1e16b",tooltip="Create DSA parameters (INTERNAL ONLY, not part of public API)"];
+  Node6 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node7 [label="dsa_generate_pqg",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dsa__generate__pqg_8c.html#aa25c2f74420daea058431d3ad4b2340d",tooltip="Generate DSA parameters p, q & g."];
+  Node7 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node8 [label="dsa_make_key",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dsa__make__key_8c.html#a9b48ea999f1e23e839ae5b62aab985c6",tooltip="Old-style creation of a DSA key."];
+  Node5 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node9 [label="dsa_sign_hash_raw",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dsa__sign__hash_8c.html#a1073fec547694360cd9f2a3d81c7260a",tooltip="Sign a hash with DSA."];
+  Node9 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node10 [label="dsa_sign_hash",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dsa__sign__hash_8c.html#a83c6d4c1243acbc906e872e20de3bba2",tooltip="Sign a hash with DSA."];
+  Node5 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node11 [label="rand_bn_upto",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rand__bn_8c.html#a8050acf530841fb2da3b667204039856",tooltip="Generate a random number N in a range: 1 <= N < limit."];
+  Node11 -> Node12 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node12 [label="dsa_encrypt_key",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dsa__encrypt__key_8c.html#ab65138d407e0660f6f2f7cb7e7dcb24b",tooltip="Encrypt a symmetric key with DSA."];
+  Node11 -> Node13 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node13 [label="dsa_generate_key",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dsa__generate__key_8c.html#a97b1aaf6fd598e3ea9d82523614158c9",tooltip="Create a DSA key."];
+  Node13 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node11 -> Node14 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node14 [label="ecc_generate_key",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ecc__make__key_8c.html#a127706e1e535a3c06a1938e474ed8d20",tooltip=" "];
+  Node14 -> Node15 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node15 [label="ecc_encrypt_key",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ecc__encrypt__key_8c.html#a16164f1e295b1c88e6b81a9ece26cd70",tooltip="Encrypt a symmetric key with ECC."];
+  Node14 -> Node16 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node16 [label="ecc_make_key",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ecc__make__key_8c.html#a7a315bba6da1275feab6ca1c5a16e87a",tooltip="Make a new ECC key."];
+  Node14 -> Node17 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node17 [label="ecc_make_key_ex",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ecc__make__key_8c.html#aa162146ab36462700056738f96b2dfcb",tooltip=" "];
+  Node14 -> Node18 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node18 [label="ecc_sign_hash_ex",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ecc__sign__hash_8c.html#a96afaf55b03386145e3061fc42a9636b",tooltip="Sign a message digest."];
+  Node11 -> Node18 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+}

@@ -1,0 +1,620 @@
+\hypertarget{hmac__test_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/mac/hmac/hmac\+\_\+test.c File Reference}
+\label{hmac__test_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/mac/hmac/hmac\_test.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/mac/hmac/hmac\_test.c}}
+
+
+H\+M\+AC support, self-\/test, Tom St Denis/\+Dobes Vandermeer/\+Steffen Jaeckel.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for hmac\+\_\+test.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{hmac__test_8c_af43c4e10ec1984cf428cf69cd3184e53}{hmac\+\_\+test}} (void)
+\begin{DoxyCompactList}\small\item\em H\+M\+AC self-\/test. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+H\+M\+AC support, self-\/test, Tom St Denis/\+Dobes Vandermeer/\+Steffen Jaeckel. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{hmac__test_8c_af43c4e10ec1984cf428cf69cd3184e53}\label{hmac__test_8c_af43c4e10ec1984cf428cf69cd3184e53}} 
+\index{hmac\_test.c@{hmac\_test.c}!hmac\_test@{hmac\_test}}
+\index{hmac\_test@{hmac\_test}!hmac\_test.c@{hmac\_test.c}}
+\subsubsection{\texorpdfstring{hmac\_test()}{hmac\_test()}}
+{\footnotesize\ttfamily int hmac\+\_\+test (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+H\+M\+AC self-\/test. 
+
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful, C\+R\+Y\+P\+T\+\_\+\+N\+OP if tests have been disabled. 
+\end{DoxyReturn}
+
+
+Definition at line 51 of file hmac\+\_\+test.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{52 \{}
+\DoxyCodeLine{53 \textcolor{preprocessor}{ \#ifndef LTC\_TEST}}
+\DoxyCodeLine{54     \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cac43a7799c7fd5f515172da6cfc0f9cf5}{CRYPT\_NOP}};}
+\DoxyCodeLine{55 \textcolor{preprocessor}{ \#else}}
+\DoxyCodeLine{56     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} digest[\mbox{\hyperlink{tomcrypt_8h_ab59933beebb2b857c992b93cf53f0d10}{MAXBLOCKSIZE}}];}
+\DoxyCodeLine{57     \textcolor{keywordtype}{int} i;}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{59     \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} hmac\_test\_case\_keys[][136] = \{}
+\DoxyCodeLine{60         \{ \textcolor{comment}{/* 1 */}}
+\DoxyCodeLine{61             0x0b, 0x0b, 0x0b, 0x0b, 0x0b, 0x0b, 0x0b, 0x0b,}
+\DoxyCodeLine{62             0x0b, 0x0b, 0x0b, 0x0b, 0x0b, 0x0b, 0x0b, 0x0b,}
+\DoxyCodeLine{63             0x0b, 0x0b, 0x0b, 0x0b}
+\DoxyCodeLine{64         \},}
+\DoxyCodeLine{65 \textcolor{preprocessor}{\#ifdef LTC\_TEST\_EXT}}
+\DoxyCodeLine{66         \{ \textcolor{comment}{/* 2 */}}
+\DoxyCodeLine{67             0x4a, 0x65, 0x66, 0x65}
+\DoxyCodeLine{68         \},}
+\DoxyCodeLine{69         \{ \textcolor{comment}{/* 4 */}}
+\DoxyCodeLine{70             0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0a,}
+\DoxyCodeLine{71             0x0b, 0x0c, 0x0d, 0x0e, 0x0f, 0x10, 0x11, 0x12, 0x13, 0x14,}
+\DoxyCodeLine{72             0x15, 0x16, 0x17, 0x18, 0x19}
+\DoxyCodeLine{73         \},}
+\DoxyCodeLine{74         \{ \textcolor{comment}{/* 5 */}}
+\DoxyCodeLine{75             0x0c, 0x0c, 0x0c, 0x0c, 0x0c, 0x0c, 0x0c, 0x0c,}
+\DoxyCodeLine{76             0x0c, 0x0c, 0x0c, 0x0c, 0x0c, 0x0c, 0x0c, 0x0c,}
+\DoxyCodeLine{77             0x0c, 0x0c, 0x0c, 0x0c}
+\DoxyCodeLine{78         \},}
+\DoxyCodeLine{79         \{ \textcolor{comment}{/* 3, 6, 7 */}}
+\DoxyCodeLine{80             0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa,}
+\DoxyCodeLine{81             0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa,}
+\DoxyCodeLine{82             0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa,}
+\DoxyCodeLine{83             0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa,}
+\DoxyCodeLine{84             0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa,}
+\DoxyCodeLine{85 }
+\DoxyCodeLine{86             0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa,}
+\DoxyCodeLine{87             0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa,}
+\DoxyCodeLine{88             0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa,}
+\DoxyCodeLine{89             0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa,}
+\DoxyCodeLine{90             0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa,}
+\DoxyCodeLine{91 }
+\DoxyCodeLine{92             0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa,}
+\DoxyCodeLine{93             0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa,}
+\DoxyCodeLine{94             0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa,}
+\DoxyCodeLine{95             0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa,}
+\DoxyCodeLine{96             0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa,}
+\DoxyCodeLine{97 }
+\DoxyCodeLine{98             0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa,}
+\DoxyCodeLine{99             0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa}
+\DoxyCodeLine{100         \}}
+\DoxyCodeLine{101 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* LTC\_TEST\_EXT */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{102     \};}
+\DoxyCodeLine{103 }
+\DoxyCodeLine{104 }
+\DoxyCodeLine{105     \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} hmac\_test\_case\_data[][153] = \{}
+\DoxyCodeLine{106         \{}
+\DoxyCodeLine{107             \textcolor{stringliteral}{"Hi There"}}
+\DoxyCodeLine{108         \},}
+\DoxyCodeLine{109 \textcolor{preprocessor}{\#ifdef LTC\_TEST\_EXT}}
+\DoxyCodeLine{110         \{}
+\DoxyCodeLine{111             \textcolor{stringliteral}{"what do ya want for nothing?"}}
+\DoxyCodeLine{112         \},}
+\DoxyCodeLine{113         \{}
+\DoxyCodeLine{114             0xdd, 0xdd, 0xdd, 0xdd, 0xdd, 0xdd, 0xdd, 0xdd, 0xdd, 0xdd,}
+\DoxyCodeLine{115             0xdd, 0xdd, 0xdd, 0xdd, 0xdd, 0xdd, 0xdd, 0xdd, 0xdd, 0xdd,}
+\DoxyCodeLine{116             0xdd, 0xdd, 0xdd, 0xdd, 0xdd, 0xdd, 0xdd, 0xdd, 0xdd, 0xdd,}
+\DoxyCodeLine{117             0xdd, 0xdd, 0xdd, 0xdd, 0xdd, 0xdd, 0xdd, 0xdd, 0xdd, 0xdd,}
+\DoxyCodeLine{118             0xdd, 0xdd, 0xdd, 0xdd, 0xdd, 0xdd, 0xdd, 0xdd, 0xdd, 0xdd}
+\DoxyCodeLine{119         \},}
+\DoxyCodeLine{120         \{}
+\DoxyCodeLine{121             0xcd, 0xcd, 0xcd, 0xcd, 0xcd, 0xcd, 0xcd, 0xcd, 0xcd, 0xcd,}
+\DoxyCodeLine{122             0xcd, 0xcd, 0xcd, 0xcd, 0xcd, 0xcd, 0xcd, 0xcd, 0xcd, 0xcd,}
+\DoxyCodeLine{123             0xcd, 0xcd, 0xcd, 0xcd, 0xcd, 0xcd, 0xcd, 0xcd, 0xcd, 0xcd,}
+\DoxyCodeLine{124             0xcd, 0xcd, 0xcd, 0xcd, 0xcd, 0xcd, 0xcd, 0xcd, 0xcd, 0xcd,}
+\DoxyCodeLine{125             0xcd, 0xcd, 0xcd, 0xcd, 0xcd, 0xcd, 0xcd, 0xcd, 0xcd, 0xcd}
+\DoxyCodeLine{126         \},}
+\DoxyCodeLine{127         \{}
+\DoxyCodeLine{128             \textcolor{stringliteral}{"Test With Truncation"}}
+\DoxyCodeLine{129         \},}
+\DoxyCodeLine{130         \{}
+\DoxyCodeLine{131             \textcolor{stringliteral}{"Test Using Larger Than Block-Size Key - Hash Key First"}}
+\DoxyCodeLine{132         \},}
+\DoxyCodeLine{133         \{}
+\DoxyCodeLine{134             \textcolor{stringliteral}{"Test Using Larger Than Block-Size Key and Larger Than One Block-Size Data"}}
+\DoxyCodeLine{135         \},}
+\DoxyCodeLine{136         \{}
+\DoxyCodeLine{137             \textcolor{stringliteral}{"This is a test using a larger than block-size key and a larger than block-size data. The key needs to be hashed before being used by the HMAC algorithm."}}
+\DoxyCodeLine{138         \}}
+\DoxyCodeLine{139 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* LTC\_TEST\_EXT */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{140     \};}
+\DoxyCodeLine{141 }
+\DoxyCodeLine{142     \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keyword}{struct }hmac\_test\_case \{}
+\DoxyCodeLine{143         \textcolor{keyword}{const} \textcolor{keywordtype}{char} *num;}
+\DoxyCodeLine{144         \textcolor{keyword}{const} \textcolor{keywordtype}{char} *algo;}
+\DoxyCodeLine{145         \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *key;}
+\DoxyCodeLine{146         \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} keylen;}
+\DoxyCodeLine{147         \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *data;}
+\DoxyCodeLine{148         \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} datalen;}
+\DoxyCodeLine{149         \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} digest[\mbox{\hyperlink{tomcrypt_8h_ab59933beebb2b857c992b93cf53f0d10}{MAXBLOCKSIZE}}];}
+\DoxyCodeLine{150     \} cases[] = \{}
+\DoxyCodeLine{151         \textcolor{comment}{/*}}
+\DoxyCodeLine{152 \textcolor{comment}{        RFC 2202 3. Test Cases for HMAC-SHA-1}}
+\DoxyCodeLine{153 \textcolor{comment}{        */}}
+\DoxyCodeLine{154         \{ \textcolor{stringliteral}{"rfc2202 3.1"}, \textcolor{stringliteral}{"sha1"},}
+\DoxyCodeLine{155             hmac\_test\_case\_keys[0], 20,}
+\DoxyCodeLine{156             hmac\_test\_case\_data[0], 8,}
+\DoxyCodeLine{157             \{0xb6, 0x17, 0x31, 0x86, 0x55, 0x05, 0x72, 0x64,}
+\DoxyCodeLine{158              0xe2, 0x8b, 0xc0, 0xb6, 0xfb, 0x37, 0x8c, 0x8e,}
+\DoxyCodeLine{159              0xf1, 0x46, 0xbe, 0x00\} \},}
+\DoxyCodeLine{160 }
+\DoxyCodeLine{161 \textcolor{preprocessor}{\#ifdef LTC\_TEST\_EXT}}
+\DoxyCodeLine{162         \{ \textcolor{stringliteral}{"rfc2202 3.2"}, \textcolor{stringliteral}{"sha1"},}
+\DoxyCodeLine{163             hmac\_test\_case\_keys[1], 4,}
+\DoxyCodeLine{164             hmac\_test\_case\_data[1], 28,}
+\DoxyCodeLine{165             \{0xef, 0xfc, 0xdf, 0x6a, 0xe5, 0xeb, 0x2f, 0xa2,}
+\DoxyCodeLine{166              0xd2, 0x74, 0x16, 0xd5, 0xf1, 0x84, 0xdf, 0x9c,}
+\DoxyCodeLine{167              0x25, 0x9a, 0x7c, 0x79\} \},}
+\DoxyCodeLine{168 }
+\DoxyCodeLine{169         \{ \textcolor{stringliteral}{"rfc2202 3.3"}, \textcolor{stringliteral}{"sha1"},}
+\DoxyCodeLine{170             hmac\_test\_case\_keys[4], 20,}
+\DoxyCodeLine{171             hmac\_test\_case\_data[2], 50,}
+\DoxyCodeLine{172             \{0x12, 0x5d, 0x73, 0x42, 0xb9, 0xac, 0x11, 0xcd,}
+\DoxyCodeLine{173              0x91, 0xa3, 0x9a, 0xf4, 0x8a, 0xa1, 0x7b, 0x4f,}
+\DoxyCodeLine{174              0x63, 0xf1, 0x75, 0xd3\} \},}
+\DoxyCodeLine{175 }
+\DoxyCodeLine{176         \{ \textcolor{stringliteral}{"rfc2202 3.4"}, \textcolor{stringliteral}{"sha1"},}
+\DoxyCodeLine{177             hmac\_test\_case\_keys[2], 25,}
+\DoxyCodeLine{178             hmac\_test\_case\_data[3], 50,}
+\DoxyCodeLine{179             \{0x4c, 0x90, 0x07, 0xf4, 0x02, 0x62, 0x50, 0xc6,}
+\DoxyCodeLine{180              0xbc, 0x84, 0x14, 0xf9, 0xbf, 0x50, 0xc8, 0x6c,}
+\DoxyCodeLine{181              0x2d, 0x72, 0x35, 0xda\} \},}
+\DoxyCodeLine{182 }
+\DoxyCodeLine{183         \{ \textcolor{stringliteral}{"rfc2202 3.5"}, \textcolor{stringliteral}{"sha1"},}
+\DoxyCodeLine{184             hmac\_test\_case\_keys[3], 20,}
+\DoxyCodeLine{185             hmac\_test\_case\_data[4], 20,}
+\DoxyCodeLine{186             \{0x4c, 0x1a, 0x03, 0x42, 0x4b, 0x55, 0xe0, 0x7f, 0xe7, 0xf2,}
+\DoxyCodeLine{187              0x7b, 0xe1, 0xd5, 0x8b, 0xb9, 0x32, 0x4a, 0x9a, 0x5a, 0x04\} \},}
+\DoxyCodeLine{188 }
+\DoxyCodeLine{189         \{ \textcolor{stringliteral}{"rfc2202 3.6"}, \textcolor{stringliteral}{"sha1"},}
+\DoxyCodeLine{190             hmac\_test\_case\_keys[4], 80,}
+\DoxyCodeLine{191             hmac\_test\_case\_data[5], 54,}
+\DoxyCodeLine{192             \{0xaa, 0x4a, 0xe5, 0xe1, 0x52, 0x72, 0xd0, 0x0e,}
+\DoxyCodeLine{193              0x95, 0x70, 0x56, 0x37, 0xce, 0x8a, 0x3b, 0x55,}
+\DoxyCodeLine{194              0xed, 0x40, 0x21, 0x12\} \},}
+\DoxyCodeLine{195 }
+\DoxyCodeLine{196         \{ \textcolor{stringliteral}{"rfc2202 3.7"}, \textcolor{stringliteral}{"sha1"},}
+\DoxyCodeLine{197             hmac\_test\_case\_keys[4], 80,}
+\DoxyCodeLine{198            hmac\_test\_case\_data[6], 73,}
+\DoxyCodeLine{199             \{0xe8, 0xe9, 0x9d, 0x0f, 0x45, 0x23, 0x7d, 0x78, 0x6d,}
+\DoxyCodeLine{200              0x6b, 0xba, 0xa7, 0x96, 0x5c, 0x78, 0x08, 0xbb, 0xff, 0x1a, 0x91\} \},}
+\DoxyCodeLine{201 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* LTC\_TEST\_EXT */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{202 }
+\DoxyCodeLine{203         \textcolor{comment}{/*}}
+\DoxyCodeLine{204 \textcolor{comment}{        RFC 2202 2. Test Cases for HMAC-MD5}}
+\DoxyCodeLine{205 \textcolor{comment}{        */}}
+\DoxyCodeLine{206         \{ \textcolor{stringliteral}{"rfc2202 2.1"}, \textcolor{stringliteral}{"md5"},}
+\DoxyCodeLine{207             hmac\_test\_case\_keys[0], 16,}
+\DoxyCodeLine{208             hmac\_test\_case\_data[0], 8,}
+\DoxyCodeLine{209             \{0x92, 0x94, 0x72, 0x7a, 0x36, 0x38, 0xbb, 0x1c,}
+\DoxyCodeLine{210              0x13, 0xf4, 0x8e, 0xf8, 0x15, 0x8b, 0xfc, 0x9d\}  \},}
+\DoxyCodeLine{211 }
+\DoxyCodeLine{212 \textcolor{preprocessor}{\#ifdef LTC\_TEST\_EXT}}
+\DoxyCodeLine{213         \{ \textcolor{stringliteral}{"rfc2202 2.2"}, \textcolor{stringliteral}{"md5"},}
+\DoxyCodeLine{214             hmac\_test\_case\_keys[1], 4,}
+\DoxyCodeLine{215             hmac\_test\_case\_data[1], 28,}
+\DoxyCodeLine{216             \{0x75, 0x0c, 0x78, 0x3e, 0x6a, 0xb0, 0xb5, 0x03,}
+\DoxyCodeLine{217              0xea, 0xa8, 0x6e, 0x31, 0x0a, 0x5d, 0xb7, 0x38\} \},}
+\DoxyCodeLine{218 }
+\DoxyCodeLine{219         \{ \textcolor{stringliteral}{"rfc2202 2.3"}, \textcolor{stringliteral}{"md5"},}
+\DoxyCodeLine{220             hmac\_test\_case\_keys[4], 16,}
+\DoxyCodeLine{221             hmac\_test\_case\_data[2], 50,}
+\DoxyCodeLine{222             \{0x56, 0xbe, 0x34, 0x52, 0x1d, 0x14, 0x4c, 0x88,}
+\DoxyCodeLine{223              0xdb, 0xb8, 0xc7, 0x33, 0xf0, 0xe8, 0xb3, 0xf6\} \},}
+\DoxyCodeLine{224 }
+\DoxyCodeLine{225         \{ \textcolor{stringliteral}{"rfc2202 2.4"}, \textcolor{stringliteral}{"md5"},}
+\DoxyCodeLine{226             hmac\_test\_case\_keys[2], 25,}
+\DoxyCodeLine{227             hmac\_test\_case\_data[3], 50,}
+\DoxyCodeLine{228             \{0x69, 0x7e, 0xaf, 0x0a, 0xca, 0x3a, 0x3a, 0xea,}
+\DoxyCodeLine{229              0x3a, 0x75, 0x16, 0x47, 0x46, 0xff, 0xaa, 0x79\} \},}
+\DoxyCodeLine{230 }
+\DoxyCodeLine{231         \{ \textcolor{stringliteral}{"rfc2202 2.5"}, \textcolor{stringliteral}{"md5"},}
+\DoxyCodeLine{232             hmac\_test\_case\_keys[3], 16,}
+\DoxyCodeLine{233             hmac\_test\_case\_data[4], 20,}
+\DoxyCodeLine{234             \{0x56, 0x46, 0x1e, 0xf2, 0x34, 0x2e, 0xdc, 0x00,}
+\DoxyCodeLine{235              0xf9, 0xba, 0xb9, 0x95, 0x69, 0x0e, 0xfd, 0x4c\} \},}
+\DoxyCodeLine{236 }
+\DoxyCodeLine{237         \{ \textcolor{stringliteral}{"rfc2202 2.6"}, \textcolor{stringliteral}{"md5"},}
+\DoxyCodeLine{238             hmac\_test\_case\_keys[4], 80,}
+\DoxyCodeLine{239             hmac\_test\_case\_data[5], 54,}
+\DoxyCodeLine{240             \{0x6b, 0x1a, 0xb7, 0xfe, 0x4b, 0xd7, 0xbf, 0x8f,}
+\DoxyCodeLine{241              0x0b, 0x62, 0xe6, 0xce, 0x61, 0xb9, 0xd0, 0xcd\} \},}
+\DoxyCodeLine{242 }
+\DoxyCodeLine{243         \{ \textcolor{stringliteral}{"rfc2202 2.7"}, \textcolor{stringliteral}{"md5"},}
+\DoxyCodeLine{244             hmac\_test\_case\_keys[4], 80,}
+\DoxyCodeLine{245            hmac\_test\_case\_data[6], 73,}
+\DoxyCodeLine{246             \{0x6f, 0x63, 0x0f, 0xad, 0x67, 0xcd, 0xa0, 0xee,}
+\DoxyCodeLine{247              0x1f, 0xb1, 0xf5, 0x62, 0xdb, 0x3a, 0xa5, 0x3e\} \},}
+\DoxyCodeLine{248 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* LTC\_TEST\_EXT */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{249 }
+\DoxyCodeLine{250         \textcolor{comment}{/*}}
+\DoxyCodeLine{251 \textcolor{comment}{        RFC 2286 2. Test Cases for HMAC-RIPEMD160}}
+\DoxyCodeLine{252 \textcolor{comment}{        */}}
+\DoxyCodeLine{253         \{ \textcolor{stringliteral}{"rfc2286 2.1"}, \textcolor{stringliteral}{"rmd160"},}
+\DoxyCodeLine{254             hmac\_test\_case\_keys[0], 20,}
+\DoxyCodeLine{255             hmac\_test\_case\_data[0], 8,}
+\DoxyCodeLine{256             \{0x24, 0xcb, 0x4b, 0xd6, 0x7d, 0x20, 0xfc, 0x1a,}
+\DoxyCodeLine{257              0x5d, 0x2e, 0xd7, 0x73, 0x2d, 0xcc, 0x39, 0x37,}
+\DoxyCodeLine{258              0x7f, 0x0a, 0x56, 0x68\} \},}
+\DoxyCodeLine{259 }
+\DoxyCodeLine{260 \textcolor{preprocessor}{\#ifdef LTC\_TEST\_EXT}}
+\DoxyCodeLine{261         \{ \textcolor{stringliteral}{"rfc2286 2.2"}, \textcolor{stringliteral}{"rmd160"},}
+\DoxyCodeLine{262             hmac\_test\_case\_keys[1], 4,}
+\DoxyCodeLine{263             hmac\_test\_case\_data[1], 28,}
+\DoxyCodeLine{264             \{0xdd, 0xa6, 0xc0, 0x21, 0x3a, 0x48, 0x5a, 0x9e,}
+\DoxyCodeLine{265              0x24, 0xf4, 0x74, 0x20, 0x64, 0xa7, 0xf0, 0x33,}
+\DoxyCodeLine{266              0xb4, 0x3c, 0x40, 0x69\} \},}
+\DoxyCodeLine{267 }
+\DoxyCodeLine{268         \{ \textcolor{stringliteral}{"rfc2286 2.3"}, \textcolor{stringliteral}{"rmd160"},}
+\DoxyCodeLine{269             hmac\_test\_case\_keys[4], 20,}
+\DoxyCodeLine{270             hmac\_test\_case\_data[2], 50,}
+\DoxyCodeLine{271             \{0xb0, 0xb1, 0x05, 0x36, 0x0d, 0xe7, 0x59, 0x96,}
+\DoxyCodeLine{272              0x0a, 0xb4, 0xf3, 0x52, 0x98, 0xe1, 0x16, 0xe2,}
+\DoxyCodeLine{273              0x95, 0xd8, 0xe7, 0xc1\} \},}
+\DoxyCodeLine{274 }
+\DoxyCodeLine{275         \{ \textcolor{stringliteral}{"rfc2286 2.4"}, \textcolor{stringliteral}{"rmd160"},}
+\DoxyCodeLine{276             hmac\_test\_case\_keys[2], 25,}
+\DoxyCodeLine{277             hmac\_test\_case\_data[3], 50,}
+\DoxyCodeLine{278             \{0xd5, 0xca, 0x86, 0x2f, 0x4d, 0x21, 0xd5, 0xe6,}
+\DoxyCodeLine{279              0x10, 0xe1, 0x8b, 0x4c, 0xf1, 0xbe, 0xb9, 0x7a,}
+\DoxyCodeLine{280              0x43, 0x65, 0xec, 0xf4\} \},}
+\DoxyCodeLine{281 }
+\DoxyCodeLine{282         \{ \textcolor{stringliteral}{"rfc2286 2.5"}, \textcolor{stringliteral}{"rmd160"},}
+\DoxyCodeLine{283             hmac\_test\_case\_keys[3], 20,}
+\DoxyCodeLine{284             hmac\_test\_case\_data[4], 20,}
+\DoxyCodeLine{285             \{0x76, 0x19, 0x69, 0x39, 0x78, 0xf9, 0x1d, 0x90,}
+\DoxyCodeLine{286              0x53, 0x9a, 0xe7, 0x86, 0x50, 0x0f, 0xf3, 0xd8,}
+\DoxyCodeLine{287              0xe0, 0x51, 0x8e, 0x39\} \},}
+\DoxyCodeLine{288 }
+\DoxyCodeLine{289         \{ \textcolor{stringliteral}{"rfc2286 2.6"}, \textcolor{stringliteral}{"rmd160"},}
+\DoxyCodeLine{290             hmac\_test\_case\_keys[4], 80,}
+\DoxyCodeLine{291             hmac\_test\_case\_data[5], 54,}
+\DoxyCodeLine{292             \{0x64, 0x66, 0xca, 0x07, 0xac, 0x5e, 0xac, 0x29,}
+\DoxyCodeLine{293              0xe1, 0xbd, 0x52, 0x3e, 0x5a, 0xda, 0x76, 0x05,}
+\DoxyCodeLine{294              0xb7, 0x91, 0xfd, 0x8b\} \},}
+\DoxyCodeLine{295 }
+\DoxyCodeLine{296         \{ \textcolor{stringliteral}{"rfc2286 2.7"}, \textcolor{stringliteral}{"rmd160"},}
+\DoxyCodeLine{297             hmac\_test\_case\_keys[4], 80,}
+\DoxyCodeLine{298             hmac\_test\_case\_data[6], 73,}
+\DoxyCodeLine{299             \{0x69, 0xea, 0x60, 0x79, 0x8d, 0x71, 0x61, 0x6c,}
+\DoxyCodeLine{300              0xce, 0x5f, 0xd0, 0x87, 0x1e, 0x23, 0x75, 0x4c,}
+\DoxyCodeLine{301              0xd7, 0x5d, 0x5a, 0x0a\} \},}
+\DoxyCodeLine{302 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* LTC\_TEST\_EXT */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{303 }
+\DoxyCodeLine{304         \textcolor{comment}{/*}}
+\DoxyCodeLine{305 \textcolor{comment}{        RFC 2286 3. Test Cases for HMAC-RIPEMD128}}
+\DoxyCodeLine{306 \textcolor{comment}{        */}}
+\DoxyCodeLine{307         \{ \textcolor{stringliteral}{"rfc2286 3.1"}, \textcolor{stringliteral}{"rmd128"},}
+\DoxyCodeLine{308             hmac\_test\_case\_keys[0], 16,}
+\DoxyCodeLine{309             hmac\_test\_case\_data[0], 8,}
+\DoxyCodeLine{310             \{0xfb, 0xf6, 0x1f, 0x94, 0x92, 0xaa, 0x4b, 0xbf,}
+\DoxyCodeLine{311              0x81, 0xc1, 0x72, 0xe8, 0x4e, 0x07, 0x34, 0xdb\} \},}
+\DoxyCodeLine{312 }
+\DoxyCodeLine{313 \textcolor{preprocessor}{\#ifdef LTC\_TEST\_EXT}}
+\DoxyCodeLine{314         \{ \textcolor{stringliteral}{"rfc2286 3.2"}, \textcolor{stringliteral}{"rmd128"},}
+\DoxyCodeLine{315             hmac\_test\_case\_keys[1], 4,}
+\DoxyCodeLine{316             hmac\_test\_case\_data[1], 28,}
+\DoxyCodeLine{317             \{0x87, 0x5f, 0x82, 0x88, 0x62, 0xb6, 0xb3, 0x34,}
+\DoxyCodeLine{318              0xb4, 0x27, 0xc5, 0x5f, 0x9f, 0x7f, 0xf0, 0x9b\} \},}
+\DoxyCodeLine{319 }
+\DoxyCodeLine{320         \{ \textcolor{stringliteral}{"rfc2286 3.3"}, \textcolor{stringliteral}{"rmd128"},}
+\DoxyCodeLine{321             hmac\_test\_case\_keys[4], 16,}
+\DoxyCodeLine{322             hmac\_test\_case\_data[2], 50,}
+\DoxyCodeLine{323             \{0x09, 0xf0, 0xb2, 0x84, 0x6d, 0x2f, 0x54, 0x3d,}
+\DoxyCodeLine{324              0xa3, 0x63, 0xcb, 0xec, 0x8d, 0x62, 0xa3, 0x8d\} \},}
+\DoxyCodeLine{325 }
+\DoxyCodeLine{326         \{ \textcolor{stringliteral}{"rfc2286 3.4"}, \textcolor{stringliteral}{"rmd128"},}
+\DoxyCodeLine{327             hmac\_test\_case\_keys[2], 25,}
+\DoxyCodeLine{328             hmac\_test\_case\_data[3], 50,}
+\DoxyCodeLine{329             \{0xbd, 0xbb, 0xd7, 0xcf, 0x03, 0xe4, 0x4b, 0x5a,}
+\DoxyCodeLine{330              0xa6, 0x0a, 0xf8, 0x15, 0xbe, 0x4d, 0x22, 0x94\} \},}
+\DoxyCodeLine{331 }
+\DoxyCodeLine{332         \{ \textcolor{stringliteral}{"rfc2286 3.5"}, \textcolor{stringliteral}{"rmd128"},}
+\DoxyCodeLine{333             hmac\_test\_case\_keys[3], 16,}
+\DoxyCodeLine{334             hmac\_test\_case\_data[4], 20,}
+\DoxyCodeLine{335             \{0xe7, 0x98, 0x08, 0xf2, 0x4b, 0x25, 0xfd, 0x03,}
+\DoxyCodeLine{336              0x1c, 0x15, 0x5f, 0x0d, 0x55, 0x1d, 0x9a, 0x3a\} \},}
+\DoxyCodeLine{337 }
+\DoxyCodeLine{338         \{ \textcolor{stringliteral}{"rfc2286 3.6"}, \textcolor{stringliteral}{"rmd128"},}
+\DoxyCodeLine{339             hmac\_test\_case\_keys[4], 80,}
+\DoxyCodeLine{340             hmac\_test\_case\_data[5], 54,}
+\DoxyCodeLine{341             \{0xdc, 0x73, 0x29, 0x28, 0xde, 0x98, 0x10, 0x4a,}
+\DoxyCodeLine{342              0x1f, 0x59, 0xd3, 0x73, 0xc1, 0x50, 0xac, 0xbb\} \},}
+\DoxyCodeLine{343 }
+\DoxyCodeLine{344         \{ \textcolor{stringliteral}{"rfc2286 3.7"}, \textcolor{stringliteral}{"rmd128"},}
+\DoxyCodeLine{345             hmac\_test\_case\_keys[4], 80,}
+\DoxyCodeLine{346             hmac\_test\_case\_data[6], 73,}
+\DoxyCodeLine{347             \{0x5c, 0x6b, 0xec, 0x96, 0x79, 0x3e, 0x16, 0xd4,}
+\DoxyCodeLine{348              0x06, 0x90, 0xc2, 0x37, 0x63, 0x5f, 0x30, 0xc5\} \},}
+\DoxyCodeLine{349 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* LTC\_TEST\_EXT */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{350 }
+\DoxyCodeLine{351         \textcolor{comment}{/*}}
+\DoxyCodeLine{352 \textcolor{comment}{        RFC 4231 4. Test Vectors}}
+\DoxyCodeLine{353 \textcolor{comment}{        Ch. 4.6 with truncated output left out to simplify tests}}
+\DoxyCodeLine{354 \textcolor{comment}{        */}}
+\DoxyCodeLine{355         \{ \textcolor{stringliteral}{"rfc4231 4.2"}, \textcolor{stringliteral}{"sha224"},}
+\DoxyCodeLine{356             hmac\_test\_case\_keys[0], 20,}
+\DoxyCodeLine{357             hmac\_test\_case\_data[0], 8,}
+\DoxyCodeLine{358             \{0x89, 0x6f, 0xb1, 0x12, 0x8a, 0xbb, 0xdf, 0x19,}
+\DoxyCodeLine{359              0x68, 0x32, 0x10, 0x7c, 0xd4, 0x9d, 0xf3, 0x3f,}
+\DoxyCodeLine{360              0x47, 0xb4, 0xb1, 0x16, 0x99, 0x12, 0xba, 0x4f,}
+\DoxyCodeLine{361              0x53, 0x68, 0x4b, 0x22\} \},}
+\DoxyCodeLine{362 }
+\DoxyCodeLine{363 \textcolor{preprocessor}{\#ifdef LTC\_TEST\_EXT}}
+\DoxyCodeLine{364         \{ \textcolor{stringliteral}{"rfc4231 4.3"}, \textcolor{stringliteral}{"sha224"},}
+\DoxyCodeLine{365             hmac\_test\_case\_keys[1], 4,}
+\DoxyCodeLine{366             hmac\_test\_case\_data[1], 28,}
+\DoxyCodeLine{367             \{0xa3, 0x0e, 0x01, 0x09, 0x8b, 0xc6, 0xdb, 0xbf,}
+\DoxyCodeLine{368              0x45, 0x69, 0x0f, 0x3a, 0x7e, 0x9e, 0x6d, 0x0f,}
+\DoxyCodeLine{369              0x8b, 0xbe, 0xa2, 0xa3, 0x9e, 0x61, 0x48, 0x00,}
+\DoxyCodeLine{370              0x8f, 0xd0, 0x5e, 0x44\} \},}
+\DoxyCodeLine{371 }
+\DoxyCodeLine{372         \{ \textcolor{stringliteral}{"rfc4231 4.4"}, \textcolor{stringliteral}{"sha224"},}
+\DoxyCodeLine{373             hmac\_test\_case\_keys[4], 20,}
+\DoxyCodeLine{374             hmac\_test\_case\_data[2], 50,}
+\DoxyCodeLine{375             \{0x7f, 0xb3, 0xcb, 0x35, 0x88, 0xc6, 0xc1, 0xf6,}
+\DoxyCodeLine{376              0xff, 0xa9, 0x69, 0x4d, 0x7d, 0x6a, 0xd2, 0x64,}
+\DoxyCodeLine{377              0x93, 0x65, 0xb0, 0xc1, 0xf6, 0x5d, 0x69, 0xd1,}
+\DoxyCodeLine{378              0xec, 0x83, 0x33, 0xea\} \},}
+\DoxyCodeLine{379 }
+\DoxyCodeLine{380         \{ \textcolor{stringliteral}{"rfc4231 4.5"}, \textcolor{stringliteral}{"sha224"},}
+\DoxyCodeLine{381             hmac\_test\_case\_keys[2], 25,}
+\DoxyCodeLine{382             hmac\_test\_case\_data[3], 50,}
+\DoxyCodeLine{383             \{0x6c, 0x11, 0x50, 0x68, 0x74, 0x01, 0x3c, 0xac,}
+\DoxyCodeLine{384              0x6a, 0x2a, 0xbc, 0x1b, 0xb3, 0x82, 0x62, 0x7c,}
+\DoxyCodeLine{385              0xec, 0x6a, 0x90, 0xd8, 0x6e, 0xfc, 0x01, 0x2d,}
+\DoxyCodeLine{386              0xe7, 0xaf, 0xec, 0x5a\} \},}
+\DoxyCodeLine{387 }
+\DoxyCodeLine{388         \{ \textcolor{stringliteral}{"rfc4231 4.7"}, \textcolor{stringliteral}{"sha224"},}
+\DoxyCodeLine{389             hmac\_test\_case\_keys[4], 131,}
+\DoxyCodeLine{390             hmac\_test\_case\_data[5], 54,}
+\DoxyCodeLine{391             \{0x95, 0xe9, 0xa0, 0xdb, 0x96, 0x20, 0x95, 0xad,}
+\DoxyCodeLine{392              0xae, 0xbe, 0x9b, 0x2d, 0x6f, 0x0d, 0xbc, 0xe2,}
+\DoxyCodeLine{393              0xd4, 0x99, 0xf1, 0x12, 0xf2, 0xd2, 0xb7, 0x27,}
+\DoxyCodeLine{394              0x3f, 0xa6, 0x87, 0x0e\} \},}
+\DoxyCodeLine{395 }
+\DoxyCodeLine{396         \{ \textcolor{stringliteral}{"rfc4231 4.8"}, \textcolor{stringliteral}{"sha224"},}
+\DoxyCodeLine{397             hmac\_test\_case\_keys[4], 131,}
+\DoxyCodeLine{398             hmac\_test\_case\_data[7], 152,}
+\DoxyCodeLine{399             \{0x3a, 0x85, 0x41, 0x66, 0xac, 0x5d, 0x9f, 0x02,}
+\DoxyCodeLine{400              0x3f, 0x54, 0xd5, 0x17, 0xd0, 0xb3, 0x9d, 0xbd,}
+\DoxyCodeLine{401              0x94, 0x67, 0x70, 0xdb, 0x9c, 0x2b, 0x95, 0xc9,}
+\DoxyCodeLine{402              0xf6, 0xf5, 0x65, 0xd1\} \},}
+\DoxyCodeLine{403 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* LTC\_TEST\_EXT */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{404 }
+\DoxyCodeLine{405         \{ \textcolor{stringliteral}{"rfc4231 4.2"}, \textcolor{stringliteral}{"sha256"},}
+\DoxyCodeLine{406             hmac\_test\_case\_keys[0], 20,}
+\DoxyCodeLine{407             hmac\_test\_case\_data[0], 8,}
+\DoxyCodeLine{408             \{0xb0, 0x34, 0x4c, 0x61, 0xd8, 0xdb, 0x38, 0x53,}
+\DoxyCodeLine{409              0x5c, 0xa8, 0xaf, 0xce, 0xaf, 0x0b, 0xf1, 0x2b,}
+\DoxyCodeLine{410              0x88, 0x1d, 0xc2, 0x00, 0xc9, 0x83, 0x3d, 0xa7,}
+\DoxyCodeLine{411              0x26, 0xe9, 0x37, 0x6c, 0x2e, 0x32, 0xcf, 0xf7\} \},}
+\DoxyCodeLine{412 }
+\DoxyCodeLine{413 \textcolor{preprocessor}{\#ifdef LTC\_TEST\_EXT}}
+\DoxyCodeLine{414         \{ \textcolor{stringliteral}{"rfc4231 4.3"}, \textcolor{stringliteral}{"sha256"},}
+\DoxyCodeLine{415             hmac\_test\_case\_keys[1], 4,}
+\DoxyCodeLine{416             hmac\_test\_case\_data[1], 28,}
+\DoxyCodeLine{417             \{0x5b, 0xdc, 0xc1, 0x46, 0xbf, 0x60, 0x75, 0x4e,}
+\DoxyCodeLine{418              0x6a, 0x04, 0x24, 0x26, 0x08, 0x95, 0x75, 0xc7,}
+\DoxyCodeLine{419              0x5a, 0x00, 0x3f, 0x08, 0x9d, 0x27, 0x39, 0x83,}
+\DoxyCodeLine{420              0x9d, 0xec, 0x58, 0xb9, 0x64, 0xec, 0x38, 0x43\} \},}
+\DoxyCodeLine{421 }
+\DoxyCodeLine{422         \{ \textcolor{stringliteral}{"rfc4231 4.4"}, \textcolor{stringliteral}{"sha256"},}
+\DoxyCodeLine{423             hmac\_test\_case\_keys[4], 20,}
+\DoxyCodeLine{424             hmac\_test\_case\_data[2], 50,}
+\DoxyCodeLine{425             \{0x77, 0x3e, 0xa9, 0x1e, 0x36, 0x80, 0x0e, 0x46,}
+\DoxyCodeLine{426              0x85, 0x4d, 0xb8, 0xeb, 0xd0, 0x91, 0x81, 0xa7,}
+\DoxyCodeLine{427              0x29, 0x59, 0x09, 0x8b, 0x3e, 0xf8, 0xc1, 0x22,}
+\DoxyCodeLine{428              0xd9, 0x63, 0x55, 0x14, 0xce, 0xd5, 0x65, 0xfe\} \},}
+\DoxyCodeLine{429 }
+\DoxyCodeLine{430         \{ \textcolor{stringliteral}{"rfc4231 4.5"}, \textcolor{stringliteral}{"sha256"},}
+\DoxyCodeLine{431             hmac\_test\_case\_keys[2], 25,}
+\DoxyCodeLine{432             hmac\_test\_case\_data[3], 50,}
+\DoxyCodeLine{433             \{0x82, 0x55, 0x8a, 0x38, 0x9a, 0x44, 0x3c, 0x0e,}
+\DoxyCodeLine{434              0xa4, 0xcc, 0x81, 0x98, 0x99, 0xf2, 0x08, 0x3a,}
+\DoxyCodeLine{435              0x85, 0xf0, 0xfa, 0xa3, 0xe5, 0x78, 0xf8, 0x07,}
+\DoxyCodeLine{436              0x7a, 0x2e, 0x3f, 0xf4, 0x67, 0x29, 0x66, 0x5b\} \},}
+\DoxyCodeLine{437 }
+\DoxyCodeLine{438         \{ \textcolor{stringliteral}{"rfc4231 4.7"}, \textcolor{stringliteral}{"sha256"},}
+\DoxyCodeLine{439             hmac\_test\_case\_keys[4], 131,}
+\DoxyCodeLine{440             hmac\_test\_case\_data[5], 54,}
+\DoxyCodeLine{441             \{0x60, 0xe4, 0x31, 0x59, 0x1e, 0xe0, 0xb6, 0x7f,}
+\DoxyCodeLine{442              0x0d, 0x8a, 0x26, 0xaa, 0xcb, 0xf5, 0xb7, 0x7f,}
+\DoxyCodeLine{443              0x8e, 0x0b, 0xc6, 0x21, 0x37, 0x28, 0xc5, 0x14,}
+\DoxyCodeLine{444              0x05, 0x46, 0x04, 0x0f, 0x0e, 0xe3, 0x7f, 0x54\} \},}
+\DoxyCodeLine{445 }
+\DoxyCodeLine{446         \{ \textcolor{stringliteral}{"rfc4231 4.8"}, \textcolor{stringliteral}{"sha256"},}
+\DoxyCodeLine{447             hmac\_test\_case\_keys[4], 131,}
+\DoxyCodeLine{448             hmac\_test\_case\_data[7], 152,}
+\DoxyCodeLine{449             \{0x9b, 0x09, 0xff, 0xa7, 0x1b, 0x94, 0x2f, 0xcb,}
+\DoxyCodeLine{450              0x27, 0x63, 0x5f, 0xbc, 0xd5, 0xb0, 0xe9, 0x44,}
+\DoxyCodeLine{451              0xbf, 0xdc, 0x63, 0x64, 0x4f, 0x07, 0x13, 0x93,}
+\DoxyCodeLine{452              0x8a, 0x7f, 0x51, 0x53, 0x5c, 0x3a, 0x35, 0xe2\} \},}
+\DoxyCodeLine{453 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* LTC\_TEST\_EXT */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{454 }
+\DoxyCodeLine{455         \{ \textcolor{stringliteral}{"rfc4231 4.2"}, \textcolor{stringliteral}{"sha384"},}
+\DoxyCodeLine{456             hmac\_test\_case\_keys[0], 20,}
+\DoxyCodeLine{457             hmac\_test\_case\_data[0], 8,}
+\DoxyCodeLine{458             \{0xaf, 0xd0, 0x39, 0x44, 0xd8, 0x48, 0x95, 0x62,}
+\DoxyCodeLine{459              0x6b, 0x08, 0x25, 0xf4, 0xab, 0x46, 0x90, 0x7f,}
+\DoxyCodeLine{460              0x15, 0xf9, 0xda, 0xdb, 0xe4, 0x10, 0x1e, 0xc6,}
+\DoxyCodeLine{461              0x82, 0xaa, 0x03, 0x4c, 0x7c, 0xeb, 0xc5, 0x9c,}
+\DoxyCodeLine{462              0xfa, 0xea, 0x9e, 0xa9, 0x07, 0x6e, 0xde, 0x7f,}
+\DoxyCodeLine{463              0x4a, 0xf1, 0x52, 0xe8, 0xb2, 0xfa, 0x9c, 0xb6\} \},}
+\DoxyCodeLine{464 }
+\DoxyCodeLine{465 \textcolor{preprocessor}{\#ifdef LTC\_TEST\_EXT}}
+\DoxyCodeLine{466         \{ \textcolor{stringliteral}{"rfc4231 4.3"}, \textcolor{stringliteral}{"sha384"},}
+\DoxyCodeLine{467             hmac\_test\_case\_keys[1], 4,}
+\DoxyCodeLine{468             hmac\_test\_case\_data[1], 28,}
+\DoxyCodeLine{469             \{0xaf, 0x45, 0xd2, 0xe3, 0x76, 0x48, 0x40, 0x31,}
+\DoxyCodeLine{470              0x61, 0x7f, 0x78, 0xd2, 0xb5, 0x8a, 0x6b, 0x1b,}
+\DoxyCodeLine{471              0x9c, 0x7e, 0xf4, 0x64, 0xf5, 0xa0, 0x1b, 0x47,}
+\DoxyCodeLine{472              0xe4, 0x2e, 0xc3, 0x73, 0x63, 0x22, 0x44, 0x5e,}
+\DoxyCodeLine{473              0x8e, 0x22, 0x40, 0xca, 0x5e, 0x69, 0xe2, 0xc7,}
+\DoxyCodeLine{474              0x8b, 0x32, 0x39, 0xec, 0xfa, 0xb2, 0x16, 0x49\} \},}
+\DoxyCodeLine{475 }
+\DoxyCodeLine{476         \{ \textcolor{stringliteral}{"rfc4231 4.4"}, \textcolor{stringliteral}{"sha384"},}
+\DoxyCodeLine{477             hmac\_test\_case\_keys[4], 20,}
+\DoxyCodeLine{478             hmac\_test\_case\_data[2], 50,}
+\DoxyCodeLine{479             \{0x88, 0x06, 0x26, 0x08, 0xd3, 0xe6, 0xad, 0x8a,}
+\DoxyCodeLine{480              0x0a, 0xa2, 0xac, 0xe0, 0x14, 0xc8, 0xa8, 0x6f,}
+\DoxyCodeLine{481              0x0a, 0xa6, 0x35, 0xd9, 0x47, 0xac, 0x9f, 0xeb,}
+\DoxyCodeLine{482              0xe8, 0x3e, 0xf4, 0xe5, 0x59, 0x66, 0x14, 0x4b,}
+\DoxyCodeLine{483              0x2a, 0x5a, 0xb3, 0x9d, 0xc1, 0x38, 0x14, 0xb9,}
+\DoxyCodeLine{484              0x4e, 0x3a, 0xb6, 0xe1, 0x01, 0xa3, 0x4f, 0x27\} \},}
+\DoxyCodeLine{485 }
+\DoxyCodeLine{486         \{ \textcolor{stringliteral}{"rfc4231 4.5"}, \textcolor{stringliteral}{"sha384"},}
+\DoxyCodeLine{487             hmac\_test\_case\_keys[2], 25,}
+\DoxyCodeLine{488             hmac\_test\_case\_data[3], 50,}
+\DoxyCodeLine{489             \{0x3e, 0x8a, 0x69, 0xb7, 0x78, 0x3c, 0x25, 0x85,}
+\DoxyCodeLine{490              0x19, 0x33, 0xab, 0x62, 0x90, 0xaf, 0x6c, 0xa7,}
+\DoxyCodeLine{491              0x7a, 0x99, 0x81, 0x48, 0x08, 0x50, 0x00, 0x9c,}
+\DoxyCodeLine{492              0xc5, 0x57, 0x7c, 0x6e, 0x1f, 0x57, 0x3b, 0x4e,}
+\DoxyCodeLine{493              0x68, 0x01, 0xdd, 0x23, 0xc4, 0xa7, 0xd6, 0x79,}
+\DoxyCodeLine{494              0xcc, 0xf8, 0xa3, 0x86, 0xc6, 0x74, 0xcf, 0xfb\} \},}
+\DoxyCodeLine{495 }
+\DoxyCodeLine{496         \{ \textcolor{stringliteral}{"rfc4231 4.7"}, \textcolor{stringliteral}{"sha384"},}
+\DoxyCodeLine{497             hmac\_test\_case\_keys[4], 131,}
+\DoxyCodeLine{498             hmac\_test\_case\_data[5], 54,}
+\DoxyCodeLine{499             \{0x4e, 0xce, 0x08, 0x44, 0x85, 0x81, 0x3e, 0x90,}
+\DoxyCodeLine{500              0x88, 0xd2, 0xc6, 0x3a, 0x04, 0x1b, 0xc5, 0xb4,}
+\DoxyCodeLine{501              0x4f, 0x9e, 0xf1, 0x01, 0x2a, 0x2b, 0x58, 0x8f,}
+\DoxyCodeLine{502              0x3c, 0xd1, 0x1f, 0x05, 0x03, 0x3a, 0xc4, 0xc6,}
+\DoxyCodeLine{503              0x0c, 0x2e, 0xf6, 0xab, 0x40, 0x30, 0xfe, 0x82,}
+\DoxyCodeLine{504              0x96, 0x24, 0x8d, 0xf1, 0x63, 0xf4, 0x49, 0x52\} \},}
+\DoxyCodeLine{505 }
+\DoxyCodeLine{506         \{ \textcolor{stringliteral}{"rfc4231 4.8"}, \textcolor{stringliteral}{"sha384"},}
+\DoxyCodeLine{507             hmac\_test\_case\_keys[4], 131,}
+\DoxyCodeLine{508             hmac\_test\_case\_data[7], 152,}
+\DoxyCodeLine{509             \{0x66, 0x17, 0x17, 0x8e, 0x94, 0x1f, 0x02, 0x0d,}
+\DoxyCodeLine{510              0x35, 0x1e, 0x2f, 0x25, 0x4e, 0x8f, 0xd3, 0x2c,}
+\DoxyCodeLine{511              0x60, 0x24, 0x20, 0xfe, 0xb0, 0xb8, 0xfb, 0x9a,}
+\DoxyCodeLine{512              0xdc, 0xce, 0xbb, 0x82, 0x46, 0x1e, 0x99, 0xc5,}
+\DoxyCodeLine{513              0xa6, 0x78, 0xcc, 0x31, 0xe7, 0x99, 0x17, 0x6d,}
+\DoxyCodeLine{514              0x38, 0x60, 0xe6, 0x11, 0x0c, 0x46, 0x52, 0x3e\} \},}
+\DoxyCodeLine{515 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* LTC\_TEST\_EXT */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{516 }
+\DoxyCodeLine{517         \{ \textcolor{stringliteral}{"rfc4231 4.2"}, \textcolor{stringliteral}{"sha512"},}
+\DoxyCodeLine{518             hmac\_test\_case\_keys[0], 20,}
+\DoxyCodeLine{519             hmac\_test\_case\_data[0], 8,}
+\DoxyCodeLine{520             \{0x87, 0xaa, 0x7c, 0xde, 0xa5, 0xef, 0x61, 0x9d,}
+\DoxyCodeLine{521              0x4f, 0xf0, 0xb4, 0x24, 0x1a, 0x1d, 0x6c, 0xb0,}
+\DoxyCodeLine{522              0x23, 0x79, 0xf4, 0xe2, 0xce, 0x4e, 0xc2, 0x78,}
+\DoxyCodeLine{523              0x7a, 0xd0, 0xb3, 0x05, 0x45, 0xe1, 0x7c, 0xde,}
+\DoxyCodeLine{524              0xda, 0xa8, 0x33, 0xb7, 0xd6, 0xb8, 0xa7, 0x02,}
+\DoxyCodeLine{525              0x03, 0x8b, 0x27, 0x4e, 0xae, 0xa3, 0xf4, 0xe4,}
+\DoxyCodeLine{526              0xbe, 0x9d, 0x91, 0x4e, 0xeb, 0x61, 0xf1, 0x70,}
+\DoxyCodeLine{527              0x2e, 0x69, 0x6c, 0x20, 0x3a, 0x12, 0x68, 0x54\} \},}
+\DoxyCodeLine{528 }
+\DoxyCodeLine{529 \textcolor{preprocessor}{\#ifdef LTC\_TEST\_EXT}}
+\DoxyCodeLine{530         \{ \textcolor{stringliteral}{"rfc4231 4.3"}, \textcolor{stringliteral}{"sha512"},}
+\DoxyCodeLine{531             hmac\_test\_case\_keys[1], 4,}
+\DoxyCodeLine{532             hmac\_test\_case\_data[1], 28,}
+\DoxyCodeLine{533             \{0x16, 0x4b, 0x7a, 0x7b, 0xfc, 0xf8, 0x19, 0xe2,}
+\DoxyCodeLine{534              0xe3, 0x95, 0xfb, 0xe7, 0x3b, 0x56, 0xe0, 0xa3,}
+\DoxyCodeLine{535              0x87, 0xbd, 0x64, 0x22, 0x2e, 0x83, 0x1f, 0xd6,}
+\DoxyCodeLine{536              0x10, 0x27, 0x0c, 0xd7, 0xea, 0x25, 0x05, 0x54,}
+\DoxyCodeLine{537              0x97, 0x58, 0xbf, 0x75, 0xc0, 0x5a, 0x99, 0x4a,}
+\DoxyCodeLine{538              0x6d, 0x03, 0x4f, 0x65, 0xf8, 0xf0, 0xe6, 0xfd,}
+\DoxyCodeLine{539              0xca, 0xea, 0xb1, 0xa3, 0x4d, 0x4a, 0x6b, 0x4b,}
+\DoxyCodeLine{540              0x63, 0x6e, 0x07, 0x0a, 0x38, 0xbc, 0xe7, 0x37\} \},}
+\DoxyCodeLine{541 }
+\DoxyCodeLine{542         \{ \textcolor{stringliteral}{"rfc4231 4.4"}, \textcolor{stringliteral}{"sha512"},}
+\DoxyCodeLine{543             hmac\_test\_case\_keys[4], 20,}
+\DoxyCodeLine{544             hmac\_test\_case\_data[2], 50,}
+\DoxyCodeLine{545             \{0xfa, 0x73, 0xb0, 0x08, 0x9d, 0x56, 0xa2, 0x84,}
+\DoxyCodeLine{546              0xef, 0xb0, 0xf0, 0x75, 0x6c, 0x89, 0x0b, 0xe9,}
+\DoxyCodeLine{547              0xb1, 0xb5, 0xdb, 0xdd, 0x8e, 0xe8, 0x1a, 0x36,}
+\DoxyCodeLine{548              0x55, 0xf8, 0x3e, 0x33, 0xb2, 0x27, 0x9d, 0x39,}
+\DoxyCodeLine{549              0xbf, 0x3e, 0x84, 0x82, 0x79, 0xa7, 0x22, 0xc8,}
+\DoxyCodeLine{550              0x06, 0xb4, 0x85, 0xa4, 0x7e, 0x67, 0xc8, 0x07,}
+\DoxyCodeLine{551              0xb9, 0x46, 0xa3, 0x37, 0xbe, 0xe8, 0x94, 0x26,}
+\DoxyCodeLine{552              0x74, 0x27, 0x88, 0x59, 0xe1, 0x32, 0x92, 0xfb\} \},}
+\DoxyCodeLine{553 }
+\DoxyCodeLine{554         \{ \textcolor{stringliteral}{"rfc4231 4.5"}, \textcolor{stringliteral}{"sha512"},}
+\DoxyCodeLine{555             hmac\_test\_case\_keys[2], 25,}
+\DoxyCodeLine{556             hmac\_test\_case\_data[3], 50,}
+\DoxyCodeLine{557             \{0xb0, 0xba, 0x46, 0x56, 0x37, 0x45, 0x8c, 0x69,}
+\DoxyCodeLine{558              0x90, 0xe5, 0xa8, 0xc5, 0xf6, 0x1d, 0x4a, 0xf7,}
+\DoxyCodeLine{559              0xe5, 0x76, 0xd9, 0x7f, 0xf9, 0x4b, 0x87, 0x2d,}
+\DoxyCodeLine{560              0xe7, 0x6f, 0x80, 0x50, 0x36, 0x1e, 0xe3, 0xdb,}
+\DoxyCodeLine{561              0xa9, 0x1c, 0xa5, 0xc1, 0x1a, 0xa2, 0x5e, 0xb4,}
+\DoxyCodeLine{562              0xd6, 0x79, 0x27, 0x5c, 0xc5, 0x78, 0x80, 0x63,}
+\DoxyCodeLine{563              0xa5, 0xf1, 0x97, 0x41, 0x12, 0x0c, 0x4f, 0x2d,}
+\DoxyCodeLine{564              0xe2, 0xad, 0xeb, 0xeb, 0x10, 0xa2, 0x98, 0xdd\} \},}
+\DoxyCodeLine{565 }
+\DoxyCodeLine{566         \{ \textcolor{stringliteral}{"rfc4231 4.7"}, \textcolor{stringliteral}{"sha512"},}
+\DoxyCodeLine{567             hmac\_test\_case\_keys[4], 131,}
+\DoxyCodeLine{568             hmac\_test\_case\_data[5], 54,}
+\DoxyCodeLine{569             \{0x80, 0xb2, 0x42, 0x63, 0xc7, 0xc1, 0xa3, 0xeb,}
+\DoxyCodeLine{570              0xb7, 0x14, 0x93, 0xc1, 0xdd, 0x7b, 0xe8, 0xb4,}
+\DoxyCodeLine{571              0x9b, 0x46, 0xd1, 0xf4, 0x1b, 0x4a, 0xee, 0xc1,}
+\DoxyCodeLine{572              0x12, 0x1b, 0x01, 0x37, 0x83, 0xf8, 0xf3, 0x52,}
+\DoxyCodeLine{573              0x6b, 0x56, 0xd0, 0x37, 0xe0, 0x5f, 0x25, 0x98,}
+\DoxyCodeLine{574              0xbd, 0x0f, 0xd2, 0x21, 0x5d, 0x6a, 0x1e, 0x52,}
+\DoxyCodeLine{575              0x95, 0xe6, 0x4f, 0x73, 0xf6, 0x3f, 0x0a, 0xec,}
+\DoxyCodeLine{576              0x8b, 0x91, 0x5a, 0x98, 0x5d, 0x78, 0x65, 0x98\} \},}
+\DoxyCodeLine{577 }
+\DoxyCodeLine{578         \{ \textcolor{stringliteral}{"rfc4231 4.8"}, \textcolor{stringliteral}{"sha512"},}
+\DoxyCodeLine{579             hmac\_test\_case\_keys[4], 131,}
+\DoxyCodeLine{580             hmac\_test\_case\_data[7], 152,}
+\DoxyCodeLine{581             \{0xe3, 0x7b, 0x6a, 0x77, 0x5d, 0xc8, 0x7d, 0xba,}
+\DoxyCodeLine{582              0xa4, 0xdf, 0xa9, 0xf9, 0x6e, 0x5e, 0x3f, 0xfd,}
+\DoxyCodeLine{583              0xde, 0xbd, 0x71, 0xf8, 0x86, 0x72, 0x89, 0x86,}
+\DoxyCodeLine{584              0x5d, 0xf5, 0xa3, 0x2d, 0x20, 0xcd, 0xc9, 0x44,}
+\DoxyCodeLine{585              0xb6, 0x02, 0x2c, 0xac, 0x3c, 0x49, 0x82, 0xb1,}
+\DoxyCodeLine{586              0x0d, 0x5e, 0xeb, 0x55, 0xc3, 0xe4, 0xde, 0x15,}
+\DoxyCodeLine{587              0x13, 0x46, 0x76, 0xfb, 0x6d, 0xe0, 0x44, 0x60,}
+\DoxyCodeLine{588              0x65, 0xc9, 0x74, 0x40, 0xfa, 0x8c, 0x6a, 0x58\} \},}
+\DoxyCodeLine{589 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* LTC\_TEST\_EXT */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{590 }
+\DoxyCodeLine{591     \};}
+\DoxyCodeLine{592 }
+\DoxyCodeLine{593     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} outlen;}
+\DoxyCodeLine{594     \textcolor{keywordtype}{int} err;}
+\DoxyCodeLine{595     \textcolor{keywordtype}{int} tested=0,failed=0;}
+\DoxyCodeLine{596     \textcolor{keywordflow}{for}(i=0; i < (int)(\textcolor{keyword}{sizeof}(cases) / \textcolor{keyword}{sizeof}(cases[0])); i++) \{}
+\DoxyCodeLine{597         \textcolor{keywordtype}{int} hash = \mbox{\hyperlink{tomcrypt__hash_8h_a1818254b9c8f09047af3b66ea7f5852b}{find\_hash}}(cases[i].algo);}
+\DoxyCodeLine{598         \textcolor{keywordflow}{if} (hash == -1) \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{599         ++tested;}
+\DoxyCodeLine{600         outlen = \textcolor{keyword}{sizeof}(digest);}
+\DoxyCodeLine{601         \textcolor{keywordflow}{if}((err = \mbox{\hyperlink{hmac__memory_8c_a6bf2dff4537e6332dec46266a9db7580}{hmac\_memory}}(hash, cases[i].key, cases[i].keylen, cases[i].data, cases[i].datalen, digest, \&outlen)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{602 \textcolor{preprocessor}{\#ifdef LTC\_TEST\_DBG}}
+\DoxyCodeLine{603             printf(\textcolor{stringliteral}{"HMAC-\%s test \%s, \%s\(\backslash\)n"}, cases[i].algo, cases[i].num, \mbox{\hyperlink{tomcrypt__misc_8h_a3bd8fe097a1951bd18d73b2231c7f700}{error\_to\_string}}(err));}
+\DoxyCodeLine{604 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{605             \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{606         \}}
+\DoxyCodeLine{607 }
+\DoxyCodeLine{608         \textcolor{keywordflow}{if}(\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(digest, outlen, cases[i].digest, (\textcolor{keywordtype}{size\_t})\mbox{\hyperlink{tomcrypt__hash_8h_ab0e4f02e30a47da79baa9240e79cde92}{hash\_descriptor}}[hash].hashsize, cases[i].num, i)) \{}
+\DoxyCodeLine{609             failed++;}
+\DoxyCodeLine{610         \}}
+\DoxyCodeLine{611     \}}
+\DoxyCodeLine{612 }
+\DoxyCodeLine{613     \textcolor{keywordflow}{if} (failed != 0) \{}
+\DoxyCodeLine{614         \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{615     \}}
+\DoxyCodeLine{616     \textcolor{keywordflow}{if} (tested == 0) \{}
+\DoxyCodeLine{617         \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cac43a7799c7fd5f515172da6cfc0f9cf5}{CRYPT\_NOP}};}
+\DoxyCodeLine{618     \}}
+\DoxyCodeLine{619     \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{620 \textcolor{preprocessor}{ \#endif}}
+\DoxyCodeLine{621 \}}
+
+\end{DoxyCode}
+
+
+References compare\+\_\+testvector(), C\+R\+Y\+P\+T\+\_\+\+F\+A\+I\+L\+\_\+\+T\+E\+S\+T\+V\+E\+C\+T\+OR, C\+R\+Y\+P\+T\+\_\+\+N\+OP, C\+R\+Y\+P\+T\+\_\+\+OK, error\+\_\+to\+\_\+string(), find\+\_\+hash(), hash\+\_\+descriptor, hmac\+\_\+memory(), and M\+A\+X\+B\+L\+O\+C\+K\+S\+I\+ZE.
+
+Here is the call graph for this function\+:
+% FIG 1

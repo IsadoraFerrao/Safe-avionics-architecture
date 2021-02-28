@@ -1,0 +1,55 @@
+\hypertarget{ecc__get__size_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/pk/ecc/ecc\+\_\+get\+\_\+size.c File Reference}
+\label{ecc__get__size_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/ecc/ecc\_get\_size.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/ecc/ecc\_get\_size.c}}
+
+
+E\+CC Crypto, Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for ecc\+\_\+get\+\_\+size.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{ecc__get__size_8c_a61dbc26dcb6afd2c71fb82e24aad2131}{ecc\+\_\+get\+\_\+size}} (const ecc\+\_\+key $\ast$key)
+\begin{DoxyCompactList}\small\item\em Get the size of an E\+CC key. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+E\+CC Crypto, Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{ecc__get__size_8c_a61dbc26dcb6afd2c71fb82e24aad2131}\label{ecc__get__size_8c_a61dbc26dcb6afd2c71fb82e24aad2131}} 
+\index{ecc\_get\_size.c@{ecc\_get\_size.c}!ecc\_get\_size@{ecc\_get\_size}}
+\index{ecc\_get\_size@{ecc\_get\_size}!ecc\_get\_size.c@{ecc\_get\_size.c}}
+\subsubsection{\texorpdfstring{ecc\_get\_size()}{ecc\_get\_size()}}
+{\footnotesize\ttfamily int ecc\+\_\+get\+\_\+size (\begin{DoxyParamCaption}\item[{const ecc\+\_\+key $\ast$}]{key }\end{DoxyParamCaption})}
+
+
+
+Get the size of an E\+CC key. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The key to get the size of \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The size (octets) of the key or I\+N\+T\+\_\+\+M\+AX on error 
+\end{DoxyReturn}
+
+
+Definition at line 24 of file ecc\+\_\+get\+\_\+size.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{25 \{}
+\DoxyCodeLine{26    \textcolor{keywordflow}{if} (key == NULL) \{}
+\DoxyCodeLine{27       \textcolor{keywordflow}{return} INT\_MAX;}
+\DoxyCodeLine{28    \}}
+\DoxyCodeLine{29    \textcolor{keywordflow}{return} key->dp.size;}
+\DoxyCodeLine{30 \}}
+
+\end{DoxyCode}

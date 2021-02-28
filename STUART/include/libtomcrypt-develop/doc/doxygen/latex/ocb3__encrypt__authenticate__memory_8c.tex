@@ -1,0 +1,119 @@
+\hypertarget{ocb3__encrypt__authenticate__memory_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/encauth/ocb3/ocb3\+\_\+encrypt\+\_\+authenticate\+\_\+memory.c File Reference}
+\label{ocb3__encrypt__authenticate__memory_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/encauth/ocb3/ocb3\_encrypt\_authenticate\_memory.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/encauth/ocb3/ocb3\_encrypt\_authenticate\_memory.c}}
+
+
+O\+CB implementation, encrypt block of memory, by Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for ocb3\+\_\+encrypt\+\_\+authenticate\+\_\+memory.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{ocb3__encrypt__authenticate__memory_8c_a4f2509ac5594dc6dcead8ac840a30b91}{ocb3\+\_\+encrypt\+\_\+authenticate\+\_\+memory}} (int cipher, const unsigned char $\ast$key, unsigned long keylen, const unsigned char $\ast$nonce, unsigned long noncelen, const unsigned char $\ast$adata, unsigned long adatalen, const unsigned char $\ast$pt, unsigned long ptlen, unsigned char $\ast$ct, unsigned char $\ast$tag, unsigned long $\ast$taglen)
+\begin{DoxyCompactList}\small\item\em Encrypt and generate an authentication code for a buffer of memory. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+O\+CB implementation, encrypt block of memory, by Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{ocb3__encrypt__authenticate__memory_8c_a4f2509ac5594dc6dcead8ac840a30b91}\label{ocb3__encrypt__authenticate__memory_8c_a4f2509ac5594dc6dcead8ac840a30b91}} 
+\index{ocb3\_encrypt\_authenticate\_memory.c@{ocb3\_encrypt\_authenticate\_memory.c}!ocb3\_encrypt\_authenticate\_memory@{ocb3\_encrypt\_authenticate\_memory}}
+\index{ocb3\_encrypt\_authenticate\_memory@{ocb3\_encrypt\_authenticate\_memory}!ocb3\_encrypt\_authenticate\_memory.c@{ocb3\_encrypt\_authenticate\_memory.c}}
+\subsubsection{\texorpdfstring{ocb3\_encrypt\_authenticate\_memory()}{ocb3\_encrypt\_authenticate\_memory()}}
+{\footnotesize\ttfamily int ocb3\+\_\+encrypt\+\_\+authenticate\+\_\+memory (\begin{DoxyParamCaption}\item[{int}]{cipher,  }\item[{const unsigned char $\ast$}]{key,  }\item[{unsigned long}]{keylen,  }\item[{const unsigned char $\ast$}]{nonce,  }\item[{unsigned long}]{noncelen,  }\item[{const unsigned char $\ast$}]{adata,  }\item[{unsigned long}]{adatalen,  }\item[{const unsigned char $\ast$}]{pt,  }\item[{unsigned long}]{ptlen,  }\item[{unsigned char $\ast$}]{ct,  }\item[{unsigned char $\ast$}]{tag,  }\item[{unsigned long $\ast$}]{taglen }\end{DoxyParamCaption})}
+
+
+
+Encrypt and generate an authentication code for a buffer of memory. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cipher} & The index of the cipher desired \\
+\hline
+{\em key} & The secret key \\
+\hline
+{\em keylen} & The length of the secret key (octets) \\
+\hline
+{\em nonce} & The session nonce (length of the block ciphers block size) \\
+\hline
+{\em noncelen} & The length of the nonce (octets) \\
+\hline
+{\em adata} & The A\+AD -\/ additional associated data \\
+\hline
+{\em adatalen} & The length of A\+AD (octets) \\
+\hline
+{\em pt} & The plaintext \\
+\hline
+{\em ptlen} & The length of the plaintext (octets) \\
+\hline
+{\em ct} & \mbox{[}out\mbox{]} The ciphertext \\
+\hline
+{\em tag} & \mbox{[}out\mbox{]} The authentication tag \\
+\hline
+{\em taglen} & \mbox{[}in/out\mbox{]} The max size and resulting size of the authentication tag \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 34 of file ocb3\+\_\+encrypt\+\_\+authenticate\+\_\+memory.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{41 \{}
+\DoxyCodeLine{42    \textcolor{keywordtype}{int} err;}
+\DoxyCodeLine{43    ocb3\_state *ocb;}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(taglen != NULL);}
+\DoxyCodeLine{46 }
+\DoxyCodeLine{47    \textcolor{comment}{/* allocate memory */}}
+\DoxyCodeLine{48    ocb = \mbox{\hyperlink{tomcrypt__cfg_8h_af363355f38fbaacdefacf270436ae1c9}{XMALLOC}}(\textcolor{keyword}{sizeof}(ocb3\_state));}
+\DoxyCodeLine{49    \textcolor{keywordflow}{if} (ocb == NULL) \{}
+\DoxyCodeLine{50       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca0ce0d27adc7ea10b74b7ea904b8bfa82}{CRYPT\_MEM}};}
+\DoxyCodeLine{51    \}}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{53    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{ocb3__init_8c_aa623e20f84ca5fe394f7bd209d4da177}{ocb3\_init}}(ocb, cipher, key, keylen, nonce, noncelen, *taglen)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{54       \textcolor{keywordflow}{goto} LBL\_ERR;}
+\DoxyCodeLine{55    \}}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{57    \textcolor{keywordflow}{if} (adata != NULL || adatalen != 0) \{}
+\DoxyCodeLine{58       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{ocb3__add__aad_8c_a1fbb605c3849ddbfaa2378d009f34b66}{ocb3\_add\_aad}}(ocb, adata, adatalen)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{59          \textcolor{keywordflow}{goto} LBL\_ERR;}
+\DoxyCodeLine{60       \}}
+\DoxyCodeLine{61    \}}
+\DoxyCodeLine{62 }
+\DoxyCodeLine{63    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{ocb3__encrypt__last_8c_a7059d3b0e1618f0f4dd88b6314830ba6}{ocb3\_encrypt\_last}}(ocb, pt, ptlen, ct)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{64       \textcolor{keywordflow}{goto} LBL\_ERR;}
+\DoxyCodeLine{65    \}}
+\DoxyCodeLine{66 }
+\DoxyCodeLine{67    err = \mbox{\hyperlink{ocb3__done_8c_aeec4c3c1decbfde2980246d568c43b1f}{ocb3\_done}}(ocb, tag, taglen);}
+\DoxyCodeLine{68 }
+\DoxyCodeLine{69 LBL\_ERR:}
+\DoxyCodeLine{70 \textcolor{preprocessor}{\#ifdef LTC\_CLEAN\_STACK}}
+\DoxyCodeLine{71    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(ocb, \textcolor{keyword}{sizeof}(ocb3\_state));}
+\DoxyCodeLine{72 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{73 }
+\DoxyCodeLine{74    \mbox{\hyperlink{tomcrypt__cfg_8h_a260d66fc0690e0502cf3bfe7b5244b75}{XFREE}}(ocb);}
+\DoxyCodeLine{75    \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{76 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+M\+EM, C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, ocb3\+\_\+add\+\_\+aad(), ocb3\+\_\+done(), ocb3\+\_\+encrypt\+\_\+last(), ocb3\+\_\+init(), X\+F\+R\+E\+E(), X\+M\+A\+L\+L\+O\+C(), and zeromem().
+
+
+
+Referenced by ocb3\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2

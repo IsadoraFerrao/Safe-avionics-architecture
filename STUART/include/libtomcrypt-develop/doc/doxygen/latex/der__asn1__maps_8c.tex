@@ -1,0 +1,236 @@
+\hypertarget{der__asn1__maps_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/pk/asn1/der/general/der\+\_\+asn1\+\_\+maps.c File Reference}
+\label{der__asn1__maps_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/asn1/der/general/der\_asn1\_maps.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/asn1/der/general/der\_asn1\_maps.c}}
+
+
+A\+S\+N.\+1 D\+ER, a collection of maps to convert between different representations, Steffen Jaeckel.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for der\+\_\+asn1\+\_\+maps.\+c\+:
+% FIG 0
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const int \mbox{\hyperlink{der__asn1__maps_8c_a6306ca88074facac89ee0f6c04cbf2f2}{der\+\_\+asn1\+\_\+type\+\_\+to\+\_\+identifier\+\_\+map}} \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em A Map from ltc\+\_\+asn1\+\_\+type to the regularly used A\+S\+N.\+1 identifier. \end{DoxyCompactList}\item 
+const unsigned long \mbox{\hyperlink{der__asn1__maps_8c_ae8d2a220c8f5b51d2db97b0382a9f206}{der\+\_\+asn1\+\_\+type\+\_\+to\+\_\+identifier\+\_\+map\+\_\+sz}} = sizeof(\mbox{\hyperlink{der__asn1__maps_8c_a6306ca88074facac89ee0f6c04cbf2f2}{der\+\_\+asn1\+\_\+type\+\_\+to\+\_\+identifier\+\_\+map}})/sizeof(\mbox{\hyperlink{der__asn1__maps_8c_a6306ca88074facac89ee0f6c04cbf2f2}{der\+\_\+asn1\+\_\+type\+\_\+to\+\_\+identifier\+\_\+map}}\mbox{[}0\mbox{]})
+\item 
+const char $\ast$ \mbox{\hyperlink{der__asn1__maps_8c_ad7cc7c6e75c339c6d722d97660640d1e}{der\+\_\+asn1\+\_\+class\+\_\+to\+\_\+string\+\_\+map}} \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em A Map from the A\+S\+N.\+1 Class to its string. \end{DoxyCompactList}\item 
+const unsigned long \mbox{\hyperlink{der__asn1__maps_8c_a936dc1b6640bfb47fe891b408f42f0b5}{der\+\_\+asn1\+\_\+class\+\_\+to\+\_\+string\+\_\+map\+\_\+sz}} = sizeof(\mbox{\hyperlink{der__asn1__maps_8c_ad7cc7c6e75c339c6d722d97660640d1e}{der\+\_\+asn1\+\_\+class\+\_\+to\+\_\+string\+\_\+map}})/sizeof(\mbox{\hyperlink{der__asn1__maps_8c_ad7cc7c6e75c339c6d722d97660640d1e}{der\+\_\+asn1\+\_\+class\+\_\+to\+\_\+string\+\_\+map}}\mbox{[}0\mbox{]})
+\item 
+const char $\ast$ \mbox{\hyperlink{der__asn1__maps_8c_a5d042f599d88773585e14c66ab82770b}{der\+\_\+asn1\+\_\+pc\+\_\+to\+\_\+string\+\_\+map}} \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em A Map from the A\+S\+N.\+1 P/\+C-\/bit to its string. \end{DoxyCompactList}\item 
+const unsigned long \mbox{\hyperlink{der__asn1__maps_8c_a8b9515afd2642584997b6679036c581a}{der\+\_\+asn1\+\_\+pc\+\_\+to\+\_\+string\+\_\+map\+\_\+sz}} = sizeof(\mbox{\hyperlink{der__asn1__maps_8c_a5d042f599d88773585e14c66ab82770b}{der\+\_\+asn1\+\_\+pc\+\_\+to\+\_\+string\+\_\+map}})/sizeof(\mbox{\hyperlink{der__asn1__maps_8c_a5d042f599d88773585e14c66ab82770b}{der\+\_\+asn1\+\_\+pc\+\_\+to\+\_\+string\+\_\+map}}\mbox{[}0\mbox{]})
+\item 
+const char $\ast$ \mbox{\hyperlink{der__asn1__maps_8c_aed7bc2beaf12201430eca6df423fbd8d}{der\+\_\+asn1\+\_\+tag\+\_\+to\+\_\+string\+\_\+map}} \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em A Map from the A\+S\+N.\+1 tag to its string. \end{DoxyCompactList}\item 
+const unsigned long \mbox{\hyperlink{der__asn1__maps_8c_a86ae7847d4646ce6b35020045128fa9c}{der\+\_\+asn1\+\_\+tag\+\_\+to\+\_\+string\+\_\+map\+\_\+sz}} = sizeof(\mbox{\hyperlink{der__asn1__maps_8c_aed7bc2beaf12201430eca6df423fbd8d}{der\+\_\+asn1\+\_\+tag\+\_\+to\+\_\+string\+\_\+map}})/sizeof(\mbox{\hyperlink{der__asn1__maps_8c_aed7bc2beaf12201430eca6df423fbd8d}{der\+\_\+asn1\+\_\+tag\+\_\+to\+\_\+string\+\_\+map}}\mbox{[}0\mbox{]})
+\item 
+const ltc\+\_\+asn1\+\_\+type \mbox{\hyperlink{der__asn1__maps_8c_a411f77ba949e37dca9c1ef1e43127cb1}{der\+\_\+asn1\+\_\+tag\+\_\+to\+\_\+type\+\_\+map}} \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em A Map from A\+S\+N.\+1 Tags to ltc\+\_\+asn1\+\_\+type. \end{DoxyCompactList}\item 
+const unsigned long \mbox{\hyperlink{der__asn1__maps_8c_a6ad32891f744af2b205041ad6dc5bce0}{der\+\_\+asn1\+\_\+tag\+\_\+to\+\_\+type\+\_\+map\+\_\+sz}} = sizeof(\mbox{\hyperlink{der__asn1__maps_8c_a411f77ba949e37dca9c1ef1e43127cb1}{der\+\_\+asn1\+\_\+tag\+\_\+to\+\_\+type\+\_\+map}})/sizeof(\mbox{\hyperlink{der__asn1__maps_8c_a411f77ba949e37dca9c1ef1e43127cb1}{der\+\_\+asn1\+\_\+tag\+\_\+to\+\_\+type\+\_\+map}}\mbox{[}0\mbox{]})
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A\+S\+N.\+1 D\+ER, a collection of maps to convert between different representations, Steffen Jaeckel. 
+
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{der__asn1__maps_8c_ad7cc7c6e75c339c6d722d97660640d1e}\label{der__asn1__maps_8c_ad7cc7c6e75c339c6d722d97660640d1e}} 
+\index{der\_asn1\_maps.c@{der\_asn1\_maps.c}!der\_asn1\_class\_to\_string\_map@{der\_asn1\_class\_to\_string\_map}}
+\index{der\_asn1\_class\_to\_string\_map@{der\_asn1\_class\_to\_string\_map}!der\_asn1\_maps.c@{der\_asn1\_maps.c}}
+\subsubsection{\texorpdfstring{der\_asn1\_class\_to\_string\_map}{der\_asn1\_class\_to\_string\_map}}
+{\footnotesize\ttfamily const char$\ast$ der\+\_\+asn1\+\_\+class\+\_\+to\+\_\+string\+\_\+map\mbox{[}$\,$\mbox{]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{  \textcolor{stringliteral}{"UNIVERSAL"},}
+\DoxyCodeLine{  \textcolor{stringliteral}{"APPLICATION"},}
+\DoxyCodeLine{  \textcolor{stringliteral}{"CONTEXT-SPECIFIC"},}
+\DoxyCodeLine{  \textcolor{stringliteral}{"PRIVATE"},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+A Map from the A\+S\+N.\+1 Class to its string. 
+
+
+
+Definition at line 53 of file der\+\_\+asn1\+\_\+maps.\+c.
+
+\mbox{\Hypertarget{der__asn1__maps_8c_a936dc1b6640bfb47fe891b408f42f0b5}\label{der__asn1__maps_8c_a936dc1b6640bfb47fe891b408f42f0b5}} 
+\index{der\_asn1\_maps.c@{der\_asn1\_maps.c}!der\_asn1\_class\_to\_string\_map\_sz@{der\_asn1\_class\_to\_string\_map\_sz}}
+\index{der\_asn1\_class\_to\_string\_map\_sz@{der\_asn1\_class\_to\_string\_map\_sz}!der\_asn1\_maps.c@{der\_asn1\_maps.c}}
+\subsubsection{\texorpdfstring{der\_asn1\_class\_to\_string\_map\_sz}{der\_asn1\_class\_to\_string\_map\_sz}}
+{\footnotesize\ttfamily const unsigned long der\+\_\+asn1\+\_\+class\+\_\+to\+\_\+string\+\_\+map\+\_\+sz = sizeof(\mbox{\hyperlink{der__asn1__maps_8c_ad7cc7c6e75c339c6d722d97660640d1e}{der\+\_\+asn1\+\_\+class\+\_\+to\+\_\+string\+\_\+map}})/sizeof(\mbox{\hyperlink{der__asn1__maps_8c_ad7cc7c6e75c339c6d722d97660640d1e}{der\+\_\+asn1\+\_\+class\+\_\+to\+\_\+string\+\_\+map}}\mbox{[}0\mbox{]})}
+
+
+
+Definition at line 60 of file der\+\_\+asn1\+\_\+maps.\+c.
+
+\mbox{\Hypertarget{der__asn1__maps_8c_a5d042f599d88773585e14c66ab82770b}\label{der__asn1__maps_8c_a5d042f599d88773585e14c66ab82770b}} 
+\index{der\_asn1\_maps.c@{der\_asn1\_maps.c}!der\_asn1\_pc\_to\_string\_map@{der\_asn1\_pc\_to\_string\_map}}
+\index{der\_asn1\_pc\_to\_string\_map@{der\_asn1\_pc\_to\_string\_map}!der\_asn1\_maps.c@{der\_asn1\_maps.c}}
+\subsubsection{\texorpdfstring{der\_asn1\_pc\_to\_string\_map}{der\_asn1\_pc\_to\_string\_map}}
+{\footnotesize\ttfamily const char$\ast$ der\+\_\+asn1\+\_\+pc\+\_\+to\+\_\+string\+\_\+map\mbox{[}$\,$\mbox{]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{  \textcolor{stringliteral}{"PRIMITIVE"},}
+\DoxyCodeLine{  \textcolor{stringliteral}{"CONSTRUCTED"},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+A Map from the A\+S\+N.\+1 P/\+C-\/bit to its string. 
+
+
+
+Definition at line 65 of file der\+\_\+asn1\+\_\+maps.\+c.
+
+
+
+Referenced by der\+\_\+decode\+\_\+sequence\+\_\+flexi().
+
+\mbox{\Hypertarget{der__asn1__maps_8c_a8b9515afd2642584997b6679036c581a}\label{der__asn1__maps_8c_a8b9515afd2642584997b6679036c581a}} 
+\index{der\_asn1\_maps.c@{der\_asn1\_maps.c}!der\_asn1\_pc\_to\_string\_map\_sz@{der\_asn1\_pc\_to\_string\_map\_sz}}
+\index{der\_asn1\_pc\_to\_string\_map\_sz@{der\_asn1\_pc\_to\_string\_map\_sz}!der\_asn1\_maps.c@{der\_asn1\_maps.c}}
+\subsubsection{\texorpdfstring{der\_asn1\_pc\_to\_string\_map\_sz}{der\_asn1\_pc\_to\_string\_map\_sz}}
+{\footnotesize\ttfamily const unsigned long der\+\_\+asn1\+\_\+pc\+\_\+to\+\_\+string\+\_\+map\+\_\+sz = sizeof(\mbox{\hyperlink{der__asn1__maps_8c_a5d042f599d88773585e14c66ab82770b}{der\+\_\+asn1\+\_\+pc\+\_\+to\+\_\+string\+\_\+map}})/sizeof(\mbox{\hyperlink{der__asn1__maps_8c_a5d042f599d88773585e14c66ab82770b}{der\+\_\+asn1\+\_\+pc\+\_\+to\+\_\+string\+\_\+map}}\mbox{[}0\mbox{]})}
+
+
+
+Definition at line 70 of file der\+\_\+asn1\+\_\+maps.\+c.
+
+\mbox{\Hypertarget{der__asn1__maps_8c_aed7bc2beaf12201430eca6df423fbd8d}\label{der__asn1__maps_8c_aed7bc2beaf12201430eca6df423fbd8d}} 
+\index{der\_asn1\_maps.c@{der\_asn1\_maps.c}!der\_asn1\_tag\_to\_string\_map@{der\_asn1\_tag\_to\_string\_map}}
+\index{der\_asn1\_tag\_to\_string\_map@{der\_asn1\_tag\_to\_string\_map}!der\_asn1\_maps.c@{der\_asn1\_maps.c}}
+\subsubsection{\texorpdfstring{der\_asn1\_tag\_to\_string\_map}{der\_asn1\_tag\_to\_string\_map}}
+{\footnotesize\ttfamily const char$\ast$ der\+\_\+asn1\+\_\+tag\+\_\+to\+\_\+string\+\_\+map\mbox{[}$\,$\mbox{]}}
+
+
+
+A Map from the A\+S\+N.\+1 tag to its string. 
+
+
+
+Definition at line 75 of file der\+\_\+asn1\+\_\+maps.\+c.
+
+
+
+Referenced by der\+\_\+decode\+\_\+sequence\+\_\+flexi().
+
+\mbox{\Hypertarget{der__asn1__maps_8c_a86ae7847d4646ce6b35020045128fa9c}\label{der__asn1__maps_8c_a86ae7847d4646ce6b35020045128fa9c}} 
+\index{der\_asn1\_maps.c@{der\_asn1\_maps.c}!der\_asn1\_tag\_to\_string\_map\_sz@{der\_asn1\_tag\_to\_string\_map\_sz}}
+\index{der\_asn1\_tag\_to\_string\_map\_sz@{der\_asn1\_tag\_to\_string\_map\_sz}!der\_asn1\_maps.c@{der\_asn1\_maps.c}}
+\subsubsection{\texorpdfstring{der\_asn1\_tag\_to\_string\_map\_sz}{der\_asn1\_tag\_to\_string\_map\_sz}}
+{\footnotesize\ttfamily const unsigned long der\+\_\+asn1\+\_\+tag\+\_\+to\+\_\+string\+\_\+map\+\_\+sz = sizeof(\mbox{\hyperlink{der__asn1__maps_8c_aed7bc2beaf12201430eca6df423fbd8d}{der\+\_\+asn1\+\_\+tag\+\_\+to\+\_\+string\+\_\+map}})/sizeof(\mbox{\hyperlink{der__asn1__maps_8c_aed7bc2beaf12201430eca6df423fbd8d}{der\+\_\+asn1\+\_\+tag\+\_\+to\+\_\+string\+\_\+map}}\mbox{[}0\mbox{]})}
+
+
+
+Definition at line 115 of file der\+\_\+asn1\+\_\+maps.\+c.
+
+\mbox{\Hypertarget{der__asn1__maps_8c_a411f77ba949e37dca9c1ef1e43127cb1}\label{der__asn1__maps_8c_a411f77ba949e37dca9c1ef1e43127cb1}} 
+\index{der\_asn1\_maps.c@{der\_asn1\_maps.c}!der\_asn1\_tag\_to\_type\_map@{der\_asn1\_tag\_to\_type\_map}}
+\index{der\_asn1\_tag\_to\_type\_map@{der\_asn1\_tag\_to\_type\_map}!der\_asn1\_maps.c@{der\_asn1\_maps.c}}
+\subsubsection{\texorpdfstring{der\_asn1\_tag\_to\_type\_map}{der\_asn1\_tag\_to\_type\_map}}
+{\footnotesize\ttfamily const ltc\+\_\+asn1\+\_\+type der\+\_\+asn1\+\_\+tag\+\_\+to\+\_\+type\+\_\+map\mbox{[}$\,$\mbox{]}}
+
+
+
+A Map from A\+S\+N.\+1 Tags to ltc\+\_\+asn1\+\_\+type. 
+
+
+
+Definition at line 120 of file der\+\_\+asn1\+\_\+maps.\+c.
+
+
+
+Referenced by der\+\_\+decode\+\_\+asn1\+\_\+identifier().
+
+\mbox{\Hypertarget{der__asn1__maps_8c_a6ad32891f744af2b205041ad6dc5bce0}\label{der__asn1__maps_8c_a6ad32891f744af2b205041ad6dc5bce0}} 
+\index{der\_asn1\_maps.c@{der\_asn1\_maps.c}!der\_asn1\_tag\_to\_type\_map\_sz@{der\_asn1\_tag\_to\_type\_map\_sz}}
+\index{der\_asn1\_tag\_to\_type\_map\_sz@{der\_asn1\_tag\_to\_type\_map\_sz}!der\_asn1\_maps.c@{der\_asn1\_maps.c}}
+\subsubsection{\texorpdfstring{der\_asn1\_tag\_to\_type\_map\_sz}{der\_asn1\_tag\_to\_type\_map\_sz}}
+{\footnotesize\ttfamily const unsigned long der\+\_\+asn1\+\_\+tag\+\_\+to\+\_\+type\+\_\+map\+\_\+sz = sizeof(\mbox{\hyperlink{der__asn1__maps_8c_a411f77ba949e37dca9c1ef1e43127cb1}{der\+\_\+asn1\+\_\+tag\+\_\+to\+\_\+type\+\_\+map}})/sizeof(\mbox{\hyperlink{der__asn1__maps_8c_a411f77ba949e37dca9c1ef1e43127cb1}{der\+\_\+asn1\+\_\+tag\+\_\+to\+\_\+type\+\_\+map}}\mbox{[}0\mbox{]})}
+
+
+
+Definition at line 161 of file der\+\_\+asn1\+\_\+maps.\+c.
+
+
+
+Referenced by der\+\_\+decode\+\_\+asn1\+\_\+identifier().
+
+\mbox{\Hypertarget{der__asn1__maps_8c_a6306ca88074facac89ee0f6c04cbf2f2}\label{der__asn1__maps_8c_a6306ca88074facac89ee0f6c04cbf2f2}} 
+\index{der\_asn1\_maps.c@{der\_asn1\_maps.c}!der\_asn1\_type\_to\_identifier\_map@{der\_asn1\_type\_to\_identifier\_map}}
+\index{der\_asn1\_type\_to\_identifier\_map@{der\_asn1\_type\_to\_identifier\_map}!der\_asn1\_maps.c@{der\_asn1\_maps.c}}
+\subsubsection{\texorpdfstring{der\_asn1\_type\_to\_identifier\_map}{der\_asn1\_type\_to\_identifier\_map}}
+{\footnotesize\ttfamily const int der\+\_\+asn1\+\_\+type\+\_\+to\+\_\+identifier\+\_\+map\mbox{[}$\,$\mbox{]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{     }
+\DoxyCodeLine{ -1, }
+\DoxyCodeLine{  1, }
+\DoxyCodeLine{  2, }
+\DoxyCodeLine{  2, }
+\DoxyCodeLine{  3, }
+\DoxyCodeLine{     }
+\DoxyCodeLine{  4, }
+\DoxyCodeLine{  5, }
+\DoxyCodeLine{  6, }
+\DoxyCodeLine{ 22, }
+\DoxyCodeLine{ 19, }
+\DoxyCodeLine{     }
+\DoxyCodeLine{ 12, }
+\DoxyCodeLine{ 23, }
+\DoxyCodeLine{ -1, }
+\DoxyCodeLine{ 48, }
+\DoxyCodeLine{ 49, }
+\DoxyCodeLine{     }
+\DoxyCodeLine{ 49, }
+\DoxyCodeLine{  3, }
+\DoxyCodeLine{ 20, }
+\DoxyCodeLine{ 24, }
+\DoxyCodeLine{ -1, }
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+A Map from ltc\+\_\+asn1\+\_\+type to the regularly used A\+S\+N.\+1 identifier. 
+
+
+
+Definition at line 21 of file der\+\_\+asn1\+\_\+maps.\+c.
+
+
+
+Referenced by \+\_\+ltc\+\_\+to\+\_\+asn1(), der\+\_\+decode\+\_\+custom\+\_\+type\+\_\+ex(), and der\+\_\+encode\+\_\+asn1\+\_\+identifier().
+
+\mbox{\Hypertarget{der__asn1__maps_8c_ae8d2a220c8f5b51d2db97b0382a9f206}\label{der__asn1__maps_8c_ae8d2a220c8f5b51d2db97b0382a9f206}} 
+\index{der\_asn1\_maps.c@{der\_asn1\_maps.c}!der\_asn1\_type\_to\_identifier\_map\_sz@{der\_asn1\_type\_to\_identifier\_map\_sz}}
+\index{der\_asn1\_type\_to\_identifier\_map\_sz@{der\_asn1\_type\_to\_identifier\_map\_sz}!der\_asn1\_maps.c@{der\_asn1\_maps.c}}
+\subsubsection{\texorpdfstring{der\_asn1\_type\_to\_identifier\_map\_sz}{der\_asn1\_type\_to\_identifier\_map\_sz}}
+{\footnotesize\ttfamily const unsigned long der\+\_\+asn1\+\_\+type\+\_\+to\+\_\+identifier\+\_\+map\+\_\+sz = sizeof(\mbox{\hyperlink{der__asn1__maps_8c_a6306ca88074facac89ee0f6c04cbf2f2}{der\+\_\+asn1\+\_\+type\+\_\+to\+\_\+identifier\+\_\+map}})/sizeof(\mbox{\hyperlink{der__asn1__maps_8c_a6306ca88074facac89ee0f6c04cbf2f2}{der\+\_\+asn1\+\_\+type\+\_\+to\+\_\+identifier\+\_\+map}}\mbox{[}0\mbox{]})}
+
+
+
+Definition at line 48 of file der\+\_\+asn1\+\_\+maps.\+c.
+
+
+
+Referenced by der\+\_\+decode\+\_\+custom\+\_\+type\+\_\+ex(), and der\+\_\+encode\+\_\+asn1\+\_\+identifier().
+

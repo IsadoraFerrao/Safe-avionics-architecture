@@ -1,0 +1,12 @@
+digraph "rijndael_ecb_decrypt"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node3 [label="rijndael_ecb_decrypt",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Decrypts a block of text with AES."];
+  Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="rijndael_test",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$aes_8c.html#a787877f61031ca3855283ee7755f1b46",tooltip="Performs a self-test of the AES block cipher."];
+  Node4 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="fortuna_test",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$fortuna_8c.html#a02a8621eda36a40059ce155007b6f6c3",tooltip="PRNG self-test."];
+}

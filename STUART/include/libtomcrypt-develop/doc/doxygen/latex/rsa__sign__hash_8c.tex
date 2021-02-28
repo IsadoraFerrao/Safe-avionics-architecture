@@ -1,0 +1,176 @@
+\hypertarget{rsa__sign__hash_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/pk/rsa/rsa\+\_\+sign\+\_\+hash.c File Reference}
+\label{rsa__sign__hash_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/rsa/rsa\_sign\_hash.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/rsa/rsa\_sign\_hash.c}}
+
+
+R\+SA P\+K\+CS \#1 v1.\+5 and v2 P\+SS sign hash, Tom St Denis and Andreas Lange.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for rsa\+\_\+sign\+\_\+hash.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{rsa__sign__hash_8c_a7a07f13dda380b3a3545a07047195ecd}{rsa\+\_\+sign\+\_\+hash\+\_\+ex}} (const unsigned char $\ast$in, unsigned long inlen, unsigned char $\ast$out, unsigned long $\ast$outlen, int padding, \mbox{\hyperlink{structprng__state}{prng\+\_\+state}} $\ast$prng, int prng\+\_\+idx, int hash\+\_\+idx, unsigned long saltlen, const \mbox{\hyperlink{tomcrypt__math_8h_a99eca413acdcc914993162bd18cba437}{rsa\+\_\+key}} $\ast$key)
+\begin{DoxyCompactList}\small\item\em P\+K\+CS \#1 pad then sign. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+R\+SA P\+K\+CS \#1 v1.\+5 and v2 P\+SS sign hash, Tom St Denis and Andreas Lange. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{rsa__sign__hash_8c_a7a07f13dda380b3a3545a07047195ecd}\label{rsa__sign__hash_8c_a7a07f13dda380b3a3545a07047195ecd}} 
+\index{rsa\_sign\_hash.c@{rsa\_sign\_hash.c}!rsa\_sign\_hash\_ex@{rsa\_sign\_hash\_ex}}
+\index{rsa\_sign\_hash\_ex@{rsa\_sign\_hash\_ex}!rsa\_sign\_hash.c@{rsa\_sign\_hash.c}}
+\subsubsection{\texorpdfstring{rsa\_sign\_hash\_ex()}{rsa\_sign\_hash\_ex()}}
+{\footnotesize\ttfamily int rsa\+\_\+sign\+\_\+hash\+\_\+ex (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{in,  }\item[{unsigned long}]{inlen,  }\item[{unsigned char $\ast$}]{out,  }\item[{unsigned long $\ast$}]{outlen,  }\item[{int}]{padding,  }\item[{\mbox{\hyperlink{structprng__state}{prng\+\_\+state}} $\ast$}]{prng,  }\item[{int}]{prng\+\_\+idx,  }\item[{int}]{hash\+\_\+idx,  }\item[{unsigned long}]{saltlen,  }\item[{const \mbox{\hyperlink{tomcrypt__math_8h_a99eca413acdcc914993162bd18cba437}{rsa\+\_\+key}} $\ast$}]{key }\end{DoxyParamCaption})}
+
+
+
+P\+K\+CS \#1 pad then sign. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em in} & The hash to sign \\
+\hline
+{\em inlen} & The length of the hash to sign (octets) \\
+\hline
+{\em out} & \mbox{[}out\mbox{]} The signature \\
+\hline
+{\em outlen} & \mbox{[}in/out\mbox{]} The max size and resulting size of the signature \\
+\hline
+{\em padding} & Type of padding (L\+T\+C\+\_\+\+P\+K\+C\+S\+\_\+1\+\_\+\+P\+SS, L\+T\+C\+\_\+\+P\+K\+C\+S\+\_\+1\+\_\+\+V1\+\_\+5 or L\+T\+C\+\_\+\+P\+K\+C\+S\+\_\+1\+\_\+\+V1\+\_\+5\+\_\+\+N\+A1) \\
+\hline
+{\em prng} & An active P\+R\+NG state \\
+\hline
+{\em prng\+\_\+idx} & The index of the P\+R\+NG desired \\
+\hline
+{\em hash\+\_\+idx} & The index of the hash desired \\
+\hline
+{\em saltlen} & The length of the salt desired (octets) \\
+\hline
+{\em key} & The private R\+SA key to use \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 32 of file rsa\+\_\+sign\+\_\+hash.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{38 \{}
+\DoxyCodeLine{39    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} modulus\_bitlen, modulus\_bytelen, x, y;}
+\DoxyCodeLine{40    \textcolor{keywordtype}{int}           err;}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{42    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(in       != NULL);}
+\DoxyCodeLine{43    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(out      != NULL);}
+\DoxyCodeLine{44    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(outlen   != NULL);}
+\DoxyCodeLine{45    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(key      != NULL);}
+\DoxyCodeLine{46 }
+\DoxyCodeLine{47    \textcolor{comment}{/* valid padding? */}}
+\DoxyCodeLine{48    \textcolor{keywordflow}{if} ((padding != LTC\_PKCS\_1\_V1\_5) \&\&}
+\DoxyCodeLine{49        (padding != LTC\_PKCS\_1\_PSS) \&\&}
+\DoxyCodeLine{50        (padding != LTC\_PKCS\_1\_V1\_5\_NA1)) \{}
+\DoxyCodeLine{51      \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caee3022c2372277db42c7d43310bcb43b}{CRYPT\_PK\_INVALID\_PADDING}};}
+\DoxyCodeLine{52    \}}
+\DoxyCodeLine{53 }
+\DoxyCodeLine{54    \textcolor{keywordflow}{if} (padding == LTC\_PKCS\_1\_PSS) \{}
+\DoxyCodeLine{55      \textcolor{comment}{/* valid prng ? */}}
+\DoxyCodeLine{56      \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__prng_8h_a7e4a212c1a29a3b8bb4f8d5a34676a1e}{prng\_is\_valid}}(prng\_idx)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{57         \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{58      \}}
+\DoxyCodeLine{59    \}}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{61    \textcolor{keywordflow}{if} (padding != LTC\_PKCS\_1\_V1\_5\_NA1) \{}
+\DoxyCodeLine{62      \textcolor{comment}{/* valid hash ? */}}
+\DoxyCodeLine{63      \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__hash_8h_a79647f22bf48bfa7de03fe5fc958c846}{hash\_is\_valid}}(hash\_idx)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{64         \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{65      \}}
+\DoxyCodeLine{66    \}}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{68    \textcolor{comment}{/* get modulus len in bits */}}
+\DoxyCodeLine{69    modulus\_bitlen = \mbox{\hyperlink{tomcrypt__private_8h_afa1671e20e699f66319ed2e8d9119e7e}{mp\_count\_bits}}((key->N));}
+\DoxyCodeLine{70 }
+\DoxyCodeLine{71   \textcolor{comment}{/* outlen must be at least the size of the modulus */}}
+\DoxyCodeLine{72   modulus\_bytelen = \mbox{\hyperlink{tomcrypt__private_8h_ad301148bb24f43a8c7003a6976dfaa5a}{mp\_unsigned\_bin\_size}}((key->N));}
+\DoxyCodeLine{73   \textcolor{keywordflow}{if} (modulus\_bytelen > *outlen) \{}
+\DoxyCodeLine{74      *outlen = modulus\_bytelen;}
+\DoxyCodeLine{75      \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caccd878f5599f3036ffe759dbe1a1ac16}{CRYPT\_BUFFER\_OVERFLOW}};}
+\DoxyCodeLine{76   \}}
+\DoxyCodeLine{77 }
+\DoxyCodeLine{78   \textcolor{keywordflow}{if} (padding == LTC\_PKCS\_1\_PSS) \{}
+\DoxyCodeLine{79     \textcolor{comment}{/* PSS pad the key */}}
+\DoxyCodeLine{80     x = *outlen;}
+\DoxyCodeLine{81     \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{pkcs__1__pss__encode_8c_abdc082e173b453ec37edabbc8f69aa39}{pkcs\_1\_pss\_encode}}(in, inlen, saltlen, prng, prng\_idx,}
+\DoxyCodeLine{82                                  hash\_idx, modulus\_bitlen, out, \&x)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{83        \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{84     \}}
+\DoxyCodeLine{85   \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{86     \textcolor{comment}{/* PKCS \#1 v1.5 pad the hash */}}
+\DoxyCodeLine{87     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *tmpin;}
+\DoxyCodeLine{88 }
+\DoxyCodeLine{89     \textcolor{keywordflow}{if} (padding == LTC\_PKCS\_1\_V1\_5) \{}
+\DoxyCodeLine{90       ltc\_asn1\_list digestinfo[2], siginfo[2];}
+\DoxyCodeLine{91       \textcolor{comment}{/* not all hashes have OIDs... so sad */}}
+\DoxyCodeLine{92       \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__hash_8h_ab0e4f02e30a47da79baa9240e79cde92}{hash\_descriptor}}[hash\_idx].OIDlen == 0) \{}
+\DoxyCodeLine{93          \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{94       \}}
+\DoxyCodeLine{95 }
+\DoxyCodeLine{96     \textcolor{comment}{/* construct the SEQUENCE}}
+\DoxyCodeLine{97 \textcolor{comment}{        SEQUENCE \{}}
+\DoxyCodeLine{98 \textcolor{comment}{           SEQUENCE \{hashoid OID}}
+\DoxyCodeLine{99 \textcolor{comment}{                     blah    NULL}}
+\DoxyCodeLine{100 \textcolor{comment}{           \}}}
+\DoxyCodeLine{101 \textcolor{comment}{         hash    OCTET STRING}}
+\DoxyCodeLine{102 \textcolor{comment}{        \}}}
+\DoxyCodeLine{103 \textcolor{comment}{     */}}
+\DoxyCodeLine{104       LTC\_SET\_ASN1(digestinfo, 0, LTC\_ASN1\_OBJECT\_IDENTIFIER, \mbox{\hyperlink{tomcrypt__hash_8h_ab0e4f02e30a47da79baa9240e79cde92}{hash\_descriptor}}[hash\_idx].\mbox{\hyperlink{ecc__find__curve_8c_a3b9aae9990e63034f7d199729f025b23}{OID}}, \mbox{\hyperlink{tomcrypt__hash_8h_ab0e4f02e30a47da79baa9240e79cde92}{hash\_descriptor}}[hash\_idx].OIDlen);}
+\DoxyCodeLine{105       LTC\_SET\_ASN1(digestinfo, 1, LTC\_ASN1\_NULL,              NULL,                          0);}
+\DoxyCodeLine{106       LTC\_SET\_ASN1(siginfo,    0, LTC\_ASN1\_SEQUENCE,          digestinfo,                    2);}
+\DoxyCodeLine{107       LTC\_SET\_ASN1(siginfo,    1, LTC\_ASN1\_OCTET\_STRING,      in,                            inlen);}
+\DoxyCodeLine{108 }
+\DoxyCodeLine{109       \textcolor{comment}{/* allocate memory for the encoding */}}
+\DoxyCodeLine{110       y = \mbox{\hyperlink{tomcrypt__private_8h_ad301148bb24f43a8c7003a6976dfaa5a}{mp\_unsigned\_bin\_size}}(key->N);}
+\DoxyCodeLine{111       tmpin = \mbox{\hyperlink{tomcrypt__cfg_8h_af363355f38fbaacdefacf270436ae1c9}{XMALLOC}}(y);}
+\DoxyCodeLine{112       \textcolor{keywordflow}{if} (tmpin == NULL) \{}
+\DoxyCodeLine{113          \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca0ce0d27adc7ea10b74b7ea904b8bfa82}{CRYPT\_MEM}};}
+\DoxyCodeLine{114       \}}
+\DoxyCodeLine{115 }
+\DoxyCodeLine{116       \textcolor{keywordflow}{if} ((err = der\_encode\_sequence(siginfo, 2, tmpin, \&y)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{117          \mbox{\hyperlink{tomcrypt__cfg_8h_a260d66fc0690e0502cf3bfe7b5244b75}{XFREE}}(tmpin);}
+\DoxyCodeLine{118          \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{119       \}}
+\DoxyCodeLine{120     \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{121       \textcolor{comment}{/* set the pointer and data-length to the input values */}}
+\DoxyCodeLine{122       tmpin = (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *)in;}
+\DoxyCodeLine{123       y = inlen;}
+\DoxyCodeLine{124     \}}
+\DoxyCodeLine{125 }
+\DoxyCodeLine{126     x = *outlen;}
+\DoxyCodeLine{127     err = \mbox{\hyperlink{pkcs__1__v1__5__encode_8c_afe6168498a2fbf50d740f86290ad06de}{pkcs\_1\_v1\_5\_encode}}(tmpin, y, LTC\_PKCS\_1\_EMSA, modulus\_bitlen, NULL, 0, out, \&x);}
+\DoxyCodeLine{128 }
+\DoxyCodeLine{129     \textcolor{keywordflow}{if} (padding == LTC\_PKCS\_1\_V1\_5) \{}
+\DoxyCodeLine{130       \mbox{\hyperlink{tomcrypt__cfg_8h_a260d66fc0690e0502cf3bfe7b5244b75}{XFREE}}(tmpin);}
+\DoxyCodeLine{131     \}}
+\DoxyCodeLine{132 }
+\DoxyCodeLine{133     \textcolor{keywordflow}{if} (err != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{134       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{135     \}}
+\DoxyCodeLine{136   \}}
+\DoxyCodeLine{137 }
+\DoxyCodeLine{138   \textcolor{comment}{/* RSA encode it */}}
+\DoxyCodeLine{139   \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt__math_8h_a3d38c44518c63b7a8abd0938f3d41c65}{ltc\_mp}}.\mbox{\hyperlink{structltc__math__descriptor_a3dd5741c852c680f51c441763792ad58}{rsa\_me}}(out, x, out, outlen, \mbox{\hyperlink{tomcrypt__pk_8h_afb69d121a43f5ae8b47e6b83611d9272a7295b3dea2c5277912c6e040e1c96649}{PK\_PRIVATE}}, key);}
+\DoxyCodeLine{140 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+O\+V\+E\+R\+F\+L\+OW, C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+A\+RG, C\+R\+Y\+P\+T\+\_\+\+M\+EM, C\+R\+Y\+P\+T\+\_\+\+OK, C\+R\+Y\+P\+T\+\_\+\+P\+K\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+P\+A\+D\+D\+I\+NG, hash\+\_\+descriptor, hash\+\_\+is\+\_\+valid(), L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, ltc\+\_\+mp, mp\+\_\+count\+\_\+bits, mp\+\_\+unsigned\+\_\+bin\+\_\+size, O\+ID, P\+K\+\_\+\+P\+R\+I\+V\+A\+TE, pkcs\+\_\+1\+\_\+pss\+\_\+encode(), pkcs\+\_\+1\+\_\+v1\+\_\+5\+\_\+encode(), prng\+\_\+is\+\_\+valid(), ltc\+\_\+math\+\_\+descriptor\+::rsa\+\_\+me, X\+F\+R\+E\+E(), and X\+M\+A\+L\+L\+O\+C().
+
+Here is the call graph for this function\+:
+% FIG 1

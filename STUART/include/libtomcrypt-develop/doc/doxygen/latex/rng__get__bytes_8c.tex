@@ -1,0 +1,217 @@
+\hypertarget{rng__get__bytes_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/prngs/rng\+\_\+get\+\_\+bytes.c File Reference}
+\label{rng__get__bytes_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/prngs/rng\_get\_bytes.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/prngs/rng\_get\_bytes.c}}
+
+
+portable way to get secure random bits to feed a P\+R\+NG (Tom St Denis)  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for rng\+\_\+get\+\_\+bytes.\+c\+:
+% FIG 0
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{rng__get__bytes_8c_acaffff20de2c183ec5f7f0c9734765e7}{A\+N\+S\+I\+\_\+\+R\+NG}}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static unsigned long \mbox{\hyperlink{rng__get__bytes_8c_a1384ad1a46527e2b6f22c85bdcc7f2fa}{\+\_\+rng\+\_\+nix}} (unsigned char $\ast$buf, unsigned long \mbox{\hyperlink{pmac__init_8c_afed088663f8704004425cdae2120b9b3}{len}}, void($\ast$callback)(void))
+\item 
+static unsigned long \mbox{\hyperlink{rng__get__bytes_8c_af779fc65e3d8cffba45aa4ca3e6e1ace}{\+\_\+rng\+\_\+ansic}} (unsigned char $\ast$buf, unsigned long \mbox{\hyperlink{pmac__init_8c_afed088663f8704004425cdae2120b9b3}{len}}, void($\ast$callback)(void))
+\item 
+unsigned long \mbox{\hyperlink{rng__get__bytes_8c_ace80a0f11a76e7ebd59c2188b2ec2520}{rng\+\_\+get\+\_\+bytes}} (unsigned char $\ast$out, unsigned long outlen, void($\ast$callback)(void))
+\begin{DoxyCompactList}\small\item\em Read the system R\+NG. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+portable way to get secure random bits to feed a P\+R\+NG (Tom St Denis) 
+
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{rng__get__bytes_8c_acaffff20de2c183ec5f7f0c9734765e7}\label{rng__get__bytes_8c_acaffff20de2c183ec5f7f0c9734765e7}} 
+\index{rng\_get\_bytes.c@{rng\_get\_bytes.c}!ANSI\_RNG@{ANSI\_RNG}}
+\index{ANSI\_RNG@{ANSI\_RNG}!rng\_get\_bytes.c@{rng\_get\_bytes.c}}
+\subsubsection{\texorpdfstring{ANSI\_RNG}{ANSI\_RNG}}
+{\footnotesize\ttfamily \#define A\+N\+S\+I\+\_\+\+R\+NG}
+
+
+
+Definition at line 60 of file rng\+\_\+get\+\_\+bytes.\+c.
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{rng__get__bytes_8c_af779fc65e3d8cffba45aa4ca3e6e1ace}\label{rng__get__bytes_8c_af779fc65e3d8cffba45aa4ca3e6e1ace}} 
+\index{rng\_get\_bytes.c@{rng\_get\_bytes.c}!\_rng\_ansic@{\_rng\_ansic}}
+\index{\_rng\_ansic@{\_rng\_ansic}!rng\_get\_bytes.c@{rng\_get\_bytes.c}}
+\subsubsection{\texorpdfstring{\_rng\_ansic()}{\_rng\_ansic()}}
+{\footnotesize\ttfamily static unsigned long \+\_\+rng\+\_\+ansic (\begin{DoxyParamCaption}\item[{unsigned char $\ast$}]{buf,  }\item[{unsigned long}]{len,  }\item[{void($\ast$)(void)}]{callback }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 62 of file rng\+\_\+get\+\_\+bytes.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{64 \{}
+\DoxyCodeLine{65    clock\_t \mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}};}
+\DoxyCodeLine{66    \textcolor{keywordtype}{int} l, acc, bits, a, b;}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{68    l = \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}};}
+\DoxyCodeLine{69    bits = 8;}
+\DoxyCodeLine{70    acc  = a = b = 0;}
+\DoxyCodeLine{71    \textcolor{keywordflow}{while} (\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}--) \{}
+\DoxyCodeLine{72        \textcolor{keywordflow}{if} (callback != NULL) callback();}
+\DoxyCodeLine{73        \textcolor{keywordflow}{while} (bits--) \{}
+\DoxyCodeLine{74           \textcolor{keywordflow}{do} \{}
+\DoxyCodeLine{75              \mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}} = \mbox{\hyperlink{tomcrypt__cfg_8h_a87093d90435a60f5cbb14bcca6191c76}{XCLOCK}}(); \textcolor{keywordflow}{while} (\mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}} == \mbox{\hyperlink{tomcrypt__cfg_8h_a87093d90435a60f5cbb14bcca6191c76}{XCLOCK}}()) a \string^= 1;}
+\DoxyCodeLine{76              \mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}} = \mbox{\hyperlink{tomcrypt__cfg_8h_a87093d90435a60f5cbb14bcca6191c76}{XCLOCK}}(); \textcolor{keywordflow}{while} (\mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}} == \mbox{\hyperlink{tomcrypt__cfg_8h_a87093d90435a60f5cbb14bcca6191c76}{XCLOCK}}()) b \string^= 1;}
+\DoxyCodeLine{77           \} \textcolor{keywordflow}{while} (a == b);}
+\DoxyCodeLine{78           acc = (acc << 1) | a;}
+\DoxyCodeLine{79        \}}
+\DoxyCodeLine{80        *buf++ = acc;}
+\DoxyCodeLine{81        acc  = 0;}
+\DoxyCodeLine{82        bits = 8;}
+\DoxyCodeLine{83    \}}
+\DoxyCodeLine{84    \textcolor{keywordflow}{return} l;}
+\DoxyCodeLine{85 \}}
+
+\end{DoxyCode}
+
+
+References len, t1, and X\+C\+L\+O\+C\+K().
+
+
+
+Referenced by rng\+\_\+get\+\_\+bytes().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2
+\mbox{\Hypertarget{rng__get__bytes_8c_a1384ad1a46527e2b6f22c85bdcc7f2fa}\label{rng__get__bytes_8c_a1384ad1a46527e2b6f22c85bdcc7f2fa}} 
+\index{rng\_get\_bytes.c@{rng\_get\_bytes.c}!\_rng\_nix@{\_rng\_nix}}
+\index{\_rng\_nix@{\_rng\_nix}!rng\_get\_bytes.c@{rng\_get\_bytes.c}}
+\subsubsection{\texorpdfstring{\_rng\_nix()}{\_rng\_nix()}}
+{\footnotesize\ttfamily static unsigned long \+\_\+rng\+\_\+nix (\begin{DoxyParamCaption}\item[{unsigned char $\ast$}]{buf,  }\item[{unsigned long}]{len,  }\item[{void($\ast$)(void)}]{callback }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 19 of file rng\+\_\+get\+\_\+bytes.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{21 \{}
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#ifdef LTC\_NO\_FILE}}
+\DoxyCodeLine{23     \mbox{\hyperlink{tomcrypt__macros_8h_accde4b007facd646a8327f8e64b2d1e0}{LTC\_UNUSED\_PARAM}}(callback);}
+\DoxyCodeLine{24     \mbox{\hyperlink{tomcrypt__macros_8h_accde4b007facd646a8327f8e64b2d1e0}{LTC\_UNUSED\_PARAM}}(buf);}
+\DoxyCodeLine{25     \mbox{\hyperlink{tomcrypt__macros_8h_accde4b007facd646a8327f8e64b2d1e0}{LTC\_UNUSED\_PARAM}}(\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}});}
+\DoxyCodeLine{26     \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{28     FILE *f;}
+\DoxyCodeLine{29     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} x;}
+\DoxyCodeLine{30     \mbox{\hyperlink{tomcrypt__macros_8h_accde4b007facd646a8327f8e64b2d1e0}{LTC\_UNUSED\_PARAM}}(callback);}
+\DoxyCodeLine{31 \textcolor{preprocessor}{\#ifdef LTC\_TRY\_URANDOM\_FIRST}}
+\DoxyCodeLine{32     f = fopen(\textcolor{stringliteral}{"/dev/urandom"}, \textcolor{stringliteral}{"rb"});}
+\DoxyCodeLine{33     \textcolor{keywordflow}{if} (f == NULL) \{}
+\DoxyCodeLine{34        f = fopen(\textcolor{stringliteral}{"/dev/random"}, \textcolor{stringliteral}{"rb"});}
+\DoxyCodeLine{35     \}}
+\DoxyCodeLine{36 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{37     f = fopen(\textcolor{stringliteral}{"/dev/random"}, \textcolor{stringliteral}{"rb"});}
+\DoxyCodeLine{38 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* LTC\_TRY\_URANDOM\_FIRST */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{40     \textcolor{keywordflow}{if} (f == NULL) \{}
+\DoxyCodeLine{41        \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{42     \}}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44     \textcolor{comment}{/* disable buffering */}}
+\DoxyCodeLine{45     \textcolor{keywordflow}{if} (setvbuf(f, NULL, \_IONBF, 0) != 0) \{}
+\DoxyCodeLine{46        fclose(f);}
+\DoxyCodeLine{47        \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{48     \}}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{50     x = (\textcolor{keywordtype}{unsigned} long)fread(buf, 1, (\textcolor{keywordtype}{size\_t})\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}, f);}
+\DoxyCodeLine{51     fclose(f);}
+\DoxyCodeLine{52     \textcolor{keywordflow}{return} x;}
+\DoxyCodeLine{53 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* LTC\_NO\_FILE */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{54 \}}
+
+\end{DoxyCode}
+
+
+References len, and L\+T\+C\+\_\+\+U\+N\+U\+S\+E\+D\+\_\+\+P\+A\+R\+AM.
+
+
+
+Referenced by rng\+\_\+get\+\_\+bytes().
+
+Here is the caller graph for this function\+:
+% FIG 3
+\mbox{\Hypertarget{rng__get__bytes_8c_ace80a0f11a76e7ebd59c2188b2ec2520}\label{rng__get__bytes_8c_ace80a0f11a76e7ebd59c2188b2ec2520}} 
+\index{rng\_get\_bytes.c@{rng\_get\_bytes.c}!rng\_get\_bytes@{rng\_get\_bytes}}
+\index{rng\_get\_bytes@{rng\_get\_bytes}!rng\_get\_bytes.c@{rng\_get\_bytes.c}}
+\subsubsection{\texorpdfstring{rng\_get\_bytes()}{rng\_get\_bytes()}}
+{\footnotesize\ttfamily unsigned long rng\+\_\+get\+\_\+bytes (\begin{DoxyParamCaption}\item[{unsigned char $\ast$}]{out,  }\item[{unsigned long}]{outlen,  }\item[{void($\ast$)(void)}]{callback }\end{DoxyParamCaption})}
+
+
+
+Read the system R\+NG. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em out} & Destination \\
+\hline
+{\em outlen} & Length desired (octets) \\
+\hline
+{\em callback} & Pointer to void function to act as \char`\"{}callback\char`\"{} when R\+NG is slow. This can be N\+U\+LL \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Number of octets read 
+\end{DoxyReturn}
+
+
+Definition at line 132 of file rng\+\_\+get\+\_\+bytes.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{134 \{}
+\DoxyCodeLine{135    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} x;}
+\DoxyCodeLine{136 }
+\DoxyCodeLine{137    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(out != NULL);}
+\DoxyCodeLine{138 }
+\DoxyCodeLine{139 \textcolor{preprocessor}{\#ifdef LTC\_PRNG\_ENABLE\_LTC\_RNG}}
+\DoxyCodeLine{140    \textcolor{keywordflow}{if} (ltc\_rng) \{}
+\DoxyCodeLine{141       x = ltc\_rng(out, outlen, callback);}
+\DoxyCodeLine{142       \textcolor{keywordflow}{if} (x != 0) \{}
+\DoxyCodeLine{143          \textcolor{keywordflow}{return} x;}
+\DoxyCodeLine{144       \}}
+\DoxyCodeLine{145    \}}
+\DoxyCodeLine{146 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{147 }
+\DoxyCodeLine{148 \textcolor{preprocessor}{\#if defined(\_WIN32) || defined(\_WIN32\_WCE)}}
+\DoxyCodeLine{149    x = \_rng\_win32(out, outlen, callback); \textcolor{keywordflow}{if} (x != 0) \{ \textcolor{keywordflow}{return} x; \}}
+\DoxyCodeLine{150 \textcolor{preprocessor}{\#elif defined(LTC\_DEVRANDOM)}}
+\DoxyCodeLine{151    x = \mbox{\hyperlink{rng__get__bytes_8c_a1384ad1a46527e2b6f22c85bdcc7f2fa}{\_rng\_nix}}(out, outlen, callback);   \textcolor{keywordflow}{if} (x != 0) \{ \textcolor{keywordflow}{return} x; \}}
+\DoxyCodeLine{152 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{153 \textcolor{preprocessor}{\#ifdef ANSI\_RNG}}
+\DoxyCodeLine{154    x = \mbox{\hyperlink{rng__get__bytes_8c_af779fc65e3d8cffba45aa4ca3e6e1ace}{\_rng\_ansic}}(out, outlen, callback); \textcolor{keywordflow}{if} (x != 0) \{ \textcolor{keywordflow}{return} x; \}}
+\DoxyCodeLine{155 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{156    \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{157 \}}
+
+\end{DoxyCode}
+
+
+References \+\_\+rng\+\_\+ansic(), \+\_\+rng\+\_\+nix(), and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+
+
+Referenced by \+\_\+padding\+\_\+padded\+\_\+length(), padding\+\_\+pad(), rng\+\_\+make\+\_\+prng(), and sprng\+\_\+read().
+
+Here is the call graph for this function\+:
+% FIG 4
+Here is the caller graph for this function\+:
+% FIG 5

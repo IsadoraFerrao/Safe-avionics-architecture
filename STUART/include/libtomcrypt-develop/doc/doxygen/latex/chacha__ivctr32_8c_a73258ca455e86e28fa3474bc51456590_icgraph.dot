@@ -1,0 +1,23 @@
+digraph "chacha_ivctr32"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node1 [label="chacha_ivctr32",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Set IV + counter data to the ChaCha state."];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node2 [label="chacha20poly1305_setiv",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$chacha20poly1305__setiv_8c.html#aec694a7406b22a534da1706070e98907",tooltip="Set IV + counter data to the ChaCha20Poly1305 state and reset the context."];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node3 [label="chacha20poly1305_memory",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$chacha20poly1305__memory_8c.html#a1ad9f37fe4a4ac32fad1a1ab97f99d30",tooltip="Process an entire GCM packet in one call."];
+  Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node4 [label="chacha20poly1305_test",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$chacha20poly1305__test_8c.html#a3ed16a3fd7fc440bc9137936ddb99793",tooltip=" "];
+  Node2 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node5 [label="chacha20poly1305_setiv\l_rfc7905",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$chacha20poly1305__setiv__rfc7905_8c.html#aa113643ea24d7f6a06a993ef52eef37b",tooltip="Set IV + counter data (with RFC7905-magic) to the ChaCha20Poly1305 state and reset the context."];
+  Node5 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node2 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node1 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node6 [label="chacha_memory",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$chacha__memory_8c.html#abdc58552b8b6e826eccb18f706e08fa0",tooltip="Encrypt (or decrypt) bytes of ciphertext (or plaintext) with ChaCha."];
+  Node6 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node7 [label="chacha_test",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$chacha__test_8c.html#a821d3fc42bdf4f88ee30ff85ba5aedd6",tooltip=" "];
+  Node1 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+}

@@ -1,0 +1,69 @@
+\hypertarget{ocb__ntz_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/encauth/ocb/ocb\+\_\+ntz.c File Reference}
+\label{ocb__ntz_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/encauth/ocb/ocb\_ntz.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/encauth/ocb/ocb\_ntz.c}}
+
+
+O\+CB implementation, internal function, by Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for ocb\+\_\+ntz.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{ocb__ntz_8c_a85349886e5d37c031c02fe46296fc303}{ocb\+\_\+ntz}} (unsigned long x)
+\begin{DoxyCompactList}\small\item\em Returns the number of leading zero bits \mbox{[}from lsb up\mbox{]}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+O\+CB implementation, internal function, by Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{ocb__ntz_8c_a85349886e5d37c031c02fe46296fc303}\label{ocb__ntz_8c_a85349886e5d37c031c02fe46296fc303}} 
+\index{ocb\_ntz.c@{ocb\_ntz.c}!ocb\_ntz@{ocb\_ntz}}
+\index{ocb\_ntz@{ocb\_ntz}!ocb\_ntz.c@{ocb\_ntz.c}}
+\subsubsection{\texorpdfstring{ocb\_ntz()}{ocb\_ntz()}}
+{\footnotesize\ttfamily int ocb\+\_\+ntz (\begin{DoxyParamCaption}\item[{unsigned long}]{x }\end{DoxyParamCaption})}
+
+
+
+Returns the number of leading zero bits \mbox{[}from lsb up\mbox{]}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & The 32-\/bit value to observe \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The number of bits \mbox{[}from the lsb up\mbox{]} that are zero 
+\end{DoxyReturn}
+
+
+Definition at line 24 of file ocb\+\_\+ntz.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{25 \{}
+\DoxyCodeLine{26    \textcolor{keywordtype}{int} \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}};}
+\DoxyCodeLine{27    x \&= 0xFFFFFFFFUL;}
+\DoxyCodeLine{28    \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} = 0;}
+\DoxyCodeLine{29    \textcolor{keywordflow}{while} ((x \& 1) == 0) \{}
+\DoxyCodeLine{30       ++\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}};}
+\DoxyCodeLine{31       x >>= 1;}
+\DoxyCodeLine{32    \}}
+\DoxyCodeLine{33    \textcolor{keywordflow}{return} \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}};}
+\DoxyCodeLine{34 \}}
+
+\end{DoxyCode}
+
+
+References c.
+
+
+
+Referenced by ocb\+\_\+shift\+\_\+xor().
+
+Here is the caller graph for this function\+:
+% FIG 1

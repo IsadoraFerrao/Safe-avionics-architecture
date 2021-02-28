@@ -1,0 +1,309 @@
+\hypertarget{ocb3__init_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/encauth/ocb3/ocb3\+\_\+init.c File Reference}
+\label{ocb3__init_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/encauth/ocb3/ocb3\_init.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/encauth/ocb3/ocb3\_init.c}}
+
+
+O\+CB implementation, initialize state, by Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for ocb3\+\_\+init.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{ocb3__init_8c_ac90454e332f63cdeab4a6ab4c4b9ac25}{\+\_\+ocb3\+\_\+int\+\_\+calc\+\_\+offset\+\_\+zero}} (ocb3\+\_\+state $\ast$ocb, const unsigned char $\ast$nonce, unsigned long noncelen, unsigned long taglen)
+\item 
+int \mbox{\hyperlink{ocb3__init_8c_aa623e20f84ca5fe394f7bd209d4da177}{ocb3\+\_\+init}} (ocb3\+\_\+state $\ast$ocb, int cipher, const unsigned char $\ast$key, unsigned long keylen, const unsigned char $\ast$nonce, unsigned long noncelen, unsigned long taglen)
+\begin{DoxyCompactList}\small\item\em Initialize an O\+CB context. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+struct \{\\
+\>int \mbox{\hyperlink{ocb3__init_8c_afed088663f8704004425cdae2120b9b3}{len}}\\
+\>unsigned char \mbox{\hyperlink{ocb3__init_8c_ac5b1f3791dbd8ac847ef239d0171c0ce}{poly\_mul}} \mbox{[}144\mbox{]}\\
+\} \mbox{\hyperlink{ocb3__init_8c_ac97233f39a56a8e01c58d70377958985}{polys}} \mbox{[}$\,$\mbox{]}\\
+
+\end{tabbing}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+O\+CB implementation, initialize state, by Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{ocb3__init_8c_ac90454e332f63cdeab4a6ab4c4b9ac25}\label{ocb3__init_8c_ac90454e332f63cdeab4a6ab4c4b9ac25}} 
+\index{ocb3\_init.c@{ocb3\_init.c}!\_ocb3\_int\_calc\_offset\_zero@{\_ocb3\_int\_calc\_offset\_zero}}
+\index{\_ocb3\_int\_calc\_offset\_zero@{\_ocb3\_int\_calc\_offset\_zero}!ocb3\_init.c@{ocb3\_init.c}}
+\subsubsection{\texorpdfstring{\_ocb3\_int\_calc\_offset\_zero()}{\_ocb3\_int\_calc\_offset\_zero()}}
+{\footnotesize\ttfamily static void \+\_\+ocb3\+\_\+int\+\_\+calc\+\_\+offset\+\_\+zero (\begin{DoxyParamCaption}\item[{ocb3\+\_\+state $\ast$}]{ocb,  }\item[{const unsigned char $\ast$}]{nonce,  }\item[{unsigned long}]{noncelen,  }\item[{unsigned long}]{taglen }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 18 of file ocb3\+\_\+init.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{19 \{}
+\DoxyCodeLine{20    \textcolor{keywordtype}{int} x, y, bottom;}
+\DoxyCodeLine{21    \textcolor{keywordtype}{int} idx, shift;}
+\DoxyCodeLine{22    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} iNonce[\mbox{\hyperlink{tomcrypt_8h_ab59933beebb2b857c992b93cf53f0d10}{MAXBLOCKSIZE}}];}
+\DoxyCodeLine{23    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} iKtop[\mbox{\hyperlink{tomcrypt_8h_ab59933beebb2b857c992b93cf53f0d10}{MAXBLOCKSIZE}}];}
+\DoxyCodeLine{24    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} iStretch[\mbox{\hyperlink{tomcrypt_8h_ab59933beebb2b857c992b93cf53f0d10}{MAXBLOCKSIZE}}+8];}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26    \textcolor{comment}{/* Nonce = zeros(127-bitlen(N)) || 1 || N          */}}
+\DoxyCodeLine{27    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(iNonce, \textcolor{keyword}{sizeof}(iNonce));}
+\DoxyCodeLine{28    \textcolor{keywordflow}{for} (x = ocb->block\_len-1, y=0; y<(\textcolor{keywordtype}{int})noncelen; x--, y++) \{}
+\DoxyCodeLine{29      iNonce[x] = nonce[noncelen-y-1];}
+\DoxyCodeLine{30    \}}
+\DoxyCodeLine{31    iNonce[x] = 0x01;}
+\DoxyCodeLine{32    iNonce[0] |= ((taglen*8) \% 128) << 1;}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34    \textcolor{comment}{/* bottom = str2num(Nonce[123..128])               */}}
+\DoxyCodeLine{35    bottom = iNonce[ocb->block\_len-1] \& 0x3F;}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37    \textcolor{comment}{/* Ktop = ENCIPHER(K, Nonce[1..122] || zeros(6))   */}}
+\DoxyCodeLine{38    iNonce[ocb->block\_len-1] = iNonce[ocb->block\_len-1] \& 0xC0;}
+\DoxyCodeLine{39    \textcolor{keywordflow}{if} ((\mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[ocb->cipher].\mbox{\hyperlink{structltc__cipher__descriptor_a46141d86abe22a7c8d382c62a894dd63}{ecb\_encrypt}}(iNonce, iKtop, \&ocb->key)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{40       \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(ocb->Offset\_current, ocb->block\_len);}
+\DoxyCodeLine{41       \textcolor{keywordflow}{return};}
+\DoxyCodeLine{42    \}}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44    \textcolor{comment}{/* Stretch = Ktop || (Ktop[1..64] xor Ktop[9..72]) */}}
+\DoxyCodeLine{45    \textcolor{keywordflow}{for} (x = 0; x < ocb->block\_len; x++) \{}
+\DoxyCodeLine{46      iStretch[x] = iKtop[x];}
+\DoxyCodeLine{47    \}}
+\DoxyCodeLine{48    \textcolor{keywordflow}{for} (y = 0; y < 8; y++) \{}
+\DoxyCodeLine{49      iStretch[x+y] = iKtop[y] \string^ iKtop[y+1];}
+\DoxyCodeLine{50    \}}
+\DoxyCodeLine{51 }
+\DoxyCodeLine{52    \textcolor{comment}{/* Offset\_0 = Stretch[1+bottom..128+bottom]        */}}
+\DoxyCodeLine{53    idx = bottom / 8;}
+\DoxyCodeLine{54    shift = (bottom \% 8);}
+\DoxyCodeLine{55    \textcolor{keywordflow}{for} (x = 0; x < ocb->block\_len; x++) \{}
+\DoxyCodeLine{56       ocb->Offset\_current[x] = iStretch[idx+x] << shift;}
+\DoxyCodeLine{57       \textcolor{keywordflow}{if} (shift > 0) \{}
+\DoxyCodeLine{58         ocb->Offset\_current[x] |= iStretch[idx+x+1] >> (8-shift);}
+\DoxyCodeLine{59       \}}
+\DoxyCodeLine{60    \}}
+\DoxyCodeLine{61 \}}
+
+\end{DoxyCode}
+
+
+References cipher\+\_\+descriptor, C\+R\+Y\+P\+T\+\_\+\+OK, ltc\+\_\+cipher\+\_\+descriptor\+::ecb\+\_\+encrypt, M\+A\+X\+B\+L\+O\+C\+K\+S\+I\+ZE, and zeromem().
+
+
+
+Referenced by ocb3\+\_\+init().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2
+\mbox{\Hypertarget{ocb3__init_8c_aa623e20f84ca5fe394f7bd209d4da177}\label{ocb3__init_8c_aa623e20f84ca5fe394f7bd209d4da177}} 
+\index{ocb3\_init.c@{ocb3\_init.c}!ocb3\_init@{ocb3\_init}}
+\index{ocb3\_init@{ocb3\_init}!ocb3\_init.c@{ocb3\_init.c}}
+\subsubsection{\texorpdfstring{ocb3\_init()}{ocb3\_init()}}
+{\footnotesize\ttfamily int ocb3\+\_\+init (\begin{DoxyParamCaption}\item[{ocb3\+\_\+state $\ast$}]{ocb,  }\item[{int}]{cipher,  }\item[{const unsigned char $\ast$}]{key,  }\item[{unsigned long}]{keylen,  }\item[{const unsigned char $\ast$}]{nonce,  }\item[{unsigned long}]{noncelen,  }\item[{unsigned long}]{taglen }\end{DoxyParamCaption})}
+
+
+
+Initialize an O\+CB context. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ocb} & \mbox{[}out\mbox{]} The destination of the O\+CB state \\
+\hline
+{\em cipher} & The index of the desired cipher \\
+\hline
+{\em key} & The secret key \\
+\hline
+{\em keylen} & The length of the secret key (octets) \\
+\hline
+{\em nonce} & The session nonce \\
+\hline
+{\em noncelen} & The length of the session nonce (octets, up to 15) \\
+\hline
+{\em taglen} & The length of the tag (octets, up to 16) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 88 of file ocb3\+\_\+init.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{92 \{}
+\DoxyCodeLine{93    \textcolor{keywordtype}{int} \mbox{\hyperlink{gcm__gf__mult_8c_ae7cb7582a0d3b2ec78b665193cbac9ae}{poly}}, x, y, m, err;}
+\DoxyCodeLine{94    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *previous, *current;}
+\DoxyCodeLine{95 }
+\DoxyCodeLine{96    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(ocb   != NULL);}
+\DoxyCodeLine{97    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(key   != NULL);}
+\DoxyCodeLine{98    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(nonce != NULL);}
+\DoxyCodeLine{99 }
+\DoxyCodeLine{100    \textcolor{comment}{/* valid cipher? */}}
+\DoxyCodeLine{101    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_ac30eb68934c4ca07205344dc9d159221}{cipher\_is\_valid}}(cipher)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{102       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{103    \}}
+\DoxyCodeLine{104    ocb->cipher = cipher;}
+\DoxyCodeLine{105 }
+\DoxyCodeLine{106    \textcolor{comment}{/* Valid Nonce?}}
+\DoxyCodeLine{107 \textcolor{comment}{    * As of RFC7253: "string of no more than 120 bits" */}}
+\DoxyCodeLine{108    \textcolor{keywordflow}{if} (noncelen > (120/8)) \{}
+\DoxyCodeLine{109       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{110    \}}
+\DoxyCodeLine{111 }
+\DoxyCodeLine{112    \textcolor{comment}{/* The blockcipher must have a 128-bit blocksize */}}
+\DoxyCodeLine{113    \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[cipher].block\_length != 16) \{}
+\DoxyCodeLine{114       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{115    \}}
+\DoxyCodeLine{116 }
+\DoxyCodeLine{117    \textcolor{comment}{/* The TAGLEN may be any value up to 128 (bits) */}}
+\DoxyCodeLine{118    \textcolor{keywordflow}{if} (taglen > 16) \{}
+\DoxyCodeLine{119       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{120    \}}
+\DoxyCodeLine{121    ocb->tag\_len = taglen;}
+\DoxyCodeLine{122 }
+\DoxyCodeLine{123    \textcolor{comment}{/* determine which polys to use */}}
+\DoxyCodeLine{124    ocb->block\_len = \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[cipher].\mbox{\hyperlink{structltc__cipher__descriptor_afa2af7325fd3a834910dd92e8c9acf49}{block\_length}};}
+\DoxyCodeLine{125    x = (int)(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{ocb3__init_8c_ac97233f39a56a8e01c58d70377958985}{polys}})/\textcolor{keyword}{sizeof}(\mbox{\hyperlink{ocb3__init_8c_ac97233f39a56a8e01c58d70377958985}{polys}}[0]));}
+\DoxyCodeLine{126    \textcolor{keywordflow}{for} (\mbox{\hyperlink{gcm__gf__mult_8c_ae7cb7582a0d3b2ec78b665193cbac9ae}{poly}} = 0; \mbox{\hyperlink{gcm__gf__mult_8c_ae7cb7582a0d3b2ec78b665193cbac9ae}{poly}} < x; \mbox{\hyperlink{gcm__gf__mult_8c_ae7cb7582a0d3b2ec78b665193cbac9ae}{poly}}++) \{}
+\DoxyCodeLine{127        \textcolor{keywordflow}{if} (\mbox{\hyperlink{ocb3__init_8c_ac97233f39a56a8e01c58d70377958985}{polys}}[\mbox{\hyperlink{gcm__gf__mult_8c_ae7cb7582a0d3b2ec78b665193cbac9ae}{poly}}].\mbox{\hyperlink{ocb3__init_8c_afed088663f8704004425cdae2120b9b3}{len}} == ocb->block\_len) \{}
+\DoxyCodeLine{128           \textcolor{keywordflow}{break};}
+\DoxyCodeLine{129        \}}
+\DoxyCodeLine{130    \}}
+\DoxyCodeLine{131    \textcolor{keywordflow}{if} (\mbox{\hyperlink{gcm__gf__mult_8c_ae7cb7582a0d3b2ec78b665193cbac9ae}{poly}} == x) \{}
+\DoxyCodeLine{132       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}}; \textcolor{comment}{/* block\_len not found in polys */}}
+\DoxyCodeLine{133    \}}
+\DoxyCodeLine{134    \textcolor{keywordflow}{if} (\mbox{\hyperlink{ocb3__init_8c_ac97233f39a56a8e01c58d70377958985}{polys}}[\mbox{\hyperlink{gcm__gf__mult_8c_ae7cb7582a0d3b2ec78b665193cbac9ae}{poly}}].\mbox{\hyperlink{ocb3__init_8c_afed088663f8704004425cdae2120b9b3}{len}} != ocb->block\_len) \{}
+\DoxyCodeLine{135       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{136    \}}
+\DoxyCodeLine{137 }
+\DoxyCodeLine{138    \textcolor{comment}{/* schedule the key */}}
+\DoxyCodeLine{139    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[cipher].\mbox{\hyperlink{multi2_8c_ad0625943f7d847668b869ed827c51d47}{setup}}(key, keylen, 0, \&ocb->key)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{140       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{141    \}}
+\DoxyCodeLine{142 }
+\DoxyCodeLine{143    \textcolor{comment}{/* L\_* = ENCIPHER(K, zeros(128)) */}}
+\DoxyCodeLine{144    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(ocb->L\_star, ocb->block\_len);}
+\DoxyCodeLine{145    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[cipher].\mbox{\hyperlink{ecb__encrypt_8c_affdcc93fca272998e2545fcabac4e7f0}{ecb\_encrypt}}(ocb->L\_star, ocb->L\_star, \&ocb->key)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{146       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{147    \}}
+\DoxyCodeLine{148 }
+\DoxyCodeLine{149    \textcolor{comment}{/* compute L\_\$, L\_0, L\_1, ... */}}
+\DoxyCodeLine{150    \textcolor{keywordflow}{for} (x = -1; x < 32; x++) \{}
+\DoxyCodeLine{151       \textcolor{keywordflow}{if} (x == -1) \{                \textcolor{comment}{/* gonna compute: L\_\$ = double(L\_*) */}}
+\DoxyCodeLine{152          current  = ocb->L\_dollar;}
+\DoxyCodeLine{153          previous = ocb->L\_star;}
+\DoxyCodeLine{154       \}}
+\DoxyCodeLine{155       \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (x == 0) \{            \textcolor{comment}{/* gonna compute: L\_0 = double(L\_\$) */}}
+\DoxyCodeLine{156          current  = ocb->L\_[0];}
+\DoxyCodeLine{157          previous = ocb->L\_dollar;}
+\DoxyCodeLine{158       \}}
+\DoxyCodeLine{159       \textcolor{keywordflow}{else} \{                        \textcolor{comment}{/* gonna compute: L\_i = double(L\_\{i-1\}) for every integer i > 0 */}}
+\DoxyCodeLine{160          current  = ocb->L\_[x];}
+\DoxyCodeLine{161          previous = ocb->L\_[x-1];}
+\DoxyCodeLine{162       \}}
+\DoxyCodeLine{163       m = previous[0] >> 7;}
+\DoxyCodeLine{164       \textcolor{keywordflow}{for} (y = 0; y < ocb->block\_len-1; y++) \{}
+\DoxyCodeLine{165          current[y] = ((previous[y] << 1) | (previous[y+1] >> 7)) \& 255;}
+\DoxyCodeLine{166       \}}
+\DoxyCodeLine{167       current[ocb->block\_len-1] = (previous[ocb->block\_len-1] << 1) \& 255;}
+\DoxyCodeLine{168       \textcolor{keywordflow}{if} (m == 1) \{}
+\DoxyCodeLine{169          \textcolor{comment}{/* current[] = current[] XOR polys[poly].poly\_mul[]*/}}
+\DoxyCodeLine{170          \mbox{\hyperlink{ocb3__int__xor__blocks_8c_a5bf6caa4615657cdfd8f8941620a987c}{ocb3\_int\_xor\_blocks}}(current, current, \mbox{\hyperlink{ocb3__init_8c_ac97233f39a56a8e01c58d70377958985}{polys}}[\mbox{\hyperlink{gcm__gf__mult_8c_ae7cb7582a0d3b2ec78b665193cbac9ae}{poly}}].\mbox{\hyperlink{ocb3__init_8c_ac5b1f3791dbd8ac847ef239d0171c0ce}{poly\_mul}}, ocb->block\_len);}
+\DoxyCodeLine{171       \}}
+\DoxyCodeLine{172    \}}
+\DoxyCodeLine{173 }
+\DoxyCodeLine{174    \textcolor{comment}{/* initialize ocb->Offset\_current = Offset\_0 */}}
+\DoxyCodeLine{175    \mbox{\hyperlink{ocb3__init_8c_ac90454e332f63cdeab4a6ab4c4b9ac25}{\_ocb3\_int\_calc\_offset\_zero}}(ocb, nonce, noncelen, taglen);}
+\DoxyCodeLine{176 }
+\DoxyCodeLine{177    \textcolor{comment}{/* initialize checksum to all zeros */}}
+\DoxyCodeLine{178    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(ocb->checksum, ocb->block\_len);}
+\DoxyCodeLine{179 }
+\DoxyCodeLine{180    \textcolor{comment}{/* set block index */}}
+\DoxyCodeLine{181    ocb->block\_index = 1;}
+\DoxyCodeLine{182 }
+\DoxyCodeLine{183    \textcolor{comment}{/* initialize AAD related stuff */}}
+\DoxyCodeLine{184    ocb->ablock\_index = 1;}
+\DoxyCodeLine{185    ocb->adata\_buffer\_bytes = 0;}
+\DoxyCodeLine{186    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(ocb->aOffset\_current, ocb->block\_len);}
+\DoxyCodeLine{187    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(ocb->aSum\_current, ocb->block\_len);}
+\DoxyCodeLine{188 }
+\DoxyCodeLine{189    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{190 \}}
+
+\end{DoxyCode}
+
+
+References \+\_\+ocb3\+\_\+int\+\_\+calc\+\_\+offset\+\_\+zero(), ltc\+\_\+cipher\+\_\+descriptor\+::block\+\_\+length, cipher\+\_\+descriptor, cipher\+\_\+is\+\_\+valid(), C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+A\+RG, C\+R\+Y\+P\+T\+\_\+\+OK, ecb\+\_\+encrypt(), len, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, ocb3\+\_\+int\+\_\+xor\+\_\+blocks(), poly, poly\+\_\+mul, polys, setup(), and zeromem().
+
+
+
+Referenced by ocb3\+\_\+decrypt\+\_\+verify\+\_\+memory(), ocb3\+\_\+encrypt\+\_\+authenticate\+\_\+memory(), and ocb3\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 3
+Here is the caller graph for this function\+:
+% FIG 4
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{ocb3__init_8c_afed088663f8704004425cdae2120b9b3}\label{ocb3__init_8c_afed088663f8704004425cdae2120b9b3}} 
+\index{ocb3\_init.c@{ocb3\_init.c}!len@{len}}
+\index{len@{len}!ocb3\_init.c@{ocb3\_init.c}}
+\subsubsection{\texorpdfstring{len}{len}}
+{\footnotesize\ttfamily int len}
+
+
+
+Definition at line 64 of file ocb3\+\_\+init.\+c.
+
+
+
+Referenced by ocb3\+\_\+init().
+
+\mbox{\Hypertarget{ocb3__init_8c_ac5b1f3791dbd8ac847ef239d0171c0ce}\label{ocb3__init_8c_ac5b1f3791dbd8ac847ef239d0171c0ce}} 
+\index{ocb3\_init.c@{ocb3\_init.c}!poly\_mul@{poly\_mul}}
+\index{poly\_mul@{poly\_mul}!ocb3\_init.c@{ocb3\_init.c}}
+\subsubsection{\texorpdfstring{poly\_mul}{poly\_mul}}
+{\footnotesize\ttfamily unsigned char poly\+\_\+mul\mbox{[}144\mbox{]}}
+
+
+
+Definition at line 65 of file ocb3\+\_\+init.\+c.
+
+
+
+Referenced by ocb3\+\_\+init().
+
+\mbox{\Hypertarget{ocb3__init_8c_ac97233f39a56a8e01c58d70377958985}\label{ocb3__init_8c_ac97233f39a56a8e01c58d70377958985}} 
+\index{ocb3\_init.c@{ocb3\_init.c}!polys@{polys}}
+\index{polys@{polys}!ocb3\_init.c@{ocb3\_init.c}}
+\subsubsection{\texorpdfstring{polys}{polys}}
+{\footnotesize\ttfamily const \{ ... \}   polys\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    8,}
+\DoxyCodeLine{    \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x1B \}}
+\DoxyCodeLine{\}, \{}
+\DoxyCodeLine{    16,}
+\DoxyCodeLine{    \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x87 \}}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Referenced by ocb3\+\_\+init().
+

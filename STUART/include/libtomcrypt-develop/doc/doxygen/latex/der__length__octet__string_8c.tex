@@ -1,0 +1,76 @@
+\hypertarget{der__length__octet__string_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/pk/asn1/der/octet/der\+\_\+length\+\_\+octet\+\_\+string.c File Reference}
+\label{der__length__octet__string_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/asn1/der/octet/der\_length\_octet\_string.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/asn1/der/octet/der\_length\_octet\_string.c}}
+
+
+A\+S\+N.\+1 D\+ER, get length of O\+C\+T\+ET S\+T\+R\+I\+NG, Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for der\+\_\+length\+\_\+octet\+\_\+string.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{der__length__octet__string_8c_a65b2f3065d3f51608a1dfa3b284a74df}{der\+\_\+length\+\_\+octet\+\_\+string}} (unsigned long noctets, unsigned long $\ast$outlen)
+\begin{DoxyCompactList}\small\item\em Gets length of D\+ER encoding of O\+C\+T\+ET S\+T\+R\+I\+NG. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A\+S\+N.\+1 D\+ER, get length of O\+C\+T\+ET S\+T\+R\+I\+NG, Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{der__length__octet__string_8c_a65b2f3065d3f51608a1dfa3b284a74df}\label{der__length__octet__string_8c_a65b2f3065d3f51608a1dfa3b284a74df}} 
+\index{der\_length\_octet\_string.c@{der\_length\_octet\_string.c}!der\_length\_octet\_string@{der\_length\_octet\_string}}
+\index{der\_length\_octet\_string@{der\_length\_octet\_string}!der\_length\_octet\_string.c@{der\_length\_octet\_string.c}}
+\subsubsection{\texorpdfstring{der\_length\_octet\_string()}{der\_length\_octet\_string()}}
+{\footnotesize\ttfamily int der\+\_\+length\+\_\+octet\+\_\+string (\begin{DoxyParamCaption}\item[{unsigned long}]{noctets,  }\item[{unsigned long $\ast$}]{outlen }\end{DoxyParamCaption})}
+
+
+
+Gets length of D\+ER encoding of O\+C\+T\+ET S\+T\+R\+I\+NG. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em noctets} & The number of octets in the string to encode \\
+\hline
+{\em outlen} & \mbox{[}out\mbox{]} The length of the D\+ER encoding for the given string \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 23 of file der\+\_\+length\+\_\+octet\+\_\+string.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{24 \{}
+\DoxyCodeLine{25    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} x;}
+\DoxyCodeLine{26    \textcolor{keywordtype}{int} err;}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(outlen != NULL);}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a8999e23c66cda0d777570e54f3a5c795}{der\_length\_asn1\_length}}(noctets, \&x)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{31       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{32    \}}
+\DoxyCodeLine{33    *outlen = 1 + x + noctets;}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{36 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, der\+\_\+length\+\_\+asn1\+\_\+length(), and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+
+
+Referenced by der\+\_\+decode\+\_\+choice(), der\+\_\+decode\+\_\+custom\+\_\+type\+\_\+ex(), der\+\_\+decode\+\_\+sequence\+\_\+flexi(), der\+\_\+encode\+\_\+octet\+\_\+string(), der\+\_\+length\+\_\+custom\+\_\+type(), and der\+\_\+length\+\_\+sequence\+\_\+ex().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2

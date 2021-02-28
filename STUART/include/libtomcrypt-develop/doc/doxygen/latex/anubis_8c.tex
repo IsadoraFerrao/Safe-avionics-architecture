@@ -1,0 +1,1058 @@
+\hypertarget{anubis_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/ciphers/anubis.c File Reference}
+\label{anubis_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/ciphers/anubis.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/ciphers/anubis.c}}
+
+
+Anubis implementation derived from public domain source Authors\+: Paulo S.\+L.\+M.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for anubis.\+c\+:
+% FIG 0
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{anubis_8c_a4885d311d80994fd106f44c07cec9cc4}{M\+A\+X\+\_\+N}}~10
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{anubis_8c_a8745a39a486f64e5f6e4dd32b096bc12}{anubis\+\_\+setup}} (const unsigned char $\ast$key, int keylen, int num\+\_\+rounds, \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)
+\begin{DoxyCompactList}\small\item\em Initialize the Anubis block cipher. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{anubis_8c_aecd284a674c18ed49efb129855c46de4}{anubis\+\_\+crypt}} (const unsigned char $\ast$plaintext, unsigned char $\ast$ciphertext, const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} round\+Key\mbox{[}18+1\mbox{]}\mbox{[}4\mbox{]}, int \mbox{\hyperlink{sha512_8c_a8fb1dfc3ad6dd07bc99c1962e6583087}{R}})
+\item 
+int \mbox{\hyperlink{anubis_8c_ab361220dd90cf3f6d71aa253b33c1dbe}{anubis\+\_\+ecb\+\_\+encrypt}} (const unsigned char $\ast$pt, unsigned char $\ast$ct, const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)
+\begin{DoxyCompactList}\small\item\em Encrypts a block of text with Anubis. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{anubis_8c_a1122129902230375d541d8286d677771}{anubis\+\_\+ecb\+\_\+decrypt}} (const unsigned char $\ast$ct, unsigned char $\ast$pt, const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)
+\begin{DoxyCompactList}\small\item\em Decrypts a block of text with Anubis. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{anubis_8c_a81f0af86ef06366e1ba31ddf293e9261}{anubis\+\_\+test}} (void)
+\begin{DoxyCompactList}\small\item\em Performs a self-\/test of the Anubis block cipher. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{anubis_8c_a81f1c7c1b4c9bd15f4c658fa00e4b038}{anubis\+\_\+done}} (\mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)
+\begin{DoxyCompactList}\small\item\em Terminate the context. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{anubis_8c_ac1ec2d1cd81be9cfc256a7cce39d645f}{anubis\+\_\+keysize}} (int $\ast$keysize)
+\begin{DoxyCompactList}\small\item\em Gets suitable key size. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const struct \mbox{\hyperlink{structltc__cipher__descriptor}{ltc\+\_\+cipher\+\_\+descriptor}} \mbox{\hyperlink{anubis_8c_a90e32a17644ba7c27cee346ddb2517ef}{anubis\+\_\+desc}}
+\item 
+static const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} \mbox{\hyperlink{anubis_8c_ab30287bcdadcb5d0bf19d89988c20ef0}{T0}} \mbox{[}256\mbox{]}
+\item 
+static const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} \mbox{\hyperlink{anubis_8c_aef89e4e302e2140adb651b8f76d6a30d}{T1}} \mbox{[}256\mbox{]}
+\item 
+static const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} \mbox{\hyperlink{anubis_8c_a8823785065c27a65d92554e3b1db5f6f}{T2}} \mbox{[}256\mbox{]}
+\item 
+static const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} \mbox{\hyperlink{anubis_8c_a503aa4e049c37976d67e202eadbe2fef}{T3}} \mbox{[}256\mbox{]}
+\item 
+static const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} \mbox{\hyperlink{anubis_8c_a4fb60030dcad7499754b36438dbd6606}{T4}} \mbox{[}256\mbox{]}
+\item 
+static const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} \mbox{\hyperlink{anubis_8c_af34afae963dda5b0c0807f90e88713a9}{T5}} \mbox{[}256\mbox{]}
+\item 
+static const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} \mbox{\hyperlink{anubis_8c_a41aadadfea74d0a2d60fc9f92ea5d014}{rc}} \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em The round constants. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Anubis implementation derived from public domain source Authors\+: Paulo S.\+L.\+M. 
+
+Barreto and Vincent Rijmen. 
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{anubis_8c_a4885d311d80994fd106f44c07cec9cc4}\label{anubis_8c_a4885d311d80994fd106f44c07cec9cc4}} 
+\index{anubis.c@{anubis.c}!MAX\_N@{MAX\_N}}
+\index{MAX\_N@{MAX\_N}!anubis.c@{anubis.c}}
+\subsubsection{\texorpdfstring{MAX\_N}{MAX\_N}}
+{\footnotesize\ttfamily \#define M\+A\+X\+\_\+N~10}
+
+
+
+Definition at line 33 of file anubis.\+c.
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{anubis_8c_aecd284a674c18ed49efb129855c46de4}\label{anubis_8c_aecd284a674c18ed49efb129855c46de4}} 
+\index{anubis.c@{anubis.c}!anubis\_crypt@{anubis\_crypt}}
+\index{anubis\_crypt@{anubis\_crypt}!anubis.c@{anubis.c}}
+\subsubsection{\texorpdfstring{anubis\_crypt()}{anubis\_crypt()}}
+{\footnotesize\ttfamily static void anubis\+\_\+crypt (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{plaintext,  }\item[{unsigned char $\ast$}]{ciphertext,  }\item[{const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}}}]{round\+Key\mbox{[}18+1\mbox{]}\mbox{[}4\mbox{]},  }\item[{int}]{R }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 1029 of file anubis.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1030                                                                    \{}
+\DoxyCodeLine{1031    \textcolor{keywordtype}{int} i, pos, r;}
+\DoxyCodeLine{1032    \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} state[4];}
+\DoxyCodeLine{1033    \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} inter[4];}
+\DoxyCodeLine{1034 }
+\DoxyCodeLine{1035     \textcolor{comment}{/*}}
+\DoxyCodeLine{1036 \textcolor{comment}{    * map plaintext block to cipher state (mu)}}
+\DoxyCodeLine{1037 \textcolor{comment}{    * and add initial round key (sigma[K\string^0]):}}
+\DoxyCodeLine{1038 \textcolor{comment}{    */}}
+\DoxyCodeLine{1039     \textcolor{keywordflow}{for} (i = 0, pos = 0; i < 4; i++, pos += 4) \{}
+\DoxyCodeLine{1040       state[i] =}
+\DoxyCodeLine{1041          (((\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})plaintext[pos    ]) << 24) \string^}
+\DoxyCodeLine{1042          (((\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})plaintext[pos + 1]) << 16) \string^}
+\DoxyCodeLine{1043          (((\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})plaintext[pos + 2]) <<  8) \string^}
+\DoxyCodeLine{1044          (((\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})plaintext[pos + 3])      ) \string^}
+\DoxyCodeLine{1045          roundKey[0][i];}
+\DoxyCodeLine{1046     \}}
+\DoxyCodeLine{1047 }
+\DoxyCodeLine{1048     \textcolor{comment}{/*}}
+\DoxyCodeLine{1049 \textcolor{comment}{     * R - 1 full rounds:}}
+\DoxyCodeLine{1050 \textcolor{comment}{     */}}
+\DoxyCodeLine{1051     \textcolor{keywordflow}{for} (r = 1; r < \mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}}; r++) \{}
+\DoxyCodeLine{1052       inter[0] =}
+\DoxyCodeLine{1053          \mbox{\hyperlink{anubis_8c_ab30287bcdadcb5d0bf19d89988c20ef0}{T0}}[(state[0] >> 24) \& 0xff] \string^}
+\DoxyCodeLine{1054          \mbox{\hyperlink{anubis_8c_aef89e4e302e2140adb651b8f76d6a30d}{T1}}[(state[1] >> 24) \& 0xff] \string^}
+\DoxyCodeLine{1055          \mbox{\hyperlink{anubis_8c_a8823785065c27a65d92554e3b1db5f6f}{T2}}[(state[2] >> 24) \& 0xff] \string^}
+\DoxyCodeLine{1056          \mbox{\hyperlink{anubis_8c_a503aa4e049c37976d67e202eadbe2fef}{T3}}[(state[3] >> 24) \& 0xff] \string^}
+\DoxyCodeLine{1057          roundKey[r][0];}
+\DoxyCodeLine{1058       inter[1] =}
+\DoxyCodeLine{1059          \mbox{\hyperlink{anubis_8c_ab30287bcdadcb5d0bf19d89988c20ef0}{T0}}[(state[0] >> 16) \& 0xff] \string^}
+\DoxyCodeLine{1060          \mbox{\hyperlink{anubis_8c_aef89e4e302e2140adb651b8f76d6a30d}{T1}}[(state[1] >> 16) \& 0xff] \string^}
+\DoxyCodeLine{1061          \mbox{\hyperlink{anubis_8c_a8823785065c27a65d92554e3b1db5f6f}{T2}}[(state[2] >> 16) \& 0xff] \string^}
+\DoxyCodeLine{1062          \mbox{\hyperlink{anubis_8c_a503aa4e049c37976d67e202eadbe2fef}{T3}}[(state[3] >> 16) \& 0xff] \string^}
+\DoxyCodeLine{1063          roundKey[r][1];}
+\DoxyCodeLine{1064       inter[2] =}
+\DoxyCodeLine{1065          \mbox{\hyperlink{anubis_8c_ab30287bcdadcb5d0bf19d89988c20ef0}{T0}}[(state[0] >>  8) \& 0xff] \string^}
+\DoxyCodeLine{1066          \mbox{\hyperlink{anubis_8c_aef89e4e302e2140adb651b8f76d6a30d}{T1}}[(state[1] >>  8) \& 0xff] \string^}
+\DoxyCodeLine{1067          \mbox{\hyperlink{anubis_8c_a8823785065c27a65d92554e3b1db5f6f}{T2}}[(state[2] >>  8) \& 0xff] \string^}
+\DoxyCodeLine{1068          \mbox{\hyperlink{anubis_8c_a503aa4e049c37976d67e202eadbe2fef}{T3}}[(state[3] >>  8) \& 0xff] \string^}
+\DoxyCodeLine{1069          roundKey[r][2];}
+\DoxyCodeLine{1070       inter[3] =}
+\DoxyCodeLine{1071          \mbox{\hyperlink{anubis_8c_ab30287bcdadcb5d0bf19d89988c20ef0}{T0}}[(state[0]      ) \& 0xff] \string^}
+\DoxyCodeLine{1072          \mbox{\hyperlink{anubis_8c_aef89e4e302e2140adb651b8f76d6a30d}{T1}}[(state[1]      ) \& 0xff] \string^}
+\DoxyCodeLine{1073          \mbox{\hyperlink{anubis_8c_a8823785065c27a65d92554e3b1db5f6f}{T2}}[(state[2]      ) \& 0xff] \string^}
+\DoxyCodeLine{1074          \mbox{\hyperlink{anubis_8c_a503aa4e049c37976d67e202eadbe2fef}{T3}}[(state[3]      ) \& 0xff] \string^}
+\DoxyCodeLine{1075          roundKey[r][3];}
+\DoxyCodeLine{1076       state[0] = inter[0];}
+\DoxyCodeLine{1077       state[1] = inter[1];}
+\DoxyCodeLine{1078       state[2] = inter[2];}
+\DoxyCodeLine{1079       state[3] = inter[3];}
+\DoxyCodeLine{1080     \}}
+\DoxyCodeLine{1081 }
+\DoxyCodeLine{1082     \textcolor{comment}{/*}}
+\DoxyCodeLine{1083 \textcolor{comment}{    * last round:}}
+\DoxyCodeLine{1084 \textcolor{comment}{    */}}
+\DoxyCodeLine{1085    inter[0] =}
+\DoxyCodeLine{1086       (\mbox{\hyperlink{anubis_8c_ab30287bcdadcb5d0bf19d89988c20ef0}{T0}}[(state[0] >> 24) \& 0xff] \& 0xff000000U) \string^}
+\DoxyCodeLine{1087       (\mbox{\hyperlink{anubis_8c_aef89e4e302e2140adb651b8f76d6a30d}{T1}}[(state[1] >> 24) \& 0xff] \& 0x00ff0000U) \string^}
+\DoxyCodeLine{1088       (\mbox{\hyperlink{anubis_8c_a8823785065c27a65d92554e3b1db5f6f}{T2}}[(state[2] >> 24) \& 0xff] \& 0x0000ff00U) \string^}
+\DoxyCodeLine{1089       (\mbox{\hyperlink{anubis_8c_a503aa4e049c37976d67e202eadbe2fef}{T3}}[(state[3] >> 24) \& 0xff] \& 0x000000ffU) \string^}
+\DoxyCodeLine{1090       roundKey[\mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}}][0];}
+\DoxyCodeLine{1091    inter[1] =}
+\DoxyCodeLine{1092       (\mbox{\hyperlink{anubis_8c_ab30287bcdadcb5d0bf19d89988c20ef0}{T0}}[(state[0] >> 16) \& 0xff] \& 0xff000000U) \string^}
+\DoxyCodeLine{1093       (\mbox{\hyperlink{anubis_8c_aef89e4e302e2140adb651b8f76d6a30d}{T1}}[(state[1] >> 16) \& 0xff] \& 0x00ff0000U) \string^}
+\DoxyCodeLine{1094       (\mbox{\hyperlink{anubis_8c_a8823785065c27a65d92554e3b1db5f6f}{T2}}[(state[2] >> 16) \& 0xff] \& 0x0000ff00U) \string^}
+\DoxyCodeLine{1095       (\mbox{\hyperlink{anubis_8c_a503aa4e049c37976d67e202eadbe2fef}{T3}}[(state[3] >> 16) \& 0xff] \& 0x000000ffU) \string^}
+\DoxyCodeLine{1096       roundKey[\mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}}][1];}
+\DoxyCodeLine{1097    inter[2] =}
+\DoxyCodeLine{1098       (\mbox{\hyperlink{anubis_8c_ab30287bcdadcb5d0bf19d89988c20ef0}{T0}}[(state[0] >>  8) \& 0xff] \& 0xff000000U) \string^}
+\DoxyCodeLine{1099       (\mbox{\hyperlink{anubis_8c_aef89e4e302e2140adb651b8f76d6a30d}{T1}}[(state[1] >>  8) \& 0xff] \& 0x00ff0000U) \string^}
+\DoxyCodeLine{1100       (\mbox{\hyperlink{anubis_8c_a8823785065c27a65d92554e3b1db5f6f}{T2}}[(state[2] >>  8) \& 0xff] \& 0x0000ff00U) \string^}
+\DoxyCodeLine{1101       (\mbox{\hyperlink{anubis_8c_a503aa4e049c37976d67e202eadbe2fef}{T3}}[(state[3] >>  8) \& 0xff] \& 0x000000ffU) \string^}
+\DoxyCodeLine{1102       roundKey[\mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}}][2];}
+\DoxyCodeLine{1103    inter[3] =}
+\DoxyCodeLine{1104       (\mbox{\hyperlink{anubis_8c_ab30287bcdadcb5d0bf19d89988c20ef0}{T0}}[(state[0]      ) \& 0xff] \& 0xff000000U) \string^}
+\DoxyCodeLine{1105       (\mbox{\hyperlink{anubis_8c_aef89e4e302e2140adb651b8f76d6a30d}{T1}}[(state[1]      ) \& 0xff] \& 0x00ff0000U) \string^}
+\DoxyCodeLine{1106       (\mbox{\hyperlink{anubis_8c_a8823785065c27a65d92554e3b1db5f6f}{T2}}[(state[2]      ) \& 0xff] \& 0x0000ff00U) \string^}
+\DoxyCodeLine{1107       (\mbox{\hyperlink{anubis_8c_a503aa4e049c37976d67e202eadbe2fef}{T3}}[(state[3]      ) \& 0xff] \& 0x000000ffU) \string^}
+\DoxyCodeLine{1108       roundKey[\mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}}][3];}
+\DoxyCodeLine{1109 }
+\DoxyCodeLine{1110    \textcolor{comment}{/*}}
+\DoxyCodeLine{1111 \textcolor{comment}{    * map cipher state to ciphertext block (mu\string^\{-1\}):}}
+\DoxyCodeLine{1112 \textcolor{comment}{    */}}
+\DoxyCodeLine{1113     \textcolor{keywordflow}{for} (i = 0, pos = 0; i < 4; i++, pos += 4) \{}
+\DoxyCodeLine{1114         \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} w = inter[i];}
+\DoxyCodeLine{1115         ciphertext[pos    ] = (\textcolor{keywordtype}{unsigned} char)(w >> 24);}
+\DoxyCodeLine{1116         ciphertext[pos + 1] = (\textcolor{keywordtype}{unsigned} char)(w >> 16);}
+\DoxyCodeLine{1117         ciphertext[pos + 2] = (\textcolor{keywordtype}{unsigned} char)(w >>  8);}
+\DoxyCodeLine{1118         ciphertext[pos + 3] = (\textcolor{keywordtype}{unsigned} char)(w      );}
+\DoxyCodeLine{1119     \}}
+\DoxyCodeLine{1120 \}}
+
+\end{DoxyCode}
+
+
+References R, T0, T1, T2, and T3.
+
+
+
+Referenced by anubis\+\_\+ecb\+\_\+decrypt(), and anubis\+\_\+ecb\+\_\+encrypt().
+
+Here is the caller graph for this function\+:
+% FIG 1
+\mbox{\Hypertarget{anubis_8c_a81f1c7c1b4c9bd15f4c658fa00e4b038}\label{anubis_8c_a81f1c7c1b4c9bd15f4c658fa00e4b038}} 
+\index{anubis.c@{anubis.c}!anubis\_done@{anubis\_done}}
+\index{anubis\_done@{anubis\_done}!anubis.c@{anubis.c}}
+\subsubsection{\texorpdfstring{anubis\_done()}{anubis\_done()}}
+{\footnotesize\ttfamily void anubis\+\_\+done (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$}]{skey }\end{DoxyParamCaption})}
+
+
+
+Terminate the context. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em skey} & The scheduled key \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 1512 of file anubis.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1513 \{}
+\DoxyCodeLine{1514   \mbox{\hyperlink{tomcrypt__macros_8h_accde4b007facd646a8327f8e64b2d1e0}{LTC\_UNUSED\_PARAM}}(skey);}
+\DoxyCodeLine{1515 \}}
+
+\end{DoxyCode}
+
+
+References L\+T\+C\+\_\+\+U\+N\+U\+S\+E\+D\+\_\+\+P\+A\+R\+AM.
+
+\mbox{\Hypertarget{anubis_8c_a1122129902230375d541d8286d677771}\label{anubis_8c_a1122129902230375d541d8286d677771}} 
+\index{anubis.c@{anubis.c}!anubis\_ecb\_decrypt@{anubis\_ecb\_decrypt}}
+\index{anubis\_ecb\_decrypt@{anubis\_ecb\_decrypt}!anubis.c@{anubis.c}}
+\subsubsection{\texorpdfstring{anubis\_ecb\_decrypt()}{anubis\_ecb\_decrypt()}}
+{\footnotesize\ttfamily int anubis\+\_\+ecb\+\_\+decrypt (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{ct,  }\item[{unsigned char $\ast$}]{pt,  }\item[{const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$}]{skey }\end{DoxyParamCaption})}
+
+
+
+Decrypts a block of text with Anubis. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ct} & The input ciphertext (16 bytes) \\
+\hline
+{\em pt} & The output plaintext (16 bytes) \\
+\hline
+{\em skey} & The key as scheduled \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 1145 of file anubis.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1146 \{}
+\DoxyCodeLine{1147    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(pt   != NULL);}
+\DoxyCodeLine{1148    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(ct   != NULL);}
+\DoxyCodeLine{1149    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(skey != NULL);}
+\DoxyCodeLine{1150    \mbox{\hyperlink{anubis_8c_aecd284a674c18ed49efb129855c46de4}{anubis\_crypt}}(ct, pt, skey->anubis.roundKeyDec, skey->anubis.R);}
+\DoxyCodeLine{1151    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{1152 \}}
+
+\end{DoxyCode}
+
+
+References anubis\+\_\+crypt(), C\+R\+Y\+P\+T\+\_\+\+OK, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+
+
+Referenced by anubis\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 2
+Here is the caller graph for this function\+:
+% FIG 3
+\mbox{\Hypertarget{anubis_8c_ab361220dd90cf3f6d71aa253b33c1dbe}\label{anubis_8c_ab361220dd90cf3f6d71aa253b33c1dbe}} 
+\index{anubis.c@{anubis.c}!anubis\_ecb\_encrypt@{anubis\_ecb\_encrypt}}
+\index{anubis\_ecb\_encrypt@{anubis\_ecb\_encrypt}!anubis.c@{anubis.c}}
+\subsubsection{\texorpdfstring{anubis\_ecb\_encrypt()}{anubis\_ecb\_encrypt()}}
+{\footnotesize\ttfamily int anubis\+\_\+ecb\+\_\+encrypt (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{pt,  }\item[{unsigned char $\ast$}]{ct,  }\item[{const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$}]{skey }\end{DoxyParamCaption})}
+
+
+
+Encrypts a block of text with Anubis. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pt} & The input plaintext (16 bytes) \\
+\hline
+{\em ct} & The output ciphertext (16 bytes) \\
+\hline
+{\em skey} & The key as scheduled \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 1129 of file anubis.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1130 \{}
+\DoxyCodeLine{1131    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(pt   != NULL);}
+\DoxyCodeLine{1132    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(ct   != NULL);}
+\DoxyCodeLine{1133    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(skey != NULL);}
+\DoxyCodeLine{1134    \mbox{\hyperlink{anubis_8c_aecd284a674c18ed49efb129855c46de4}{anubis\_crypt}}(pt, ct, skey->anubis.roundKeyEnc, skey->anubis.R);}
+\DoxyCodeLine{1135    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{1136 \}}
+
+\end{DoxyCode}
+
+
+References anubis\+\_\+crypt(), C\+R\+Y\+P\+T\+\_\+\+OK, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+
+
+Referenced by anubis\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 4
+Here is the caller graph for this function\+:
+% FIG 5
+\mbox{\Hypertarget{anubis_8c_ac1ec2d1cd81be9cfc256a7cce39d645f}\label{anubis_8c_ac1ec2d1cd81be9cfc256a7cce39d645f}} 
+\index{anubis.c@{anubis.c}!anubis\_keysize@{anubis\_keysize}}
+\index{anubis\_keysize@{anubis\_keysize}!anubis.c@{anubis.c}}
+\subsubsection{\texorpdfstring{anubis\_keysize()}{anubis\_keysize()}}
+{\footnotesize\ttfamily int anubis\+\_\+keysize (\begin{DoxyParamCaption}\item[{int $\ast$}]{keysize }\end{DoxyParamCaption})}
+
+
+
+Gets suitable key size. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em keysize} & \mbox{[}in/out\mbox{]} The length of the recommended key (in bytes). This function will store the suitable size back in this variable. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if the input key size is acceptable. 
+\end{DoxyReturn}
+
+
+Definition at line 1522 of file anubis.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1523 \{}
+\DoxyCodeLine{1524    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(keysize != NULL);}
+\DoxyCodeLine{1525    \textcolor{keywordflow}{if} (*keysize >= 40) \{}
+\DoxyCodeLine{1526       *keysize = 40;}
+\DoxyCodeLine{1527    \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (*keysize >= 36) \{}
+\DoxyCodeLine{1528       *keysize = 36;}
+\DoxyCodeLine{1529    \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (*keysize >= 32) \{}
+\DoxyCodeLine{1530       *keysize = 32;}
+\DoxyCodeLine{1531    \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (*keysize >= 28) \{}
+\DoxyCodeLine{1532       *keysize = 28;}
+\DoxyCodeLine{1533    \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (*keysize >= 24) \{}
+\DoxyCodeLine{1534       *keysize = 24;}
+\DoxyCodeLine{1535    \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (*keysize >= 20) \{}
+\DoxyCodeLine{1536       *keysize = 20;}
+\DoxyCodeLine{1537    \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (*keysize >= 16) \{}
+\DoxyCodeLine{1538       *keysize = 16;}
+\DoxyCodeLine{1539    \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{1540       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caafed43f3b625e72191e08e65b4bb5e02}{CRYPT\_INVALID\_KEYSIZE}};}
+\DoxyCodeLine{1541    \}}
+\DoxyCodeLine{1542    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{1543 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+K\+E\+Y\+S\+I\+ZE, C\+R\+Y\+P\+T\+\_\+\+OK, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+\mbox{\Hypertarget{anubis_8c_a8745a39a486f64e5f6e4dd32b096bc12}\label{anubis_8c_a8745a39a486f64e5f6e4dd32b096bc12}} 
+\index{anubis.c@{anubis.c}!anubis\_setup@{anubis\_setup}}
+\index{anubis\_setup@{anubis\_setup}!anubis.c@{anubis.c}}
+\subsubsection{\texorpdfstring{anubis\_setup()}{anubis\_setup()}}
+{\footnotesize\ttfamily int anubis\+\_\+setup (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{key,  }\item[{int}]{keylen,  }\item[{int}]{num\+\_\+rounds,  }\item[{\mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$}]{skey }\end{DoxyParamCaption})}
+
+
+
+Initialize the Anubis block cipher. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The symmetric key you wish to pass \\
+\hline
+{\em keylen} & The key length in bytes \\
+\hline
+{\em num\+\_\+rounds} & The number of rounds desired (0 for default) \\
+\hline
+{\em skey} & The key in as scheduled by this function. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 887 of file anubis.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{889 \{}
+\DoxyCodeLine{890    \textcolor{keywordtype}{int} \mbox{\hyperlink{sober128__stream_8c_a0240ac851181b84ac374872dc5434ee4}{N}}, \mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}}, i, pos, r;}
+\DoxyCodeLine{891    \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} kappa[\mbox{\hyperlink{anubis_8c_a4885d311d80994fd106f44c07cec9cc4}{MAX\_N}}];}
+\DoxyCodeLine{892    \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} inter[\mbox{\hyperlink{anubis_8c_a4885d311d80994fd106f44c07cec9cc4}{MAX\_N}}] = \{ 0 \}; \textcolor{comment}{/* initialize as all zeroes */}}
+\DoxyCodeLine{893    \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} v, K0, K1, K2, K3;}
+\DoxyCodeLine{894 }
+\DoxyCodeLine{895    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(key  != NULL);}
+\DoxyCodeLine{896    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(skey != NULL);}
+\DoxyCodeLine{897 }
+\DoxyCodeLine{898    \textcolor{comment}{/* Valid sizes (in bytes) are 16, 20, 24, 28, 32, 36, and 40. */}}
+\DoxyCodeLine{899    \textcolor{keywordflow}{if} ((keylen \& 3) || (keylen < 16) || (keylen > 40)) \{}
+\DoxyCodeLine{900       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caafed43f3b625e72191e08e65b4bb5e02}{CRYPT\_INVALID\_KEYSIZE}};}
+\DoxyCodeLine{901    \}}
+\DoxyCodeLine{902    skey->anubis.keyBits = keylen*8;}
+\DoxyCodeLine{903 }
+\DoxyCodeLine{904    \textcolor{comment}{/*}}
+\DoxyCodeLine{905 \textcolor{comment}{    * determine the N length parameter:}}
+\DoxyCodeLine{906 \textcolor{comment}{    * (N.B. it is assumed that the key length is valid!)}}
+\DoxyCodeLine{907 \textcolor{comment}{    */}}
+\DoxyCodeLine{908    \mbox{\hyperlink{sober128__stream_8c_a0240ac851181b84ac374872dc5434ee4}{N}} = skey->anubis.keyBits >> 5;}
+\DoxyCodeLine{909 }
+\DoxyCodeLine{910    \textcolor{comment}{/*}}
+\DoxyCodeLine{911 \textcolor{comment}{    * determine number of rounds from key size:}}
+\DoxyCodeLine{912 \textcolor{comment}{    */}}
+\DoxyCodeLine{913    skey->anubis.R = \mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}} = 8 + \mbox{\hyperlink{sober128__stream_8c_a0240ac851181b84ac374872dc5434ee4}{N}};}
+\DoxyCodeLine{914 }
+\DoxyCodeLine{915    \textcolor{keywordflow}{if} (num\_rounds != 0 \&\& num\_rounds != skey->anubis.R) \{}
+\DoxyCodeLine{916       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca69aff0280b5845d03130f8700009caf5}{CRYPT\_INVALID\_ROUNDS}};}
+\DoxyCodeLine{917    \}}
+\DoxyCodeLine{918 }
+\DoxyCodeLine{919    \textcolor{comment}{/*}}
+\DoxyCodeLine{920 \textcolor{comment}{   * map cipher key to initial key state (mu):}}
+\DoxyCodeLine{921 \textcolor{comment}{   */}}
+\DoxyCodeLine{922    \textcolor{keywordflow}{for} (i = 0, pos = 0; i < \mbox{\hyperlink{sober128__stream_8c_a0240ac851181b84ac374872dc5434ee4}{N}}; i++, pos += 4) \{}
+\DoxyCodeLine{923       kappa[i] =}
+\DoxyCodeLine{924          (((\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})key[pos    ]) << 24) \string^}
+\DoxyCodeLine{925          (((\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})key[pos + 1]) << 16) \string^}
+\DoxyCodeLine{926          (((\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})key[pos + 2]) <<  8) \string^}
+\DoxyCodeLine{927          (((\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})key[pos + 3])      );}
+\DoxyCodeLine{928    \}}
+\DoxyCodeLine{929 }
+\DoxyCodeLine{930    \textcolor{comment}{/*}}
+\DoxyCodeLine{931 \textcolor{comment}{    * generate R + 1 round keys:}}
+\DoxyCodeLine{932 \textcolor{comment}{    */}}
+\DoxyCodeLine{933    \textcolor{keywordflow}{for} (r = 0; r <= \mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}}; r++) \{}
+\DoxyCodeLine{934       \textcolor{comment}{/*}}
+\DoxyCodeLine{935 \textcolor{comment}{       * generate r-th round key K\string^r:}}
+\DoxyCodeLine{936 \textcolor{comment}{       */}}
+\DoxyCodeLine{937       K0 = \mbox{\hyperlink{anubis_8c_a4fb60030dcad7499754b36438dbd6606}{T4}}[(kappa[\mbox{\hyperlink{sober128__stream_8c_a0240ac851181b84ac374872dc5434ee4}{N}} - 1] >> 24) \& 0xff];}
+\DoxyCodeLine{938       K1 = \mbox{\hyperlink{anubis_8c_a4fb60030dcad7499754b36438dbd6606}{T4}}[(kappa[\mbox{\hyperlink{sober128__stream_8c_a0240ac851181b84ac374872dc5434ee4}{N}} - 1] >> 16) \& 0xff];}
+\DoxyCodeLine{939       K2 = \mbox{\hyperlink{anubis_8c_a4fb60030dcad7499754b36438dbd6606}{T4}}[(kappa[\mbox{\hyperlink{sober128__stream_8c_a0240ac851181b84ac374872dc5434ee4}{N}} - 1] >>  8) \& 0xff];}
+\DoxyCodeLine{940       K3 = \mbox{\hyperlink{anubis_8c_a4fb60030dcad7499754b36438dbd6606}{T4}}[(kappa[\mbox{\hyperlink{sober128__stream_8c_a0240ac851181b84ac374872dc5434ee4}{N}} - 1]      ) \& 0xff];}
+\DoxyCodeLine{941       \textcolor{keywordflow}{for} (i = \mbox{\hyperlink{sober128__stream_8c_a0240ac851181b84ac374872dc5434ee4}{N}} - 2; i >= 0; i--) \{}
+\DoxyCodeLine{942          K0 = \mbox{\hyperlink{anubis_8c_a4fb60030dcad7499754b36438dbd6606}{T4}}[(kappa[i] >> 24)  \& 0xff] \string^}
+\DoxyCodeLine{943             (\mbox{\hyperlink{anubis_8c_af34afae963dda5b0c0807f90e88713a9}{T5}}[(K0 >> 24) \& 0xff] \& 0xff000000U) \string^}
+\DoxyCodeLine{944             (\mbox{\hyperlink{anubis_8c_af34afae963dda5b0c0807f90e88713a9}{T5}}[(K0 >> 16) \& 0xff] \& 0x00ff0000U) \string^}
+\DoxyCodeLine{945             (\mbox{\hyperlink{anubis_8c_af34afae963dda5b0c0807f90e88713a9}{T5}}[(K0 >>  8) \& 0xff] \& 0x0000ff00U) \string^}
+\DoxyCodeLine{946             (\mbox{\hyperlink{anubis_8c_af34afae963dda5b0c0807f90e88713a9}{T5}}[(K0      ) \& 0xff] \& 0x000000ffU);}
+\DoxyCodeLine{947          K1 = \mbox{\hyperlink{anubis_8c_a4fb60030dcad7499754b36438dbd6606}{T4}}[(kappa[i] >> 16) \& 0xff] \string^}
+\DoxyCodeLine{948             (\mbox{\hyperlink{anubis_8c_af34afae963dda5b0c0807f90e88713a9}{T5}}[(K1 >> 24) \& 0xff] \& 0xff000000U) \string^}
+\DoxyCodeLine{949             (\mbox{\hyperlink{anubis_8c_af34afae963dda5b0c0807f90e88713a9}{T5}}[(K1 >> 16) \& 0xff] \& 0x00ff0000U) \string^}
+\DoxyCodeLine{950             (\mbox{\hyperlink{anubis_8c_af34afae963dda5b0c0807f90e88713a9}{T5}}[(K1 >>  8) \& 0xff] \& 0x0000ff00U) \string^}
+\DoxyCodeLine{951             (\mbox{\hyperlink{anubis_8c_af34afae963dda5b0c0807f90e88713a9}{T5}}[(K1      ) \& 0xff] \& 0x000000ffU);}
+\DoxyCodeLine{952          K2 = \mbox{\hyperlink{anubis_8c_a4fb60030dcad7499754b36438dbd6606}{T4}}[(kappa[i] >>  8) \& 0xff] \string^}
+\DoxyCodeLine{953             (\mbox{\hyperlink{anubis_8c_af34afae963dda5b0c0807f90e88713a9}{T5}}[(K2 >> 24) \& 0xff] \& 0xff000000U) \string^}
+\DoxyCodeLine{954             (\mbox{\hyperlink{anubis_8c_af34afae963dda5b0c0807f90e88713a9}{T5}}[(K2 >> 16) \& 0xff] \& 0x00ff0000U) \string^}
+\DoxyCodeLine{955             (\mbox{\hyperlink{anubis_8c_af34afae963dda5b0c0807f90e88713a9}{T5}}[(K2 >>  8) \& 0xff] \& 0x0000ff00U) \string^}
+\DoxyCodeLine{956             (\mbox{\hyperlink{anubis_8c_af34afae963dda5b0c0807f90e88713a9}{T5}}[(K2      ) \& 0xff] \& 0x000000ffU);}
+\DoxyCodeLine{957          K3 = \mbox{\hyperlink{anubis_8c_a4fb60030dcad7499754b36438dbd6606}{T4}}[(kappa[i]      ) \& 0xff] \string^}
+\DoxyCodeLine{958             (\mbox{\hyperlink{anubis_8c_af34afae963dda5b0c0807f90e88713a9}{T5}}[(K3 >> 24) \& 0xff] \& 0xff000000U) \string^}
+\DoxyCodeLine{959             (\mbox{\hyperlink{anubis_8c_af34afae963dda5b0c0807f90e88713a9}{T5}}[(K3 >> 16) \& 0xff] \& 0x00ff0000U) \string^}
+\DoxyCodeLine{960             (\mbox{\hyperlink{anubis_8c_af34afae963dda5b0c0807f90e88713a9}{T5}}[(K3 >>  8) \& 0xff] \& 0x0000ff00U) \string^}
+\DoxyCodeLine{961             (\mbox{\hyperlink{anubis_8c_af34afae963dda5b0c0807f90e88713a9}{T5}}[(K3      ) \& 0xff] \& 0x000000ffU);}
+\DoxyCodeLine{962       \}}
+\DoxyCodeLine{963       \textcolor{comment}{/*}}
+\DoxyCodeLine{964 \textcolor{comment}{      -- this is the code to use with the large U tables:}}
+\DoxyCodeLine{965 \textcolor{comment}{      K0 = K1 = K2 = K3 = 0;}}
+\DoxyCodeLine{966 \textcolor{comment}{      for (i = 0; i < N; i++) \{}}
+\DoxyCodeLine{967 \textcolor{comment}{         K0 \string^= U[i][(kappa[i] >> 24) \& 0xff];}}
+\DoxyCodeLine{968 \textcolor{comment}{         K1 \string^= U[i][(kappa[i] >> 16) \& 0xff];}}
+\DoxyCodeLine{969 \textcolor{comment}{         K2 \string^= U[i][(kappa[i] >>  8) \& 0xff];}}
+\DoxyCodeLine{970 \textcolor{comment}{         K3 \string^= U[i][(kappa[i]      ) \& 0xff];}}
+\DoxyCodeLine{971 \textcolor{comment}{      \}}}
+\DoxyCodeLine{972 \textcolor{comment}{      */}}
+\DoxyCodeLine{973       skey->anubis.roundKeyEnc[r][0] = K0;}
+\DoxyCodeLine{974       skey->anubis.roundKeyEnc[r][1] = K1;}
+\DoxyCodeLine{975       skey->anubis.roundKeyEnc[r][2] = K2;}
+\DoxyCodeLine{976       skey->anubis.roundKeyEnc[r][3] = K3;}
+\DoxyCodeLine{977 }
+\DoxyCodeLine{978       \textcolor{comment}{/*}}
+\DoxyCodeLine{979 \textcolor{comment}{       * compute kappa\string^\{r+1\} from kappa\string^r:}}
+\DoxyCodeLine{980 \textcolor{comment}{       */}}
+\DoxyCodeLine{981       \textcolor{keywordflow}{if} (r == \mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}}) \{}
+\DoxyCodeLine{982          \textcolor{keywordflow}{break};}
+\DoxyCodeLine{983       \}}
+\DoxyCodeLine{984       \textcolor{keywordflow}{for} (i = 0; i < \mbox{\hyperlink{sober128__stream_8c_a0240ac851181b84ac374872dc5434ee4}{N}}; i++) \{}
+\DoxyCodeLine{985          \textcolor{keywordtype}{int} j = i;}
+\DoxyCodeLine{986          inter[i]  = \mbox{\hyperlink{anubis_8c_ab30287bcdadcb5d0bf19d89988c20ef0}{T0}}[(kappa[j--] >> 24) \& 0xff]; \textcolor{keywordflow}{if} (j < 0) j = \mbox{\hyperlink{sober128__stream_8c_a0240ac851181b84ac374872dc5434ee4}{N}} - 1;}
+\DoxyCodeLine{987          inter[i] \string^= \mbox{\hyperlink{anubis_8c_aef89e4e302e2140adb651b8f76d6a30d}{T1}}[(kappa[j--] >> 16) \& 0xff]; \textcolor{keywordflow}{if} (j < 0) j = \mbox{\hyperlink{sober128__stream_8c_a0240ac851181b84ac374872dc5434ee4}{N}} - 1;}
+\DoxyCodeLine{988          inter[i] \string^= \mbox{\hyperlink{anubis_8c_a8823785065c27a65d92554e3b1db5f6f}{T2}}[(kappa[j--] >>  8) \& 0xff]; \textcolor{keywordflow}{if} (j < 0) j = \mbox{\hyperlink{sober128__stream_8c_a0240ac851181b84ac374872dc5434ee4}{N}} - 1;}
+\DoxyCodeLine{989          inter[i] \string^= \mbox{\hyperlink{anubis_8c_a503aa4e049c37976d67e202eadbe2fef}{T3}}[(kappa[j  ]      ) \& 0xff];}
+\DoxyCodeLine{990       \}}
+\DoxyCodeLine{991       kappa[0] = inter[0] \string^ \mbox{\hyperlink{anubis_8c_a41aadadfea74d0a2d60fc9f92ea5d014}{rc}}[r];}
+\DoxyCodeLine{992       \textcolor{keywordflow}{for} (i = 1; i < \mbox{\hyperlink{sober128__stream_8c_a0240ac851181b84ac374872dc5434ee4}{N}}; i++) \{}
+\DoxyCodeLine{993          kappa[i] = inter[i];}
+\DoxyCodeLine{994       \}}
+\DoxyCodeLine{995    \}}
+\DoxyCodeLine{996 }
+\DoxyCodeLine{997    \textcolor{comment}{/*}}
+\DoxyCodeLine{998 \textcolor{comment}{    * generate inverse key schedule: K'\string^0 = K\string^R, K'\string^R = K\string^0, K'\string^r = theta(K\string^\{R-r\}):}}
+\DoxyCodeLine{999 \textcolor{comment}{    */}}
+\DoxyCodeLine{1000    \textcolor{keywordflow}{for} (i = 0; i < 4; i++) \{}
+\DoxyCodeLine{1001       skey->anubis.roundKeyDec[0][i] = skey->anubis.roundKeyEnc[\mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}}][i];}
+\DoxyCodeLine{1002       skey->anubis.roundKeyDec[\mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}}][i] = skey->anubis.roundKeyEnc[0][i];}
+\DoxyCodeLine{1003    \}}
+\DoxyCodeLine{1004    \textcolor{keywordflow}{for} (r = 1; r < \mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}}; r++) \{}
+\DoxyCodeLine{1005       \textcolor{keywordflow}{for} (i = 0; i < 4; i++) \{}
+\DoxyCodeLine{1006          v = skey->anubis.roundKeyEnc[\mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}} - r][i];}
+\DoxyCodeLine{1007          skey->anubis.roundKeyDec[r][i] =}
+\DoxyCodeLine{1008             \mbox{\hyperlink{anubis_8c_ab30287bcdadcb5d0bf19d89988c20ef0}{T0}}[\mbox{\hyperlink{anubis_8c_a4fb60030dcad7499754b36438dbd6606}{T4}}[(v >> 24) \& 0xff] \& 0xff] \string^}
+\DoxyCodeLine{1009             \mbox{\hyperlink{anubis_8c_aef89e4e302e2140adb651b8f76d6a30d}{T1}}[\mbox{\hyperlink{anubis_8c_a4fb60030dcad7499754b36438dbd6606}{T4}}[(v >> 16) \& 0xff] \& 0xff] \string^}
+\DoxyCodeLine{1010             \mbox{\hyperlink{anubis_8c_a8823785065c27a65d92554e3b1db5f6f}{T2}}[\mbox{\hyperlink{anubis_8c_a4fb60030dcad7499754b36438dbd6606}{T4}}[(v >>  8) \& 0xff] \& 0xff] \string^}
+\DoxyCodeLine{1011             \mbox{\hyperlink{anubis_8c_a503aa4e049c37976d67e202eadbe2fef}{T3}}[\mbox{\hyperlink{anubis_8c_a4fb60030dcad7499754b36438dbd6606}{T4}}[(v      ) \& 0xff] \& 0xff];}
+\DoxyCodeLine{1012       \}}
+\DoxyCodeLine{1013    \}}
+\DoxyCodeLine{1014 }
+\DoxyCodeLine{1015    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{1016 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+K\+E\+Y\+S\+I\+ZE, C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+R\+O\+U\+N\+DS, C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, M\+A\+X\+\_\+N, N, R, rc, T0, T1, T2, T3, T4, and T5.
+
+
+
+Referenced by anubis\+\_\+test().
+
+Here is the caller graph for this function\+:
+% FIG 6
+\mbox{\Hypertarget{anubis_8c_a81f0af86ef06366e1ba31ddf293e9261}\label{anubis_8c_a81f0af86ef06366e1ba31ddf293e9261}} 
+\index{anubis.c@{anubis.c}!anubis\_test@{anubis\_test}}
+\index{anubis\_test@{anubis\_test}!anubis.c@{anubis.c}}
+\subsubsection{\texorpdfstring{anubis\_test()}{anubis\_test()}}
+{\footnotesize\ttfamily int anubis\+\_\+test (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Performs a self-\/test of the Anubis block cipher. 
+
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if functional, C\+R\+Y\+P\+T\+\_\+\+N\+OP if self-\/test has been disabled 
+\end{DoxyReturn}
+
+
+Definition at line 1158 of file anubis.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1159 \{}
+\DoxyCodeLine{1160 \textcolor{preprocessor}{\#if !defined(LTC\_TEST)}}
+\DoxyCodeLine{1161   \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cac43a7799c7fd5f515172da6cfc0f9cf5}{CRYPT\_NOP}};}
+\DoxyCodeLine{1162 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{1163   \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keyword}{struct }test \{}
+\DoxyCodeLine{1164      \textcolor{keywordtype}{int} keylen;}
+\DoxyCodeLine{1165      \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} pt[16], ct[16], key[40];}
+\DoxyCodeLine{1166   \} tests[] = \{}
+\DoxyCodeLine{1167 \textcolor{preprocessor}{\#ifndef LTC\_ANUBIS\_TWEAK}}
+\DoxyCodeLine{1168   \textcolor{comment}{/**** ORIGINAL LTC\_ANUBIS ****/}}
+\DoxyCodeLine{1169   \textcolor{comment}{/* 128 bit keys */}}
+\DoxyCodeLine{1170 \{}
+\DoxyCodeLine{1171    16,}
+\DoxyCodeLine{1172    \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1173      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1174    \{ 0xF0, 0x68, 0x60, 0xFC, 0x67, 0x30, 0xE8, 0x18,}
+\DoxyCodeLine{1175      0xF1, 0x32, 0xC7, 0x8A, 0xF4, 0x13, 0x2A, 0xFE \},}
+\DoxyCodeLine{1176    \{ 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1177      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \}}
+\DoxyCodeLine{1178 \}, \{}
+\DoxyCodeLine{1179    16,}
+\DoxyCodeLine{1180    \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1181      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1182    \{ 0xA8, 0x66, 0x84, 0x80, 0x07, 0x74, 0x5C, 0x89,}
+\DoxyCodeLine{1183      0xFC, 0x5E, 0xB5, 0xBA, 0xD4, 0xFE, 0x32, 0x6D \},}
+\DoxyCodeLine{1184    \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1185      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01 \}}
+\DoxyCodeLine{1186 \},}
+\DoxyCodeLine{1187 }
+\DoxyCodeLine{1188    \textcolor{comment}{/* 160-bit keys */}}
+\DoxyCodeLine{1189 \{}
+\DoxyCodeLine{1190    20,}
+\DoxyCodeLine{1191    \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1192      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1193    \{ 0xBD, 0x5E, 0x32, 0xBE, 0x51, 0x67, 0xA8, 0xE2,}
+\DoxyCodeLine{1194      0x72, 0xD7, 0x95, 0x0F, 0x83, 0xC6, 0x8C, 0x31 \},}
+\DoxyCodeLine{1195    \{ 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1196      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1197      0x00, 0x00, 0x00, 0x00 \}}
+\DoxyCodeLine{1198 \}, \{}
+\DoxyCodeLine{1199    20,}
+\DoxyCodeLine{1200    \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1201      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1202    \{ 0x4C, 0x1F, 0x86, 0x2E, 0x11, 0xEB, 0xCE, 0xEB,}
+\DoxyCodeLine{1203      0xFE, 0xB9, 0x73, 0xC9, 0xDF, 0xEF, 0x7A, 0xDB \},}
+\DoxyCodeLine{1204    \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1205      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1206      0x00, 0x00, 0x00, 0x01 \}}
+\DoxyCodeLine{1207 \},}
+\DoxyCodeLine{1208 }
+\DoxyCodeLine{1209   \textcolor{comment}{/* 192-bit keys */}}
+\DoxyCodeLine{1210 \{}
+\DoxyCodeLine{1211    24,}
+\DoxyCodeLine{1212    \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1213      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1214    \{ 0x17, 0xAC, 0x57, 0x44, 0x9D, 0x59, 0x61, 0x66,}
+\DoxyCodeLine{1215      0xD0, 0xC7, 0x9E, 0x04, 0x7C, 0xC7, 0x58, 0xF0 \},}
+\DoxyCodeLine{1216    \{ 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1217      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1218      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \}}
+\DoxyCodeLine{1219 \}, \{}
+\DoxyCodeLine{1220    24,}
+\DoxyCodeLine{1221    \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1222      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1223    \{ 0x71, 0x52, 0xB4, 0xEB, 0x1D, 0xAA, 0x36, 0xFD,}
+\DoxyCodeLine{1224      0x57, 0x14, 0x5F, 0x57, 0x04, 0x9F, 0x70, 0x74 \},}
+\DoxyCodeLine{1225    \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1226      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1227      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01 \}}
+\DoxyCodeLine{1228 \},}
+\DoxyCodeLine{1229 }
+\DoxyCodeLine{1230   \textcolor{comment}{/* 224-bit keys */}}
+\DoxyCodeLine{1231 \{}
+\DoxyCodeLine{1232    28,}
+\DoxyCodeLine{1233    \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1234      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1235    \{ 0xA2, 0xF0, 0xA6, 0xB9, 0x17, 0x93, 0x2A, 0x3B,}
+\DoxyCodeLine{1236      0xEF, 0x08, 0xE8, 0x7A, 0x58, 0xD6, 0xF8, 0x53 \},}
+\DoxyCodeLine{1237    \{ 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1238      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1239      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1240      0x00, 0x00, 0x00, 0x00 \}}
+\DoxyCodeLine{1241 \}, \{}
+\DoxyCodeLine{1242    28,}
+\DoxyCodeLine{1243    \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1244      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1245    \{ 0xF0, 0xCA, 0xFC, 0x78, 0x8B, 0x4B, 0x4E, 0x53,}
+\DoxyCodeLine{1246      0x8B, 0xC4, 0x32, 0x6A, 0xF5, 0xB9, 0x1B, 0x5F \},}
+\DoxyCodeLine{1247    \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1248      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1249      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1250      0x00, 0x00, 0x00, 0x01 \}}
+\DoxyCodeLine{1251 \},}
+\DoxyCodeLine{1252 }
+\DoxyCodeLine{1253   \textcolor{comment}{/* 256-bit keys */}}
+\DoxyCodeLine{1254 \{}
+\DoxyCodeLine{1255    32,}
+\DoxyCodeLine{1256    \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1257      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1258    \{ 0xE0, 0x86, 0xAC, 0x45, 0x6B, 0x3C, 0xE5, 0x13,}
+\DoxyCodeLine{1259      0xED, 0xF5, 0xDF, 0xDD, 0xD6, 0x3B, 0x71, 0x93 \},}
+\DoxyCodeLine{1260    \{ 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1261      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1262      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1263      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \}}
+\DoxyCodeLine{1264 \}, \{}
+\DoxyCodeLine{1265    32,}
+\DoxyCodeLine{1266    \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1267      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1268    \{ 0x50, 0x01, 0xB9, 0xF5, 0x21, 0xC1, 0xC1, 0x29,}
+\DoxyCodeLine{1269      0x00, 0xD5, 0xEC, 0x98, 0x2B, 0x9E, 0xE8, 0x21 \},}
+\DoxyCodeLine{1270    \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1271      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1272      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1273      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01 \}}
+\DoxyCodeLine{1274 \},}
+\DoxyCodeLine{1275 }
+\DoxyCodeLine{1276   \textcolor{comment}{/* 288-bit keys */}}
+\DoxyCodeLine{1277 \{}
+\DoxyCodeLine{1278    36,}
+\DoxyCodeLine{1279    \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1280      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1281    \{ 0xE8, 0xF4, 0xAF, 0x2B, 0x21, 0xA0, 0x87, 0x9B,}
+\DoxyCodeLine{1282      0x41, 0x95, 0xB9, 0x71, 0x75, 0x79, 0x04, 0x7C \},}
+\DoxyCodeLine{1283    \{ 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1284      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1285      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1286      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1287      0x00, 0x00, 0x00, 0x00 \}}
+\DoxyCodeLine{1288 \}, \{}
+\DoxyCodeLine{1289    36,}
+\DoxyCodeLine{1290    \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1291      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1292    \{ 0xE6, 0xA6, 0xA5, 0xBC, 0x8B, 0x63, 0x6F, 0xE2,}
+\DoxyCodeLine{1293      0xBD, 0xA7, 0xA7, 0x53, 0xAB, 0x40, 0x22, 0xE0 \},}
+\DoxyCodeLine{1294    \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1295      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1296      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1297      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1298      0x00, 0x00, 0x00, 0x01 \}}
+\DoxyCodeLine{1299 \},}
+\DoxyCodeLine{1300 }
+\DoxyCodeLine{1301   \textcolor{comment}{/* 320-bit keys */}}
+\DoxyCodeLine{1302 \{}
+\DoxyCodeLine{1303    40,}
+\DoxyCodeLine{1304    \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1305      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1306    \{ 0x17, 0x04, 0xD7, 0x2C, 0xC6, 0x85, 0x76, 0x02,}
+\DoxyCodeLine{1307      0x4B, 0xCC, 0x39, 0x80, 0xD8, 0x22, 0xEA, 0xA4 \},}
+\DoxyCodeLine{1308    \{ 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1309      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1310      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1311      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1312      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \}}
+\DoxyCodeLine{1313 \}, \{}
+\DoxyCodeLine{1314    40,}
+\DoxyCodeLine{1315    \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1316      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1317    \{ 0x7A, 0x41, 0xE6, 0x7D, 0x4F, 0xD8, 0x64, 0xF0,}
+\DoxyCodeLine{1318      0x44, 0xA8, 0x3C, 0x73, 0x81, 0x7E, 0x53, 0xD8 \},}
+\DoxyCodeLine{1319    \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1320      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1321      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1322      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1323      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01 \}}
+\DoxyCodeLine{1324 \}}
+\DoxyCodeLine{1325 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{1326   \textcolor{comment}{/**** Tweaked LTC\_ANUBIS ****/}}
+\DoxyCodeLine{1327   \textcolor{comment}{/* 128 bit keys */}}
+\DoxyCodeLine{1328 \{}
+\DoxyCodeLine{1329    16,}
+\DoxyCodeLine{1330    \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1331      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1332    \{ 0xB8, 0x35, 0xBD, 0xC3, 0x34, 0x82, 0x9D, 0x83,}
+\DoxyCodeLine{1333      0x71, 0xBF, 0xA3, 0x71, 0xE4, 0xB3, 0xC4, 0xFD \},}
+\DoxyCodeLine{1334    \{ 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1335      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \}}
+\DoxyCodeLine{1336 \}, \{}
+\DoxyCodeLine{1337    16,}
+\DoxyCodeLine{1338    \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1339      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1340    \{ 0xE6, 0x14, 0x1E, 0xAF, 0xEB, 0xE0, 0x59, 0x3C,}
+\DoxyCodeLine{1341      0x48, 0xE1, 0xCD, 0xF2, 0x1B, 0xBA, 0xA1, 0x89 \},}
+\DoxyCodeLine{1342    \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1343      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01 \}}
+\DoxyCodeLine{1344 \},}
+\DoxyCodeLine{1345 }
+\DoxyCodeLine{1346    \textcolor{comment}{/* 160-bit keys */}}
+\DoxyCodeLine{1347 \{}
+\DoxyCodeLine{1348    20,}
+\DoxyCodeLine{1349    \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1350      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1351    \{ 0x97, 0x59, 0x79, 0x4B, 0x5C, 0xA0, 0x70, 0x73,}
+\DoxyCodeLine{1352      0x24, 0xEF, 0xB3, 0x58, 0x67, 0xCA, 0xD4, 0xB3 \},}
+\DoxyCodeLine{1353    \{ 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1354      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1355      0x00, 0x00, 0x00, 0x00 \}}
+\DoxyCodeLine{1356 \}, \{}
+\DoxyCodeLine{1357    20,}
+\DoxyCodeLine{1358    \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1359      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1360    \{ 0xB8, 0x0D, 0xFB, 0x9B, 0xE4, 0xA1, 0x58, 0x87,}
+\DoxyCodeLine{1361      0xB3, 0x76, 0xD5, 0x02, 0x18, 0x95, 0xC1, 0x2E \},}
+\DoxyCodeLine{1362    \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1363      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1364      0x00, 0x00, 0x00, 0x01 \}}
+\DoxyCodeLine{1365 \},}
+\DoxyCodeLine{1366 }
+\DoxyCodeLine{1367   \textcolor{comment}{/* 192-bit keys */}}
+\DoxyCodeLine{1368 \{}
+\DoxyCodeLine{1369    24,}
+\DoxyCodeLine{1370    \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1371      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1372    \{ 0x7D, 0x62, 0x3B, 0x52, 0xC7, 0x4C, 0x64, 0xD8,}
+\DoxyCodeLine{1373      0xEB, 0xC7, 0x2D, 0x57, 0x97, 0x85, 0x43, 0x8F \},}
+\DoxyCodeLine{1374    \{ 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1375      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1376      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \}}
+\DoxyCodeLine{1377 \}, \{}
+\DoxyCodeLine{1378    24,}
+\DoxyCodeLine{1379    \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1380      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1381    \{ 0xB1, 0x0A, 0x59, 0xDD, 0x5D, 0x5D, 0x8D, 0x67,}
+\DoxyCodeLine{1382      0xEC, 0xEE, 0x4A, 0xC4, 0xBE, 0x4F, 0xA8, 0x4F \},}
+\DoxyCodeLine{1383    \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1384      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1385      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01 \}}
+\DoxyCodeLine{1386 \},}
+\DoxyCodeLine{1387 }
+\DoxyCodeLine{1388   \textcolor{comment}{/* 224-bit keys */}}
+\DoxyCodeLine{1389 \{}
+\DoxyCodeLine{1390    28,}
+\DoxyCodeLine{1391    \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1392      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1393    \{ 0x68, 0x9E, 0x05, 0x94, 0x6A, 0x94, 0x43, 0x8F,}
+\DoxyCodeLine{1394      0xE7, 0x8E, 0x37, 0x3D, 0x24, 0x97, 0x92, 0xF5 \},}
+\DoxyCodeLine{1395    \{ 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1396      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1397      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1398      0x00, 0x00, 0x00, 0x00 \}}
+\DoxyCodeLine{1399 \}, \{}
+\DoxyCodeLine{1400    28,}
+\DoxyCodeLine{1401    \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1402      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1403    \{ 0xDD, 0xB7, 0xB0, 0xB4, 0xE9, 0xB4, 0x9B, 0x9C,}
+\DoxyCodeLine{1404      0x38, 0x20, 0x25, 0x0B, 0x47, 0xC2, 0x1F, 0x89 \},}
+\DoxyCodeLine{1405    \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1406      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1407      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1408      0x00, 0x00, 0x00, 0x01 \}}
+\DoxyCodeLine{1409 \},}
+\DoxyCodeLine{1410 }
+\DoxyCodeLine{1411   \textcolor{comment}{/* 256-bit keys */}}
+\DoxyCodeLine{1412 \{}
+\DoxyCodeLine{1413    32,}
+\DoxyCodeLine{1414    \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1415      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1416    \{ 0x96, 0x00, 0xF0, 0x76, 0x91, 0x69, 0x29, 0x87,}
+\DoxyCodeLine{1417      0xF5, 0xE5, 0x97, 0xDB, 0xDB, 0xAF, 0x1B, 0x0A \},}
+\DoxyCodeLine{1418    \{ 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1419      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1420      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1421      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \}}
+\DoxyCodeLine{1422 \}, \{}
+\DoxyCodeLine{1423    32,}
+\DoxyCodeLine{1424    \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1425      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1426    \{ 0x69, 0x9C, 0xAF, 0xDD, 0x94, 0xC7, 0xBC, 0x60,}
+\DoxyCodeLine{1427      0x44, 0xFE, 0x02, 0x05, 0x8A, 0x6E, 0xEF, 0xBD \},}
+\DoxyCodeLine{1428    \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1429      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1430      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1431      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01 \}}
+\DoxyCodeLine{1432 \},}
+\DoxyCodeLine{1433 }
+\DoxyCodeLine{1434   \textcolor{comment}{/* 288-bit keys */}}
+\DoxyCodeLine{1435 \{}
+\DoxyCodeLine{1436    36,}
+\DoxyCodeLine{1437    \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1438      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1439    \{ 0x0F, 0xC7, 0xA2, 0xC0, 0x11, 0x17, 0xAC, 0x43,}
+\DoxyCodeLine{1440      0x52, 0x5E, 0xDF, 0x6C, 0xF3, 0x96, 0x33, 0x6C \},}
+\DoxyCodeLine{1441    \{ 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1442      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1443      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1444      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1445      0x00, 0x00, 0x00, 0x00 \}}
+\DoxyCodeLine{1446 \}, \{}
+\DoxyCodeLine{1447    36,}
+\DoxyCodeLine{1448    \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1449      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1450    \{ 0xAD, 0x08, 0x4F, 0xED, 0x55, 0xA6, 0x94, 0x3E,}
+\DoxyCodeLine{1451      0x7E, 0x5E, 0xED, 0x05, 0xA1, 0x9D, 0x41, 0xB4 \},}
+\DoxyCodeLine{1452    \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1453      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1454      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1455      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1456      0x00, 0x00, 0x00, 0x01 \}}
+\DoxyCodeLine{1457 \},}
+\DoxyCodeLine{1458 }
+\DoxyCodeLine{1459   \textcolor{comment}{/* 320-bit keys */}}
+\DoxyCodeLine{1460 \{}
+\DoxyCodeLine{1461    40,}
+\DoxyCodeLine{1462    \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1463      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1464    \{ 0xFE, 0xE2, 0x0E, 0x2A, 0x9D, 0xC5, 0x83, 0xBA,}
+\DoxyCodeLine{1465      0xA3, 0xA6, 0xD6, 0xA6, 0xF2, 0xE8, 0x06, 0xA5 \},}
+\DoxyCodeLine{1466    \{ 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1467      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1468      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1469      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1470      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \}}
+\DoxyCodeLine{1471 \}, \{}
+\DoxyCodeLine{1472    40,}
+\DoxyCodeLine{1473    \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1474      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1475    \{ 0x86, 0x3D, 0xCC, 0x4A, 0x60, 0x34, 0x9C, 0x28,}
+\DoxyCodeLine{1476      0xA7, 0xDA, 0xA4, 0x3B, 0x0A, 0xD7, 0xFD, 0xC7 \},}
+\DoxyCodeLine{1477    \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1478      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1479      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1480      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{1481      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01 \}}
+\DoxyCodeLine{1482 \}}
+\DoxyCodeLine{1483 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{1484 \};}
+\DoxyCodeLine{1485    \textcolor{keywordtype}{int} x, y;}
+\DoxyCodeLine{1486    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} buf[2][16];}
+\DoxyCodeLine{1487    \mbox{\hyperlink{unionSymmetric__key}{symmetric\_key}} skey;}
+\DoxyCodeLine{1488 }
+\DoxyCodeLine{1489    \textcolor{keywordflow}{for} (x = 0; x < (int)(\textcolor{keyword}{sizeof}(tests)/\textcolor{keyword}{sizeof}(tests[0])); x++) \{}
+\DoxyCodeLine{1490        \mbox{\hyperlink{anubis_8c_a8745a39a486f64e5f6e4dd32b096bc12}{anubis\_setup}}(tests[x].key, tests[x].keylen, 0, \&skey);}
+\DoxyCodeLine{1491        \mbox{\hyperlink{anubis_8c_ab361220dd90cf3f6d71aa253b33c1dbe}{anubis\_ecb\_encrypt}}(tests[x].pt, buf[0], \&skey);}
+\DoxyCodeLine{1492        \mbox{\hyperlink{anubis_8c_a1122129902230375d541d8286d677771}{anubis\_ecb\_decrypt}}(buf[0], buf[1], \&skey);}
+\DoxyCodeLine{1493        \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(buf[0], 16, tests[x].ct, 16, \textcolor{stringliteral}{"Anubis Encrypt"}, x) ||}
+\DoxyCodeLine{1494              \mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(buf[1], 16, tests[x].pt, 16, \textcolor{stringliteral}{"Anubis Decrypt"}, x)) \{}
+\DoxyCodeLine{1495           \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{1496        \}}
+\DoxyCodeLine{1497 }
+\DoxyCodeLine{1498        \textcolor{keywordflow}{for} (y = 0; y < 1000; y++) \mbox{\hyperlink{anubis_8c_ab361220dd90cf3f6d71aa253b33c1dbe}{anubis\_ecb\_encrypt}}(buf[0], buf[0], \&skey);}
+\DoxyCodeLine{1499        \textcolor{keywordflow}{for} (y = 0; y < 1000; y++) \mbox{\hyperlink{anubis_8c_a1122129902230375d541d8286d677771}{anubis\_ecb\_decrypt}}(buf[0], buf[0], \&skey);}
+\DoxyCodeLine{1500        \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(buf[0], 16, tests[x].ct, 16, \textcolor{stringliteral}{"Anubis 1000"}, 1000)) \{}
+\DoxyCodeLine{1501           \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{1502        \}}
+\DoxyCodeLine{1503 }
+\DoxyCodeLine{1504    \}}
+\DoxyCodeLine{1505    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{1506 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{1507 \}}
+
+\end{DoxyCode}
+
+
+References anubis\+\_\+ecb\+\_\+decrypt(), anubis\+\_\+ecb\+\_\+encrypt(), anubis\+\_\+setup(), compare\+\_\+testvector(), C\+R\+Y\+P\+T\+\_\+\+F\+A\+I\+L\+\_\+\+T\+E\+S\+T\+V\+E\+C\+T\+OR, C\+R\+Y\+P\+T\+\_\+\+N\+OP, and C\+R\+Y\+P\+T\+\_\+\+OK.
+
+Here is the call graph for this function\+:
+% FIG 7
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{anubis_8c_a90e32a17644ba7c27cee346ddb2517ef}\label{anubis_8c_a90e32a17644ba7c27cee346ddb2517ef}} 
+\index{anubis.c@{anubis.c}!anubis\_desc@{anubis\_desc}}
+\index{anubis\_desc@{anubis\_desc}!anubis.c@{anubis.c}}
+\subsubsection{\texorpdfstring{anubis\_desc}{anubis\_desc}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structltc__cipher__descriptor}{ltc\+\_\+cipher\+\_\+descriptor}} anubis\+\_\+desc}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{   \textcolor{stringliteral}{"anubis"},}
+\DoxyCodeLine{   19,}
+\DoxyCodeLine{   16, 40, 16, 12,}
+\DoxyCodeLine{   \&\mbox{\hyperlink{anubis_8c_a8745a39a486f64e5f6e4dd32b096bc12}{anubis\_setup}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{anubis_8c_ab361220dd90cf3f6d71aa253b33c1dbe}{anubis\_ecb\_encrypt}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{anubis_8c_a1122129902230375d541d8286d677771}{anubis\_ecb\_decrypt}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{anubis_8c_a81f0af86ef06366e1ba31ddf293e9261}{anubis\_test}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{anubis_8c_a81f1c7c1b4c9bd15f4c658fa00e4b038}{anubis\_done}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{anubis_8c_ac1ec2d1cd81be9cfc256a7cce39d645f}{anubis\_keysize}},}
+\DoxyCodeLine{   NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line 20 of file anubis.\+c.
+
+
+
+Referenced by register\+\_\+all\+\_\+ciphers(), and yarrow\+\_\+start().
+
+\mbox{\Hypertarget{anubis_8c_a41aadadfea74d0a2d60fc9f92ea5d014}\label{anubis_8c_a41aadadfea74d0a2d60fc9f92ea5d014}} 
+\index{anubis.c@{anubis.c}!rc@{rc}}
+\index{rc@{rc}!anubis.c@{anubis.c}}
+\subsubsection{\texorpdfstring{rc}{rc}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} rc\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    0xba542f74U, 0x53d3d24dU, 0x50ac8dbfU, 0x70529a4cU,}
+\DoxyCodeLine{    0xead597d1U, 0x33515ba6U, 0xde48a899U, 0xdb32b7fcU,}
+\DoxyCodeLine{    0xe39e919bU, 0xe2bb416eU, 0xa5cb6b95U, 0xa1f3b102U,}
+\DoxyCodeLine{    0xccc41d14U, 0xc363da5dU, 0x5fdc7dcdU, 0x7f5a6c5cU,}
+\DoxyCodeLine{    0xf726ffedU, 0xe89d6f8eU, 0x19a0f089U,}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+The round constants. 
+
+
+
+Definition at line 448 of file anubis.\+c.
+
+
+
+Referenced by anubis\+\_\+setup().
+
+\mbox{\Hypertarget{anubis_8c_ab30287bcdadcb5d0bf19d89988c20ef0}\label{anubis_8c_ab30287bcdadcb5d0bf19d89988c20ef0}} 
+\index{anubis.c@{anubis.c}!T0@{T0}}
+\index{T0@{T0}!anubis.c@{anubis.c}}
+\subsubsection{\texorpdfstring{T0}{T0}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} T0\mbox{[}256\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 43 of file anubis.\+c.
+
+
+
+Referenced by anubis\+\_\+crypt(), and anubis\+\_\+setup().
+
+\mbox{\Hypertarget{anubis_8c_aef89e4e302e2140adb651b8f76d6a30d}\label{anubis_8c_aef89e4e302e2140adb651b8f76d6a30d}} 
+\index{anubis.c@{anubis.c}!T1@{T1}}
+\index{T1@{T1}!anubis.c@{anubis.c}}
+\subsubsection{\texorpdfstring{T1}{T1}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} T1\mbox{[}256\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 110 of file anubis.\+c.
+
+
+
+Referenced by anubis\+\_\+crypt(), and anubis\+\_\+setup().
+
+\mbox{\Hypertarget{anubis_8c_a8823785065c27a65d92554e3b1db5f6f}\label{anubis_8c_a8823785065c27a65d92554e3b1db5f6f}} 
+\index{anubis.c@{anubis.c}!T2@{T2}}
+\index{T2@{T2}!anubis.c@{anubis.c}}
+\subsubsection{\texorpdfstring{T2}{T2}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} T2\mbox{[}256\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 177 of file anubis.\+c.
+
+
+
+Referenced by anubis\+\_\+crypt(), anubis\+\_\+setup(), and rounds().
+
+\mbox{\Hypertarget{anubis_8c_a503aa4e049c37976d67e202eadbe2fef}\label{anubis_8c_a503aa4e049c37976d67e202eadbe2fef}} 
+\index{anubis.c@{anubis.c}!T3@{T3}}
+\index{T3@{T3}!anubis.c@{anubis.c}}
+\subsubsection{\texorpdfstring{T3}{T3}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} T3\mbox{[}256\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 244 of file anubis.\+c.
+
+
+
+Referenced by anubis\+\_\+crypt(), and anubis\+\_\+setup().
+
+\mbox{\Hypertarget{anubis_8c_a4fb60030dcad7499754b36438dbd6606}\label{anubis_8c_a4fb60030dcad7499754b36438dbd6606}} 
+\index{anubis.c@{anubis.c}!T4@{T4}}
+\index{T4@{T4}!anubis.c@{anubis.c}}
+\subsubsection{\texorpdfstring{T4}{T4}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} T4\mbox{[}256\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 311 of file anubis.\+c.
+
+
+
+Referenced by anubis\+\_\+setup().
+
+\mbox{\Hypertarget{anubis_8c_af34afae963dda5b0c0807f90e88713a9}\label{anubis_8c_af34afae963dda5b0c0807f90e88713a9}} 
+\index{anubis.c@{anubis.c}!T5@{T5}}
+\index{T5@{T5}!anubis.c@{anubis.c}}
+\subsubsection{\texorpdfstring{T5}{T5}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} T5\mbox{[}256\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 378 of file anubis.\+c.
+
+
+
+Referenced by anubis\+\_\+setup().
+

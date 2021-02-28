@@ -1,0 +1,85 @@
+\hypertarget{dh__export_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/pk/dh/dh\+\_\+export.c File Reference}
+\label{dh__export_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/dh/dh\_export.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/dh/dh\_export.c}}
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for dh\+\_\+export.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{dh__export_8c_a56efe9cae68b453763acc9f3e191ada2}{dh\+\_\+export}} (unsigned char $\ast$out, unsigned long $\ast$outlen, int type, const dh\+\_\+key $\ast$key)
+\begin{DoxyCompactList}\small\item\em Export a DH key to a binary packet. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{dh__export_8c_a56efe9cae68b453763acc9f3e191ada2}\label{dh__export_8c_a56efe9cae68b453763acc9f3e191ada2}} 
+\index{dh\_export.c@{dh\_export.c}!dh\_export@{dh\_export}}
+\index{dh\_export@{dh\_export}!dh\_export.c@{dh\_export.c}}
+\subsubsection{\texorpdfstring{dh\_export()}{dh\_export()}}
+{\footnotesize\ttfamily int dh\+\_\+export (\begin{DoxyParamCaption}\item[{unsigned char $\ast$}]{out,  }\item[{unsigned long $\ast$}]{outlen,  }\item[{int}]{type,  }\item[{const dh\+\_\+key $\ast$}]{key }\end{DoxyParamCaption})}
+
+
+
+Export a DH key to a binary packet. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em out} & \mbox{[}out\mbox{]} The destination for the key \\
+\hline
+{\em outlen} & \mbox{[}in/out\mbox{]} The max size and resulting size of the DH key \\
+\hline
+{\em type} & Which type of key (P\+K\+\_\+\+P\+R\+I\+V\+A\+TE or P\+K\+\_\+\+P\+U\+B\+L\+IC) \\
+\hline
+{\em key} & The key you wish to export \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 22 of file dh\+\_\+export.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{23 \{}
+\DoxyCodeLine{24    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} flags[1];}
+\DoxyCodeLine{25    \textcolor{keywordtype}{int} err;}
+\DoxyCodeLine{26    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} version = 0;}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(out    != NULL);}
+\DoxyCodeLine{29    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(outlen != NULL);}
+\DoxyCodeLine{30    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(key    != NULL);}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32    \textcolor{keywordflow}{if} (type == \mbox{\hyperlink{tomcrypt__pk_8h_afb69d121a43f5ae8b47e6b83611d9272a7295b3dea2c5277912c6e040e1c96649}{PK\_PRIVATE}}) \{}
+\DoxyCodeLine{33       \textcolor{comment}{/* export x - private key */}}
+\DoxyCodeLine{34       flags[0] = 1;}
+\DoxyCodeLine{35       err = \mbox{\hyperlink{der__encode__sequence__multi_8c_a1a5a69543a5c89f81560b52d6f11b8c5}{der\_encode\_sequence\_multi}}(out, outlen,}
+\DoxyCodeLine{36                                 LTC\_ASN1\_SHORT\_INTEGER, 1UL, \&version,}
+\DoxyCodeLine{37                                 LTC\_ASN1\_BIT\_STRING,    1UL, flags,}
+\DoxyCodeLine{38                                 LTC\_ASN1\_INTEGER,       1UL, key->prime,}
+\DoxyCodeLine{39                                 LTC\_ASN1\_INTEGER,       1UL, key->base,}
+\DoxyCodeLine{40                                 LTC\_ASN1\_INTEGER,       1UL, key->x,}
+\DoxyCodeLine{41                                 LTC\_ASN1\_EOL,           0UL, NULL);}
+\DoxyCodeLine{42    \}}
+\DoxyCodeLine{43    \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{44       \textcolor{comment}{/* export y - public key */}}
+\DoxyCodeLine{45       flags[0] = 0;}
+\DoxyCodeLine{46       err = \mbox{\hyperlink{der__encode__sequence__multi_8c_a1a5a69543a5c89f81560b52d6f11b8c5}{der\_encode\_sequence\_multi}}(out, outlen,}
+\DoxyCodeLine{47                                 LTC\_ASN1\_SHORT\_INTEGER, 1UL, \&version,}
+\DoxyCodeLine{48                                 LTC\_ASN1\_BIT\_STRING,    1UL, flags,}
+\DoxyCodeLine{49                                 LTC\_ASN1\_INTEGER,       1UL, key->prime,}
+\DoxyCodeLine{50                                 LTC\_ASN1\_INTEGER,       1UL, key->base,}
+\DoxyCodeLine{51                                 LTC\_ASN1\_INTEGER,       1UL, key->y,}
+\DoxyCodeLine{52                                 LTC\_ASN1\_EOL,           0UL, NULL);}
+\DoxyCodeLine{53    \}}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55    \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{56 \}}
+
+\end{DoxyCode}
+
+
+References der\+\_\+encode\+\_\+sequence\+\_\+multi(), L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, and P\+K\+\_\+\+P\+R\+I\+V\+A\+TE.
+
+Here is the call graph for this function\+:
+% FIG 1

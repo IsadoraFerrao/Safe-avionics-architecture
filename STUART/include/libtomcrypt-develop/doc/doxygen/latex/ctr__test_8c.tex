@@ -1,0 +1,99 @@
+\hypertarget{ctr__test_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/modes/ctr/ctr\+\_\+test.c File Reference}
+\label{ctr__test_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/modes/ctr/ctr\_test.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/modes/ctr/ctr\_test.c}}
+
+
+C\+TR implementation, Tests again R\+FC 3686, Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for ctr\+\_\+test.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{ctr__test_8c_a32abd18f150379219d48de1a9ce18efb}{ctr\+\_\+test}} (void)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+C\+TR implementation, Tests again R\+FC 3686, Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{ctr__test_8c_a32abd18f150379219d48de1a9ce18efb}\label{ctr__test_8c_a32abd18f150379219d48de1a9ce18efb}} 
+\index{ctr\_test.c@{ctr\_test.c}!ctr\_test@{ctr\_test}}
+\index{ctr\_test@{ctr\_test}!ctr\_test.c@{ctr\_test.c}}
+\subsubsection{\texorpdfstring{ctr\_test()}{ctr\_test()}}
+{\footnotesize\ttfamily int ctr\+\_\+test (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 18 of file ctr\+\_\+test.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{19 \{}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#ifdef LTC\_NO\_TEST}}
+\DoxyCodeLine{21    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cac43a7799c7fd5f515172da6cfc0f9cf5}{CRYPT\_NOP}};}
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{23    \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{24       \textcolor{keywordtype}{int} keylen, msglen;}
+\DoxyCodeLine{25       \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} key[32], IV[16], pt[64], ct[64];}
+\DoxyCodeLine{26    \} tests[] = \{}
+\DoxyCodeLine{27 \textcolor{comment}{/* 128-bit key, 16-byte pt */}}
+\DoxyCodeLine{28 \{}
+\DoxyCodeLine{29    16, 16,}
+\DoxyCodeLine{30    \{0xAE,0x68,0x52,0xF8,0x12,0x10,0x67,0xCC,0x4B,0xF7,0xA5,0x76,0x55,0x77,0xF3,0x9E \},}
+\DoxyCodeLine{31    \{0x00,0x00,0x00,0x30,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00 \},}
+\DoxyCodeLine{32    \{0x53,0x69,0x6E,0x67,0x6C,0x65,0x20,0x62,0x6C,0x6F,0x63,0x6B,0x20,0x6D,0x73,0x67 \},}
+\DoxyCodeLine{33    \{0xE4,0x09,0x5D,0x4F,0xB7,0xA7,0xB3,0x79,0x2D,0x61,0x75,0xA3,0x26,0x13,0x11,0xB8 \},}
+\DoxyCodeLine{34 \},}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36 \textcolor{comment}{/* 128-bit key, 36-byte pt */}}
+\DoxyCodeLine{37 \{}
+\DoxyCodeLine{38    16, 36,}
+\DoxyCodeLine{39    \{0x76,0x91,0xBE,0x03,0x5E,0x50,0x20,0xA8,0xAC,0x6E,0x61,0x85,0x29,0xF9,0xA0,0xDC \},}
+\DoxyCodeLine{40    \{0x00,0xE0,0x01,0x7B,0x27,0x77,0x7F,0x3F,0x4A,0x17,0x86,0xF0,0x00,0x00,0x00,0x00 \},}
+\DoxyCodeLine{41    \{0x00,0x01,0x02,0x03,0x04,0x05,0x06,0x07,0x08,0x09,0x0A,0x0B,0x0C,0x0D,0x0E,0x0F,}
+\DoxyCodeLine{42     0x10,0x11,0x12,0x13,0x14,0x15,0x16,0x17,0x18,0x19,0x1A,0x1B,0x1C,0x1D,0x1E,0x1F,}
+\DoxyCodeLine{43     0x20,0x21,0x22,0x23\},}
+\DoxyCodeLine{44    \{0xC1,0xCF,0x48,0xA8,0x9F,0x2F,0xFD,0xD9,0xCF,0x46,0x52,0xE9,0xEF,0xDB,0x72,0xD7,}
+\DoxyCodeLine{45     0x45,0x40,0xA4,0x2B,0xDE,0x6D,0x78,0x36,0xD5,0x9A,0x5C,0xEA,0xAE,0xF3,0x10,0x53,}
+\DoxyCodeLine{46     0x25,0xB2,0x07,0x2F \},}
+\DoxyCodeLine{47 \},}
+\DoxyCodeLine{48 \};}
+\DoxyCodeLine{49   \textcolor{keywordtype}{int} idx, err, x;}
+\DoxyCodeLine{50   \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} buf[64];}
+\DoxyCodeLine{51   symmetric\_CTR ctr;}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{53   \textcolor{comment}{/* AES can be under rijndael or aes... try to find it */}}
+\DoxyCodeLine{54   \textcolor{keywordflow}{if} ((idx = \mbox{\hyperlink{tomcrypt__cipher_8h_af5c3882342fd65a17239cd04bfdf44e2}{find\_cipher}}(\textcolor{stringliteral}{"aes"})) == -1) \{}
+\DoxyCodeLine{55      \textcolor{keywordflow}{if} ((idx = \mbox{\hyperlink{tomcrypt__cipher_8h_af5c3882342fd65a17239cd04bfdf44e2}{find\_cipher}}(\textcolor{stringliteral}{"rijndael"})) == -1) \{}
+\DoxyCodeLine{56         \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cac43a7799c7fd5f515172da6cfc0f9cf5}{CRYPT\_NOP}};}
+\DoxyCodeLine{57      \}}
+\DoxyCodeLine{58   \}}
+\DoxyCodeLine{59 }
+\DoxyCodeLine{60   \textcolor{keywordflow}{for} (x = 0; x < (int)(\textcolor{keyword}{sizeof}(tests)/\textcolor{keyword}{sizeof}(tests[0])); x++) \{}
+\DoxyCodeLine{61      \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{ctr__start_8c_a8663bae8fb1af7659b5d8e9190fc189f}{ctr\_start}}(idx, tests[x].IV, tests[x].key, tests[x].keylen, 0, CTR\_COUNTER\_BIG\_ENDIAN|LTC\_CTR\_RFC3686, \&ctr)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{62         \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{63      \}}
+\DoxyCodeLine{64      \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{ctr__encrypt_8c_af42c91e4fb7f9aa679399e44e632ae44}{ctr\_encrypt}}(tests[x].pt, buf, tests[x].msglen, \&ctr)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{65         \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{66      \}}
+\DoxyCodeLine{67      \mbox{\hyperlink{ctr__done_8c_aa8082f961208812c0c203fdd8d75de96}{ctr\_done}}(\&ctr);}
+\DoxyCodeLine{68      \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(buf, tests[x].msglen, tests[x].ct, tests[x].msglen, \textcolor{stringliteral}{"CTR"}, x)) \{}
+\DoxyCodeLine{69         \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{70      \}}
+\DoxyCodeLine{71   \}}
+\DoxyCodeLine{72   \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{73 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{74 \}}
+
+\end{DoxyCode}
+
+
+References compare\+\_\+testvector(), C\+R\+Y\+P\+T\+\_\+\+F\+A\+I\+L\+\_\+\+T\+E\+S\+T\+V\+E\+C\+T\+OR, C\+R\+Y\+P\+T\+\_\+\+N\+OP, C\+R\+Y\+P\+T\+\_\+\+OK, ctr\+\_\+done(), ctr\+\_\+encrypt(), ctr\+\_\+start(), and find\+\_\+cipher().
+
+Here is the call graph for this function\+:
+% FIG 1

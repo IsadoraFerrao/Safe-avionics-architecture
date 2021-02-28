@@ -1,0 +1,24 @@
+digraph "saferp_test"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node17 [label="saferp_test",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Performs a self-test of the LTC_SAFER+ block cipher."];
+  Node17 -> Node18 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node18 [label="compare_testvector",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__misc_8h.html#a7764a7f27897c6182335752df00b5f8e",tooltip="Compare two test-vectors."];
+  Node18 -> Node19 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node19 [label="XMEMCMP",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cfg_8h.html#a372b974ec0ac07abcd55297554fe540f",tooltip=" "];
+  Node17 -> Node20 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node20 [label="saferp_ecb_decrypt",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$saferp_8c.html#a14934fc3e8b18abd206c4e900bf9e0d0",tooltip="Decrypts a block of text with LTC_SAFER+."];
+  Node20 -> Node21 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node21 [label="zeromem",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__misc_8h.html#a63b6e188713790263bfd3612fe8b398f",tooltip="Zero a block of memory."];
+  Node17 -> Node22 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node22 [label="saferp_ecb_encrypt",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$saferp_8c.html#a59d49e6e1a07b020fa94c3f381c314e6",tooltip="Encrypts a block of text with LTC_SAFER+."];
+  Node22 -> Node21 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node17 -> Node23 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node23 [label="saferp_setup",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$saferp_8c.html#ac1e881047264199d7629a8792ce8d274",tooltip="Initialize the LTC_SAFER+ block cipher."];
+  Node23 -> Node24 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node24 [label="rounds",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$kseed_8c.html#a51da46362a22c8107683876e9c12ec82",tooltip=" "];
+  Node23 -> Node21 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}

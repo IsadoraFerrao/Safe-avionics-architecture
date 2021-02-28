@@ -1,0 +1,700 @@
+\hypertarget{khazad_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/ciphers/khazad.c File Reference}
+\label{khazad_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/ciphers/khazad.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/ciphers/khazad.c}}
+
+
+Khazad implementation derived from public domain source Authors\+: Paulo S.\+L.\+M.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for khazad.\+c\+:
+% FIG 0
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}}~8
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{khazad_8c_a26a57d1e83a16b6abe994f43b570a62b}{khazad\+\_\+setup}} (const unsigned char $\ast$key, int keylen, int num\+\_\+rounds, \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)
+\begin{DoxyCompactList}\small\item\em Initialize the Khazad block cipher. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{khazad_8c_ac33b9c32bf8c340b2c5bb15190e0460b}{khazad\+\_\+crypt}} (const unsigned char $\ast$plaintext, unsigned char $\ast$ciphertext, const \mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}} $\ast$round\+Key)
+\item 
+int \mbox{\hyperlink{khazad_8c_a5a1f47614a0573ea67f9dcc1d9a7143c}{khazad\+\_\+ecb\+\_\+encrypt}} (const unsigned char $\ast$pt, unsigned char $\ast$ct, const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)
+\begin{DoxyCompactList}\small\item\em Encrypts a block of text with Khazad. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{khazad_8c_ae1333252a34f625c3b6acfc2805b3b92}{khazad\+\_\+ecb\+\_\+decrypt}} (const unsigned char $\ast$ct, unsigned char $\ast$pt, const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)
+\begin{DoxyCompactList}\small\item\em Decrypts a block of text with Khazad. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{khazad_8c_a84954dad5480d2d51bbabec6f639a662}{khazad\+\_\+test}} (void)
+\begin{DoxyCompactList}\small\item\em Performs a self-\/test of the Khazad block cipher. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{khazad_8c_a427ad6dc712a793565dbfcb713c90000}{khazad\+\_\+done}} (\mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)
+\begin{DoxyCompactList}\small\item\em Terminate the context. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{khazad_8c_a5bb2ef9fb80e93169c8151cfdc1c175a}{khazad\+\_\+keysize}} (int $\ast$keysize)
+\begin{DoxyCompactList}\small\item\em Gets suitable key size. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const struct \mbox{\hyperlink{structltc__cipher__descriptor}{ltc\+\_\+cipher\+\_\+descriptor}} \mbox{\hyperlink{khazad_8c_a07a193e67bcb1833c10b1fbcba1d90fc}{khazad\+\_\+desc}}
+\item 
+static const \mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}} \mbox{\hyperlink{khazad_8c_a6e36bd0b792b4c970ab26b1e8a4282fc}{T0}} \mbox{[}256\mbox{]}
+\item 
+static const \mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}} \mbox{\hyperlink{khazad_8c_a96fd5461932b542899f638a4ac3ee9ab}{T1}} \mbox{[}256\mbox{]}
+\item 
+static const \mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}} \mbox{\hyperlink{khazad_8c_affe03d58afc0aed2f519f7449c68ed84}{T2}} \mbox{[}256\mbox{]}
+\item 
+static const \mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}} \mbox{\hyperlink{khazad_8c_a046ddad8530350e5ce234ce10ffe3fe0}{T3}} \mbox{[}256\mbox{]}
+\item 
+static const \mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}} \mbox{\hyperlink{khazad_8c_a4b749db1f0698554a9c13d9120ea2bc9}{T4}} \mbox{[}256\mbox{]}
+\item 
+static const \mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}} \mbox{\hyperlink{khazad_8c_a300803b7b34e8442a678a70cd81980f9}{T5}} \mbox{[}256\mbox{]}
+\item 
+static const \mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}} \mbox{\hyperlink{khazad_8c_a981812adfe6b440b9e239bcfdb98936c}{T6}} \mbox{[}256\mbox{]}
+\item 
+static const \mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}} \mbox{\hyperlink{khazad_8c_af9b016386f1390b9c35452e5cfa81528}{T7}} \mbox{[}256\mbox{]}
+\item 
+static const \mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}} \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} \mbox{[}8+1\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Khazad implementation derived from public domain source Authors\+: Paulo S.\+L.\+M. 
+
+Barreto and Vincent Rijmen. 
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}\label{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}} 
+\index{khazad.c@{khazad.c}!R@{R}}
+\index{R@{R}!khazad.c@{khazad.c}}
+\subsubsection{\texorpdfstring{R}{R}}
+{\footnotesize\ttfamily \#define R~8}
+
+
+
+Definition at line 32 of file khazad.\+c.
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{khazad_8c_ac33b9c32bf8c340b2c5bb15190e0460b}\label{khazad_8c_ac33b9c32bf8c340b2c5bb15190e0460b}} 
+\index{khazad.c@{khazad.c}!khazad\_crypt@{khazad\_crypt}}
+\index{khazad\_crypt@{khazad\_crypt}!khazad.c@{khazad.c}}
+\subsubsection{\texorpdfstring{khazad\_crypt()}{khazad\_crypt()}}
+{\footnotesize\ttfamily static void khazad\+\_\+crypt (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{plaintext,  }\item[{unsigned char $\ast$}]{ciphertext,  }\item[{const \mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}} $\ast$}]{round\+Key }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 671 of file khazad.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{672                                                         \{}
+\DoxyCodeLine{673    \textcolor{keywordtype}{int}     r;}
+\DoxyCodeLine{674    \mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}} state;}
+\DoxyCodeLine{675     \textcolor{comment}{/*}}
+\DoxyCodeLine{676 \textcolor{comment}{    * map plaintext block to cipher state (mu)}}
+\DoxyCodeLine{677 \textcolor{comment}{    * and add initial round key (sigma[K\string^0]):}}
+\DoxyCodeLine{678 \textcolor{comment}{    */}}
+\DoxyCodeLine{679    state =}
+\DoxyCodeLine{680       ((\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}})plaintext[0] << 56) \string^}
+\DoxyCodeLine{681       ((\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}})plaintext[1] << 48) \string^}
+\DoxyCodeLine{682       ((\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}})plaintext[2] << 40) \string^}
+\DoxyCodeLine{683       ((\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}})plaintext[3] << 32) \string^}
+\DoxyCodeLine{684       ((\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}})plaintext[4] << 24) \string^}
+\DoxyCodeLine{685       ((\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}})plaintext[5] << 16) \string^}
+\DoxyCodeLine{686       ((\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}})plaintext[6] <<  8) \string^}
+\DoxyCodeLine{687       ((\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}})plaintext[7]      ) \string^}
+\DoxyCodeLine{688       roundKey[0];}
+\DoxyCodeLine{689 }
+\DoxyCodeLine{690     \textcolor{comment}{/*}}
+\DoxyCodeLine{691 \textcolor{comment}{    * R - 1 full rounds:}}
+\DoxyCodeLine{692 \textcolor{comment}{    */}}
+\DoxyCodeLine{693     \textcolor{keywordflow}{for} (r = 1; r < \mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}}; r++) \{}
+\DoxyCodeLine{694       state =}
+\DoxyCodeLine{695          \mbox{\hyperlink{khazad_8c_a6e36bd0b792b4c970ab26b1e8a4282fc}{T0}}[(int)(state >> 56)       ] \string^}
+\DoxyCodeLine{696          \mbox{\hyperlink{khazad_8c_a96fd5461932b542899f638a4ac3ee9ab}{T1}}[(int)(state >> 48) \& 0xff] \string^}
+\DoxyCodeLine{697          \mbox{\hyperlink{khazad_8c_affe03d58afc0aed2f519f7449c68ed84}{T2}}[(int)(state >> 40) \& 0xff] \string^}
+\DoxyCodeLine{698          \mbox{\hyperlink{khazad_8c_a046ddad8530350e5ce234ce10ffe3fe0}{T3}}[(int)(state >> 32) \& 0xff] \string^}
+\DoxyCodeLine{699          \mbox{\hyperlink{khazad_8c_a4b749db1f0698554a9c13d9120ea2bc9}{T4}}[(int)(state >> 24) \& 0xff] \string^}
+\DoxyCodeLine{700          \mbox{\hyperlink{khazad_8c_a300803b7b34e8442a678a70cd81980f9}{T5}}[(int)(state >> 16) \& 0xff] \string^}
+\DoxyCodeLine{701          \mbox{\hyperlink{khazad_8c_a981812adfe6b440b9e239bcfdb98936c}{T6}}[(int)(state >>  8) \& 0xff] \string^}
+\DoxyCodeLine{702          \mbox{\hyperlink{khazad_8c_af9b016386f1390b9c35452e5cfa81528}{T7}}[(int)(state      ) \& 0xff] \string^}
+\DoxyCodeLine{703          roundKey[r];}
+\DoxyCodeLine{704     \}}
+\DoxyCodeLine{705 }
+\DoxyCodeLine{706     \textcolor{comment}{/*}}
+\DoxyCodeLine{707 \textcolor{comment}{    * last round:}}
+\DoxyCodeLine{708 \textcolor{comment}{    */}}
+\DoxyCodeLine{709    state =}
+\DoxyCodeLine{710       (\mbox{\hyperlink{khazad_8c_a6e36bd0b792b4c970ab26b1e8a4282fc}{T0}}[(int)(state >> 56)       ] \& \mbox{\hyperlink{tomcrypt__cfg_8h_a7d8e211582dff82d00fc171834e3dc67}{CONST64}}(0xff00000000000000)) \string^}
+\DoxyCodeLine{711       (\mbox{\hyperlink{khazad_8c_a96fd5461932b542899f638a4ac3ee9ab}{T1}}[(\textcolor{keywordtype}{int})(state >> 48) \& 0xff] \& \mbox{\hyperlink{tomcrypt__cfg_8h_a7d8e211582dff82d00fc171834e3dc67}{CONST64}}(0x00ff000000000000)) \string^}
+\DoxyCodeLine{712       (\mbox{\hyperlink{khazad_8c_affe03d58afc0aed2f519f7449c68ed84}{T2}}[(\textcolor{keywordtype}{int})(state >> 40) \& 0xff] \& \mbox{\hyperlink{tomcrypt__cfg_8h_a7d8e211582dff82d00fc171834e3dc67}{CONST64}}(0x0000ff0000000000)) \string^}
+\DoxyCodeLine{713       (\mbox{\hyperlink{khazad_8c_a046ddad8530350e5ce234ce10ffe3fe0}{T3}}[(\textcolor{keywordtype}{int})(state >> 32) \& 0xff] \& \mbox{\hyperlink{tomcrypt__cfg_8h_a7d8e211582dff82d00fc171834e3dc67}{CONST64}}(0x000000ff00000000)) \string^}
+\DoxyCodeLine{714       (\mbox{\hyperlink{khazad_8c_a4b749db1f0698554a9c13d9120ea2bc9}{T4}}[(\textcolor{keywordtype}{int})(state >> 24) \& 0xff] \& \mbox{\hyperlink{tomcrypt__cfg_8h_a7d8e211582dff82d00fc171834e3dc67}{CONST64}}(0x00000000ff000000)) \string^}
+\DoxyCodeLine{715       (\mbox{\hyperlink{khazad_8c_a300803b7b34e8442a678a70cd81980f9}{T5}}[(\textcolor{keywordtype}{int})(state >> 16) \& 0xff] \& \mbox{\hyperlink{tomcrypt__cfg_8h_a7d8e211582dff82d00fc171834e3dc67}{CONST64}}(0x0000000000ff0000)) \string^}
+\DoxyCodeLine{716       (\mbox{\hyperlink{khazad_8c_a981812adfe6b440b9e239bcfdb98936c}{T6}}[(\textcolor{keywordtype}{int})(state >>  8) \& 0xff] \& \mbox{\hyperlink{tomcrypt__cfg_8h_a7d8e211582dff82d00fc171834e3dc67}{CONST64}}(0x000000000000ff00)) \string^}
+\DoxyCodeLine{717       (\mbox{\hyperlink{khazad_8c_af9b016386f1390b9c35452e5cfa81528}{T7}}[(\textcolor{keywordtype}{int})(state      ) \& 0xff] \& \mbox{\hyperlink{tomcrypt__cfg_8h_a7d8e211582dff82d00fc171834e3dc67}{CONST64}}(0x00000000000000ff)) \string^}
+\DoxyCodeLine{718       roundKey[\mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}}];}
+\DoxyCodeLine{719 }
+\DoxyCodeLine{720    \textcolor{comment}{/*}}
+\DoxyCodeLine{721 \textcolor{comment}{    * map cipher state to ciphertext block (mu\string^\{-1\}):}}
+\DoxyCodeLine{722 \textcolor{comment}{    */}}
+\DoxyCodeLine{723    ciphertext[0] = (\textcolor{keywordtype}{unsigned} char)(state >> 56);}
+\DoxyCodeLine{724    ciphertext[1] = (\textcolor{keywordtype}{unsigned} char)(state >> 48);}
+\DoxyCodeLine{725    ciphertext[2] = (\textcolor{keywordtype}{unsigned} char)(state >> 40);}
+\DoxyCodeLine{726    ciphertext[3] = (\textcolor{keywordtype}{unsigned} char)(state >> 32);}
+\DoxyCodeLine{727    ciphertext[4] = (\textcolor{keywordtype}{unsigned} char)(state >> 24);}
+\DoxyCodeLine{728    ciphertext[5] = (\textcolor{keywordtype}{unsigned} char)(state >> 16);}
+\DoxyCodeLine{729    ciphertext[6] = (\textcolor{keywordtype}{unsigned} char)(state >>  8);}
+\DoxyCodeLine{730    ciphertext[7] = (\textcolor{keywordtype}{unsigned} char)(state      );}
+\DoxyCodeLine{731 \}}
+
+\end{DoxyCode}
+
+
+References C\+O\+N\+S\+T64, R, T0, T1, T2, T3, T4, T5, T6, and T7.
+
+
+
+Referenced by khazad\+\_\+ecb\+\_\+decrypt(), and khazad\+\_\+ecb\+\_\+encrypt().
+
+Here is the caller graph for this function\+:
+% FIG 1
+\mbox{\Hypertarget{khazad_8c_a427ad6dc712a793565dbfcb713c90000}\label{khazad_8c_a427ad6dc712a793565dbfcb713c90000}} 
+\index{khazad.c@{khazad.c}!khazad\_done@{khazad\_done}}
+\index{khazad\_done@{khazad\_done}!khazad.c@{khazad.c}}
+\subsubsection{\texorpdfstring{khazad\_done()}{khazad\_done()}}
+{\footnotesize\ttfamily void khazad\+\_\+done (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$}]{skey }\end{DoxyParamCaption})}
+
+
+
+Terminate the context. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em skey} & The scheduled key \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 826 of file khazad.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{827 \{}
+\DoxyCodeLine{828   \mbox{\hyperlink{tomcrypt__macros_8h_accde4b007facd646a8327f8e64b2d1e0}{LTC\_UNUSED\_PARAM}}(skey);}
+\DoxyCodeLine{829 \}}
+
+\end{DoxyCode}
+
+
+References L\+T\+C\+\_\+\+U\+N\+U\+S\+E\+D\+\_\+\+P\+A\+R\+AM.
+
+\mbox{\Hypertarget{khazad_8c_ae1333252a34f625c3b6acfc2805b3b92}\label{khazad_8c_ae1333252a34f625c3b6acfc2805b3b92}} 
+\index{khazad.c@{khazad.c}!khazad\_ecb\_decrypt@{khazad\_ecb\_decrypt}}
+\index{khazad\_ecb\_decrypt@{khazad\_ecb\_decrypt}!khazad.c@{khazad.c}}
+\subsubsection{\texorpdfstring{khazad\_ecb\_decrypt()}{khazad\_ecb\_decrypt()}}
+{\footnotesize\ttfamily int khazad\+\_\+ecb\+\_\+decrypt (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{ct,  }\item[{unsigned char $\ast$}]{pt,  }\item[{const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$}]{skey }\end{DoxyParamCaption})}
+
+
+
+Decrypts a block of text with Khazad. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ct} & The input ciphertext (8 bytes) \\
+\hline
+{\em pt} & The output plaintext (8 bytes) \\
+\hline
+{\em skey} & The key as scheduled \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 756 of file khazad.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{757 \{}
+\DoxyCodeLine{758    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(pt   != NULL);}
+\DoxyCodeLine{759    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(ct   != NULL);}
+\DoxyCodeLine{760    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(skey != NULL);}
+\DoxyCodeLine{761    \mbox{\hyperlink{khazad_8c_ac33b9c32bf8c340b2c5bb15190e0460b}{khazad\_crypt}}(ct, pt, skey->khazad.roundKeyDec);}
+\DoxyCodeLine{762    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{763 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, khazad\+\_\+crypt(), and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+
+
+Referenced by khazad\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 2
+Here is the caller graph for this function\+:
+% FIG 3
+\mbox{\Hypertarget{khazad_8c_a5a1f47614a0573ea67f9dcc1d9a7143c}\label{khazad_8c_a5a1f47614a0573ea67f9dcc1d9a7143c}} 
+\index{khazad.c@{khazad.c}!khazad\_ecb\_encrypt@{khazad\_ecb\_encrypt}}
+\index{khazad\_ecb\_encrypt@{khazad\_ecb\_encrypt}!khazad.c@{khazad.c}}
+\subsubsection{\texorpdfstring{khazad\_ecb\_encrypt()}{khazad\_ecb\_encrypt()}}
+{\footnotesize\ttfamily int khazad\+\_\+ecb\+\_\+encrypt (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{pt,  }\item[{unsigned char $\ast$}]{ct,  }\item[{const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$}]{skey }\end{DoxyParamCaption})}
+
+
+
+Encrypts a block of text with Khazad. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pt} & The input plaintext (8 bytes) \\
+\hline
+{\em ct} & The output ciphertext (8 bytes) \\
+\hline
+{\em skey} & The key as scheduled \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 740 of file khazad.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{741 \{}
+\DoxyCodeLine{742    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(pt   != NULL);}
+\DoxyCodeLine{743    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(ct   != NULL);}
+\DoxyCodeLine{744    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(skey != NULL);}
+\DoxyCodeLine{745    \mbox{\hyperlink{khazad_8c_ac33b9c32bf8c340b2c5bb15190e0460b}{khazad\_crypt}}(pt, ct, skey->khazad.roundKeyEnc);}
+\DoxyCodeLine{746    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{747 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, khazad\+\_\+crypt(), and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+
+
+Referenced by khazad\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 4
+Here is the caller graph for this function\+:
+% FIG 5
+\mbox{\Hypertarget{khazad_8c_a5bb2ef9fb80e93169c8151cfdc1c175a}\label{khazad_8c_a5bb2ef9fb80e93169c8151cfdc1c175a}} 
+\index{khazad.c@{khazad.c}!khazad\_keysize@{khazad\_keysize}}
+\index{khazad\_keysize@{khazad\_keysize}!khazad.c@{khazad.c}}
+\subsubsection{\texorpdfstring{khazad\_keysize()}{khazad\_keysize()}}
+{\footnotesize\ttfamily int khazad\+\_\+keysize (\begin{DoxyParamCaption}\item[{int $\ast$}]{keysize }\end{DoxyParamCaption})}
+
+
+
+Gets suitable key size. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em keysize} & \mbox{[}in/out\mbox{]} The length of the recommended key (in bytes). This function will store the suitable size back in this variable. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if the input key size is acceptable. 
+\end{DoxyReturn}
+
+
+Definition at line 836 of file khazad.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{837 \{}
+\DoxyCodeLine{838    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(keysize != NULL);}
+\DoxyCodeLine{839    \textcolor{keywordflow}{if} (*keysize >= 16) \{}
+\DoxyCodeLine{840       *keysize = 16;}
+\DoxyCodeLine{841       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{842    \}}
+\DoxyCodeLine{843    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caafed43f3b625e72191e08e65b4bb5e02}{CRYPT\_INVALID\_KEYSIZE}};}
+\DoxyCodeLine{844 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+K\+E\+Y\+S\+I\+ZE, C\+R\+Y\+P\+T\+\_\+\+OK, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+\mbox{\Hypertarget{khazad_8c_a26a57d1e83a16b6abe994f43b570a62b}\label{khazad_8c_a26a57d1e83a16b6abe994f43b570a62b}} 
+\index{khazad.c@{khazad.c}!khazad\_setup@{khazad\_setup}}
+\index{khazad\_setup@{khazad\_setup}!khazad.c@{khazad.c}}
+\subsubsection{\texorpdfstring{khazad\_setup()}{khazad\_setup()}}
+{\footnotesize\ttfamily int khazad\+\_\+setup (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{key,  }\item[{int}]{keylen,  }\item[{int}]{num\+\_\+rounds,  }\item[{\mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$}]{skey }\end{DoxyParamCaption})}
+
+
+
+Initialize the Khazad block cipher. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The symmetric key you wish to pass \\
+\hline
+{\em keylen} & The key length in bytes \\
+\hline
+{\em num\+\_\+rounds} & The number of rounds desired (0 for default) \\
+\hline
+{\em skey} & The key in as scheduled by this function. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 590 of file khazad.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{591 \{}
+\DoxyCodeLine{592    \textcolor{keywordtype}{int}               r;}
+\DoxyCodeLine{593    \textcolor{keyword}{const} \mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}}    *\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}};}
+\DoxyCodeLine{594    \mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}}           K2, K1;}
+\DoxyCodeLine{595 }
+\DoxyCodeLine{596    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(key  != NULL);}
+\DoxyCodeLine{597    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(skey != NULL);}
+\DoxyCodeLine{598    \textcolor{keywordflow}{if} (keylen != 16) \{}
+\DoxyCodeLine{599       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caafed43f3b625e72191e08e65b4bb5e02}{CRYPT\_INVALID\_KEYSIZE}};}
+\DoxyCodeLine{600    \}}
+\DoxyCodeLine{601    \textcolor{keywordflow}{if} (num\_rounds != 8 \&\& num\_rounds != 0) \{}
+\DoxyCodeLine{602       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca69aff0280b5845d03130f8700009caf5}{CRYPT\_INVALID\_ROUNDS}};}
+\DoxyCodeLine{603    \}}
+\DoxyCodeLine{604 }
+\DoxyCodeLine{605    \textcolor{comment}{/* use 7th table */}}
+\DoxyCodeLine{606    \mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}} = \mbox{\hyperlink{khazad_8c_af9b016386f1390b9c35452e5cfa81528}{T7}};}
+\DoxyCodeLine{607 }
+\DoxyCodeLine{608     \textcolor{comment}{/*}}
+\DoxyCodeLine{609 \textcolor{comment}{    * map unsigned char array cipher key to initial key state (mu):}}
+\DoxyCodeLine{610 \textcolor{comment}{    */}}
+\DoxyCodeLine{611    K2 =}
+\DoxyCodeLine{612       ((\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}})key[ 0] << 56) \string^}
+\DoxyCodeLine{613       ((\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}})key[ 1] << 48) \string^}
+\DoxyCodeLine{614       ((\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}})key[ 2] << 40) \string^}
+\DoxyCodeLine{615       ((\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}})key[ 3] << 32) \string^}
+\DoxyCodeLine{616       ((\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}})key[ 4] << 24) \string^}
+\DoxyCodeLine{617       ((\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}})key[ 5] << 16) \string^}
+\DoxyCodeLine{618       ((\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}})key[ 6] <<  8) \string^}
+\DoxyCodeLine{619       ((\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}})key[ 7]      );}
+\DoxyCodeLine{620    K1 =}
+\DoxyCodeLine{621       ((\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}})key[ 8] << 56) \string^}
+\DoxyCodeLine{622       ((\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}})key[ 9] << 48) \string^}
+\DoxyCodeLine{623       ((\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}})key[10] << 40) \string^}
+\DoxyCodeLine{624       ((\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}})key[11] << 32) \string^}
+\DoxyCodeLine{625       ((\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}})key[12] << 24) \string^}
+\DoxyCodeLine{626       ((\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}})key[13] << 16) \string^}
+\DoxyCodeLine{627       ((\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}})key[14] <<  8) \string^}
+\DoxyCodeLine{628       ((\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}})key[15]      );}
+\DoxyCodeLine{629 }
+\DoxyCodeLine{630    \textcolor{comment}{/*}}
+\DoxyCodeLine{631 \textcolor{comment}{    * compute the round keys:}}
+\DoxyCodeLine{632 \textcolor{comment}{    */}}
+\DoxyCodeLine{633    \textcolor{keywordflow}{for} (r = 0; r <= \mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}}; r++) \{}
+\DoxyCodeLine{634       \textcolor{comment}{/*}}
+\DoxyCodeLine{635 \textcolor{comment}{       * K[r] = rho(c[r], K1) \string^ K2;}}
+\DoxyCodeLine{636 \textcolor{comment}{       */}}
+\DoxyCodeLine{637       skey->khazad.roundKeyEnc[r] =}
+\DoxyCodeLine{638          \mbox{\hyperlink{khazad_8c_a6e36bd0b792b4c970ab26b1e8a4282fc}{T0}}[(int)(K1 >> 56)       ] \string^}
+\DoxyCodeLine{639          \mbox{\hyperlink{khazad_8c_a96fd5461932b542899f638a4ac3ee9ab}{T1}}[(int)(K1 >> 48) \& 0xff] \string^}
+\DoxyCodeLine{640          \mbox{\hyperlink{khazad_8c_affe03d58afc0aed2f519f7449c68ed84}{T2}}[(int)(K1 >> 40) \& 0xff] \string^}
+\DoxyCodeLine{641          \mbox{\hyperlink{khazad_8c_a046ddad8530350e5ce234ce10ffe3fe0}{T3}}[(int)(K1 >> 32) \& 0xff] \string^}
+\DoxyCodeLine{642          \mbox{\hyperlink{khazad_8c_a4b749db1f0698554a9c13d9120ea2bc9}{T4}}[(int)(K1 >> 24) \& 0xff] \string^}
+\DoxyCodeLine{643          \mbox{\hyperlink{khazad_8c_a300803b7b34e8442a678a70cd81980f9}{T5}}[(int)(K1 >> 16) \& 0xff] \string^}
+\DoxyCodeLine{644          \mbox{\hyperlink{khazad_8c_a981812adfe6b440b9e239bcfdb98936c}{T6}}[(int)(K1 >>  8) \& 0xff] \string^}
+\DoxyCodeLine{645          \mbox{\hyperlink{khazad_8c_af9b016386f1390b9c35452e5cfa81528}{T7}}[(int)(K1      ) \& 0xff] \string^}
+\DoxyCodeLine{646          \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}[r] \string^ K2;}
+\DoxyCodeLine{647       K2 = K1; K1 = skey->khazad.roundKeyEnc[r];}
+\DoxyCodeLine{648    \}}
+\DoxyCodeLine{649    \textcolor{comment}{/*}}
+\DoxyCodeLine{650 \textcolor{comment}{    * compute the inverse key schedule:}}
+\DoxyCodeLine{651 \textcolor{comment}{    * K'\string^0 = K\string^R, K'\string^R = K\string^0, K'\string^r = theta(K\string^\{R-r\})}}
+\DoxyCodeLine{652 \textcolor{comment}{    */}}
+\DoxyCodeLine{653    skey->khazad.roundKeyDec[0] = skey->khazad.roundKeyEnc[\mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}}];}
+\DoxyCodeLine{654    \textcolor{keywordflow}{for} (r = 1; r < \mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}}; r++) \{}
+\DoxyCodeLine{655       K1 = skey->khazad.roundKeyEnc[\mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}} - r];}
+\DoxyCodeLine{656       skey->khazad.roundKeyDec[r] =}
+\DoxyCodeLine{657          \mbox{\hyperlink{khazad_8c_a6e36bd0b792b4c970ab26b1e8a4282fc}{T0}}[(int)\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[(\textcolor{keywordtype}{int})(K1 >> 56)       ] \& 0xff] \string^}
+\DoxyCodeLine{658          \mbox{\hyperlink{khazad_8c_a96fd5461932b542899f638a4ac3ee9ab}{T1}}[(\textcolor{keywordtype}{int})\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[(int)(K1 >> 48) \& 0xff] \& 0xff] \string^}
+\DoxyCodeLine{659          \mbox{\hyperlink{khazad_8c_affe03d58afc0aed2f519f7449c68ed84}{T2}}[(int)\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[(\textcolor{keywordtype}{int})(K1 >> 40) \& 0xff] \& 0xff] \string^}
+\DoxyCodeLine{660          \mbox{\hyperlink{khazad_8c_a046ddad8530350e5ce234ce10ffe3fe0}{T3}}[(\textcolor{keywordtype}{int})\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[(int)(K1 >> 32) \& 0xff] \& 0xff] \string^}
+\DoxyCodeLine{661          \mbox{\hyperlink{khazad_8c_a4b749db1f0698554a9c13d9120ea2bc9}{T4}}[(int)\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[(\textcolor{keywordtype}{int})(K1 >> 24) \& 0xff] \& 0xff] \string^}
+\DoxyCodeLine{662          \mbox{\hyperlink{khazad_8c_a300803b7b34e8442a678a70cd81980f9}{T5}}[(\textcolor{keywordtype}{int})\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[(int)(K1 >> 16) \& 0xff] \& 0xff] \string^}
+\DoxyCodeLine{663          \mbox{\hyperlink{khazad_8c_a981812adfe6b440b9e239bcfdb98936c}{T6}}[(int)\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[(\textcolor{keywordtype}{int})(K1 >>  8) \& 0xff] \& 0xff] \string^}
+\DoxyCodeLine{664          \mbox{\hyperlink{khazad_8c_af9b016386f1390b9c35452e5cfa81528}{T7}}[(\textcolor{keywordtype}{int})\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}[(int)(K1      ) \& 0xff] \& 0xff];}
+\DoxyCodeLine{665    \}}
+\DoxyCodeLine{666    skey->khazad.roundKeyDec[\mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}}] = skey->khazad.roundKeyEnc[0];}
+\DoxyCodeLine{667 }
+\DoxyCodeLine{668    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{669 \}}
+
+\end{DoxyCode}
+
+
+References c, C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+K\+E\+Y\+S\+I\+ZE, C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+R\+O\+U\+N\+DS, C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, R, S, T0, T1, T2, T3, T4, T5, T6, and T7.
+
+
+
+Referenced by khazad\+\_\+test().
+
+Here is the caller graph for this function\+:
+% FIG 6
+\mbox{\Hypertarget{khazad_8c_a84954dad5480d2d51bbabec6f639a662}\label{khazad_8c_a84954dad5480d2d51bbabec6f639a662}} 
+\index{khazad.c@{khazad.c}!khazad\_test@{khazad\_test}}
+\index{khazad\_test@{khazad\_test}!khazad.c@{khazad.c}}
+\subsubsection{\texorpdfstring{khazad\_test()}{khazad\_test()}}
+{\footnotesize\ttfamily int khazad\+\_\+test (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Performs a self-\/test of the Khazad block cipher. 
+
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if functional, C\+R\+Y\+P\+T\+\_\+\+N\+OP if self-\/test has been disabled 
+\end{DoxyReturn}
+
+
+Definition at line 769 of file khazad.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{770 \{}
+\DoxyCodeLine{771 \textcolor{preprocessor}{\#ifndef LTC\_TEST}}
+\DoxyCodeLine{772   \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cac43a7799c7fd5f515172da6cfc0f9cf5}{CRYPT\_NOP}};}
+\DoxyCodeLine{773 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{774   \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keyword}{struct }test \{}
+\DoxyCodeLine{775      \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} pt[8], ct[8], key[16];}
+\DoxyCodeLine{776   \} tests[] = \{}
+\DoxyCodeLine{777 \{}
+\DoxyCodeLine{778    \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{779    \{ 0x49, 0xA4, 0xCE, 0x32, 0xAC, 0x19, 0x0E, 0x3F \},}
+\DoxyCodeLine{780    \{ 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{781      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \}}
+\DoxyCodeLine{782 \}, \{}
+\DoxyCodeLine{783    \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{784    \{ 0x64, 0x5D, 0x77, 0x3E, 0x40, 0xAB, 0xDD, 0x53 \},}
+\DoxyCodeLine{785    \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{786      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01 \}}
+\DoxyCodeLine{787 \}, \{}
+\DoxyCodeLine{788    \{ 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{789    \{ 0x9E, 0x39, 0x98, 0x64, 0xF7, 0x8E, 0xCA, 0x02 \},}
+\DoxyCodeLine{790    \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{791      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \}}
+\DoxyCodeLine{792 \}, \{}
+\DoxyCodeLine{793    \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01 \},}
+\DoxyCodeLine{794    \{ 0xA9, 0xDF, 0x3D, 0x2C, 0x64, 0xD3, 0xEA, 0x28 \},}
+\DoxyCodeLine{795    \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{796      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \}}
+\DoxyCodeLine{797 \}}
+\DoxyCodeLine{798 \};}
+\DoxyCodeLine{799    \textcolor{keywordtype}{int} x, y;}
+\DoxyCodeLine{800    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} buf[2][8];}
+\DoxyCodeLine{801    \mbox{\hyperlink{unionSymmetric__key}{symmetric\_key}} skey;}
+\DoxyCodeLine{802 }
+\DoxyCodeLine{803    \textcolor{keywordflow}{for} (x = 0; x < (int)(\textcolor{keyword}{sizeof}(tests)/\textcolor{keyword}{sizeof}(tests[0])); x++) \{}
+\DoxyCodeLine{804        \mbox{\hyperlink{khazad_8c_a26a57d1e83a16b6abe994f43b570a62b}{khazad\_setup}}(tests[x].key, 16, 0, \&skey);}
+\DoxyCodeLine{805        \mbox{\hyperlink{khazad_8c_a5a1f47614a0573ea67f9dcc1d9a7143c}{khazad\_ecb\_encrypt}}(tests[x].pt, buf[0], \&skey);}
+\DoxyCodeLine{806        \mbox{\hyperlink{khazad_8c_ae1333252a34f625c3b6acfc2805b3b92}{khazad\_ecb\_decrypt}}(buf[0], buf[1], \&skey);}
+\DoxyCodeLine{807        \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(buf[0], 8, tests[x].ct, 8, \textcolor{stringliteral}{"Khazad Encrypt"}, x) ||}
+\DoxyCodeLine{808              \mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(buf[1], 8, tests[x].pt, 8, \textcolor{stringliteral}{"Khazad Decrypt"}, x)) \{}
+\DoxyCodeLine{809           \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{810        \}}
+\DoxyCodeLine{811 }
+\DoxyCodeLine{812        \textcolor{keywordflow}{for} (y = 0; y < 1000; y++) \mbox{\hyperlink{khazad_8c_a5a1f47614a0573ea67f9dcc1d9a7143c}{khazad\_ecb\_encrypt}}(buf[0], buf[0], \&skey);}
+\DoxyCodeLine{813        \textcolor{keywordflow}{for} (y = 0; y < 1000; y++) \mbox{\hyperlink{khazad_8c_ae1333252a34f625c3b6acfc2805b3b92}{khazad\_ecb\_decrypt}}(buf[0], buf[0], \&skey);}
+\DoxyCodeLine{814        \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(buf[0], 8, tests[x].ct, 8, \textcolor{stringliteral}{"Khazad 1000"}, 1000)) \{}
+\DoxyCodeLine{815           \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{816        \}}
+\DoxyCodeLine{817 }
+\DoxyCodeLine{818    \}}
+\DoxyCodeLine{819    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{820 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{821 \}}
+
+\end{DoxyCode}
+
+
+References compare\+\_\+testvector(), C\+R\+Y\+P\+T\+\_\+\+F\+A\+I\+L\+\_\+\+T\+E\+S\+T\+V\+E\+C\+T\+OR, C\+R\+Y\+P\+T\+\_\+\+N\+OP, C\+R\+Y\+P\+T\+\_\+\+OK, khazad\+\_\+ecb\+\_\+decrypt(), khazad\+\_\+ecb\+\_\+encrypt(), and khazad\+\_\+setup().
+
+Here is the call graph for this function\+:
+% FIG 7
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}\label{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}} 
+\index{khazad.c@{khazad.c}!c@{c}}
+\index{c@{c}!khazad.c@{khazad.c}}
+\subsubsection{\texorpdfstring{c}{c}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}} c\mbox{[}8+1\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{     0xba542f7453d3d24dULL,}
+\DoxyCodeLine{     0x50ac8dbf70529a4cULL,}
+\DoxyCodeLine{     0xead597d133515ba6ULL,}
+\DoxyCodeLine{     0xde48a899db32b7fcULL,}
+\DoxyCodeLine{     0xe39e919be2bb416eULL,}
+\DoxyCodeLine{     0xa5cb6b95a1f3b102ULL,}
+\DoxyCodeLine{     0xccc41d14c363da5dULL,}
+\DoxyCodeLine{     0x5fdc7dcd7f5a6c5cULL,}
+\DoxyCodeLine{     0xf726ffede89d6f8eULL,}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line 570 of file khazad.\+c.
+
+
+
+Referenced by \+\_\+base64\+\_\+decode\+\_\+internal(), \+\_\+dec\+\_\+block(), \+\_\+dsa\+\_\+make\+\_\+params(), \+\_\+enc\+\_\+block(), \+\_\+poly1305\+\_\+block(), \+\_\+setup\+\_\+key(), add(), addi(), addmod(), base32\+\_\+decode(), base32\+\_\+encode(), der\+\_\+ia5\+\_\+char\+\_\+encode(), der\+\_\+object\+\_\+identifier\+\_\+bits(), der\+\_\+printable\+\_\+char\+\_\+encode(), der\+\_\+teletex\+\_\+char\+\_\+encode(), der\+\_\+utf8\+\_\+charsize(), der\+\_\+utf8\+\_\+valid\+\_\+char(), divide(), exptmod(), gcd(), gcm\+\_\+gf\+\_\+mult(), invmod(), isprime(), keccak\+\_\+224\+\_\+test(), keccak\+\_\+256\+\_\+test(), keccak\+\_\+384\+\_\+test(), keccak\+\_\+512\+\_\+test(), khazad\+\_\+setup(), lcm(), md4\+\_\+compress(), md5\+\_\+compress(), modi(), montgomery\+\_\+reduce(), mul(), muli(), mulmod(), noekeon\+\_\+ecb\+\_\+decrypt(), noekeon\+\_\+ecb\+\_\+encrypt(), ocb3\+\_\+int\+\_\+ntz(), ocb\+\_\+ntz(), pass(), pkcs12\+\_\+kdf(), pkcs\+\_\+5\+\_\+test(), pmac\+\_\+ntz(), poly1305\+\_\+done(), rc6\+\_\+ecb\+\_\+decrypt(), rc6\+\_\+ecb\+\_\+encrypt(), read\+\_\+radix(), safer\+\_\+ecb\+\_\+decrypt(), safer\+\_\+ecb\+\_\+encrypt(), sha1\+\_\+compress(), sha3\+\_\+224\+\_\+test(), sha3\+\_\+256\+\_\+test(), sha3\+\_\+384\+\_\+test(), sha3\+\_\+512\+\_\+test(), sha3\+\_\+shake\+\_\+test(), sqrmod(), sqrtmod\+\_\+prime(), sub(), subi(), submod(), tiger\+\_\+compress(), tiger\+\_\+round(), twofish\+\_\+ecb\+\_\+decrypt(), and twofish\+\_\+ecb\+\_\+encrypt().
+
+\mbox{\Hypertarget{khazad_8c_a07a193e67bcb1833c10b1fbcba1d90fc}\label{khazad_8c_a07a193e67bcb1833c10b1fbcba1d90fc}} 
+\index{khazad.c@{khazad.c}!khazad\_desc@{khazad\_desc}}
+\index{khazad\_desc@{khazad\_desc}!khazad.c@{khazad.c}}
+\subsubsection{\texorpdfstring{khazad\_desc}{khazad\_desc}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structltc__cipher__descriptor}{ltc\+\_\+cipher\+\_\+descriptor}} khazad\+\_\+desc}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{   \textcolor{stringliteral}{"khazad"},}
+\DoxyCodeLine{   18,}
+\DoxyCodeLine{   16, 16, 8, 8,}
+\DoxyCodeLine{   \&\mbox{\hyperlink{khazad_8c_a26a57d1e83a16b6abe994f43b570a62b}{khazad\_setup}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{khazad_8c_a5a1f47614a0573ea67f9dcc1d9a7143c}{khazad\_ecb\_encrypt}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{khazad_8c_ae1333252a34f625c3b6acfc2805b3b92}{khazad\_ecb\_decrypt}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{khazad_8c_a84954dad5480d2d51bbabec6f639a662}{khazad\_test}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{khazad_8c_a427ad6dc712a793565dbfcb713c90000}{khazad\_done}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{khazad_8c_a5bb2ef9fb80e93169c8151cfdc1c175a}{khazad\_keysize}},}
+\DoxyCodeLine{   NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line 19 of file khazad.\+c.
+
+
+
+Referenced by register\+\_\+all\+\_\+ciphers(), and yarrow\+\_\+start().
+
+\mbox{\Hypertarget{khazad_8c_a6e36bd0b792b4c970ab26b1e8a4282fc}\label{khazad_8c_a6e36bd0b792b4c970ab26b1e8a4282fc}} 
+\index{khazad.c@{khazad.c}!T0@{T0}}
+\index{T0@{T0}!khazad.c@{khazad.c}}
+\subsubsection{\texorpdfstring{T0}{T0}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}} T0\mbox{[}256\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 34 of file khazad.\+c.
+
+
+
+Referenced by khazad\+\_\+crypt(), and khazad\+\_\+setup().
+
+\mbox{\Hypertarget{khazad_8c_a96fd5461932b542899f638a4ac3ee9ab}\label{khazad_8c_a96fd5461932b542899f638a4ac3ee9ab}} 
+\index{khazad.c@{khazad.c}!T1@{T1}}
+\index{T1@{T1}!khazad.c@{khazad.c}}
+\subsubsection{\texorpdfstring{T1}{T1}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}} T1\mbox{[}256\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 101 of file khazad.\+c.
+
+
+
+Referenced by khazad\+\_\+crypt(), and khazad\+\_\+setup().
+
+\mbox{\Hypertarget{khazad_8c_affe03d58afc0aed2f519f7449c68ed84}\label{khazad_8c_affe03d58afc0aed2f519f7449c68ed84}} 
+\index{khazad.c@{khazad.c}!T2@{T2}}
+\index{T2@{T2}!khazad.c@{khazad.c}}
+\subsubsection{\texorpdfstring{T2}{T2}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}} T2\mbox{[}256\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 168 of file khazad.\+c.
+
+
+
+Referenced by khazad\+\_\+crypt(), and khazad\+\_\+setup().
+
+\mbox{\Hypertarget{khazad_8c_a046ddad8530350e5ce234ce10ffe3fe0}\label{khazad_8c_a046ddad8530350e5ce234ce10ffe3fe0}} 
+\index{khazad.c@{khazad.c}!T3@{T3}}
+\index{T3@{T3}!khazad.c@{khazad.c}}
+\subsubsection{\texorpdfstring{T3}{T3}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}} T3\mbox{[}256\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 235 of file khazad.\+c.
+
+
+
+Referenced by khazad\+\_\+crypt(), and khazad\+\_\+setup().
+
+\mbox{\Hypertarget{khazad_8c_a4b749db1f0698554a9c13d9120ea2bc9}\label{khazad_8c_a4b749db1f0698554a9c13d9120ea2bc9}} 
+\index{khazad.c@{khazad.c}!T4@{T4}}
+\index{T4@{T4}!khazad.c@{khazad.c}}
+\subsubsection{\texorpdfstring{T4}{T4}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}} T4\mbox{[}256\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 302 of file khazad.\+c.
+
+
+
+Referenced by khazad\+\_\+crypt(), and khazad\+\_\+setup().
+
+\mbox{\Hypertarget{khazad_8c_a300803b7b34e8442a678a70cd81980f9}\label{khazad_8c_a300803b7b34e8442a678a70cd81980f9}} 
+\index{khazad.c@{khazad.c}!T5@{T5}}
+\index{T5@{T5}!khazad.c@{khazad.c}}
+\subsubsection{\texorpdfstring{T5}{T5}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}} T5\mbox{[}256\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 369 of file khazad.\+c.
+
+
+
+Referenced by khazad\+\_\+crypt(), and khazad\+\_\+setup().
+
+\mbox{\Hypertarget{khazad_8c_a981812adfe6b440b9e239bcfdb98936c}\label{khazad_8c_a981812adfe6b440b9e239bcfdb98936c}} 
+\index{khazad.c@{khazad.c}!T6@{T6}}
+\index{T6@{T6}!khazad.c@{khazad.c}}
+\subsubsection{\texorpdfstring{T6}{T6}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}} T6\mbox{[}256\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 436 of file khazad.\+c.
+
+
+
+Referenced by khazad\+\_\+crypt(), and khazad\+\_\+setup().
+
+\mbox{\Hypertarget{khazad_8c_af9b016386f1390b9c35452e5cfa81528}\label{khazad_8c_af9b016386f1390b9c35452e5cfa81528}} 
+\index{khazad.c@{khazad.c}!T7@{T7}}
+\index{T7@{T7}!khazad.c@{khazad.c}}
+\subsubsection{\texorpdfstring{T7}{T7}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}} T7\mbox{[}256\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 503 of file khazad.\+c.
+
+
+
+Referenced by khazad\+\_\+crypt(), and khazad\+\_\+setup().
+

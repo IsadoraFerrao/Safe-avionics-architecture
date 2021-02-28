@@ -1,0 +1,23 @@
+digraph "rijndael_setup"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node15 [label="rijndael_setup",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Initialize the AES (Rijndael) block cipher."];
+  Node15 -> Node16 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node16 [label="_fortuna_reseed",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$fortuna_8c.html#aad833baa2e75f93d847e5a7ac30ea4d2",tooltip=" "];
+  Node16 -> Node17 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node17 [label="fortuna_ready",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$fortuna_8c.html#a635d034d99b51a38b4a71fae3880b48f",tooltip="Make the PRNG ready to read from."];
+  Node16 -> Node18 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node18 [label="fortuna_read",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$fortuna_8c.html#a19149fcfc926ab81d4acebfcf39b78f7",tooltip="Read from the PRNG."];
+  Node15 -> Node18 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node15 -> Node19 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node19 [label="fortuna_start",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$fortuna_8c.html#a54822f5e172e6f2a025448f6e9430e22",tooltip="Start the PRNG."];
+  Node19 -> Node20 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node20 [label="fortuna_import",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$fortuna_8c.html#ad9f529aaecf6646cac5e5eaa2d1f418d",tooltip="Import a PRNG state."];
+  Node15 -> Node21 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node21 [label="rijndael_test",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$aes_8c.html#a787877f61031ca3855283ee7755f1b46",tooltip="Performs a self-test of the AES block cipher."];
+  Node21 -> Node22 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node22 [label="fortuna_test",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$fortuna_8c.html#a02a8621eda36a40059ce155007b6f6c3",tooltip="PRNG self-test."];
+}

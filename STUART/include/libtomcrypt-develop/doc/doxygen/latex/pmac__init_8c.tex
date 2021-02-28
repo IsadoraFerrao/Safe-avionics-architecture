@@ -1,0 +1,241 @@
+\hypertarget{pmac__init_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/mac/pmac/pmac\+\_\+init.c File Reference}
+\label{pmac__init_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/mac/pmac/pmac\_init.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/mac/pmac/pmac\_init.c}}
+
+
+P\+M\+AC implementation, initialize state, by Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for pmac\+\_\+init.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{pmac__init_8c_a2cc36e2064ee6f365143f6f51083de9a}{pmac\+\_\+init}} (pmac\+\_\+state $\ast$pmac, int cipher, const unsigned char $\ast$key, unsigned long keylen)
+\begin{DoxyCompactList}\small\item\em Initialize a P\+M\+AC state. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+struct \{\\
+\>int \mbox{\hyperlink{pmac__init_8c_afed088663f8704004425cdae2120b9b3}{len}}\\
+\>unsigned char \mbox{\hyperlink{pmac__init_8c_a3f0ece932ebbc550b50514c8ff1ae8fd}{poly\_div}} \mbox{[}144\mbox{]}\\
+\>unsigned char \mbox{\hyperlink{pmac__init_8c_ac5b1f3791dbd8ac847ef239d0171c0ce}{poly\_mul}} \mbox{[}144\mbox{]}\\
+\} \mbox{\hyperlink{pmac__init_8c_abc115ddd18cabef0dbbdf1b942df2573}{polys}} \mbox{[}$\,$\mbox{]}\\
+
+\end{tabbing}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+P\+M\+AC implementation, initialize state, by Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{pmac__init_8c_a2cc36e2064ee6f365143f6f51083de9a}\label{pmac__init_8c_a2cc36e2064ee6f365143f6f51083de9a}} 
+\index{pmac\_init.c@{pmac\_init.c}!pmac\_init@{pmac\_init}}
+\index{pmac\_init@{pmac\_init}!pmac\_init.c@{pmac\_init.c}}
+\subsubsection{\texorpdfstring{pmac\_init()}{pmac\_init()}}
+{\footnotesize\ttfamily int pmac\+\_\+init (\begin{DoxyParamCaption}\item[{pmac\+\_\+state $\ast$}]{pmac,  }\item[{int}]{cipher,  }\item[{const unsigned char $\ast$}]{key,  }\item[{unsigned long}]{keylen }\end{DoxyParamCaption})}
+
+
+
+Initialize a P\+M\+AC state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pmac} & The P\+M\+AC state to initialize \\
+\hline
+{\em cipher} & The index of the desired cipher \\
+\hline
+{\em key} & The secret key \\
+\hline
+{\em keylen} & The length of the secret key (octets) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 44 of file pmac\+\_\+init.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{45 \{}
+\DoxyCodeLine{46    \textcolor{keywordtype}{int} \mbox{\hyperlink{gcm__gf__mult_8c_ae7cb7582a0d3b2ec78b665193cbac9ae}{poly}}, x, y, m, err;}
+\DoxyCodeLine{47    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *L;}
+\DoxyCodeLine{48 }
+\DoxyCodeLine{49    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(pmac  != NULL);}
+\DoxyCodeLine{50    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(key   != NULL);}
+\DoxyCodeLine{51 }
+\DoxyCodeLine{52    \textcolor{comment}{/* valid cipher? */}}
+\DoxyCodeLine{53    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_ac30eb68934c4ca07205344dc9d159221}{cipher\_is\_valid}}(cipher)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{54       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{55    \}}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{57    \textcolor{comment}{/* determine which polys to use */}}
+\DoxyCodeLine{58    pmac->block\_len = \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[cipher].\mbox{\hyperlink{structltc__cipher__descriptor_afa2af7325fd3a834910dd92e8c9acf49}{block\_length}};}
+\DoxyCodeLine{59    \textcolor{keywordflow}{for} (\mbox{\hyperlink{gcm__gf__mult_8c_ae7cb7582a0d3b2ec78b665193cbac9ae}{poly}} = 0; \mbox{\hyperlink{gcm__gf__mult_8c_ae7cb7582a0d3b2ec78b665193cbac9ae}{poly}} < (int)(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{pmac__init_8c_abc115ddd18cabef0dbbdf1b942df2573}{polys}})/\textcolor{keyword}{sizeof}(\mbox{\hyperlink{pmac__init_8c_abc115ddd18cabef0dbbdf1b942df2573}{polys}}[0])); \mbox{\hyperlink{gcm__gf__mult_8c_ae7cb7582a0d3b2ec78b665193cbac9ae}{poly}}++) \{}
+\DoxyCodeLine{60        \textcolor{keywordflow}{if} (\mbox{\hyperlink{pmac__init_8c_abc115ddd18cabef0dbbdf1b942df2573}{polys}}[\mbox{\hyperlink{gcm__gf__mult_8c_ae7cb7582a0d3b2ec78b665193cbac9ae}{poly}}].\mbox{\hyperlink{pmac__init_8c_afed088663f8704004425cdae2120b9b3}{len}} == pmac->block\_len) \{}
+\DoxyCodeLine{61           \textcolor{keywordflow}{break};}
+\DoxyCodeLine{62        \}}
+\DoxyCodeLine{63    \}}
+\DoxyCodeLine{64    \textcolor{keywordflow}{if} (\mbox{\hyperlink{gcm__gf__mult_8c_ae7cb7582a0d3b2ec78b665193cbac9ae}{poly}} >= (\textcolor{keywordtype}{int})(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{pmac__init_8c_abc115ddd18cabef0dbbdf1b942df2573}{polys}})/\textcolor{keyword}{sizeof}(\mbox{\hyperlink{pmac__init_8c_abc115ddd18cabef0dbbdf1b942df2573}{polys}}[0]))) \{}
+\DoxyCodeLine{65       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{66     \}}
+\DoxyCodeLine{67    \textcolor{keywordflow}{if} (\mbox{\hyperlink{pmac__init_8c_abc115ddd18cabef0dbbdf1b942df2573}{polys}}[\mbox{\hyperlink{gcm__gf__mult_8c_ae7cb7582a0d3b2ec78b665193cbac9ae}{poly}}].\mbox{\hyperlink{pmac__init_8c_afed088663f8704004425cdae2120b9b3}{len}} != pmac->block\_len) \{}
+\DoxyCodeLine{68       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{69    \}}
+\DoxyCodeLine{70 }
+\DoxyCodeLine{71 \textcolor{preprocessor}{\#ifdef LTC\_FAST}}
+\DoxyCodeLine{72    \textcolor{keywordflow}{if} (pmac->block\_len \% \textcolor{keyword}{sizeof}(LTC\_FAST\_TYPE)) \{}
+\DoxyCodeLine{73       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{74    \}}
+\DoxyCodeLine{75 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{76 }
+\DoxyCodeLine{77 }
+\DoxyCodeLine{78    \textcolor{comment}{/* schedule the key */}}
+\DoxyCodeLine{79    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[cipher].\mbox{\hyperlink{multi2_8c_ad0625943f7d847668b869ed827c51d47}{setup}}(key, keylen, 0, \&pmac->key)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{80       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{81    \}}
+\DoxyCodeLine{82 }
+\DoxyCodeLine{83    \textcolor{comment}{/* allocate L */}}
+\DoxyCodeLine{84    L = \mbox{\hyperlink{tomcrypt__cfg_8h_af363355f38fbaacdefacf270436ae1c9}{XMALLOC}}(pmac->block\_len);}
+\DoxyCodeLine{85    \textcolor{keywordflow}{if} (L == NULL) \{}
+\DoxyCodeLine{86       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca0ce0d27adc7ea10b74b7ea904b8bfa82}{CRYPT\_MEM}};}
+\DoxyCodeLine{87    \}}
+\DoxyCodeLine{88 }
+\DoxyCodeLine{89    \textcolor{comment}{/* find L = E[0] */}}
+\DoxyCodeLine{90    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(L, pmac->block\_len);}
+\DoxyCodeLine{91    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[cipher].\mbox{\hyperlink{ecb__encrypt_8c_affdcc93fca272998e2545fcabac4e7f0}{ecb\_encrypt}}(L, L, \&pmac->key)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{92       \textcolor{keywordflow}{goto} error;}
+\DoxyCodeLine{93    \}}
+\DoxyCodeLine{94 }
+\DoxyCodeLine{95    \textcolor{comment}{/* find Ls[i] = L << i for i == 0..31 */}}
+\DoxyCodeLine{96    \mbox{\hyperlink{tomcrypt__cfg_8h_a7691dd48d60d5fc6daf2fa7ec4c55e12}{XMEMCPY}}(pmac->Ls[0], L, pmac->block\_len);}
+\DoxyCodeLine{97    \textcolor{keywordflow}{for} (x = 1; x < 32; x++) \{}
+\DoxyCodeLine{98        m = pmac->Ls[x-1][0] >> 7;}
+\DoxyCodeLine{99        \textcolor{keywordflow}{for} (y = 0; y < pmac->block\_len-1; y++) \{}
+\DoxyCodeLine{100            pmac->Ls[x][y] = ((pmac->Ls[x-1][y] << 1) | (pmac->Ls[x-1][y+1] >> 7)) \& 255;}
+\DoxyCodeLine{101        \}}
+\DoxyCodeLine{102        pmac->Ls[x][pmac->block\_len-1] = (pmac->Ls[x-1][pmac->block\_len-1] << 1) \& 255;}
+\DoxyCodeLine{103 }
+\DoxyCodeLine{104        \textcolor{keywordflow}{if} (m == 1) \{}
+\DoxyCodeLine{105           \textcolor{keywordflow}{for} (y = 0; y < pmac->block\_len; y++) \{}
+\DoxyCodeLine{106               pmac->Ls[x][y] \string^= \mbox{\hyperlink{pmac__init_8c_abc115ddd18cabef0dbbdf1b942df2573}{polys}}[\mbox{\hyperlink{gcm__gf__mult_8c_ae7cb7582a0d3b2ec78b665193cbac9ae}{poly}}].poly\_mul[y];}
+\DoxyCodeLine{107           \}}
+\DoxyCodeLine{108        \}}
+\DoxyCodeLine{109     \}}
+\DoxyCodeLine{110 }
+\DoxyCodeLine{111    \textcolor{comment}{/* find Lr = L / x */}}
+\DoxyCodeLine{112    m = L[pmac->block\_len-1] \& 1;}
+\DoxyCodeLine{113 }
+\DoxyCodeLine{114    \textcolor{comment}{/* shift right */}}
+\DoxyCodeLine{115    \textcolor{keywordflow}{for} (x = pmac->block\_len - 1; x > 0; x--) \{}
+\DoxyCodeLine{116       pmac->Lr[x] = ((L[x] >> 1) | (L[x-1] << 7)) \& 255;}
+\DoxyCodeLine{117    \}}
+\DoxyCodeLine{118    pmac->Lr[0] = L[0] >> 1;}
+\DoxyCodeLine{119 }
+\DoxyCodeLine{120    \textcolor{keywordflow}{if} (m == 1) \{}
+\DoxyCodeLine{121       \textcolor{keywordflow}{for} (x = 0; x < pmac->block\_len; x++) \{}
+\DoxyCodeLine{122          pmac->Lr[x] \string^= \mbox{\hyperlink{pmac__init_8c_abc115ddd18cabef0dbbdf1b942df2573}{polys}}[\mbox{\hyperlink{gcm__gf__mult_8c_ae7cb7582a0d3b2ec78b665193cbac9ae}{poly}}].poly\_div[x];}
+\DoxyCodeLine{123       \}}
+\DoxyCodeLine{124    \}}
+\DoxyCodeLine{125 }
+\DoxyCodeLine{126    \textcolor{comment}{/* zero buffer, counters, etc... */}}
+\DoxyCodeLine{127    pmac->block\_index = 1;}
+\DoxyCodeLine{128    pmac->cipher\_idx  = cipher;}
+\DoxyCodeLine{129    pmac->buflen      = 0;}
+\DoxyCodeLine{130    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(pmac->block,    \textcolor{keyword}{sizeof}(pmac->block));}
+\DoxyCodeLine{131    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(pmac->Li,       \textcolor{keyword}{sizeof}(pmac->Li));}
+\DoxyCodeLine{132    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(pmac->checksum, \textcolor{keyword}{sizeof}(pmac->checksum));}
+\DoxyCodeLine{133    err = \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{134 error:}
+\DoxyCodeLine{135 \textcolor{preprocessor}{\#ifdef LTC\_CLEAN\_STACK}}
+\DoxyCodeLine{136    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(L, pmac->block\_len);}
+\DoxyCodeLine{137 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{138 }
+\DoxyCodeLine{139    \mbox{\hyperlink{tomcrypt__cfg_8h_a260d66fc0690e0502cf3bfe7b5244b75}{XFREE}}(L);}
+\DoxyCodeLine{140 }
+\DoxyCodeLine{141    \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{142 \}}
+
+\end{DoxyCode}
+
+
+References ltc\+\_\+cipher\+\_\+descriptor\+::block\+\_\+length, cipher\+\_\+descriptor, cipher\+\_\+is\+\_\+valid(), C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+A\+RG, C\+R\+Y\+P\+T\+\_\+\+M\+EM, C\+R\+Y\+P\+T\+\_\+\+OK, ecb\+\_\+encrypt(), len, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, poly, polys, setup(), X\+F\+R\+E\+E(), X\+M\+A\+L\+L\+O\+C(), X\+M\+E\+M\+C\+P\+Y(), and zeromem().
+
+
+
+Referenced by pmac\+\_\+file(), pmac\+\_\+memory(), and pmac\+\_\+memory\+\_\+multi().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{pmac__init_8c_afed088663f8704004425cdae2120b9b3}\label{pmac__init_8c_afed088663f8704004425cdae2120b9b3}} 
+\index{pmac\_init.c@{pmac\_init.c}!len@{len}}
+\index{len@{len}!pmac\_init.c@{pmac\_init.c}}
+\subsubsection{\texorpdfstring{len}{len}}
+{\footnotesize\ttfamily int len}
+
+
+
+Definition at line 19 of file pmac\+\_\+init.\+c.
+
+
+
+Referenced by pmac\+\_\+init().
+
+\mbox{\Hypertarget{pmac__init_8c_a3f0ece932ebbc550b50514c8ff1ae8fd}\label{pmac__init_8c_a3f0ece932ebbc550b50514c8ff1ae8fd}} 
+\index{pmac\_init.c@{pmac\_init.c}!poly\_div@{poly\_div}}
+\index{poly\_div@{poly\_div}!pmac\_init.c@{pmac\_init.c}}
+\subsubsection{\texorpdfstring{poly\_div}{poly\_div}}
+{\footnotesize\ttfamily unsigned char poly\+\_\+div\mbox{[}144\mbox{]}}
+
+
+
+Definition at line 20 of file pmac\+\_\+init.\+c.
+
+\mbox{\Hypertarget{pmac__init_8c_ac5b1f3791dbd8ac847ef239d0171c0ce}\label{pmac__init_8c_ac5b1f3791dbd8ac847ef239d0171c0ce}} 
+\index{pmac\_init.c@{pmac\_init.c}!poly\_mul@{poly\_mul}}
+\index{poly\_mul@{poly\_mul}!pmac\_init.c@{pmac\_init.c}}
+\subsubsection{\texorpdfstring{poly\_mul}{poly\_mul}}
+{\footnotesize\ttfamily unsigned char poly\+\_\+mul\mbox{[}144\mbox{]}}
+
+
+
+Definition at line 20 of file pmac\+\_\+init.\+c.
+
+\mbox{\Hypertarget{pmac__init_8c_abc115ddd18cabef0dbbdf1b942df2573}\label{pmac__init_8c_abc115ddd18cabef0dbbdf1b942df2573}} 
+\index{pmac\_init.c@{pmac\_init.c}!polys@{polys}}
+\index{polys@{polys}!pmac\_init.c@{pmac\_init.c}}
+\subsubsection{\texorpdfstring{polys}{polys}}
+{\footnotesize\ttfamily const \{ ... \}   polys\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    8,}
+\DoxyCodeLine{    \{ 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0D \},}
+\DoxyCodeLine{    \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x1B \}}
+\DoxyCodeLine{\}, \{}
+\DoxyCodeLine{    16,}
+\DoxyCodeLine{    \{ 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x43 \},}
+\DoxyCodeLine{    \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x87 \}}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Referenced by pmac\+\_\+init().
+

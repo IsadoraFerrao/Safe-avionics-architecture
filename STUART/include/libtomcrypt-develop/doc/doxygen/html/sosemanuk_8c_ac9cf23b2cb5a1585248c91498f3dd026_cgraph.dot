@@ -1,0 +1,16 @@
+digraph "sosemanuk_keystream"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node24 [label="sosemanuk_keystream",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node24 -> Node25 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node25 [label="sosemanuk_crypt",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sosemanuk_8c.html#ae473e1b8845f3b37e79e6c099e54247c",tooltip=" "];
+  Node25 -> Node26 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node26 [label="_sosemanuk_internal",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sosemanuk_8c.html#a5658cccde993c8eca129036736eb7527",tooltip=" "];
+  Node25 -> Node27 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node27 [label="_xorbuf",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sosemanuk_8c.html#ac769bae0f590a35230b80e113aaee135",tooltip=" "];
+  Node24 -> Node28 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node28 [label="XMEMSET",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cfg_8h.html#aa3c34a6f6c61de7da9258b5a30e32c2f",tooltip=" "];
+}

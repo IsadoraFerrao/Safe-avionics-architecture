@@ -1,0 +1,237 @@
+\hypertarget{ltc__ecc__projective__add__point_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/pk/ecc/ltc\+\_\+ecc\+\_\+projective\+\_\+add\+\_\+point.c File Reference}
+\label{ltc__ecc__projective__add__point_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/ecc/ltc\_ecc\_projective\_add\_point.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/ecc/ltc\_ecc\_projective\_add\_point.c}}
+
+
+E\+CC Crypto, Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for ltc\+\_\+ecc\+\_\+projective\+\_\+add\+\_\+point.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{ltc__ecc__projective__add__point_8c_a16f3ff8dd19aa2ccc2aab4024927bc93}{ltc\+\_\+ecc\+\_\+projective\+\_\+add\+\_\+point}} (const \mbox{\hyperlink{tomcrypt__math_8h_a2a6efaeaa795aa54274d7c4fd66b018a}{ecc\+\_\+point}} $\ast$P, const \mbox{\hyperlink{tomcrypt__math_8h_a2a6efaeaa795aa54274d7c4fd66b018a}{ecc\+\_\+point}} $\ast$Q, \mbox{\hyperlink{tomcrypt__math_8h_a2a6efaeaa795aa54274d7c4fd66b018a}{ecc\+\_\+point}} $\ast$\mbox{\hyperlink{sha512_8c_a8fb1dfc3ad6dd07bc99c1962e6583087}{R}}, void $\ast$ma, void $\ast$modulus, void $\ast$mp)
+\begin{DoxyCompactList}\small\item\em Add two E\+CC points. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+E\+CC Crypto, Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{ltc__ecc__projective__add__point_8c_a16f3ff8dd19aa2ccc2aab4024927bc93}\label{ltc__ecc__projective__add__point_8c_a16f3ff8dd19aa2ccc2aab4024927bc93}} 
+\index{ltc\_ecc\_projective\_add\_point.c@{ltc\_ecc\_projective\_add\_point.c}!ltc\_ecc\_projective\_add\_point@{ltc\_ecc\_projective\_add\_point}}
+\index{ltc\_ecc\_projective\_add\_point@{ltc\_ecc\_projective\_add\_point}!ltc\_ecc\_projective\_add\_point.c@{ltc\_ecc\_projective\_add\_point.c}}
+\subsubsection{\texorpdfstring{ltc\_ecc\_projective\_add\_point()}{ltc\_ecc\_projective\_add\_point()}}
+{\footnotesize\ttfamily int ltc\+\_\+ecc\+\_\+projective\+\_\+add\+\_\+point (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{tomcrypt__math_8h_a2a6efaeaa795aa54274d7c4fd66b018a}{ecc\+\_\+point}} $\ast$}]{P,  }\item[{const \mbox{\hyperlink{tomcrypt__math_8h_a2a6efaeaa795aa54274d7c4fd66b018a}{ecc\+\_\+point}} $\ast$}]{Q,  }\item[{\mbox{\hyperlink{tomcrypt__math_8h_a2a6efaeaa795aa54274d7c4fd66b018a}{ecc\+\_\+point}} $\ast$}]{R,  }\item[{void $\ast$}]{ma,  }\item[{void $\ast$}]{modulus,  }\item[{void $\ast$}]{mp }\end{DoxyParamCaption})}
+
+
+
+Add two E\+CC points. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em P} & The point to add \\
+\hline
+{\em Q} & The point to add \\
+\hline
+{\em R} & \mbox{[}out\mbox{]} The destination of the double \\
+\hline
+{\em ma} & E\+CC curve parameter a in montgomery form \\
+\hline
+{\em modulus} & The modulus of the field the E\+CC curve is in \\
+\hline
+{\em mp} & The \char`\"{}b\char`\"{} value from \mbox{\hyperlink{gmp__desc_8c_a771ef8a9d5b1b2633613bfad28b282c2}{montgomery\+\_\+setup()}} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK on success 
+\end{DoxyReturn}
+
+
+Definition at line 29 of file ltc\+\_\+ecc\+\_\+projective\+\_\+add\+\_\+point.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{30 \{}
+\DoxyCodeLine{31    \textcolor{keywordtype}{void}  *\mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}}, *\mbox{\hyperlink{tiger_8c_aa4652e2d6053d420dcbea07a113db5fe}{t2}}, *x, *y, *z;}
+\DoxyCodeLine{32    \textcolor{keywordtype}{int}    err, inf;}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(P       != NULL);}
+\DoxyCodeLine{35    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(Q       != NULL);}
+\DoxyCodeLine{36    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(\mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}}       != NULL);}
+\DoxyCodeLine{37    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(modulus != NULL);}
+\DoxyCodeLine{38    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(mp      != NULL);}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{40    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_adb6322247b1a4f0347219acab3120bd3}{mp\_init\_multi}}(\&\mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}}, \&\mbox{\hyperlink{tiger_8c_aa4652e2d6053d420dcbea07a113db5fe}{t2}}, \&x, \&y, \&z, NULL)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{41       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{42    \}}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a54a2d7d30af25ef341a8aca09269177d}{ltc\_ecc\_is\_point\_at\_infinity}}(P, modulus, \&inf)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{45    \textcolor{keywordflow}{if} (inf) \{}
+\DoxyCodeLine{46       \textcolor{comment}{/* P is point at infinity >> Result = Q */}}
+\DoxyCodeLine{47       err = \mbox{\hyperlink{tomcrypt__private_8h_a4b36b54e30a0a87aff57a936b386df7f}{ltc\_ecc\_copy\_point}}(Q, \mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}});}
+\DoxyCodeLine{48       \textcolor{keywordflow}{goto} done;}
+\DoxyCodeLine{49    \}}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{51    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a54a2d7d30af25ef341a8aca09269177d}{ltc\_ecc\_is\_point\_at\_infinity}}(Q, modulus, \&inf)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{52    \textcolor{keywordflow}{if} (inf) \{}
+\DoxyCodeLine{53       \textcolor{comment}{/* Q is point at infinity >> Result = P */}}
+\DoxyCodeLine{54       err = \mbox{\hyperlink{tomcrypt__private_8h_a4b36b54e30a0a87aff57a936b386df7f}{ltc\_ecc\_copy\_point}}(P, \mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}});}
+\DoxyCodeLine{55       \textcolor{keywordflow}{goto} done;}
+\DoxyCodeLine{56    \}}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{58    \textcolor{keywordflow}{if} ((\mbox{\hyperlink{tomcrypt__private_8h_a62ea02fbe7dd2d456e49520264d775ee}{mp\_cmp}}(P->x, Q->x) == \mbox{\hyperlink{tomcrypt__math_8h_a035a31bde4f31419eb259e36e5776607}{LTC\_MP\_EQ}}) \&\& (\mbox{\hyperlink{tomcrypt__private_8h_a62ea02fbe7dd2d456e49520264d775ee}{mp\_cmp}}(P->z, Q->z) == \mbox{\hyperlink{tomcrypt__math_8h_a035a31bde4f31419eb259e36e5776607}{LTC\_MP\_EQ}})) \{}
+\DoxyCodeLine{59       \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__private_8h_a62ea02fbe7dd2d456e49520264d775ee}{mp\_cmp}}(P->y, Q->y) == \mbox{\hyperlink{tomcrypt__math_8h_a035a31bde4f31419eb259e36e5776607}{LTC\_MP\_EQ}}) \{}
+\DoxyCodeLine{60          \textcolor{comment}{/* here P = Q >> Result = 2 * P (use doubling) */}}
+\DoxyCodeLine{61          \mbox{\hyperlink{tomcrypt__private_8h_aad5c8a3112b3e4613f9efc86692c43cb}{mp\_clear\_multi}}(\mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}}, \mbox{\hyperlink{tiger_8c_aa4652e2d6053d420dcbea07a113db5fe}{t2}}, x, y, z, NULL);}
+\DoxyCodeLine{62          \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt__private_8h_af9bdd0d8d602ef3b300b11d19d7bc33a}{ltc\_ecc\_projective\_dbl\_point}}(P, \mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}}, ma, modulus, mp);}
+\DoxyCodeLine{63       \}}
+\DoxyCodeLine{64       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_ab8d0882c3b58263b638b41fbf110fde8}{mp\_sub}}(modulus, Q->y, \mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}})) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                       \{ \textcolor{keywordflow}{goto} done; \}}
+\DoxyCodeLine{65       \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__private_8h_a62ea02fbe7dd2d456e49520264d775ee}{mp\_cmp}}(P->y, \mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}}) == \mbox{\hyperlink{tomcrypt__math_8h_a035a31bde4f31419eb259e36e5776607}{LTC\_MP\_EQ}}) \{}
+\DoxyCodeLine{66          \textcolor{comment}{/* here Q = -P >>> Result = the point at infinity */}}
+\DoxyCodeLine{67          err = \mbox{\hyperlink{tomcrypt__private_8h_adc0366a4a0c272b7594bcea0d8fe7ccb}{ltc\_ecc\_set\_point\_xyz}}(1, 1, 0, \mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}});}
+\DoxyCodeLine{68          \textcolor{keywordflow}{goto} done;}
+\DoxyCodeLine{69       \}}
+\DoxyCodeLine{70    \}}
+\DoxyCodeLine{71 }
+\DoxyCodeLine{72    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_afbb35bc8f920448d169ddc83a4308840}{mp\_copy}}(P->x, x)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                                   \{ \textcolor{keywordflow}{goto} done; \}}
+\DoxyCodeLine{73    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_afbb35bc8f920448d169ddc83a4308840}{mp\_copy}}(P->y, y)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                                   \{ \textcolor{keywordflow}{goto} done; \}}
+\DoxyCodeLine{74    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_afbb35bc8f920448d169ddc83a4308840}{mp\_copy}}(P->z, z)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                                   \{ \textcolor{keywordflow}{goto} done; \}}
+\DoxyCodeLine{75 }
+\DoxyCodeLine{76    \textcolor{comment}{/* if Z is one then these are no-operations */}}
+\DoxyCodeLine{77    \textcolor{keywordflow}{if} (Q->z != NULL) \{}
+\DoxyCodeLine{78       \textcolor{comment}{/* T1 = Z' * Z' */}}
+\DoxyCodeLine{79       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_aea81d79b5462e99068908d80edb8bd1a}{mp\_sqr}}(Q->z, \mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}})) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                                \{ \textcolor{keywordflow}{goto} done; \}}
+\DoxyCodeLine{80       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a4201ed2dbae154496e1a2ae9ba8aa7a8}{mp\_montgomery\_reduce}}(\mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}}, modulus, mp)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})           \{ \textcolor{keywordflow}{goto} done; \}}
+\DoxyCodeLine{81       \textcolor{comment}{/* X = X * T1 */}}
+\DoxyCodeLine{82       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a7606d2423856b32b09245a2fa1ef34ee}{mp\_mul}}(\mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}}, x, x)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                                \{ \textcolor{keywordflow}{goto} done; \}}
+\DoxyCodeLine{83       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a4201ed2dbae154496e1a2ae9ba8aa7a8}{mp\_montgomery\_reduce}}(x, modulus, mp)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})            \{ \textcolor{keywordflow}{goto} done; \}}
+\DoxyCodeLine{84       \textcolor{comment}{/* T1 = Z' * T1 */}}
+\DoxyCodeLine{85       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a7606d2423856b32b09245a2fa1ef34ee}{mp\_mul}}(Q->z, \mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}}, \mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}})) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                            \{ \textcolor{keywordflow}{goto} done; \}}
+\DoxyCodeLine{86       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a4201ed2dbae154496e1a2ae9ba8aa7a8}{mp\_montgomery\_reduce}}(\mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}}, modulus, mp)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})           \{ \textcolor{keywordflow}{goto} done; \}}
+\DoxyCodeLine{87       \textcolor{comment}{/* Y = Y * T1 */}}
+\DoxyCodeLine{88       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a7606d2423856b32b09245a2fa1ef34ee}{mp\_mul}}(\mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}}, y, y)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                                \{ \textcolor{keywordflow}{goto} done; \}}
+\DoxyCodeLine{89       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a4201ed2dbae154496e1a2ae9ba8aa7a8}{mp\_montgomery\_reduce}}(y, modulus, mp)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})            \{ \textcolor{keywordflow}{goto} done; \}}
+\DoxyCodeLine{90    \}}
+\DoxyCodeLine{91 }
+\DoxyCodeLine{92    \textcolor{comment}{/* T1 = Z*Z */}}
+\DoxyCodeLine{93    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_aea81d79b5462e99068908d80edb8bd1a}{mp\_sqr}}(z, \mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}})) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                                      \{ \textcolor{keywordflow}{goto} done; \}}
+\DoxyCodeLine{94    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a4201ed2dbae154496e1a2ae9ba8aa7a8}{mp\_montgomery\_reduce}}(\mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}}, modulus, mp)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})              \{ \textcolor{keywordflow}{goto} done; \}}
+\DoxyCodeLine{95    \textcolor{comment}{/* T2 = X' * T1 */}}
+\DoxyCodeLine{96    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a7606d2423856b32b09245a2fa1ef34ee}{mp\_mul}}(Q->x, \mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}}, \mbox{\hyperlink{tiger_8c_aa4652e2d6053d420dcbea07a113db5fe}{t2}})) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                               \{ \textcolor{keywordflow}{goto} done; \}}
+\DoxyCodeLine{97    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a4201ed2dbae154496e1a2ae9ba8aa7a8}{mp\_montgomery\_reduce}}(\mbox{\hyperlink{tiger_8c_aa4652e2d6053d420dcbea07a113db5fe}{t2}}, modulus, mp)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})              \{ \textcolor{keywordflow}{goto} done; \}}
+\DoxyCodeLine{98    \textcolor{comment}{/* T1 = Z * T1 */}}
+\DoxyCodeLine{99    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a7606d2423856b32b09245a2fa1ef34ee}{mp\_mul}}(z, \mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}}, \mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}})) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                                  \{ \textcolor{keywordflow}{goto} done; \}}
+\DoxyCodeLine{100    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a4201ed2dbae154496e1a2ae9ba8aa7a8}{mp\_montgomery\_reduce}}(\mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}}, modulus, mp)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})              \{ \textcolor{keywordflow}{goto} done; \}}
+\DoxyCodeLine{101    \textcolor{comment}{/* T1 = Y' * T1 */}}
+\DoxyCodeLine{102    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a7606d2423856b32b09245a2fa1ef34ee}{mp\_mul}}(Q->y, \mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}}, \mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}})) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                               \{ \textcolor{keywordflow}{goto} done; \}}
+\DoxyCodeLine{103    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a4201ed2dbae154496e1a2ae9ba8aa7a8}{mp\_montgomery\_reduce}}(\mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}}, modulus, mp)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})              \{ \textcolor{keywordflow}{goto} done; \}}
+\DoxyCodeLine{104 }
+\DoxyCodeLine{105    \textcolor{comment}{/* Y = Y - T1 */}}
+\DoxyCodeLine{106    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_ab8d0882c3b58263b638b41fbf110fde8}{mp\_sub}}(y, \mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}}, y)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                                   \{ \textcolor{keywordflow}{goto} done; \}}
+\DoxyCodeLine{107    \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__private_8h_a6ce44f2e6f872565a468b67d9a93dc28}{mp\_cmp\_d}}(y, 0) == \mbox{\hyperlink{tomcrypt__math_8h_a42d0c7d4c09793df79660774d3436db2}{LTC\_MP\_LT}}) \{}
+\DoxyCodeLine{108       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a175d04f8aeaa1c3895fe14de6cc0d2db}{mp\_add}}(y, modulus, y)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                           \{ \textcolor{keywordflow}{goto} done; \}}
+\DoxyCodeLine{109    \}}
+\DoxyCodeLine{110    \textcolor{comment}{/* T1 = 2T1 */}}
+\DoxyCodeLine{111    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a175d04f8aeaa1c3895fe14de6cc0d2db}{mp\_add}}(\mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}}, \mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}}, \mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}})) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                                 \{ \textcolor{keywordflow}{goto} done; \}}
+\DoxyCodeLine{112    \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__private_8h_a62ea02fbe7dd2d456e49520264d775ee}{mp\_cmp}}(\mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}}, modulus) != \mbox{\hyperlink{tomcrypt__math_8h_a42d0c7d4c09793df79660774d3436db2}{LTC\_MP\_LT}}) \{}
+\DoxyCodeLine{113       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_ab8d0882c3b58263b638b41fbf110fde8}{mp\_sub}}(\mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}}, modulus, \mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}})) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                         \{ \textcolor{keywordflow}{goto} done; \}}
+\DoxyCodeLine{114    \}}
+\DoxyCodeLine{115    \textcolor{comment}{/* T1 = Y + T1 */}}
+\DoxyCodeLine{116    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a175d04f8aeaa1c3895fe14de6cc0d2db}{mp\_add}}(\mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}}, y, \mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}})) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                                  \{ \textcolor{keywordflow}{goto} done; \}}
+\DoxyCodeLine{117    \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__private_8h_a62ea02fbe7dd2d456e49520264d775ee}{mp\_cmp}}(\mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}}, modulus) != \mbox{\hyperlink{tomcrypt__math_8h_a42d0c7d4c09793df79660774d3436db2}{LTC\_MP\_LT}}) \{}
+\DoxyCodeLine{118       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_ab8d0882c3b58263b638b41fbf110fde8}{mp\_sub}}(\mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}}, modulus, \mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}})) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                         \{ \textcolor{keywordflow}{goto} done; \}}
+\DoxyCodeLine{119    \}}
+\DoxyCodeLine{120    \textcolor{comment}{/* X = X - T2 */}}
+\DoxyCodeLine{121    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_ab8d0882c3b58263b638b41fbf110fde8}{mp\_sub}}(x, \mbox{\hyperlink{tiger_8c_aa4652e2d6053d420dcbea07a113db5fe}{t2}}, x)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                                   \{ \textcolor{keywordflow}{goto} done; \}}
+\DoxyCodeLine{122    \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__private_8h_a6ce44f2e6f872565a468b67d9a93dc28}{mp\_cmp\_d}}(x, 0) == \mbox{\hyperlink{tomcrypt__math_8h_a42d0c7d4c09793df79660774d3436db2}{LTC\_MP\_LT}}) \{}
+\DoxyCodeLine{123       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a175d04f8aeaa1c3895fe14de6cc0d2db}{mp\_add}}(x, modulus, x)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                           \{ \textcolor{keywordflow}{goto} done; \}}
+\DoxyCodeLine{124    \}}
+\DoxyCodeLine{125    \textcolor{comment}{/* T2 = 2T2 */}}
+\DoxyCodeLine{126    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a175d04f8aeaa1c3895fe14de6cc0d2db}{mp\_add}}(\mbox{\hyperlink{tiger_8c_aa4652e2d6053d420dcbea07a113db5fe}{t2}}, \mbox{\hyperlink{tiger_8c_aa4652e2d6053d420dcbea07a113db5fe}{t2}}, \mbox{\hyperlink{tiger_8c_aa4652e2d6053d420dcbea07a113db5fe}{t2}})) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                                 \{ \textcolor{keywordflow}{goto} done; \}}
+\DoxyCodeLine{127    \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__private_8h_a62ea02fbe7dd2d456e49520264d775ee}{mp\_cmp}}(\mbox{\hyperlink{tiger_8c_aa4652e2d6053d420dcbea07a113db5fe}{t2}}, modulus) != \mbox{\hyperlink{tomcrypt__math_8h_a42d0c7d4c09793df79660774d3436db2}{LTC\_MP\_LT}}) \{}
+\DoxyCodeLine{128       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_ab8d0882c3b58263b638b41fbf110fde8}{mp\_sub}}(\mbox{\hyperlink{tiger_8c_aa4652e2d6053d420dcbea07a113db5fe}{t2}}, modulus, \mbox{\hyperlink{tiger_8c_aa4652e2d6053d420dcbea07a113db5fe}{t2}})) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                         \{ \textcolor{keywordflow}{goto} done; \}}
+\DoxyCodeLine{129    \}}
+\DoxyCodeLine{130    \textcolor{comment}{/* T2 = X + T2 */}}
+\DoxyCodeLine{131    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a175d04f8aeaa1c3895fe14de6cc0d2db}{mp\_add}}(\mbox{\hyperlink{tiger_8c_aa4652e2d6053d420dcbea07a113db5fe}{t2}}, x, \mbox{\hyperlink{tiger_8c_aa4652e2d6053d420dcbea07a113db5fe}{t2}})) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                                  \{ \textcolor{keywordflow}{goto} done; \}}
+\DoxyCodeLine{132    \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__private_8h_a62ea02fbe7dd2d456e49520264d775ee}{mp\_cmp}}(\mbox{\hyperlink{tiger_8c_aa4652e2d6053d420dcbea07a113db5fe}{t2}}, modulus) != \mbox{\hyperlink{tomcrypt__math_8h_a42d0c7d4c09793df79660774d3436db2}{LTC\_MP\_LT}}) \{}
+\DoxyCodeLine{133       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_ab8d0882c3b58263b638b41fbf110fde8}{mp\_sub}}(\mbox{\hyperlink{tiger_8c_aa4652e2d6053d420dcbea07a113db5fe}{t2}}, modulus, \mbox{\hyperlink{tiger_8c_aa4652e2d6053d420dcbea07a113db5fe}{t2}})) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                         \{ \textcolor{keywordflow}{goto} done; \}}
+\DoxyCodeLine{134    \}}
+\DoxyCodeLine{135 }
+\DoxyCodeLine{136    \textcolor{comment}{/* if Z' != 1 */}}
+\DoxyCodeLine{137    \textcolor{keywordflow}{if} (Q->z != NULL) \{}
+\DoxyCodeLine{138       \textcolor{comment}{/* Z = Z * Z' */}}
+\DoxyCodeLine{139       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a7606d2423856b32b09245a2fa1ef34ee}{mp\_mul}}(z, Q->z, z)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                              \{ \textcolor{keywordflow}{goto} done; \}}
+\DoxyCodeLine{140       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a4201ed2dbae154496e1a2ae9ba8aa7a8}{mp\_montgomery\_reduce}}(z, modulus, mp)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})            \{ \textcolor{keywordflow}{goto} done; \}}
+\DoxyCodeLine{141    \}}
+\DoxyCodeLine{142 }
+\DoxyCodeLine{143    \textcolor{comment}{/* Z = Z * X */}}
+\DoxyCodeLine{144    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a7606d2423856b32b09245a2fa1ef34ee}{mp\_mul}}(z, x, z)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                                    \{ \textcolor{keywordflow}{goto} done; \}}
+\DoxyCodeLine{145    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a4201ed2dbae154496e1a2ae9ba8aa7a8}{mp\_montgomery\_reduce}}(z, modulus, mp)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})               \{ \textcolor{keywordflow}{goto} done; \}}
+\DoxyCodeLine{146 }
+\DoxyCodeLine{147    \textcolor{comment}{/* T1 = T1 * X  */}}
+\DoxyCodeLine{148    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a7606d2423856b32b09245a2fa1ef34ee}{mp\_mul}}(\mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}}, x, \mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}})) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                                  \{ \textcolor{keywordflow}{goto} done; \}}
+\DoxyCodeLine{149    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a4201ed2dbae154496e1a2ae9ba8aa7a8}{mp\_montgomery\_reduce}}(\mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}}, modulus, mp)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})              \{ \textcolor{keywordflow}{goto} done; \}}
+\DoxyCodeLine{150    \textcolor{comment}{/* X = X * X */}}
+\DoxyCodeLine{151    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_aea81d79b5462e99068908d80edb8bd1a}{mp\_sqr}}(x, x)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                                       \{ \textcolor{keywordflow}{goto} done; \}}
+\DoxyCodeLine{152    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a4201ed2dbae154496e1a2ae9ba8aa7a8}{mp\_montgomery\_reduce}}(x, modulus, mp)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})               \{ \textcolor{keywordflow}{goto} done; \}}
+\DoxyCodeLine{153    \textcolor{comment}{/* T2 = T2 * x */}}
+\DoxyCodeLine{154    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a7606d2423856b32b09245a2fa1ef34ee}{mp\_mul}}(\mbox{\hyperlink{tiger_8c_aa4652e2d6053d420dcbea07a113db5fe}{t2}}, x, \mbox{\hyperlink{tiger_8c_aa4652e2d6053d420dcbea07a113db5fe}{t2}})) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                                  \{ \textcolor{keywordflow}{goto} done; \}}
+\DoxyCodeLine{155    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a4201ed2dbae154496e1a2ae9ba8aa7a8}{mp\_montgomery\_reduce}}(\mbox{\hyperlink{tiger_8c_aa4652e2d6053d420dcbea07a113db5fe}{t2}}, modulus, mp)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})              \{ \textcolor{keywordflow}{goto} done; \}}
+\DoxyCodeLine{156    \textcolor{comment}{/* T1 = T1 * X  */}}
+\DoxyCodeLine{157    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a7606d2423856b32b09245a2fa1ef34ee}{mp\_mul}}(\mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}}, x, \mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}})) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                                  \{ \textcolor{keywordflow}{goto} done; \}}
+\DoxyCodeLine{158    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a4201ed2dbae154496e1a2ae9ba8aa7a8}{mp\_montgomery\_reduce}}(\mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}}, modulus, mp)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})              \{ \textcolor{keywordflow}{goto} done; \}}
+\DoxyCodeLine{159 }
+\DoxyCodeLine{160    \textcolor{comment}{/* X = Y*Y */}}
+\DoxyCodeLine{161    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_aea81d79b5462e99068908d80edb8bd1a}{mp\_sqr}}(y, x)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                                       \{ \textcolor{keywordflow}{goto} done; \}}
+\DoxyCodeLine{162    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a4201ed2dbae154496e1a2ae9ba8aa7a8}{mp\_montgomery\_reduce}}(x, modulus, mp)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})               \{ \textcolor{keywordflow}{goto} done; \}}
+\DoxyCodeLine{163    \textcolor{comment}{/* X = X - T2 */}}
+\DoxyCodeLine{164    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_ab8d0882c3b58263b638b41fbf110fde8}{mp\_sub}}(x, \mbox{\hyperlink{tiger_8c_aa4652e2d6053d420dcbea07a113db5fe}{t2}}, x)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                                   \{ \textcolor{keywordflow}{goto} done; \}}
+\DoxyCodeLine{165    \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__private_8h_a6ce44f2e6f872565a468b67d9a93dc28}{mp\_cmp\_d}}(x, 0) == \mbox{\hyperlink{tomcrypt__math_8h_a42d0c7d4c09793df79660774d3436db2}{LTC\_MP\_LT}}) \{}
+\DoxyCodeLine{166       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a175d04f8aeaa1c3895fe14de6cc0d2db}{mp\_add}}(x, modulus, x)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                           \{ \textcolor{keywordflow}{goto} done; \}}
+\DoxyCodeLine{167    \}}
+\DoxyCodeLine{168 }
+\DoxyCodeLine{169    \textcolor{comment}{/* T2 = T2 - X */}}
+\DoxyCodeLine{170    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_ab8d0882c3b58263b638b41fbf110fde8}{mp\_sub}}(\mbox{\hyperlink{tiger_8c_aa4652e2d6053d420dcbea07a113db5fe}{t2}}, x, \mbox{\hyperlink{tiger_8c_aa4652e2d6053d420dcbea07a113db5fe}{t2}})) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                                  \{ \textcolor{keywordflow}{goto} done; \}}
+\DoxyCodeLine{171    \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__private_8h_a6ce44f2e6f872565a468b67d9a93dc28}{mp\_cmp\_d}}(\mbox{\hyperlink{tiger_8c_aa4652e2d6053d420dcbea07a113db5fe}{t2}}, 0) == \mbox{\hyperlink{tomcrypt__math_8h_a42d0c7d4c09793df79660774d3436db2}{LTC\_MP\_LT}}) \{}
+\DoxyCodeLine{172       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a175d04f8aeaa1c3895fe14de6cc0d2db}{mp\_add}}(\mbox{\hyperlink{tiger_8c_aa4652e2d6053d420dcbea07a113db5fe}{t2}}, modulus, \mbox{\hyperlink{tiger_8c_aa4652e2d6053d420dcbea07a113db5fe}{t2}})) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                         \{ \textcolor{keywordflow}{goto} done; \}}
+\DoxyCodeLine{173    \}}
+\DoxyCodeLine{174    \textcolor{comment}{/* T2 = T2 - X */}}
+\DoxyCodeLine{175    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_ab8d0882c3b58263b638b41fbf110fde8}{mp\_sub}}(\mbox{\hyperlink{tiger_8c_aa4652e2d6053d420dcbea07a113db5fe}{t2}}, x, \mbox{\hyperlink{tiger_8c_aa4652e2d6053d420dcbea07a113db5fe}{t2}})) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                                  \{ \textcolor{keywordflow}{goto} done; \}}
+\DoxyCodeLine{176    \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__private_8h_a6ce44f2e6f872565a468b67d9a93dc28}{mp\_cmp\_d}}(\mbox{\hyperlink{tiger_8c_aa4652e2d6053d420dcbea07a113db5fe}{t2}}, 0) == \mbox{\hyperlink{tomcrypt__math_8h_a42d0c7d4c09793df79660774d3436db2}{LTC\_MP\_LT}}) \{}
+\DoxyCodeLine{177       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a175d04f8aeaa1c3895fe14de6cc0d2db}{mp\_add}}(\mbox{\hyperlink{tiger_8c_aa4652e2d6053d420dcbea07a113db5fe}{t2}}, modulus, \mbox{\hyperlink{tiger_8c_aa4652e2d6053d420dcbea07a113db5fe}{t2}})) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                         \{ \textcolor{keywordflow}{goto} done; \}}
+\DoxyCodeLine{178    \}}
+\DoxyCodeLine{179    \textcolor{comment}{/* T2 = T2 * Y */}}
+\DoxyCodeLine{180    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a7606d2423856b32b09245a2fa1ef34ee}{mp\_mul}}(\mbox{\hyperlink{tiger_8c_aa4652e2d6053d420dcbea07a113db5fe}{t2}}, y, \mbox{\hyperlink{tiger_8c_aa4652e2d6053d420dcbea07a113db5fe}{t2}})) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                                  \{ \textcolor{keywordflow}{goto} done; \}}
+\DoxyCodeLine{181    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a4201ed2dbae154496e1a2ae9ba8aa7a8}{mp\_montgomery\_reduce}}(\mbox{\hyperlink{tiger_8c_aa4652e2d6053d420dcbea07a113db5fe}{t2}}, modulus, mp)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})              \{ \textcolor{keywordflow}{goto} done; \}}
+\DoxyCodeLine{182    \textcolor{comment}{/* Y = T2 - T1 */}}
+\DoxyCodeLine{183    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_ab8d0882c3b58263b638b41fbf110fde8}{mp\_sub}}(\mbox{\hyperlink{tiger_8c_aa4652e2d6053d420dcbea07a113db5fe}{t2}}, \mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}}, y)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                                  \{ \textcolor{keywordflow}{goto} done; \}}
+\DoxyCodeLine{184    \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__private_8h_a6ce44f2e6f872565a468b67d9a93dc28}{mp\_cmp\_d}}(y, 0) == \mbox{\hyperlink{tomcrypt__math_8h_a42d0c7d4c09793df79660774d3436db2}{LTC\_MP\_LT}}) \{}
+\DoxyCodeLine{185       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a175d04f8aeaa1c3895fe14de6cc0d2db}{mp\_add}}(y, modulus, y)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                           \{ \textcolor{keywordflow}{goto} done; \}}
+\DoxyCodeLine{186    \}}
+\DoxyCodeLine{187    \textcolor{comment}{/* Y = Y/2 */}}
+\DoxyCodeLine{188    \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__private_8h_a93ed39c257831509afc74f2b6da66ae7}{mp\_isodd}}(y)) \{}
+\DoxyCodeLine{189       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a175d04f8aeaa1c3895fe14de6cc0d2db}{mp\_add}}(y, modulus, y)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                           \{ \textcolor{keywordflow}{goto} done; \}}
+\DoxyCodeLine{190    \}}
+\DoxyCodeLine{191    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_aec841464b436981f5758a49c561f39fe}{mp\_div\_2}}(y, y)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                                     \{ \textcolor{keywordflow}{goto} done; \}}
+\DoxyCodeLine{192 }
+\DoxyCodeLine{193    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_afbb35bc8f920448d169ddc83a4308840}{mp\_copy}}(x, \mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}}->x)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                                   \{ \textcolor{keywordflow}{goto} done; \}}
+\DoxyCodeLine{194    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_afbb35bc8f920448d169ddc83a4308840}{mp\_copy}}(y, \mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}}->y)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                                   \{ \textcolor{keywordflow}{goto} done; \}}
+\DoxyCodeLine{195    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_afbb35bc8f920448d169ddc83a4308840}{mp\_copy}}(z, \mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}}->z)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                                   \{ \textcolor{keywordflow}{goto} done; \}}
+\DoxyCodeLine{196 }
+\DoxyCodeLine{197    err = \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{198 done:}
+\DoxyCodeLine{199    \mbox{\hyperlink{tomcrypt__private_8h_aad5c8a3112b3e4613f9efc86692c43cb}{mp\_clear\_multi}}(\mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}}, \mbox{\hyperlink{tiger_8c_aa4652e2d6053d420dcbea07a113db5fe}{t2}}, x, y, z, NULL);}
+\DoxyCodeLine{200    \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{201 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, ltc\+\_\+ecc\+\_\+copy\+\_\+point(), ltc\+\_\+ecc\+\_\+is\+\_\+point\+\_\+at\+\_\+infinity(), ltc\+\_\+ecc\+\_\+projective\+\_\+dbl\+\_\+point(), ltc\+\_\+ecc\+\_\+set\+\_\+point\+\_\+xyz(), L\+T\+C\+\_\+\+M\+P\+\_\+\+EQ, L\+T\+C\+\_\+\+M\+P\+\_\+\+LT, mp\+\_\+add, mp\+\_\+clear\+\_\+multi, mp\+\_\+cmp, mp\+\_\+cmp\+\_\+d, mp\+\_\+copy, mp\+\_\+div\+\_\+2, mp\+\_\+init\+\_\+multi, mp\+\_\+isodd, mp\+\_\+montgomery\+\_\+reduce, mp\+\_\+mul, mp\+\_\+sqr, mp\+\_\+sub, R, t1, and t2.
+
+Here is the call graph for this function\+:
+% FIG 1

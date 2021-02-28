@@ -1,0 +1,67 @@
+\hypertarget{f8__decrypt_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/modes/f8/f8\+\_\+decrypt.c File Reference}
+\label{f8__decrypt_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/modes/f8/f8\_decrypt.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/modes/f8/f8\_decrypt.c}}
+
+
+F8 implementation, decrypt data, Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for f8\+\_\+decrypt.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{f8__decrypt_8c_a38caf267aa4f5dddbc5cb36d230b5238}{f8\+\_\+decrypt}} (const unsigned char $\ast$ct, unsigned char $\ast$pt, unsigned long \mbox{\hyperlink{pmac__init_8c_afed088663f8704004425cdae2120b9b3}{len}}, symmetric\+\_\+\+F8 $\ast$f8)
+\begin{DoxyCompactList}\small\item\em F8 decrypt. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+F8 implementation, decrypt data, Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{f8__decrypt_8c_a38caf267aa4f5dddbc5cb36d230b5238}\label{f8__decrypt_8c_a38caf267aa4f5dddbc5cb36d230b5238}} 
+\index{f8\_decrypt.c@{f8\_decrypt.c}!f8\_decrypt@{f8\_decrypt}}
+\index{f8\_decrypt@{f8\_decrypt}!f8\_decrypt.c@{f8\_decrypt.c}}
+\subsubsection{\texorpdfstring{f8\_decrypt()}{f8\_decrypt()}}
+{\footnotesize\ttfamily int f8\+\_\+decrypt (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{ct,  }\item[{unsigned char $\ast$}]{pt,  }\item[{unsigned long}]{len,  }\item[{symmetric\+\_\+\+F8 $\ast$}]{f8 }\end{DoxyParamCaption})}
+
+
+
+F8 decrypt. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ct} & Ciphertext \\
+\hline
+{\em pt} & \mbox{[}out\mbox{]} Plaintext \\
+\hline
+{\em len} & Length of ciphertext (octets) \\
+\hline
+{\em f8} & F8 state \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 26 of file f8\+\_\+decrypt.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{27 \{}
+\DoxyCodeLine{28    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(pt != NULL);}
+\DoxyCodeLine{29    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(ct != NULL);}
+\DoxyCodeLine{30    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(f8 != NULL);}
+\DoxyCodeLine{31    \textcolor{keywordflow}{return} \mbox{\hyperlink{f8__encrypt_8c_ab9fd6d99b51ca455636ab5c46fd057e3}{f8\_encrypt}}(ct, pt, \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}, f8);}
+\DoxyCodeLine{32 \}}
+
+\end{DoxyCode}
+
+
+References f8\+\_\+encrypt(), len, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+Here is the call graph for this function\+:
+% FIG 1

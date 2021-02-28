@@ -1,0 +1,19 @@
+<OPTIONS CENTRALIZED="TRUE" KNOWN_FORMATION="TRUE" />
+<UNIT UnitType="3" ID="5A7CB2A9-062A-AD03-68A5-634F6CDDB833" Interfaces="2">
+    <interfaces>
+        <int Number="1" TECH="3" Type="2" Protocol="1" IP="127.0.0.1" Port="13000" Max_conn="10" />
+		<int Number="2" TECH="3" Type="1" Protocol="1" IP="127.0.0.1" Port="13100" Max_conn="10" />
+    </interfaces>
+	<cryptography total="1">
+		<alg Number="1" />
+	</cryptography>
+	<Objects NumObjects="1">
+		<Object UnitType="2" ID="782DF465-3254-BBC9-3A73-858C372A27DC" NumComponents="3">
+			<Interface Number="2" TECH="3" Type="1" Protocol="1" IPAddress="127.0.0.1" Port="13130" />
+			<Component Number="1" FunctionalCode="5" Classification="1" EmergencyState="1" />
+			<Component Number="2" FunctionalCode="6" Classification="1" EmergencyState="1" />
+			<Component Number="3" FunctionalCode="7" Classification="2" EmergencyState="0" />
+		</Object>
+	</Objects>
+</UNIT>
+<SuperEntity Interface="1" ID="14209CA1-600F-8607-08E7-0A0653E0E154" IPAddress="127.0.0.1" Port="12000" />

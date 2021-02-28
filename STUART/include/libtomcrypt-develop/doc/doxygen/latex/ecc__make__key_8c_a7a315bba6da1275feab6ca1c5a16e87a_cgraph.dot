@@ -1,0 +1,37 @@
+digraph "ecc_make_key"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node13 [label="ecc_make_key",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Make a new ECC key."];
+  Node13 -> Node14 [color="midnightblue",fontsize="10",style="solid"];
+  Node14 [label="ecc_generate_key",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ecc__make__key_8c.html#a127706e1e535a3c06a1938e474ed8d20",tooltip=" "];
+  Node14 -> Node15 [color="midnightblue",fontsize="10",style="solid"];
+  Node15 [label="ecc_free",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ecc__free_8c.html#a73cd81ea7d3b24f2d9ef309c4b22e3b7",tooltip="Free an ECC key from memory."];
+  Node14 -> Node16 [color="midnightblue",fontsize="10",style="solid"];
+  Node16 [label="rand_bn_upto",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__private_8h.html#a8050acf530841fb2da3b667204039856",tooltip="Generate a random number N in a range: 1 <= N < limit."];
+  Node16 -> Node17 [color="midnightblue",fontsize="10",style="solid"];
+  Node17 [label="rand_bn_bits",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rand__bn_8c.html#a5a58a92a44e093e5b35960f7b92a6eb9",tooltip="Generate a random number N with given bitlength (note: MSB can be 0)"];
+  Node17 -> Node18 [color="midnightblue",fontsize="10",style="solid"];
+  Node18 [label="prng_is_valid",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__prng_8h.html#a7e4a212c1a29a3b8bb4f8d5a34676a1e",tooltip=" "];
+  Node17 -> Node19 [color="midnightblue",fontsize="10",style="solid"];
+  Node19 [label="XCALLOC",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cfg_8h.html#a151dda14cd7acae31eaf1102b0cc0685",tooltip=" "];
+  Node17 -> Node20 [color="midnightblue",fontsize="10",style="solid"];
+  Node20 [label="XFREE",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cfg_8h.html#a260d66fc0690e0502cf3bfe7b5244b75",tooltip=" "];
+  Node17 -> Node21 [color="midnightblue",fontsize="10",style="solid"];
+  Node21 [label="zeromem",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__misc_8h.html#a63b6e188713790263bfd3612fe8b398f",tooltip="Zero a block of memory."];
+  Node13 -> Node22 [color="midnightblue",fontsize="10",style="solid"];
+  Node22 [label="ecc_set_curve_by_size",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__private_8h.html#ae380263c82c1fe0cde8dc08e89f7940c",tooltip=" "];
+  Node22 -> Node23 [color="midnightblue",fontsize="10",style="solid"];
+  Node23 [label="ecc_find_curve",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ecc__find__curve_8c.html#ad928083861ba212cb0c270bcf10b0403",tooltip=" "];
+  Node23 -> Node24 [color="midnightblue",fontsize="10",style="solid"];
+  Node24 [label="_name_match",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ecc__find__curve_8c.html#a78e7ebed1017ea1869d0a9eb80fcfb0f",tooltip=" "];
+  Node23 -> Node25 [color="midnightblue",fontsize="10",style="solid"];
+  Node25 [label="XSTRCMP",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cfg_8h.html#a5d6e3d69e1d3f54de008b963bba3c6b3",tooltip=" "];
+  Node22 -> Node26 [color="midnightblue",fontsize="10",style="solid"];
+  Node26 [label="ecc_set_curve",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ecc__set__curve_8c.html#ae59e3d6f85b87d050df0ece7c6f5c661",tooltip=" "];
+  Node26 -> Node27 [color="midnightblue",fontsize="10",style="solid"];
+  Node27 [label="pk_oid_str_to_num",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__private_8h.html#ad99c87d19f50f703708d36a931fe5df6",tooltip=" "];
+  Node26 -> Node15 [color="midnightblue",fontsize="10",style="solid"];
+}

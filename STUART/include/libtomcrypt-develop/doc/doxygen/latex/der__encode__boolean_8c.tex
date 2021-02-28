@@ -1,0 +1,79 @@
+\hypertarget{der__encode__boolean_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/pk/asn1/der/boolean/der\+\_\+encode\+\_\+boolean.c File Reference}
+\label{der__encode__boolean_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/asn1/der/boolean/der\_encode\_boolean.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/asn1/der/boolean/der\_encode\_boolean.c}}
+
+
+A\+S\+N.\+1 D\+ER, encode a B\+O\+O\+L\+E\+AN, Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for der\+\_\+encode\+\_\+boolean.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{der__encode__boolean_8c_aa863fa125a67e45f9ddfcf3489a733c4}{der\+\_\+encode\+\_\+boolean}} (int in, unsigned char $\ast$out, unsigned long $\ast$outlen)
+\begin{DoxyCompactList}\small\item\em Store a B\+O\+O\+L\+E\+AN. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A\+S\+N.\+1 D\+ER, encode a B\+O\+O\+L\+E\+AN, Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{der__encode__boolean_8c_aa863fa125a67e45f9ddfcf3489a733c4}\label{der__encode__boolean_8c_aa863fa125a67e45f9ddfcf3489a733c4}} 
+\index{der\_encode\_boolean.c@{der\_encode\_boolean.c}!der\_encode\_boolean@{der\_encode\_boolean}}
+\index{der\_encode\_boolean@{der\_encode\_boolean}!der\_encode\_boolean.c@{der\_encode\_boolean.c}}
+\subsubsection{\texorpdfstring{der\_encode\_boolean()}{der\_encode\_boolean()}}
+{\footnotesize\ttfamily int der\+\_\+encode\+\_\+boolean (\begin{DoxyParamCaption}\item[{int}]{in,  }\item[{unsigned char $\ast$}]{out,  }\item[{unsigned long $\ast$}]{outlen }\end{DoxyParamCaption})}
+
+
+
+Store a B\+O\+O\+L\+E\+AN. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em in} & The boolean to encode \\
+\hline
+{\em out} & \mbox{[}out\mbox{]} The destination for the D\+ER encoded B\+O\+O\+L\+E\+AN \\
+\hline
+{\em outlen} & \mbox{[}in/out\mbox{]} The max size and resulting size of the D\+ER B\+O\+O\+L\+E\+AN \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 26 of file der\+\_\+encode\+\_\+boolean.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{28 \{}
+\DoxyCodeLine{29    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(outlen != NULL);}
+\DoxyCodeLine{30    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(out    != NULL);}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32    \textcolor{keywordflow}{if} (*outlen < 3) \{}
+\DoxyCodeLine{33        *outlen = 3;}
+\DoxyCodeLine{34        \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caccd878f5599f3036ffe759dbe1a1ac16}{CRYPT\_BUFFER\_OVERFLOW}};}
+\DoxyCodeLine{35    \}}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37    *outlen = 3;}
+\DoxyCodeLine{38    out[0] = 0x01;}
+\DoxyCodeLine{39    out[1] = 0x01;}
+\DoxyCodeLine{40    out[2] = in ? 0xFF : 0x00;}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{42    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{43 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+O\+V\+E\+R\+F\+L\+OW, C\+R\+Y\+P\+T\+\_\+\+OK, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+
+
+Referenced by der\+\_\+encode\+\_\+custom\+\_\+type(), and der\+\_\+encode\+\_\+sequence\+\_\+ex().
+
+Here is the caller graph for this function\+:
+% FIG 1

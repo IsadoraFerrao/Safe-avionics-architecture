@@ -1,0 +1,12 @@
+digraph "hkdf_expand"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node30 [label="hkdf_expand",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node30 -> Node31 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node31 [label="hkdf",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$hkdf_8c.html#ac79c8ae04bc15c69e9704277e38d22be",tooltip=" "];
+  Node31 -> Node32 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node32 [label="hkdf_test",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$hkdf__test_8c.html#a373d92dae833619c1fccb018f21357dd",tooltip="LTC_HKDF self-test."];
+}

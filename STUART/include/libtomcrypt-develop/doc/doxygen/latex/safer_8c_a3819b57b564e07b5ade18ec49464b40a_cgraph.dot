@@ -1,0 +1,22 @@
+digraph "safer_sk64_test"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node63 [label="safer_sk64_test",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node63 -> Node64 [color="midnightblue",fontsize="10",style="solid"];
+  Node64 [label="compare_testvector",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__misc_8h.html#a7764a7f27897c6182335752df00b5f8e",tooltip="Compare two test-vectors."];
+  Node64 -> Node65 [color="midnightblue",fontsize="10",style="solid"];
+  Node65 [label="XMEMCMP",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cfg_8h.html#a372b974ec0ac07abcd55297554fe540f",tooltip=" "];
+  Node63 -> Node66 [color="midnightblue",fontsize="10",style="solid"];
+  Node66 [label="safer_ecb_decrypt",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$safer_8c.html#adf7a5075158f65bdd0fea61c67ded1d7",tooltip=" "];
+  Node63 -> Node67 [color="midnightblue",fontsize="10",style="solid"];
+  Node67 [label="safer_ecb_encrypt",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$safer_8c.html#ad9c37edc3b75ec76494ae72f0f46d1ca",tooltip=" "];
+  Node63 -> Node68 [color="midnightblue",fontsize="10",style="solid"];
+  Node68 [label="safer_sk64_setup",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$safer_8c.html#a4de4e3591e15db0254e9957e939a77dc",tooltip=" "];
+  Node68 -> Node69 [color="midnightblue",fontsize="10",style="solid"];
+  Node69 [label="Safer_Expand_Userkey",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$safer_8c.html#a098e5a50fc26c3eec876458f84eeca97",tooltip=" "];
+  Node69 -> Node70 [color="midnightblue",fontsize="10",style="solid"];
+  Node70 [label="zeromem",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__misc_8h.html#a63b6e188713790263bfd3612fe8b398f",tooltip="Zero a block of memory."];
+}

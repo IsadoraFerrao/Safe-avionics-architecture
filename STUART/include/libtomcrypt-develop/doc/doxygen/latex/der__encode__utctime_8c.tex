@@ -1,0 +1,150 @@
+\hypertarget{der__encode__utctime_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/pk/asn1/der/utctime/der\+\_\+encode\+\_\+utctime.c File Reference}
+\label{der__encode__utctime_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/asn1/der/utctime/der\_encode\_utctime.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/asn1/der/utctime/der\_encode\_utctime.c}}
+
+
+A\+S\+N.\+1 D\+ER, encode a Generalized\+Time, Steffen Jaeckel Based on der\+\_\+encode\+\_\+utctime.\+c.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for der\+\_\+encode\+\_\+utctime.\+c\+:
+% FIG 0
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{der__encode__utctime_8c_a4aad6871514f60e2a7627071c7fe657e}{S\+T\+O\+R\+E\+\_\+V}}(y)
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{der__encode__utctime_8c_a8b92a8a2246fa8aaca2378471d1ed78d}{der\+\_\+encode\+\_\+utctime}} (const ltc\+\_\+utctime $\ast$utctime, unsigned char $\ast$out, unsigned long $\ast$outlen)
+\begin{DoxyCompactList}\small\item\em Encodes a U\+TC time structure in D\+ER format. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static const char $\ast$const \mbox{\hyperlink{der__encode__utctime_8c_a6b97039e2c6e820dd1bc52deb61f446a}{baseten}} = \char`\"{}0123456789\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A\+S\+N.\+1 D\+ER, encode a Generalized\+Time, Steffen Jaeckel Based on der\+\_\+encode\+\_\+utctime.\+c. 
+
+A\+S\+N.\+1 D\+ER, encode a U\+T\+C\+T\+I\+ME, Tom St Denis.
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{der__encode__utctime_8c_a4aad6871514f60e2a7627071c7fe657e}\label{der__encode__utctime_8c_a4aad6871514f60e2a7627071c7fe657e}} 
+\index{der\_encode\_utctime.c@{der\_encode\_utctime.c}!STORE\_V@{STORE\_V}}
+\index{STORE\_V@{STORE\_V}!der\_encode\_utctime.c@{der\_encode\_utctime.c}}
+\subsubsection{\texorpdfstring{STORE\_V}{STORE\_V}}
+{\footnotesize\ttfamily \#define S\+T\+O\+R\+E\+\_\+V(\begin{DoxyParamCaption}\item[{}]{y }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{out[x++] = \mbox{\hyperlink{der__length__ia5__string_8c_aa9cad5f213317520165e72ac9420bb65}{der\_ia5\_char\_encode}}(\mbox{\hyperlink{der__encode__utctime_8c_a6b97039e2c6e820dd1bc52deb61f446a}{baseten}}[(y/10) \% 10]); \(\backslash\)}
+\DoxyCodeLine{    out[x++] = \mbox{\hyperlink{der__length__ia5__string_8c_aa9cad5f213317520165e72ac9420bb65}{der\_ia5\_char\_encode}}(\mbox{\hyperlink{der__encode__utctime_8c_a6b97039e2c6e820dd1bc52deb61f446a}{baseten}}[y \% 10]);}
+
+\end{DoxyCode}
+
+
+Definition at line 20 of file der\+\_\+encode\+\_\+utctime.\+c.
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{der__encode__utctime_8c_a8b92a8a2246fa8aaca2378471d1ed78d}\label{der__encode__utctime_8c_a8b92a8a2246fa8aaca2378471d1ed78d}} 
+\index{der\_encode\_utctime.c@{der\_encode\_utctime.c}!der\_encode\_utctime@{der\_encode\_utctime}}
+\index{der\_encode\_utctime@{der\_encode\_utctime}!der\_encode\_utctime.c@{der\_encode\_utctime.c}}
+\subsubsection{\texorpdfstring{der\_encode\_utctime()}{der\_encode\_utctime()}}
+{\footnotesize\ttfamily int der\+\_\+encode\+\_\+utctime (\begin{DoxyParamCaption}\item[{const ltc\+\_\+utctime $\ast$}]{utctime,  }\item[{unsigned char $\ast$}]{out,  }\item[{unsigned long $\ast$}]{outlen }\end{DoxyParamCaption})}
+
+
+
+Encodes a U\+TC time structure in D\+ER format. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em utctime} & The U\+TC time structure to encode \\
+\hline
+{\em out} & The destination of the D\+ER encoding of the U\+TC time structure \\
+\hline
+{\em outlen} & \mbox{[}in/out\mbox{]} The length of the D\+ER encoding \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 31 of file der\+\_\+encode\+\_\+utctime.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{33 \{}
+\DoxyCodeLine{34     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} x, tmplen;}
+\DoxyCodeLine{35     \textcolor{keywordtype}{int}           err;}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(utctime != NULL);}
+\DoxyCodeLine{38     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(out     != NULL);}
+\DoxyCodeLine{39     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(outlen  != NULL);}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41     \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{der__length__utctime_8c_a666e7656df6985a9eb25794b878ec4e7}{der\_length\_utctime}}(utctime, \&tmplen)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{42        \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{43     \}}
+\DoxyCodeLine{44     \textcolor{keywordflow}{if} (tmplen > *outlen) \{}
+\DoxyCodeLine{45         *outlen = tmplen;}
+\DoxyCodeLine{46         \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caccd878f5599f3036ffe759dbe1a1ac16}{CRYPT\_BUFFER\_OVERFLOW}};}
+\DoxyCodeLine{47     \}}
+\DoxyCodeLine{48 }
+\DoxyCodeLine{49     \textcolor{comment}{/* store header */}}
+\DoxyCodeLine{50     out[0] = 0x17;}
+\DoxyCodeLine{51 }
+\DoxyCodeLine{52     \textcolor{comment}{/* store values */}}
+\DoxyCodeLine{53     x = 2;}
+\DoxyCodeLine{54     \mbox{\hyperlink{der__encode__utctime_8c_a4aad6871514f60e2a7627071c7fe657e}{STORE\_V}}(utctime->YY);}
+\DoxyCodeLine{55     \mbox{\hyperlink{der__encode__utctime_8c_a4aad6871514f60e2a7627071c7fe657e}{STORE\_V}}(utctime->MM);}
+\DoxyCodeLine{56     \mbox{\hyperlink{der__encode__utctime_8c_a4aad6871514f60e2a7627071c7fe657e}{STORE\_V}}(utctime->DD);}
+\DoxyCodeLine{57     \mbox{\hyperlink{der__encode__utctime_8c_a4aad6871514f60e2a7627071c7fe657e}{STORE\_V}}(utctime->hh);}
+\DoxyCodeLine{58     \mbox{\hyperlink{der__encode__utctime_8c_a4aad6871514f60e2a7627071c7fe657e}{STORE\_V}}(utctime->mm);}
+\DoxyCodeLine{59     \mbox{\hyperlink{der__encode__utctime_8c_a4aad6871514f60e2a7627071c7fe657e}{STORE\_V}}(utctime->ss);}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{61     \textcolor{keywordflow}{if} (utctime->off\_mm || utctime->off\_hh) \{}
+\DoxyCodeLine{62        out[x++] = \mbox{\hyperlink{der__length__ia5__string_8c_aa9cad5f213317520165e72ac9420bb65}{der\_ia5\_char\_encode}}(utctime->off\_dir ? \textcolor{charliteral}{'-'} : \textcolor{charliteral}{'+'});}
+\DoxyCodeLine{63        \mbox{\hyperlink{der__encode__utctime_8c_a4aad6871514f60e2a7627071c7fe657e}{STORE\_V}}(utctime->off\_hh);}
+\DoxyCodeLine{64        \mbox{\hyperlink{der__encode__utctime_8c_a4aad6871514f60e2a7627071c7fe657e}{STORE\_V}}(utctime->off\_mm);}
+\DoxyCodeLine{65     \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{66        out[x++] = \mbox{\hyperlink{der__length__ia5__string_8c_aa9cad5f213317520165e72ac9420bb65}{der\_ia5\_char\_encode}}(\textcolor{charliteral}{'Z'});}
+\DoxyCodeLine{67     \}}
+\DoxyCodeLine{68 }
+\DoxyCodeLine{69     \textcolor{comment}{/* store length */}}
+\DoxyCodeLine{70     out[1] = (\textcolor{keywordtype}{unsigned} char)(x - 2);}
+\DoxyCodeLine{71 }
+\DoxyCodeLine{72     \textcolor{comment}{/* all good let's return */}}
+\DoxyCodeLine{73     *outlen = x;}
+\DoxyCodeLine{74     \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{75 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+O\+V\+E\+R\+F\+L\+OW, C\+R\+Y\+P\+T\+\_\+\+OK, der\+\_\+ia5\+\_\+char\+\_\+encode(), der\+\_\+length\+\_\+utctime(), L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, and S\+T\+O\+R\+E\+\_\+V.
+
+
+
+Referenced by der\+\_\+encode\+\_\+custom\+\_\+type(), and der\+\_\+encode\+\_\+sequence\+\_\+ex().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{der__encode__utctime_8c_a6b97039e2c6e820dd1bc52deb61f446a}\label{der__encode__utctime_8c_a6b97039e2c6e820dd1bc52deb61f446a}} 
+\index{der\_encode\_utctime.c@{der\_encode\_utctime.c}!baseten@{baseten}}
+\index{baseten@{baseten}!der\_encode\_utctime.c@{der\_encode\_utctime.c}}
+\subsubsection{\texorpdfstring{baseten}{baseten}}
+{\footnotesize\ttfamily const char$\ast$ const baseten = \char`\"{}0123456789\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 18 of file der\+\_\+encode\+\_\+utctime.\+c.
+

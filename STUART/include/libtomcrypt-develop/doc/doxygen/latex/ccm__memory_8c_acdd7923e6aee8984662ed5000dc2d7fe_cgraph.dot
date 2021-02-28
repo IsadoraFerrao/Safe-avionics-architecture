@@ -1,0 +1,31 @@
+digraph "ccm_memory"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node0 [label="ccm_memory",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="CCM encrypt/decrypt and produce an authentication tag."];
+  Node0 -> Node1 [color="midnightblue",fontsize="10",style="solid"];
+  Node1 [label="cipher_is_valid",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cipher_8h.html#ac30eb68934c4ca07205344dc9d159221",tooltip=" "];
+  Node0 -> Node2 [color="midnightblue",fontsize="10",style="solid"];
+  Node2 [label="copy_or_zeromem",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__private_8h.html#a669fada75ab21a80b652dfbc2b54e346",tooltip="Either copy or zero a block of memory in constant time."];
+  Node0 -> Node3 [color="midnightblue",fontsize="10",style="solid"];
+  Node3 [label="ecb_encrypt",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ecb__encrypt_8c.html#affdcc93fca272998e2545fcabac4e7f0",tooltip="ECB encrypt."];
+  Node3 -> Node1 [color="midnightblue",fontsize="10",style="solid"];
+  Node0 -> Node4 [color="midnightblue",fontsize="10",style="solid"];
+  Node4 [label="setup",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$multi2_8c.html#ad0625943f7d847668b869ed827c51d47",tooltip=" "];
+  Node4 -> Node5 [color="midnightblue",fontsize="10",style="solid"];
+  Node5 [label="pi1",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$multi2_8c.html#aa6e28a79517b509154714e51c2c1dc3b",tooltip=" "];
+  Node4 -> Node6 [color="midnightblue",fontsize="10",style="solid"];
+  Node6 [label="pi2",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$multi2_8c.html#a37c4b6b09dd5493456b3c765914b1481",tooltip=" "];
+  Node4 -> Node7 [color="midnightblue",fontsize="10",style="solid"];
+  Node7 [label="pi3",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$multi2_8c.html#a3e3c386a25d0f6950651f1fa5277c147",tooltip=" "];
+  Node4 -> Node8 [color="midnightblue",fontsize="10",style="solid"];
+  Node8 [label="pi4",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$multi2_8c.html#ad94b543f7f2133e851ecb20bd9324e12",tooltip=" "];
+  Node0 -> Node9 [color="midnightblue",fontsize="10",style="solid"];
+  Node9 [label="XFREE",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cfg_8h.html#a260d66fc0690e0502cf3bfe7b5244b75",tooltip=" "];
+  Node0 -> Node10 [color="midnightblue",fontsize="10",style="solid"];
+  Node10 [label="XMALLOC",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cfg_8h.html#af363355f38fbaacdefacf270436ae1c9",tooltip=" "];
+  Node0 -> Node11 [color="midnightblue",fontsize="10",style="solid"];
+  Node11 [label="zeromem",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__misc_8h.html#a63b6e188713790263bfd3612fe8b398f",tooltip="Zero a block of memory."];
+}

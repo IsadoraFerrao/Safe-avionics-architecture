@@ -1,0 +1,21 @@
+digraph "ctr_start"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node7 [label="ctr_start",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Initialize a CTR context."];
+  Node7 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node8 [label="ctr_test",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ctr__test_8c.html#a32abd18f150379219d48de1a9ce18efb",tooltip=" "];
+  Node7 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node9 [label="eax_init",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$eax__init_8c.html#ac35fd0cc9f76c2e8052efb3c22f1559c",tooltip="Initialized an EAX state."];
+  Node9 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node10 [label="eax_decrypt_verify\l_memory",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$eax__decrypt__verify__memory_8c.html#ab4d3f7a8561cc2cbce16949a1ee0d00c",tooltip="Decrypt a block of memory and verify the provided MAC tag with EAX."];
+  Node10 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node11 [label="eax_test",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$eax__test_8c.html#a9e708c531b1c375a3d086f43a192c455",tooltip="Test the EAX implementation."];
+  Node9 -> Node12 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node12 [label="eax_encrypt_authenticate\l_memory",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$eax__encrypt__authenticate__memory_8c.html#ae398a749e5591537487ab93b4a9fec24",tooltip="EAX encrypt and produce an authentication tag."];
+  Node12 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node7 -> Node13 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node13 [label="yarrow_ready",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$yarrow_8c.html#a3be1b7af5fa03c4f9385bfaa97fb6402",tooltip="Make the PRNG ready to read from."];
+}

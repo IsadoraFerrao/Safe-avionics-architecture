@@ -1,0 +1,178 @@
+\hypertarget{eax__init_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/encauth/eax/eax\+\_\+init.c File Reference}
+\label{eax__init_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/encauth/eax/eax\_init.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/encauth/eax/eax\_init.c}}
+
+
+E\+AX implementation, initialized E\+AX state, by Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for eax\+\_\+init.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{eax__init_8c_ac35fd0cc9f76c2e8052efb3c22f1559c}{eax\+\_\+init}} (eax\+\_\+state $\ast$eax, int cipher, const unsigned char $\ast$key, unsigned long keylen, const unsigned char $\ast$nonce, unsigned long noncelen, const unsigned char $\ast$header, unsigned long headerlen)
+\begin{DoxyCompactList}\small\item\em Initialized an E\+AX state. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+E\+AX implementation, initialized E\+AX state, by Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{eax__init_8c_ac35fd0cc9f76c2e8052efb3c22f1559c}\label{eax__init_8c_ac35fd0cc9f76c2e8052efb3c22f1559c}} 
+\index{eax\_init.c@{eax\_init.c}!eax\_init@{eax\_init}}
+\index{eax\_init@{eax\_init}!eax\_init.c@{eax\_init.c}}
+\subsubsection{\texorpdfstring{eax\_init()}{eax\_init()}}
+{\footnotesize\ttfamily int eax\+\_\+init (\begin{DoxyParamCaption}\item[{eax\+\_\+state $\ast$}]{eax,  }\item[{int}]{cipher,  }\item[{const unsigned char $\ast$}]{key,  }\item[{unsigned long}]{keylen,  }\item[{const unsigned char $\ast$}]{nonce,  }\item[{unsigned long}]{noncelen,  }\item[{const unsigned char $\ast$}]{header,  }\item[{unsigned long}]{headerlen }\end{DoxyParamCaption})}
+
+
+
+Initialized an E\+AX state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em eax} & \mbox{[}out\mbox{]} The E\+AX state to initialize \\
+\hline
+{\em cipher} & The index of the desired cipher \\
+\hline
+{\em key} & The secret key \\
+\hline
+{\em keylen} & The length of the secret key (octets) \\
+\hline
+{\em nonce} & The use-\/once nonce for the session \\
+\hline
+{\em noncelen} & The length of the nonce (octets) \\
+\hline
+{\em header} & The header for the E\+AX state \\
+\hline
+{\em headerlen} & The header length (octets) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 30 of file eax\+\_\+init.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{34 \{}
+\DoxyCodeLine{35    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *buf;}
+\DoxyCodeLine{36    \textcolor{keywordtype}{int}           err, blklen;}
+\DoxyCodeLine{37    omac\_state    *omac;}
+\DoxyCodeLine{38    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}};}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(eax   != NULL);}
+\DoxyCodeLine{42    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(key   != NULL);}
+\DoxyCodeLine{43    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(nonce != NULL);}
+\DoxyCodeLine{44    \textcolor{keywordflow}{if} (headerlen > 0) \{}
+\DoxyCodeLine{45       \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(header != NULL);}
+\DoxyCodeLine{46    \}}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_ac30eb68934c4ca07205344dc9d159221}{cipher\_is\_valid}}(cipher)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{49       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{50    \}}
+\DoxyCodeLine{51    blklen = \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[cipher].\mbox{\hyperlink{structltc__cipher__descriptor_afa2af7325fd3a834910dd92e8c9acf49}{block\_length}};}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{53    \textcolor{comment}{/* allocate ram */}}
+\DoxyCodeLine{54    buf  = \mbox{\hyperlink{tomcrypt__cfg_8h_af363355f38fbaacdefacf270436ae1c9}{XMALLOC}}(\mbox{\hyperlink{tomcrypt_8h_ab59933beebb2b857c992b93cf53f0d10}{MAXBLOCKSIZE}});}
+\DoxyCodeLine{55    omac = \mbox{\hyperlink{tomcrypt__cfg_8h_af363355f38fbaacdefacf270436ae1c9}{XMALLOC}}(\textcolor{keyword}{sizeof}(*omac));}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{57    \textcolor{keywordflow}{if} (buf == NULL || omac == NULL) \{}
+\DoxyCodeLine{58       \textcolor{keywordflow}{if} (buf != NULL) \{}
+\DoxyCodeLine{59          \mbox{\hyperlink{tomcrypt__cfg_8h_a260d66fc0690e0502cf3bfe7b5244b75}{XFREE}}(buf);}
+\DoxyCodeLine{60       \}}
+\DoxyCodeLine{61       \textcolor{keywordflow}{if} (omac != NULL) \{}
+\DoxyCodeLine{62          \mbox{\hyperlink{tomcrypt__cfg_8h_a260d66fc0690e0502cf3bfe7b5244b75}{XFREE}}(omac);}
+\DoxyCodeLine{63       \}}
+\DoxyCodeLine{64       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca0ce0d27adc7ea10b74b7ea904b8bfa82}{CRYPT\_MEM}};}
+\DoxyCodeLine{65    \}}
+\DoxyCodeLine{66 }
+\DoxyCodeLine{67    \textcolor{comment}{/* N = LTC\_OMAC\_0K(nonce) */}}
+\DoxyCodeLine{68    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(buf, \mbox{\hyperlink{tomcrypt_8h_ab59933beebb2b857c992b93cf53f0d10}{MAXBLOCKSIZE}});}
+\DoxyCodeLine{69    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{omac__init_8c_a54f34070eb08f0037eb0efab37207794}{omac\_init}}(omac, cipher, key, keylen)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{70       \textcolor{keywordflow}{goto} LBL\_ERR;}
+\DoxyCodeLine{71    \}}
+\DoxyCodeLine{72 }
+\DoxyCodeLine{73    \textcolor{comment}{/* omac the [0]\_n */}}
+\DoxyCodeLine{74    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{omac__process_8c_a7d42bf0deb0f7dbdd1637c3f7c21f93e}{omac\_process}}(omac, buf, blklen)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{75       \textcolor{keywordflow}{goto} LBL\_ERR;}
+\DoxyCodeLine{76    \}}
+\DoxyCodeLine{77    \textcolor{comment}{/* omac the nonce */}}
+\DoxyCodeLine{78    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{omac__process_8c_a7d42bf0deb0f7dbdd1637c3f7c21f93e}{omac\_process}}(omac, nonce, noncelen)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{79       \textcolor{keywordflow}{goto} LBL\_ERR;}
+\DoxyCodeLine{80    \}}
+\DoxyCodeLine{81    \textcolor{comment}{/* store result */}}
+\DoxyCodeLine{82    \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}} = \textcolor{keyword}{sizeof}(eax->N);}
+\DoxyCodeLine{83    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{omac__done_8c_a5dbac1c7d2abe27fa4a3523f65289525}{omac\_done}}(omac, eax->N, \&\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}})) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{84       \textcolor{keywordflow}{goto} LBL\_ERR;}
+\DoxyCodeLine{85    \}}
+\DoxyCodeLine{86 }
+\DoxyCodeLine{87    \textcolor{comment}{/* H = LTC\_OMAC\_1K(header) */}}
+\DoxyCodeLine{88    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(buf, \mbox{\hyperlink{tomcrypt_8h_ab59933beebb2b857c992b93cf53f0d10}{MAXBLOCKSIZE}});}
+\DoxyCodeLine{89    buf[blklen - 1] = 1;}
+\DoxyCodeLine{90 }
+\DoxyCodeLine{91    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{omac__init_8c_a54f34070eb08f0037eb0efab37207794}{omac\_init}}(\&eax->headeromac, cipher, key, keylen)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{92       \textcolor{keywordflow}{goto} LBL\_ERR;}
+\DoxyCodeLine{93    \}}
+\DoxyCodeLine{94 }
+\DoxyCodeLine{95    \textcolor{comment}{/* omac the [1]\_n */}}
+\DoxyCodeLine{96    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{omac__process_8c_a7d42bf0deb0f7dbdd1637c3f7c21f93e}{omac\_process}}(\&eax->headeromac, buf, blklen)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{97       \textcolor{keywordflow}{goto} LBL\_ERR;}
+\DoxyCodeLine{98    \}}
+\DoxyCodeLine{99    \textcolor{comment}{/* omac the header */}}
+\DoxyCodeLine{100    \textcolor{keywordflow}{if} (headerlen != 0) \{}
+\DoxyCodeLine{101       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{omac__process_8c_a7d42bf0deb0f7dbdd1637c3f7c21f93e}{omac\_process}}(\&eax->headeromac, header, headerlen)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{102           \textcolor{keywordflow}{goto} LBL\_ERR;}
+\DoxyCodeLine{103       \}}
+\DoxyCodeLine{104    \}}
+\DoxyCodeLine{105 }
+\DoxyCodeLine{106    \textcolor{comment}{/* note we don't finish the headeromac, this allows us to add more header later */}}
+\DoxyCodeLine{107 }
+\DoxyCodeLine{108    \textcolor{comment}{/* setup the CTR mode */}}
+\DoxyCodeLine{109    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{ctr__start_8c_a8663bae8fb1af7659b5d8e9190fc189f}{ctr\_start}}(cipher, eax->N, key, keylen, 0, CTR\_COUNTER\_BIG\_ENDIAN, \&eax->ctr)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{110       \textcolor{keywordflow}{goto} LBL\_ERR;}
+\DoxyCodeLine{111    \}}
+\DoxyCodeLine{112 }
+\DoxyCodeLine{113    \textcolor{comment}{/* setup the LTC\_OMAC for the ciphertext */}}
+\DoxyCodeLine{114    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{omac__init_8c_a54f34070eb08f0037eb0efab37207794}{omac\_init}}(\&eax->ctomac, cipher, key, keylen)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{115       \textcolor{keywordflow}{goto} LBL\_ERR;}
+\DoxyCodeLine{116    \}}
+\DoxyCodeLine{117 }
+\DoxyCodeLine{118    \textcolor{comment}{/* omac [2]\_n */}}
+\DoxyCodeLine{119    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(buf, \mbox{\hyperlink{tomcrypt_8h_ab59933beebb2b857c992b93cf53f0d10}{MAXBLOCKSIZE}});}
+\DoxyCodeLine{120    buf[blklen-1] = 2;}
+\DoxyCodeLine{121    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{omac__process_8c_a7d42bf0deb0f7dbdd1637c3f7c21f93e}{omac\_process}}(\&eax->ctomac, buf, blklen)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{122       \textcolor{keywordflow}{goto} LBL\_ERR;}
+\DoxyCodeLine{123    \}}
+\DoxyCodeLine{124 }
+\DoxyCodeLine{125    err = \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{126 LBL\_ERR:}
+\DoxyCodeLine{127 \textcolor{preprocessor}{\#ifdef LTC\_CLEAN\_STACK}}
+\DoxyCodeLine{128    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(buf,  \mbox{\hyperlink{tomcrypt_8h_ab59933beebb2b857c992b93cf53f0d10}{MAXBLOCKSIZE}});}
+\DoxyCodeLine{129    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(omac, \textcolor{keyword}{sizeof}(*omac));}
+\DoxyCodeLine{130 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{131 }
+\DoxyCodeLine{132    \mbox{\hyperlink{tomcrypt__cfg_8h_a260d66fc0690e0502cf3bfe7b5244b75}{XFREE}}(omac);}
+\DoxyCodeLine{133    \mbox{\hyperlink{tomcrypt__cfg_8h_a260d66fc0690e0502cf3bfe7b5244b75}{XFREE}}(buf);}
+\DoxyCodeLine{134 }
+\DoxyCodeLine{135    \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{136 \}}
+
+\end{DoxyCode}
+
+
+References ltc\+\_\+cipher\+\_\+descriptor\+::block\+\_\+length, cipher\+\_\+descriptor, cipher\+\_\+is\+\_\+valid(), C\+R\+Y\+P\+T\+\_\+\+M\+EM, C\+R\+Y\+P\+T\+\_\+\+OK, ctr\+\_\+start(), len, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, M\+A\+X\+B\+L\+O\+C\+K\+S\+I\+ZE, omac\+\_\+done(), omac\+\_\+init(), omac\+\_\+process(), X\+F\+R\+E\+E(), X\+M\+A\+L\+L\+O\+C(), and zeromem().
+
+
+
+Referenced by eax\+\_\+decrypt\+\_\+verify\+\_\+memory(), and eax\+\_\+encrypt\+\_\+authenticate\+\_\+memory().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2

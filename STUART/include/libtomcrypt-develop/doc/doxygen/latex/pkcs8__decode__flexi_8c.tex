@@ -1,0 +1,135 @@
+\hypertarget{pkcs8__decode__flexi_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/pk/asn1/pkcs8/pkcs8\+\_\+decode\+\_\+flexi.c File Reference}
+\label{pkcs8__decode__flexi_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/asn1/pkcs8/pkcs8\_decode\_flexi.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/asn1/pkcs8/pkcs8\_decode\_flexi.c}}
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for pkcs8\+\_\+decode\+\_\+flexi.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{pkcs8__decode__flexi_8c_a1b0d8fcf234d94638b2554ccea725003}{pkcs8\+\_\+decode\+\_\+flexi}} (const unsigned char $\ast$in, unsigned long inlen, const void $\ast$pwd, unsigned long pwdlen, ltc\+\_\+asn1\+\_\+list $\ast$$\ast$decoded\+\_\+list)
+\begin{DoxyCompactList}\small\item\em P\+K\+CS\#8 decrypt if necessary \& flexi-\/decode. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{pkcs8__decode__flexi_8c_a1b0d8fcf234d94638b2554ccea725003}\label{pkcs8__decode__flexi_8c_a1b0d8fcf234d94638b2554ccea725003}} 
+\index{pkcs8\_decode\_flexi.c@{pkcs8\_decode\_flexi.c}!pkcs8\_decode\_flexi@{pkcs8\_decode\_flexi}}
+\index{pkcs8\_decode\_flexi@{pkcs8\_decode\_flexi}!pkcs8\_decode\_flexi.c@{pkcs8\_decode\_flexi.c}}
+\subsubsection{\texorpdfstring{pkcs8\_decode\_flexi()}{pkcs8\_decode\_flexi()}}
+{\footnotesize\ttfamily int pkcs8\+\_\+decode\+\_\+flexi (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{in,  }\item[{unsigned long}]{inlen,  }\item[{const void $\ast$}]{pwd,  }\item[{unsigned long}]{pwdlen,  }\item[{ltc\+\_\+asn1\+\_\+list $\ast$$\ast$}]{decoded\+\_\+list }\end{DoxyParamCaption})}
+
+
+
+P\+K\+CS\#8 decrypt if necessary \& flexi-\/decode. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em in} & Pointer to the A\+S\+N.\+1 encoded input data \\
+\hline
+{\em inlen} & Length of the input data \\
+\hline
+{\em pwd} & Pointer to the password that was used when encrypting \\
+\hline
+{\em pwdlen} & Length of the password \\
+\hline
+{\em decoded\+\_\+list} & Pointer to a pointer for the flexi-\/decoded list \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK on success 
+\end{DoxyReturn}
+
+
+Definition at line 23 of file pkcs8\+\_\+decode\+\_\+flexi.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{26 \{}
+\DoxyCodeLine{27    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}} = inlen;}
+\DoxyCodeLine{28    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} dec\_size;}
+\DoxyCodeLine{29    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *dec\_data = NULL;}
+\DoxyCodeLine{30    ltc\_asn1\_list *l = NULL;}
+\DoxyCodeLine{31    \textcolor{keywordtype}{int} err;}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(in           != NULL);}
+\DoxyCodeLine{34    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(decoded\_list != NULL);}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36    *decoded\_list = NULL;}
+\DoxyCodeLine{37    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{der__decode__sequence__flexi_8c_acec68888a6eae3b64f54b37cfb43d9b1}{der\_decode\_sequence\_flexi}}(in, \&\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}, \&l)) == \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{38       \textcolor{comment}{/* the following "if" detects whether it is encrypted or not */}}
+\DoxyCodeLine{39       \textcolor{comment}{/* PKCS8 Setup}}
+\DoxyCodeLine{40 \textcolor{comment}{       *  0:d=0  hl=4 l= 380 cons: SEQUENCE}}
+\DoxyCodeLine{41 \textcolor{comment}{       *  4:d=1  hl=2 l=  78 cons:   SEQUENCE}}
+\DoxyCodeLine{42 \textcolor{comment}{       *  6:d=2  hl=2 l=   9 prim:     OBJECT             :OID indicating PBES1 or PBES2 (== *lalgoid)}}
+\DoxyCodeLine{43 \textcolor{comment}{       * 17:d=2  hl=2 l=  65 cons:     SEQUENCE}}
+\DoxyCodeLine{44 \textcolor{comment}{       *     Stuff in between is dependent on whether it's PBES1 or PBES2}}
+\DoxyCodeLine{45 \textcolor{comment}{       * 84:d=1  hl=4 l= 296 prim:   OCTET STRING         :bytes (== encrypted data)}}
+\DoxyCodeLine{46 \textcolor{comment}{       */}}
+\DoxyCodeLine{47       \textcolor{keywordflow}{if} (l->type == LTC\_ASN1\_SEQUENCE \&\&}
+\DoxyCodeLine{48           \mbox{\hyperlink{tomcrypt__private_8h_a896c8b07a35ff2799061855f08a8325a}{LTC\_ASN1\_IS\_TYPE}}(l->child, LTC\_ASN1\_SEQUENCE) \&\&}
+\DoxyCodeLine{49           \mbox{\hyperlink{tomcrypt__private_8h_a896c8b07a35ff2799061855f08a8325a}{LTC\_ASN1\_IS\_TYPE}}(l->child->child, LTC\_ASN1\_OBJECT\_IDENTIFIER) \&\&}
+\DoxyCodeLine{50           \mbox{\hyperlink{tomcrypt__private_8h_a896c8b07a35ff2799061855f08a8325a}{LTC\_ASN1\_IS\_TYPE}}(l->child->child->next, LTC\_ASN1\_SEQUENCE) \&\&}
+\DoxyCodeLine{51           \mbox{\hyperlink{tomcrypt__private_8h_a896c8b07a35ff2799061855f08a8325a}{LTC\_ASN1\_IS\_TYPE}}(l->child->next, LTC\_ASN1\_OCTET\_STRING)) \{}
+\DoxyCodeLine{52          ltc\_asn1\_list *lalgoid = l->child->child;}
+\DoxyCodeLine{53          \mbox{\hyperlink{structpbes__arg}{pbes\_arg}} pbes;}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55          \mbox{\hyperlink{tomcrypt__cfg_8h_aa3c34a6f6c61de7da9258b5a30e32c2f}{XMEMSET}}(\&pbes, 0, \textcolor{keyword}{sizeof}(pbes));}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{57          \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__private_8h_a3573423ba7eb454bb5f969ee9b580024}{pbes1\_extract}}(lalgoid, \&pbes) == \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{58             \textcolor{comment}{/* Successfully extracted PBES1 parameters */}}
+\DoxyCodeLine{59          \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__private_8h_a741f04fef81b90c03eeba79d1d680273}{pbes2\_extract}}(lalgoid, \&pbes) == \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{60             \textcolor{comment}{/* Successfully extracted PBES2 parameters */}}
+\DoxyCodeLine{61          \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{62             \textcolor{comment}{/* unsupported encryption */}}
+\DoxyCodeLine{63             err = \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca980088f10ffe9009aec286038a9e79da}{CRYPT\_INVALID\_PACKET}};}
+\DoxyCodeLine{64             \textcolor{keywordflow}{goto} LBL\_DONE;}
+\DoxyCodeLine{65          \}}
+\DoxyCodeLine{66 }
+\DoxyCodeLine{67          pbes.\mbox{\hyperlink{structpbes__arg_a8e69f095d7a7e8f5fad6fa49ea2d0d00}{enc\_data}} = l->child->next;}
+\DoxyCodeLine{68          pbes.\mbox{\hyperlink{structpbes__arg_a146b6c8875be0a3ac9f426327e83186a}{pwd}} = pwd;}
+\DoxyCodeLine{69          pbes.\mbox{\hyperlink{structpbes__arg_a6f7f1324f1acfd51dcc7c1e334db7e0a}{pwdlen}} = pwdlen;}
+\DoxyCodeLine{70 }
+\DoxyCodeLine{71          dec\_size = pbes.\mbox{\hyperlink{structpbes__arg_a8e69f095d7a7e8f5fad6fa49ea2d0d00}{enc\_data}}->size;}
+\DoxyCodeLine{72          \textcolor{keywordflow}{if} ((dec\_data = \mbox{\hyperlink{tomcrypt__cfg_8h_af363355f38fbaacdefacf270436ae1c9}{XMALLOC}}(dec\_size)) == NULL) \{}
+\DoxyCodeLine{73             err = \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca0ce0d27adc7ea10b74b7ea904b8bfa82}{CRYPT\_MEM}};}
+\DoxyCodeLine{74             \textcolor{keywordflow}{goto} LBL\_DONE;}
+\DoxyCodeLine{75          \}}
+\DoxyCodeLine{76 }
+\DoxyCodeLine{77          \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a7df0f8ba7d5d6b9752a7bb9c5e3f7081}{pbes\_decrypt}}(\&pbes, dec\_data, \&dec\_size)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \textcolor{keywordflow}{goto} LBL\_DONE;}
+\DoxyCodeLine{78 }
+\DoxyCodeLine{79          der\_free\_sequence\_flexi(l);}
+\DoxyCodeLine{80          l = NULL;}
+\DoxyCodeLine{81          err = \mbox{\hyperlink{der__decode__sequence__flexi_8c_acec68888a6eae3b64f54b37cfb43d9b1}{der\_decode\_sequence\_flexi}}(dec\_data, \&dec\_size, \&l);}
+\DoxyCodeLine{82          \textcolor{keywordflow}{if} (err != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \textcolor{keywordflow}{goto} LBL\_DONE;}
+\DoxyCodeLine{83          *decoded\_list = l;}
+\DoxyCodeLine{84       \}}
+\DoxyCodeLine{85       \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{86          \textcolor{comment}{/* not encrypted */}}
+\DoxyCodeLine{87          err = \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{88          *decoded\_list = l;}
+\DoxyCodeLine{89       \}}
+\DoxyCodeLine{90       \textcolor{comment}{/* Set l to NULL so it won't be free'd */}}
+\DoxyCodeLine{91       l = NULL;}
+\DoxyCodeLine{92    \}}
+\DoxyCodeLine{93 }
+\DoxyCodeLine{94 LBL\_DONE:}
+\DoxyCodeLine{95    \textcolor{keywordflow}{if} (l) der\_free\_sequence\_flexi(l);}
+\DoxyCodeLine{96    \textcolor{keywordflow}{if} (dec\_data) \{}
+\DoxyCodeLine{97       \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(dec\_data, dec\_size);}
+\DoxyCodeLine{98       \mbox{\hyperlink{tomcrypt__cfg_8h_a260d66fc0690e0502cf3bfe7b5244b75}{XFREE}}(dec\_data);}
+\DoxyCodeLine{99    \}}
+\DoxyCodeLine{100    \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{101 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+P\+A\+C\+K\+ET, C\+R\+Y\+P\+T\+\_\+\+M\+EM, C\+R\+Y\+P\+T\+\_\+\+OK, der\+\_\+decode\+\_\+sequence\+\_\+flexi(), pbes\+\_\+arg\+::enc\+\_\+data, len, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, L\+T\+C\+\_\+\+A\+S\+N1\+\_\+\+I\+S\+\_\+\+T\+Y\+PE, pbes1\+\_\+extract(), pbes2\+\_\+extract(), pbes\+\_\+decrypt(), pbes\+\_\+arg\+::pwd, pbes\+\_\+arg\+::pwdlen, X\+F\+R\+E\+E(), X\+M\+A\+L\+L\+O\+C(), X\+M\+E\+M\+S\+E\+T(), and zeromem().
+
+
+
+Referenced by ecc\+\_\+import\+\_\+pkcs8(), and rsa\+\_\+import\+\_\+pkcs8().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2

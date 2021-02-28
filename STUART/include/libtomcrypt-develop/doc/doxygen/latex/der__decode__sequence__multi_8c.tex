@@ -1,0 +1,297 @@
+\hypertarget{der__decode__sequence__multi_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/pk/asn1/der/sequence/der\+\_\+decode\+\_\+sequence\+\_\+multi.c File Reference}
+\label{der__decode__sequence__multi_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/asn1/der/sequence/der\_decode\_sequence\_multi.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/asn1/der/sequence/der\_decode\_sequence\_multi.c}}
+
+
+A\+S\+N.\+1 D\+ER, decode a S\+E\+Q\+U\+E\+N\+CE, Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdarg.\+h$>$}\newline
+Include dependency graph for der\+\_\+decode\+\_\+sequence\+\_\+multi.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{der__decode__sequence__multi_8c_a1c505b541a0ed6ddcdccc8ddcef9ed9e}{\+\_\+der\+\_\+decode\+\_\+sequence\+\_\+va}} (const unsigned char $\ast$in, unsigned long inlen, va\+\_\+list a1, va\+\_\+list a2, unsigned int flags)
+\begin{DoxyCompactList}\small\item\em Decode a S\+E\+Q\+U\+E\+N\+CE type using a VA list. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{der__decode__sequence__multi_8c_a6d86b670c8f3801b0fe6e2cd544df678}{der\+\_\+decode\+\_\+sequence\+\_\+multi}} (const unsigned char $\ast$in, unsigned long inlen,...)
+\begin{DoxyCompactList}\small\item\em Decode a S\+E\+Q\+U\+E\+N\+CE type using a VA list. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{der__decode__sequence__multi_8c_ab5141cf36663054d9ec6e46ed6909fce}{der\+\_\+decode\+\_\+sequence\+\_\+multi\+\_\+ex}} (const unsigned char $\ast$in, unsigned long inlen, unsigned int flags,...)
+\begin{DoxyCompactList}\small\item\em Decode a S\+E\+Q\+U\+E\+N\+CE type using a VA list. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A\+S\+N.\+1 D\+ER, decode a S\+E\+Q\+U\+E\+N\+CE, Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{der__decode__sequence__multi_8c_a1c505b541a0ed6ddcdccc8ddcef9ed9e}\label{der__decode__sequence__multi_8c_a1c505b541a0ed6ddcdccc8ddcef9ed9e}} 
+\index{der\_decode\_sequence\_multi.c@{der\_decode\_sequence\_multi.c}!\_der\_decode\_sequence\_va@{\_der\_decode\_sequence\_va}}
+\index{\_der\_decode\_sequence\_va@{\_der\_decode\_sequence\_va}!der\_decode\_sequence\_multi.c@{der\_decode\_sequence\_multi.c}}
+\subsubsection{\texorpdfstring{\_der\_decode\_sequence\_va()}{\_der\_decode\_sequence\_va()}}
+{\footnotesize\ttfamily static int \+\_\+der\+\_\+decode\+\_\+sequence\+\_\+va (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{in,  }\item[{unsigned long}]{inlen,  }\item[{va\+\_\+list}]{a1,  }\item[{va\+\_\+list}]{a2,  }\item[{unsigned int}]{flags }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Decode a S\+E\+Q\+U\+E\+N\+CE type using a VA list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em in} & Input buffer \\
+\hline
+{\em inlen} & Length of input in octets \\
+\hline
+{\em a1} & Initialized argument list \#1 \\
+\hline
+{\em a2} & Initialized argument list \#2 (copy of \#1) \\
+\hline
+{\em flags} & c.\+f. enum ltc\+\_\+der\+\_\+seq \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK on success 
+\end{DoxyReturn}
+
+
+Definition at line 29 of file der\+\_\+decode\+\_\+sequence\+\_\+multi.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{30 \{}
+\DoxyCodeLine{31    \textcolor{keywordtype}{int}           err;}
+\DoxyCodeLine{32    ltc\_asn1\_type type;}
+\DoxyCodeLine{33    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} size, x;}
+\DoxyCodeLine{34    \textcolor{keywordtype}{void}          *data;}
+\DoxyCodeLine{35    ltc\_asn1\_list *list;}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(in    != NULL);}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39    \textcolor{comment}{/* get size of output that will be required */}}
+\DoxyCodeLine{40    x = 0;}
+\DoxyCodeLine{41    \textcolor{keywordflow}{for} (;;) \{}
+\DoxyCodeLine{42        type = (ltc\_asn1\_type)va\_arg(a1, \textcolor{keywordtype}{int});}
+\DoxyCodeLine{43        size = va\_arg(a1, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long});}
+\DoxyCodeLine{44        data = va\_arg(a1, \textcolor{keywordtype}{void}*);}
+\DoxyCodeLine{45        \mbox{\hyperlink{tomcrypt__macros_8h_accde4b007facd646a8327f8e64b2d1e0}{LTC\_UNUSED\_PARAM}}(size);}
+\DoxyCodeLine{46        \mbox{\hyperlink{tomcrypt__macros_8h_accde4b007facd646a8327f8e64b2d1e0}{LTC\_UNUSED\_PARAM}}(data);}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48        \textcolor{keywordflow}{if} (type == LTC\_ASN1\_EOL) \{}
+\DoxyCodeLine{49           \textcolor{keywordflow}{break};}
+\DoxyCodeLine{50        \}}
+\DoxyCodeLine{51 }
+\DoxyCodeLine{52        \textcolor{keywordflow}{switch} (type) \{}
+\DoxyCodeLine{53            \textcolor{keywordflow}{case} LTC\_ASN1\_BOOLEAN:}
+\DoxyCodeLine{54            \textcolor{keywordflow}{case} LTC\_ASN1\_INTEGER:}
+\DoxyCodeLine{55            \textcolor{keywordflow}{case} LTC\_ASN1\_SHORT\_INTEGER:}
+\DoxyCodeLine{56            \textcolor{keywordflow}{case} LTC\_ASN1\_BIT\_STRING:}
+\DoxyCodeLine{57            \textcolor{keywordflow}{case} LTC\_ASN1\_OCTET\_STRING:}
+\DoxyCodeLine{58            \textcolor{keywordflow}{case} LTC\_ASN1\_NULL:}
+\DoxyCodeLine{59            \textcolor{keywordflow}{case} LTC\_ASN1\_OBJECT\_IDENTIFIER:}
+\DoxyCodeLine{60            \textcolor{keywordflow}{case} LTC\_ASN1\_IA5\_STRING:}
+\DoxyCodeLine{61            \textcolor{keywordflow}{case} LTC\_ASN1\_PRINTABLE\_STRING:}
+\DoxyCodeLine{62            \textcolor{keywordflow}{case} LTC\_ASN1\_UTF8\_STRING:}
+\DoxyCodeLine{63            \textcolor{keywordflow}{case} LTC\_ASN1\_UTCTIME:}
+\DoxyCodeLine{64            \textcolor{keywordflow}{case} LTC\_ASN1\_SET:}
+\DoxyCodeLine{65            \textcolor{keywordflow}{case} LTC\_ASN1\_SETOF:}
+\DoxyCodeLine{66            \textcolor{keywordflow}{case} LTC\_ASN1\_SEQUENCE:}
+\DoxyCodeLine{67            \textcolor{keywordflow}{case} LTC\_ASN1\_CHOICE:}
+\DoxyCodeLine{68            \textcolor{keywordflow}{case} LTC\_ASN1\_RAW\_BIT\_STRING:}
+\DoxyCodeLine{69            \textcolor{keywordflow}{case} LTC\_ASN1\_TELETEX\_STRING:}
+\DoxyCodeLine{70            \textcolor{keywordflow}{case} LTC\_ASN1\_GENERALIZEDTIME:}
+\DoxyCodeLine{71                 ++x;}
+\DoxyCodeLine{72                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{73 }
+\DoxyCodeLine{74            \textcolor{keywordflow}{case} LTC\_ASN1\_EOL:}
+\DoxyCodeLine{75            \textcolor{keywordflow}{case} LTC\_ASN1\_CUSTOM\_TYPE:}
+\DoxyCodeLine{76                \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{77        \}}
+\DoxyCodeLine{78    \}}
+\DoxyCodeLine{79 }
+\DoxyCodeLine{80    \textcolor{comment}{/* allocate structure for x elements */}}
+\DoxyCodeLine{81    \textcolor{keywordflow}{if} (x == 0) \{}
+\DoxyCodeLine{82       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cac43a7799c7fd5f515172da6cfc0f9cf5}{CRYPT\_NOP}};}
+\DoxyCodeLine{83    \}}
+\DoxyCodeLine{84 }
+\DoxyCodeLine{85    list = \mbox{\hyperlink{tomcrypt__cfg_8h_a151dda14cd7acae31eaf1102b0cc0685}{XCALLOC}}(\textcolor{keyword}{sizeof}(*list), x);}
+\DoxyCodeLine{86    \textcolor{keywordflow}{if} (list == NULL) \{}
+\DoxyCodeLine{87       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca0ce0d27adc7ea10b74b7ea904b8bfa82}{CRYPT\_MEM}};}
+\DoxyCodeLine{88    \}}
+\DoxyCodeLine{89 }
+\DoxyCodeLine{90    \textcolor{comment}{/* fill in the structure */}}
+\DoxyCodeLine{91    x = 0;}
+\DoxyCodeLine{92    \textcolor{keywordflow}{for} (;;) \{}
+\DoxyCodeLine{93        type = (ltc\_asn1\_type)va\_arg(a2, \textcolor{keywordtype}{int});}
+\DoxyCodeLine{94        size = va\_arg(a2, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long});}
+\DoxyCodeLine{95        data = va\_arg(a2, \textcolor{keywordtype}{void}*);}
+\DoxyCodeLine{96 }
+\DoxyCodeLine{97        \textcolor{keywordflow}{if} (type == LTC\_ASN1\_EOL) \{}
+\DoxyCodeLine{98           \textcolor{keywordflow}{break};}
+\DoxyCodeLine{99        \}}
+\DoxyCodeLine{100 }
+\DoxyCodeLine{101        \textcolor{keywordflow}{switch} (type) \{}
+\DoxyCodeLine{102            \textcolor{keywordflow}{case} LTC\_ASN1\_BOOLEAN:}
+\DoxyCodeLine{103            \textcolor{keywordflow}{case} LTC\_ASN1\_INTEGER:}
+\DoxyCodeLine{104            \textcolor{keywordflow}{case} LTC\_ASN1\_SHORT\_INTEGER:}
+\DoxyCodeLine{105            \textcolor{keywordflow}{case} LTC\_ASN1\_BIT\_STRING:}
+\DoxyCodeLine{106            \textcolor{keywordflow}{case} LTC\_ASN1\_OCTET\_STRING:}
+\DoxyCodeLine{107            \textcolor{keywordflow}{case} LTC\_ASN1\_NULL:}
+\DoxyCodeLine{108            \textcolor{keywordflow}{case} LTC\_ASN1\_OBJECT\_IDENTIFIER:}
+\DoxyCodeLine{109            \textcolor{keywordflow}{case} LTC\_ASN1\_IA5\_STRING:}
+\DoxyCodeLine{110            \textcolor{keywordflow}{case} LTC\_ASN1\_PRINTABLE\_STRING:}
+\DoxyCodeLine{111            \textcolor{keywordflow}{case} LTC\_ASN1\_UTF8\_STRING:}
+\DoxyCodeLine{112            \textcolor{keywordflow}{case} LTC\_ASN1\_UTCTIME:}
+\DoxyCodeLine{113            \textcolor{keywordflow}{case} LTC\_ASN1\_SEQUENCE:}
+\DoxyCodeLine{114            \textcolor{keywordflow}{case} LTC\_ASN1\_SET:}
+\DoxyCodeLine{115            \textcolor{keywordflow}{case} LTC\_ASN1\_SETOF:}
+\DoxyCodeLine{116            \textcolor{keywordflow}{case} LTC\_ASN1\_CHOICE:}
+\DoxyCodeLine{117            \textcolor{keywordflow}{case} LTC\_ASN1\_RAW\_BIT\_STRING:}
+\DoxyCodeLine{118            \textcolor{keywordflow}{case} LTC\_ASN1\_TELETEX\_STRING:}
+\DoxyCodeLine{119            \textcolor{keywordflow}{case} LTC\_ASN1\_GENERALIZEDTIME:}
+\DoxyCodeLine{120                 LTC\_SET\_ASN1(list, x++, type, data, size);}
+\DoxyCodeLine{121                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{122            \textcolor{comment}{/* coverity[dead\_error\_line] */}}
+\DoxyCodeLine{123            \textcolor{keywordflow}{case} LTC\_ASN1\_EOL:}
+\DoxyCodeLine{124            \textcolor{keywordflow}{case} LTC\_ASN1\_CUSTOM\_TYPE:}
+\DoxyCodeLine{125                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{126        \}}
+\DoxyCodeLine{127    \}}
+\DoxyCodeLine{128 }
+\DoxyCodeLine{129    err = \mbox{\hyperlink{der__decode__sequence__ex_8c_a388cbc3f5c404637bc51f9dfb2d4f677}{der\_decode\_sequence\_ex}}(in, inlen, list, x, flags);}
+\DoxyCodeLine{130    \mbox{\hyperlink{tomcrypt__cfg_8h_a260d66fc0690e0502cf3bfe7b5244b75}{XFREE}}(list);}
+\DoxyCodeLine{131    \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{132 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+A\+RG, C\+R\+Y\+P\+T\+\_\+\+M\+EM, C\+R\+Y\+P\+T\+\_\+\+N\+OP, der\+\_\+decode\+\_\+sequence\+\_\+ex(), L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, L\+T\+C\+\_\+\+U\+N\+U\+S\+E\+D\+\_\+\+P\+A\+R\+AM, X\+C\+A\+L\+L\+O\+C(), and X\+F\+R\+E\+E().
+
+
+
+Referenced by der\+\_\+decode\+\_\+sequence\+\_\+multi(), and der\+\_\+decode\+\_\+sequence\+\_\+multi\+\_\+ex().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2
+\mbox{\Hypertarget{der__decode__sequence__multi_8c_a6d86b670c8f3801b0fe6e2cd544df678}\label{der__decode__sequence__multi_8c_a6d86b670c8f3801b0fe6e2cd544df678}} 
+\index{der\_decode\_sequence\_multi.c@{der\_decode\_sequence\_multi.c}!der\_decode\_sequence\_multi@{der\_decode\_sequence\_multi}}
+\index{der\_decode\_sequence\_multi@{der\_decode\_sequence\_multi}!der\_decode\_sequence\_multi.c@{der\_decode\_sequence\_multi.c}}
+\subsubsection{\texorpdfstring{der\_decode\_sequence\_multi()}{der\_decode\_sequence\_multi()}}
+{\footnotesize\ttfamily int der\+\_\+decode\+\_\+sequence\+\_\+multi (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{in,  }\item[{unsigned long}]{inlen,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+
+
+Decode a S\+E\+Q\+U\+E\+N\+CE type using a VA list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em in} & Input buffer \\
+\hline
+{\em inlen} & Length of input in octets \\
+\hline
+\end{DoxyParams}
+\begin{DoxyRemark}{Remarks}
+$<$...$>$ is of the form $<$type, size, data$>$ (int, unsigned long, void$\ast$) 
+\end{DoxyRemark}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK on success 
+\end{DoxyReturn}
+
+
+Definition at line 141 of file der\+\_\+decode\+\_\+sequence\+\_\+multi.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{142 \{}
+\DoxyCodeLine{143    va\_list       a1, a2;}
+\DoxyCodeLine{144    \textcolor{keywordtype}{int} err;}
+\DoxyCodeLine{145 }
+\DoxyCodeLine{146    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(in    != NULL);}
+\DoxyCodeLine{147 }
+\DoxyCodeLine{148    va\_start(a1, inlen);}
+\DoxyCodeLine{149    va\_start(a2, inlen);}
+\DoxyCodeLine{150 }
+\DoxyCodeLine{151    err = \mbox{\hyperlink{der__decode__sequence__multi_8c_a1c505b541a0ed6ddcdccc8ddcef9ed9e}{\_der\_decode\_sequence\_va}}(in, inlen, a1, a2, LTC\_DER\_SEQ\_SEQUENCE | LTC\_DER\_SEQ\_RELAXED);}
+\DoxyCodeLine{152 }
+\DoxyCodeLine{153    va\_end(a2);}
+\DoxyCodeLine{154    va\_end(a1);}
+\DoxyCodeLine{155 }
+\DoxyCodeLine{156    \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{157 \}}
+
+\end{DoxyCode}
+
+
+References \+\_\+der\+\_\+decode\+\_\+sequence\+\_\+va(), and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+
+
+Referenced by dh\+\_\+import(), dh\+\_\+set\+\_\+pg\+\_\+dhparam(), dsa\+\_\+import(), dsa\+\_\+set\+\_\+pqg\+\_\+dsaparam(), ecc\+\_\+import\+\_\+ex(), rsa\+\_\+import(), rsa\+\_\+import\+\_\+pkcs8(), and rsa\+\_\+import\+\_\+x509().
+
+Here is the call graph for this function\+:
+% FIG 3
+Here is the caller graph for this function\+:
+% FIG 4
+\mbox{\Hypertarget{der__decode__sequence__multi_8c_ab5141cf36663054d9ec6e46ed6909fce}\label{der__decode__sequence__multi_8c_ab5141cf36663054d9ec6e46ed6909fce}} 
+\index{der\_decode\_sequence\_multi.c@{der\_decode\_sequence\_multi.c}!der\_decode\_sequence\_multi\_ex@{der\_decode\_sequence\_multi\_ex}}
+\index{der\_decode\_sequence\_multi\_ex@{der\_decode\_sequence\_multi\_ex}!der\_decode\_sequence\_multi.c@{der\_decode\_sequence\_multi.c}}
+\subsubsection{\texorpdfstring{der\_decode\_sequence\_multi\_ex()}{der\_decode\_sequence\_multi\_ex()}}
+{\footnotesize\ttfamily int der\+\_\+decode\+\_\+sequence\+\_\+multi\+\_\+ex (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{in,  }\item[{unsigned long}]{inlen,  }\item[{unsigned int}]{flags,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+
+
+Decode a S\+E\+Q\+U\+E\+N\+CE type using a VA list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em in} & Input buffer \\
+\hline
+{\em inlen} & Length of input in octets \\
+\hline
+{\em flags} & c.\+f. enum ltc\+\_\+der\+\_\+seq \\
+\hline
+\end{DoxyParams}
+\begin{DoxyRemark}{Remarks}
+$<$...$>$ is of the form $<$type, size, data$>$ (int, unsigned long, void$\ast$) 
+\end{DoxyRemark}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK on success 
+\end{DoxyReturn}
+
+
+Definition at line 167 of file der\+\_\+decode\+\_\+sequence\+\_\+multi.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{168 \{}
+\DoxyCodeLine{169    va\_list       a1, a2;}
+\DoxyCodeLine{170    \textcolor{keywordtype}{int} err;}
+\DoxyCodeLine{171 }
+\DoxyCodeLine{172    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(in    != NULL);}
+\DoxyCodeLine{173 }
+\DoxyCodeLine{174    va\_start(a1, flags);}
+\DoxyCodeLine{175    va\_start(a2, flags);}
+\DoxyCodeLine{176 }
+\DoxyCodeLine{177    err = \mbox{\hyperlink{der__decode__sequence__multi_8c_a1c505b541a0ed6ddcdccc8ddcef9ed9e}{\_der\_decode\_sequence\_va}}(in, inlen, a1, a2, flags);}
+\DoxyCodeLine{178 }
+\DoxyCodeLine{179    va\_end(a2);}
+\DoxyCodeLine{180    va\_end(a1);}
+\DoxyCodeLine{181 }
+\DoxyCodeLine{182    \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{183 \}}
+
+\end{DoxyCode}
+
+
+References \+\_\+der\+\_\+decode\+\_\+sequence\+\_\+va(), and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+
+
+Referenced by ecc\+\_\+recover\+\_\+key(), and ecc\+\_\+verify\+\_\+hash\+\_\+ex().
+
+Here is the call graph for this function\+:
+% FIG 5
+Here is the caller graph for this function\+:
+% FIG 6

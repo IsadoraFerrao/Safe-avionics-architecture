@@ -1,0 +1,345 @@
+\hypertarget{pbes2_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/misc/pbes/pbes2.c File Reference}
+\label{pbes2_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/misc/pbes/pbes2.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/misc/pbes/pbes2.c}}
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for pbes2.\+c\+:
+% FIG 0
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structoid__id__st}{oid\+\_\+id\+\_\+st}}
+\item 
+struct \mbox{\hyperlink{structoid__to__pbes}{oid\+\_\+to\+\_\+pbes}}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{pbes2_8c_a6d172113e8d3bf8ef62690a35a2bbf52}{\+\_\+pbes2\+\_\+from\+\_\+oid}} (const ltc\+\_\+asn1\+\_\+list $\ast$cipher\+\_\+oid, const ltc\+\_\+asn1\+\_\+list $\ast$hmac\+\_\+oid, \mbox{\hyperlink{structpbes__properties}{pbes\+\_\+properties}} $\ast$res)
+\item 
+int \mbox{\hyperlink{pbes2_8c_a741f04fef81b90c03eeba79d1d680273}{pbes2\+\_\+extract}} (const ltc\+\_\+asn1\+\_\+list $\ast$s, \mbox{\hyperlink{structpbes__arg}{pbes\+\_\+arg}} $\ast$res)
+\begin{DoxyCompactList}\small\item\em Extract P\+B\+E\+S2 parameters. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static const char $\ast$const \mbox{\hyperlink{pbes2_8c_a44eda0598ba3b6bfd85a19991094dff9}{\+\_\+oid\+\_\+pbes2}} = \char`\"{}1.\+2.\+840.\+113549.\+1.\+5.\+13\char`\"{}
+\item 
+static const char $\ast$const \mbox{\hyperlink{pbes2_8c_a5c2b966969310bd02cc0337f5120afec}{\+\_\+oid\+\_\+pbkdf2}} = \char`\"{}1.\+2.\+840.\+113549.\+1.\+5.\+12\char`\"{}
+\item 
+static const \mbox{\hyperlink{structoid__id__st}{oid\+\_\+id\+\_\+st}} \mbox{\hyperlink{pbes2_8c_a662fc2652e4d1a92bec22adccec66590}{\+\_\+hmac\+\_\+oid\+\_\+names}} \mbox{[}$\,$\mbox{]}
+\item 
+static const \mbox{\hyperlink{structpbes__properties}{pbes\+\_\+properties}} \mbox{\hyperlink{pbes2_8c_a99c7ea1ab774072c274fd3af19dffc49}{\+\_\+pbes2\+\_\+default\+\_\+types}} \mbox{[}$\,$\mbox{]}
+\item 
+static const \mbox{\hyperlink{structoid__to__pbes}{oid\+\_\+to\+\_\+pbes}} \mbox{\hyperlink{pbes2_8c_ac82494fa87e8c6df9bdf1806fab342cd}{\+\_\+pbes2\+\_\+list}} \mbox{[}$\,$\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{pbes2_8c_a6d172113e8d3bf8ef62690a35a2bbf52}\label{pbes2_8c_a6d172113e8d3bf8ef62690a35a2bbf52}} 
+\index{pbes2.c@{pbes2.c}!\_pbes2\_from\_oid@{\_pbes2\_from\_oid}}
+\index{\_pbes2\_from\_oid@{\_pbes2\_from\_oid}!pbes2.c@{pbes2.c}}
+\subsubsection{\texorpdfstring{\_pbes2\_from\_oid()}{\_pbes2\_from\_oid()}}
+{\footnotesize\ttfamily static int \+\_\+pbes2\+\_\+from\+\_\+oid (\begin{DoxyParamCaption}\item[{const ltc\+\_\+asn1\+\_\+list $\ast$}]{cipher\+\_\+oid,  }\item[{const ltc\+\_\+asn1\+\_\+list $\ast$}]{hmac\+\_\+oid,  }\item[{\mbox{\hyperlink{structpbes__properties}{pbes\+\_\+properties}} $\ast$}]{res }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 54 of file pbes2.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{55 \{}
+\DoxyCodeLine{56    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} i;}
+\DoxyCodeLine{57    \textcolor{keywordflow}{for} (i = 0; i < \textcolor{keyword}{sizeof}(\mbox{\hyperlink{pbes2_8c_ac82494fa87e8c6df9bdf1806fab342cd}{\_pbes2\_list}})/\textcolor{keyword}{sizeof}(\mbox{\hyperlink{pbes2_8c_ac82494fa87e8c6df9bdf1806fab342cd}{\_pbes2\_list}}[0]); ++i) \{}
+\DoxyCodeLine{58       \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__private_8h_aaa860b1fbc776e0760df8934a6aa245a}{pk\_oid\_cmp\_with\_asn1}}(\mbox{\hyperlink{pbes2_8c_ac82494fa87e8c6df9bdf1806fab342cd}{\_pbes2\_list}}[i].oid, cipher\_oid) == \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{59          *res = *\mbox{\hyperlink{pbes2_8c_ac82494fa87e8c6df9bdf1806fab342cd}{\_pbes2\_list}}[i].\mbox{\hyperlink{structoid__to__pbes_aed151510a90a7d1f78c630d858a54f65}{data}};}
+\DoxyCodeLine{60          \textcolor{keywordflow}{break};}
+\DoxyCodeLine{61       \}}
+\DoxyCodeLine{62    \}}
+\DoxyCodeLine{63    \textcolor{keywordflow}{if} (res->\mbox{\hyperlink{structpbes__properties_a821664389b9d7c6de99aeb7593beb48c}{c}} == NULL) \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca302b958f5664adeb427c22f57c9d90a4}{CRYPT\_INVALID\_CIPHER}};}
+\DoxyCodeLine{64    \textcolor{keywordflow}{if} (hmac\_oid != NULL) \{}
+\DoxyCodeLine{65       \textcolor{keywordflow}{for} (i = 0; i < \textcolor{keyword}{sizeof}(\mbox{\hyperlink{pbes2_8c_a662fc2652e4d1a92bec22adccec66590}{\_hmac\_oid\_names}})/\textcolor{keyword}{sizeof}(\mbox{\hyperlink{pbes2_8c_a662fc2652e4d1a92bec22adccec66590}{\_hmac\_oid\_names}}[0]); ++i) \{}
+\DoxyCodeLine{66          \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__private_8h_aaa860b1fbc776e0760df8934a6aa245a}{pk\_oid\_cmp\_with\_asn1}}(\mbox{\hyperlink{pbes2_8c_a662fc2652e4d1a92bec22adccec66590}{\_hmac\_oid\_names}}[i].oid, hmac\_oid) == \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{67             res->\mbox{\hyperlink{structpbes__properties_ae2a9b6e73cee94acd3d082641c2b6ea8}{h}} = \mbox{\hyperlink{pbes2_8c_a662fc2652e4d1a92bec22adccec66590}{\_hmac\_oid\_names}}[i].\mbox{\hyperlink{structoid__id__st_aa04675bddc70fe9d5962eb47ee7301f2}{id}};}
+\DoxyCodeLine{68             \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{69          \}}
+\DoxyCodeLine{70       \}}
+\DoxyCodeLine{71       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cae729ddc4864ea7e12e9865bf6264642d}{CRYPT\_INVALID\_HASH}};}
+\DoxyCodeLine{72    \}}
+\DoxyCodeLine{73    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{74 \}}
+
+\end{DoxyCode}
+
+
+References \+\_\+hmac\+\_\+oid\+\_\+names, \+\_\+pbes2\+\_\+list, pbes\+\_\+properties\+::c, C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+C\+I\+P\+H\+ER, C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+H\+A\+SH, C\+R\+Y\+P\+T\+\_\+\+OK, oid\+\_\+to\+\_\+pbes\+::data, pbes\+\_\+properties\+::h, oid\+\_\+id\+\_\+st\+::id, and pk\+\_\+oid\+\_\+cmp\+\_\+with\+\_\+asn1().
+
+
+
+Referenced by pbes2\+\_\+extract().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2
+\mbox{\Hypertarget{pbes2_8c_a741f04fef81b90c03eeba79d1d680273}\label{pbes2_8c_a741f04fef81b90c03eeba79d1d680273}} 
+\index{pbes2.c@{pbes2.c}!pbes2\_extract@{pbes2\_extract}}
+\index{pbes2\_extract@{pbes2\_extract}!pbes2.c@{pbes2.c}}
+\subsubsection{\texorpdfstring{pbes2\_extract()}{pbes2\_extract()}}
+{\footnotesize\ttfamily int pbes2\+\_\+extract (\begin{DoxyParamCaption}\item[{const ltc\+\_\+asn1\+\_\+list $\ast$}]{s,  }\item[{\mbox{\hyperlink{structpbes__arg}{pbes\+\_\+arg}} $\ast$}]{res }\end{DoxyParamCaption})}
+
+
+
+Extract P\+B\+E\+S2 parameters. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & The start of the sequence with potential P\+B\+E\+S2 parameters \\
+\hline
+{\em res} & Pointer to where the extracted parameters should be stored \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK on success 
+\end{DoxyReturn}
+
+
+Definition at line 84 of file pbes2.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{85 \{}
+\DoxyCodeLine{86    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} klen;}
+\DoxyCodeLine{87    ltc\_asn1\_list *lkdf, *lenc, *loptseq, *liter, *lhmac;}
+\DoxyCodeLine{88    \textcolor{keywordtype}{int} err;}
+\DoxyCodeLine{89 }
+\DoxyCodeLine{90    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(s   != NULL);}
+\DoxyCodeLine{91    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(res != NULL);}
+\DoxyCodeLine{92 }
+\DoxyCodeLine{93    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_aaa860b1fbc776e0760df8934a6aa245a}{pk\_oid\_cmp\_with\_asn1}}(\mbox{\hyperlink{pbes2_8c_a44eda0598ba3b6bfd85a19991094dff9}{\_oid\_pbes2}}, s)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{94 }
+\DoxyCodeLine{95    \textcolor{keywordflow}{if} (!\mbox{\hyperlink{tomcrypt__private_8h_a896c8b07a35ff2799061855f08a8325a}{LTC\_ASN1\_IS\_TYPE}}(s->next, LTC\_ASN1\_SEQUENCE) ||}
+\DoxyCodeLine{96        !\mbox{\hyperlink{tomcrypt__private_8h_a896c8b07a35ff2799061855f08a8325a}{LTC\_ASN1\_IS\_TYPE}}(s->next->child, LTC\_ASN1\_SEQUENCE) ||}
+\DoxyCodeLine{97        !\mbox{\hyperlink{tomcrypt__private_8h_a896c8b07a35ff2799061855f08a8325a}{LTC\_ASN1\_IS\_TYPE}}(s->next->child->child, LTC\_ASN1\_OBJECT\_IDENTIFIER) ||}
+\DoxyCodeLine{98        !\mbox{\hyperlink{tomcrypt__private_8h_a896c8b07a35ff2799061855f08a8325a}{LTC\_ASN1\_IS\_TYPE}}(s->next->child->child->next, LTC\_ASN1\_SEQUENCE) ||}
+\DoxyCodeLine{99        !\mbox{\hyperlink{tomcrypt__private_8h_a896c8b07a35ff2799061855f08a8325a}{LTC\_ASN1\_IS\_TYPE}}(s->next->child->next, LTC\_ASN1\_SEQUENCE) ||}
+\DoxyCodeLine{100        !\mbox{\hyperlink{tomcrypt__private_8h_a896c8b07a35ff2799061855f08a8325a}{LTC\_ASN1\_IS\_TYPE}}(s->next->child->next->child, LTC\_ASN1\_OBJECT\_IDENTIFIER)) \{}
+\DoxyCodeLine{101       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca980088f10ffe9009aec286038a9e79da}{CRYPT\_INVALID\_PACKET}};}
+\DoxyCodeLine{102    \}}
+\DoxyCodeLine{103    \textcolor{comment}{/* PBES2: encrypted pkcs8 - PBES2+PBKDF2+des-ede3-cbc:}}
+\DoxyCodeLine{104 \textcolor{comment}{    *  0:d=0  hl=4 l= 380 cons: SEQUENCE}}
+\DoxyCodeLine{105 \textcolor{comment}{    *  4:d=1  hl=2 l=  78 cons:   SEQUENCE}}
+\DoxyCodeLine{106 \textcolor{comment}{    *  6:d=2  hl=2 l=   9 prim:     OBJECT             :PBES2 (== 1.2.840.113549.1.5.13) (== *s)}}
+\DoxyCodeLine{107 \textcolor{comment}{    * 17:d=2  hl=2 l=  65 cons:     SEQUENCE}}
+\DoxyCodeLine{108 \textcolor{comment}{    * 19:d=3  hl=2 l=  41 cons:       SEQUENCE}}
+\DoxyCodeLine{109 \textcolor{comment}{    * 21:d=4  hl=2 l=   9 prim:         OBJECT         :PBKDF2 (== *lkdf)}}
+\DoxyCodeLine{110 \textcolor{comment}{    * 32:d=4  hl=2 l=  28 cons:         SEQUENCE}}
+\DoxyCodeLine{111 \textcolor{comment}{    * 34:d=5  hl=2 l=   8 prim:           OCTET STRING [HEX DUMP]:28BA4ABF6AA76A3D (== res->salt)}}
+\DoxyCodeLine{112 \textcolor{comment}{    * 44:d=5  hl=2 l=   2 prim:           INTEGER      :0800 (== res->iterations, *liter)}}
+\DoxyCodeLine{113 \textcolor{comment}{    * 48:d=5  hl=2 l=  12 cons:           SEQUENCE     (== *loptseq   - this sequence is optional, may be missing)}}
+\DoxyCodeLine{114 \textcolor{comment}{    * 50:d=6  hl=2 l=   8 prim:             OBJECT     :hmacWithSHA256 (== *lhmac)}}
+\DoxyCodeLine{115 \textcolor{comment}{    * 60:d=6  hl=2 l=   0 prim:             NULL}}
+\DoxyCodeLine{116 \textcolor{comment}{    * 62:d=3  hl=2 l=  20 cons:       SEQUENCE}}
+\DoxyCodeLine{117 \textcolor{comment}{    * 64:d=4  hl=2 l=   8 prim:         OBJECT         :des-ede3-cbc (== *lenc)}}
+\DoxyCodeLine{118 \textcolor{comment}{    * 74:d=4  hl=2 l=   8 prim:         OCTET STRING   [HEX DUMP]:B1404C4688DC9A5A}}
+\DoxyCodeLine{119 \textcolor{comment}{    * 84:d=1  hl=4 l= 296 prim:   OCTET STRING         :bytes (== encrypted data)}}
+\DoxyCodeLine{120 \textcolor{comment}{    */}}
+\DoxyCodeLine{121    lkdf = s->next->child->child;}
+\DoxyCodeLine{122    lenc = s->next->child->next->child;}
+\DoxyCodeLine{123 }
+\DoxyCodeLine{124    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_aaa860b1fbc776e0760df8934a6aa245a}{pk\_oid\_cmp\_with\_asn1}}(\mbox{\hyperlink{pbes2_8c_a5c2b966969310bd02cc0337f5120afec}{\_oid\_pbkdf2}}, lkdf)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{125 }
+\DoxyCodeLine{126    \textcolor{keywordflow}{if} (!\mbox{\hyperlink{tomcrypt__private_8h_a896c8b07a35ff2799061855f08a8325a}{LTC\_ASN1\_IS\_TYPE}}(lkdf->next, LTC\_ASN1\_SEQUENCE) ||}
+\DoxyCodeLine{127        !\mbox{\hyperlink{tomcrypt__private_8h_a896c8b07a35ff2799061855f08a8325a}{LTC\_ASN1\_IS\_TYPE}}(lkdf->next->child, LTC\_ASN1\_OCTET\_STRING) ||}
+\DoxyCodeLine{128        !\mbox{\hyperlink{tomcrypt__private_8h_a896c8b07a35ff2799061855f08a8325a}{LTC\_ASN1\_IS\_TYPE}}(lkdf->next->child->next, LTC\_ASN1\_INTEGER)) \{}
+\DoxyCodeLine{129       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca980088f10ffe9009aec286038a9e79da}{CRYPT\_INVALID\_PACKET}};}
+\DoxyCodeLine{130    \}}
+\DoxyCodeLine{131 }
+\DoxyCodeLine{132    liter = lkdf->next->child->next;}
+\DoxyCodeLine{133    loptseq = liter->next;}
+\DoxyCodeLine{134    res->\mbox{\hyperlink{structpbes__arg_a356304efb7c4b45d06779905fd254797}{salt}} = lkdf->next->child;}
+\DoxyCodeLine{135    res->\mbox{\hyperlink{structpbes__arg_a78b52a8d8572e6947ebe909b51490ec6}{iterations}} = \mbox{\hyperlink{tomcrypt__private_8h_a4e68c807adc159c7553da37ce38196b2}{mp\_get\_int}}(liter->data);}
+\DoxyCodeLine{136 }
+\DoxyCodeLine{137    \textcolor{comment}{/* There's an optional INTEGER keyLength after the iterations, skip that if it's there.}}
+\DoxyCodeLine{138 \textcolor{comment}{    * c.f. RFC 2898 A.2 PBKDF2 */}}
+\DoxyCodeLine{139    \textcolor{keywordflow}{if}(\mbox{\hyperlink{tomcrypt__private_8h_a896c8b07a35ff2799061855f08a8325a}{LTC\_ASN1\_IS\_TYPE}}(loptseq, LTC\_ASN1\_INTEGER)) \{}
+\DoxyCodeLine{140       loptseq = loptseq->next;}
+\DoxyCodeLine{141    \}}
+\DoxyCodeLine{142 }
+\DoxyCodeLine{143    \textcolor{comment}{/* this sequence is optional */}}
+\DoxyCodeLine{144    lhmac = NULL;}
+\DoxyCodeLine{145    \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__private_8h_a896c8b07a35ff2799061855f08a8325a}{LTC\_ASN1\_IS\_TYPE}}(loptseq, LTC\_ASN1\_SEQUENCE) \&\&}
+\DoxyCodeLine{146        \mbox{\hyperlink{tomcrypt__private_8h_a896c8b07a35ff2799061855f08a8325a}{LTC\_ASN1\_IS\_TYPE}}(loptseq->child, LTC\_ASN1\_OBJECT\_IDENTIFIER)) \{}
+\DoxyCodeLine{147       lhmac = loptseq->child;}
+\DoxyCodeLine{148    \}}
+\DoxyCodeLine{149    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{pbes2_8c_a6d172113e8d3bf8ef62690a35a2bbf52}{\_pbes2\_from\_oid}}(lenc, lhmac, \&res->\mbox{\hyperlink{structpbes__arg_a6879b93a34abc3b85c42fea0b0e92156}{type}})) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{150 }
+\DoxyCodeLine{151    \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__private_8h_a896c8b07a35ff2799061855f08a8325a}{LTC\_ASN1\_IS\_TYPE}}(lenc->next, LTC\_ASN1\_OCTET\_STRING)) \{}
+\DoxyCodeLine{152       \textcolor{comment}{/* 'NON-RC2'-CBC */}}
+\DoxyCodeLine{153       res->\mbox{\hyperlink{structpbes__arg_aeecdb7fb21b9beacfa5adf1f715eb9fd}{iv}} = lenc->next;}
+\DoxyCodeLine{154    \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__private_8h_a896c8b07a35ff2799061855f08a8325a}{LTC\_ASN1\_IS\_TYPE}}(lenc->next, LTC\_ASN1\_SEQUENCE)) \{}
+\DoxyCodeLine{155       \textcolor{comment}{/* RC2-CBC is a bit special ...}}
+\DoxyCodeLine{156 \textcolor{comment}{       *}}
+\DoxyCodeLine{157 \textcolor{comment}{       * RC2-CBC-Parameter ::= SEQUENCE \{}}
+\DoxyCodeLine{158 \textcolor{comment}{       *     rc2ParameterVersion INTEGER OPTIONAL,}}
+\DoxyCodeLine{159 \textcolor{comment}{       *     iv OCTET STRING (SIZE(8)) \}}}
+\DoxyCodeLine{160 \textcolor{comment}{       */}}
+\DoxyCodeLine{161       \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__private_8h_a896c8b07a35ff2799061855f08a8325a}{LTC\_ASN1\_IS\_TYPE}}(lenc->next->child, LTC\_ASN1\_INTEGER) \&\&}
+\DoxyCodeLine{162           \mbox{\hyperlink{tomcrypt__private_8h_a896c8b07a35ff2799061855f08a8325a}{LTC\_ASN1\_IS\_TYPE}}(lenc->next->child->next, LTC\_ASN1\_OCTET\_STRING)) \{}
+\DoxyCodeLine{163          klen = \mbox{\hyperlink{tomcrypt__private_8h_a4e68c807adc159c7553da37ce38196b2}{mp\_get\_int}}(lenc->next->child->data);}
+\DoxyCodeLine{164          res->\mbox{\hyperlink{structpbes__arg_aeecdb7fb21b9beacfa5adf1f715eb9fd}{iv}}   = lenc->next->child->next;}
+\DoxyCodeLine{165          \textcolor{comment}{/*}}
+\DoxyCodeLine{166 \textcolor{comment}{          * Effective Key Bits         Encoding}}
+\DoxyCodeLine{167 \textcolor{comment}{          *         40                    160}}
+\DoxyCodeLine{168 \textcolor{comment}{          *         64                    120}}
+\DoxyCodeLine{169 \textcolor{comment}{          *        128                     58}}
+\DoxyCodeLine{170 \textcolor{comment}{          *       b >= 256                  b}}
+\DoxyCodeLine{171 \textcolor{comment}{          */}}
+\DoxyCodeLine{172          \textcolor{keywordflow}{switch} (klen) \{}
+\DoxyCodeLine{173             \textcolor{keywordflow}{case} 160:}
+\DoxyCodeLine{174                res->\mbox{\hyperlink{structpbes__arg_ac59e419107215d6c89e2d9789a0c49f4}{key\_bits}} = 40;}
+\DoxyCodeLine{175                \textcolor{keywordflow}{break};}
+\DoxyCodeLine{176             \textcolor{keywordflow}{case} 120:}
+\DoxyCodeLine{177                res->\mbox{\hyperlink{structpbes__arg_ac59e419107215d6c89e2d9789a0c49f4}{key\_bits}} = 64;}
+\DoxyCodeLine{178                \textcolor{keywordflow}{break};}
+\DoxyCodeLine{179             \textcolor{keywordflow}{case} 58:}
+\DoxyCodeLine{180                res->\mbox{\hyperlink{structpbes__arg_ac59e419107215d6c89e2d9789a0c49f4}{key\_bits}} = 128;}
+\DoxyCodeLine{181                \textcolor{keywordflow}{break};}
+\DoxyCodeLine{182             \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{183                \textcolor{comment}{/* We don't handle undefined Key Bits */}}
+\DoxyCodeLine{184                \textcolor{keywordflow}{if} (klen < 256) \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caafed43f3b625e72191e08e65b4bb5e02}{CRYPT\_INVALID\_KEYSIZE}};}
+\DoxyCodeLine{185 }
+\DoxyCodeLine{186                res->\mbox{\hyperlink{structpbes__arg_ac59e419107215d6c89e2d9789a0c49f4}{key\_bits}} = klen;}
+\DoxyCodeLine{187                \textcolor{keywordflow}{break};}
+\DoxyCodeLine{188          \}}
+\DoxyCodeLine{189       \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__private_8h_a896c8b07a35ff2799061855f08a8325a}{LTC\_ASN1\_IS\_TYPE}}(lenc->next->child, LTC\_ASN1\_OCTET\_STRING)) \{}
+\DoxyCodeLine{190          res->\mbox{\hyperlink{structpbes__arg_aeecdb7fb21b9beacfa5adf1f715eb9fd}{iv}}   = lenc->next->child;}
+\DoxyCodeLine{191          \textcolor{comment}{/*}}
+\DoxyCodeLine{192 \textcolor{comment}{          * If the rc2ParameterVersion field is omitted, the "effective key bits"}}
+\DoxyCodeLine{193 \textcolor{comment}{          * defaults to 32.}}
+\DoxyCodeLine{194 \textcolor{comment}{          */}}
+\DoxyCodeLine{195          res->\mbox{\hyperlink{structpbes__arg_ac59e419107215d6c89e2d9789a0c49f4}{key\_bits}} = 32;}
+\DoxyCodeLine{196       \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{197          \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca980088f10ffe9009aec286038a9e79da}{CRYPT\_INVALID\_PACKET}};}
+\DoxyCodeLine{198       \}}
+\DoxyCodeLine{199    \}}
+\DoxyCodeLine{200 }
+\DoxyCodeLine{201    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{202 \}}
+
+\end{DoxyCode}
+
+
+References \+\_\+oid\+\_\+pbes2, \+\_\+oid\+\_\+pbkdf2, \+\_\+pbes2\+\_\+from\+\_\+oid(), C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+K\+E\+Y\+S\+I\+ZE, C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+P\+A\+C\+K\+ET, C\+R\+Y\+P\+T\+\_\+\+OK, pbes\+\_\+arg\+::iterations, pbes\+\_\+arg\+::iv, pbes\+\_\+arg\+::key\+\_\+bits, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, L\+T\+C\+\_\+\+A\+S\+N1\+\_\+\+I\+S\+\_\+\+T\+Y\+PE, mp\+\_\+get\+\_\+int, pk\+\_\+oid\+\_\+cmp\+\_\+with\+\_\+asn1(), pbes\+\_\+arg\+::salt, and pbes\+\_\+arg\+::type.
+
+
+
+Referenced by pkcs8\+\_\+decode\+\_\+flexi().
+
+Here is the call graph for this function\+:
+% FIG 3
+Here is the caller graph for this function\+:
+% FIG 4
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{pbes2_8c_a662fc2652e4d1a92bec22adccec66590}\label{pbes2_8c_a662fc2652e4d1a92bec22adccec66590}} 
+\index{pbes2.c@{pbes2.c}!\_hmac\_oid\_names@{\_hmac\_oid\_names}}
+\index{\_hmac\_oid\_names@{\_hmac\_oid\_names}!pbes2.c@{pbes2.c}}
+\subsubsection{\texorpdfstring{\_hmac\_oid\_names}{\_hmac\_oid\_names}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{structoid__id__st}{oid\+\_\+id\+\_\+st}} \+\_\+hmac\+\_\+oid\+\_\+names\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{   \{ \textcolor{stringliteral}{"1.2.840.113549.2.7"},  \textcolor{stringliteral}{"sha1"} \},}
+\DoxyCodeLine{   \{ \textcolor{stringliteral}{"1.2.840.113549.2.8"},  \textcolor{stringliteral}{"sha224"} \},}
+\DoxyCodeLine{   \{ \textcolor{stringliteral}{"1.2.840.113549.2.9"},  \textcolor{stringliteral}{"sha256"} \},}
+\DoxyCodeLine{   \{ \textcolor{stringliteral}{"1.2.840.113549.2.10"}, \textcolor{stringliteral}{"sha384"} \},}
+\DoxyCodeLine{   \{ \textcolor{stringliteral}{"1.2.840.113549.2.11"}, \textcolor{stringliteral}{"sha512"} \},}
+\DoxyCodeLine{   \{ \textcolor{stringliteral}{"1.2.840.113549.2.12"}, \textcolor{stringliteral}{"sha512-224"} \},}
+\DoxyCodeLine{   \{ \textcolor{stringliteral}{"1.2.840.113549.2.13"}, \textcolor{stringliteral}{"sha512-256"} \},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line 21 of file pbes2.\+c.
+
+
+
+Referenced by \+\_\+pbes2\+\_\+from\+\_\+oid().
+
+\mbox{\Hypertarget{pbes2_8c_a44eda0598ba3b6bfd85a19991094dff9}\label{pbes2_8c_a44eda0598ba3b6bfd85a19991094dff9}} 
+\index{pbes2.c@{pbes2.c}!\_oid\_pbes2@{\_oid\_pbes2}}
+\index{\_oid\_pbes2@{\_oid\_pbes2}!pbes2.c@{pbes2.c}}
+\subsubsection{\texorpdfstring{\_oid\_pbes2}{\_oid\_pbes2}}
+{\footnotesize\ttfamily const char$\ast$ const \+\_\+oid\+\_\+pbes2 = \char`\"{}1.\+2.\+840.\+113549.\+1.\+5.\+13\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 13 of file pbes2.\+c.
+
+
+
+Referenced by pbes2\+\_\+extract().
+
+\mbox{\Hypertarget{pbes2_8c_a5c2b966969310bd02cc0337f5120afec}\label{pbes2_8c_a5c2b966969310bd02cc0337f5120afec}} 
+\index{pbes2.c@{pbes2.c}!\_oid\_pbkdf2@{\_oid\_pbkdf2}}
+\index{\_oid\_pbkdf2@{\_oid\_pbkdf2}!pbes2.c@{pbes2.c}}
+\subsubsection{\texorpdfstring{\_oid\_pbkdf2}{\_oid\_pbkdf2}}
+{\footnotesize\ttfamily const char$\ast$ const \+\_\+oid\+\_\+pbkdf2 = \char`\"{}1.\+2.\+840.\+113549.\+1.\+5.\+12\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 14 of file pbes2.\+c.
+
+
+
+Referenced by pbes2\+\_\+extract().
+
+\mbox{\Hypertarget{pbes2_8c_a99c7ea1ab774072c274fd3af19dffc49}\label{pbes2_8c_a99c7ea1ab774072c274fd3af19dffc49}} 
+\index{pbes2.c@{pbes2.c}!\_pbes2\_default\_types@{\_pbes2\_default\_types}}
+\index{\_pbes2\_default\_types@{\_pbes2\_default\_types}!pbes2.c@{pbes2.c}}
+\subsubsection{\texorpdfstring{\_pbes2\_default\_types}{\_pbes2\_default\_types}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{structpbes__properties}{pbes\+\_\+properties}} \+\_\+pbes2\+\_\+default\+\_\+types\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{   \{ \mbox{\hyperlink{pkcs__5__2_8c_a738b05376774b9a5b311a59ec73966f0}{pkcs\_5\_alg2}}, \textcolor{stringliteral}{"sha1"},   \textcolor{stringliteral}{"des"},   8, 0 \},}
+\DoxyCodeLine{   \{ \mbox{\hyperlink{pkcs__5__2_8c_a738b05376774b9a5b311a59ec73966f0}{pkcs\_5\_alg2}}, \textcolor{stringliteral}{"sha1"},   \textcolor{stringliteral}{"rc2"},   4, 0 \},}
+\DoxyCodeLine{   \{ \mbox{\hyperlink{pkcs__5__2_8c_a738b05376774b9a5b311a59ec73966f0}{pkcs\_5\_alg2}}, \textcolor{stringliteral}{"sha1"},   \textcolor{stringliteral}{"3des"}, 24, 0 \},}
+\DoxyCodeLine{   \{ \mbox{\hyperlink{pkcs__5__2_8c_a738b05376774b9a5b311a59ec73966f0}{pkcs\_5\_alg2}}, \textcolor{stringliteral}{"sha1"},   \textcolor{stringliteral}{"aes"},  16, 0 \},}
+\DoxyCodeLine{   \{ \mbox{\hyperlink{pkcs__5__2_8c_a738b05376774b9a5b311a59ec73966f0}{pkcs\_5\_alg2}}, \textcolor{stringliteral}{"sha1"},   \textcolor{stringliteral}{"aes"},  24, 0 \},}
+\DoxyCodeLine{   \{ \mbox{\hyperlink{pkcs__5__2_8c_a738b05376774b9a5b311a59ec73966f0}{pkcs\_5\_alg2}}, \textcolor{stringliteral}{"sha1"},   \textcolor{stringliteral}{"aes"},  32, 0 \},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line 31 of file pbes2.\+c.
+
+\mbox{\Hypertarget{pbes2_8c_ac82494fa87e8c6df9bdf1806fab342cd}\label{pbes2_8c_ac82494fa87e8c6df9bdf1806fab342cd}} 
+\index{pbes2.c@{pbes2.c}!\_pbes2\_list@{\_pbes2\_list}}
+\index{\_pbes2\_list@{\_pbes2\_list}!pbes2.c@{pbes2.c}}
+\subsubsection{\texorpdfstring{\_pbes2\_list}{\_pbes2\_list}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{structoid__to__pbes}{oid\+\_\+to\+\_\+pbes}} \+\_\+pbes2\+\_\+list\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{   \{ \&\mbox{\hyperlink{pbes2_8c_a99c7ea1ab774072c274fd3af19dffc49}{\_pbes2\_default\_types}}[0], \textcolor{stringliteral}{"1.3.14.3.2.7"}            \},  }
+\DoxyCodeLine{   \{ \&\mbox{\hyperlink{pbes2_8c_a99c7ea1ab774072c274fd3af19dffc49}{\_pbes2\_default\_types}}[1], \textcolor{stringliteral}{"1.2.840.113549.3.2"}      \},  }
+\DoxyCodeLine{   \{ \&\mbox{\hyperlink{pbes2_8c_a99c7ea1ab774072c274fd3af19dffc49}{\_pbes2\_default\_types}}[2], \textcolor{stringliteral}{"1.2.840.113549.3.7"}      \},  }
+\DoxyCodeLine{   \{ \&\mbox{\hyperlink{pbes2_8c_a99c7ea1ab774072c274fd3af19dffc49}{\_pbes2\_default\_types}}[3], \textcolor{stringliteral}{"2.16.840.1.101.3.4.1.2"}  \},  }
+\DoxyCodeLine{   \{ \&\mbox{\hyperlink{pbes2_8c_a99c7ea1ab774072c274fd3af19dffc49}{\_pbes2\_default\_types}}[4], \textcolor{stringliteral}{"2.16.840.1.101.3.4.1.22"} \},  }
+\DoxyCodeLine{   \{ \&\mbox{\hyperlink{pbes2_8c_a99c7ea1ab774072c274fd3af19dffc49}{\_pbes2\_default\_types}}[5], \textcolor{stringliteral}{"2.16.840.1.101.3.4.1.42"} \},  }
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line 45 of file pbes2.\+c.
+
+
+
+Referenced by \+\_\+pbes2\+\_\+from\+\_\+oid().
+

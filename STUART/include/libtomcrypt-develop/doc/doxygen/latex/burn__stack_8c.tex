@@ -1,0 +1,65 @@
+\hypertarget{burn__stack_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/misc/burn\+\_\+stack.c File Reference}
+\label{burn__stack_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/misc/burn\_stack.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/misc/burn\_stack.c}}
+
+
+Burn stack, Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for burn\+\_\+stack.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{burn__stack_8c_aea4187c8bba7b6cd9a358041089680ac}{burn\+\_\+stack}} (unsigned long \mbox{\hyperlink{pmac__init_8c_afed088663f8704004425cdae2120b9b3}{len}})
+\begin{DoxyCompactList}\small\item\em Burn some stack memory. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Burn stack, Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{burn__stack_8c_aea4187c8bba7b6cd9a358041089680ac}\label{burn__stack_8c_aea4187c8bba7b6cd9a358041089680ac}} 
+\index{burn\_stack.c@{burn\_stack.c}!burn\_stack@{burn\_stack}}
+\index{burn\_stack@{burn\_stack}!burn\_stack.c@{burn\_stack.c}}
+\subsubsection{\texorpdfstring{burn\_stack()}{burn\_stack()}}
+{\footnotesize\ttfamily void burn\+\_\+stack (\begin{DoxyParamCaption}\item[{unsigned long}]{len }\end{DoxyParamCaption})}
+
+
+
+Burn some stack memory. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em len} & amount of stack to burn in bytes \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 20 of file burn\+\_\+stack.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{21 \{}
+\DoxyCodeLine{22    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} buf[32];}
+\DoxyCodeLine{23    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(buf, \textcolor{keyword}{sizeof}(buf));}
+\DoxyCodeLine{24    \textcolor{keywordflow}{if} (\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}} > (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long})\textcolor{keyword}{sizeof}(buf)) \{}
+\DoxyCodeLine{25       \mbox{\hyperlink{burn__stack_8c_aea4187c8bba7b6cd9a358041089680ac}{burn\_stack}}(\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}} - \textcolor{keyword}{sizeof}(buf));}
+\DoxyCodeLine{26    \}}
+\DoxyCodeLine{27 \}}
+
+\end{DoxyCode}
+
+
+References len, and zeromem().
+
+
+
+Referenced by idea\+\_\+ecb\+\_\+decrypt(), idea\+\_\+ecb\+\_\+encrypt(), serpent\+\_\+ecb\+\_\+decrypt(), serpent\+\_\+ecb\+\_\+encrypt(), and serpent\+\_\+setup().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2

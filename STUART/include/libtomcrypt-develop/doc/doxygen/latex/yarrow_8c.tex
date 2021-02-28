@@ -1,0 +1,583 @@
+\hypertarget{yarrow_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/prngs/yarrow.c File Reference}
+\label{yarrow_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/prngs/yarrow.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/prngs/yarrow.c}}
+
+
+Yarrow P\+R\+NG, Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for yarrow.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{yarrow_8c_a4be37aa6e50e66e51a3f0fa0c9fa5ac8}{yarrow\+\_\+start}} (\mbox{\hyperlink{structprng__state}{prng\+\_\+state}} $\ast$prng)
+\begin{DoxyCompactList}\small\item\em Start the P\+R\+NG. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{yarrow_8c_ab1c10797c7a8d170476c2b36fdf686e7}{yarrow\+\_\+add\+\_\+entropy}} (const unsigned char $\ast$in, unsigned long inlen, \mbox{\hyperlink{structprng__state}{prng\+\_\+state}} $\ast$prng)
+\begin{DoxyCompactList}\small\item\em Add entropy to the P\+R\+NG state. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{yarrow_8c_a3be1b7af5fa03c4f9385bfaa97fb6402}{yarrow\+\_\+ready}} (\mbox{\hyperlink{structprng__state}{prng\+\_\+state}} $\ast$prng)
+\begin{DoxyCompactList}\small\item\em Make the P\+R\+NG ready to read from. \end{DoxyCompactList}\item 
+unsigned long \mbox{\hyperlink{yarrow_8c_a5862f58992cc389f85948ae36c89cd72}{yarrow\+\_\+read}} (unsigned char $\ast$out, unsigned long outlen, \mbox{\hyperlink{structprng__state}{prng\+\_\+state}} $\ast$prng)
+\begin{DoxyCompactList}\small\item\em Read from the P\+R\+NG. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{yarrow_8c_ae80fcc4462e01b12838abc41c4484977}{yarrow\+\_\+done}} (\mbox{\hyperlink{structprng__state}{prng\+\_\+state}} $\ast$prng)
+\begin{DoxyCompactList}\small\item\em Terminate the P\+R\+NG. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{yarrow_8c_a00bfd68b512d98e0374b1d0dcead5a66}{yarrow\+\_\+export}} (unsigned char $\ast$out, unsigned long $\ast$outlen, \mbox{\hyperlink{structprng__state}{prng\+\_\+state}} $\ast$prng)
+\begin{DoxyCompactList}\small\item\em Export the P\+R\+NG state. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{yarrow_8c_aa4abeeec501ff7cc5d002bf2ea495865}{yarrow\+\_\+import}} (const unsigned char $\ast$in, unsigned long inlen, \mbox{\hyperlink{structprng__state}{prng\+\_\+state}} $\ast$prng)
+\begin{DoxyCompactList}\small\item\em Import a P\+R\+NG state. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{yarrow_8c_a015eaaca3b133390535d3be2fced5cc1}{yarrow\+\_\+test}} (void)
+\begin{DoxyCompactList}\small\item\em P\+R\+NG self-\/test. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const struct \mbox{\hyperlink{structltc__prng__descriptor}{ltc\+\_\+prng\+\_\+descriptor}} \mbox{\hyperlink{yarrow_8c_a565c22c2b2e0b2fbbbbfeccedabc7bfc}{yarrow\+\_\+desc}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Yarrow P\+R\+NG, Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{yarrow_8c_ab1c10797c7a8d170476c2b36fdf686e7}\label{yarrow_8c_ab1c10797c7a8d170476c2b36fdf686e7}} 
+\index{yarrow.c@{yarrow.c}!yarrow\_add\_entropy@{yarrow\_add\_entropy}}
+\index{yarrow\_add\_entropy@{yarrow\_add\_entropy}!yarrow.c@{yarrow.c}}
+\subsubsection{\texorpdfstring{yarrow\_add\_entropy()}{yarrow\_add\_entropy()}}
+{\footnotesize\ttfamily int yarrow\+\_\+add\+\_\+entropy (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{in,  }\item[{unsigned long}]{inlen,  }\item[{\mbox{\hyperlink{structprng__state}{prng\+\_\+state}} $\ast$}]{prng }\end{DoxyParamCaption})}
+
+
+
+Add entropy to the P\+R\+NG state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em in} & The data to add \\
+\hline
+{\em inlen} & Length of the data to add \\
+\hline
+{\em prng} & P\+R\+NG state to update \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 134 of file yarrow.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{135 \{}
+\DoxyCodeLine{136    \mbox{\hyperlink{unionHash__state}{hash\_state}} md;}
+\DoxyCodeLine{137    \textcolor{keywordtype}{int} err;}
+\DoxyCodeLine{138 }
+\DoxyCodeLine{139    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(prng != NULL);}
+\DoxyCodeLine{140    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(in != NULL);}
+\DoxyCodeLine{141    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(inlen > 0);}
+\DoxyCodeLine{142 }
+\DoxyCodeLine{143    \mbox{\hyperlink{tomcrypt__custom_8h_a427a107414e4d775fbf23f4a499f4a31}{LTC\_MUTEX\_LOCK}}(\&prng->lock);}
+\DoxyCodeLine{144 }
+\DoxyCodeLine{145    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__hash_8h_a79647f22bf48bfa7de03fe5fc958c846}{hash\_is\_valid}}(prng->\mbox{\hyperlink{structprng__state_a73ffeba26752871bc883f035a89f0991}{u}}.yarrow.hash)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{146       \textcolor{keywordflow}{goto} LBL\_UNLOCK;}
+\DoxyCodeLine{147    \}}
+\DoxyCodeLine{148 }
+\DoxyCodeLine{149    \textcolor{comment}{/* start the hash */}}
+\DoxyCodeLine{150    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__hash_8h_ab0e4f02e30a47da79baa9240e79cde92}{hash\_descriptor}}[prng->\mbox{\hyperlink{structprng__state_a73ffeba26752871bc883f035a89f0991}{u}}.yarrow.hash].\mbox{\hyperlink{structltc__hash__descriptor_a941404c4d446f4aa5ad0900a1b1c6838}{init}}(\&md)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{151       \textcolor{keywordflow}{goto} LBL\_UNLOCK;}
+\DoxyCodeLine{152    \}}
+\DoxyCodeLine{153 }
+\DoxyCodeLine{154    \textcolor{comment}{/* hash the current pool */}}
+\DoxyCodeLine{155    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__hash_8h_ab0e4f02e30a47da79baa9240e79cde92}{hash\_descriptor}}[prng->\mbox{\hyperlink{structprng__state_a73ffeba26752871bc883f035a89f0991}{u}}.yarrow.hash].\mbox{\hyperlink{structltc__hash__descriptor_a19f2fbd2b17d1fbe2e5497c54f70d52e}{process}}(\&md, prng->\mbox{\hyperlink{structprng__state_a73ffeba26752871bc883f035a89f0991}{u}}.yarrow.pool,}
+\DoxyCodeLine{156                                                         \mbox{\hyperlink{tomcrypt__hash_8h_ab0e4f02e30a47da79baa9240e79cde92}{hash\_descriptor}}[prng->\mbox{\hyperlink{structprng__state_a73ffeba26752871bc883f035a89f0991}{u}}.yarrow.hash].\mbox{\hyperlink{structltc__hash__descriptor_a49bd027653ff21408cb2661748d719ef}{hashsize}})) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{157       \textcolor{keywordflow}{goto} LBL\_UNLOCK;}
+\DoxyCodeLine{158    \}}
+\DoxyCodeLine{159 }
+\DoxyCodeLine{160    \textcolor{comment}{/* add the new entropy */}}
+\DoxyCodeLine{161    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__hash_8h_ab0e4f02e30a47da79baa9240e79cde92}{hash\_descriptor}}[prng->\mbox{\hyperlink{structprng__state_a73ffeba26752871bc883f035a89f0991}{u}}.yarrow.hash].\mbox{\hyperlink{structltc__hash__descriptor_a19f2fbd2b17d1fbe2e5497c54f70d52e}{process}}(\&md, in, inlen)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{162       \textcolor{keywordflow}{goto} LBL\_UNLOCK;}
+\DoxyCodeLine{163    \}}
+\DoxyCodeLine{164 }
+\DoxyCodeLine{165    \textcolor{comment}{/* store result */}}
+\DoxyCodeLine{166    err = \mbox{\hyperlink{tomcrypt__hash_8h_ab0e4f02e30a47da79baa9240e79cde92}{hash\_descriptor}}[prng->\mbox{\hyperlink{structprng__state_a73ffeba26752871bc883f035a89f0991}{u}}.yarrow.hash].\mbox{\hyperlink{structltc__hash__descriptor_a97978ff7b1c57c7e3c8b9a416f1226ed}{done}}(\&md, prng->\mbox{\hyperlink{structprng__state_a73ffeba26752871bc883f035a89f0991}{u}}.yarrow.pool);}
+\DoxyCodeLine{167 }
+\DoxyCodeLine{168 LBL\_UNLOCK:}
+\DoxyCodeLine{169    \mbox{\hyperlink{tomcrypt__custom_8h_acdf267be91b178b4fafe8f992d57a7f1}{LTC\_MUTEX\_UNLOCK}}(\&prng->lock);}
+\DoxyCodeLine{170    \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{171 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, ltc\+\_\+hash\+\_\+descriptor\+::done, hash\+\_\+descriptor, hash\+\_\+is\+\_\+valid(), ltc\+\_\+hash\+\_\+descriptor\+::hashsize, ltc\+\_\+hash\+\_\+descriptor\+::init, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, L\+T\+C\+\_\+\+M\+U\+T\+E\+X\+\_\+\+L\+O\+CK, L\+T\+C\+\_\+\+M\+U\+T\+E\+X\+\_\+\+U\+N\+L\+O\+CK, ltc\+\_\+hash\+\_\+descriptor\+::process, and prng\+\_\+state\+::u.
+
+
+
+Referenced by yarrow\+\_\+import().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2
+\mbox{\Hypertarget{yarrow_8c_ae80fcc4462e01b12838abc41c4484977}\label{yarrow_8c_ae80fcc4462e01b12838abc41c4484977}} 
+\index{yarrow.c@{yarrow.c}!yarrow\_done@{yarrow\_done}}
+\index{yarrow\_done@{yarrow\_done}!yarrow.c@{yarrow.c}}
+\subsubsection{\texorpdfstring{yarrow\_done()}{yarrow\_done()}}
+{\footnotesize\ttfamily int yarrow\+\_\+done (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structprng__state}{prng\+\_\+state}} $\ast$}]{prng }\end{DoxyParamCaption})}
+
+
+
+Terminate the P\+R\+NG. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em prng} & The P\+R\+NG to terminate \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 251 of file yarrow.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{252 \{}
+\DoxyCodeLine{253    \textcolor{keywordtype}{int} err;}
+\DoxyCodeLine{254    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(prng != NULL);}
+\DoxyCodeLine{255 }
+\DoxyCodeLine{256    \mbox{\hyperlink{tomcrypt__custom_8h_a427a107414e4d775fbf23f4a499f4a31}{LTC\_MUTEX\_LOCK}}(\&prng->lock);}
+\DoxyCodeLine{257    prng->\mbox{\hyperlink{structprng__state_ad5b2704260668ba49701ba0169286837}{ready}} = 0;}
+\DoxyCodeLine{258 }
+\DoxyCodeLine{259    \textcolor{comment}{/* call cipher done when we invent one ;-) */}}
+\DoxyCodeLine{260 }
+\DoxyCodeLine{261    \textcolor{comment}{/* we invented one */}}
+\DoxyCodeLine{262    err = \mbox{\hyperlink{ctr__done_8c_aa8082f961208812c0c203fdd8d75de96}{ctr\_done}}(\&prng->\mbox{\hyperlink{structprng__state_a73ffeba26752871bc883f035a89f0991}{u}}.yarrow.ctr);}
+\DoxyCodeLine{263 }
+\DoxyCodeLine{264    \mbox{\hyperlink{tomcrypt__custom_8h_acdf267be91b178b4fafe8f992d57a7f1}{LTC\_MUTEX\_UNLOCK}}(\&prng->lock);}
+\DoxyCodeLine{265    \mbox{\hyperlink{tomcrypt__custom_8h_ae3979e1469d64fe3e864c9effca73724}{LTC\_MUTEX\_DESTROY}}(\&prng->lock);}
+\DoxyCodeLine{266    \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{267 \}}
+
+\end{DoxyCode}
+
+
+References ctr\+\_\+done(), L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, L\+T\+C\+\_\+\+M\+U\+T\+E\+X\+\_\+\+D\+E\+S\+T\+R\+OY, L\+T\+C\+\_\+\+M\+U\+T\+E\+X\+\_\+\+L\+O\+CK, L\+T\+C\+\_\+\+M\+U\+T\+E\+X\+\_\+\+U\+N\+L\+O\+CK, prng\+\_\+state\+::ready, and prng\+\_\+state\+::u.
+
+Here is the call graph for this function\+:
+% FIG 3
+\mbox{\Hypertarget{yarrow_8c_a00bfd68b512d98e0374b1d0dcead5a66}\label{yarrow_8c_a00bfd68b512d98e0374b1d0dcead5a66}} 
+\index{yarrow.c@{yarrow.c}!yarrow\_export@{yarrow\_export}}
+\index{yarrow\_export@{yarrow\_export}!yarrow.c@{yarrow.c}}
+\subsubsection{\texorpdfstring{yarrow\_export()}{yarrow\_export()}}
+{\footnotesize\ttfamily int yarrow\+\_\+export (\begin{DoxyParamCaption}\item[{unsigned char $\ast$}]{out,  }\item[{unsigned long $\ast$}]{outlen,  }\item[{\mbox{\hyperlink{structprng__state}{prng\+\_\+state}} $\ast$}]{prng }\end{DoxyParamCaption})}
+
+
+
+Export the P\+R\+NG state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em out} & \mbox{[}out\mbox{]} Destination \\
+\hline
+{\em outlen} & \mbox{[}in/out\mbox{]} Max size and resulting size of the state \\
+\hline
+{\em prng} & The P\+R\+NG to export \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 276 of file yarrow.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{286 \{}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{yarrow_8c_aa4abeeec501ff7cc5d002bf2ea495865}\label{yarrow_8c_aa4abeeec501ff7cc5d002bf2ea495865}} 
+\index{yarrow.c@{yarrow.c}!yarrow\_import@{yarrow\_import}}
+\index{yarrow\_import@{yarrow\_import}!yarrow.c@{yarrow.c}}
+\subsubsection{\texorpdfstring{yarrow\_import()}{yarrow\_import()}}
+{\footnotesize\ttfamily int yarrow\+\_\+import (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{in,  }\item[{unsigned long}]{inlen,  }\item[{\mbox{\hyperlink{structprng__state}{prng\+\_\+state}} $\ast$}]{prng }\end{DoxyParamCaption})}
+
+
+
+Import a P\+R\+NG state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em in} & The P\+R\+NG state \\
+\hline
+{\em inlen} & Size of the state \\
+\hline
+{\em prng} & The P\+R\+NG to import \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 285 of file yarrow.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{286 \{}
+\DoxyCodeLine{287    \textcolor{keywordtype}{int} err;}
+\DoxyCodeLine{288 }
+\DoxyCodeLine{289    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(in   != NULL);}
+\DoxyCodeLine{290    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(prng != NULL);}
+\DoxyCodeLine{291    \textcolor{keywordflow}{if} (inlen < (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long})\mbox{\hyperlink{yarrow_8c_a565c22c2b2e0b2fbbbbfeccedabc7bfc}{yarrow\_desc}}.\mbox{\hyperlink{structltc__prng__descriptor_a41ef184ab75b213366392faabcde420c}{export\_size}}) \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{292 }
+\DoxyCodeLine{293    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{yarrow_8c_a4be37aa6e50e66e51a3f0fa0c9fa5ac8}{yarrow\_start}}(prng)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                  \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{294    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{yarrow_8c_ab1c10797c7a8d170476c2b36fdf686e7}{yarrow\_add\_entropy}}(in, inlen, prng)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{295    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{296 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+A\+RG, C\+R\+Y\+P\+T\+\_\+\+OK, ltc\+\_\+prng\+\_\+descriptor\+::export\+\_\+size, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, yarrow\+\_\+add\+\_\+entropy(), yarrow\+\_\+desc, and yarrow\+\_\+start().
+
+Here is the call graph for this function\+:
+% FIG 4
+\mbox{\Hypertarget{yarrow_8c_a5862f58992cc389f85948ae36c89cd72}\label{yarrow_8c_a5862f58992cc389f85948ae36c89cd72}} 
+\index{yarrow.c@{yarrow.c}!yarrow\_read@{yarrow\_read}}
+\index{yarrow\_read@{yarrow\_read}!yarrow.c@{yarrow.c}}
+\subsubsection{\texorpdfstring{yarrow\_read()}{yarrow\_read()}}
+{\footnotesize\ttfamily unsigned long yarrow\+\_\+read (\begin{DoxyParamCaption}\item[{unsigned char $\ast$}]{out,  }\item[{unsigned long}]{outlen,  }\item[{\mbox{\hyperlink{structprng__state}{prng\+\_\+state}} $\ast$}]{prng }\end{DoxyParamCaption})}
+
+
+
+Read from the P\+R\+NG. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em out} & Destination \\
+\hline
+{\em outlen} & Length of output \\
+\hline
+{\em prng} & The active P\+R\+NG to read from \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Number of octets read 
+\end{DoxyReturn}
+
+
+Definition at line 222 of file yarrow.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{223 \{}
+\DoxyCodeLine{224    \textcolor{keywordflow}{if} (outlen == 0 || prng == NULL || out == NULL) \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{225 }
+\DoxyCodeLine{226    \mbox{\hyperlink{tomcrypt__custom_8h_a427a107414e4d775fbf23f4a499f4a31}{LTC\_MUTEX\_LOCK}}(\&prng->lock);}
+\DoxyCodeLine{227 }
+\DoxyCodeLine{228    \textcolor{keywordflow}{if} (!prng->\mbox{\hyperlink{structprng__state_ad5b2704260668ba49701ba0169286837}{ready}}) \{}
+\DoxyCodeLine{229       outlen = 0;}
+\DoxyCodeLine{230       \textcolor{keywordflow}{goto} LBL\_UNLOCK;}
+\DoxyCodeLine{231    \}}
+\DoxyCodeLine{232 }
+\DoxyCodeLine{233    \textcolor{comment}{/* put out in predictable state first */}}
+\DoxyCodeLine{234    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(out, outlen);}
+\DoxyCodeLine{235 }
+\DoxyCodeLine{236    \textcolor{comment}{/* now randomize it */}}
+\DoxyCodeLine{237    \textcolor{keywordflow}{if} (\mbox{\hyperlink{ctr__encrypt_8c_af42c91e4fb7f9aa679399e44e632ae44}{ctr\_encrypt}}(out, out, outlen, \&prng->\mbox{\hyperlink{structprng__state_a73ffeba26752871bc883f035a89f0991}{u}}.yarrow.ctr) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{238       outlen = 0;}
+\DoxyCodeLine{239    \}}
+\DoxyCodeLine{240 }
+\DoxyCodeLine{241 LBL\_UNLOCK:}
+\DoxyCodeLine{242    \mbox{\hyperlink{tomcrypt__custom_8h_acdf267be91b178b4fafe8f992d57a7f1}{LTC\_MUTEX\_UNLOCK}}(\&prng->lock);}
+\DoxyCodeLine{243    \textcolor{keywordflow}{return} outlen;}
+\DoxyCodeLine{244 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, ctr\+\_\+encrypt(), L\+T\+C\+\_\+\+M\+U\+T\+E\+X\+\_\+\+L\+O\+CK, L\+T\+C\+\_\+\+M\+U\+T\+E\+X\+\_\+\+U\+N\+L\+O\+CK, prng\+\_\+state\+::ready, prng\+\_\+state\+::u, and zeromem().
+
+Here is the call graph for this function\+:
+% FIG 5
+\mbox{\Hypertarget{yarrow_8c_a3be1b7af5fa03c4f9385bfaa97fb6402}\label{yarrow_8c_a3be1b7af5fa03c4f9385bfaa97fb6402}} 
+\index{yarrow.c@{yarrow.c}!yarrow\_ready@{yarrow\_ready}}
+\index{yarrow\_ready@{yarrow\_ready}!yarrow.c@{yarrow.c}}
+\subsubsection{\texorpdfstring{yarrow\_ready()}{yarrow\_ready()}}
+{\footnotesize\ttfamily int yarrow\+\_\+ready (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structprng__state}{prng\+\_\+state}} $\ast$}]{prng }\end{DoxyParamCaption})}
+
+
+
+Make the P\+R\+NG ready to read from. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em prng} & The P\+R\+NG to make active \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 178 of file yarrow.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{179 \{}
+\DoxyCodeLine{180    \textcolor{keywordtype}{int} ks, err;}
+\DoxyCodeLine{181 }
+\DoxyCodeLine{182    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(prng != NULL);}
+\DoxyCodeLine{183 }
+\DoxyCodeLine{184    \mbox{\hyperlink{tomcrypt__custom_8h_a427a107414e4d775fbf23f4a499f4a31}{LTC\_MUTEX\_LOCK}}(\&prng->lock);}
+\DoxyCodeLine{185 }
+\DoxyCodeLine{186    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__hash_8h_a79647f22bf48bfa7de03fe5fc958c846}{hash\_is\_valid}}(prng->\mbox{\hyperlink{structprng__state_a73ffeba26752871bc883f035a89f0991}{u}}.yarrow.hash)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{187       \textcolor{keywordflow}{goto} LBL\_UNLOCK;}
+\DoxyCodeLine{188    \}}
+\DoxyCodeLine{189 }
+\DoxyCodeLine{190    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_ac30eb68934c4ca07205344dc9d159221}{cipher\_is\_valid}}(prng->\mbox{\hyperlink{structprng__state_a73ffeba26752871bc883f035a89f0991}{u}}.yarrow.cipher)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{191       \textcolor{keywordflow}{goto} LBL\_UNLOCK;}
+\DoxyCodeLine{192    \}}
+\DoxyCodeLine{193 }
+\DoxyCodeLine{194    \textcolor{comment}{/* setup CTR mode using the "pool" as the key */}}
+\DoxyCodeLine{195    ks = (int)\mbox{\hyperlink{tomcrypt__hash_8h_ab0e4f02e30a47da79baa9240e79cde92}{hash\_descriptor}}[prng->\mbox{\hyperlink{structprng__state_a73ffeba26752871bc883f035a89f0991}{u}}.yarrow.hash].\mbox{\hyperlink{structltc__hash__descriptor_a49bd027653ff21408cb2661748d719ef}{hashsize}};}
+\DoxyCodeLine{196    if ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[prng->\mbox{\hyperlink{structprng__state_a73ffeba26752871bc883f035a89f0991}{u}}.yarrow.cipher].\mbox{\hyperlink{structltc__cipher__descriptor_a870e4e0c0a4d398d4533724a44259f5f}{keysize}}(\&ks)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{197       \textcolor{keywordflow}{goto} LBL\_UNLOCK;}
+\DoxyCodeLine{198    \}}
+\DoxyCodeLine{199 }
+\DoxyCodeLine{200    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{ctr__start_8c_a8663bae8fb1af7659b5d8e9190fc189f}{ctr\_start}}(prng->\mbox{\hyperlink{structprng__state_a73ffeba26752871bc883f035a89f0991}{u}}.yarrow.cipher,     \textcolor{comment}{/* what cipher to use */}}
+\DoxyCodeLine{201                         prng->\mbox{\hyperlink{structprng__state_a73ffeba26752871bc883f035a89f0991}{u}}.yarrow.pool,       \textcolor{comment}{/* IV */}}
+\DoxyCodeLine{202                         prng->\mbox{\hyperlink{structprng__state_a73ffeba26752871bc883f035a89f0991}{u}}.yarrow.pool, ks,   \textcolor{comment}{/* KEY and key size */}}
+\DoxyCodeLine{203                         0,                       \textcolor{comment}{/* number of rounds */}}
+\DoxyCodeLine{204                         CTR\_COUNTER\_LITTLE\_ENDIAN, \textcolor{comment}{/* little endian counter */}}
+\DoxyCodeLine{205                         \&prng->\mbox{\hyperlink{structprng__state_a73ffeba26752871bc883f035a89f0991}{u}}.yarrow.ctr)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{206       \textcolor{keywordflow}{goto} LBL\_UNLOCK;}
+\DoxyCodeLine{207    \}}
+\DoxyCodeLine{208    prng->\mbox{\hyperlink{structprng__state_ad5b2704260668ba49701ba0169286837}{ready}} = 1;}
+\DoxyCodeLine{209 }
+\DoxyCodeLine{210 LBL\_UNLOCK:}
+\DoxyCodeLine{211    \mbox{\hyperlink{tomcrypt__custom_8h_acdf267be91b178b4fafe8f992d57a7f1}{LTC\_MUTEX\_UNLOCK}}(\&prng->lock);}
+\DoxyCodeLine{212    \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{213 \}}
+
+\end{DoxyCode}
+
+
+References cipher\+\_\+descriptor, cipher\+\_\+is\+\_\+valid(), C\+R\+Y\+P\+T\+\_\+\+OK, ctr\+\_\+start(), hash\+\_\+descriptor, hash\+\_\+is\+\_\+valid(), ltc\+\_\+hash\+\_\+descriptor\+::hashsize, ltc\+\_\+cipher\+\_\+descriptor\+::keysize, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, L\+T\+C\+\_\+\+M\+U\+T\+E\+X\+\_\+\+L\+O\+CK, L\+T\+C\+\_\+\+M\+U\+T\+E\+X\+\_\+\+U\+N\+L\+O\+CK, prng\+\_\+state\+::ready, and prng\+\_\+state\+::u.
+
+Here is the call graph for this function\+:
+% FIG 6
+\mbox{\Hypertarget{yarrow_8c_a4be37aa6e50e66e51a3f0fa0c9fa5ac8}\label{yarrow_8c_a4be37aa6e50e66e51a3f0fa0c9fa5ac8}} 
+\index{yarrow.c@{yarrow.c}!yarrow\_start@{yarrow\_start}}
+\index{yarrow\_start@{yarrow\_start}!yarrow.c@{yarrow.c}}
+\subsubsection{\texorpdfstring{yarrow\_start()}{yarrow\_start()}}
+{\footnotesize\ttfamily int yarrow\+\_\+start (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structprng__state}{prng\+\_\+state}} $\ast$}]{prng }\end{DoxyParamCaption})}
+
+
+
+Start the P\+R\+NG. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em prng} & \mbox{[}out\mbox{]} The P\+R\+NG state to initialize \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 36 of file yarrow.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{37 \{}
+\DoxyCodeLine{38    \textcolor{keywordtype}{int} err;}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{40    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(prng != NULL);}
+\DoxyCodeLine{41    prng->\mbox{\hyperlink{structprng__state_ad5b2704260668ba49701ba0169286837}{ready}} = 0;}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{43    \textcolor{comment}{/* these are the default hash/cipher combo used */}}
+\DoxyCodeLine{44 \textcolor{preprocessor}{\#ifdef LTC\_RIJNDAEL}}
+\DoxyCodeLine{45 \textcolor{preprocessor}{\#if    LTC\_YARROW\_AES==0}}
+\DoxyCodeLine{46    prng->\mbox{\hyperlink{structprng__state_a73ffeba26752871bc883f035a89f0991}{u}}.yarrow.cipher = \mbox{\hyperlink{tomcrypt__cipher_8h_a61ac42bfbce4e88791a80140e8854a72}{register\_cipher}}(\&rijndael\_enc\_desc);}
+\DoxyCodeLine{47 \textcolor{preprocessor}{\#elif  LTC\_YARROW\_AES==1}}
+\DoxyCodeLine{48    prng->\mbox{\hyperlink{structprng__state_a73ffeba26752871bc883f035a89f0991}{u}}.yarrow.cipher = \mbox{\hyperlink{tomcrypt__cipher_8h_a61ac42bfbce4e88791a80140e8854a72}{register\_cipher}}(\&aes\_enc\_desc);}
+\DoxyCodeLine{49 \textcolor{preprocessor}{\#elif  LTC\_YARROW\_AES==2}}
+\DoxyCodeLine{50    prng->\mbox{\hyperlink{structprng__state_a73ffeba26752871bc883f035a89f0991}{u}}.yarrow.cipher = \mbox{\hyperlink{tomcrypt__cipher_8h_a61ac42bfbce4e88791a80140e8854a72}{register\_cipher}}(\&\mbox{\hyperlink{aes_8c_a2f9676b61a04fa630c2988748b29b7f5}{rijndael\_desc}});}
+\DoxyCodeLine{51 \textcolor{preprocessor}{\#elif  LTC\_YARROW\_AES==3}}
+\DoxyCodeLine{52    prng->\mbox{\hyperlink{structprng__state_a73ffeba26752871bc883f035a89f0991}{u}}.yarrow.cipher = \mbox{\hyperlink{tomcrypt__cipher_8h_a61ac42bfbce4e88791a80140e8854a72}{register\_cipher}}(\&\mbox{\hyperlink{aes_8c_a2aa48c4ff0b29440e5c83b7dac768801}{aes\_desc}});}
+\DoxyCodeLine{53 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{54 \textcolor{preprocessor}{\#elif defined(LTC\_BLOWFISH)}}
+\DoxyCodeLine{55    prng->\mbox{\hyperlink{structprng__state_a73ffeba26752871bc883f035a89f0991}{u}}.yarrow.cipher = \mbox{\hyperlink{tomcrypt__cipher_8h_a61ac42bfbce4e88791a80140e8854a72}{register\_cipher}}(\&\mbox{\hyperlink{blowfish_8c_aa69cbd19d84b49f3863a4443e51433ba}{blowfish\_desc}});}
+\DoxyCodeLine{56 \textcolor{preprocessor}{\#elif defined(LTC\_TWOFISH)}}
+\DoxyCodeLine{57    prng->\mbox{\hyperlink{structprng__state_a73ffeba26752871bc883f035a89f0991}{u}}.yarrow.cipher = \mbox{\hyperlink{tomcrypt__cipher_8h_a61ac42bfbce4e88791a80140e8854a72}{register\_cipher}}(\&\mbox{\hyperlink{twofish_8c_af0de9cc3deb118ab8ca14f7ff6d52fd3}{twofish\_desc}});}
+\DoxyCodeLine{58 \textcolor{preprocessor}{\#elif defined(LTC\_RC6)}}
+\DoxyCodeLine{59    prng->\mbox{\hyperlink{structprng__state_a73ffeba26752871bc883f035a89f0991}{u}}.yarrow.cipher = \mbox{\hyperlink{tomcrypt__cipher_8h_a61ac42bfbce4e88791a80140e8854a72}{register\_cipher}}(\&\mbox{\hyperlink{rc6_8c_a4bc4cd50d3da515c89e6df4d00371b3d}{rc6\_desc}});}
+\DoxyCodeLine{60 \textcolor{preprocessor}{\#elif defined(LTC\_RC5)}}
+\DoxyCodeLine{61    prng->\mbox{\hyperlink{structprng__state_a73ffeba26752871bc883f035a89f0991}{u}}.yarrow.cipher = \mbox{\hyperlink{tomcrypt__cipher_8h_a61ac42bfbce4e88791a80140e8854a72}{register\_cipher}}(\&\mbox{\hyperlink{rc5_8c_a694a18b2153a39eea83dbe59d619b6dc}{rc5\_desc}});}
+\DoxyCodeLine{62 \textcolor{preprocessor}{\#elif defined(LTC\_SAFERP)}}
+\DoxyCodeLine{63    prng->\mbox{\hyperlink{structprng__state_a73ffeba26752871bc883f035a89f0991}{u}}.yarrow.cipher = \mbox{\hyperlink{tomcrypt__cipher_8h_a61ac42bfbce4e88791a80140e8854a72}{register\_cipher}}(\&\mbox{\hyperlink{saferp_8c_a2b33e3e25708b5e3cf97aa55e9488229}{saferp\_desc}});}
+\DoxyCodeLine{64 \textcolor{preprocessor}{\#elif defined(LTC\_RC2)}}
+\DoxyCodeLine{65    prng->\mbox{\hyperlink{structprng__state_a73ffeba26752871bc883f035a89f0991}{u}}.yarrow.cipher = \mbox{\hyperlink{tomcrypt__cipher_8h_a61ac42bfbce4e88791a80140e8854a72}{register\_cipher}}(\&\mbox{\hyperlink{rc2_8c_af2a69c5eed0f0f5201a34c72801bdcb9}{rc2\_desc}});}
+\DoxyCodeLine{66 \textcolor{preprocessor}{\#elif defined(LTC\_NOEKEON)}}
+\DoxyCodeLine{67    prng->\mbox{\hyperlink{structprng__state_a73ffeba26752871bc883f035a89f0991}{u}}.yarrow.cipher = \mbox{\hyperlink{tomcrypt__cipher_8h_a61ac42bfbce4e88791a80140e8854a72}{register\_cipher}}(\&\mbox{\hyperlink{noekeon_8c_a9d3c31904b318246bbc99df8bf5f74b3}{noekeon\_desc}});}
+\DoxyCodeLine{68 \textcolor{preprocessor}{\#elif defined(LTC\_ANUBIS)}}
+\DoxyCodeLine{69    prng->\mbox{\hyperlink{structprng__state_a73ffeba26752871bc883f035a89f0991}{u}}.yarrow.cipher = \mbox{\hyperlink{tomcrypt__cipher_8h_a61ac42bfbce4e88791a80140e8854a72}{register\_cipher}}(\&\mbox{\hyperlink{anubis_8c_a90e32a17644ba7c27cee346ddb2517ef}{anubis\_desc}});}
+\DoxyCodeLine{70 \textcolor{preprocessor}{\#elif defined(LTC\_KSEED)}}
+\DoxyCodeLine{71    prng->\mbox{\hyperlink{structprng__state_a73ffeba26752871bc883f035a89f0991}{u}}.yarrow.cipher = \mbox{\hyperlink{tomcrypt__cipher_8h_a61ac42bfbce4e88791a80140e8854a72}{register\_cipher}}(\&\mbox{\hyperlink{kseed_8c_abb75fd3d7465d0109cb6577b350b7b07}{kseed\_desc}});}
+\DoxyCodeLine{72 \textcolor{preprocessor}{\#elif defined(LTC\_KHAZAD)}}
+\DoxyCodeLine{73    prng->\mbox{\hyperlink{structprng__state_a73ffeba26752871bc883f035a89f0991}{u}}.yarrow.cipher = \mbox{\hyperlink{tomcrypt__cipher_8h_a61ac42bfbce4e88791a80140e8854a72}{register\_cipher}}(\&\mbox{\hyperlink{khazad_8c_a07a193e67bcb1833c10b1fbcba1d90fc}{khazad\_desc}});}
+\DoxyCodeLine{74 \textcolor{preprocessor}{\#elif defined(LTC\_CAST5)}}
+\DoxyCodeLine{75    prng->\mbox{\hyperlink{structprng__state_a73ffeba26752871bc883f035a89f0991}{u}}.yarrow.cipher = \mbox{\hyperlink{tomcrypt__cipher_8h_a61ac42bfbce4e88791a80140e8854a72}{register\_cipher}}(\&\mbox{\hyperlink{cast5_8c_a3c28f696b4ea4bc133a4889b6d1a72d1}{cast5\_desc}});}
+\DoxyCodeLine{76 \textcolor{preprocessor}{\#elif defined(LTC\_XTEA)}}
+\DoxyCodeLine{77    prng->\mbox{\hyperlink{structprng__state_a73ffeba26752871bc883f035a89f0991}{u}}.yarrow.cipher = \mbox{\hyperlink{tomcrypt__cipher_8h_a61ac42bfbce4e88791a80140e8854a72}{register\_cipher}}(\&\mbox{\hyperlink{xtea_8c_a6fe160700a333cae733af99b30449aef}{xtea\_desc}});}
+\DoxyCodeLine{78 \textcolor{preprocessor}{\#elif defined(LTC\_SAFER)}}
+\DoxyCodeLine{79    prng->\mbox{\hyperlink{structprng__state_a73ffeba26752871bc883f035a89f0991}{u}}.yarrow.cipher = \mbox{\hyperlink{tomcrypt__cipher_8h_a61ac42bfbce4e88791a80140e8854a72}{register\_cipher}}(\&\mbox{\hyperlink{safer_8c_ad84579c3b6c86e51d479d189502e1827}{safer\_sk128\_desc}});}
+\DoxyCodeLine{80 \textcolor{preprocessor}{\#elif defined(LTC\_DES)}}
+\DoxyCodeLine{81    prng->\mbox{\hyperlink{structprng__state_a73ffeba26752871bc883f035a89f0991}{u}}.yarrow.cipher = \mbox{\hyperlink{tomcrypt__cipher_8h_a61ac42bfbce4e88791a80140e8854a72}{register\_cipher}}(\&\mbox{\hyperlink{des_8c_af3193b5d652e9e91159ff5a098fd95d3}{des3\_desc}});}
+\DoxyCodeLine{82 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{83 \textcolor{preprocessor}{   \#error LTC\_YARROW needs at least one CIPHER}}
+\DoxyCodeLine{84 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{85    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_ac30eb68934c4ca07205344dc9d159221}{cipher\_is\_valid}}(prng->\mbox{\hyperlink{structprng__state_a73ffeba26752871bc883f035a89f0991}{u}}.yarrow.cipher)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{86       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{87    \}}
+\DoxyCodeLine{88 }
+\DoxyCodeLine{89 \textcolor{preprocessor}{\#ifdef LTC\_SHA256}}
+\DoxyCodeLine{90    prng->\mbox{\hyperlink{structprng__state_a73ffeba26752871bc883f035a89f0991}{u}}.yarrow.hash   = \mbox{\hyperlink{tomcrypt__hash_8h_a675b9eda0e8cf146aca2cc89ea5ad571}{register\_hash}}(\&\mbox{\hyperlink{sha256_8c_a06cf2e3df8c7f3f9a7b169d03d6fed92}{sha256\_desc}});}
+\DoxyCodeLine{91 \textcolor{preprocessor}{\#elif defined(LTC\_SHA512)}}
+\DoxyCodeLine{92    prng->\mbox{\hyperlink{structprng__state_a73ffeba26752871bc883f035a89f0991}{u}}.yarrow.hash   = \mbox{\hyperlink{tomcrypt__hash_8h_a675b9eda0e8cf146aca2cc89ea5ad571}{register\_hash}}(\&\mbox{\hyperlink{sha512_8c_a9d10b4fc704b2dd97c24f59601464839}{sha512\_desc}});}
+\DoxyCodeLine{93 \textcolor{preprocessor}{\#elif defined(LTC\_TIGER)}}
+\DoxyCodeLine{94    prng->\mbox{\hyperlink{structprng__state_a73ffeba26752871bc883f035a89f0991}{u}}.yarrow.hash   = \mbox{\hyperlink{tomcrypt__hash_8h_a675b9eda0e8cf146aca2cc89ea5ad571}{register\_hash}}(\&\mbox{\hyperlink{tiger_8c_a44eec4b5ea7ebd749996709dcbb7fa02}{tiger\_desc}});}
+\DoxyCodeLine{95 \textcolor{preprocessor}{\#elif defined(LTC\_SHA1)}}
+\DoxyCodeLine{96    prng->\mbox{\hyperlink{structprng__state_a73ffeba26752871bc883f035a89f0991}{u}}.yarrow.hash   = \mbox{\hyperlink{tomcrypt__hash_8h_a675b9eda0e8cf146aca2cc89ea5ad571}{register\_hash}}(\&\mbox{\hyperlink{sha1_8c_aae521fdbe0f9dea61c37f76ece473360}{sha1\_desc}});}
+\DoxyCodeLine{97 \textcolor{preprocessor}{\#elif defined(LTC\_RIPEMD320)}}
+\DoxyCodeLine{98    prng->\mbox{\hyperlink{structprng__state_a73ffeba26752871bc883f035a89f0991}{u}}.yarrow.hash   = \mbox{\hyperlink{tomcrypt__hash_8h_a675b9eda0e8cf146aca2cc89ea5ad571}{register\_hash}}(\&\mbox{\hyperlink{rmd320_8c_abe58aeef9029a46a95935220544638f7}{rmd320\_desc}});}
+\DoxyCodeLine{99 \textcolor{preprocessor}{\#elif defined(LTC\_RIPEMD256)}}
+\DoxyCodeLine{100    prng->\mbox{\hyperlink{structprng__state_a73ffeba26752871bc883f035a89f0991}{u}}.yarrow.hash   = \mbox{\hyperlink{tomcrypt__hash_8h_a675b9eda0e8cf146aca2cc89ea5ad571}{register\_hash}}(\&\mbox{\hyperlink{rmd256_8c_afdfd681cdf38928449039232133c5081}{rmd256\_desc}});}
+\DoxyCodeLine{101 \textcolor{preprocessor}{\#elif defined(LTC\_RIPEMD160)}}
+\DoxyCodeLine{102    prng->\mbox{\hyperlink{structprng__state_a73ffeba26752871bc883f035a89f0991}{u}}.yarrow.hash   = \mbox{\hyperlink{tomcrypt__hash_8h_a675b9eda0e8cf146aca2cc89ea5ad571}{register\_hash}}(\&\mbox{\hyperlink{rmd160_8c_adc5d2fd08b4977b760c42c7611fdedfb}{rmd160\_desc}});}
+\DoxyCodeLine{103 \textcolor{preprocessor}{\#elif defined(LTC\_RIPEMD128)}}
+\DoxyCodeLine{104    prng->\mbox{\hyperlink{structprng__state_a73ffeba26752871bc883f035a89f0991}{u}}.yarrow.hash   = \mbox{\hyperlink{tomcrypt__hash_8h_a675b9eda0e8cf146aca2cc89ea5ad571}{register\_hash}}(\&\mbox{\hyperlink{rmd128_8c_a6cdb5b1eb339c651a909c16ce6aed0a3}{rmd128\_desc}});}
+\DoxyCodeLine{105 \textcolor{preprocessor}{\#elif defined(LTC\_MD5)}}
+\DoxyCodeLine{106    prng->\mbox{\hyperlink{structprng__state_a73ffeba26752871bc883f035a89f0991}{u}}.yarrow.hash   = \mbox{\hyperlink{tomcrypt__hash_8h_a675b9eda0e8cf146aca2cc89ea5ad571}{register\_hash}}(\&\mbox{\hyperlink{md5_8c_a70c38ffa9636c7aa5e6d83d061da20b4}{md5\_desc}});}
+\DoxyCodeLine{107 \textcolor{preprocessor}{\#elif defined(LTC\_MD4)}}
+\DoxyCodeLine{108    prng->\mbox{\hyperlink{structprng__state_a73ffeba26752871bc883f035a89f0991}{u}}.yarrow.hash   = \mbox{\hyperlink{tomcrypt__hash_8h_a675b9eda0e8cf146aca2cc89ea5ad571}{register\_hash}}(\&\mbox{\hyperlink{md4_8c_aab2ebda0ab4c495fb1dff5af5b6c1c1f}{md4\_desc}});}
+\DoxyCodeLine{109 \textcolor{preprocessor}{\#elif defined(LTC\_MD2)}}
+\DoxyCodeLine{110    prng->\mbox{\hyperlink{structprng__state_a73ffeba26752871bc883f035a89f0991}{u}}.yarrow.hash   = \mbox{\hyperlink{tomcrypt__hash_8h_a675b9eda0e8cf146aca2cc89ea5ad571}{register\_hash}}(\&\mbox{\hyperlink{md2_8c_ae32433d72cdc0cb99d8c45998acf3efc}{md2\_desc}});}
+\DoxyCodeLine{111 \textcolor{preprocessor}{\#elif defined(LTC\_WHIRLPOOL)}}
+\DoxyCodeLine{112    prng->\mbox{\hyperlink{structprng__state_a73ffeba26752871bc883f035a89f0991}{u}}.yarrow.hash   = \mbox{\hyperlink{tomcrypt__hash_8h_a675b9eda0e8cf146aca2cc89ea5ad571}{register\_hash}}(\&\mbox{\hyperlink{whirl_8c_a411c753dea7cc362d85b6032e7cafbf3}{whirlpool\_desc}});}
+\DoxyCodeLine{113 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{114 \textcolor{preprocessor}{   \#error LTC\_YARROW needs at least one HASH}}
+\DoxyCodeLine{115 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{116    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__hash_8h_a79647f22bf48bfa7de03fe5fc958c846}{hash\_is\_valid}}(prng->\mbox{\hyperlink{structprng__state_a73ffeba26752871bc883f035a89f0991}{u}}.yarrow.hash)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{117       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{118    \}}
+\DoxyCodeLine{119 }
+\DoxyCodeLine{120    \textcolor{comment}{/* zero the memory used */}}
+\DoxyCodeLine{121    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(prng->\mbox{\hyperlink{structprng__state_a73ffeba26752871bc883f035a89f0991}{u}}.yarrow.pool, \textcolor{keyword}{sizeof}(prng->\mbox{\hyperlink{structprng__state_a73ffeba26752871bc883f035a89f0991}{u}}.yarrow.pool));}
+\DoxyCodeLine{122    \mbox{\hyperlink{tomcrypt__custom_8h_a450b04a6e1d004908791edaa0901d284}{LTC\_MUTEX\_INIT}}(\&prng->lock)}
+\DoxyCodeLine{123 }
+\DoxyCodeLine{124    return \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{125 \}}
+
+\end{DoxyCode}
+
+
+References aes\+\_\+desc, anubis\+\_\+desc, blowfish\+\_\+desc, cast5\+\_\+desc, cipher\+\_\+is\+\_\+valid(), C\+R\+Y\+P\+T\+\_\+\+OK, des3\+\_\+desc, hash\+\_\+is\+\_\+valid(), khazad\+\_\+desc, kseed\+\_\+desc, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, L\+T\+C\+\_\+\+M\+U\+T\+E\+X\+\_\+\+I\+N\+IT, md2\+\_\+desc, md4\+\_\+desc, md5\+\_\+desc, noekeon\+\_\+desc, rc2\+\_\+desc, rc5\+\_\+desc, rc6\+\_\+desc, prng\+\_\+state\+::ready, register\+\_\+cipher(), register\+\_\+hash(), rijndael\+\_\+desc, rmd128\+\_\+desc, rmd160\+\_\+desc, rmd256\+\_\+desc, rmd320\+\_\+desc, safer\+\_\+sk128\+\_\+desc, saferp\+\_\+desc, sha1\+\_\+desc, sha256\+\_\+desc, sha512\+\_\+desc, tiger\+\_\+desc, twofish\+\_\+desc, prng\+\_\+state\+::u, whirlpool\+\_\+desc, xtea\+\_\+desc, and zeromem().
+
+
+
+Referenced by yarrow\+\_\+import(), and yarrow\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 7
+Here is the caller graph for this function\+:
+% FIG 8
+\mbox{\Hypertarget{yarrow_8c_a015eaaca3b133390535d3be2fced5cc1}\label{yarrow_8c_a015eaaca3b133390535d3be2fced5cc1}} 
+\index{yarrow.c@{yarrow.c}!yarrow\_test@{yarrow\_test}}
+\index{yarrow\_test@{yarrow\_test}!yarrow.c@{yarrow.c}}
+\subsubsection{\texorpdfstring{yarrow\_test()}{yarrow\_test()}}
+{\footnotesize\ttfamily int yarrow\+\_\+test (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+P\+R\+NG self-\/test. 
+
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful, C\+R\+Y\+P\+T\+\_\+\+N\+OP if self-\/testing has been disabled 
+\end{DoxyReturn}
+
+
+Definition at line 302 of file yarrow.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{303 \{}
+\DoxyCodeLine{304 \textcolor{preprocessor}{\#ifndef LTC\_TEST}}
+\DoxyCodeLine{305    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cac43a7799c7fd5f515172da6cfc0f9cf5}{CRYPT\_NOP}};}
+\DoxyCodeLine{306 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{307    \textcolor{keywordtype}{int} err;}
+\DoxyCodeLine{308    \mbox{\hyperlink{structprng__state}{prng\_state}} prng;}
+\DoxyCodeLine{309 }
+\DoxyCodeLine{310    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{yarrow_8c_a4be37aa6e50e66e51a3f0fa0c9fa5ac8}{yarrow\_start}}(\&prng)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{311       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{312    \}}
+\DoxyCodeLine{313 }
+\DoxyCodeLine{314    \textcolor{comment}{/* now let's test the hash/cipher that was chosen */}}
+\DoxyCodeLine{315    \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[prng.\mbox{\hyperlink{structprng__state_a73ffeba26752871bc883f035a89f0991}{u}}.yarrow.cipher].\mbox{\hyperlink{structltc__cipher__descriptor_a01a53b4fee754849ad124184a610a4f9}{test}} \&\&}
+\DoxyCodeLine{316        ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[prng.\mbox{\hyperlink{structprng__state_a73ffeba26752871bc883f035a89f0991}{u}}.yarrow.cipher].\mbox{\hyperlink{structltc__cipher__descriptor_a01a53b4fee754849ad124184a610a4f9}{test}}()) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})) \{}
+\DoxyCodeLine{317       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{318    \}}
+\DoxyCodeLine{319    \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__hash_8h_ab0e4f02e30a47da79baa9240e79cde92}{hash\_descriptor}}[prng.\mbox{\hyperlink{structprng__state_a73ffeba26752871bc883f035a89f0991}{u}}.yarrow.hash].\mbox{\hyperlink{structltc__hash__descriptor_ad31143932c117364e5c69cd7c3d62ef2}{test}} \&\&}
+\DoxyCodeLine{320        ((err = \mbox{\hyperlink{tomcrypt__hash_8h_ab0e4f02e30a47da79baa9240e79cde92}{hash\_descriptor}}[prng.\mbox{\hyperlink{structprng__state_a73ffeba26752871bc883f035a89f0991}{u}}.yarrow.hash].\mbox{\hyperlink{structltc__hash__descriptor_ad31143932c117364e5c69cd7c3d62ef2}{test}}()) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})) \{}
+\DoxyCodeLine{321       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{322    \}}
+\DoxyCodeLine{323 }
+\DoxyCodeLine{324    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{325 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{326 \}}
+
+\end{DoxyCode}
+
+
+References cipher\+\_\+descriptor, C\+R\+Y\+P\+T\+\_\+\+N\+OP, C\+R\+Y\+P\+T\+\_\+\+OK, hash\+\_\+descriptor, ltc\+\_\+hash\+\_\+descriptor\+::test, ltc\+\_\+cipher\+\_\+descriptor\+::test, prng\+\_\+state\+::u, and yarrow\+\_\+start().
+
+Here is the call graph for this function\+:
+% FIG 9
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{yarrow_8c_a565c22c2b2e0b2fbbbbfeccedabc7bfc}\label{yarrow_8c_a565c22c2b2e0b2fbbbbfeccedabc7bfc}} 
+\index{yarrow.c@{yarrow.c}!yarrow\_desc@{yarrow\_desc}}
+\index{yarrow\_desc@{yarrow\_desc}!yarrow.c@{yarrow.c}}
+\subsubsection{\texorpdfstring{yarrow\_desc}{yarrow\_desc}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structltc__prng__descriptor}{ltc\+\_\+prng\+\_\+descriptor}} yarrow\+\_\+desc}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    \textcolor{stringliteral}{"yarrow"}, 64,}
+\DoxyCodeLine{    \&\mbox{\hyperlink{yarrow_8c_a4be37aa6e50e66e51a3f0fa0c9fa5ac8}{yarrow\_start}},}
+\DoxyCodeLine{    \&\mbox{\hyperlink{yarrow_8c_ab1c10797c7a8d170476c2b36fdf686e7}{yarrow\_add\_entropy}},}
+\DoxyCodeLine{    \&\mbox{\hyperlink{yarrow_8c_a3be1b7af5fa03c4f9385bfaa97fb6402}{yarrow\_ready}},}
+\DoxyCodeLine{    \&\mbox{\hyperlink{yarrow_8c_a5862f58992cc389f85948ae36c89cd72}{yarrow\_read}},}
+\DoxyCodeLine{    \&\mbox{\hyperlink{yarrow_8c_ae80fcc4462e01b12838abc41c4484977}{yarrow\_done}},}
+\DoxyCodeLine{    \&\mbox{\hyperlink{yarrow_8c_a00bfd68b512d98e0374b1d0dcead5a66}{yarrow\_export}},}
+\DoxyCodeLine{    \&\mbox{\hyperlink{yarrow_8c_aa4abeeec501ff7cc5d002bf2ea495865}{yarrow\_import}},}
+\DoxyCodeLine{    \&\mbox{\hyperlink{yarrow_8c_a015eaaca3b133390535d3be2fced5cc1}{yarrow\_test}}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line 18 of file yarrow.\+c.
+
+
+
+Referenced by register\+\_\+all\+\_\+prngs(), and yarrow\+\_\+import().
+

@@ -1,0 +1,33 @@
+digraph "dsa_export"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node0 [label="dsa_export",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Export a DSA key to a binary packet."];
+  Node0 -> Node1 [color="midnightblue",fontsize="10",style="solid"];
+  Node1 [label="der_encode_integer",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$der__encode__integer_8c.html#a6087b9a2564eb9cc073665ed525721fa",tooltip="Store a mp_int integer."];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid"];
+  Node2 [label="der_encode_asn1_length",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__private_8h.html#ae0b6c1f1188a5aa201aa84de9a659550",tooltip="Encode the ASN.1 length field."];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid"];
+  Node3 [label="der_length_integer",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$der__length__integer_8c.html#af27dfc46ec4a482af05a2265a9d31ca3",tooltip="Gets length of DER encoding of num."];
+  Node3 -> Node4 [color="midnightblue",fontsize="10",style="solid"];
+  Node4 [label="der_length_asn1_length",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__private_8h.html#a8999e23c66cda0d777570e54f3a5c795",tooltip="Determine the length required to encode len in the ASN.1 length field."];
+  Node4 -> Node2 [color="midnightblue",fontsize="10",style="solid"];
+  Node0 -> Node5 [color="midnightblue",fontsize="10",style="solid"];
+  Node5 [label="der_encode_sequence\l_multi",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$der__encode__sequence__multi_8c.html#a1a5a69543a5c89f81560b52d6f11b8c5",tooltip="Encode a SEQUENCE type using a VA list."];
+  Node5 -> Node6 [color="midnightblue",fontsize="10",style="solid"];
+  Node6 [label="XCALLOC",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cfg_8h.html#a151dda14cd7acae31eaf1102b0cc0685",tooltip=" "];
+  Node5 -> Node7 [color="midnightblue",fontsize="10",style="solid"];
+  Node7 [label="XFREE",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cfg_8h.html#a260d66fc0690e0502cf3bfe7b5244b75",tooltip=" "];
+  Node0 -> Node8 [color="midnightblue",fontsize="10",style="solid"];
+  Node8 [label="x509_encode_subject\l_public_key_info",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__private_8h.html#a69644f00dd0825d15c8c799c46ef6ece",tooltip="Encode a SubjectPublicKeyInfo."];
+  Node8 -> Node5 [color="midnightblue",fontsize="10",style="solid"];
+  Node8 -> Node9 [color="midnightblue",fontsize="10",style="solid"];
+  Node9 [label="pk_get_oid",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__private_8h.html#acff5b3d0c6e1145e07d1a3ff53fadce5",tooltip=" "];
+  Node8 -> Node10 [color="midnightblue",fontsize="10",style="solid"];
+  Node10 [label="pk_oid_str_to_num",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__private_8h.html#ad99c87d19f50f703708d36a931fe5df6",tooltip=" "];
+  Node0 -> Node7 [color="midnightblue",fontsize="10",style="solid"];
+  Node0 -> Node11 [color="midnightblue",fontsize="10",style="solid"];
+  Node11 [label="XMALLOC",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cfg_8h.html#af363355f38fbaacdefacf270436ae1c9",tooltip=" "];
+}

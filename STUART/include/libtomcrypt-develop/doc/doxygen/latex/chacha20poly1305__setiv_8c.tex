@@ -1,0 +1,96 @@
+\hypertarget{chacha20poly1305__setiv_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/encauth/chachapoly/chacha20poly1305\+\_\+setiv.c File Reference}
+\label{chacha20poly1305__setiv_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/encauth/chachapoly/chacha20poly1305\_setiv.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/encauth/chachapoly/chacha20poly1305\_setiv.c}}
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for chacha20poly1305\+\_\+setiv.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{chacha20poly1305__setiv_8c_aec694a7406b22a534da1706070e98907}{chacha20poly1305\+\_\+setiv}} (chacha20poly1305\+\_\+state $\ast$st, const unsigned char $\ast$iv, unsigned long ivlen)
+\begin{DoxyCompactList}\small\item\em Set IV + counter data to the Cha\+Cha20\+Poly1305 state and reset the context. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{chacha20poly1305__setiv_8c_aec694a7406b22a534da1706070e98907}\label{chacha20poly1305__setiv_8c_aec694a7406b22a534da1706070e98907}} 
+\index{chacha20poly1305\_setiv.c@{chacha20poly1305\_setiv.c}!chacha20poly1305\_setiv@{chacha20poly1305\_setiv}}
+\index{chacha20poly1305\_setiv@{chacha20poly1305\_setiv}!chacha20poly1305\_setiv.c@{chacha20poly1305\_setiv.c}}
+\subsubsection{\texorpdfstring{chacha20poly1305\_setiv()}{chacha20poly1305\_setiv()}}
+{\footnotesize\ttfamily int chacha20poly1305\+\_\+setiv (\begin{DoxyParamCaption}\item[{chacha20poly1305\+\_\+state $\ast$}]{st,  }\item[{const unsigned char $\ast$}]{iv,  }\item[{unsigned long}]{ivlen }\end{DoxyParamCaption})}
+
+
+
+Set IV + counter data to the Cha\+Cha20\+Poly1305 state and reset the context. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em st} & The Cha\+Cha20\+Poly1305 state \\
+\hline
+{\em iv} & The IV data to add \\
+\hline
+{\em ivlen} & The length of the IV (must be 12 or 8) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK on success 
+\end{DoxyReturn}
+
+
+Definition at line 21 of file chacha20poly1305\+\_\+setiv.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{22 \{}
+\DoxyCodeLine{23    chacha\_state tmp\_st;}
+\DoxyCodeLine{24    \textcolor{keywordtype}{int} i, err;}
+\DoxyCodeLine{25    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} polykey[32];}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(st != NULL);}
+\DoxyCodeLine{28    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(iv != NULL);}
+\DoxyCodeLine{29    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(ivlen == 12 || ivlen == 8);}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31    \textcolor{comment}{/* set IV for chacha20 */}}
+\DoxyCodeLine{32    \textcolor{keywordflow}{if} (ivlen == 12) \{}
+\DoxyCodeLine{33       \textcolor{comment}{/* IV 96bit */}}
+\DoxyCodeLine{34       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{chacha__ivctr32_8c_a73258ca455e86e28fa3474bc51456590}{chacha\_ivctr32}}(\&st->chacha, iv, ivlen, 1)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{35    \}}
+\DoxyCodeLine{36    \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{37       \textcolor{comment}{/* IV 64bit */}}
+\DoxyCodeLine{38       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{chacha__ivctr64_8c_a2575d8a5708351cc77001ae00e77a132}{chacha\_ivctr64}}(\&st->chacha, iv, ivlen, 1)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{39    \}}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41    \textcolor{comment}{/* copy chacha20 key to temporary state */}}
+\DoxyCodeLine{42    \textcolor{keywordflow}{for}(i = 0; i < 12; i++) tmp\_st.input[i] = st->chacha.input[i];}
+\DoxyCodeLine{43    tmp\_st.rounds = 20;}
+\DoxyCodeLine{44    \textcolor{comment}{/* set IV */}}
+\DoxyCodeLine{45    if (ivlen == 12) \{}
+\DoxyCodeLine{46       \textcolor{comment}{/* IV 32bit */}}
+\DoxyCodeLine{47       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{chacha__ivctr32_8c_a73258ca455e86e28fa3474bc51456590}{chacha\_ivctr32}}(\&tmp\_st, iv, ivlen, 0)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{48    \}}
+\DoxyCodeLine{49    \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{50       \textcolor{comment}{/* IV 64bit */}}
+\DoxyCodeLine{51       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{chacha__ivctr64_8c_a2575d8a5708351cc77001ae00e77a132}{chacha\_ivctr64}}(\&tmp\_st, iv, ivlen, 0)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{52    \}}
+\DoxyCodeLine{53    \textcolor{comment}{/* (re)generate new poly1305 key */}}
+\DoxyCodeLine{54    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{chacha__keystream_8c_a3a29ed9997a58d432f9e8ddca7b90bdd}{chacha\_keystream}}(\&tmp\_st, polykey, 32)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{55    \textcolor{comment}{/* (re)initialise poly1305 */}}
+\DoxyCodeLine{56    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{poly1305_8c_a09bc8f3b4b3b4cbd2a2b10c9814a1619}{poly1305\_init}}(\&st->poly, polykey, 32)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{57    st->ctlen  = 0;}
+\DoxyCodeLine{58    st->aadlen = 0;}
+\DoxyCodeLine{59    st->aadflg = 1;}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{61    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{62 \}}
+
+\end{DoxyCode}
+
+
+References chacha\+\_\+ivctr32(), chacha\+\_\+ivctr64(), chacha\+\_\+keystream(), C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, and poly1305\+\_\+init().
+
+
+
+Referenced by chacha20poly1305\+\_\+memory(), chacha20poly1305\+\_\+setiv\+\_\+rfc7905(), and chacha20poly1305\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2

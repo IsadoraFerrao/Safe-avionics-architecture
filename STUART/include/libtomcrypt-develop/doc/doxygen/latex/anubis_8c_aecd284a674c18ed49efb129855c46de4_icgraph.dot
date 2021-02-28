@@ -1,0 +1,15 @@
+digraph "anubis_crypt"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node1 [label="anubis_crypt",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node2 [label="anubis_ecb_decrypt",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$anubis_8c.html#a1122129902230375d541d8286d677771",tooltip="Decrypts a block of text with Anubis."];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node3 [label="anubis_test",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$anubis_8c.html#a81f0af86ef06366e1ba31ddf293e9261",tooltip="Performs a self-test of the Anubis block cipher."];
+  Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node4 [label="anubis_ecb_encrypt",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$anubis_8c.html#ab361220dd90cf3f6d71aa253b33c1dbe",tooltip="Encrypts a block of text with Anubis."];
+  Node4 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+}

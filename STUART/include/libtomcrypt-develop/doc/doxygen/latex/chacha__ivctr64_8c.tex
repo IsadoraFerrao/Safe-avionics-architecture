@@ -1,0 +1,69 @@
+\hypertarget{chacha__ivctr64_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/stream/chacha/chacha\+\_\+ivctr64.c File Reference}
+\label{chacha__ivctr64_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/stream/chacha/chacha\_ivctr64.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/stream/chacha/chacha\_ivctr64.c}}
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for chacha\+\_\+ivctr64.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{chacha__ivctr64_8c_a2575d8a5708351cc77001ae00e77a132}{chacha\+\_\+ivctr64}} (chacha\+\_\+state $\ast$st, const unsigned char $\ast$iv, unsigned long ivlen, \mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}} counter)
+\begin{DoxyCompactList}\small\item\em Set IV + counter data to the Cha\+Cha state. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{chacha__ivctr64_8c_a2575d8a5708351cc77001ae00e77a132}\label{chacha__ivctr64_8c_a2575d8a5708351cc77001ae00e77a132}} 
+\index{chacha\_ivctr64.c@{chacha\_ivctr64.c}!chacha\_ivctr64@{chacha\_ivctr64}}
+\index{chacha\_ivctr64@{chacha\_ivctr64}!chacha\_ivctr64.c@{chacha\_ivctr64.c}}
+\subsubsection{\texorpdfstring{chacha\_ivctr64()}{chacha\_ivctr64()}}
+{\footnotesize\ttfamily int chacha\+\_\+ivctr64 (\begin{DoxyParamCaption}\item[{chacha\+\_\+state $\ast$}]{st,  }\item[{const unsigned char $\ast$}]{iv,  }\item[{unsigned long}]{ivlen,  }\item[{\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}}}]{counter }\end{DoxyParamCaption})}
+
+
+
+Set IV + counter data to the Cha\+Cha state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em st} & The Cha\+Cha20 state \\
+\hline
+{\em iv} & The IV data to add \\
+\hline
+{\em ivlen} & The length of the IV (must be 8) \\
+\hline
+{\em counter} & 64bit (unsigned) initial counter value \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK on success 
+\end{DoxyReturn}
+
+
+Definition at line 27 of file chacha\+\_\+ivctr64.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{28 \{}
+\DoxyCodeLine{29    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(st != NULL);}
+\DoxyCodeLine{30    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(iv != NULL);}
+\DoxyCodeLine{31    \textcolor{comment}{/* 64bit IV + 64bit counter */}}
+\DoxyCodeLine{32    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(ivlen == 8);}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34    st->input[12] = (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})(counter \& 0xFFFFFFFF);}
+\DoxyCodeLine{35    st->input[13] = (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})(counter >> 32);}
+\DoxyCodeLine{36    LOAD32L(st->input[14], iv + 0);}
+\DoxyCodeLine{37    LOAD32L(st->input[15], iv + 4);}
+\DoxyCodeLine{38    st->ksleft = 0;}
+\DoxyCodeLine{39    st->ivlen = ivlen;}
+\DoxyCodeLine{40    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{41 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+
+
+Referenced by chacha20\+\_\+prng\+\_\+add\+\_\+entropy(), chacha20\+\_\+prng\+\_\+ready(), chacha20poly1305\+\_\+setiv(), chacha\+\_\+memory(), and chacha\+\_\+test().
+
+Here is the caller graph for this function\+:
+% FIG 1

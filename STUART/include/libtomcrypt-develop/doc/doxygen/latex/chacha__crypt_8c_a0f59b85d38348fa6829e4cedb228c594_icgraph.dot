@@ -1,0 +1,45 @@
+digraph "_chacha_block"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node3 [label="_chacha_block",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node4 [label="chacha_crypt",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$chacha__crypt_8c.html#a1b1272fcac65a1e6a1ee555891b7c95e",tooltip="Encrypt (or decrypt) bytes of ciphertext (or plaintext) with ChaCha."];
+  Node4 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node5 [label="chacha20poly1305_decrypt",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$chacha20poly1305__decrypt_8c.html#a720b42faa2bcb456a96865c180a1556d",tooltip="Decrypt bytes of ciphertext with ChaCha20Poly1305."];
+  Node5 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node6 [label="chacha20poly1305_memory",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$chacha20poly1305__memory_8c.html#a1ad9f37fe4a4ac32fad1a1ab97f99d30",tooltip="Process an entire GCM packet in one call."];
+  Node6 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node7 [label="chacha20poly1305_test",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$chacha20poly1305__test_8c.html#a3ed16a3fd7fc440bc9137936ddb99793",tooltip=" "];
+  Node5 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node4 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node8 [label="chacha20poly1305_encrypt",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$chacha20poly1305__encrypt_8c.html#ad2ae25bf3a8b5a6412f350da439c7950",tooltip="Encrypt bytes of ciphertext with ChaCha20Poly1305."];
+  Node8 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node8 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node4 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node9 [label="chacha_keystream",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$chacha__keystream_8c.html#a3a29ed9997a58d432f9e8ddca7b90bdd",tooltip="Generate a stream of random bytes via ChaCha."];
+  Node9 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node10 [label="chacha20poly1305_setiv",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$chacha20poly1305__setiv_8c.html#aec694a7406b22a534da1706070e98907",tooltip="Set IV + counter data to the ChaCha20Poly1305 state and reset the context."];
+  Node10 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node10 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node11 [label="chacha20poly1305_setiv\l_rfc7905",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$chacha20poly1305__setiv__rfc7905_8c.html#aa113643ea24d7f6a06a993ef52eef37b",tooltip="Set IV + counter data (with RFC7905-magic) to the ChaCha20Poly1305 state and reset the context."];
+  Node11 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node10 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node9 -> Node12 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node12 [label="chacha20_prng_add_entropy",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$chacha20_8c.html#ae75ffa7e5ccf945ae352f106fb3b3f13",tooltip="Add entropy to the PRNG state."];
+  Node12 -> Node13 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node13 [label="chacha20_prng_import",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$chacha20_8c.html#aec1d8ebf9e796fe1223995e48d665a92",tooltip="Import a PRNG state."];
+  Node13 -> Node14 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node14 [label="chacha20_prng_test",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$chacha20_8c.html#a1c178a6f1b7255371d3340913c29b64a",tooltip="PRNG self-test."];
+  Node12 -> Node14 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node9 -> Node15 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node15 [label="chacha20_prng_read",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$chacha20_8c.html#a5adfff638ebc7c30cd3840ddd6807c30",tooltip="Read from the PRNG."];
+  Node15 -> Node14 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node4 -> Node16 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node16 [label="chacha_memory",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$chacha__memory_8c.html#abdc58552b8b6e826eccb18f706e08fa0",tooltip="Encrypt (or decrypt) bytes of ciphertext (or plaintext) with ChaCha."];
+  Node16 -> Node17 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node17 [label="chacha_test",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$chacha__test_8c.html#a821d3fc42bdf4f88ee30ff85ba5aedd6",tooltip=" "];
+  Node4 -> Node17 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+}

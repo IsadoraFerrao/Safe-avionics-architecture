@@ -1,0 +1,156 @@
+\hypertarget{hmac__done_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/mac/hmac/hmac\+\_\+done.c File Reference}
+\label{hmac__done_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/mac/hmac/hmac\_done.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/mac/hmac/hmac\_done.c}}
+
+
+H\+M\+AC support, terminate stream, Tom St Denis/\+Dobes Vandermeer.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for hmac\+\_\+done.\+c\+:
+% FIG 0
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{hmac__done_8c_a5ab617fd12cb1e8d4d9ded1e2f46a9e9}{L\+T\+C\+\_\+\+H\+M\+A\+C\+\_\+\+B\+L\+O\+C\+K\+S\+I\+ZE}}~\mbox{\hyperlink{crypt__hash__descriptor_8c_a4545ae41dc22aac9fd7ff30d2524e5d8}{hash\+\_\+descriptor}}\mbox{[}hash\mbox{]}.blocksize
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{hmac__done_8c_a25eaf3db04e6464adbba95d1153885d3}{hmac\+\_\+done}} (hmac\+\_\+state $\ast$hmac, unsigned char $\ast$out, unsigned long $\ast$outlen)
+\begin{DoxyCompactList}\small\item\em Terminate an H\+M\+AC session. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+H\+M\+AC support, terminate stream, Tom St Denis/\+Dobes Vandermeer. 
+
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{hmac__done_8c_a5ab617fd12cb1e8d4d9ded1e2f46a9e9}\label{hmac__done_8c_a5ab617fd12cb1e8d4d9ded1e2f46a9e9}} 
+\index{hmac\_done.c@{hmac\_done.c}!LTC\_HMAC\_BLOCKSIZE@{LTC\_HMAC\_BLOCKSIZE}}
+\index{LTC\_HMAC\_BLOCKSIZE@{LTC\_HMAC\_BLOCKSIZE}!hmac\_done.c@{hmac\_done.c}}
+\subsubsection{\texorpdfstring{LTC\_HMAC\_BLOCKSIZE}{LTC\_HMAC\_BLOCKSIZE}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+H\+M\+A\+C\+\_\+\+B\+L\+O\+C\+K\+S\+I\+ZE~\mbox{\hyperlink{crypt__hash__descriptor_8c_a4545ae41dc22aac9fd7ff30d2524e5d8}{hash\+\_\+descriptor}}\mbox{[}hash\mbox{]}.blocksize}
+
+
+
+Definition at line 18 of file hmac\+\_\+done.\+c.
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{hmac__done_8c_a25eaf3db04e6464adbba95d1153885d3}\label{hmac__done_8c_a25eaf3db04e6464adbba95d1153885d3}} 
+\index{hmac\_done.c@{hmac\_done.c}!hmac\_done@{hmac\_done}}
+\index{hmac\_done@{hmac\_done}!hmac\_done.c@{hmac\_done.c}}
+\subsubsection{\texorpdfstring{hmac\_done()}{hmac\_done()}}
+{\footnotesize\ttfamily int hmac\+\_\+done (\begin{DoxyParamCaption}\item[{hmac\+\_\+state $\ast$}]{hmac,  }\item[{unsigned char $\ast$}]{out,  }\item[{unsigned long $\ast$}]{outlen }\end{DoxyParamCaption})}
+
+
+
+Terminate an H\+M\+AC session. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em hmac} & The H\+M\+AC state \\
+\hline
+{\em out} & \mbox{[}out\mbox{]} The destination of the H\+M\+AC authentication tag \\
+\hline
+{\em outlen} & \mbox{[}in/out\mbox{]} The max size and resulting size of the H\+M\+AC authentication tag \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 27 of file hmac\+\_\+done.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{28 \{}
+\DoxyCodeLine{29     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *buf, *isha;}
+\DoxyCodeLine{30     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} hashsize, i;}
+\DoxyCodeLine{31     \textcolor{keywordtype}{int} hash, err;}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(hmac  != NULL);}
+\DoxyCodeLine{34     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(out   != NULL);}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36     \textcolor{comment}{/* test hash */}}
+\DoxyCodeLine{37     hash = hmac->hash;}
+\DoxyCodeLine{38     \textcolor{keywordflow}{if}((err = \mbox{\hyperlink{tomcrypt__hash_8h_a79647f22bf48bfa7de03fe5fc958c846}{hash\_is\_valid}}(hash)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{39         \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{40     \}}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{42     \textcolor{comment}{/* get the hash message digest size */}}
+\DoxyCodeLine{43     hashsize = \mbox{\hyperlink{tomcrypt__hash_8h_ab0e4f02e30a47da79baa9240e79cde92}{hash\_descriptor}}[hash].\mbox{\hyperlink{structltc__hash__descriptor_a49bd027653ff21408cb2661748d719ef}{hashsize}};}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45     \textcolor{comment}{/* allocate buffers */}}
+\DoxyCodeLine{46     buf  = \mbox{\hyperlink{tomcrypt__cfg_8h_af363355f38fbaacdefacf270436ae1c9}{XMALLOC}}(\mbox{\hyperlink{hmac__done_8c_a5ab617fd12cb1e8d4d9ded1e2f46a9e9}{LTC\_HMAC\_BLOCKSIZE}});}
+\DoxyCodeLine{47     isha = \mbox{\hyperlink{tomcrypt__cfg_8h_af363355f38fbaacdefacf270436ae1c9}{XMALLOC}}(hashsize);}
+\DoxyCodeLine{48     \textcolor{keywordflow}{if} (buf == NULL || isha == NULL) \{}
+\DoxyCodeLine{49        \textcolor{keywordflow}{if} (buf != NULL) \{}
+\DoxyCodeLine{50           \mbox{\hyperlink{tomcrypt__cfg_8h_a260d66fc0690e0502cf3bfe7b5244b75}{XFREE}}(buf);}
+\DoxyCodeLine{51        \}}
+\DoxyCodeLine{52        \textcolor{keywordflow}{if} (isha != NULL) \{}
+\DoxyCodeLine{53           \mbox{\hyperlink{tomcrypt__cfg_8h_a260d66fc0690e0502cf3bfe7b5244b75}{XFREE}}(isha);}
+\DoxyCodeLine{54        \}}
+\DoxyCodeLine{55        \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca0ce0d27adc7ea10b74b7ea904b8bfa82}{CRYPT\_MEM}};}
+\DoxyCodeLine{56     \}}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{58     \textcolor{comment}{/* Get the hash of the first HMAC vector plus the data */}}
+\DoxyCodeLine{59     \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__hash_8h_ab0e4f02e30a47da79baa9240e79cde92}{hash\_descriptor}}[hash].done(\&hmac->md, isha)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{60        \textcolor{keywordflow}{goto} LBL\_ERR;}
+\DoxyCodeLine{61     \}}
+\DoxyCodeLine{62 }
+\DoxyCodeLine{63     \textcolor{comment}{/* Create the second HMAC vector vector for step (3) */}}
+\DoxyCodeLine{64     \textcolor{keywordflow}{for}(i=0; i < \mbox{\hyperlink{hmac__done_8c_a5ab617fd12cb1e8d4d9ded1e2f46a9e9}{LTC\_HMAC\_BLOCKSIZE}}; i++) \{}
+\DoxyCodeLine{65         buf[i] = hmac->key[i] \string^ 0x5C;}
+\DoxyCodeLine{66     \}}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{68     \textcolor{comment}{/* Now calculate the "outer" hash for step (5), (6), and (7) */}}
+\DoxyCodeLine{69     \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__hash_8h_ab0e4f02e30a47da79baa9240e79cde92}{hash\_descriptor}}[hash].\mbox{\hyperlink{gmp__desc_8c_a4f8948d7c94899bf8ddee4721114d593}{init}}(\&hmac->md)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{70        \textcolor{keywordflow}{goto} LBL\_ERR;}
+\DoxyCodeLine{71     \}}
+\DoxyCodeLine{72     \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__hash_8h_ab0e4f02e30a47da79baa9240e79cde92}{hash\_descriptor}}[hash].process(\&hmac->md, buf, \mbox{\hyperlink{hmac__done_8c_a5ab617fd12cb1e8d4d9ded1e2f46a9e9}{LTC\_HMAC\_BLOCKSIZE}})) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{73        \textcolor{keywordflow}{goto} LBL\_ERR;}
+\DoxyCodeLine{74     \}}
+\DoxyCodeLine{75     \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__hash_8h_ab0e4f02e30a47da79baa9240e79cde92}{hash\_descriptor}}[hash].process(\&hmac->md, isha, hashsize)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{76        \textcolor{keywordflow}{goto} LBL\_ERR;}
+\DoxyCodeLine{77     \}}
+\DoxyCodeLine{78     \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__hash_8h_ab0e4f02e30a47da79baa9240e79cde92}{hash\_descriptor}}[hash].done(\&hmac->md, buf)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{79        \textcolor{keywordflow}{goto} LBL\_ERR;}
+\DoxyCodeLine{80     \}}
+\DoxyCodeLine{81 }
+\DoxyCodeLine{82     \textcolor{comment}{/* copy to output  */}}
+\DoxyCodeLine{83     \textcolor{keywordflow}{for} (i = 0; i < hashsize \&\& i < *outlen; i++) \{}
+\DoxyCodeLine{84         out[i] = buf[i];}
+\DoxyCodeLine{85     \}}
+\DoxyCodeLine{86     *outlen = i;}
+\DoxyCodeLine{87 }
+\DoxyCodeLine{88     err = \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{89 LBL\_ERR:}
+\DoxyCodeLine{90 \textcolor{preprocessor}{\#ifdef LTC\_CLEAN\_STACK}}
+\DoxyCodeLine{91     \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(isha, hashsize);}
+\DoxyCodeLine{92     \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(buf,  hashsize);}
+\DoxyCodeLine{93     \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(hmac, \textcolor{keyword}{sizeof}(*hmac));}
+\DoxyCodeLine{94 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{95 }
+\DoxyCodeLine{96     \mbox{\hyperlink{tomcrypt__cfg_8h_a260d66fc0690e0502cf3bfe7b5244b75}{XFREE}}(isha);}
+\DoxyCodeLine{97     \mbox{\hyperlink{tomcrypt__cfg_8h_a260d66fc0690e0502cf3bfe7b5244b75}{XFREE}}(buf);}
+\DoxyCodeLine{98 }
+\DoxyCodeLine{99     \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{100 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+M\+EM, C\+R\+Y\+P\+T\+\_\+\+OK, hash\+\_\+descriptor, hash\+\_\+is\+\_\+valid(), ltc\+\_\+hash\+\_\+descriptor\+::hashsize, init(), L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, L\+T\+C\+\_\+\+H\+M\+A\+C\+\_\+\+B\+L\+O\+C\+K\+S\+I\+ZE, X\+F\+R\+E\+E(), X\+M\+A\+L\+L\+O\+C(), and zeromem().
+
+
+
+Referenced by hmac\+\_\+file(), hmac\+\_\+memory(), hmac\+\_\+memory\+\_\+multi(), and pkcs\+\_\+5\+\_\+alg2().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2

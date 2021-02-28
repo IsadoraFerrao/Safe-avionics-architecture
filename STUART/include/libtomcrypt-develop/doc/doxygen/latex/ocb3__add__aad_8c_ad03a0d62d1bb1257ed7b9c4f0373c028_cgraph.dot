@@ -1,0 +1,12 @@
+digraph "_ocb3_int_aad_add_block"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node0 [label="_ocb3_int_aad_add_block",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Add one block of AAD data (internal function)"];
+  Node0 -> Node1 [color="midnightblue",fontsize="10",style="solid"];
+  Node1 [label="ocb3_int_ntz",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ocb3__int__ntz_8c.html#ac4af92f890be670e795a758ec452b402",tooltip="Returns the number of leading zero bits [from lsb up] (internal function)"];
+  Node0 -> Node2 [color="midnightblue",fontsize="10",style="solid"];
+  Node2 [label="ocb3_int_xor_blocks",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ocb3__int__xor__blocks_8c.html#a5bf6caa4615657cdfd8f8941620a987c",tooltip="Compute xor for two blocks of bytes 'out = block_a XOR block_b' (internal function)"];
+}

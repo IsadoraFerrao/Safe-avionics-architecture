@@ -1,0 +1,1777 @@
+\hypertarget{des_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/ciphers/des.c File Reference}
+\label{des_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/ciphers/des.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/ciphers/des.c}}
+
+
+D\+ES code submitted by Dobes Vandermeer.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for des.\+c\+:
+% FIG 0
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{des_8c_ad1a1f41e41165f5cf9d6eb3c5852aa26}{E\+N0}}~0
+\item 
+\#define \mbox{\hyperlink{des_8c_a507e2e44cdf44c75938df5a03ae504da}{D\+E1}}~1
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{des_8c_a48f9d9ac142cef1ed08a54502cb8c5f7}{cookey}} (const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} $\ast$raw1, \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} $\ast$keyout)
+\item 
+static void \mbox{\hyperlink{des_8c_a318fa41e408b0ac2ff7cbd4cc1b88f46}{deskey}} (const unsigned char $\ast$key, short edf, \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} $\ast$keyout)
+\item 
+static void \mbox{\hyperlink{des_8c_a40c4cfa81b99dc75ec50f9b13a9360de}{desfunc}} (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} $\ast$block, const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} $\ast$keys)
+\item 
+int \mbox{\hyperlink{des_8c_ae212a3a7d8ce6022b2d0e27ba3627cc0}{des\+\_\+setup}} (const unsigned char $\ast$key, int keylen, int num\+\_\+rounds, \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)
+\begin{DoxyCompactList}\small\item\em Initialize the L\+T\+C\+\_\+\+D\+ES block cipher. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{des_8c_a9d44ff389c97c490ae7ac9e7f6be21f8}{des3\+\_\+setup}} (const unsigned char $\ast$key, int keylen, int num\+\_\+rounds, \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)
+\begin{DoxyCompactList}\small\item\em Initialize the 3L\+T\+C\+\_\+\+D\+E\+S-\/\+E\+DE block cipher. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{des_8c_ab4c9077c03fb6684df1d1b4982ad644f}{des\+\_\+ecb\+\_\+encrypt}} (const unsigned char $\ast$pt, unsigned char $\ast$ct, const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)
+\begin{DoxyCompactList}\small\item\em Encrypts a block of text with L\+T\+C\+\_\+\+D\+ES. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{des_8c_a728fc39e0411caa9ba134e4f4d10d3d2}{des\+\_\+ecb\+\_\+decrypt}} (const unsigned char $\ast$ct, unsigned char $\ast$pt, const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)
+\begin{DoxyCompactList}\small\item\em Decrypts a block of text with L\+T\+C\+\_\+\+D\+ES. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{des_8c_a2711eaeb99fc5e4af5079bd493c886f4}{des3\+\_\+ecb\+\_\+encrypt}} (const unsigned char $\ast$pt, unsigned char $\ast$ct, const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)
+\begin{DoxyCompactList}\small\item\em Encrypts a block of text with 3L\+T\+C\+\_\+\+D\+E\+S-\/\+E\+DE. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{des_8c_a406110bf01432bed39765db772513396}{des3\+\_\+ecb\+\_\+decrypt}} (const unsigned char $\ast$ct, unsigned char $\ast$pt, const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)
+\begin{DoxyCompactList}\small\item\em Decrypts a block of text with 3L\+T\+C\+\_\+\+D\+E\+S-\/\+E\+DE. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{des_8c_a27b8e19aa00b5b9b5c4e70fcc4b18fc6}{des\+\_\+test}} (void)
+\begin{DoxyCompactList}\small\item\em Performs a self-\/test of the L\+T\+C\+\_\+\+D\+ES block cipher. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{des_8c_ac6f22505ef05d826646a1d64542682e4}{des3\+\_\+test}} (void)
+\item 
+void \mbox{\hyperlink{des_8c_a3fe19ff3400cbac9103a3235da49d2c4}{des\+\_\+done}} (\mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)
+\begin{DoxyCompactList}\small\item\em Terminate the context. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{des_8c_a25ab341c9f593a120e86fec61bf90ae7}{des3\+\_\+done}} (\mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)
+\begin{DoxyCompactList}\small\item\em Terminate the context. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{des_8c_a47551270a13f313b4fb2b46520d2a183}{des\+\_\+keysize}} (int $\ast$keysize)
+\begin{DoxyCompactList}\small\item\em Gets suitable key size. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{des_8c_a1bbde6174a0f9a90359f78f15b63cc7d}{des3\+\_\+keysize}} (int $\ast$keysize)
+\begin{DoxyCompactList}\small\item\em Gets suitable key size. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const struct \mbox{\hyperlink{structltc__cipher__descriptor}{ltc\+\_\+cipher\+\_\+descriptor}} \mbox{\hyperlink{des_8c_a3063e5b41add687be02cd6b134f5a73f}{des\+\_\+desc}}
+\item 
+const struct \mbox{\hyperlink{structltc__cipher__descriptor}{ltc\+\_\+cipher\+\_\+descriptor}} \mbox{\hyperlink{des_8c_af3193b5d652e9e91159ff5a098fd95d3}{des3\+\_\+desc}}
+\item 
+static const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} \mbox{\hyperlink{des_8c_a8db241419c61d0b53eb31ac71078d23d}{bytebit}} \mbox{[}8\mbox{]}
+\item 
+static const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} \mbox{\hyperlink{des_8c_aaa9b8fc17d31a1dc7d9fb8514b1dd5a0}{bigbyte}} \mbox{[}24\mbox{]}
+\item 
+static const unsigned char \mbox{\hyperlink{des_8c_a5e7a131b68a2b70172ead7110bc7eb37}{pc1}} \mbox{[}56\mbox{]}
+\item 
+static const unsigned char \mbox{\hyperlink{des_8c_a123895565f4a551165a0adb0cff83d58}{totrot}} \mbox{[}16\mbox{]}
+\item 
+static const unsigned char \mbox{\hyperlink{des_8c_acd3c1acca7ec1543e6244cf7d8fcc669}{pc2}} \mbox{[}48\mbox{]}
+\item 
+static const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} \mbox{\hyperlink{des_8c_a5be04a21db5cb6e716b6a70cbb5ea316}{S\+P1}} \mbox{[}64\mbox{]}
+\item 
+static const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} \mbox{\hyperlink{des_8c_ab56e07682fa92fd7f73b7a83f2531f71}{S\+P2}} \mbox{[}64\mbox{]}
+\item 
+static const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} \mbox{\hyperlink{des_8c_a283e832b1ebbf68e67a919d1f807e9e0}{S\+P3}} \mbox{[}64\mbox{]}
+\item 
+static const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} \mbox{\hyperlink{des_8c_ad043a05c01aa10e8113c8aba7b4191c2}{S\+P4}} \mbox{[}64\mbox{]}
+\item 
+static const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} \mbox{\hyperlink{des_8c_a2c2967a36313247312098aafb6c05377}{S\+P5}} \mbox{[}64\mbox{]}
+\item 
+static const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} \mbox{\hyperlink{des_8c_af4d6d56474db9003ce875c706c518746}{S\+P6}} \mbox{[}64\mbox{]}
+\item 
+static const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} \mbox{\hyperlink{des_8c_a5be1f121263a973042d327770158e7f7}{S\+P7}} \mbox{[}64\mbox{]}
+\item 
+static const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} \mbox{\hyperlink{des_8c_ae8e9d23a4cf3f15df84ed067879636f4}{S\+P8}} \mbox{[}64\mbox{]}
+\item 
+static const \mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}} \mbox{\hyperlink{des_8c_aa7df8e071af4edb40feeddb7d969bf42}{des\+\_\+ip}} \mbox{[}8\mbox{]}\mbox{[}256\mbox{]}
+\item 
+static const \mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}} \mbox{\hyperlink{des_8c_a7d2cc9abe076285cacec0595a44f336f}{des\+\_\+fp}} \mbox{[}8\mbox{]}\mbox{[}256\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+D\+ES code submitted by Dobes Vandermeer. 
+
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{des_8c_a507e2e44cdf44c75938df5a03ae504da}\label{des_8c_a507e2e44cdf44c75938df5a03ae504da}} 
+\index{des.c@{des.c}!DE1@{DE1}}
+\index{DE1@{DE1}!des.c@{des.c}}
+\subsubsection{\texorpdfstring{DE1}{DE1}}
+{\footnotesize\ttfamily \#define D\+E1~1}
+
+
+
+Definition at line 19 of file des.\+c.
+
+\mbox{\Hypertarget{des_8c_ad1a1f41e41165f5cf9d6eb3c5852aa26}\label{des_8c_ad1a1f41e41165f5cf9d6eb3c5852aa26}} 
+\index{des.c@{des.c}!EN0@{EN0}}
+\index{EN0@{EN0}!des.c@{des.c}}
+\subsubsection{\texorpdfstring{EN0}{EN0}}
+{\footnotesize\ttfamily \#define E\+N0~0}
+
+
+
+Definition at line 18 of file des.\+c.
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{des_8c_a48f9d9ac142cef1ed08a54502cb8c5f7}\label{des_8c_a48f9d9ac142cef1ed08a54502cb8c5f7}} 
+\index{des.c@{des.c}!cookey@{cookey}}
+\index{cookey@{cookey}!des.c@{des.c}}
+\subsubsection{\texorpdfstring{cookey()}{cookey()}}
+{\footnotesize\ttfamily static void cookey (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} $\ast$}]{raw1,  }\item[{\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} $\ast$}]{keyout }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 1364 of file des.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1366 \{}
+\DoxyCodeLine{1367     \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} *cook;}
+\DoxyCodeLine{1368     \textcolor{keyword}{const} \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} *raw0;}
+\DoxyCodeLine{1369     \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} dough[32];}
+\DoxyCodeLine{1370     \textcolor{keywordtype}{int} i;}
+\DoxyCodeLine{1371 }
+\DoxyCodeLine{1372     cook = dough;}
+\DoxyCodeLine{1373     \textcolor{keywordflow}{for}(i=0; i < 16; i++, raw1++)}
+\DoxyCodeLine{1374     \{}
+\DoxyCodeLine{1375         raw0 = raw1++;}
+\DoxyCodeLine{1376         *cook    = (*raw0 \& 0x00fc0000L) << 6;}
+\DoxyCodeLine{1377         *cook   |= (*raw0 \& 0x00000fc0L) << 10;}
+\DoxyCodeLine{1378         *cook   |= (*raw1 \& 0x00fc0000L) >> 10;}
+\DoxyCodeLine{1379         *cook++ |= (*raw1 \& 0x00000fc0L) >> 6;}
+\DoxyCodeLine{1380         *cook    = (*raw0 \& 0x0003f000L) << 12;}
+\DoxyCodeLine{1381         *cook   |= (*raw0 \& 0x0000003fL) << 16;}
+\DoxyCodeLine{1382         *cook   |= (*raw1 \& 0x0003f000L) >> 4;}
+\DoxyCodeLine{1383         *cook++ |= (*raw1 \& 0x0000003fL);}
+\DoxyCodeLine{1384     \}}
+\DoxyCodeLine{1385 }
+\DoxyCodeLine{1386     \mbox{\hyperlink{tomcrypt__cfg_8h_a7691dd48d60d5fc6daf2fa7ec4c55e12}{XMEMCPY}}(keyout, dough, \textcolor{keyword}{sizeof}(dough));}
+\DoxyCodeLine{1387 \}}
+
+\end{DoxyCode}
+
+
+References X\+M\+E\+M\+C\+P\+Y().
+
+
+
+Referenced by deskey().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2
+\mbox{\Hypertarget{des_8c_a25ab341c9f593a120e86fec61bf90ae7}\label{des_8c_a25ab341c9f593a120e86fec61bf90ae7}} 
+\index{des.c@{des.c}!des3\_done@{des3\_done}}
+\index{des3\_done@{des3\_done}!des.c@{des.c}}
+\subsubsection{\texorpdfstring{des3\_done()}{des3\_done()}}
+{\footnotesize\ttfamily void des3\+\_\+done (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$}]{skey }\end{DoxyParamCaption})}
+
+
+
+Terminate the context. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em skey} & The scheduled key \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 2042 of file des.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{2043 \{}
+\DoxyCodeLine{2044   \mbox{\hyperlink{tomcrypt__macros_8h_accde4b007facd646a8327f8e64b2d1e0}{LTC\_UNUSED\_PARAM}}(skey);}
+\DoxyCodeLine{2045 \}}
+
+\end{DoxyCode}
+
+
+References L\+T\+C\+\_\+\+U\+N\+U\+S\+E\+D\+\_\+\+P\+A\+R\+AM.
+
+\mbox{\Hypertarget{des_8c_a406110bf01432bed39765db772513396}\label{des_8c_a406110bf01432bed39765db772513396}} 
+\index{des.c@{des.c}!des3\_ecb\_decrypt@{des3\_ecb\_decrypt}}
+\index{des3\_ecb\_decrypt@{des3\_ecb\_decrypt}!des.c@{des.c}}
+\subsubsection{\texorpdfstring{des3\_ecb\_decrypt()}{des3\_ecb\_decrypt()}}
+{\footnotesize\ttfamily int des3\+\_\+ecb\+\_\+decrypt (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{ct,  }\item[{unsigned char $\ast$}]{pt,  }\item[{const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$}]{skey }\end{DoxyParamCaption})}
+
+
+
+Decrypts a block of text with 3L\+T\+C\+\_\+\+D\+E\+S-\/\+E\+DE. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ct} & The input ciphertext (8 bytes) \\
+\hline
+{\em pt} & The output plaintext (8 bytes) \\
+\hline
+{\em skey} & The key as scheduled \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 1661 of file des.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1662 \{}
+\DoxyCodeLine{1663     \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} work[2];}
+\DoxyCodeLine{1664     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(pt   != NULL);}
+\DoxyCodeLine{1665     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(ct   != NULL);}
+\DoxyCodeLine{1666     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(skey != NULL);}
+\DoxyCodeLine{1667     LOAD32H(work[0], ct+0);}
+\DoxyCodeLine{1668     LOAD32H(work[1], ct+4);}
+\DoxyCodeLine{1669     \mbox{\hyperlink{des_8c_a40c4cfa81b99dc75ec50f9b13a9360de}{desfunc}}(work, skey->des3.dk[0]);}
+\DoxyCodeLine{1670     \mbox{\hyperlink{des_8c_a40c4cfa81b99dc75ec50f9b13a9360de}{desfunc}}(work, skey->des3.dk[1]);}
+\DoxyCodeLine{1671     \mbox{\hyperlink{des_8c_a40c4cfa81b99dc75ec50f9b13a9360de}{desfunc}}(work, skey->des3.dk[2]);}
+\DoxyCodeLine{1672     STORE32H(work[0],pt+0);}
+\DoxyCodeLine{1673     STORE32H(work[1],pt+4);}
+\DoxyCodeLine{1674     \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{1675 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, desfunc(), and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+
+
+Referenced by des3\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 3
+Here is the caller graph for this function\+:
+% FIG 4
+\mbox{\Hypertarget{des_8c_a2711eaeb99fc5e4af5079bd493c886f4}\label{des_8c_a2711eaeb99fc5e4af5079bd493c886f4}} 
+\index{des.c@{des.c}!des3\_ecb\_encrypt@{des3\_ecb\_encrypt}}
+\index{des3\_ecb\_encrypt@{des3\_ecb\_encrypt}!des.c@{des.c}}
+\subsubsection{\texorpdfstring{des3\_ecb\_encrypt()}{des3\_ecb\_encrypt()}}
+{\footnotesize\ttfamily int des3\+\_\+ecb\+\_\+encrypt (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{pt,  }\item[{unsigned char $\ast$}]{ct,  }\item[{const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$}]{skey }\end{DoxyParamCaption})}
+
+
+
+Encrypts a block of text with 3L\+T\+C\+\_\+\+D\+E\+S-\/\+E\+DE. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pt} & The input plaintext (8 bytes) \\
+\hline
+{\em ct} & The output ciphertext (8 bytes) \\
+\hline
+{\em skey} & The key as scheduled \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 1637 of file des.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1638 \{}
+\DoxyCodeLine{1639     \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} work[2];}
+\DoxyCodeLine{1640 }
+\DoxyCodeLine{1641     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(pt   != NULL);}
+\DoxyCodeLine{1642     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(ct   != NULL);}
+\DoxyCodeLine{1643     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(skey != NULL);}
+\DoxyCodeLine{1644     LOAD32H(work[0], pt+0);}
+\DoxyCodeLine{1645     LOAD32H(work[1], pt+4);}
+\DoxyCodeLine{1646     \mbox{\hyperlink{des_8c_a40c4cfa81b99dc75ec50f9b13a9360de}{desfunc}}(work, skey->des3.ek[0]);}
+\DoxyCodeLine{1647     \mbox{\hyperlink{des_8c_a40c4cfa81b99dc75ec50f9b13a9360de}{desfunc}}(work, skey->des3.ek[1]);}
+\DoxyCodeLine{1648     \mbox{\hyperlink{des_8c_a40c4cfa81b99dc75ec50f9b13a9360de}{desfunc}}(work, skey->des3.ek[2]);}
+\DoxyCodeLine{1649     STORE32H(work[0],ct+0);}
+\DoxyCodeLine{1650     STORE32H(work[1],ct+4);}
+\DoxyCodeLine{1651     \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{1652 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, desfunc(), and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+
+
+Referenced by des3\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 5
+Here is the caller graph for this function\+:
+% FIG 6
+\mbox{\Hypertarget{des_8c_a1bbde6174a0f9a90359f78f15b63cc7d}\label{des_8c_a1bbde6174a0f9a90359f78f15b63cc7d}} 
+\index{des.c@{des.c}!des3\_keysize@{des3\_keysize}}
+\index{des3\_keysize@{des3\_keysize}!des.c@{des.c}}
+\subsubsection{\texorpdfstring{des3\_keysize()}{des3\_keysize()}}
+{\footnotesize\ttfamily int des3\+\_\+keysize (\begin{DoxyParamCaption}\item[{int $\ast$}]{keysize }\end{DoxyParamCaption})}
+
+
+
+Gets suitable key size. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em keysize} & \mbox{[}in/out\mbox{]} The length of the recommended key (in bytes). This function will store the suitable size back in this variable. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if the input key size is acceptable. 
+\end{DoxyReturn}
+
+
+Definition at line 2068 of file des.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{2069 \{}
+\DoxyCodeLine{2070     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(keysize != NULL);}
+\DoxyCodeLine{2071     \textcolor{keywordflow}{if} (*keysize < 16) \{}
+\DoxyCodeLine{2072        \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caafed43f3b625e72191e08e65b4bb5e02}{CRYPT\_INVALID\_KEYSIZE}};}
+\DoxyCodeLine{2073     \}}
+\DoxyCodeLine{2074     \textcolor{keywordflow}{if} (*keysize < 24) \{}
+\DoxyCodeLine{2075        *keysize = 16;}
+\DoxyCodeLine{2076        \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{2077     \}}
+\DoxyCodeLine{2078     *keysize = 24;}
+\DoxyCodeLine{2079     \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{2080 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+K\+E\+Y\+S\+I\+ZE, C\+R\+Y\+P\+T\+\_\+\+OK, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+\mbox{\Hypertarget{des_8c_a9d44ff389c97c490ae7ac9e7f6be21f8}\label{des_8c_a9d44ff389c97c490ae7ac9e7f6be21f8}} 
+\index{des.c@{des.c}!des3\_setup@{des3\_setup}}
+\index{des3\_setup@{des3\_setup}!des.c@{des.c}}
+\subsubsection{\texorpdfstring{des3\_setup()}{des3\_setup()}}
+{\footnotesize\ttfamily int des3\+\_\+setup (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{key,  }\item[{int}]{keylen,  }\item[{int}]{num\+\_\+rounds,  }\item[{\mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$}]{skey }\end{DoxyParamCaption})}
+
+
+
+Initialize the 3L\+T\+C\+\_\+\+D\+E\+S-\/\+E\+DE block cipher. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The symmetric key you wish to pass \\
+\hline
+{\em keylen} & The key length in bytes \\
+\hline
+{\em num\+\_\+rounds} & The number of rounds desired (0 for default) \\
+\hline
+{\em skey} & The key in as scheduled by this function. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 1554 of file des.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1555 \{}
+\DoxyCodeLine{1556     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(key != NULL);}
+\DoxyCodeLine{1557     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(skey != NULL);}
+\DoxyCodeLine{1558 }
+\DoxyCodeLine{1559     \textcolor{keywordflow}{if}(num\_rounds != 0 \&\& num\_rounds != 16) \{}
+\DoxyCodeLine{1560         \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca69aff0280b5845d03130f8700009caf5}{CRYPT\_INVALID\_ROUNDS}};}
+\DoxyCodeLine{1561     \}}
+\DoxyCodeLine{1562 }
+\DoxyCodeLine{1563     \textcolor{keywordflow}{if} (keylen != 24 \&\& keylen != 16) \{}
+\DoxyCodeLine{1564         \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caafed43f3b625e72191e08e65b4bb5e02}{CRYPT\_INVALID\_KEYSIZE}};}
+\DoxyCodeLine{1565     \}}
+\DoxyCodeLine{1566 }
+\DoxyCodeLine{1567     \mbox{\hyperlink{des_8c_a318fa41e408b0ac2ff7cbd4cc1b88f46}{deskey}}(key,    \mbox{\hyperlink{des_8c_ad1a1f41e41165f5cf9d6eb3c5852aa26}{EN0}}, skey->des3.ek[0]);}
+\DoxyCodeLine{1568     \mbox{\hyperlink{des_8c_a318fa41e408b0ac2ff7cbd4cc1b88f46}{deskey}}(key+8,  \mbox{\hyperlink{des_8c_a507e2e44cdf44c75938df5a03ae504da}{DE1}}, skey->des3.ek[1]);}
+\DoxyCodeLine{1569     \textcolor{keywordflow}{if} (keylen == 24) \{}
+\DoxyCodeLine{1570         \mbox{\hyperlink{des_8c_a318fa41e408b0ac2ff7cbd4cc1b88f46}{deskey}}(key+16, \mbox{\hyperlink{des_8c_ad1a1f41e41165f5cf9d6eb3c5852aa26}{EN0}}, skey->des3.ek[2]);}
+\DoxyCodeLine{1571     \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{1572         \textcolor{comment}{/* two-key 3DES: K3=K1 */}}
+\DoxyCodeLine{1573         \mbox{\hyperlink{des_8c_a318fa41e408b0ac2ff7cbd4cc1b88f46}{deskey}}(key, \mbox{\hyperlink{des_8c_ad1a1f41e41165f5cf9d6eb3c5852aa26}{EN0}}, skey->des3.ek[2]);}
+\DoxyCodeLine{1574     \}}
+\DoxyCodeLine{1575 }
+\DoxyCodeLine{1576     \mbox{\hyperlink{des_8c_a318fa41e408b0ac2ff7cbd4cc1b88f46}{deskey}}(key,    \mbox{\hyperlink{des_8c_a507e2e44cdf44c75938df5a03ae504da}{DE1}}, skey->des3.dk[2]);}
+\DoxyCodeLine{1577     \mbox{\hyperlink{des_8c_a318fa41e408b0ac2ff7cbd4cc1b88f46}{deskey}}(key+8,  \mbox{\hyperlink{des_8c_ad1a1f41e41165f5cf9d6eb3c5852aa26}{EN0}}, skey->des3.dk[1]);}
+\DoxyCodeLine{1578     \textcolor{keywordflow}{if} (keylen == 24) \{}
+\DoxyCodeLine{1579         \mbox{\hyperlink{des_8c_a318fa41e408b0ac2ff7cbd4cc1b88f46}{deskey}}(key+16, \mbox{\hyperlink{des_8c_a507e2e44cdf44c75938df5a03ae504da}{DE1}}, skey->des3.dk[0]);}
+\DoxyCodeLine{1580     \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{1581         \textcolor{comment}{/* two-key 3DES: K3=K1 */}}
+\DoxyCodeLine{1582         \mbox{\hyperlink{des_8c_a318fa41e408b0ac2ff7cbd4cc1b88f46}{deskey}}(key, \mbox{\hyperlink{des_8c_a507e2e44cdf44c75938df5a03ae504da}{DE1}}, skey->des3.dk[0]);}
+\DoxyCodeLine{1583     \}}
+\DoxyCodeLine{1584 }
+\DoxyCodeLine{1585     \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{1586 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+K\+E\+Y\+S\+I\+ZE, C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+R\+O\+U\+N\+DS, C\+R\+Y\+P\+T\+\_\+\+OK, D\+E1, deskey(), E\+N0, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+
+
+Referenced by des3\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 7
+Here is the caller graph for this function\+:
+% FIG 8
+\mbox{\Hypertarget{des_8c_ac6f22505ef05d826646a1d64542682e4}\label{des_8c_ac6f22505ef05d826646a1d64542682e4}} 
+\index{des.c@{des.c}!des3\_test@{des3\_test}}
+\index{des3\_test@{des3\_test}!des.c@{des.c}}
+\subsubsection{\texorpdfstring{des3\_test()}{des3\_test()}}
+{\footnotesize\ttfamily int des3\+\_\+test (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 1995 of file des.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1996 \{}
+\DoxyCodeLine{1997 \textcolor{preprocessor}{ \#ifndef LTC\_TEST}}
+\DoxyCodeLine{1998     \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cac43a7799c7fd5f515172da6cfc0f9cf5}{CRYPT\_NOP}};}
+\DoxyCodeLine{1999 \textcolor{preprocessor}{ \#else}}
+\DoxyCodeLine{2000    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} key[24], pt[8], ct[8], tmp[8];}
+\DoxyCodeLine{2001    \mbox{\hyperlink{unionSymmetric__key}{symmetric\_key}} skey;}
+\DoxyCodeLine{2002    \textcolor{keywordtype}{int} x, err;}
+\DoxyCodeLine{2003 }
+\DoxyCodeLine{2004    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{des_8c_a27b8e19aa00b5b9b5c4e70fcc4b18fc6}{des\_test}}()) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{2005       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{2006    \}}
+\DoxyCodeLine{2007 }
+\DoxyCodeLine{2008    \textcolor{keywordflow}{for} (x = 0; x < 8; x++) \{}
+\DoxyCodeLine{2009        pt[x] = x;}
+\DoxyCodeLine{2010    \}}
+\DoxyCodeLine{2011 }
+\DoxyCodeLine{2012    \textcolor{keywordflow}{for} (x = 0; x < 24; x++) \{}
+\DoxyCodeLine{2013        key[x] = x;}
+\DoxyCodeLine{2014    \}}
+\DoxyCodeLine{2015 }
+\DoxyCodeLine{2016    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{des_8c_a9d44ff389c97c490ae7ac9e7f6be21f8}{des3\_setup}}(key, 24, 0, \&skey)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{2017       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{2018    \}}
+\DoxyCodeLine{2019 }
+\DoxyCodeLine{2020    \mbox{\hyperlink{des_8c_a2711eaeb99fc5e4af5079bd493c886f4}{des3\_ecb\_encrypt}}(pt, ct, \&skey);}
+\DoxyCodeLine{2021    \mbox{\hyperlink{des_8c_a406110bf01432bed39765db772513396}{des3\_ecb\_decrypt}}(ct, tmp, \&skey);}
+\DoxyCodeLine{2022 }
+\DoxyCodeLine{2023    \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(pt, 8, tmp, 8, \textcolor{stringliteral}{"3DES"}, 0) != 0) \{}
+\DoxyCodeLine{2024       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{2025    \}}
+\DoxyCodeLine{2026 }
+\DoxyCodeLine{2027    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{2028 \textcolor{preprocessor}{ \#endif}}
+\DoxyCodeLine{2029 \}}
+
+\end{DoxyCode}
+
+
+References compare\+\_\+testvector(), C\+R\+Y\+P\+T\+\_\+\+F\+A\+I\+L\+\_\+\+T\+E\+S\+T\+V\+E\+C\+T\+OR, C\+R\+Y\+P\+T\+\_\+\+N\+OP, C\+R\+Y\+P\+T\+\_\+\+OK, des3\+\_\+ecb\+\_\+decrypt(), des3\+\_\+ecb\+\_\+encrypt(), des3\+\_\+setup(), and des\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 9
+\mbox{\Hypertarget{des_8c_a3fe19ff3400cbac9103a3235da49d2c4}\label{des_8c_a3fe19ff3400cbac9103a3235da49d2c4}} 
+\index{des.c@{des.c}!des\_done@{des\_done}}
+\index{des\_done@{des\_done}!des.c@{des.c}}
+\subsubsection{\texorpdfstring{des\_done()}{des\_done()}}
+{\footnotesize\ttfamily void des\+\_\+done (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$}]{skey }\end{DoxyParamCaption})}
+
+
+
+Terminate the context. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em skey} & The scheduled key \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 2034 of file des.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{2035 \{}
+\DoxyCodeLine{2036   \mbox{\hyperlink{tomcrypt__macros_8h_accde4b007facd646a8327f8e64b2d1e0}{LTC\_UNUSED\_PARAM}}(skey);}
+\DoxyCodeLine{2037 \}}
+
+\end{DoxyCode}
+
+
+References L\+T\+C\+\_\+\+U\+N\+U\+S\+E\+D\+\_\+\+P\+A\+R\+AM.
+
+\mbox{\Hypertarget{des_8c_a728fc39e0411caa9ba134e4f4d10d3d2}\label{des_8c_a728fc39e0411caa9ba134e4f4d10d3d2}} 
+\index{des.c@{des.c}!des\_ecb\_decrypt@{des\_ecb\_decrypt}}
+\index{des\_ecb\_decrypt@{des\_ecb\_decrypt}!des.c@{des.c}}
+\subsubsection{\texorpdfstring{des\_ecb\_decrypt()}{des\_ecb\_decrypt()}}
+{\footnotesize\ttfamily int des\+\_\+ecb\+\_\+decrypt (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{ct,  }\item[{unsigned char $\ast$}]{pt,  }\item[{const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$}]{skey }\end{DoxyParamCaption})}
+
+
+
+Decrypts a block of text with L\+T\+C\+\_\+\+D\+ES. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ct} & The input ciphertext (8 bytes) \\
+\hline
+{\em pt} & The output plaintext (8 bytes) \\
+\hline
+{\em skey} & The key as scheduled \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 1616 of file des.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1617 \{}
+\DoxyCodeLine{1618     \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} work[2];}
+\DoxyCodeLine{1619     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(pt   != NULL);}
+\DoxyCodeLine{1620     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(ct   != NULL);}
+\DoxyCodeLine{1621     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(skey != NULL);}
+\DoxyCodeLine{1622     LOAD32H(work[0], ct+0);}
+\DoxyCodeLine{1623     LOAD32H(work[1], ct+4);}
+\DoxyCodeLine{1624     \mbox{\hyperlink{des_8c_a40c4cfa81b99dc75ec50f9b13a9360de}{desfunc}}(work, skey->des.dk);}
+\DoxyCodeLine{1625     STORE32H(work[0],pt+0);}
+\DoxyCodeLine{1626     STORE32H(work[1],pt+4);}
+\DoxyCodeLine{1627     \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{1628 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, desfunc(), and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+
+
+Referenced by des\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 10
+Here is the caller graph for this function\+:
+% FIG 11
+\mbox{\Hypertarget{des_8c_ab4c9077c03fb6684df1d1b4982ad644f}\label{des_8c_ab4c9077c03fb6684df1d1b4982ad644f}} 
+\index{des.c@{des.c}!des\_ecb\_encrypt@{des\_ecb\_encrypt}}
+\index{des\_ecb\_encrypt@{des\_ecb\_encrypt}!des.c@{des.c}}
+\subsubsection{\texorpdfstring{des\_ecb\_encrypt()}{des\_ecb\_encrypt()}}
+{\footnotesize\ttfamily int des\+\_\+ecb\+\_\+encrypt (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{pt,  }\item[{unsigned char $\ast$}]{ct,  }\item[{const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$}]{skey }\end{DoxyParamCaption})}
+
+
+
+Encrypts a block of text with L\+T\+C\+\_\+\+D\+ES. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pt} & The input plaintext (8 bytes) \\
+\hline
+{\em ct} & The output ciphertext (8 bytes) \\
+\hline
+{\em skey} & The key as scheduled \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 1595 of file des.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1596 \{}
+\DoxyCodeLine{1597     \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} work[2];}
+\DoxyCodeLine{1598     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(pt   != NULL);}
+\DoxyCodeLine{1599     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(ct   != NULL);}
+\DoxyCodeLine{1600     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(skey != NULL);}
+\DoxyCodeLine{1601     LOAD32H(work[0], pt+0);}
+\DoxyCodeLine{1602     LOAD32H(work[1], pt+4);}
+\DoxyCodeLine{1603     \mbox{\hyperlink{des_8c_a40c4cfa81b99dc75ec50f9b13a9360de}{desfunc}}(work, skey->des.ek);}
+\DoxyCodeLine{1604     STORE32H(work[0],ct+0);}
+\DoxyCodeLine{1605     STORE32H(work[1],ct+4);}
+\DoxyCodeLine{1606     \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{1607 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, desfunc(), and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+
+
+Referenced by des\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 12
+Here is the caller graph for this function\+:
+% FIG 13
+\mbox{\Hypertarget{des_8c_a47551270a13f313b4fb2b46520d2a183}\label{des_8c_a47551270a13f313b4fb2b46520d2a183}} 
+\index{des.c@{des.c}!des\_keysize@{des\_keysize}}
+\index{des\_keysize@{des\_keysize}!des.c@{des.c}}
+\subsubsection{\texorpdfstring{des\_keysize()}{des\_keysize()}}
+{\footnotesize\ttfamily int des\+\_\+keysize (\begin{DoxyParamCaption}\item[{int $\ast$}]{keysize }\end{DoxyParamCaption})}
+
+
+
+Gets suitable key size. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em keysize} & \mbox{[}in/out\mbox{]} The length of the recommended key (in bytes). This function will store the suitable size back in this variable. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if the input key size is acceptable. 
+\end{DoxyReturn}
+
+
+Definition at line 2053 of file des.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{2054 \{}
+\DoxyCodeLine{2055     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(keysize != NULL);}
+\DoxyCodeLine{2056     \textcolor{keywordflow}{if}(*keysize < 8) \{}
+\DoxyCodeLine{2057         \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caafed43f3b625e72191e08e65b4bb5e02}{CRYPT\_INVALID\_KEYSIZE}};}
+\DoxyCodeLine{2058     \}}
+\DoxyCodeLine{2059     *keysize = 8;}
+\DoxyCodeLine{2060     \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{2061 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+K\+E\+Y\+S\+I\+ZE, C\+R\+Y\+P\+T\+\_\+\+OK, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+\mbox{\Hypertarget{des_8c_ae212a3a7d8ce6022b2d0e27ba3627cc0}\label{des_8c_ae212a3a7d8ce6022b2d0e27ba3627cc0}} 
+\index{des.c@{des.c}!des\_setup@{des\_setup}}
+\index{des\_setup@{des\_setup}!des.c@{des.c}}
+\subsubsection{\texorpdfstring{des\_setup()}{des\_setup()}}
+{\footnotesize\ttfamily int des\+\_\+setup (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{key,  }\item[{int}]{keylen,  }\item[{int}]{num\+\_\+rounds,  }\item[{\mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$}]{skey }\end{DoxyParamCaption})}
+
+
+
+Initialize the L\+T\+C\+\_\+\+D\+ES block cipher. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The symmetric key you wish to pass \\
+\hline
+{\em keylen} & The key length in bytes \\
+\hline
+{\em num\+\_\+rounds} & The number of rounds desired (0 for default) \\
+\hline
+{\em skey} & The key in as scheduled by this function. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 1527 of file des.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1528 \{}
+\DoxyCodeLine{1529     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(key != NULL);}
+\DoxyCodeLine{1530     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(skey != NULL);}
+\DoxyCodeLine{1531 }
+\DoxyCodeLine{1532     \textcolor{keywordflow}{if} (num\_rounds != 0 \&\& num\_rounds != 16) \{}
+\DoxyCodeLine{1533         \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca69aff0280b5845d03130f8700009caf5}{CRYPT\_INVALID\_ROUNDS}};}
+\DoxyCodeLine{1534     \}}
+\DoxyCodeLine{1535 }
+\DoxyCodeLine{1536     \textcolor{keywordflow}{if} (keylen != 8) \{}
+\DoxyCodeLine{1537         \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caafed43f3b625e72191e08e65b4bb5e02}{CRYPT\_INVALID\_KEYSIZE}};}
+\DoxyCodeLine{1538     \}}
+\DoxyCodeLine{1539 }
+\DoxyCodeLine{1540     \mbox{\hyperlink{des_8c_a318fa41e408b0ac2ff7cbd4cc1b88f46}{deskey}}(key, \mbox{\hyperlink{des_8c_ad1a1f41e41165f5cf9d6eb3c5852aa26}{EN0}}, skey->des.ek);}
+\DoxyCodeLine{1541     \mbox{\hyperlink{des_8c_a318fa41e408b0ac2ff7cbd4cc1b88f46}{deskey}}(key, \mbox{\hyperlink{des_8c_a507e2e44cdf44c75938df5a03ae504da}{DE1}}, skey->des.dk);}
+\DoxyCodeLine{1542 }
+\DoxyCodeLine{1543     \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{1544 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+K\+E\+Y\+S\+I\+ZE, C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+R\+O\+U\+N\+DS, C\+R\+Y\+P\+T\+\_\+\+OK, D\+E1, deskey(), E\+N0, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+
+
+Referenced by des\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 14
+Here is the caller graph for this function\+:
+% FIG 15
+\mbox{\Hypertarget{des_8c_a27b8e19aa00b5b9b5c4e70fcc4b18fc6}\label{des_8c_a27b8e19aa00b5b9b5c4e70fcc4b18fc6}} 
+\index{des.c@{des.c}!des\_test@{des\_test}}
+\index{des\_test@{des\_test}!des.c@{des.c}}
+\subsubsection{\texorpdfstring{des\_test()}{des\_test()}}
+{\footnotesize\ttfamily int des\+\_\+test (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Performs a self-\/test of the L\+T\+C\+\_\+\+D\+ES block cipher. 
+
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if functional, C\+R\+Y\+P\+T\+\_\+\+N\+OP if self-\/test has been disabled 
+\end{DoxyReturn}
+
+
+Definition at line 1681 of file des.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1682 \{}
+\DoxyCodeLine{1683 \textcolor{preprocessor}{ \#ifndef LTC\_TEST}}
+\DoxyCodeLine{1684     \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cac43a7799c7fd5f515172da6cfc0f9cf5}{CRYPT\_NOP}};}
+\DoxyCodeLine{1685 \textcolor{preprocessor}{ \#else}}
+\DoxyCodeLine{1686     \textcolor{keywordtype}{int} err;}
+\DoxyCodeLine{1687     \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keyword}{struct }des\_test\_case \{}
+\DoxyCodeLine{1688         \textcolor{keywordtype}{int} num, mode; \textcolor{comment}{/* mode 1 = encrypt */}}
+\DoxyCodeLine{1689         \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} key[8], txt[8], out[8];}
+\DoxyCodeLine{1690     \} cases[] = \{}
+\DoxyCodeLine{1691         \{ 1, 1,     \{ 0x10, 0x31, 0x6E, 0x02, 0x8C, 0x8F, 0x3B, 0x4A \},}
+\DoxyCodeLine{1692                     \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1693                     \{ 0x82, 0xDC, 0xBA, 0xFB, 0xDE, 0xAB, 0x66, 0x02 \} \},}
+\DoxyCodeLine{1694         \{ 2, 1,     \{ 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01 \},}
+\DoxyCodeLine{1695                     \{ 0x95, 0xF8, 0xA5, 0xE5, 0xDD, 0x31, 0xD9, 0x00 \},}
+\DoxyCodeLine{1696                     \{ 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \} \},}
+\DoxyCodeLine{1697         \{ 3, 1,     \{ 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01 \},}
+\DoxyCodeLine{1698                     \{ 0xDD, 0x7F, 0x12, 0x1C, 0xA5, 0x01, 0x56, 0x19 \},}
+\DoxyCodeLine{1699                     \{ 0x40, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \} \},}
+\DoxyCodeLine{1700         \{ 4, 1,     \{ 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01 \},}
+\DoxyCodeLine{1701                     \{ 0x2E, 0x86, 0x53, 0x10, 0x4F, 0x38, 0x34, 0xEA \},}
+\DoxyCodeLine{1702                     \{ 0x20, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \} \},}
+\DoxyCodeLine{1703         \{ 5, 1,     \{ 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01 \},}
+\DoxyCodeLine{1704                     \{ 0x4B, 0xD3, 0x88, 0xFF, 0x6C, 0xD8, 0x1D, 0x4F \},}
+\DoxyCodeLine{1705                     \{ 0x10, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \} \},}
+\DoxyCodeLine{1706         \{ 6, 1,     \{ 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01 \},}
+\DoxyCodeLine{1707                     \{ 0x20, 0xB9, 0xE7, 0x67, 0xB2, 0xFB, 0x14, 0x56 \},}
+\DoxyCodeLine{1708                     \{ 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \} \},}
+\DoxyCodeLine{1709         \{ 7, 1,     \{ 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01 \},}
+\DoxyCodeLine{1710                     \{ 0x55, 0x57, 0x93, 0x80, 0xD7, 0x71, 0x38, 0xEF \},}
+\DoxyCodeLine{1711                     \{ 0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \} \},}
+\DoxyCodeLine{1712         \{ 8, 1,     \{ 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01 \},}
+\DoxyCodeLine{1713                     \{ 0x6C, 0xC5, 0xDE, 0xFA, 0xAF, 0x04, 0x51, 0x2F \},}
+\DoxyCodeLine{1714                     \{ 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \} \},}
+\DoxyCodeLine{1715         \{ 9, 1,     \{ 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01 \},}
+\DoxyCodeLine{1716                     \{ 0x0D, 0x9F, 0x27, 0x9B, 0xA5, 0xD8, 0x72, 0x60 \},}
+\DoxyCodeLine{1717                     \{ 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \} \},}
+\DoxyCodeLine{1718         \{10, 1,     \{ 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01 \},}
+\DoxyCodeLine{1719                     \{ 0xD9, 0x03, 0x1B, 0x02, 0x71, 0xBD, 0x5A, 0x0A \},}
+\DoxyCodeLine{1720                     \{ 0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \} \},}
+\DoxyCodeLine{1721 }
+\DoxyCodeLine{1722         \{ 1, 0,     \{ 0x10, 0x31, 0x6E, 0x02, 0x8C, 0x8F, 0x3B, 0x4A \},}
+\DoxyCodeLine{1723                     \{ 0x82, 0xDC, 0xBA, 0xFB, 0xDE, 0xAB, 0x66, 0x02 \},}
+\DoxyCodeLine{1724                     \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \} \},}
+\DoxyCodeLine{1725         \{ 2, 0,     \{ 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01 \},}
+\DoxyCodeLine{1726                     \{ 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1727                     \{ 0x95, 0xF8, 0xA5, 0xE5, 0xDD, 0x31, 0xD9, 0x00 \} \},}
+\DoxyCodeLine{1728         \{ 3, 0,     \{ 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01 \},}
+\DoxyCodeLine{1729                     \{ 0x40, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1730                     \{ 0xDD, 0x7F, 0x12, 0x1C, 0xA5, 0x01, 0x56, 0x19 \} \},}
+\DoxyCodeLine{1731         \{ 4, 0,     \{ 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01 \},}
+\DoxyCodeLine{1732                     \{ 0x20, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1733                     \{ 0x2E, 0x86, 0x53, 0x10, 0x4F, 0x38, 0x34, 0xEA \} \},}
+\DoxyCodeLine{1734         \{ 5, 0,     \{ 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01 \},}
+\DoxyCodeLine{1735                     \{ 0x10, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1736                     \{ 0x4B, 0xD3, 0x88, 0xFF, 0x6C, 0xD8, 0x1D, 0x4F \} \},}
+\DoxyCodeLine{1737         \{ 6, 0,     \{ 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01 \},}
+\DoxyCodeLine{1738                     \{ 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1739                     \{ 0x20, 0xB9, 0xE7, 0x67, 0xB2, 0xFB, 0x14, 0x56 \} \},}
+\DoxyCodeLine{1740         \{ 7, 0,     \{ 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01 \},}
+\DoxyCodeLine{1741                     \{ 0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1742                     \{ 0x55, 0x57, 0x93, 0x80, 0xD7, 0x71, 0x38, 0xEF \} \},}
+\DoxyCodeLine{1743         \{ 8, 0,     \{ 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01 \},}
+\DoxyCodeLine{1744                     \{ 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1745                     \{ 0x6C, 0xC5, 0xDE, 0xFA, 0xAF, 0x04, 0x51, 0x2F \} \},}
+\DoxyCodeLine{1746         \{ 9, 0,     \{ 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01 \},}
+\DoxyCodeLine{1747                     \{ 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1748                     \{ 0x0D, 0x9F, 0x27, 0x9B, 0xA5, 0xD8, 0x72, 0x60 \} \},}
+\DoxyCodeLine{1749         \{10, 0,     \{ 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01 \},}
+\DoxyCodeLine{1750                     \{ 0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1751                     \{ 0xD9, 0x03, 0x1B, 0x02, 0x71, 0xBD, 0x5A, 0x0A \} \},}
+\DoxyCodeLine{1752 }
+\DoxyCodeLine{1753 \textcolor{preprocessor}{\#ifdef LTC\_TEST\_EXT}}
+\DoxyCodeLine{1754         \{ 0+11, 0,  \{ 0x80, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01 \},}
+\DoxyCodeLine{1755                     \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1756                     \{ 0x95, 0xA8, 0xD7, 0x28, 0x13, 0xDA, 0xA9, 0x4D \} \},}
+\DoxyCodeLine{1757         \{ 1+11, 0,  \{ 0x40, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01 \},}
+\DoxyCodeLine{1758                     \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1759                     \{ 0x0E, 0xEC, 0x14, 0x87, 0xDD, 0x8C, 0x26, 0xD5 \} \},}
+\DoxyCodeLine{1760         \{ 2+11, 0,  \{ 0x20, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01 \},}
+\DoxyCodeLine{1761                     \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1762                     \{ 0x7A, 0xD1, 0x6F, 0xFB, 0x79, 0xC4, 0x59, 0x26 \} \},}
+\DoxyCodeLine{1763         \{ 3+11, 0,  \{ 0x10, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01 \},}
+\DoxyCodeLine{1764                     \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1765                     \{ 0xD3, 0x74, 0x62, 0x94, 0xCA, 0x6A, 0x6C, 0xF3 \} \},}
+\DoxyCodeLine{1766         \{ 4+11, 0,  \{ 0x08, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01 \},}
+\DoxyCodeLine{1767                     \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1768                     \{ 0x80, 0x9F, 0x5F, 0x87, 0x3C, 0x1F, 0xD7, 0x61 \} \},}
+\DoxyCodeLine{1769         \{ 5+11, 0,  \{ 0x04, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01 \},}
+\DoxyCodeLine{1770                     \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1771                     \{ 0xC0, 0x2F, 0xAF, 0xFE, 0xC9, 0x89, 0xD1, 0xFC \} \},}
+\DoxyCodeLine{1772         \{ 6+11, 0,  \{ 0x02, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01 \},}
+\DoxyCodeLine{1773                     \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1774                     \{ 0x46, 0x15, 0xAA, 0x1D, 0x33, 0xE7, 0x2F, 0x10 \} \},}
+\DoxyCodeLine{1775         \{ 7+11, 0,  \{ 0x01, 0x80, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01 \},}
+\DoxyCodeLine{1776                     \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1777                     \{ 0x20, 0x55, 0x12, 0x33, 0x50, 0xC0, 0x08, 0x58 \} \},}
+\DoxyCodeLine{1778         \{ 8+11, 0,  \{ 0x01, 0x40, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01 \},}
+\DoxyCodeLine{1779                     \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1780                     \{ 0xDF, 0x3B, 0x99, 0xD6, 0x57, 0x73, 0x97, 0xC8 \} \},}
+\DoxyCodeLine{1781         \{ 9+11, 0,  \{ 0x01, 0x20, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01 \},}
+\DoxyCodeLine{1782                     \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1783                     \{ 0x31, 0xFE, 0x17, 0x36, 0x9B, 0x52, 0x88, 0xC9 \} \},}
+\DoxyCodeLine{1784         \{10+11, 0,  \{ 0x01, 0x10, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01 \},}
+\DoxyCodeLine{1785                     \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1786                     \{ 0xDF, 0xDD, 0x3C, 0xC6, 0x4D, 0xAE, 0x16, 0x42 \} \},}
+\DoxyCodeLine{1787         \{11+11, 0,  \{ 0x01, 0x08, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01 \},}
+\DoxyCodeLine{1788                     \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1789                     \{ 0x17, 0x8C, 0x83, 0xCE, 0x2B, 0x39, 0x9D, 0x94 \} \},}
+\DoxyCodeLine{1790         \{12+11, 0,  \{ 0x01, 0x04, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01 \},}
+\DoxyCodeLine{1791                     \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1792                     \{ 0x50, 0xF6, 0x36, 0x32, 0x4A, 0x9B, 0x7F, 0x80 \} \},}
+\DoxyCodeLine{1793         \{13+11, 0,  \{ 0x01, 0x02, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01 \},}
+\DoxyCodeLine{1794                     \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1795                     \{ 0xA8, 0x46, 0x8E, 0xE3, 0xBC, 0x18, 0xF0, 0x6D \} \},}
+\DoxyCodeLine{1796         \{14+11, 0,  \{ 0x01, 0x01, 0x80, 0x01, 0x01, 0x01, 0x01, 0x01 \},}
+\DoxyCodeLine{1797                     \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1798                     \{ 0xA2, 0xDC, 0x9E, 0x92, 0xFD, 0x3C, 0xDE, 0x92 \} \},}
+\DoxyCodeLine{1799         \{15+11, 0,  \{ 0x01, 0x01, 0x40, 0x01, 0x01, 0x01, 0x01, 0x01 \},}
+\DoxyCodeLine{1800                     \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1801                     \{ 0xCA, 0xC0, 0x9F, 0x79, 0x7D, 0x03, 0x12, 0x87 \} \},}
+\DoxyCodeLine{1802         \{16+11, 0,  \{ 0x01, 0x01, 0x20, 0x01, 0x01, 0x01, 0x01, 0x01 \},}
+\DoxyCodeLine{1803                     \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1804                     \{ 0x90, 0xBA, 0x68, 0x0B, 0x22, 0xAE, 0xB5, 0x25 \} \},}
+\DoxyCodeLine{1805         \{17+11, 0,  \{ 0x01, 0x01, 0x10, 0x01, 0x01, 0x01, 0x01, 0x01 \},}
+\DoxyCodeLine{1806                     \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1807                     \{ 0xCE, 0x7A, 0x24, 0xF3, 0x50, 0xE2, 0x80, 0xB6 \} \},}
+\DoxyCodeLine{1808         \{18+11, 0,  \{ 0x01, 0x01, 0x08, 0x01, 0x01, 0x01, 0x01, 0x01 \},}
+\DoxyCodeLine{1809                     \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1810                     \{ 0x88, 0x2B, 0xFF, 0x0A, 0xA0, 0x1A, 0x0B, 0x87 \} \},}
+\DoxyCodeLine{1811         \{19+11, 0,  \{ 0x01, 0x01, 0x04, 0x01, 0x01, 0x01, 0x01, 0x01 \},}
+\DoxyCodeLine{1812                     \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1813                     \{ 0x25, 0x61, 0x02, 0x88, 0x92, 0x45, 0x11, 0xC2 \} \},}
+\DoxyCodeLine{1814         \{20+11, 0,  \{ 0x01, 0x01, 0x02, 0x01, 0x01, 0x01, 0x01, 0x01 \},}
+\DoxyCodeLine{1815                     \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1816                     \{ 0xC7, 0x15, 0x16, 0xC2, 0x9C, 0x75, 0xD1, 0x70 \} \},}
+\DoxyCodeLine{1817         \{21+11, 0,  \{ 0x01, 0x01, 0x01, 0x80, 0x01, 0x01, 0x01, 0x01 \},}
+\DoxyCodeLine{1818                     \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1819                     \{ 0x51, 0x99, 0xC2, 0x9A, 0x52, 0xC9, 0xF0, 0x59 \} \},}
+\DoxyCodeLine{1820         \{22+11, 0,  \{ 0x01, 0x01, 0x01, 0x40, 0x01, 0x01, 0x01, 0x01 \},}
+\DoxyCodeLine{1821                     \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1822                     \{ 0xC2, 0x2F, 0x0A, 0x29, 0x4A, 0x71, 0xF2, 0x9F \} \},}
+\DoxyCodeLine{1823         \{23+11, 0,  \{ 0x01, 0x01, 0x01, 0x20, 0x01, 0x01, 0x01, 0x01 \},}
+\DoxyCodeLine{1824                     \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1825                     \{ 0xEE, 0x37, 0x14, 0x83, 0x71, 0x4C, 0x02, 0xEA \} \},}
+\DoxyCodeLine{1826         \{24+11, 0,  \{ 0x01, 0x01, 0x01, 0x10, 0x01, 0x01, 0x01, 0x01 \},}
+\DoxyCodeLine{1827                     \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1828                     \{ 0xA8, 0x1F, 0xBD, 0x44, 0x8F, 0x9E, 0x52, 0x2F \} \},}
+\DoxyCodeLine{1829         \{25+11, 0,  \{ 0x01, 0x01, 0x01, 0x08, 0x01, 0x01, 0x01, 0x01 \},}
+\DoxyCodeLine{1830                     \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1831                     \{ 0x4F, 0x64, 0x4C, 0x92, 0xE1, 0x92, 0xDF, 0xED \} \},}
+\DoxyCodeLine{1832         \{26+11, 0,  \{ 0x01, 0x01, 0x01, 0x04, 0x01, 0x01, 0x01, 0x01 \},}
+\DoxyCodeLine{1833                     \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1834                     \{ 0x1A, 0xFA, 0x9A, 0x66, 0xA6, 0xDF, 0x92, 0xAE \} \},}
+\DoxyCodeLine{1835         \{27+11, 0,  \{ 0x01, 0x01, 0x01, 0x02, 0x01, 0x01, 0x01, 0x01 \},}
+\DoxyCodeLine{1836                     \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1837                     \{ 0xB3, 0xC1, 0xCC, 0x71, 0x5C, 0xB8, 0x79, 0xD8 \} \},}
+\DoxyCodeLine{1838         \{28+11, 0,  \{ 0x01, 0x01, 0x01, 0x01, 0x80, 0x01, 0x01, 0x01 \},}
+\DoxyCodeLine{1839                     \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1840                     \{ 0x19, 0xD0, 0x32, 0xE6, 0x4A, 0xB0, 0xBD, 0x8B \} \},}
+\DoxyCodeLine{1841         \{29+11, 0,  \{ 0x01, 0x01, 0x01, 0x01, 0x40, 0x01, 0x01, 0x01 \},}
+\DoxyCodeLine{1842                     \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1843                     \{ 0x3C, 0xFA, 0xA7, 0xA7, 0xDC, 0x87, 0x20, 0xDC \} \},}
+\DoxyCodeLine{1844         \{30+11, 0,  \{ 0x01, 0x01, 0x01, 0x01, 0x20, 0x01, 0x01, 0x01 \},}
+\DoxyCodeLine{1845                     \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1846                     \{ 0xB7, 0x26, 0x5F, 0x7F, 0x44, 0x7A, 0xC6, 0xF3 \} \},}
+\DoxyCodeLine{1847         \{31+11, 0,  \{ 0x01, 0x01, 0x01, 0x01, 0x10, 0x01, 0x01, 0x01 \},}
+\DoxyCodeLine{1848                     \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1849                     \{ 0x9D, 0xB7, 0x3B, 0x3C, 0x0D, 0x16, 0x3F, 0x54 \} \},}
+\DoxyCodeLine{1850         \{32+11, 0,  \{ 0x01, 0x01, 0x01, 0x01, 0x08, 0x01, 0x01, 0x01 \},}
+\DoxyCodeLine{1851                     \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1852                     \{ 0x81, 0x81, 0xB6, 0x5B, 0xAB, 0xF4, 0xA9, 0x75 \} \},}
+\DoxyCodeLine{1853         \{33+11, 0,  \{ 0x01, 0x01, 0x01, 0x01, 0x04, 0x01, 0x01, 0x01 \},}
+\DoxyCodeLine{1854                     \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1855                     \{ 0x93, 0xC9, 0xB6, 0x40, 0x42, 0xEA, 0xA2, 0x40 \} \},}
+\DoxyCodeLine{1856         \{34+11, 0,  \{ 0x01, 0x01, 0x01, 0x01, 0x02, 0x01, 0x01, 0x01 \},}
+\DoxyCodeLine{1857                     \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1858                     \{ 0x55, 0x70, 0x53, 0x08, 0x29, 0x70, 0x55, 0x92 \} \},}
+\DoxyCodeLine{1859         \{35+11, 0,  \{ 0x01, 0x01, 0x01, 0x01, 0x01, 0x80, 0x01, 0x01 \},}
+\DoxyCodeLine{1860                     \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1861                     \{ 0x86, 0x38, 0x80, 0x9E, 0x87, 0x87, 0x87, 0xA0 \} \},}
+\DoxyCodeLine{1862         \{36+11, 0,  \{ 0x01, 0x01, 0x01, 0x01, 0x01, 0x40, 0x01, 0x01 \},}
+\DoxyCodeLine{1863                     \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1864                     \{ 0x41, 0xB9, 0xA7, 0x9A, 0xF7, 0x9A, 0xC2, 0x08 \} \},}
+\DoxyCodeLine{1865         \{37+11, 0,  \{ 0x01, 0x01, 0x01, 0x01, 0x01, 0x20, 0x01, 0x01 \},}
+\DoxyCodeLine{1866                     \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1867                     \{ 0x7A, 0x9B, 0xE4, 0x2F, 0x20, 0x09, 0xA8, 0x92 \} \},}
+\DoxyCodeLine{1868         \{38+11, 0,  \{ 0x01, 0x01, 0x01, 0x01, 0x01, 0x10, 0x01, 0x01 \},}
+\DoxyCodeLine{1869                     \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1870                     \{ 0x29, 0x03, 0x8D, 0x56, 0xBA, 0x6D, 0x27, 0x45 \} \},}
+\DoxyCodeLine{1871         \{39+11, 0,  \{ 0x01, 0x01, 0x01, 0x01, 0x01, 0x08, 0x01, 0x01 \},}
+\DoxyCodeLine{1872                     \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1873                     \{ 0x54, 0x95, 0xC6, 0xAB, 0xF1, 0xE5, 0xDF, 0x51 \} \},}
+\DoxyCodeLine{1874         \{40+11, 0,  \{ 0x01, 0x01, 0x01, 0x01, 0x01, 0x04, 0x01, 0x01 \},}
+\DoxyCodeLine{1875                     \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1876                     \{ 0xAE, 0x13, 0xDB, 0xD5, 0x61, 0x48, 0x89, 0x33 \} \},}
+\DoxyCodeLine{1877         \{41+11, 0,  \{ 0x01, 0x01, 0x01, 0x01, 0x01, 0x02, 0x01, 0x01 \},}
+\DoxyCodeLine{1878                     \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1879                     \{ 0x02, 0x4D, 0x1F, 0xFA, 0x89, 0x04, 0xE3, 0x89 \} \},}
+\DoxyCodeLine{1880         \{42+11, 0,  \{ 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x80, 0x01 \},}
+\DoxyCodeLine{1881                     \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1882                     \{ 0xD1, 0x39, 0x97, 0x12, 0xF9, 0x9B, 0xF0, 0x2E \} \},}
+\DoxyCodeLine{1883         \{43+11, 0,  \{ 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x40, 0x01 \},}
+\DoxyCodeLine{1884                     \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1885                     \{ 0x14, 0xC1, 0xD7, 0xC1, 0xCF, 0xFE, 0xC7, 0x9E \} \},}
+\DoxyCodeLine{1886         \{44+11, 0,  \{ 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x20, 0x01 \},}
+\DoxyCodeLine{1887                     \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1888                     \{ 0x1D, 0xE5, 0x27, 0x9D, 0xAE, 0x3B, 0xED, 0x6F \} \},}
+\DoxyCodeLine{1889         \{45+11, 0,  \{ 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x10, 0x01 \},}
+\DoxyCodeLine{1890                     \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1891                     \{ 0xE9, 0x41, 0xA3, 0x3F, 0x85, 0x50, 0x13, 0x03 \} \},}
+\DoxyCodeLine{1892         \{46+11, 0,  \{ 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x08, 0x01 \},}
+\DoxyCodeLine{1893                     \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1894                     \{ 0xDA, 0x99, 0xDB, 0xBC, 0x9A, 0x03, 0xF3, 0x79 \} \},}
+\DoxyCodeLine{1895         \{47+11, 0,  \{ 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x04, 0x01 \},}
+\DoxyCodeLine{1896                     \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1897                     \{ 0xB7, 0xFC, 0x92, 0xF9, 0x1D, 0x8E, 0x92, 0xE9 \} \},}
+\DoxyCodeLine{1898         \{48+11, 0,  \{ 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x02, 0x01 \},}
+\DoxyCodeLine{1899                     \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1900                     \{ 0xAE, 0x8E, 0x5C, 0xAA, 0x3C, 0xA0, 0x4E, 0x85 \} \},}
+\DoxyCodeLine{1901         \{49+11, 0,  \{ 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x80 \},}
+\DoxyCodeLine{1902                     \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1903                     \{ 0x9C, 0xC6, 0x2D, 0xF4, 0x3B, 0x6E, 0xED, 0x74 \} \},}
+\DoxyCodeLine{1904         \{50+11, 0,  \{ 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x40 \},}
+\DoxyCodeLine{1905                     \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1906                     \{ 0xD8, 0x63, 0xDB, 0xB5, 0xC5, 0x9A, 0x91, 0xA0 \} \},}
+\DoxyCodeLine{1907         \{51+11, 0,  \{ 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x20 \},}
+\DoxyCodeLine{1908                     \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1909                     \{ 0xA1, 0xAB, 0x21, 0x90, 0x54, 0x5B, 0x91, 0xD7 \} \},}
+\DoxyCodeLine{1910         \{52+11, 0,  \{ 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x10 \},}
+\DoxyCodeLine{1911                     \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1912                     \{ 0x08, 0x75, 0x04, 0x1E, 0x64, 0xC5, 0x70, 0xF7 \} \},}
+\DoxyCodeLine{1913         \{53+11, 0,  \{ 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x08 \},}
+\DoxyCodeLine{1914                     \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1915                     \{ 0x5A, 0x59, 0x45, 0x28, 0xBE, 0xBE, 0xF1, 0xCC \} \},}
+\DoxyCodeLine{1916         \{54+11, 0,  \{ 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x04 \},}
+\DoxyCodeLine{1917                     \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1918                     \{ 0xFC, 0xDB, 0x32, 0x91, 0xDE, 0x21, 0xF0, 0xC0 \} \},}
+\DoxyCodeLine{1919         \{55+11, 0,  \{ 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x02 \},}
+\DoxyCodeLine{1920                     \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{1921                     \{ 0x86, 0x9E, 0xFD, 0x7F, 0x9F, 0x26, 0x5A, 0x09 \} \},}
+\DoxyCodeLine{1922 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* LTC\_TEST\_EXT */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{1923 }
+\DoxyCodeLine{1924         \textcolor{comment}{/*** more test cases you could add if you are not convinced (the above test cases aren't really too good):}}
+\DoxyCodeLine{1925 \textcolor{comment}{}}
+\DoxyCodeLine{1926 \textcolor{comment}{                key              plaintext        ciphertext}}
+\DoxyCodeLine{1927 \textcolor{comment}{                0000000000000000 0000000000000000 8CA64DE9C1B123A7}}
+\DoxyCodeLine{1928 \textcolor{comment}{                FFFFFFFFFFFFFFFF FFFFFFFFFFFFFFFF 7359B2163E4EDC58}}
+\DoxyCodeLine{1929 \textcolor{comment}{                3000000000000000 1000000000000001 958E6E627A05557B}}
+\DoxyCodeLine{1930 \textcolor{comment}{                1111111111111111 1111111111111111 F40379AB9E0EC533}}
+\DoxyCodeLine{1931 \textcolor{comment}{                0123456789ABCDEF 1111111111111111 17668DFC7292532D}}
+\DoxyCodeLine{1932 \textcolor{comment}{                1111111111111111 0123456789ABCDEF 8A5AE1F81AB8F2DD}}
+\DoxyCodeLine{1933 \textcolor{comment}{                0000000000000000 0000000000000000 8CA64DE9C1B123A7}}
+\DoxyCodeLine{1934 \textcolor{comment}{                FEDCBA9876543210 0123456789ABCDEF ED39D950FA74BCC4}}
+\DoxyCodeLine{1935 \textcolor{comment}{                7CA110454A1A6E57 01A1D6D039776742 690F5B0D9A26939B}}
+\DoxyCodeLine{1936 \textcolor{comment}{                0131D9619DC1376E 5CD54CA83DEF57DA 7A389D10354BD271}}
+\DoxyCodeLine{1937 \textcolor{comment}{                07A1133E4A0B2686 0248D43806F67172 868EBB51CAB4599A}}
+\DoxyCodeLine{1938 \textcolor{comment}{                3849674C2602319E 51454B582DDF440A 7178876E01F19B2A}}
+\DoxyCodeLine{1939 \textcolor{comment}{                04B915BA43FEB5B6 42FD443059577FA2 AF37FB421F8C4095}}
+\DoxyCodeLine{1940 \textcolor{comment}{                0113B970FD34F2CE 059B5E0851CF143A 86A560F10EC6D85B}}
+\DoxyCodeLine{1941 \textcolor{comment}{                0170F175468FB5E6 0756D8E0774761D2 0CD3DA020021DC09}}
+\DoxyCodeLine{1942 \textcolor{comment}{                43297FAD38E373FE 762514B829BF486A EA676B2CB7DB2B7A}}
+\DoxyCodeLine{1943 \textcolor{comment}{                07A7137045DA2A16 3BDD119049372802 DFD64A815CAF1A0F}}
+\DoxyCodeLine{1944 \textcolor{comment}{                04689104C2FD3B2F 26955F6835AF609A 5C513C9C4886C088}}
+\DoxyCodeLine{1945 \textcolor{comment}{                37D06BB516CB7546 164D5E404F275232 0A2AEEAE3FF4AB77}}
+\DoxyCodeLine{1946 \textcolor{comment}{                1F08260D1AC2465E 6B056E18759F5CCA EF1BF03E5DFA575A}}
+\DoxyCodeLine{1947 \textcolor{comment}{                584023641ABA6176 004BD6EF09176062 88BF0DB6D70DEE56}}
+\DoxyCodeLine{1948 \textcolor{comment}{                025816164629B007 480D39006EE762F2 A1F9915541020B56}}
+\DoxyCodeLine{1949 \textcolor{comment}{                49793EBC79B3258F 437540C8698F3CFA 6FBF1CAFCFFD0556}}
+\DoxyCodeLine{1950 \textcolor{comment}{                4FB05E1515AB73A7 072D43A077075292 2F22E49BAB7CA1AC}}
+\DoxyCodeLine{1951 \textcolor{comment}{                49E95D6D4CA229BF 02FE55778117F12A 5A6B612CC26CCE4A}}
+\DoxyCodeLine{1952 \textcolor{comment}{                018310DC409B26D6 1D9D5C5018F728C2 5F4C038ED12B2E41}}
+\DoxyCodeLine{1953 \textcolor{comment}{                1C587F1C13924FEF 305532286D6F295A 63FAC0D034D9F793}}
+\DoxyCodeLine{1954 \textcolor{comment}{                0101010101010101 0123456789ABCDEF 617B3A0CE8F07100}}
+\DoxyCodeLine{1955 \textcolor{comment}{                1F1F1F1F0E0E0E0E 0123456789ABCDEF DB958605F8C8C606}}
+\DoxyCodeLine{1956 \textcolor{comment}{                E0FEE0FEF1FEF1FE 0123456789ABCDEF EDBFD1C66C29CCC7}}
+\DoxyCodeLine{1957 \textcolor{comment}{                0000000000000000 FFFFFFFFFFFFFFFF 355550B2150E2451}}
+\DoxyCodeLine{1958 \textcolor{comment}{                FFFFFFFFFFFFFFFF 0000000000000000 CAAAAF4DEAF1DBAE}}
+\DoxyCodeLine{1959 \textcolor{comment}{                0123456789ABCDEF 0000000000000000 D5D44FF720683D0D}}
+\DoxyCodeLine{1960 \textcolor{comment}{                FEDCBA9876543210 FFFFFFFFFFFFFFFF 2A2BB008DF97C2F2}}
+\DoxyCodeLine{1961 \textcolor{comment}{}}
+\DoxyCodeLine{1962 \textcolor{comment}{            http://www.ecs.soton.ac.uk/~prw99r/ez438/vectors.txt}}
+\DoxyCodeLine{1963 \textcolor{comment}{        ***/}}
+\DoxyCodeLine{1964     \};}
+\DoxyCodeLine{1965     \textcolor{keywordtype}{int} i, y;}
+\DoxyCodeLine{1966     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} tmp[8];}
+\DoxyCodeLine{1967     \mbox{\hyperlink{unionSymmetric__key}{symmetric\_key}} des;}
+\DoxyCodeLine{1968 }
+\DoxyCodeLine{1969     \textcolor{keywordflow}{for}(i=0; i < (int)(\textcolor{keyword}{sizeof}(cases)/\textcolor{keyword}{sizeof}(cases[0])); i++)}
+\DoxyCodeLine{1970     \{}
+\DoxyCodeLine{1971         \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{des_8c_ae212a3a7d8ce6022b2d0e27ba3627cc0}{des\_setup}}(cases[i].key, 8, 0, \&des)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{1972            \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{1973         \}}
+\DoxyCodeLine{1974         \textcolor{keywordflow}{if} (cases[i].mode != 0) \{}
+\DoxyCodeLine{1975            \mbox{\hyperlink{des_8c_ab4c9077c03fb6684df1d1b4982ad644f}{des\_ecb\_encrypt}}(cases[i].txt, tmp, \&des);}
+\DoxyCodeLine{1976         \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{1977            \mbox{\hyperlink{des_8c_a728fc39e0411caa9ba134e4f4d10d3d2}{des\_ecb\_decrypt}}(cases[i].txt, tmp, \&des);}
+\DoxyCodeLine{1978         \}}
+\DoxyCodeLine{1979 }
+\DoxyCodeLine{1980         \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(cases[i].out, \textcolor{keyword}{sizeof}(tmp), tmp, \textcolor{keyword}{sizeof}(tmp), \textcolor{stringliteral}{"DES"}, i) != 0) \{}
+\DoxyCodeLine{1981            \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{1982         \}}
+\DoxyCodeLine{1983 }
+\DoxyCodeLine{1984         \textcolor{comment}{/* now see if we can encrypt all zero bytes 1000 times, decrypt and come back where we started */}}
+\DoxyCodeLine{1985         \textcolor{keywordflow}{for} (y = 0; y < 8; y++) tmp[y] = 0;}
+\DoxyCodeLine{1986         \textcolor{keywordflow}{for} (y = 0; y < 1000; y++) \mbox{\hyperlink{des_8c_ab4c9077c03fb6684df1d1b4982ad644f}{des\_ecb\_encrypt}}(tmp, tmp, \&des);}
+\DoxyCodeLine{1987         \textcolor{keywordflow}{for} (y = 0; y < 1000; y++) \mbox{\hyperlink{des_8c_a728fc39e0411caa9ba134e4f4d10d3d2}{des\_ecb\_decrypt}}(tmp, tmp, \&des);}
+\DoxyCodeLine{1988         \textcolor{keywordflow}{for} (y = 0; y < 8; y++) \textcolor{keywordflow}{if} (tmp[y] != 0) \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{1989     \}}
+\DoxyCodeLine{1990 }
+\DoxyCodeLine{1991     \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{1992 \textcolor{preprocessor}{  \#endif}}
+\DoxyCodeLine{1993 \}}
+
+\end{DoxyCode}
+
+
+References compare\+\_\+testvector(), C\+R\+Y\+P\+T\+\_\+\+F\+A\+I\+L\+\_\+\+T\+E\+S\+T\+V\+E\+C\+T\+OR, C\+R\+Y\+P\+T\+\_\+\+N\+OP, C\+R\+Y\+P\+T\+\_\+\+OK, des\+\_\+ecb\+\_\+decrypt(), des\+\_\+ecb\+\_\+encrypt(), and des\+\_\+setup().
+
+
+
+Referenced by des3\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 16
+Here is the caller graph for this function\+:
+% FIG 17
+\mbox{\Hypertarget{des_8c_a40c4cfa81b99dc75ec50f9b13a9360de}\label{des_8c_a40c4cfa81b99dc75ec50f9b13a9360de}} 
+\index{des.c@{des.c}!desfunc@{desfunc}}
+\index{desfunc@{desfunc}!des.c@{des.c}}
+\subsubsection{\texorpdfstring{desfunc()}{desfunc()}}
+{\footnotesize\ttfamily static void desfunc (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} $\ast$}]{block,  }\item[{const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} $\ast$}]{keys }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 1398 of file des.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1402 \{}
+\DoxyCodeLine{1403     \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} work, right, leftt;}
+\DoxyCodeLine{1404     \textcolor{keywordtype}{int} cur\_round;}
+\DoxyCodeLine{1405 }
+\DoxyCodeLine{1406     leftt = block[0];}
+\DoxyCodeLine{1407     right = block[1];}
+\DoxyCodeLine{1408 }
+\DoxyCodeLine{1409 \textcolor{preprocessor}{\#ifdef LTC\_SMALL\_CODE}}
+\DoxyCodeLine{1410     work = ((leftt >> 4)  \string^ right) \& 0x0f0f0f0fL;}
+\DoxyCodeLine{1411     right \string^= work;}
+\DoxyCodeLine{1412     leftt \string^= (work << 4);}
+\DoxyCodeLine{1413 }
+\DoxyCodeLine{1414     work = ((leftt >> 16) \string^ right) \& 0x0000ffffL;}
+\DoxyCodeLine{1415     right \string^= work;}
+\DoxyCodeLine{1416     leftt \string^= (work << 16);}
+\DoxyCodeLine{1417 }
+\DoxyCodeLine{1418     work = ((right >> 2)  \string^ leftt) \& 0x33333333L;}
+\DoxyCodeLine{1419     leftt \string^= work;}
+\DoxyCodeLine{1420     right \string^= (work << 2);}
+\DoxyCodeLine{1421 }
+\DoxyCodeLine{1422     work = ((right >> 8)  \string^ leftt) \& 0x00ff00ffL;}
+\DoxyCodeLine{1423     leftt \string^= work;}
+\DoxyCodeLine{1424     right \string^= (work << 8);}
+\DoxyCodeLine{1425 }
+\DoxyCodeLine{1426     right = \mbox{\hyperlink{tomcrypt__macros_8h_a39d625dc0b148466a72c13737e063d86}{ROLc}}(right, 1);}
+\DoxyCodeLine{1427     work = (leftt \string^ right) \& 0xaaaaaaaaL;}
+\DoxyCodeLine{1428 }
+\DoxyCodeLine{1429     leftt \string^= work;}
+\DoxyCodeLine{1430     right \string^= work;}
+\DoxyCodeLine{1431     leftt = \mbox{\hyperlink{tomcrypt__macros_8h_a39d625dc0b148466a72c13737e063d86}{ROLc}}(leftt, 1);}
+\DoxyCodeLine{1432 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{1433    \{}
+\DoxyCodeLine{1434       \mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}} tmp;}
+\DoxyCodeLine{1435       tmp = \mbox{\hyperlink{des_8c_aa7df8e071af4edb40feeddb7d969bf42}{des\_ip}}[0][\mbox{\hyperlink{tomcrypt__private_8h_a319cb143574102827d3b0055ded27533}{LTC\_BYTE}}(leftt, 0)] \string^}
+\DoxyCodeLine{1436             \mbox{\hyperlink{des_8c_aa7df8e071af4edb40feeddb7d969bf42}{des\_ip}}[1][\mbox{\hyperlink{tomcrypt__private_8h_a319cb143574102827d3b0055ded27533}{LTC\_BYTE}}(leftt, 1)] \string^}
+\DoxyCodeLine{1437             \mbox{\hyperlink{des_8c_aa7df8e071af4edb40feeddb7d969bf42}{des\_ip}}[2][\mbox{\hyperlink{tomcrypt__private_8h_a319cb143574102827d3b0055ded27533}{LTC\_BYTE}}(leftt, 2)] \string^}
+\DoxyCodeLine{1438             \mbox{\hyperlink{des_8c_aa7df8e071af4edb40feeddb7d969bf42}{des\_ip}}[3][\mbox{\hyperlink{tomcrypt__private_8h_a319cb143574102827d3b0055ded27533}{LTC\_BYTE}}(leftt, 3)] \string^}
+\DoxyCodeLine{1439             \mbox{\hyperlink{des_8c_aa7df8e071af4edb40feeddb7d969bf42}{des\_ip}}[4][\mbox{\hyperlink{tomcrypt__private_8h_a319cb143574102827d3b0055ded27533}{LTC\_BYTE}}(right, 0)] \string^}
+\DoxyCodeLine{1440             \mbox{\hyperlink{des_8c_aa7df8e071af4edb40feeddb7d969bf42}{des\_ip}}[5][\mbox{\hyperlink{tomcrypt__private_8h_a319cb143574102827d3b0055ded27533}{LTC\_BYTE}}(right, 1)] \string^}
+\DoxyCodeLine{1441             \mbox{\hyperlink{des_8c_aa7df8e071af4edb40feeddb7d969bf42}{des\_ip}}[6][\mbox{\hyperlink{tomcrypt__private_8h_a319cb143574102827d3b0055ded27533}{LTC\_BYTE}}(right, 2)] \string^}
+\DoxyCodeLine{1442             \mbox{\hyperlink{des_8c_aa7df8e071af4edb40feeddb7d969bf42}{des\_ip}}[7][\mbox{\hyperlink{tomcrypt__private_8h_a319cb143574102827d3b0055ded27533}{LTC\_BYTE}}(right, 3)];}
+\DoxyCodeLine{1443       leftt = (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})(tmp >> 32);}
+\DoxyCodeLine{1444       right = (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})(tmp \& 0xFFFFFFFFUL);}
+\DoxyCodeLine{1445    \}}
+\DoxyCodeLine{1446 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{1447 }
+\DoxyCodeLine{1448     \textcolor{keywordflow}{for} (cur\_round = 0; cur\_round < 8; cur\_round++) \{}
+\DoxyCodeLine{1449         work  = \mbox{\hyperlink{tomcrypt__macros_8h_adb04fb3f7c1736d29125ad0f179b1068}{RORc}}(right, 4) \string^ *keys++;}
+\DoxyCodeLine{1450         leftt \string^= \mbox{\hyperlink{des_8c_a5be1f121263a973042d327770158e7f7}{SP7}}[work        \& 0x3fL]}
+\DoxyCodeLine{1451               \string^  \mbox{\hyperlink{des_8c_a2c2967a36313247312098aafb6c05377}{SP5}}[(work >>  8) \& 0x3fL]}
+\DoxyCodeLine{1452               \string^  \mbox{\hyperlink{des_8c_a283e832b1ebbf68e67a919d1f807e9e0}{SP3}}[(work >> 16) \& 0x3fL]}
+\DoxyCodeLine{1453               \string^  \mbox{\hyperlink{des_8c_a5be04a21db5cb6e716b6a70cbb5ea316}{SP1}}[(work >> 24) \& 0x3fL];}
+\DoxyCodeLine{1454         work  = right \string^ *keys++;}
+\DoxyCodeLine{1455         leftt \string^= \mbox{\hyperlink{des_8c_ae8e9d23a4cf3f15df84ed067879636f4}{SP8}}[ work        \& 0x3fL]}
+\DoxyCodeLine{1456               \string^  \mbox{\hyperlink{des_8c_af4d6d56474db9003ce875c706c518746}{SP6}}[(work >>  8) \& 0x3fL]}
+\DoxyCodeLine{1457               \string^  \mbox{\hyperlink{des_8c_ad043a05c01aa10e8113c8aba7b4191c2}{SP4}}[(work >> 16) \& 0x3fL]}
+\DoxyCodeLine{1458               \string^  \mbox{\hyperlink{des_8c_ab56e07682fa92fd7f73b7a83f2531f71}{SP2}}[(work >> 24) \& 0x3fL];}
+\DoxyCodeLine{1459 }
+\DoxyCodeLine{1460         work = \mbox{\hyperlink{tomcrypt__macros_8h_adb04fb3f7c1736d29125ad0f179b1068}{RORc}}(leftt, 4) \string^ *keys++;}
+\DoxyCodeLine{1461         right \string^= \mbox{\hyperlink{des_8c_a5be1f121263a973042d327770158e7f7}{SP7}}[ work        \& 0x3fL]}
+\DoxyCodeLine{1462               \string^  \mbox{\hyperlink{des_8c_a2c2967a36313247312098aafb6c05377}{SP5}}[(work >>  8) \& 0x3fL]}
+\DoxyCodeLine{1463               \string^  \mbox{\hyperlink{des_8c_a283e832b1ebbf68e67a919d1f807e9e0}{SP3}}[(work >> 16) \& 0x3fL]}
+\DoxyCodeLine{1464               \string^  \mbox{\hyperlink{des_8c_a5be04a21db5cb6e716b6a70cbb5ea316}{SP1}}[(work >> 24) \& 0x3fL];}
+\DoxyCodeLine{1465         work  = leftt \string^ *keys++;}
+\DoxyCodeLine{1466         right \string^= \mbox{\hyperlink{des_8c_ae8e9d23a4cf3f15df84ed067879636f4}{SP8}}[ work        \& 0x3fL]}
+\DoxyCodeLine{1467               \string^  \mbox{\hyperlink{des_8c_af4d6d56474db9003ce875c706c518746}{SP6}}[(work >>  8) \& 0x3fL]}
+\DoxyCodeLine{1468               \string^  \mbox{\hyperlink{des_8c_ad043a05c01aa10e8113c8aba7b4191c2}{SP4}}[(work >> 16) \& 0x3fL]}
+\DoxyCodeLine{1469               \string^  \mbox{\hyperlink{des_8c_ab56e07682fa92fd7f73b7a83f2531f71}{SP2}}[(work >> 24) \& 0x3fL];}
+\DoxyCodeLine{1470     \}}
+\DoxyCodeLine{1471 }
+\DoxyCodeLine{1472 \textcolor{preprocessor}{\#ifdef LTC\_SMALL\_CODE}}
+\DoxyCodeLine{1473     right = \mbox{\hyperlink{tomcrypt__macros_8h_adb04fb3f7c1736d29125ad0f179b1068}{RORc}}(right, 1);}
+\DoxyCodeLine{1474     work = (leftt \string^ right) \& 0xaaaaaaaaL;}
+\DoxyCodeLine{1475     leftt \string^= work;}
+\DoxyCodeLine{1476     right \string^= work;}
+\DoxyCodeLine{1477     leftt = \mbox{\hyperlink{tomcrypt__macros_8h_adb04fb3f7c1736d29125ad0f179b1068}{RORc}}(leftt, 1);}
+\DoxyCodeLine{1478     work = ((leftt >> 8) \string^ right) \& 0x00ff00ffL;}
+\DoxyCodeLine{1479     right \string^= work;}
+\DoxyCodeLine{1480     leftt \string^= (work << 8);}
+\DoxyCodeLine{1481     \textcolor{comment}{/* -- */}}
+\DoxyCodeLine{1482     work = ((leftt >> 2) \string^ right) \& 0x33333333L;}
+\DoxyCodeLine{1483     right \string^= work;}
+\DoxyCodeLine{1484     leftt \string^= (work << 2);}
+\DoxyCodeLine{1485     work = ((right >> 16) \string^ leftt) \& 0x0000ffffL;}
+\DoxyCodeLine{1486     leftt \string^= work;}
+\DoxyCodeLine{1487     right \string^= (work << 16);}
+\DoxyCodeLine{1488     work = ((right >> 4) \string^ leftt) \& 0x0f0f0f0fL;}
+\DoxyCodeLine{1489     leftt \string^= work;}
+\DoxyCodeLine{1490     right \string^= (work << 4);}
+\DoxyCodeLine{1491 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{1492    \{}
+\DoxyCodeLine{1493       \mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}} tmp;}
+\DoxyCodeLine{1494       tmp = \mbox{\hyperlink{des_8c_a7d2cc9abe076285cacec0595a44f336f}{des\_fp}}[0][\mbox{\hyperlink{tomcrypt__private_8h_a319cb143574102827d3b0055ded27533}{LTC\_BYTE}}(leftt, 0)] \string^}
+\DoxyCodeLine{1495             \mbox{\hyperlink{des_8c_a7d2cc9abe076285cacec0595a44f336f}{des\_fp}}[1][\mbox{\hyperlink{tomcrypt__private_8h_a319cb143574102827d3b0055ded27533}{LTC\_BYTE}}(leftt, 1)] \string^}
+\DoxyCodeLine{1496             \mbox{\hyperlink{des_8c_a7d2cc9abe076285cacec0595a44f336f}{des\_fp}}[2][\mbox{\hyperlink{tomcrypt__private_8h_a319cb143574102827d3b0055ded27533}{LTC\_BYTE}}(leftt, 2)] \string^}
+\DoxyCodeLine{1497             \mbox{\hyperlink{des_8c_a7d2cc9abe076285cacec0595a44f336f}{des\_fp}}[3][\mbox{\hyperlink{tomcrypt__private_8h_a319cb143574102827d3b0055ded27533}{LTC\_BYTE}}(leftt, 3)] \string^}
+\DoxyCodeLine{1498             \mbox{\hyperlink{des_8c_a7d2cc9abe076285cacec0595a44f336f}{des\_fp}}[4][\mbox{\hyperlink{tomcrypt__private_8h_a319cb143574102827d3b0055ded27533}{LTC\_BYTE}}(right, 0)] \string^}
+\DoxyCodeLine{1499             \mbox{\hyperlink{des_8c_a7d2cc9abe076285cacec0595a44f336f}{des\_fp}}[5][\mbox{\hyperlink{tomcrypt__private_8h_a319cb143574102827d3b0055ded27533}{LTC\_BYTE}}(right, 1)] \string^}
+\DoxyCodeLine{1500             \mbox{\hyperlink{des_8c_a7d2cc9abe076285cacec0595a44f336f}{des\_fp}}[6][\mbox{\hyperlink{tomcrypt__private_8h_a319cb143574102827d3b0055ded27533}{LTC\_BYTE}}(right, 2)] \string^}
+\DoxyCodeLine{1501             \mbox{\hyperlink{des_8c_a7d2cc9abe076285cacec0595a44f336f}{des\_fp}}[7][\mbox{\hyperlink{tomcrypt__private_8h_a319cb143574102827d3b0055ded27533}{LTC\_BYTE}}(right, 3)];}
+\DoxyCodeLine{1502       leftt = (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})(tmp >> 32);}
+\DoxyCodeLine{1503       right = (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})(tmp \& 0xFFFFFFFFUL);}
+\DoxyCodeLine{1504    \}}
+\DoxyCodeLine{1505 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{1506 }
+\DoxyCodeLine{1507     block[0] = right;}
+\DoxyCodeLine{1508     block[1] = leftt;}
+\DoxyCodeLine{1509 \}}
+
+\end{DoxyCode}
+
+
+References des\+\_\+fp, des\+\_\+ip, L\+T\+C\+\_\+\+B\+Y\+TE, R\+O\+Lc, R\+O\+Rc, S\+P1, S\+P2, S\+P3, S\+P4, S\+P5, S\+P6, S\+P7, and S\+P8.
+
+
+
+Referenced by des3\+\_\+ecb\+\_\+decrypt(), des3\+\_\+ecb\+\_\+encrypt(), des\+\_\+ecb\+\_\+decrypt(), and des\+\_\+ecb\+\_\+encrypt().
+
+Here is the caller graph for this function\+:
+% FIG 18
+\mbox{\Hypertarget{des_8c_a318fa41e408b0ac2ff7cbd4cc1b88f46}\label{des_8c_a318fa41e408b0ac2ff7cbd4cc1b88f46}} 
+\index{des.c@{des.c}!deskey@{deskey}}
+\index{deskey@{deskey}!des.c@{des.c}}
+\subsubsection{\texorpdfstring{deskey()}{deskey()}}
+{\footnotesize\ttfamily static void deskey (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{key,  }\item[{short}]{edf,  }\item[{\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} $\ast$}]{keyout }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 1304 of file des.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1306 \{}
+\DoxyCodeLine{1307     \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} i, j, l, m, n, kn[32];}
+\DoxyCodeLine{1308     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} pc1m[56], pcr[56];}
+\DoxyCodeLine{1309 }
+\DoxyCodeLine{1310     \textcolor{keywordflow}{for} (j=0; j < 56; j++) \{}
+\DoxyCodeLine{1311         l = (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})\mbox{\hyperlink{des_8c_a5e7a131b68a2b70172ead7110bc7eb37}{pc1}}[j];}
+\DoxyCodeLine{1312         m = l \& 7;}
+\DoxyCodeLine{1313         pc1m[j] = (\textcolor{keywordtype}{unsigned} char)((key[l >> 3U] \& \mbox{\hyperlink{des_8c_a8db241419c61d0b53eb31ac71078d23d}{bytebit}}[m]) == \mbox{\hyperlink{des_8c_a8db241419c61d0b53eb31ac71078d23d}{bytebit}}[m] ? 1 : 0);}
+\DoxyCodeLine{1314     \}}
+\DoxyCodeLine{1315 }
+\DoxyCodeLine{1316     \textcolor{keywordflow}{for} (i=0; i < 16; i++) \{}
+\DoxyCodeLine{1317         \textcolor{keywordflow}{if} (edf == \mbox{\hyperlink{des_8c_a507e2e44cdf44c75938df5a03ae504da}{DE1}}) \{}
+\DoxyCodeLine{1318            m = (15 - i) << 1;}
+\DoxyCodeLine{1319         \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{1320            m = i << 1;}
+\DoxyCodeLine{1321         \}}
+\DoxyCodeLine{1322         n = m + 1;}
+\DoxyCodeLine{1323         kn[m] = kn[n] = 0L;}
+\DoxyCodeLine{1324         \textcolor{keywordflow}{for} (j=0; j < 28; j++) \{}
+\DoxyCodeLine{1325             l = j + (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})\mbox{\hyperlink{des_8c_a123895565f4a551165a0adb0cff83d58}{totrot}}[i];}
+\DoxyCodeLine{1326             \textcolor{keywordflow}{if} (l < 28) \{}
+\DoxyCodeLine{1327                pcr[j] = pc1m[l];}
+\DoxyCodeLine{1328             \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{1329                pcr[j] = pc1m[l - 28];}
+\DoxyCodeLine{1330             \}}
+\DoxyCodeLine{1331         \}}
+\DoxyCodeLine{1332         \textcolor{keywordflow}{for} (\textcolor{comment}{/*j = 28*/}; j < 56; j++) \{}
+\DoxyCodeLine{1333             l = j + (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})\mbox{\hyperlink{des_8c_a123895565f4a551165a0adb0cff83d58}{totrot}}[i];}
+\DoxyCodeLine{1334             \textcolor{keywordflow}{if} (l < 56) \{}
+\DoxyCodeLine{1335                pcr[j] = pc1m[l];}
+\DoxyCodeLine{1336             \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{1337                pcr[j] = pc1m[l - 28];}
+\DoxyCodeLine{1338             \}}
+\DoxyCodeLine{1339         \}}
+\DoxyCodeLine{1340         \textcolor{keywordflow}{for} (j=0; j < 24; j++)  \{}
+\DoxyCodeLine{1341             \textcolor{keywordflow}{if} ((\textcolor{keywordtype}{int})pcr[(int)\mbox{\hyperlink{des_8c_acd3c1acca7ec1543e6244cf7d8fcc669}{pc2}}[j]] != 0) \{}
+\DoxyCodeLine{1342                kn[m] |= \mbox{\hyperlink{des_8c_aaa9b8fc17d31a1dc7d9fb8514b1dd5a0}{bigbyte}}[j];}
+\DoxyCodeLine{1343             \}}
+\DoxyCodeLine{1344             \textcolor{keywordflow}{if} ((\textcolor{keywordtype}{int})pcr[(int)\mbox{\hyperlink{des_8c_acd3c1acca7ec1543e6244cf7d8fcc669}{pc2}}[j+24]] != 0) \{}
+\DoxyCodeLine{1345                kn[n] |= \mbox{\hyperlink{des_8c_aaa9b8fc17d31a1dc7d9fb8514b1dd5a0}{bigbyte}}[j];}
+\DoxyCodeLine{1346             \}}
+\DoxyCodeLine{1347         \}}
+\DoxyCodeLine{1348     \}}
+\DoxyCodeLine{1349 }
+\DoxyCodeLine{1350     \mbox{\hyperlink{des_8c_a48f9d9ac142cef1ed08a54502cb8c5f7}{cookey}}(kn, keyout);}
+\DoxyCodeLine{1351 \}}
+
+\end{DoxyCode}
+
+
+References bigbyte, bytebit, cookey(), D\+E1, pc1, pc2, and totrot.
+
+
+
+Referenced by des3\+\_\+setup(), and des\+\_\+setup().
+
+Here is the call graph for this function\+:
+% FIG 19
+Here is the caller graph for this function\+:
+% FIG 20
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{des_8c_aaa9b8fc17d31a1dc7d9fb8514b1dd5a0}\label{des_8c_aaa9b8fc17d31a1dc7d9fb8514b1dd5a0}} 
+\index{des.c@{des.c}!bigbyte@{bigbyte}}
+\index{bigbyte@{bigbyte}!des.c@{des.c}}
+\subsubsection{\texorpdfstring{bigbyte}{bigbyte}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} bigbyte\mbox{[}24\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    0x800000UL,  0x400000UL,  0x200000UL,  0x100000UL,}
+\DoxyCodeLine{    0x80000UL,   0x40000UL,   0x20000UL,   0x10000UL,}
+\DoxyCodeLine{    0x8000UL,    0x4000UL,    0x2000UL,    0x1000UL,}
+\DoxyCodeLine{    0x800UL,     0x400UL,     0x200UL,     0x100UL,}
+\DoxyCodeLine{    0x80UL,      0x40UL,      0x20UL,      0x10UL,}
+\DoxyCodeLine{    0x8UL,       0x4UL,       0x2UL,       0x1L}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line 54 of file des.\+c.
+
+
+
+Referenced by deskey().
+
+\mbox{\Hypertarget{des_8c_a8db241419c61d0b53eb31ac71078d23d}\label{des_8c_a8db241419c61d0b53eb31ac71078d23d}} 
+\index{des.c@{des.c}!bytebit@{bytebit}}
+\index{bytebit@{bytebit}!des.c@{des.c}}
+\subsubsection{\texorpdfstring{bytebit}{bytebit}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} bytebit\mbox{[}8\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    0200, 0100, 040, 020, 010, 04, 02, 01}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line 49 of file des.\+c.
+
+
+
+Referenced by deskey().
+
+\mbox{\Hypertarget{des_8c_af3193b5d652e9e91159ff5a098fd95d3}\label{des_8c_af3193b5d652e9e91159ff5a098fd95d3}} 
+\index{des.c@{des.c}!des3\_desc@{des3\_desc}}
+\index{des3\_desc@{des3\_desc}!des.c@{des.c}}
+\subsubsection{\texorpdfstring{des3\_desc}{des3\_desc}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structltc__cipher__descriptor}{ltc\+\_\+cipher\+\_\+descriptor}} des3\+\_\+desc}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    \textcolor{stringliteral}{"3des"},}
+\DoxyCodeLine{    14,}
+\DoxyCodeLine{    16, 24, 8, 16,}
+\DoxyCodeLine{    \&\mbox{\hyperlink{des_8c_a9d44ff389c97c490ae7ac9e7f6be21f8}{des3\_setup}},}
+\DoxyCodeLine{    \&\mbox{\hyperlink{des_8c_a2711eaeb99fc5e4af5079bd493c886f4}{des3\_ecb\_encrypt}},}
+\DoxyCodeLine{    \&\mbox{\hyperlink{des_8c_a406110bf01432bed39765db772513396}{des3\_ecb\_decrypt}},}
+\DoxyCodeLine{    \&\mbox{\hyperlink{des_8c_ac6f22505ef05d826646a1d64542682e4}{des3\_test}},}
+\DoxyCodeLine{    \&\mbox{\hyperlink{des_8c_a25ab341c9f593a120e86fec61bf90ae7}{des3\_done}},}
+\DoxyCodeLine{    \&\mbox{\hyperlink{des_8c_a1bbde6174a0f9a90359f78f15b63cc7d}{des3\_keysize}},}
+\DoxyCodeLine{    NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line 35 of file des.\+c.
+
+
+
+Referenced by register\+\_\+all\+\_\+ciphers(), and yarrow\+\_\+start().
+
+\mbox{\Hypertarget{des_8c_a3063e5b41add687be02cd6b134f5a73f}\label{des_8c_a3063e5b41add687be02cd6b134f5a73f}} 
+\index{des.c@{des.c}!des\_desc@{des\_desc}}
+\index{des\_desc@{des\_desc}!des.c@{des.c}}
+\subsubsection{\texorpdfstring{des\_desc}{des\_desc}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structltc__cipher__descriptor}{ltc\+\_\+cipher\+\_\+descriptor}} des\+\_\+desc}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    \textcolor{stringliteral}{"des"},}
+\DoxyCodeLine{    13,}
+\DoxyCodeLine{    8, 8, 8, 16,}
+\DoxyCodeLine{    \&\mbox{\hyperlink{des_8c_ae212a3a7d8ce6022b2d0e27ba3627cc0}{des\_setup}},}
+\DoxyCodeLine{    \&\mbox{\hyperlink{des_8c_ab4c9077c03fb6684df1d1b4982ad644f}{des\_ecb\_encrypt}},}
+\DoxyCodeLine{    \&\mbox{\hyperlink{des_8c_a728fc39e0411caa9ba134e4f4d10d3d2}{des\_ecb\_decrypt}},}
+\DoxyCodeLine{    \&\mbox{\hyperlink{des_8c_a27b8e19aa00b5b9b5c4e70fcc4b18fc6}{des\_test}},}
+\DoxyCodeLine{    \&\mbox{\hyperlink{des_8c_a3fe19ff3400cbac9103a3235da49d2c4}{des\_done}},}
+\DoxyCodeLine{    \&\mbox{\hyperlink{des_8c_a47551270a13f313b4fb2b46520d2a183}{des\_keysize}},}
+\DoxyCodeLine{    NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line 21 of file des.\+c.
+
+
+
+Referenced by register\+\_\+all\+\_\+ciphers().
+
+\mbox{\Hypertarget{des_8c_a7d2cc9abe076285cacec0595a44f336f}\label{des_8c_a7d2cc9abe076285cacec0595a44f336f}} 
+\index{des.c@{des.c}!des\_fp@{des\_fp}}
+\index{des\_fp@{des\_fp}!des.c@{des.c}}
+\subsubsection{\texorpdfstring{des\_fp}{des\_fp}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}} des\+\_\+fp\mbox{[}8\mbox{]}\mbox{[}256\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 773 of file des.\+c.
+
+
+
+Referenced by desfunc().
+
+\mbox{\Hypertarget{des_8c_aa7df8e071af4edb40feeddb7d969bf42}\label{des_8c_aa7df8e071af4edb40feeddb7d969bf42}} 
+\index{des.c@{des.c}!des\_ip@{des\_ip}}
+\index{des\_ip@{des\_ip}!des.c@{des.c}}
+\subsubsection{\texorpdfstring{des\_ip}{des\_ip}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}} des\+\_\+ip\mbox{[}8\mbox{]}\mbox{[}256\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 250 of file des.\+c.
+
+
+
+Referenced by desfunc().
+
+\mbox{\Hypertarget{des_8c_a5e7a131b68a2b70172ead7110bc7eb37}\label{des_8c_a5e7a131b68a2b70172ead7110bc7eb37}} 
+\index{des.c@{des.c}!pc1@{pc1}}
+\index{pc1@{pc1}!des.c@{des.c}}
+\subsubsection{\texorpdfstring{pc1}{pc1}}
+{\footnotesize\ttfamily const unsigned char pc1\mbox{[}56\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    56, 48, 40, 32, 24, 16,  8,  0, 57, 49, 41, 33, 25, 17,}
+\DoxyCodeLine{     9,  1, 58, 50, 42, 34, 26, 18, 10,  2, 59, 51, 43, 35,}
+\DoxyCodeLine{    62, 54, 46, 38, 30, 22, 14,  6, 61, 53, 45, 37, 29, 21,}
+\DoxyCodeLine{    13,  5, 60, 52, 44, 36, 28, 20, 12,  4, 27, 19, 11,  3}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line 66 of file des.\+c.
+
+
+
+Referenced by deskey().
+
+\mbox{\Hypertarget{des_8c_acd3c1acca7ec1543e6244cf7d8fcc669}\label{des_8c_acd3c1acca7ec1543e6244cf7d8fcc669}} 
+\index{des.c@{des.c}!pc2@{pc2}}
+\index{pc2@{pc2}!des.c@{des.c}}
+\subsubsection{\texorpdfstring{pc2}{pc2}}
+{\footnotesize\ttfamily const unsigned char pc2\mbox{[}48\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    13, 16, 10, 23,  0,  4,      2, 27, 14,  5, 20,  9,}
+\DoxyCodeLine{    22, 18, 11,  3, 25,  7,     15,  6, 26, 19, 12,  1,}
+\DoxyCodeLine{    40, 51, 30, 36, 46, 54,     29, 39, 50, 44, 32, 47,}
+\DoxyCodeLine{    43, 48, 38, 55, 33, 52,     45, 41, 49, 35, 28, 31}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line 80 of file des.\+c.
+
+
+
+Referenced by deskey().
+
+\mbox{\Hypertarget{des_8c_a5be04a21db5cb6e716b6a70cbb5ea316}\label{des_8c_a5be04a21db5cb6e716b6a70cbb5ea316}} 
+\index{des.c@{des.c}!SP1@{SP1}}
+\index{SP1@{SP1}!des.c@{des.c}}
+\subsubsection{\texorpdfstring{SP1}{SP1}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} S\+P1\mbox{[}64\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    0x01010400UL, 0x00000000UL, 0x00010000UL, 0x01010404UL,}
+\DoxyCodeLine{    0x01010004UL, 0x00010404UL, 0x00000004UL, 0x00010000UL,}
+\DoxyCodeLine{    0x00000400UL, 0x01010400UL, 0x01010404UL, 0x00000400UL,}
+\DoxyCodeLine{    0x01000404UL, 0x01010004UL, 0x01000000UL, 0x00000004UL,}
+\DoxyCodeLine{    0x00000404UL, 0x01000400UL, 0x01000400UL, 0x00010400UL,}
+\DoxyCodeLine{    0x00010400UL, 0x01010000UL, 0x01010000UL, 0x01000404UL,}
+\DoxyCodeLine{    0x00010004UL, 0x01000004UL, 0x01000004UL, 0x00010004UL,}
+\DoxyCodeLine{    0x00000000UL, 0x00000404UL, 0x00010404UL, 0x01000000UL,}
+\DoxyCodeLine{    0x00010000UL, 0x01010404UL, 0x00000004UL, 0x01010000UL,}
+\DoxyCodeLine{    0x01010400UL, 0x01000000UL, 0x01000000UL, 0x00000400UL,}
+\DoxyCodeLine{    0x01010004UL, 0x00010000UL, 0x00010400UL, 0x01000004UL,}
+\DoxyCodeLine{    0x00000400UL, 0x00000004UL, 0x01000404UL, 0x00010404UL,}
+\DoxyCodeLine{    0x01010404UL, 0x00010004UL, 0x01010000UL, 0x01000404UL,}
+\DoxyCodeLine{    0x01000004UL, 0x00000404UL, 0x00010404UL, 0x01010400UL,}
+\DoxyCodeLine{    0x00000404UL, 0x01000400UL, 0x01000400UL, 0x00000000UL,}
+\DoxyCodeLine{    0x00010004UL, 0x00010400UL, 0x00000000UL, 0x01010004UL}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line 88 of file des.\+c.
+
+
+
+Referenced by desfunc().
+
+\mbox{\Hypertarget{des_8c_ab56e07682fa92fd7f73b7a83f2531f71}\label{des_8c_ab56e07682fa92fd7f73b7a83f2531f71}} 
+\index{des.c@{des.c}!SP2@{SP2}}
+\index{SP2@{SP2}!des.c@{des.c}}
+\subsubsection{\texorpdfstring{SP2}{SP2}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} S\+P2\mbox{[}64\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    0x80108020UL, 0x80008000UL, 0x00008000UL, 0x00108020UL,}
+\DoxyCodeLine{    0x00100000UL, 0x00000020UL, 0x80100020UL, 0x80008020UL,}
+\DoxyCodeLine{    0x80000020UL, 0x80108020UL, 0x80108000UL, 0x80000000UL,}
+\DoxyCodeLine{    0x80008000UL, 0x00100000UL, 0x00000020UL, 0x80100020UL,}
+\DoxyCodeLine{    0x00108000UL, 0x00100020UL, 0x80008020UL, 0x00000000UL,}
+\DoxyCodeLine{    0x80000000UL, 0x00008000UL, 0x00108020UL, 0x80100000UL,}
+\DoxyCodeLine{    0x00100020UL, 0x80000020UL, 0x00000000UL, 0x00108000UL,}
+\DoxyCodeLine{    0x00008020UL, 0x80108000UL, 0x80100000UL, 0x00008020UL,}
+\DoxyCodeLine{    0x00000000UL, 0x00108020UL, 0x80100020UL, 0x00100000UL,}
+\DoxyCodeLine{    0x80008020UL, 0x80100000UL, 0x80108000UL, 0x00008000UL,}
+\DoxyCodeLine{    0x80100000UL, 0x80008000UL, 0x00000020UL, 0x80108020UL,}
+\DoxyCodeLine{    0x00108020UL, 0x00000020UL, 0x00008000UL, 0x80000000UL,}
+\DoxyCodeLine{    0x00008020UL, 0x80108000UL, 0x00100000UL, 0x80000020UL,}
+\DoxyCodeLine{    0x00100020UL, 0x80008020UL, 0x80000020UL, 0x00100020UL,}
+\DoxyCodeLine{    0x00108000UL, 0x00000000UL, 0x80008000UL, 0x00008020UL,}
+\DoxyCodeLine{    0x80000000UL, 0x80100020UL, 0x80108020UL, 0x00108000UL}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line 108 of file des.\+c.
+
+
+
+Referenced by desfunc().
+
+\mbox{\Hypertarget{des_8c_a283e832b1ebbf68e67a919d1f807e9e0}\label{des_8c_a283e832b1ebbf68e67a919d1f807e9e0}} 
+\index{des.c@{des.c}!SP3@{SP3}}
+\index{SP3@{SP3}!des.c@{des.c}}
+\subsubsection{\texorpdfstring{SP3}{SP3}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} S\+P3\mbox{[}64\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    0x00000208UL, 0x08020200UL, 0x00000000UL, 0x08020008UL,}
+\DoxyCodeLine{    0x08000200UL, 0x00000000UL, 0x00020208UL, 0x08000200UL,}
+\DoxyCodeLine{    0x00020008UL, 0x08000008UL, 0x08000008UL, 0x00020000UL,}
+\DoxyCodeLine{    0x08020208UL, 0x00020008UL, 0x08020000UL, 0x00000208UL,}
+\DoxyCodeLine{    0x08000000UL, 0x00000008UL, 0x08020200UL, 0x00000200UL,}
+\DoxyCodeLine{    0x00020200UL, 0x08020000UL, 0x08020008UL, 0x00020208UL,}
+\DoxyCodeLine{    0x08000208UL, 0x00020200UL, 0x00020000UL, 0x08000208UL,}
+\DoxyCodeLine{    0x00000008UL, 0x08020208UL, 0x00000200UL, 0x08000000UL,}
+\DoxyCodeLine{    0x08020200UL, 0x08000000UL, 0x00020008UL, 0x00000208UL,}
+\DoxyCodeLine{    0x00020000UL, 0x08020200UL, 0x08000200UL, 0x00000000UL,}
+\DoxyCodeLine{    0x00000200UL, 0x00020008UL, 0x08020208UL, 0x08000200UL,}
+\DoxyCodeLine{    0x08000008UL, 0x00000200UL, 0x00000000UL, 0x08020008UL,}
+\DoxyCodeLine{    0x08000208UL, 0x00020000UL, 0x08000000UL, 0x08020208UL,}
+\DoxyCodeLine{    0x00000008UL, 0x00020208UL, 0x00020200UL, 0x08000008UL,}
+\DoxyCodeLine{    0x08020000UL, 0x08000208UL, 0x00000208UL, 0x08020000UL,}
+\DoxyCodeLine{    0x00020208UL, 0x00000008UL, 0x08020008UL, 0x00020200UL}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line 128 of file des.\+c.
+
+
+
+Referenced by desfunc().
+
+\mbox{\Hypertarget{des_8c_ad043a05c01aa10e8113c8aba7b4191c2}\label{des_8c_ad043a05c01aa10e8113c8aba7b4191c2}} 
+\index{des.c@{des.c}!SP4@{SP4}}
+\index{SP4@{SP4}!des.c@{des.c}}
+\subsubsection{\texorpdfstring{SP4}{SP4}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} S\+P4\mbox{[}64\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    0x00802001UL, 0x00002081UL, 0x00002081UL, 0x00000080UL,}
+\DoxyCodeLine{    0x00802080UL, 0x00800081UL, 0x00800001UL, 0x00002001UL,}
+\DoxyCodeLine{    0x00000000UL, 0x00802000UL, 0x00802000UL, 0x00802081UL,}
+\DoxyCodeLine{    0x00000081UL, 0x00000000UL, 0x00800080UL, 0x00800001UL,}
+\DoxyCodeLine{    0x00000001UL, 0x00002000UL, 0x00800000UL, 0x00802001UL,}
+\DoxyCodeLine{    0x00000080UL, 0x00800000UL, 0x00002001UL, 0x00002080UL,}
+\DoxyCodeLine{    0x00800081UL, 0x00000001UL, 0x00002080UL, 0x00800080UL,}
+\DoxyCodeLine{    0x00002000UL, 0x00802080UL, 0x00802081UL, 0x00000081UL,}
+\DoxyCodeLine{    0x00800080UL, 0x00800001UL, 0x00802000UL, 0x00802081UL,}
+\DoxyCodeLine{    0x00000081UL, 0x00000000UL, 0x00000000UL, 0x00802000UL,}
+\DoxyCodeLine{    0x00002080UL, 0x00800080UL, 0x00800081UL, 0x00000001UL,}
+\DoxyCodeLine{    0x00802001UL, 0x00002081UL, 0x00002081UL, 0x00000080UL,}
+\DoxyCodeLine{    0x00802081UL, 0x00000081UL, 0x00000001UL, 0x00002000UL,}
+\DoxyCodeLine{    0x00800001UL, 0x00002001UL, 0x00802080UL, 0x00800081UL,}
+\DoxyCodeLine{    0x00002001UL, 0x00002080UL, 0x00800000UL, 0x00802001UL,}
+\DoxyCodeLine{    0x00000080UL, 0x00800000UL, 0x00002000UL, 0x00802080UL}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line 148 of file des.\+c.
+
+
+
+Referenced by desfunc().
+
+\mbox{\Hypertarget{des_8c_a2c2967a36313247312098aafb6c05377}\label{des_8c_a2c2967a36313247312098aafb6c05377}} 
+\index{des.c@{des.c}!SP5@{SP5}}
+\index{SP5@{SP5}!des.c@{des.c}}
+\subsubsection{\texorpdfstring{SP5}{SP5}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} S\+P5\mbox{[}64\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    0x00000100UL, 0x02080100UL, 0x02080000UL, 0x42000100UL,}
+\DoxyCodeLine{    0x00080000UL, 0x00000100UL, 0x40000000UL, 0x02080000UL,}
+\DoxyCodeLine{    0x40080100UL, 0x00080000UL, 0x02000100UL, 0x40080100UL,}
+\DoxyCodeLine{    0x42000100UL, 0x42080000UL, 0x00080100UL, 0x40000000UL,}
+\DoxyCodeLine{    0x02000000UL, 0x40080000UL, 0x40080000UL, 0x00000000UL,}
+\DoxyCodeLine{    0x40000100UL, 0x42080100UL, 0x42080100UL, 0x02000100UL,}
+\DoxyCodeLine{    0x42080000UL, 0x40000100UL, 0x00000000UL, 0x42000000UL,}
+\DoxyCodeLine{    0x02080100UL, 0x02000000UL, 0x42000000UL, 0x00080100UL,}
+\DoxyCodeLine{    0x00080000UL, 0x42000100UL, 0x00000100UL, 0x02000000UL,}
+\DoxyCodeLine{    0x40000000UL, 0x02080000UL, 0x42000100UL, 0x40080100UL,}
+\DoxyCodeLine{    0x02000100UL, 0x40000000UL, 0x42080000UL, 0x02080100UL,}
+\DoxyCodeLine{    0x40080100UL, 0x00000100UL, 0x02000000UL, 0x42080000UL,}
+\DoxyCodeLine{    0x42080100UL, 0x00080100UL, 0x42000000UL, 0x42080100UL,}
+\DoxyCodeLine{    0x02080000UL, 0x00000000UL, 0x40080000UL, 0x42000000UL,}
+\DoxyCodeLine{    0x00080100UL, 0x02000100UL, 0x40000100UL, 0x00080000UL,}
+\DoxyCodeLine{    0x00000000UL, 0x40080000UL, 0x02080100UL, 0x40000100UL}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line 168 of file des.\+c.
+
+
+
+Referenced by desfunc().
+
+\mbox{\Hypertarget{des_8c_af4d6d56474db9003ce875c706c518746}\label{des_8c_af4d6d56474db9003ce875c706c518746}} 
+\index{des.c@{des.c}!SP6@{SP6}}
+\index{SP6@{SP6}!des.c@{des.c}}
+\subsubsection{\texorpdfstring{SP6}{SP6}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} S\+P6\mbox{[}64\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    0x20000010UL, 0x20400000UL, 0x00004000UL, 0x20404010UL,}
+\DoxyCodeLine{    0x20400000UL, 0x00000010UL, 0x20404010UL, 0x00400000UL,}
+\DoxyCodeLine{    0x20004000UL, 0x00404010UL, 0x00400000UL, 0x20000010UL,}
+\DoxyCodeLine{    0x00400010UL, 0x20004000UL, 0x20000000UL, 0x00004010UL,}
+\DoxyCodeLine{    0x00000000UL, 0x00400010UL, 0x20004010UL, 0x00004000UL,}
+\DoxyCodeLine{    0x00404000UL, 0x20004010UL, 0x00000010UL, 0x20400010UL,}
+\DoxyCodeLine{    0x20400010UL, 0x00000000UL, 0x00404010UL, 0x20404000UL,}
+\DoxyCodeLine{    0x00004010UL, 0x00404000UL, 0x20404000UL, 0x20000000UL,}
+\DoxyCodeLine{    0x20004000UL, 0x00000010UL, 0x20400010UL, 0x00404000UL,}
+\DoxyCodeLine{    0x20404010UL, 0x00400000UL, 0x00004010UL, 0x20000010UL,}
+\DoxyCodeLine{    0x00400000UL, 0x20004000UL, 0x20000000UL, 0x00004010UL,}
+\DoxyCodeLine{    0x20000010UL, 0x20404010UL, 0x00404000UL, 0x20400000UL,}
+\DoxyCodeLine{    0x00404010UL, 0x20404000UL, 0x00000000UL, 0x20400010UL,}
+\DoxyCodeLine{    0x00000010UL, 0x00004000UL, 0x20400000UL, 0x00404010UL,}
+\DoxyCodeLine{    0x00004000UL, 0x00400010UL, 0x20004010UL, 0x00000000UL,}
+\DoxyCodeLine{    0x20404000UL, 0x20000000UL, 0x00400010UL, 0x20004010UL}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line 188 of file des.\+c.
+
+
+
+Referenced by desfunc().
+
+\mbox{\Hypertarget{des_8c_a5be1f121263a973042d327770158e7f7}\label{des_8c_a5be1f121263a973042d327770158e7f7}} 
+\index{des.c@{des.c}!SP7@{SP7}}
+\index{SP7@{SP7}!des.c@{des.c}}
+\subsubsection{\texorpdfstring{SP7}{SP7}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} S\+P7\mbox{[}64\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    0x00200000UL, 0x04200002UL, 0x04000802UL, 0x00000000UL,}
+\DoxyCodeLine{    0x00000800UL, 0x04000802UL, 0x00200802UL, 0x04200800UL,}
+\DoxyCodeLine{    0x04200802UL, 0x00200000UL, 0x00000000UL, 0x04000002UL,}
+\DoxyCodeLine{    0x00000002UL, 0x04000000UL, 0x04200002UL, 0x00000802UL,}
+\DoxyCodeLine{    0x04000800UL, 0x00200802UL, 0x00200002UL, 0x04000800UL,}
+\DoxyCodeLine{    0x04000002UL, 0x04200000UL, 0x04200800UL, 0x00200002UL,}
+\DoxyCodeLine{    0x04200000UL, 0x00000800UL, 0x00000802UL, 0x04200802UL,}
+\DoxyCodeLine{    0x00200800UL, 0x00000002UL, 0x04000000UL, 0x00200800UL,}
+\DoxyCodeLine{    0x04000000UL, 0x00200800UL, 0x00200000UL, 0x04000802UL,}
+\DoxyCodeLine{    0x04000802UL, 0x04200002UL, 0x04200002UL, 0x00000002UL,}
+\DoxyCodeLine{    0x00200002UL, 0x04000000UL, 0x04000800UL, 0x00200000UL,}
+\DoxyCodeLine{    0x04200800UL, 0x00000802UL, 0x00200802UL, 0x04200800UL,}
+\DoxyCodeLine{    0x00000802UL, 0x04000002UL, 0x04200802UL, 0x04200000UL,}
+\DoxyCodeLine{    0x00200800UL, 0x00000000UL, 0x00000002UL, 0x04200802UL,}
+\DoxyCodeLine{    0x00000000UL, 0x00200802UL, 0x04200000UL, 0x00000800UL,}
+\DoxyCodeLine{    0x04000002UL, 0x04000800UL, 0x00000800UL, 0x00200002UL}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line 208 of file des.\+c.
+
+
+
+Referenced by desfunc().
+
+\mbox{\Hypertarget{des_8c_ae8e9d23a4cf3f15df84ed067879636f4}\label{des_8c_ae8e9d23a4cf3f15df84ed067879636f4}} 
+\index{des.c@{des.c}!SP8@{SP8}}
+\index{SP8@{SP8}!des.c@{des.c}}
+\subsubsection{\texorpdfstring{SP8}{SP8}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} S\+P8\mbox{[}64\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    0x10001040UL, 0x00001000UL, 0x00040000UL, 0x10041040UL,}
+\DoxyCodeLine{    0x10000000UL, 0x10001040UL, 0x00000040UL, 0x10000000UL,}
+\DoxyCodeLine{    0x00040040UL, 0x10040000UL, 0x10041040UL, 0x00041000UL,}
+\DoxyCodeLine{    0x10041000UL, 0x00041040UL, 0x00001000UL, 0x00000040UL,}
+\DoxyCodeLine{    0x10040000UL, 0x10000040UL, 0x10001000UL, 0x00001040UL,}
+\DoxyCodeLine{    0x00041000UL, 0x00040040UL, 0x10040040UL, 0x10041000UL,}
+\DoxyCodeLine{    0x00001040UL, 0x00000000UL, 0x00000000UL, 0x10040040UL,}
+\DoxyCodeLine{    0x10000040UL, 0x10001000UL, 0x00041040UL, 0x00040000UL,}
+\DoxyCodeLine{    0x00041040UL, 0x00040000UL, 0x10041000UL, 0x00001000UL,}
+\DoxyCodeLine{    0x00000040UL, 0x10040040UL, 0x00001000UL, 0x00041040UL,}
+\DoxyCodeLine{    0x10001000UL, 0x00000040UL, 0x10000040UL, 0x10040000UL,}
+\DoxyCodeLine{    0x10040040UL, 0x10000000UL, 0x00040000UL, 0x10001040UL,}
+\DoxyCodeLine{    0x00000000UL, 0x10041040UL, 0x00040040UL, 0x10000040UL,}
+\DoxyCodeLine{    0x10040000UL, 0x10001000UL, 0x10001040UL, 0x00000000UL,}
+\DoxyCodeLine{    0x10041040UL, 0x00041000UL, 0x00041000UL, 0x00001040UL,}
+\DoxyCodeLine{    0x00001040UL, 0x00040040UL, 0x10000000UL, 0x10041000UL}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line 228 of file des.\+c.
+
+
+
+Referenced by desfunc().
+
+\mbox{\Hypertarget{des_8c_a123895565f4a551165a0adb0cff83d58}\label{des_8c_a123895565f4a551165a0adb0cff83d58}} 
+\index{des.c@{des.c}!totrot@{totrot}}
+\index{totrot@{totrot}!des.c@{des.c}}
+\subsubsection{\texorpdfstring{totrot}{totrot}}
+{\footnotesize\ttfamily const unsigned char totrot\mbox{[}16\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    1,   2,  4,  6,}
+\DoxyCodeLine{    8,  10, 12, 14,}
+\DoxyCodeLine{    15, 17, 19, 21,}
+\DoxyCodeLine{    23, 25, 27, 28}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line 73 of file des.\+c.
+
+
+
+Referenced by deskey().
+

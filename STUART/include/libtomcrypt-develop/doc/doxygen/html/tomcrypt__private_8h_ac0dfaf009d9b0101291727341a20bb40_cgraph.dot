@@ -1,0 +1,33 @@
+digraph "ltc_ecc_verify_key"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node828 [label="ltc_ecc_verify_key",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Verify a key according to ANSI spec."];
+  Node828 -> Node829 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node829 [label="ltc_ecc_del_point",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__private_8h.html#a4cef83a7c070c94ff78d4df10a7b624f",tooltip="Free an ECC point from memory."];
+  Node829 -> Node830 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node830 [label="XFREE",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cfg_8h.html#a260d66fc0690e0502cf3bfe7b5244b75",tooltip=" "];
+  Node828 -> Node831 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node831 [label="ltc_ecc_is_point",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__private_8h.html#affd37f56571ffc28d2c2687a76014b11",tooltip="Returns whether [x,y] is a point on curve defined by dp."];
+  Node828 -> Node832 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node832 [label="ltc_ecc_is_point_at\l_infinity",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__private_8h.html#a54a2d7d30af25ef341a8aca09269177d",tooltip=" "];
+  Node828 -> Node833 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node833 [label="ltc_ecc_mulmod",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__private_8h.html#a818e5e4135d8aa58cf09e502e98ccc90",tooltip="Perform a point multiplication (timing resistant)"];
+  Node833 -> Node834 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node834 [label="ltc_ecc_copy_point",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__private_8h.html#a4b36b54e30a0a87aff57a936b386df7f",tooltip=" "];
+  Node833 -> Node829 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node833 -> Node832 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node833 -> Node835 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node835 [label="ltc_ecc_map",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__private_8h.html#af9f9d49f05241e41e2f8660afdaf7dac",tooltip="Map a projective jacbobian point back to affine space."];
+  Node835 -> Node836 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node836 [label="ltc_ecc_set_point_xyz",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__private_8h.html#adc0366a4a0c272b7594bcea0d8fe7ccb",tooltip=" "];
+  Node833 -> Node837 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node837 [label="ltc_ecc_new_point",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__private_8h.html#a532af6ef2d0f6d1d8cd79e5f81e87cf8",tooltip="Allocate a new ECC point."];
+  Node837 -> Node838 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node838 [label="XCALLOC",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cfg_8h.html#a151dda14cd7acae31eaf1102b0cc0685",tooltip=" "];
+  Node837 -> Node830 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node833 -> Node836 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node828 -> Node837 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}

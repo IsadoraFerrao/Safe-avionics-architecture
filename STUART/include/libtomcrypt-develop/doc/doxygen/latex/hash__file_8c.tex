@@ -1,0 +1,80 @@
+\hypertarget{hash__file_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/hashes/helper/hash\+\_\+file.c File Reference}
+\label{hash__file_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/hashes/helper/hash\_file.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/hashes/helper/hash\_file.c}}
+
+
+Hash a file, Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for hash\+\_\+file.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{hash__file_8c_a6107c14266137a8f7834e4318d8d5002}{hash\+\_\+file}} (int hash, const char $\ast$fname, unsigned char $\ast$out, unsigned long $\ast$outlen)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Hash a file, Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{hash__file_8c_a6107c14266137a8f7834e4318d8d5002}\label{hash__file_8c_a6107c14266137a8f7834e4318d8d5002}} 
+\index{hash\_file.c@{hash\_file.c}!hash\_file@{hash\_file}}
+\index{hash\_file@{hash\_file}!hash\_file.c@{hash\_file.c}}
+\subsubsection{\texorpdfstring{hash\_file()}{hash\_file()}}
+{\footnotesize\ttfamily int hash\+\_\+file (\begin{DoxyParamCaption}\item[{int}]{hash,  }\item[{const char $\ast$}]{fname,  }\item[{unsigned char $\ast$}]{out,  }\item[{unsigned long $\ast$}]{outlen }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em hash} & The index of the hash desired \\
+\hline
+{\em fname} & The name of the file you wish to hash \\
+\hline
+{\em out} & \mbox{[}out\mbox{]} The destination of the digest \\
+\hline
+{\em outlen} & \mbox{[}in/out\mbox{]} The max size and resulting size of the message digest \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 24 of file hash\+\_\+file.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{25 \{}
+\DoxyCodeLine{26     FILE *in;}
+\DoxyCodeLine{27     \textcolor{keywordtype}{int} err;}
+\DoxyCodeLine{28     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(fname  != NULL);}
+\DoxyCodeLine{29     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(out    != NULL);}
+\DoxyCodeLine{30     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(outlen != NULL);}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32     \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__hash_8h_a79647f22bf48bfa7de03fe5fc958c846}{hash\_is\_valid}}(hash)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{33         \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{34     \}}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36     in = fopen(fname, \textcolor{stringliteral}{"rb"});}
+\DoxyCodeLine{37     \textcolor{keywordflow}{if} (in == NULL) \{}
+\DoxyCodeLine{38        \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca9c972a504d3de1863b3e7708836bc6d1}{CRYPT\_FILE\_NOTFOUND}};}
+\DoxyCodeLine{39     \}}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41     err = \mbox{\hyperlink{hash__filehandle_8c_a55d0344508460fbde2c17fe9ef2aa838}{hash\_filehandle}}(hash, in, out, outlen);}
+\DoxyCodeLine{42     \textcolor{keywordflow}{if} (fclose(in) != 0) \{}
+\DoxyCodeLine{43        \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca03c22220d7538be04455cd2aa6ddf9da}{CRYPT\_ERROR}};}
+\DoxyCodeLine{44     \}}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46     \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{47 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+E\+R\+R\+OR, C\+R\+Y\+P\+T\+\_\+\+F\+I\+L\+E\+\_\+\+N\+O\+T\+F\+O\+U\+ND, C\+R\+Y\+P\+T\+\_\+\+OK, hash\+\_\+filehandle(), hash\+\_\+is\+\_\+valid(), and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+Here is the call graph for this function\+:
+% FIG 1

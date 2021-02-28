@@ -1,0 +1,31 @@
+digraph "tiger_test"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node42 [label="tiger_test",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Self-test the hash."];
+  Node42 -> Node43 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node43 [label="compare_testvector",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__misc_8h.html#a7764a7f27897c6182335752df00b5f8e",tooltip="Compare two test-vectors."];
+  Node43 -> Node44 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node44 [label="XMEMCMP",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cfg_8h.html#a372b974ec0ac07abcd55297554fe540f",tooltip=" "];
+  Node42 -> Node45 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node45 [label="tiger_done",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tiger_8c.html#a7d4feae8785f35a28c0bfb1487fca55c",tooltip="Terminate the hash to get the digest."];
+  Node45 -> Node46 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node46 [label="tiger_compress",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tiger_8c.html#a72d428871e09b73599cbb6a5df320cbf",tooltip=" "];
+  Node46 -> Node47 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node47 [label="key_schedule",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tiger_8c.html#afa30304433be66822b4ce1f6ce21048c",tooltip=" "];
+  Node46 -> Node48 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node48 [label="pass",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tiger_8c.html#ab74ad5f4fbf4c27a861ac02a2a674dfb",tooltip=" "];
+  Node48 -> Node49 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node49 [label="mul",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$gmp__desc_8c.html#a7050c53d3ede33130b5137ee21872390",tooltip=" "];
+  Node48 -> Node50 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node50 [label="tiger_round",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tiger_8c.html#a98146289b638fc60971c44d303e65eb0",tooltip=" "];
+  Node50 -> Node49 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node45 -> Node51 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node51 [label="zeromem",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__misc_8h.html#a63b6e188713790263bfd3612fe8b398f",tooltip="Zero a block of memory."];
+  Node42 -> Node52 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node52 [label="tiger_init",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tiger_8c.html#a82f8bacbe19155dfd2dba8f659820964",tooltip="Initialize the hash state."];
+  Node42 -> Node53 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node53 [label="tiger_process",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tiger_8c.html#adfc27934bf313afeb8d3498b04cb9c88",tooltip="Process a block of memory though the hash."];
+}

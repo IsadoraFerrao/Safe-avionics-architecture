@@ -1,0 +1,868 @@
+\hypertarget{structltc__cipher__descriptor}{}\section{ltc\+\_\+cipher\+\_\+descriptor Struct Reference}
+\label{structltc__cipher__descriptor}\index{ltc\_cipher\_descriptor@{ltc\_cipher\_descriptor}}
+
+
+cipher descriptor table, last entry has \char`\"{}name == N\+U\+L\+L\char`\"{} to mark the end of table  
+
+
+
+
+{\ttfamily \#include $<$tomcrypt\+\_\+cipher.\+h$>$}
+
+
+
+Collaboration diagram for ltc\+\_\+cipher\+\_\+descriptor\+:
+% FIG 0
+\subsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+const char $\ast$ \mbox{\hyperlink{structltc__cipher__descriptor_af0cf296468366b502b0584af87168058}{name}}
+\begin{DoxyCompactList}\small\item\em name of cipher \end{DoxyCompactList}\item 
+unsigned char \mbox{\hyperlink{structltc__cipher__descriptor_a75a932af8e44b27b5952e512a2fe5678}{ID}}
+\begin{DoxyCompactList}\small\item\em internal ID \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{structltc__cipher__descriptor_abc6acf3a67f3cb3e8af9f94868014c3a}{min\+\_\+key\+\_\+length}}
+\begin{DoxyCompactList}\small\item\em min keysize (octets) \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{structltc__cipher__descriptor_a16bbbdbee9700eb13054d8edd2821456}{max\+\_\+key\+\_\+length}}
+\begin{DoxyCompactList}\small\item\em max keysize (octets) \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{structltc__cipher__descriptor_afa2af7325fd3a834910dd92e8c9acf49}{block\+\_\+length}}
+\begin{DoxyCompactList}\small\item\em block size (octets) \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{structltc__cipher__descriptor_a44ba0f7b336ec082eb9a04cf3e7ff804}{default\+\_\+rounds}}
+\begin{DoxyCompactList}\small\item\em default number of rounds \end{DoxyCompactList}\item 
+int($\ast$ \mbox{\hyperlink{structltc__cipher__descriptor_a2f6a2e251c83c5d3b6bd62674a82d602}{setup}} )(const unsigned char $\ast$key, int keylen, int num\+\_\+rounds, \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)
+\begin{DoxyCompactList}\small\item\em Setup the cipher. \end{DoxyCompactList}\item 
+int($\ast$ \mbox{\hyperlink{structltc__cipher__descriptor_a46141d86abe22a7c8d382c62a894dd63}{ecb\+\_\+encrypt}} )(const unsigned char $\ast$pt, unsigned char $\ast$ct, const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)
+\begin{DoxyCompactList}\small\item\em Encrypt a block. \end{DoxyCompactList}\item 
+int($\ast$ \mbox{\hyperlink{structltc__cipher__descriptor_a812d7f58f347982989dc3eace19aba27}{ecb\+\_\+decrypt}} )(const unsigned char $\ast$ct, unsigned char $\ast$pt, const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)
+\begin{DoxyCompactList}\small\item\em Decrypt a block. \end{DoxyCompactList}\item 
+int($\ast$ \mbox{\hyperlink{structltc__cipher__descriptor_a01a53b4fee754849ad124184a610a4f9}{test}} )(void)
+\begin{DoxyCompactList}\small\item\em Test the block cipher. \end{DoxyCompactList}\item 
+void($\ast$ \mbox{\hyperlink{structltc__cipher__descriptor_a0ad1c101005c70a69e40fded0e606191}{done}} )(\mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)
+\begin{DoxyCompactList}\small\item\em Terminate the context. \end{DoxyCompactList}\item 
+int($\ast$ \mbox{\hyperlink{structltc__cipher__descriptor_a870e4e0c0a4d398d4533724a44259f5f}{keysize}} )(int $\ast$keysize)
+\begin{DoxyCompactList}\small\item\em Determine a key size. \end{DoxyCompactList}\item 
+int($\ast$ \mbox{\hyperlink{structltc__cipher__descriptor_a150fb7b7247c1a6eb17ff8ba6123221f}{accel\+\_\+ecb\+\_\+encrypt}} )(const unsigned char $\ast$pt, unsigned char $\ast$ct, unsigned long blocks, \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)
+\begin{DoxyCompactList}\small\item\em Accelerators. \end{DoxyCompactList}\item 
+int($\ast$ \mbox{\hyperlink{structltc__cipher__descriptor_a58a17db0160fa95e4e7ca31aa78baa5d}{accel\+\_\+ecb\+\_\+decrypt}} )(const unsigned char $\ast$ct, unsigned char $\ast$pt, unsigned long blocks, \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)
+\begin{DoxyCompactList}\small\item\em Accelerated E\+CB decryption. \end{DoxyCompactList}\item 
+int($\ast$ \mbox{\hyperlink{structltc__cipher__descriptor_af9a1617014aadff2e5f30e1fb2c06bbd}{accel\+\_\+cbc\+\_\+encrypt}} )(const unsigned char $\ast$pt, unsigned char $\ast$ct, unsigned long blocks, unsigned char $\ast$IV, \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)
+\begin{DoxyCompactList}\small\item\em Accelerated C\+BC encryption. \end{DoxyCompactList}\item 
+int($\ast$ \mbox{\hyperlink{structltc__cipher__descriptor_ad5d884a0bcec283aafbedda7d91a752b}{accel\+\_\+cbc\+\_\+decrypt}} )(const unsigned char $\ast$ct, unsigned char $\ast$pt, unsigned long blocks, unsigned char $\ast$IV, \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)
+\begin{DoxyCompactList}\small\item\em Accelerated C\+BC decryption. \end{DoxyCompactList}\item 
+int($\ast$ \mbox{\hyperlink{structltc__cipher__descriptor_a6370d8bf30ee437549646d30c0e31e16}{accel\+\_\+ctr\+\_\+encrypt}} )(const unsigned char $\ast$pt, unsigned char $\ast$ct, unsigned long blocks, unsigned char $\ast$IV, int mode, \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)
+\begin{DoxyCompactList}\small\item\em Accelerated C\+TR encryption. \end{DoxyCompactList}\item 
+int($\ast$ \mbox{\hyperlink{structltc__cipher__descriptor_afdd0e85b2d837faac7d4e50a8109cc77}{accel\+\_\+lrw\+\_\+encrypt}} )(const unsigned char $\ast$pt, unsigned char $\ast$ct, unsigned long blocks, unsigned char $\ast$IV, const unsigned char $\ast$tweak, \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)
+\begin{DoxyCompactList}\small\item\em Accelerated L\+RW. \end{DoxyCompactList}\item 
+int($\ast$ \mbox{\hyperlink{structltc__cipher__descriptor_a5fbfc5078761bc53d297e9a599884c1e}{accel\+\_\+lrw\+\_\+decrypt}} )(const unsigned char $\ast$ct, unsigned char $\ast$pt, unsigned long blocks, unsigned char $\ast$IV, const unsigned char $\ast$tweak, \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)
+\begin{DoxyCompactList}\small\item\em Accelerated L\+RW. \end{DoxyCompactList}\item 
+int($\ast$ \mbox{\hyperlink{structltc__cipher__descriptor_ab3ee346b39a88e9c756fc2c835e4abf2}{accel\+\_\+ccm\+\_\+memory}} )(const unsigned char $\ast$key, unsigned long keylen, \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$uskey, const unsigned char $\ast$nonce, unsigned long noncelen, const unsigned char $\ast$header, unsigned long headerlen, unsigned char $\ast$pt, unsigned long ptlen, unsigned char $\ast$ct, unsigned char $\ast$tag, unsigned long $\ast$taglen, int direction)
+\begin{DoxyCompactList}\small\item\em Accelerated C\+CM packet (one-\/shot) \end{DoxyCompactList}\item 
+int($\ast$ \mbox{\hyperlink{structltc__cipher__descriptor_a6a2519c6c7563a41e3e2485a87ef0959}{accel\+\_\+gcm\+\_\+memory}} )(const unsigned char $\ast$key, unsigned long keylen, const unsigned char $\ast$IV, unsigned long I\+Vlen, const unsigned char $\ast$adata, unsigned long adatalen, unsigned char $\ast$pt, unsigned long ptlen, unsigned char $\ast$ct, unsigned char $\ast$tag, unsigned long $\ast$taglen, int direction)
+\begin{DoxyCompactList}\small\item\em Accelerated G\+CM packet (one shot) \end{DoxyCompactList}\item 
+int($\ast$ \mbox{\hyperlink{structltc__cipher__descriptor_af0b442d77ee8c5ef6806d0bc8a2c1b4a}{omac\+\_\+memory}} )(const unsigned char $\ast$key, unsigned long keylen, const unsigned char $\ast$in, unsigned long inlen, unsigned char $\ast$out, unsigned long $\ast$outlen)
+\begin{DoxyCompactList}\small\item\em Accelerated one shot L\+T\+C\+\_\+\+O\+M\+AC. \end{DoxyCompactList}\item 
+int($\ast$ \mbox{\hyperlink{structltc__cipher__descriptor_aa4cd54490d5900e4e49580fecff8c318}{xcbc\+\_\+memory}} )(const unsigned char $\ast$key, unsigned long keylen, const unsigned char $\ast$in, unsigned long inlen, unsigned char $\ast$out, unsigned long $\ast$outlen)
+\begin{DoxyCompactList}\small\item\em Accelerated one shot X\+C\+BC. \end{DoxyCompactList}\item 
+int($\ast$ \mbox{\hyperlink{structltc__cipher__descriptor_af91aa424236f8db34e0396aeb28d7d3b}{f9\+\_\+memory}} )(const unsigned char $\ast$key, unsigned long keylen, const unsigned char $\ast$in, unsigned long inlen, unsigned char $\ast$out, unsigned long $\ast$outlen)
+\begin{DoxyCompactList}\small\item\em Accelerated one shot F9. \end{DoxyCompactList}\item 
+int($\ast$ \mbox{\hyperlink{structltc__cipher__descriptor_a1a0a384c38a8ba920d50cd43d0f016a6}{accel\+\_\+xts\+\_\+encrypt}} )(const unsigned char $\ast$pt, unsigned char $\ast$ct, unsigned long blocks, unsigned char $\ast$tweak, const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey1, const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey2)
+\begin{DoxyCompactList}\small\item\em Accelerated X\+TS encryption. \end{DoxyCompactList}\item 
+int($\ast$ \mbox{\hyperlink{structltc__cipher__descriptor_afc98a5dedcb756fb765403942728b2d4}{accel\+\_\+xts\+\_\+decrypt}} )(const unsigned char $\ast$ct, unsigned char $\ast$pt, unsigned long blocks, unsigned char $\ast$tweak, const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey1, const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey2)
+\begin{DoxyCompactList}\small\item\em Accelerated X\+TS decryption. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+cipher descriptor table, last entry has \char`\"{}name == N\+U\+L\+L\char`\"{} to mark the end of table 
+
+Definition at line 373 of file tomcrypt\+\_\+cipher.\+h.
+
+
+
+\subsection{Field Documentation}
+\mbox{\Hypertarget{structltc__cipher__descriptor_ad5d884a0bcec283aafbedda7d91a752b}\label{structltc__cipher__descriptor_ad5d884a0bcec283aafbedda7d91a752b}} 
+\index{ltc\_cipher\_descriptor@{ltc\_cipher\_descriptor}!accel\_cbc\_decrypt@{accel\_cbc\_decrypt}}
+\index{accel\_cbc\_decrypt@{accel\_cbc\_decrypt}!ltc\_cipher\_descriptor@{ltc\_cipher\_descriptor}}
+\subsubsection{\texorpdfstring{accel\_cbc\_decrypt}{accel\_cbc\_decrypt}}
+{\footnotesize\ttfamily int($\ast$ ltc\+\_\+cipher\+\_\+descriptor\+::accel\+\_\+cbc\+\_\+decrypt) (const unsigned char $\ast$ct, unsigned char $\ast$pt, unsigned long blocks, unsigned char $\ast$IV, \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)}
+
+
+
+Accelerated C\+BC decryption. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pt} & Plaintext \\
+\hline
+{\em ct} & Ciphertext \\
+\hline
+{\em blocks} & The number of complete blocks to process \\
+\hline
+{\em IV} & The initial value (input/output) \\
+\hline
+{\em skey} & The scheduled key context \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 461 of file tomcrypt\+\_\+cipher.\+h.
+
+
+
+Referenced by cbc\+\_\+decrypt().
+
+\mbox{\Hypertarget{structltc__cipher__descriptor_af9a1617014aadff2e5f30e1fb2c06bbd}\label{structltc__cipher__descriptor_af9a1617014aadff2e5f30e1fb2c06bbd}} 
+\index{ltc\_cipher\_descriptor@{ltc\_cipher\_descriptor}!accel\_cbc\_encrypt@{accel\_cbc\_encrypt}}
+\index{accel\_cbc\_encrypt@{accel\_cbc\_encrypt}!ltc\_cipher\_descriptor@{ltc\_cipher\_descriptor}}
+\subsubsection{\texorpdfstring{accel\_cbc\_encrypt}{accel\_cbc\_encrypt}}
+{\footnotesize\ttfamily int($\ast$ ltc\+\_\+cipher\+\_\+descriptor\+::accel\+\_\+cbc\+\_\+encrypt) (const unsigned char $\ast$pt, unsigned char $\ast$ct, unsigned long blocks, unsigned char $\ast$IV, \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)}
+
+
+
+Accelerated C\+BC encryption. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pt} & Plaintext \\
+\hline
+{\em ct} & Ciphertext \\
+\hline
+{\em blocks} & The number of complete blocks to process \\
+\hline
+{\em IV} & The initial value (input/output) \\
+\hline
+{\em skey} & The scheduled key context \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 451 of file tomcrypt\+\_\+cipher.\+h.
+
+
+
+Referenced by cbc\+\_\+encrypt().
+
+\mbox{\Hypertarget{structltc__cipher__descriptor_ab3ee346b39a88e9c756fc2c835e4abf2}\label{structltc__cipher__descriptor_ab3ee346b39a88e9c756fc2c835e4abf2}} 
+\index{ltc\_cipher\_descriptor@{ltc\_cipher\_descriptor}!accel\_ccm\_memory@{accel\_ccm\_memory}}
+\index{accel\_ccm\_memory@{accel\_ccm\_memory}!ltc\_cipher\_descriptor@{ltc\_cipher\_descriptor}}
+\subsubsection{\texorpdfstring{accel\_ccm\_memory}{accel\_ccm\_memory}}
+{\footnotesize\ttfamily int($\ast$ ltc\+\_\+cipher\+\_\+descriptor\+::accel\+\_\+ccm\+\_\+memory) (const unsigned char $\ast$key, unsigned long keylen, \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$uskey, const unsigned char $\ast$nonce, unsigned long noncelen, const unsigned char $\ast$header, unsigned long headerlen, unsigned char $\ast$pt, unsigned long ptlen, unsigned char $\ast$ct, unsigned char $\ast$tag, unsigned long $\ast$taglen, int direction)}
+
+
+
+Accelerated C\+CM packet (one-\/shot) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The secret key to use \\
+\hline
+{\em keylen} & The length of the secret key (octets) \\
+\hline
+{\em uskey} & A previously scheduled key \mbox{[}optional can be N\+U\+LL\mbox{]} \\
+\hline
+{\em nonce} & The session nonce \mbox{[}use once\mbox{]} \\
+\hline
+{\em noncelen} & The length of the nonce \\
+\hline
+{\em header} & The header for the session \\
+\hline
+{\em headerlen} & The length of the header (octets) \\
+\hline
+{\em pt} & \mbox{[}out\mbox{]} The plaintext \\
+\hline
+{\em ptlen} & The length of the plaintext (octets) \\
+\hline
+{\em ct} & \mbox{[}out\mbox{]} The ciphertext \\
+\hline
+{\em tag} & \mbox{[}out\mbox{]} The destination tag \\
+\hline
+{\em taglen} & \mbox{[}in/out\mbox{]} The max size and resulting size of the authentication tag \\
+\hline
+{\em direction} & Encrypt or Decrypt direction (0 or 1) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 512 of file tomcrypt\+\_\+cipher.\+h.
+
+
+
+Referenced by ccm\+\_\+memory().
+
+\mbox{\Hypertarget{structltc__cipher__descriptor_a6370d8bf30ee437549646d30c0e31e16}\label{structltc__cipher__descriptor_a6370d8bf30ee437549646d30c0e31e16}} 
+\index{ltc\_cipher\_descriptor@{ltc\_cipher\_descriptor}!accel\_ctr\_encrypt@{accel\_ctr\_encrypt}}
+\index{accel\_ctr\_encrypt@{accel\_ctr\_encrypt}!ltc\_cipher\_descriptor@{ltc\_cipher\_descriptor}}
+\subsubsection{\texorpdfstring{accel\_ctr\_encrypt}{accel\_ctr\_encrypt}}
+{\footnotesize\ttfamily int($\ast$ ltc\+\_\+cipher\+\_\+descriptor\+::accel\+\_\+ctr\+\_\+encrypt) (const unsigned char $\ast$pt, unsigned char $\ast$ct, unsigned long blocks, unsigned char $\ast$IV, int mode, \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)}
+
+
+
+Accelerated C\+TR encryption. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pt} & Plaintext \\
+\hline
+{\em ct} & Ciphertext \\
+\hline
+{\em blocks} & The number of complete blocks to process \\
+\hline
+{\em IV} & The initial value (input/output) \\
+\hline
+{\em mode} & little or big endian counter (mode=0 or mode=1) \\
+\hline
+{\em skey} & The scheduled key context \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 472 of file tomcrypt\+\_\+cipher.\+h.
+
+
+
+Referenced by ctr\+\_\+encrypt().
+
+\mbox{\Hypertarget{structltc__cipher__descriptor_a58a17db0160fa95e4e7ca31aa78baa5d}\label{structltc__cipher__descriptor_a58a17db0160fa95e4e7ca31aa78baa5d}} 
+\index{ltc\_cipher\_descriptor@{ltc\_cipher\_descriptor}!accel\_ecb\_decrypt@{accel\_ecb\_decrypt}}
+\index{accel\_ecb\_decrypt@{accel\_ecb\_decrypt}!ltc\_cipher\_descriptor@{ltc\_cipher\_descriptor}}
+\subsubsection{\texorpdfstring{accel\_ecb\_decrypt}{accel\_ecb\_decrypt}}
+{\footnotesize\ttfamily int($\ast$ ltc\+\_\+cipher\+\_\+descriptor\+::accel\+\_\+ecb\+\_\+decrypt) (const unsigned char $\ast$ct, unsigned char $\ast$pt, unsigned long blocks, \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)}
+
+
+
+Accelerated E\+CB decryption. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pt} & Plaintext \\
+\hline
+{\em ct} & Ciphertext \\
+\hline
+{\em blocks} & The number of complete blocks to process \\
+\hline
+{\em skey} & The scheduled key context \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 441 of file tomcrypt\+\_\+cipher.\+h.
+
+
+
+Referenced by ecb\+\_\+decrypt().
+
+\mbox{\Hypertarget{structltc__cipher__descriptor_a150fb7b7247c1a6eb17ff8ba6123221f}\label{structltc__cipher__descriptor_a150fb7b7247c1a6eb17ff8ba6123221f}} 
+\index{ltc\_cipher\_descriptor@{ltc\_cipher\_descriptor}!accel\_ecb\_encrypt@{accel\_ecb\_encrypt}}
+\index{accel\_ecb\_encrypt@{accel\_ecb\_encrypt}!ltc\_cipher\_descriptor@{ltc\_cipher\_descriptor}}
+\subsubsection{\texorpdfstring{accel\_ecb\_encrypt}{accel\_ecb\_encrypt}}
+{\footnotesize\ttfamily int($\ast$ ltc\+\_\+cipher\+\_\+descriptor\+::accel\+\_\+ecb\+\_\+encrypt) (const unsigned char $\ast$pt, unsigned char $\ast$ct, unsigned long blocks, \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)}
+
+
+
+Accelerators. 
+
+Accelerated E\+CB encryption 
+\begin{DoxyParams}{Parameters}
+{\em pt} & Plaintext \\
+\hline
+{\em ct} & Ciphertext \\
+\hline
+{\em blocks} & The number of complete blocks to process \\
+\hline
+{\em skey} & The scheduled key context \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 432 of file tomcrypt\+\_\+cipher.\+h.
+
+
+
+Referenced by ecb\+\_\+encrypt().
+
+\mbox{\Hypertarget{structltc__cipher__descriptor_a6a2519c6c7563a41e3e2485a87ef0959}\label{structltc__cipher__descriptor_a6a2519c6c7563a41e3e2485a87ef0959}} 
+\index{ltc\_cipher\_descriptor@{ltc\_cipher\_descriptor}!accel\_gcm\_memory@{accel\_gcm\_memory}}
+\index{accel\_gcm\_memory@{accel\_gcm\_memory}!ltc\_cipher\_descriptor@{ltc\_cipher\_descriptor}}
+\subsubsection{\texorpdfstring{accel\_gcm\_memory}{accel\_gcm\_memory}}
+{\footnotesize\ttfamily int($\ast$ ltc\+\_\+cipher\+\_\+descriptor\+::accel\+\_\+gcm\+\_\+memory) (const unsigned char $\ast$key, unsigned long keylen, const unsigned char $\ast$IV, unsigned long I\+Vlen, const unsigned char $\ast$adata, unsigned long adatalen, unsigned char $\ast$pt, unsigned long ptlen, unsigned char $\ast$ct, unsigned char $\ast$tag, unsigned long $\ast$taglen, int direction)}
+
+
+
+Accelerated G\+CM packet (one shot) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The secret key \\
+\hline
+{\em keylen} & The length of the secret key \\
+\hline
+{\em IV} & The initialization vector \\
+\hline
+{\em I\+Vlen} & The length of the initialization vector \\
+\hline
+{\em adata} & The additional authentication data (header) \\
+\hline
+{\em adatalen} & The length of the adata \\
+\hline
+{\em pt} & The plaintext \\
+\hline
+{\em ptlen} & The length of the plaintext (ciphertext length is the same) \\
+\hline
+{\em ct} & The ciphertext \\
+\hline
+{\em tag} & \mbox{[}out\mbox{]} The M\+AC tag \\
+\hline
+{\em taglen} & \mbox{[}in/out\mbox{]} The M\+AC tag length \\
+\hline
+{\em direction} & Encrypt or Decrypt mode (G\+C\+M\+\_\+\+E\+N\+C\+R\+Y\+PT or G\+C\+M\+\_\+\+D\+E\+C\+R\+Y\+PT) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK on success 
+\end{DoxyReturn}
+
+
+Definition at line 537 of file tomcrypt\+\_\+cipher.\+h.
+
+
+
+Referenced by gcm\+\_\+memory().
+
+\mbox{\Hypertarget{structltc__cipher__descriptor_a5fbfc5078761bc53d297e9a599884c1e}\label{structltc__cipher__descriptor_a5fbfc5078761bc53d297e9a599884c1e}} 
+\index{ltc\_cipher\_descriptor@{ltc\_cipher\_descriptor}!accel\_lrw\_decrypt@{accel\_lrw\_decrypt}}
+\index{accel\_lrw\_decrypt@{accel\_lrw\_decrypt}!ltc\_cipher\_descriptor@{ltc\_cipher\_descriptor}}
+\subsubsection{\texorpdfstring{accel\_lrw\_decrypt}{accel\_lrw\_decrypt}}
+{\footnotesize\ttfamily int($\ast$ ltc\+\_\+cipher\+\_\+descriptor\+::accel\+\_\+lrw\+\_\+decrypt) (const unsigned char $\ast$ct, unsigned char $\ast$pt, unsigned long blocks, unsigned char $\ast$IV, const unsigned char $\ast$tweak, \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)}
+
+
+
+Accelerated L\+RW. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ct} & Ciphertext \\
+\hline
+{\em pt} & Plaintext \\
+\hline
+{\em blocks} & The number of complete blocks to process \\
+\hline
+{\em IV} & The initial value (input/output) \\
+\hline
+{\em tweak} & The L\+RW tweak \\
+\hline
+{\em skey} & The scheduled key context \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 494 of file tomcrypt\+\_\+cipher.\+h.
+
+
+
+Referenced by lrw\+\_\+decrypt(), and lrw\+\_\+setiv().
+
+\mbox{\Hypertarget{structltc__cipher__descriptor_afdd0e85b2d837faac7d4e50a8109cc77}\label{structltc__cipher__descriptor_afdd0e85b2d837faac7d4e50a8109cc77}} 
+\index{ltc\_cipher\_descriptor@{ltc\_cipher\_descriptor}!accel\_lrw\_encrypt@{accel\_lrw\_encrypt}}
+\index{accel\_lrw\_encrypt@{accel\_lrw\_encrypt}!ltc\_cipher\_descriptor@{ltc\_cipher\_descriptor}}
+\subsubsection{\texorpdfstring{accel\_lrw\_encrypt}{accel\_lrw\_encrypt}}
+{\footnotesize\ttfamily int($\ast$ ltc\+\_\+cipher\+\_\+descriptor\+::accel\+\_\+lrw\+\_\+encrypt) (const unsigned char $\ast$pt, unsigned char $\ast$ct, unsigned long blocks, unsigned char $\ast$IV, const unsigned char $\ast$tweak, \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)}
+
+
+
+Accelerated L\+RW. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pt} & Plaintext \\
+\hline
+{\em ct} & Ciphertext \\
+\hline
+{\em blocks} & The number of complete blocks to process \\
+\hline
+{\em IV} & The initial value (input/output) \\
+\hline
+{\em tweak} & The L\+RW tweak \\
+\hline
+{\em skey} & The scheduled key context \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 483 of file tomcrypt\+\_\+cipher.\+h.
+
+
+
+Referenced by lrw\+\_\+encrypt(), and lrw\+\_\+setiv().
+
+\mbox{\Hypertarget{structltc__cipher__descriptor_afc98a5dedcb756fb765403942728b2d4}\label{structltc__cipher__descriptor_afc98a5dedcb756fb765403942728b2d4}} 
+\index{ltc\_cipher\_descriptor@{ltc\_cipher\_descriptor}!accel\_xts\_decrypt@{accel\_xts\_decrypt}}
+\index{accel\_xts\_decrypt@{accel\_xts\_decrypt}!ltc\_cipher\_descriptor@{ltc\_cipher\_descriptor}}
+\subsubsection{\texorpdfstring{accel\_xts\_decrypt}{accel\_xts\_decrypt}}
+{\footnotesize\ttfamily int($\ast$ ltc\+\_\+cipher\+\_\+descriptor\+::accel\+\_\+xts\+\_\+decrypt) (const unsigned char $\ast$ct, unsigned char $\ast$pt, unsigned long blocks, unsigned char $\ast$tweak, const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey1, const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey2)}
+
+
+
+Accelerated X\+TS decryption. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ct} & Ciphertext \\
+\hline
+{\em pt} & Plaintext \\
+\hline
+{\em blocks} & The number of complete blocks to process \\
+\hline
+{\em tweak} & The 128-\/bit encryption tweak (input/output). The tweak should not be encrypted on input, but next tweak will be copied encrypted on output. \\
+\hline
+{\em skey1} & The first scheduled key context \\
+\hline
+{\em skey2} & The second scheduled key context \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 615 of file tomcrypt\+\_\+cipher.\+h.
+
+
+
+Referenced by \+\_\+xts\+\_\+test\+\_\+accel\+\_\+xts\+\_\+decrypt(), xts\+\_\+decrypt(), and xts\+\_\+test().
+
+\mbox{\Hypertarget{structltc__cipher__descriptor_a1a0a384c38a8ba920d50cd43d0f016a6}\label{structltc__cipher__descriptor_a1a0a384c38a8ba920d50cd43d0f016a6}} 
+\index{ltc\_cipher\_descriptor@{ltc\_cipher\_descriptor}!accel\_xts\_encrypt@{accel\_xts\_encrypt}}
+\index{accel\_xts\_encrypt@{accel\_xts\_encrypt}!ltc\_cipher\_descriptor@{ltc\_cipher\_descriptor}}
+\subsubsection{\texorpdfstring{accel\_xts\_encrypt}{accel\_xts\_encrypt}}
+{\footnotesize\ttfamily int($\ast$ ltc\+\_\+cipher\+\_\+descriptor\+::accel\+\_\+xts\+\_\+encrypt) (const unsigned char $\ast$pt, unsigned char $\ast$ct, unsigned long blocks, unsigned char $\ast$tweak, const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey1, const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey2)}
+
+
+
+Accelerated X\+TS encryption. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pt} & Plaintext \\
+\hline
+{\em ct} & Ciphertext \\
+\hline
+{\em blocks} & The number of complete blocks to process \\
+\hline
+{\em tweak} & The 128-\/bit encryption tweak (input/output). The tweak should not be encrypted on input, but next tweak will be copied encrypted on output. \\
+\hline
+{\em skey1} & The first scheduled key context \\
+\hline
+{\em skey2} & The second scheduled key context \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 600 of file tomcrypt\+\_\+cipher.\+h.
+
+
+
+Referenced by \+\_\+xts\+\_\+test\+\_\+accel\+\_\+xts\+\_\+encrypt(), xts\+\_\+encrypt(), and xts\+\_\+test().
+
+\mbox{\Hypertarget{structltc__cipher__descriptor_afa2af7325fd3a834910dd92e8c9acf49}\label{structltc__cipher__descriptor_afa2af7325fd3a834910dd92e8c9acf49}} 
+\index{ltc\_cipher\_descriptor@{ltc\_cipher\_descriptor}!block\_length@{block\_length}}
+\index{block\_length@{block\_length}!ltc\_cipher\_descriptor@{ltc\_cipher\_descriptor}}
+\subsubsection{\texorpdfstring{block\_length}{block\_length}}
+{\footnotesize\ttfamily int ltc\+\_\+cipher\+\_\+descriptor\+::block\+\_\+length}
+
+
+
+block size (octets) 
+
+
+
+Definition at line 379 of file tomcrypt\+\_\+cipher.\+h.
+
+
+
+Referenced by cbc\+\_\+start(), cfb\+\_\+start(), chc\+\_\+register(), ctr\+\_\+start(), eax\+\_\+init(), ecb\+\_\+decrypt(), ecb\+\_\+encrypt(), ecb\+\_\+start(), f8\+\_\+start(), f9\+\_\+done(), f9\+\_\+init(), f9\+\_\+process(), ocb3\+\_\+decrypt(), ocb3\+\_\+encrypt(), ocb3\+\_\+init(), ocb\+\_\+decrypt(), ocb\+\_\+encrypt(), ocb\+\_\+init(), ofb\+\_\+start(), omac\+\_\+init(), omac\+\_\+process(), pbes\+\_\+decrypt(), pmac\+\_\+init(), s\+\_\+ocb\+\_\+done(), xcbc\+\_\+done(), xcbc\+\_\+init(), and xcbc\+\_\+process().
+
+\mbox{\Hypertarget{structltc__cipher__descriptor_a44ba0f7b336ec082eb9a04cf3e7ff804}\label{structltc__cipher__descriptor_a44ba0f7b336ec082eb9a04cf3e7ff804}} 
+\index{ltc\_cipher\_descriptor@{ltc\_cipher\_descriptor}!default\_rounds@{default\_rounds}}
+\index{default\_rounds@{default\_rounds}!ltc\_cipher\_descriptor@{ltc\_cipher\_descriptor}}
+\subsubsection{\texorpdfstring{default\_rounds}{default\_rounds}}
+{\footnotesize\ttfamily int ltc\+\_\+cipher\+\_\+descriptor\+::default\+\_\+rounds}
+
+
+
+default number of rounds 
+
+
+
+Definition at line 379 of file tomcrypt\+\_\+cipher.\+h.
+
+
+
+Referenced by rc5\+\_\+setup().
+
+\mbox{\Hypertarget{structltc__cipher__descriptor_a0ad1c101005c70a69e40fded0e606191}\label{structltc__cipher__descriptor_a0ad1c101005c70a69e40fded0e606191}} 
+\index{ltc\_cipher\_descriptor@{ltc\_cipher\_descriptor}!done@{done}}
+\index{done@{done}!ltc\_cipher\_descriptor@{ltc\_cipher\_descriptor}}
+\subsubsection{\texorpdfstring{done}{done}}
+{\footnotesize\ttfamily void($\ast$ ltc\+\_\+cipher\+\_\+descriptor\+::done) (\mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)}
+
+
+
+Terminate the context. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em skey} & The scheduled key \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 416 of file tomcrypt\+\_\+cipher.\+h.
+
+
+
+Referenced by cbc\+\_\+done(), ccm\+\_\+done(), ccm\+\_\+memory(), ccm\+\_\+test(), cfb\+\_\+done(), ctr\+\_\+done(), ecb\+\_\+done(), f8\+\_\+done(), f8\+\_\+start(), f9\+\_\+done(), gcm\+\_\+done(), lrw\+\_\+done(), ofb\+\_\+done(), omac\+\_\+done(), pmac\+\_\+done(), s\+\_\+ocb\+\_\+done(), xcbc\+\_\+done(), xcbc\+\_\+init(), and xts\+\_\+done().
+
+\mbox{\Hypertarget{structltc__cipher__descriptor_a812d7f58f347982989dc3eace19aba27}\label{structltc__cipher__descriptor_a812d7f58f347982989dc3eace19aba27}} 
+\index{ltc\_cipher\_descriptor@{ltc\_cipher\_descriptor}!ecb\_decrypt@{ecb\_decrypt}}
+\index{ecb\_decrypt@{ecb\_decrypt}!ltc\_cipher\_descriptor@{ltc\_cipher\_descriptor}}
+\subsubsection{\texorpdfstring{ecb\_decrypt}{ecb\_decrypt}}
+{\footnotesize\ttfamily int($\ast$ ltc\+\_\+cipher\+\_\+descriptor\+::ecb\+\_\+decrypt) (const unsigned char $\ast$ct, unsigned char $\ast$pt, const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)}
+
+
+
+Decrypt a block. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ct} & The ciphertext \\
+\hline
+{\em pt} & \mbox{[}out\mbox{]} The plaintext \\
+\hline
+{\em skey} & The scheduled key \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 407 of file tomcrypt\+\_\+cipher.\+h.
+
+
+
+Referenced by \+\_\+tweak\+\_\+uncrypt(), cbc\+\_\+decrypt(), ecb\+\_\+decrypt(), lrw\+\_\+process(), ocb3\+\_\+decrypt(), ocb\+\_\+decrypt(), xts\+\_\+decrypt(), and xts\+\_\+encrypt().
+
+\mbox{\Hypertarget{structltc__cipher__descriptor_a46141d86abe22a7c8d382c62a894dd63}\label{structltc__cipher__descriptor_a46141d86abe22a7c8d382c62a894dd63}} 
+\index{ltc\_cipher\_descriptor@{ltc\_cipher\_descriptor}!ecb\_encrypt@{ecb\_encrypt}}
+\index{ecb\_encrypt@{ecb\_encrypt}!ltc\_cipher\_descriptor@{ltc\_cipher\_descriptor}}
+\subsubsection{\texorpdfstring{ecb\_encrypt}{ecb\_encrypt}}
+{\footnotesize\ttfamily int($\ast$ ltc\+\_\+cipher\+\_\+descriptor\+::ecb\+\_\+encrypt) (const unsigned char $\ast$pt, unsigned char $\ast$ct, const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)}
+
+
+
+Encrypt a block. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pt} & The plaintext \\
+\hline
+{\em ct} & \mbox{[}out\mbox{]} The ciphertext \\
+\hline
+{\em skey} & The scheduled key \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 400 of file tomcrypt\+\_\+cipher.\+h.
+
+
+
+Referenced by \+\_\+ctr\+\_\+encrypt(), \+\_\+ocb3\+\_\+int\+\_\+aad\+\_\+add\+\_\+block(), \+\_\+ocb3\+\_\+int\+\_\+calc\+\_\+offset\+\_\+zero(), \+\_\+tweak\+\_\+crypt(), cbc\+\_\+encrypt(), ccm\+\_\+add\+\_\+aad(), ccm\+\_\+add\+\_\+nonce(), ccm\+\_\+done(), ccm\+\_\+process(), cfb\+\_\+decrypt(), cfb\+\_\+encrypt(), cfb\+\_\+setiv(), cfb\+\_\+start(), chc\+\_\+compress(), chc\+\_\+init(), ctr\+\_\+setiv(), ctr\+\_\+start(), ecb\+\_\+encrypt(), f8\+\_\+encrypt(), f8\+\_\+setiv(), f8\+\_\+start(), f9\+\_\+done(), f9\+\_\+process(), gcm\+\_\+done(), gcm\+\_\+process(), lrw\+\_\+process(), ocb3\+\_\+decrypt\+\_\+last(), ocb3\+\_\+done(), ocb3\+\_\+encrypt(), ocb3\+\_\+encrypt\+\_\+last(), ocb\+\_\+encrypt(), ofb\+\_\+encrypt(), ofb\+\_\+setiv(), omac\+\_\+done(), omac\+\_\+process(), pmac\+\_\+done(), pmac\+\_\+process(), s\+\_\+ocb\+\_\+done(), xcbc\+\_\+done(), xcbc\+\_\+init(), xcbc\+\_\+process(), xts\+\_\+decrypt(), and xts\+\_\+encrypt().
+
+\mbox{\Hypertarget{structltc__cipher__descriptor_af91aa424236f8db34e0396aeb28d7d3b}\label{structltc__cipher__descriptor_af91aa424236f8db34e0396aeb28d7d3b}} 
+\index{ltc\_cipher\_descriptor@{ltc\_cipher\_descriptor}!f9\_memory@{f9\_memory}}
+\index{f9\_memory@{f9\_memory}!ltc\_cipher\_descriptor@{ltc\_cipher\_descriptor}}
+\subsubsection{\texorpdfstring{f9\_memory}{f9\_memory}}
+{\footnotesize\ttfamily int($\ast$ ltc\+\_\+cipher\+\_\+descriptor\+::f9\+\_\+memory) (const unsigned char $\ast$key, unsigned long keylen, const unsigned char $\ast$in, unsigned long inlen, unsigned char $\ast$out, unsigned long $\ast$outlen)}
+
+
+
+Accelerated one shot F9. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The secret key \\
+\hline
+{\em keylen} & The key length (octets) \\
+\hline
+{\em in} & The message \\
+\hline
+{\em inlen} & Length of message (octets) \\
+\hline
+{\em out} & \mbox{[}out\mbox{]} Destination for tag \\
+\hline
+{\em outlen} & \mbox{[}in/out\mbox{]} Initial and final size of out \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK on success 
+\end{DoxyReturn}
+\begin{DoxyRemark}{Remarks}
+Requires manual padding 
+\end{DoxyRemark}
+
+
+Definition at line 584 of file tomcrypt\+\_\+cipher.\+h.
+
+
+
+Referenced by f9\+\_\+memory().
+
+\mbox{\Hypertarget{structltc__cipher__descriptor_a75a932af8e44b27b5952e512a2fe5678}\label{structltc__cipher__descriptor_a75a932af8e44b27b5952e512a2fe5678}} 
+\index{ltc\_cipher\_descriptor@{ltc\_cipher\_descriptor}!ID@{ID}}
+\index{ID@{ID}!ltc\_cipher\_descriptor@{ltc\_cipher\_descriptor}}
+\subsubsection{\texorpdfstring{ID}{ID}}
+{\footnotesize\ttfamily unsigned char ltc\+\_\+cipher\+\_\+descriptor\+::\+ID}
+
+
+
+internal ID 
+
+
+
+Definition at line 377 of file tomcrypt\+\_\+cipher.\+h.
+
+
+
+Referenced by register\+\_\+cipher(), and unregister\+\_\+cipher().
+
+\mbox{\Hypertarget{structltc__cipher__descriptor_a870e4e0c0a4d398d4533724a44259f5f}\label{structltc__cipher__descriptor_a870e4e0c0a4d398d4533724a44259f5f}} 
+\index{ltc\_cipher\_descriptor@{ltc\_cipher\_descriptor}!keysize@{keysize}}
+\index{keysize@{keysize}!ltc\_cipher\_descriptor@{ltc\_cipher\_descriptor}}
+\subsubsection{\texorpdfstring{keysize}{keysize}}
+{\footnotesize\ttfamily int($\ast$ ltc\+\_\+cipher\+\_\+descriptor\+::keysize) (int $\ast$keysize)}
+
+
+
+Determine a key size. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em keysize} & \mbox{[}in/out\mbox{]} The size of the key desired and the suggested size \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 422 of file tomcrypt\+\_\+cipher.\+h.
+
+
+
+Referenced by idea\+\_\+keysize(), kasumi\+\_\+keysize(), safer\+\_\+128\+\_\+keysize(), safer\+\_\+64\+\_\+keysize(), serpent\+\_\+keysize(), and yarrow\+\_\+ready().
+
+\mbox{\Hypertarget{structltc__cipher__descriptor_a16bbbdbee9700eb13054d8edd2821456}\label{structltc__cipher__descriptor_a16bbbdbee9700eb13054d8edd2821456}} 
+\index{ltc\_cipher\_descriptor@{ltc\_cipher\_descriptor}!max\_key\_length@{max\_key\_length}}
+\index{max\_key\_length@{max\_key\_length}!ltc\_cipher\_descriptor@{ltc\_cipher\_descriptor}}
+\subsubsection{\texorpdfstring{max\_key\_length}{max\_key\_length}}
+{\footnotesize\ttfamily int ltc\+\_\+cipher\+\_\+descriptor\+::max\+\_\+key\+\_\+length}
+
+
+
+max keysize (octets) 
+
+
+
+Definition at line 379 of file tomcrypt\+\_\+cipher.\+h.
+
+\mbox{\Hypertarget{structltc__cipher__descriptor_abc6acf3a67f3cb3e8af9f94868014c3a}\label{structltc__cipher__descriptor_abc6acf3a67f3cb3e8af9f94868014c3a}} 
+\index{ltc\_cipher\_descriptor@{ltc\_cipher\_descriptor}!min\_key\_length@{min\_key\_length}}
+\index{min\_key\_length@{min\_key\_length}!ltc\_cipher\_descriptor@{ltc\_cipher\_descriptor}}
+\subsubsection{\texorpdfstring{min\_key\_length}{min\_key\_length}}
+{\footnotesize\ttfamily int ltc\+\_\+cipher\+\_\+descriptor\+::min\+\_\+key\+\_\+length}
+
+
+
+min keysize (octets) 
+
+
+
+Definition at line 379 of file tomcrypt\+\_\+cipher.\+h.
+
+\mbox{\Hypertarget{structltc__cipher__descriptor_af0cf296468366b502b0584af87168058}\label{structltc__cipher__descriptor_af0cf296468366b502b0584af87168058}} 
+\index{ltc\_cipher\_descriptor@{ltc\_cipher\_descriptor}!name@{name}}
+\index{name@{name}!ltc\_cipher\_descriptor@{ltc\_cipher\_descriptor}}
+\subsubsection{\texorpdfstring{name}{name}}
+{\footnotesize\ttfamily const char$\ast$ ltc\+\_\+cipher\+\_\+descriptor\+::name}
+
+
+
+name of cipher 
+
+
+
+Definition at line 375 of file tomcrypt\+\_\+cipher.\+h.
+
+
+
+Referenced by cipher\+\_\+is\+\_\+valid(), find\+\_\+cipher\+\_\+id(), and unregister\+\_\+cipher().
+
+\mbox{\Hypertarget{structltc__cipher__descriptor_af0b442d77ee8c5ef6806d0bc8a2c1b4a}\label{structltc__cipher__descriptor_af0b442d77ee8c5ef6806d0bc8a2c1b4a}} 
+\index{ltc\_cipher\_descriptor@{ltc\_cipher\_descriptor}!omac\_memory@{omac\_memory}}
+\index{omac\_memory@{omac\_memory}!ltc\_cipher\_descriptor@{ltc\_cipher\_descriptor}}
+\subsubsection{\texorpdfstring{omac\_memory}{omac\_memory}}
+{\footnotesize\ttfamily int($\ast$ ltc\+\_\+cipher\+\_\+descriptor\+::omac\+\_\+memory) (const unsigned char $\ast$key, unsigned long keylen, const unsigned char $\ast$in, unsigned long inlen, unsigned char $\ast$out, unsigned long $\ast$outlen)}
+
+
+
+Accelerated one shot L\+T\+C\+\_\+\+O\+M\+AC. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The secret key \\
+\hline
+{\em keylen} & The key length (octets) \\
+\hline
+{\em in} & The message \\
+\hline
+{\em inlen} & Length of message (octets) \\
+\hline
+{\em out} & \mbox{[}out\mbox{]} Destination for tag \\
+\hline
+{\em outlen} & \mbox{[}in/out\mbox{]} Initial and final size of out \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK on success 
+\end{DoxyReturn}
+
+
+Definition at line 555 of file tomcrypt\+\_\+cipher.\+h.
+
+
+
+Referenced by omac\+\_\+memory().
+
+\mbox{\Hypertarget{structltc__cipher__descriptor_a2f6a2e251c83c5d3b6bd62674a82d602}\label{structltc__cipher__descriptor_a2f6a2e251c83c5d3b6bd62674a82d602}} 
+\index{ltc\_cipher\_descriptor@{ltc\_cipher\_descriptor}!setup@{setup}}
+\index{setup@{setup}!ltc\_cipher\_descriptor@{ltc\_cipher\_descriptor}}
+\subsubsection{\texorpdfstring{setup}{setup}}
+{\footnotesize\ttfamily int($\ast$ ltc\+\_\+cipher\+\_\+descriptor\+::setup) (const unsigned char $\ast$key, int keylen, int num\+\_\+rounds, \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)}
+
+
+
+Setup the cipher. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The input symmetric key \\
+\hline
+{\em keylen} & The length of the input key (octets) \\
+\hline
+{\em num\+\_\+rounds} & The requested number of rounds (0==default) \\
+\hline
+{\em skey} & \mbox{[}out\mbox{]} The destination of the scheduled key \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 393 of file tomcrypt\+\_\+cipher.\+h.
+
+
+
+Referenced by ecb\+\_\+start(), f8\+\_\+start(), f9\+\_\+done(), ofb\+\_\+start(), and xcbc\+\_\+init().
+
+\mbox{\Hypertarget{structltc__cipher__descriptor_a01a53b4fee754849ad124184a610a4f9}\label{structltc__cipher__descriptor_a01a53b4fee754849ad124184a610a4f9}} 
+\index{ltc\_cipher\_descriptor@{ltc\_cipher\_descriptor}!test@{test}}
+\index{test@{test}!ltc\_cipher\_descriptor@{ltc\_cipher\_descriptor}}
+\subsubsection{\texorpdfstring{test}{test}}
+{\footnotesize\ttfamily int($\ast$ ltc\+\_\+cipher\+\_\+descriptor\+::test) (void)}
+
+
+
+Test the block cipher. 
+
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful, C\+R\+Y\+P\+T\+\_\+\+N\+OP if self-\/testing has been disabled 
+\end{DoxyReturn}
+
+
+Definition at line 411 of file tomcrypt\+\_\+cipher.\+h.
+
+
+
+Referenced by yarrow\+\_\+test().
+
+\mbox{\Hypertarget{structltc__cipher__descriptor_aa4cd54490d5900e4e49580fecff8c318}\label{structltc__cipher__descriptor_aa4cd54490d5900e4e49580fecff8c318}} 
+\index{ltc\_cipher\_descriptor@{ltc\_cipher\_descriptor}!xcbc\_memory@{xcbc\_memory}}
+\index{xcbc\_memory@{xcbc\_memory}!ltc\_cipher\_descriptor@{ltc\_cipher\_descriptor}}
+\subsubsection{\texorpdfstring{xcbc\_memory}{xcbc\_memory}}
+{\footnotesize\ttfamily int($\ast$ ltc\+\_\+cipher\+\_\+descriptor\+::xcbc\+\_\+memory) (const unsigned char $\ast$key, unsigned long keylen, const unsigned char $\ast$in, unsigned long inlen, unsigned char $\ast$out, unsigned long $\ast$outlen)}
+
+
+
+Accelerated one shot X\+C\+BC. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The secret key \\
+\hline
+{\em keylen} & The key length (octets) \\
+\hline
+{\em in} & The message \\
+\hline
+{\em inlen} & Length of message (octets) \\
+\hline
+{\em out} & \mbox{[}out\mbox{]} Destination for tag \\
+\hline
+{\em outlen} & \mbox{[}in/out\mbox{]} Initial and final size of out \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK on success 
+\end{DoxyReturn}
+
+
+Definition at line 569 of file tomcrypt\+\_\+cipher.\+h.
+
+
+
+Referenced by xcbc\+\_\+memory().
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/headers/\mbox{\hyperlink{tomcrypt__cipher_8h}{tomcrypt\+\_\+cipher.\+h}}\end{DoxyCompactItemize}

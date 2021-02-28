@@ -1,0 +1,669 @@
+\hypertarget{tomcrypt__misc_8h}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/headers/tomcrypt\+\_\+misc.h File Reference}
+\label{tomcrypt__misc_8h}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/headers/tomcrypt\_misc.h@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/headers/tomcrypt\_misc.h}}
+This graph shows which files directly or indirectly include this file\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{tomcrypt__misc_8h_a3733102f1f5f0fef112e2a2e79f647f9}{mem\+\_\+neq}} (const void $\ast$a, const void $\ast$b, size\+\_\+t \mbox{\hyperlink{pmac__init_8c_afed088663f8704004425cdae2120b9b3}{len}})
+\begin{DoxyCompactList}\small\item\em Compare two blocks of memory for inequality in constant time. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}} (volatile void $\ast$out, size\+\_\+t outlen)
+\begin{DoxyCompactList}\small\item\em Zero a block of memory. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{tomcrypt__misc_8h_aea4187c8bba7b6cd9a358041089680ac}{burn\+\_\+stack}} (unsigned long \mbox{\hyperlink{pmac__init_8c_afed088663f8704004425cdae2120b9b3}{len}})
+\begin{DoxyCompactList}\small\item\em Burn some stack memory. \end{DoxyCompactList}\item 
+const char $\ast$ \mbox{\hyperlink{tomcrypt__misc_8h_a3bd8fe097a1951bd18d73b2231c7f700}{error\+\_\+to\+\_\+string}} (int err)
+\begin{DoxyCompactList}\small\item\em Convert an L\+TC error code to A\+S\+C\+II. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{tomcrypt__misc_8h_aefa03a9ea8721b2d7c4ec148f3124c03}{crypt\+\_\+fsa}} (void $\ast$mp,...)
+\item 
+int \mbox{\hyperlink{tomcrypt__misc_8h_a5e438cfa6bc585b574711796ef54b583}{crypt\+\_\+get\+\_\+constant}} (const char $\ast$namein, int $\ast$valueout)
+\item 
+int \mbox{\hyperlink{tomcrypt__misc_8h_a3c009179fb5a1c2c177e1aef6367e44b}{crypt\+\_\+list\+\_\+all\+\_\+constants}} (char $\ast$names\+\_\+list, unsigned int $\ast$names\+\_\+list\+\_\+size)
+\item 
+int \mbox{\hyperlink{tomcrypt__misc_8h_ae318059936467e1cf6aef3dba84f89a5}{crypt\+\_\+get\+\_\+size}} (const char $\ast$namein, unsigned int $\ast$sizeout)
+\item 
+int \mbox{\hyperlink{tomcrypt__misc_8h_a6852c0b0d7d4e23f4a8b2ccf0c682904}{crypt\+\_\+list\+\_\+all\+\_\+sizes}} (char $\ast$names\+\_\+list, unsigned int $\ast$names\+\_\+list\+\_\+size)
+\item 
+\mbox{\hyperlink{tomcrypt__cfg_8h_a2c88aadd176c391d1743dea242edda41}{L\+T\+C\+\_\+\+D\+E\+P\+R\+E\+C\+A\+T\+ED}} void \mbox{\hyperlink{tomcrypt__misc_8h_a8cf0ca1daa0de654181bcc33f8fcb545}{init\+\_\+\+L\+TM}} (void)
+\item 
+\mbox{\hyperlink{tomcrypt__cfg_8h_a2c88aadd176c391d1743dea242edda41}{L\+T\+C\+\_\+\+D\+E\+P\+R\+E\+C\+A\+T\+ED}} void \mbox{\hyperlink{tomcrypt__misc_8h_abc255bf9a1edbe743c0fa7f9d5f52097}{init\+\_\+\+T\+FM}} (void)
+\item 
+\mbox{\hyperlink{tomcrypt__cfg_8h_a2c88aadd176c391d1743dea242edda41}{L\+T\+C\+\_\+\+D\+E\+P\+R\+E\+C\+A\+T\+ED}} void \mbox{\hyperlink{tomcrypt__misc_8h_a828541718cc70ef4d281731d2244dfdf}{init\+\_\+\+G\+MP}} (void)
+\item 
+int \mbox{\hyperlink{tomcrypt__misc_8h_a615b172b3ce177d8d0bb4fe391f613bf}{crypt\+\_\+mp\+\_\+init}} (const char $\ast$mpi)
+\item 
+int \mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\+\_\+testvector}} (const void $\ast$is, const unsigned long is\+\_\+len, const void $\ast$should, const unsigned long should\+\_\+len, const char $\ast$what, int which)
+\begin{DoxyCompactList}\small\item\em Compare two test-\/vectors. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const char $\ast$ \mbox{\hyperlink{tomcrypt__misc_8h_a64a90944e74d76f1b0ec1dfdd4b32d33}{crypt\+\_\+build\+\_\+settings}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{tomcrypt__misc_8h_aea4187c8bba7b6cd9a358041089680ac}\label{tomcrypt__misc_8h_aea4187c8bba7b6cd9a358041089680ac}} 
+\index{tomcrypt\_misc.h@{tomcrypt\_misc.h}!burn\_stack@{burn\_stack}}
+\index{burn\_stack@{burn\_stack}!tomcrypt\_misc.h@{tomcrypt\_misc.h}}
+\subsubsection{\texorpdfstring{burn\_stack()}{burn\_stack()}}
+{\footnotesize\ttfamily void burn\+\_\+stack (\begin{DoxyParamCaption}\item[{unsigned long}]{len }\end{DoxyParamCaption})}
+
+
+
+Burn some stack memory. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em len} & amount of stack to burn in bytes \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 20 of file burn\+\_\+stack.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{21 \{}
+\DoxyCodeLine{22    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} buf[32];}
+\DoxyCodeLine{23    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(buf, \textcolor{keyword}{sizeof}(buf));}
+\DoxyCodeLine{24    \textcolor{keywordflow}{if} (\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}} > (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long})\textcolor{keyword}{sizeof}(buf)) \{}
+\DoxyCodeLine{25       \mbox{\hyperlink{burn__stack_8c_aea4187c8bba7b6cd9a358041089680ac}{burn\_stack}}(\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}} - \textcolor{keyword}{sizeof}(buf));}
+\DoxyCodeLine{26    \}}
+\DoxyCodeLine{27 \}}
+
+\end{DoxyCode}
+
+
+References len, and zeromem().
+
+
+
+Referenced by idea\+\_\+ecb\+\_\+decrypt(), idea\+\_\+ecb\+\_\+encrypt(), serpent\+\_\+ecb\+\_\+decrypt(), serpent\+\_\+ecb\+\_\+encrypt(), and serpent\+\_\+setup().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2
+\mbox{\Hypertarget{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}\label{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}} 
+\index{tomcrypt\_misc.h@{tomcrypt\_misc.h}!compare\_testvector@{compare\_testvector}}
+\index{compare\_testvector@{compare\_testvector}!tomcrypt\_misc.h@{tomcrypt\_misc.h}}
+\subsubsection{\texorpdfstring{compare\_testvector()}{compare\_testvector()}}
+{\footnotesize\ttfamily int compare\+\_\+testvector (\begin{DoxyParamCaption}\item[{const void $\ast$}]{is,  }\item[{const unsigned long}]{is\+\_\+len,  }\item[{const void $\ast$}]{should,  }\item[{const unsigned long}]{should\+\_\+len,  }\item[{const char $\ast$}]{what,  }\item[{int}]{which }\end{DoxyParamCaption})}
+
+
+
+Compare two test-\/vectors. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em is} & The data as it is \\
+\hline
+{\em is\+\_\+len} & The length of is \\
+\hline
+{\em should} & The data as it should \\
+\hline
+{\em should\+\_\+len} & The length of should \\
+\hline
+{\em what} & The type of the data \\
+\hline
+{\em which} & The iteration count \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on equality, -\/1 or 1 on difference 
+\end{DoxyReturn}
+
+
+Definition at line 63 of file compare\+\_\+testvector.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{64 \{}
+\DoxyCodeLine{65    \textcolor{keywordtype}{int} res = 0;}
+\DoxyCodeLine{66    \textcolor{keywordflow}{if}(is\_len != should\_len) \{}
+\DoxyCodeLine{67       res = is\_len > should\_len ? -1 : 1;}
+\DoxyCodeLine{68    \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{69       res = \mbox{\hyperlink{tomcrypt__cfg_8h_a372b974ec0ac07abcd55297554fe540f}{XMEMCMP}}(is, should, is\_len);}
+\DoxyCodeLine{70    \}}
+\DoxyCodeLine{71 \textcolor{preprocessor}{\#if defined(LTC\_TEST) \&\& defined(LTC\_TEST\_DBG)}}
+\DoxyCodeLine{72    \textcolor{keywordflow}{if} (res != 0) \{}
+\DoxyCodeLine{73       fprintf(stderr, \textcolor{stringliteral}{"Testvector \#\%i of \%s failed:\(\backslash\)n"}, which, what);}
+\DoxyCodeLine{74       \_print\_hex(\textcolor{stringliteral}{"SHOULD"}, should, should\_len);}
+\DoxyCodeLine{75       \_print\_hex(\textcolor{stringliteral}{"IS    "}, is, is\_len);}
+\DoxyCodeLine{76 \textcolor{preprocessor}{\#if LTC\_TEST\_DBG > 1}}
+\DoxyCodeLine{77    \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{78       fprintf(stderr, \textcolor{stringliteral}{"Testvector \#\%i of \%s passed!\(\backslash\)n"}, which, what);}
+\DoxyCodeLine{79 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{80    \}}
+\DoxyCodeLine{81 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{82    \mbox{\hyperlink{tomcrypt__macros_8h_accde4b007facd646a8327f8e64b2d1e0}{LTC\_UNUSED\_PARAM}}(which);}
+\DoxyCodeLine{83    \mbox{\hyperlink{tomcrypt__macros_8h_accde4b007facd646a8327f8e64b2d1e0}{LTC\_UNUSED\_PARAM}}(what);}
+\DoxyCodeLine{84 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{85 }
+\DoxyCodeLine{86    \textcolor{keywordflow}{return} res;}
+\DoxyCodeLine{87 \}}
+
+\end{DoxyCode}
+
+
+References L\+T\+C\+\_\+\+U\+N\+U\+S\+E\+D\+\_\+\+P\+A\+R\+AM, and X\+M\+E\+M\+C\+M\+P().
+
+
+
+Referenced by adler32\+\_\+test(), anubis\+\_\+test(), blake2b\+\_\+160\+\_\+test(), blake2b\+\_\+256\+\_\+test(), blake2b\+\_\+384\+\_\+test(), blake2b\+\_\+512\+\_\+test(), blake2bmac\+\_\+test(), blake2s\+\_\+128\+\_\+test(), blake2s\+\_\+160\+\_\+test(), blake2s\+\_\+224\+\_\+test(), blake2s\+\_\+256\+\_\+test(), blake2smac\+\_\+test(), blowfish\+\_\+test(), camellia\+\_\+test(), cast5\+\_\+test(), ccm\+\_\+test(), chacha20\+\_\+prng\+\_\+test(), chacha20poly1305\+\_\+test(), chacha\+\_\+test(), chc\+\_\+test(), crc32\+\_\+test(), ctr\+\_\+test(), des3\+\_\+test(), des\+\_\+test(), eax\+\_\+test(), f8\+\_\+test\+\_\+mode(), f9\+\_\+test(), gcm\+\_\+test(), hkdf\+\_\+test(), hmac\+\_\+test(), idea\+\_\+test(), kasumi\+\_\+test(), keccak\+\_\+224\+\_\+test(), keccak\+\_\+256\+\_\+test(), keccak\+\_\+384\+\_\+test(), keccak\+\_\+512\+\_\+test(), khazad\+\_\+test(), kseed\+\_\+test(), lrw\+\_\+test(), md2\+\_\+test(), md4\+\_\+test(), md5\+\_\+test(), multi2\+\_\+test(), noekeon\+\_\+test(), ocb3\+\_\+test(), ocb\+\_\+test(), omac\+\_\+test(), pelican\+\_\+test(), pkcs\+\_\+5\+\_\+test(), pmac\+\_\+test(), poly1305\+\_\+test(), rabbit\+\_\+test(), rc2\+\_\+test(), rc4\+\_\+stream\+\_\+test(), rc4\+\_\+test(), rc5\+\_\+test(), rc6\+\_\+test(), rijndael\+\_\+test(), rmd128\+\_\+test(), rmd160\+\_\+test(), rmd256\+\_\+test(), rmd320\+\_\+test(), safer\+\_\+k64\+\_\+test(), safer\+\_\+sk128\+\_\+test(), safer\+\_\+sk64\+\_\+test(), saferp\+\_\+test(), salsa20\+\_\+test(), serpent\+\_\+test(), sha1\+\_\+test(), sha224\+\_\+test(), sha256\+\_\+test(), sha384\+\_\+test(), sha3\+\_\+224\+\_\+test(), sha3\+\_\+256\+\_\+test(), sha3\+\_\+384\+\_\+test(), sha3\+\_\+512\+\_\+test(), sha3\+\_\+shake\+\_\+test(), sha512\+\_\+224\+\_\+test(), sha512\+\_\+256\+\_\+test(), sha512\+\_\+test(), skipjack\+\_\+test(), sober128\+\_\+stream\+\_\+test(), sober128\+\_\+test(), sosemanuk\+\_\+test(), tiger\+\_\+test(), twofish\+\_\+test(), whirlpool\+\_\+test(), xcbc\+\_\+test(), xsalsa20\+\_\+test(), xtea\+\_\+test(), and xts\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 3
+Here is the caller graph for this function\+:
+% FIG 4
+\mbox{\Hypertarget{tomcrypt__misc_8h_aefa03a9ea8721b2d7c4ec148f3124c03}\label{tomcrypt__misc_8h_aefa03a9ea8721b2d7c4ec148f3124c03}} 
+\index{tomcrypt\_misc.h@{tomcrypt\_misc.h}!crypt\_fsa@{crypt\_fsa}}
+\index{crypt\_fsa@{crypt\_fsa}!tomcrypt\_misc.h@{tomcrypt\_misc.h}}
+\subsubsection{\texorpdfstring{crypt\_fsa()}{crypt\_fsa()}}
+{\footnotesize\ttfamily int crypt\+\_\+fsa (\begin{DoxyParamCaption}\item[{void $\ast$}]{mp,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+
+
+Definition at line 18 of file crypt\+\_\+fsa.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{19 \{}
+\DoxyCodeLine{20    va\_list  args;}
+\DoxyCodeLine{21    \textcolor{keywordtype}{void}     *p;}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23    va\_start(args, mp);}
+\DoxyCodeLine{24    \textcolor{keywordflow}{if} (mp != NULL) \{}
+\DoxyCodeLine{25       \mbox{\hyperlink{tomcrypt__cfg_8h_a7691dd48d60d5fc6daf2fa7ec4c55e12}{XMEMCPY}}(\&\mbox{\hyperlink{tomcrypt__math_8h_a3d38c44518c63b7a8abd0938f3d41c65}{ltc\_mp}}, mp, \textcolor{keyword}{sizeof}(\mbox{\hyperlink{tomcrypt__math_8h_a3d38c44518c63b7a8abd0938f3d41c65}{ltc\_mp}}));}
+\DoxyCodeLine{26    \}}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28    \textcolor{keywordflow}{while} ((p = va\_arg(args, \textcolor{keywordtype}{void}*)) != NULL) \{}
+\DoxyCodeLine{29       \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__cipher_8h_a61ac42bfbce4e88791a80140e8854a72}{register\_cipher}}(p) == -1) \{}
+\DoxyCodeLine{30          va\_end(args);}
+\DoxyCodeLine{31          \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca302b958f5664adeb427c22f57c9d90a4}{CRYPT\_INVALID\_CIPHER}};}
+\DoxyCodeLine{32       \}}
+\DoxyCodeLine{33    \}}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35    \textcolor{keywordflow}{while} ((p = va\_arg(args, \textcolor{keywordtype}{void}*)) != NULL) \{}
+\DoxyCodeLine{36       \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__hash_8h_a675b9eda0e8cf146aca2cc89ea5ad571}{register\_hash}}(p) == -1) \{}
+\DoxyCodeLine{37          va\_end(args);}
+\DoxyCodeLine{38          \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cae729ddc4864ea7e12e9865bf6264642d}{CRYPT\_INVALID\_HASH}};}
+\DoxyCodeLine{39       \}}
+\DoxyCodeLine{40    \}}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{42    \textcolor{keywordflow}{while} ((p = va\_arg(args, \textcolor{keywordtype}{void}*)) != NULL) \{}
+\DoxyCodeLine{43       \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__prng_8h_a075b0025b7c09b69bb5cb1b9ff32dfee}{register\_prng}}(p) == -1) \{}
+\DoxyCodeLine{44          va\_end(args);}
+\DoxyCodeLine{45          \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca6228a32cdab04099a1ef0f956312f532}{CRYPT\_INVALID\_PRNG}};}
+\DoxyCodeLine{46       \}}
+\DoxyCodeLine{47    \}}
+\DoxyCodeLine{48 }
+\DoxyCodeLine{49    va\_end(args);}
+\DoxyCodeLine{50    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{51 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+C\+I\+P\+H\+ER, C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+H\+A\+SH, C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+P\+R\+NG, C\+R\+Y\+P\+T\+\_\+\+OK, ltc\+\_\+mp, register\+\_\+cipher(), register\+\_\+hash(), register\+\_\+prng(), and X\+M\+E\+M\+C\+P\+Y().
+
+Here is the call graph for this function\+:
+% FIG 5
+\mbox{\Hypertarget{tomcrypt__misc_8h_a5e438cfa6bc585b574711796ef54b583}\label{tomcrypt__misc_8h_a5e438cfa6bc585b574711796ef54b583}} 
+\index{tomcrypt\_misc.h@{tomcrypt\_misc.h}!crypt\_get\_constant@{crypt\_get\_constant}}
+\index{crypt\_get\_constant@{crypt\_get\_constant}!tomcrypt\_misc.h@{tomcrypt\_misc.h}}
+\subsubsection{\texorpdfstring{crypt\_get\_constant()}{crypt\_get\_constant()}}
+{\footnotesize\ttfamily int crypt\+\_\+get\+\_\+constant (\begin{DoxyParamCaption}\item[{const char $\ast$}]{namein,  }\item[{int $\ast$}]{valueout }\end{DoxyParamCaption})}
+
+
+
+Definition at line 236 of file crypt\+\_\+constants.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{236                                                           \{}
+\DoxyCodeLine{237     \textcolor{keywordtype}{int} i;}
+\DoxyCodeLine{238     \textcolor{keywordtype}{int} \_crypt\_constants\_len = \textcolor{keyword}{sizeof}(\mbox{\hyperlink{crypt__constants_8c_a7bb1bde4aeec5aa4bd2a506c7c0a61fc}{\_crypt\_constants}}) / \textcolor{keyword}{sizeof}(\mbox{\hyperlink{crypt__constants_8c_a7bb1bde4aeec5aa4bd2a506c7c0a61fc}{\_crypt\_constants}}[0]);}
+\DoxyCodeLine{239     \textcolor{keywordflow}{for} (i=0; i<\_crypt\_constants\_len; i++) \{}
+\DoxyCodeLine{240         \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__cfg_8h_a5d6e3d69e1d3f54de008b963bba3c6b3}{XSTRCMP}}(\mbox{\hyperlink{crypt__constants_8c_a7bb1bde4aeec5aa4bd2a506c7c0a61fc}{\_crypt\_constants}}[i].name, namein) == 0) \{}
+\DoxyCodeLine{241             *valueout = \mbox{\hyperlink{crypt__constants_8c_a7bb1bde4aeec5aa4bd2a506c7c0a61fc}{\_crypt\_constants}}[i].\mbox{\hyperlink{structcrypt__constant_ab8039d42f9c5a5623cace3a353139993}{value}};}
+\DoxyCodeLine{242             \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{243         \}}
+\DoxyCodeLine{244     \}}
+\DoxyCodeLine{245     \textcolor{keywordflow}{return} 1;}
+\DoxyCodeLine{246 \}}
+
+\end{DoxyCode}
+
+
+References \+\_\+crypt\+\_\+constants, crypt\+\_\+constant\+::value, and X\+S\+T\+R\+C\+M\+P().
+
+Here is the call graph for this function\+:
+% FIG 6
+\mbox{\Hypertarget{tomcrypt__misc_8h_ae318059936467e1cf6aef3dba84f89a5}\label{tomcrypt__misc_8h_ae318059936467e1cf6aef3dba84f89a5}} 
+\index{tomcrypt\_misc.h@{tomcrypt\_misc.h}!crypt\_get\_size@{crypt\_get\_size}}
+\index{crypt\_get\_size@{crypt\_get\_size}!tomcrypt\_misc.h@{tomcrypt\_misc.h}}
+\subsubsection{\texorpdfstring{crypt\_get\_size()}{crypt\_get\_size()}}
+{\footnotesize\ttfamily int crypt\+\_\+get\+\_\+size (\begin{DoxyParamCaption}\item[{const char $\ast$}]{namein,  }\item[{unsigned int $\ast$}]{sizeout }\end{DoxyParamCaption})}
+
+
+
+Definition at line 297 of file crypt\+\_\+sizes.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{297                                                               \{}
+\DoxyCodeLine{298     \textcolor{keywordtype}{int} i;}
+\DoxyCodeLine{299     \textcolor{keywordtype}{int} count = \textcolor{keyword}{sizeof}(\mbox{\hyperlink{crypt__sizes_8c_ac850bd1a39b65c5e1900cbbf08131f8e}{\_crypt\_sizes}}) / \textcolor{keyword}{sizeof}(\mbox{\hyperlink{crypt__sizes_8c_ac850bd1a39b65c5e1900cbbf08131f8e}{\_crypt\_sizes}}[0]);}
+\DoxyCodeLine{300     \textcolor{keywordflow}{for} (i=0; i<count; i++) \{}
+\DoxyCodeLine{301         \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__cfg_8h_a5d6e3d69e1d3f54de008b963bba3c6b3}{XSTRCMP}}(\mbox{\hyperlink{crypt__sizes_8c_ac850bd1a39b65c5e1900cbbf08131f8e}{\_crypt\_sizes}}[i].name, namein) == 0) \{}
+\DoxyCodeLine{302             *sizeout = \mbox{\hyperlink{crypt__sizes_8c_ac850bd1a39b65c5e1900cbbf08131f8e}{\_crypt\_sizes}}[i].\mbox{\hyperlink{structcrypt__size_ab128ec1834486827ef888f52cb06abb6}{size}};}
+\DoxyCodeLine{303             \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{304         \}}
+\DoxyCodeLine{305     \}}
+\DoxyCodeLine{306     \textcolor{keywordflow}{return} -1;}
+\DoxyCodeLine{307 \}}
+
+\end{DoxyCode}
+
+
+References \+\_\+crypt\+\_\+sizes, crypt\+\_\+size\+::size, and X\+S\+T\+R\+C\+M\+P().
+
+Here is the call graph for this function\+:
+% FIG 7
+\mbox{\Hypertarget{tomcrypt__misc_8h_a3c009179fb5a1c2c177e1aef6367e44b}\label{tomcrypt__misc_8h_a3c009179fb5a1c2c177e1aef6367e44b}} 
+\index{tomcrypt\_misc.h@{tomcrypt\_misc.h}!crypt\_list\_all\_constants@{crypt\_list\_all\_constants}}
+\index{crypt\_list\_all\_constants@{crypt\_list\_all\_constants}!tomcrypt\_misc.h@{tomcrypt\_misc.h}}
+\subsubsection{\texorpdfstring{crypt\_list\_all\_constants()}{crypt\_list\_all\_constants()}}
+{\footnotesize\ttfamily int crypt\+\_\+list\+\_\+all\+\_\+constants (\begin{DoxyParamCaption}\item[{char $\ast$}]{names\+\_\+list,  }\item[{unsigned int $\ast$}]{names\+\_\+list\+\_\+size }\end{DoxyParamCaption})}
+
+
+
+Definition at line 258 of file crypt\+\_\+constants.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{258                                                                               \{}
+\DoxyCodeLine{259     \textcolor{keywordtype}{int} i;}
+\DoxyCodeLine{260     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} total\_len = 0;}
+\DoxyCodeLine{261     \textcolor{keywordtype}{char} *ptr;}
+\DoxyCodeLine{262     \textcolor{keywordtype}{int} number\_len;}
+\DoxyCodeLine{263     \textcolor{keywordtype}{int} count = \textcolor{keyword}{sizeof}(\mbox{\hyperlink{crypt__constants_8c_a7bb1bde4aeec5aa4bd2a506c7c0a61fc}{\_crypt\_constants}}) / \textcolor{keyword}{sizeof}(\mbox{\hyperlink{crypt__constants_8c_a7bb1bde4aeec5aa4bd2a506c7c0a61fc}{\_crypt\_constants}}[0]);}
+\DoxyCodeLine{264 }
+\DoxyCodeLine{265     \textcolor{comment}{/* calculate amount of memory required for the list */}}
+\DoxyCodeLine{266     \textcolor{keywordflow}{for} (i=0; i<count; i++) \{}
+\DoxyCodeLine{267         number\_len = snprintf(NULL, 0, \textcolor{stringliteral}{"\%s,\%d\(\backslash\)n"}, \mbox{\hyperlink{crypt__constants_8c_a7bb1bde4aeec5aa4bd2a506c7c0a61fc}{\_crypt\_constants}}[i].name, \mbox{\hyperlink{crypt__constants_8c_a7bb1bde4aeec5aa4bd2a506c7c0a61fc}{\_crypt\_constants}}[i].\mbox{\hyperlink{der__length__ia5__string_8c_ac4f474c82e82cbb89ca7c36dd52be0ed}{value}});}
+\DoxyCodeLine{268         \textcolor{keywordflow}{if} (number\_len < 0) \{}
+\DoxyCodeLine{269           \textcolor{keywordflow}{return} -1;}
+\DoxyCodeLine{270         \}}
+\DoxyCodeLine{271         total\_len += number\_len;}
+\DoxyCodeLine{272     \}}
+\DoxyCodeLine{273 }
+\DoxyCodeLine{274     \textcolor{keywordflow}{if} (names\_list == NULL) \{}
+\DoxyCodeLine{275         *names\_list\_size = total\_len;}
+\DoxyCodeLine{276     \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{277         \textcolor{keywordflow}{if} (total\_len > *names\_list\_size) \{}
+\DoxyCodeLine{278             \textcolor{keywordflow}{return} -1;}
+\DoxyCodeLine{279         \}}
+\DoxyCodeLine{280         \textcolor{comment}{/* build the names list */}}
+\DoxyCodeLine{281         ptr = names\_list;}
+\DoxyCodeLine{282         \textcolor{keywordflow}{for} (i=0; i<count; i++) \{}
+\DoxyCodeLine{283             number\_len = snprintf(ptr, total\_len, \textcolor{stringliteral}{"\%s,\%d\(\backslash\)n"}, \mbox{\hyperlink{crypt__constants_8c_a7bb1bde4aeec5aa4bd2a506c7c0a61fc}{\_crypt\_constants}}[i].name, \mbox{\hyperlink{crypt__constants_8c_a7bb1bde4aeec5aa4bd2a506c7c0a61fc}{\_crypt\_constants}}[i].\mbox{\hyperlink{der__length__ia5__string_8c_ac4f474c82e82cbb89ca7c36dd52be0ed}{value}});}
+\DoxyCodeLine{284             \textcolor{keywordflow}{if} (number\_len < 0) \textcolor{keywordflow}{return} -1;}
+\DoxyCodeLine{285             \textcolor{keywordflow}{if} ((\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int})number\_len > total\_len) \textcolor{keywordflow}{return} -1;}
+\DoxyCodeLine{286             total\_len -= number\_len;}
+\DoxyCodeLine{287             ptr += number\_len;}
+\DoxyCodeLine{288         \}}
+\DoxyCodeLine{289         \textcolor{comment}{/* to remove the trailing new-line */}}
+\DoxyCodeLine{290         ptr -= 1;}
+\DoxyCodeLine{291         *ptr = 0;}
+\DoxyCodeLine{292     \}}
+\DoxyCodeLine{293     \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{294 \}}
+
+\end{DoxyCode}
+
+
+References \+\_\+crypt\+\_\+constants, and value.
+
+\mbox{\Hypertarget{tomcrypt__misc_8h_a6852c0b0d7d4e23f4a8b2ccf0c682904}\label{tomcrypt__misc_8h_a6852c0b0d7d4e23f4a8b2ccf0c682904}} 
+\index{tomcrypt\_misc.h@{tomcrypt\_misc.h}!crypt\_list\_all\_sizes@{crypt\_list\_all\_sizes}}
+\index{crypt\_list\_all\_sizes@{crypt\_list\_all\_sizes}!tomcrypt\_misc.h@{tomcrypt\_misc.h}}
+\subsubsection{\texorpdfstring{crypt\_list\_all\_sizes()}{crypt\_list\_all\_sizes()}}
+{\footnotesize\ttfamily int crypt\+\_\+list\+\_\+all\+\_\+sizes (\begin{DoxyParamCaption}\item[{char $\ast$}]{names\+\_\+list,  }\item[{unsigned int $\ast$}]{names\+\_\+list\+\_\+size }\end{DoxyParamCaption})}
+
+
+
+Definition at line 319 of file crypt\+\_\+sizes.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{319                                                                           \{}
+\DoxyCodeLine{320     \textcolor{keywordtype}{int} i;}
+\DoxyCodeLine{321     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} total\_len = 0;}
+\DoxyCodeLine{322     \textcolor{keywordtype}{char} *ptr;}
+\DoxyCodeLine{323     \textcolor{keywordtype}{int} number\_len;}
+\DoxyCodeLine{324     \textcolor{keywordtype}{int} count = \textcolor{keyword}{sizeof}(\mbox{\hyperlink{crypt__sizes_8c_ac850bd1a39b65c5e1900cbbf08131f8e}{\_crypt\_sizes}}) / \textcolor{keyword}{sizeof}(\mbox{\hyperlink{crypt__sizes_8c_ac850bd1a39b65c5e1900cbbf08131f8e}{\_crypt\_sizes}}[0]);}
+\DoxyCodeLine{325 }
+\DoxyCodeLine{326     \textcolor{comment}{/* calculate amount of memory required for the list */}}
+\DoxyCodeLine{327     \textcolor{keywordflow}{for} (i=0; i<count; i++) \{}
+\DoxyCodeLine{328         number\_len = snprintf(NULL, 0, \textcolor{stringliteral}{"\%s,\%u\(\backslash\)n"}, \mbox{\hyperlink{crypt__sizes_8c_ac850bd1a39b65c5e1900cbbf08131f8e}{\_crypt\_sizes}}[i].name, \mbox{\hyperlink{crypt__sizes_8c_ac850bd1a39b65c5e1900cbbf08131f8e}{\_crypt\_sizes}}[i].size);}
+\DoxyCodeLine{329         \textcolor{keywordflow}{if} (number\_len < 0) \{}
+\DoxyCodeLine{330           \textcolor{keywordflow}{return} -1;}
+\DoxyCodeLine{331         \}}
+\DoxyCodeLine{332         total\_len += number\_len;}
+\DoxyCodeLine{333         \textcolor{comment}{/* this last +1 is for newlines (and ending NULL) */}}
+\DoxyCodeLine{334     \}}
+\DoxyCodeLine{335 }
+\DoxyCodeLine{336     \textcolor{keywordflow}{if} (names\_list == NULL) \{}
+\DoxyCodeLine{337         *names\_list\_size = total\_len;}
+\DoxyCodeLine{338     \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{339         \textcolor{keywordflow}{if} (total\_len > *names\_list\_size) \{}
+\DoxyCodeLine{340             \textcolor{keywordflow}{return} -1;}
+\DoxyCodeLine{341         \}}
+\DoxyCodeLine{342         \textcolor{comment}{/* build the names list */}}
+\DoxyCodeLine{343         ptr = names\_list;}
+\DoxyCodeLine{344         \textcolor{keywordflow}{for} (i=0; i<count; i++) \{}
+\DoxyCodeLine{345             number\_len = snprintf(ptr, total\_len, \textcolor{stringliteral}{"\%s,\%u\(\backslash\)n"}, \mbox{\hyperlink{crypt__sizes_8c_ac850bd1a39b65c5e1900cbbf08131f8e}{\_crypt\_sizes}}[i].name, \mbox{\hyperlink{crypt__sizes_8c_ac850bd1a39b65c5e1900cbbf08131f8e}{\_crypt\_sizes}}[i].size);}
+\DoxyCodeLine{346             \textcolor{keywordflow}{if} (number\_len < 0) \textcolor{keywordflow}{return} -1;}
+\DoxyCodeLine{347             \textcolor{keywordflow}{if} ((\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int})number\_len > total\_len) \textcolor{keywordflow}{return} -1;}
+\DoxyCodeLine{348             total\_len -= number\_len;}
+\DoxyCodeLine{349             ptr += number\_len;}
+\DoxyCodeLine{350         \}}
+\DoxyCodeLine{351         \textcolor{comment}{/* to remove the trailing new-line */}}
+\DoxyCodeLine{352         ptr -= 1;}
+\DoxyCodeLine{353         *ptr = 0;}
+\DoxyCodeLine{354     \}}
+\DoxyCodeLine{355     \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{356 \}}
+
+\end{DoxyCode}
+
+
+References \+\_\+crypt\+\_\+sizes.
+
+\mbox{\Hypertarget{tomcrypt__misc_8h_a615b172b3ce177d8d0bb4fe391f613bf}\label{tomcrypt__misc_8h_a615b172b3ce177d8d0bb4fe391f613bf}} 
+\index{tomcrypt\_misc.h@{tomcrypt\_misc.h}!crypt\_mp\_init@{crypt\_mp\_init}}
+\index{crypt\_mp\_init@{crypt\_mp\_init}!tomcrypt\_misc.h@{tomcrypt\_misc.h}}
+\subsubsection{\texorpdfstring{crypt\_mp\_init()}{crypt\_mp\_init()}}
+{\footnotesize\ttfamily int crypt\+\_\+mp\+\_\+init (\begin{DoxyParamCaption}\item[{const char $\ast$}]{mpi }\end{DoxyParamCaption})}
+
+
+
+Definition at line 40 of file crypt\+\_\+inits.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{41 \{}
+\DoxyCodeLine{42    \textcolor{keywordflow}{if} (mpi == NULL) \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca03c22220d7538be04455cd2aa6ddf9da}{CRYPT\_ERROR}};}
+\DoxyCodeLine{43    \textcolor{keywordflow}{switch} (mpi[0]) \{}
+\DoxyCodeLine{44 \textcolor{preprocessor}{\#ifdef LTM\_DESC}}
+\DoxyCodeLine{45       \textcolor{keywordflow}{case} \textcolor{charliteral}{'l'}:}
+\DoxyCodeLine{46       \textcolor{keywordflow}{case} \textcolor{charliteral}{'L'}:}
+\DoxyCodeLine{47          \mbox{\hyperlink{tomcrypt__math_8h_a3d38c44518c63b7a8abd0938f3d41c65}{ltc\_mp}} = \mbox{\hyperlink{tomcrypt__math_8h_afe891d73619b608bf983d9079e410c9d}{ltm\_desc}};}
+\DoxyCodeLine{48          \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{49 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{50 \textcolor{preprocessor}{\#ifdef TFM\_DESC}}
+\DoxyCodeLine{51       \textcolor{keywordflow}{case} \textcolor{charliteral}{'t'}:}
+\DoxyCodeLine{52       \textcolor{keywordflow}{case} \textcolor{charliteral}{'T'}:}
+\DoxyCodeLine{53          \mbox{\hyperlink{tomcrypt__math_8h_a3d38c44518c63b7a8abd0938f3d41c65}{ltc\_mp}} = \mbox{\hyperlink{tomcrypt__math_8h_a131e0ca0f71f66455b888ee883b062a2}{tfm\_desc}};}
+\DoxyCodeLine{54          \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{55 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{56 \textcolor{preprocessor}{\#ifdef GMP\_DESC}}
+\DoxyCodeLine{57       \textcolor{keywordflow}{case} \textcolor{charliteral}{'g'}:}
+\DoxyCodeLine{58       \textcolor{keywordflow}{case} \textcolor{charliteral}{'G'}:}
+\DoxyCodeLine{59          \mbox{\hyperlink{tomcrypt__math_8h_a3d38c44518c63b7a8abd0938f3d41c65}{ltc\_mp}} = \mbox{\hyperlink{tomcrypt__math_8h_a923f2740bf923975ee49f7b150304f9b}{gmp\_desc}};}
+\DoxyCodeLine{60          \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{61 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{62 \textcolor{preprocessor}{\#ifdef EXT\_MATH\_LIB}}
+\DoxyCodeLine{63       \textcolor{keywordflow}{case} \textcolor{charliteral}{'e'}:}
+\DoxyCodeLine{64       \textcolor{keywordflow}{case} \textcolor{charliteral}{'E'}:}
+\DoxyCodeLine{65          \{}
+\DoxyCodeLine{66             \textcolor{keyword}{extern} \mbox{\hyperlink{structltc__math__descriptor}{ltc\_math\_descriptor}} EXT\_MATH\_LIB;}
+\DoxyCodeLine{67             \mbox{\hyperlink{tomcrypt__math_8h_a3d38c44518c63b7a8abd0938f3d41c65}{ltc\_mp}} = EXT\_MATH\_LIB;}
+\DoxyCodeLine{68          \}}
+\DoxyCodeLine{69 }
+\DoxyCodeLine{70 \textcolor{preprocessor}{\#if defined(LTC\_TEST\_DBG)}}
+\DoxyCodeLine{71 \textcolor{preprocessor}{\#define NAME\_VALUE(s) \#s"="NAME(s)}}
+\DoxyCodeLine{72 \textcolor{preprocessor}{\#define NAME(s) \#s}}
+\DoxyCodeLine{73          printf(\textcolor{stringliteral}{"EXT\_MATH\_LIB = \%s\(\backslash\)n"}, \mbox{\hyperlink{crypt_8c_af7d10aa94f24cc3e66bcd3ae8e68280d}{NAME\_VALUE}}(EXT\_MATH\_LIB));}
+\DoxyCodeLine{74 \textcolor{preprocessor}{\#undef NAME\_VALUE}}
+\DoxyCodeLine{75 \textcolor{preprocessor}{\#undef NAME}}
+\DoxyCodeLine{76 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{77 }
+\DoxyCodeLine{78          \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{79 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{80       \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{81 \textcolor{preprocessor}{\#if defined(LTC\_TEST\_DBG)}}
+\DoxyCodeLine{82          printf(\textcolor{stringliteral}{"Unknown/Invalid MPI provider: \%s\(\backslash\)n"}, mpi);}
+\DoxyCodeLine{83 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{84          \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca03c22220d7538be04455cd2aa6ddf9da}{CRYPT\_ERROR}};}
+\DoxyCodeLine{85    \}}
+\DoxyCodeLine{86 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+E\+R\+R\+OR, C\+R\+Y\+P\+T\+\_\+\+OK, gmp\+\_\+desc, ltc\+\_\+mp, ltm\+\_\+desc, N\+A\+M\+E\+\_\+\+V\+A\+L\+UE, and tfm\+\_\+desc.
+
+\mbox{\Hypertarget{tomcrypt__misc_8h_a3bd8fe097a1951bd18d73b2231c7f700}\label{tomcrypt__misc_8h_a3bd8fe097a1951bd18d73b2231c7f700}} 
+\index{tomcrypt\_misc.h@{tomcrypt\_misc.h}!error\_to\_string@{error\_to\_string}}
+\index{error\_to\_string@{error\_to\_string}!tomcrypt\_misc.h@{tomcrypt\_misc.h}}
+\subsubsection{\texorpdfstring{error\_to\_string()}{error\_to\_string()}}
+{\footnotesize\ttfamily const char$\ast$ error\+\_\+to\+\_\+string (\begin{DoxyParamCaption}\item[{int}]{err }\end{DoxyParamCaption})}
+
+
+
+Convert an L\+TC error code to A\+S\+C\+II. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em err} & The error code \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the A\+S\+C\+II N\+UL terminated string for the error or \char`\"{}\+Invalid error code.\char`\"{} if the err code was not valid. 
+\end{DoxyReturn}
+
+
+Definition at line 67 of file error\+\_\+to\+\_\+string.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{68 \{}
+\DoxyCodeLine{69    \textcolor{keywordflow}{if} (err < 0 || err >= (\textcolor{keywordtype}{int})(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{error__to__string_8c_acd01160e3166c4b2bc08ec8ea8cd61a2}{err\_2\_str}})/\textcolor{keyword}{sizeof}(\mbox{\hyperlink{error__to__string_8c_acd01160e3166c4b2bc08ec8ea8cd61a2}{err\_2\_str}}[0]))) \{}
+\DoxyCodeLine{70       \textcolor{keywordflow}{return} \textcolor{stringliteral}{"Invalid error code."};}
+\DoxyCodeLine{71    \}}
+\DoxyCodeLine{72    \textcolor{keywordflow}{return} \mbox{\hyperlink{error__to__string_8c_acd01160e3166c4b2bc08ec8ea8cd61a2}{err\_2\_str}}[err];}
+\DoxyCodeLine{73 \}}
+
+\end{DoxyCode}
+
+
+References err\+\_\+2\+\_\+str.
+
+
+
+Referenced by der\+\_\+decode\+\_\+sequence\+\_\+flexi(), hkdf\+\_\+test(), hmac\+\_\+test(), and pkcs\+\_\+5\+\_\+test().
+
+Here is the caller graph for this function\+:
+% FIG 8
+\mbox{\Hypertarget{tomcrypt__misc_8h_a828541718cc70ef4d281731d2244dfdf}\label{tomcrypt__misc_8h_a828541718cc70ef4d281731d2244dfdf}} 
+\index{tomcrypt\_misc.h@{tomcrypt\_misc.h}!init\_GMP@{init\_GMP}}
+\index{init\_GMP@{init\_GMP}!tomcrypt\_misc.h@{tomcrypt\_misc.h}}
+\subsubsection{\texorpdfstring{init\_GMP()}{init\_GMP()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tomcrypt__cfg_8h_a2c88aadd176c391d1743dea242edda41}{L\+T\+C\+\_\+\+D\+E\+P\+R\+E\+C\+A\+T\+ED}} void init\+\_\+\+G\+MP (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 34 of file crypt\+\_\+inits.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{35 \{}
+\DoxyCodeLine{36     \mbox{\hyperlink{tomcrypt__math_8h_a3d38c44518c63b7a8abd0938f3d41c65}{ltc\_mp}} = \mbox{\hyperlink{tomcrypt__math_8h_a923f2740bf923975ee49f7b150304f9b}{gmp\_desc}};}
+\DoxyCodeLine{37 \}}
+
+\end{DoxyCode}
+
+
+References gmp\+\_\+desc, and ltc\+\_\+mp.
+
+\mbox{\Hypertarget{tomcrypt__misc_8h_a8cf0ca1daa0de654181bcc33f8fcb545}\label{tomcrypt__misc_8h_a8cf0ca1daa0de654181bcc33f8fcb545}} 
+\index{tomcrypt\_misc.h@{tomcrypt\_misc.h}!init\_LTM@{init\_LTM}}
+\index{init\_LTM@{init\_LTM}!tomcrypt\_misc.h@{tomcrypt\_misc.h}}
+\subsubsection{\texorpdfstring{init\_LTM()}{init\_LTM()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tomcrypt__cfg_8h_a2c88aadd176c391d1743dea242edda41}{L\+T\+C\+\_\+\+D\+E\+P\+R\+E\+C\+A\+T\+ED}} void init\+\_\+\+L\+TM (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 20 of file crypt\+\_\+inits.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{21 \{}
+\DoxyCodeLine{22     \mbox{\hyperlink{tomcrypt__math_8h_a3d38c44518c63b7a8abd0938f3d41c65}{ltc\_mp}} = \mbox{\hyperlink{tomcrypt__math_8h_afe891d73619b608bf983d9079e410c9d}{ltm\_desc}};}
+\DoxyCodeLine{23 \}}
+
+\end{DoxyCode}
+
+
+References ltc\+\_\+mp, and ltm\+\_\+desc.
+
+\mbox{\Hypertarget{tomcrypt__misc_8h_abc255bf9a1edbe743c0fa7f9d5f52097}\label{tomcrypt__misc_8h_abc255bf9a1edbe743c0fa7f9d5f52097}} 
+\index{tomcrypt\_misc.h@{tomcrypt\_misc.h}!init\_TFM@{init\_TFM}}
+\index{init\_TFM@{init\_TFM}!tomcrypt\_misc.h@{tomcrypt\_misc.h}}
+\subsubsection{\texorpdfstring{init\_TFM()}{init\_TFM()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tomcrypt__cfg_8h_a2c88aadd176c391d1743dea242edda41}{L\+T\+C\+\_\+\+D\+E\+P\+R\+E\+C\+A\+T\+ED}} void init\+\_\+\+T\+FM (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 27 of file crypt\+\_\+inits.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{28 \{}
+\DoxyCodeLine{29     \mbox{\hyperlink{tomcrypt__math_8h_a3d38c44518c63b7a8abd0938f3d41c65}{ltc\_mp}} = \mbox{\hyperlink{tomcrypt__math_8h_a131e0ca0f71f66455b888ee883b062a2}{tfm\_desc}};}
+\DoxyCodeLine{30 \}}
+
+\end{DoxyCode}
+
+
+References ltc\+\_\+mp, and tfm\+\_\+desc.
+
+\mbox{\Hypertarget{tomcrypt__misc_8h_a3733102f1f5f0fef112e2a2e79f647f9}\label{tomcrypt__misc_8h_a3733102f1f5f0fef112e2a2e79f647f9}} 
+\index{tomcrypt\_misc.h@{tomcrypt\_misc.h}!mem\_neq@{mem\_neq}}
+\index{mem\_neq@{mem\_neq}!tomcrypt\_misc.h@{tomcrypt\_misc.h}}
+\subsubsection{\texorpdfstring{mem\_neq()}{mem\_neq()}}
+{\footnotesize\ttfamily int mem\+\_\+neq (\begin{DoxyParamCaption}\item[{const void $\ast$}]{a,  }\item[{const void $\ast$}]{b,  }\item[{size\+\_\+t}]{len }\end{DoxyParamCaption})}
+
+
+
+Compare two blocks of memory for inequality in constant time. 
+
+The usage is similar to that of standard memcmp, but you can only test if the memory is equal or not -\/ you can not determine by how much the first different byte differs.
+
+This function shall be used to compare results of cryptographic operations where inequality means most likely usage of a wrong key. The execution time has therefore to be constant as otherwise timing attacks could be possible.
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & The first memory region \\
+\hline
+{\em b} & The second memory region \\
+\hline
+{\em len} & The length of the area to compare (octets)\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 when a and b are equal for len bytes, 1 they are not equal. 
+\end{DoxyReturn}
+
+
+Definition at line 35 of file mem\+\_\+neq.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{36 \{}
+\DoxyCodeLine{37    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} ret = 0;}
+\DoxyCodeLine{38    \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}* pa;}
+\DoxyCodeLine{39    \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}* pb;}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(a != NULL);}
+\DoxyCodeLine{42    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(b != NULL);}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44    pa = a;}
+\DoxyCodeLine{45    pb = b;}
+\DoxyCodeLine{46 }
+\DoxyCodeLine{47    \textcolor{keywordflow}{while} (\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}-- > 0) \{}
+\DoxyCodeLine{48       ret |= *pa \string^ *pb;}
+\DoxyCodeLine{49       ++pa;}
+\DoxyCodeLine{50       ++pb;}
+\DoxyCodeLine{51    \}}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{53    ret |= ret >> 4;}
+\DoxyCodeLine{54    ret |= ret >> 2;}
+\DoxyCodeLine{55    ret |= ret >> 1;}
+\DoxyCodeLine{56    ret \&= 1;}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{58    \textcolor{keywordflow}{return} ret;}
+\DoxyCodeLine{59 \}}
+
+\end{DoxyCode}
+
+
+References len, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+\mbox{\Hypertarget{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}\label{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}} 
+\index{tomcrypt\_misc.h@{tomcrypt\_misc.h}!zeromem@{zeromem}}
+\index{zeromem@{zeromem}!tomcrypt\_misc.h@{tomcrypt\_misc.h}}
+\subsubsection{\texorpdfstring{zeromem()}{zeromem()}}
+{\footnotesize\ttfamily void zeromem (\begin{DoxyParamCaption}\item[{volatile void $\ast$}]{out,  }\item[{size\+\_\+t}]{outlen }\end{DoxyParamCaption})}
+
+
+
+Zero a block of memory. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em out} & The destination of the area to zero \\
+\hline
+{\em outlen} & The length of the area to zero (octets) \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 21 of file zeromem.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{22 \{}
+\DoxyCodeLine{23    \textcolor{keyword}{volatile} \textcolor{keywordtype}{char} *mem = out;}
+\DoxyCodeLine{24    \mbox{\hyperlink{tomcrypt__argchk_8h_a67a6e5d66d0c7d80ddf5c583054608bd}{LTC\_ARGCHKVD}}(out != NULL);}
+\DoxyCodeLine{25    \textcolor{keywordflow}{while} (outlen-- > 0) \{}
+\DoxyCodeLine{26       *mem++ = \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{27    \}}
+\DoxyCodeLine{28 \}}
+
+\end{DoxyCode}
+
+
+References L\+T\+C\+\_\+\+A\+R\+G\+C\+H\+K\+VD.
+
+
+
+Referenced by \+\_\+dsa\+\_\+make\+\_\+params(), \+\_\+fortuna\+\_\+reseed(), \+\_\+ocb3\+\_\+int\+\_\+calc\+\_\+offset\+\_\+zero(), \+\_\+pkcs\+\_\+12\+\_\+wrap(), \+\_\+pkcs\+\_\+5\+\_\+alg1\+\_\+common(), blake2b\+\_\+done(), blake2b\+\_\+init(), blake2bmac\+\_\+file(), blake2bmac\+\_\+memory(), blake2bmac\+\_\+memory\+\_\+multi(), blake2s\+\_\+done(), blake2s\+\_\+init(), blake2smac\+\_\+file(), blake2smac\+\_\+memory(), blake2smac\+\_\+memory\+\_\+multi(), blowfish\+\_\+setup(), burn\+\_\+stack(), camellia\+\_\+test(), cast5\+\_\+setup(), ccm\+\_\+memory(), ccm\+\_\+reset(), ccm\+\_\+test(), chacha20\+\_\+prng\+\_\+add\+\_\+entropy(), chacha20poly1305\+\_\+memory(), chc\+\_\+compress(), chc\+\_\+done(), chc\+\_\+init(), der\+\_\+encode\+\_\+setof(), dh\+\_\+generate\+\_\+key(), dsa\+\_\+decrypt\+\_\+key(), dsa\+\_\+encrypt\+\_\+key(), dsa\+\_\+shared\+\_\+secret(), dsa\+\_\+sign\+\_\+hash\+\_\+raw(), eax\+\_\+decrypt\+\_\+verify\+\_\+memory(), eax\+\_\+done(), eax\+\_\+encrypt\+\_\+authenticate\+\_\+memory(), eax\+\_\+init(), ecc\+\_\+decrypt\+\_\+key(), ecc\+\_\+encrypt\+\_\+key(), ecc\+\_\+get\+\_\+key(), ecc\+\_\+shared\+\_\+secret(), ecc\+\_\+sign\+\_\+hash\+\_\+ex(), f8\+\_\+encrypt(), f8\+\_\+start(), f9\+\_\+done(), f9\+\_\+file(), f9\+\_\+init(), f9\+\_\+memory\+\_\+multi(), fortuna\+\_\+done(), fortuna\+\_\+read(), fortuna\+\_\+start(), fortuna\+\_\+update\+\_\+seed(), gcm\+\_\+add\+\_\+aad(), gcm\+\_\+gf\+\_\+mult(), gcm\+\_\+init(), gcm\+\_\+reset(), hash\+\_\+filehandle(), hash\+\_\+memory(), hash\+\_\+memory\+\_\+multi(), hkdf(), hkdf\+\_\+expand(), hmac\+\_\+done(), hmac\+\_\+file(), hmac\+\_\+init(), hmac\+\_\+memory(), hmac\+\_\+memory\+\_\+multi(), lrw\+\_\+start(), ltc\+\_\+ecc\+\_\+export\+\_\+point(), ltc\+\_\+ecc\+\_\+mul2add(), md2\+\_\+done(), md2\+\_\+init(), md4\+\_\+done(), md5\+\_\+done(), multi2\+\_\+setup(), noekeon\+\_\+test(), ocb3\+\_\+decrypt(), ocb3\+\_\+decrypt\+\_\+last(), ocb3\+\_\+decrypt\+\_\+verify\+\_\+memory(), ocb3\+\_\+done(), ocb3\+\_\+encrypt(), ocb3\+\_\+encrypt\+\_\+authenticate\+\_\+memory(), ocb3\+\_\+encrypt\+\_\+last(), ocb3\+\_\+init(), ocb\+\_\+decrypt(), ocb\+\_\+decrypt\+\_\+verify\+\_\+memory(), ocb\+\_\+done\+\_\+decrypt(), ocb\+\_\+encrypt(), ocb\+\_\+encrypt\+\_\+authenticate\+\_\+memory(), ocb\+\_\+init(), omac\+\_\+done(), omac\+\_\+file(), omac\+\_\+init(), omac\+\_\+memory(), omac\+\_\+memory\+\_\+multi(), pbes\+\_\+decrypt(), pelican\+\_\+init(), pkcs12\+\_\+kdf(), pkcs8\+\_\+decode\+\_\+flexi(), pkcs\+\_\+1\+\_\+i2osp(), pkcs\+\_\+1\+\_\+mgf1(), pkcs\+\_\+1\+\_\+oaep\+\_\+decode(), pkcs\+\_\+1\+\_\+oaep\+\_\+encode(), pkcs\+\_\+1\+\_\+pss\+\_\+decode(), pkcs\+\_\+1\+\_\+pss\+\_\+encode(), pkcs\+\_\+5\+\_\+alg2(), pmac\+\_\+done(), pmac\+\_\+file(), pmac\+\_\+init(), pmac\+\_\+memory(), pmac\+\_\+memory\+\_\+multi(), pmac\+\_\+process(), poly1305\+\_\+file(), poly1305\+\_\+memory(), poly1305\+\_\+memory\+\_\+multi(), rabbit\+\_\+done(), rabbit\+\_\+setup(), rand\+\_\+bn\+\_\+bits(), rand\+\_\+prime(), rc2\+\_\+setup\+\_\+ex(), rc2\+\_\+test(), rc4\+\_\+add\+\_\+entropy(), rijndael\+\_\+test(), rmd128\+\_\+done(), rmd160\+\_\+done(), rmd256\+\_\+done(), rmd320\+\_\+done(), rng\+\_\+make\+\_\+prng(), rsa\+\_\+exptmod(), rsa\+\_\+verify\+\_\+hash\+\_\+ex(), s\+\_\+ocb\+\_\+done(), Safer\+\_\+\+Expand\+\_\+\+Userkey(), saferp\+\_\+ecb\+\_\+decrypt(), saferp\+\_\+ecb\+\_\+encrypt(), saferp\+\_\+setup(), sha1\+\_\+done(), sha224\+\_\+done(), sha256\+\_\+done(), sha384\+\_\+done(), sha512\+\_\+224\+\_\+done(), sha512\+\_\+256\+\_\+done(), sha512\+\_\+done(), sober128\+\_\+add\+\_\+entropy(), tiger\+\_\+done(), whirlpool\+\_\+done(), whirlpool\+\_\+init(), xcbc\+\_\+done(), xcbc\+\_\+file(), xcbc\+\_\+init(), xcbc\+\_\+memory\+\_\+multi(), xsalsa20\+\_\+setup(), xtea\+\_\+setup(), xtea\+\_\+test(), yarrow\+\_\+read(), and yarrow\+\_\+start().
+
+Here is the caller graph for this function\+:
+% FIG 9
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{tomcrypt__misc_8h_a64a90944e74d76f1b0ec1dfdd4b32d33}\label{tomcrypt__misc_8h_a64a90944e74d76f1b0ec1dfdd4b32d33}} 
+\index{tomcrypt\_misc.h@{tomcrypt\_misc.h}!crypt\_build\_settings@{crypt\_build\_settings}}
+\index{crypt\_build\_settings@{crypt\_build\_settings}!tomcrypt\_misc.h@{tomcrypt\_misc.h}}
+\subsubsection{\texorpdfstring{crypt\_build\_settings}{crypt\_build\_settings}}
+{\footnotesize\ttfamily const char$\ast$ crypt\+\_\+build\+\_\+settings}
+
+
+
+Definition at line 18 of file crypt.\+c.
+

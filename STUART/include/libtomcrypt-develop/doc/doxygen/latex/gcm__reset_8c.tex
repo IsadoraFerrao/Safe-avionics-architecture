@@ -1,0 +1,68 @@
+\hypertarget{gcm__reset_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/encauth/gcm/gcm\+\_\+reset.c File Reference}
+\label{gcm__reset_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/encauth/gcm/gcm\_reset.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/encauth/gcm/gcm\_reset.c}}
+
+
+G\+CM implementation, reset a used state so it can accept IV data, by Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for gcm\+\_\+reset.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{gcm__reset_8c_ae9124ba3812a14ea2c06fe83f169b242}{gcm\+\_\+reset}} (gcm\+\_\+state $\ast$gcm)
+\begin{DoxyCompactList}\small\item\em Reset a G\+CM state to as if you just called \mbox{\hyperlink{gcm__init_8c_aa8fa50bfa0ec8b07b363dbe7cbab7339}{gcm\+\_\+init()}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+G\+CM implementation, reset a used state so it can accept IV data, by Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{gcm__reset_8c_ae9124ba3812a14ea2c06fe83f169b242}\label{gcm__reset_8c_ae9124ba3812a14ea2c06fe83f169b242}} 
+\index{gcm\_reset.c@{gcm\_reset.c}!gcm\_reset@{gcm\_reset}}
+\index{gcm\_reset@{gcm\_reset}!gcm\_reset.c@{gcm\_reset.c}}
+\subsubsection{\texorpdfstring{gcm\_reset()}{gcm\_reset()}}
+{\footnotesize\ttfamily int gcm\+\_\+reset (\begin{DoxyParamCaption}\item[{gcm\+\_\+state $\ast$}]{gcm }\end{DoxyParamCaption})}
+
+
+
+Reset a G\+CM state to as if you just called \mbox{\hyperlink{gcm__init_8c_aa8fa50bfa0ec8b07b363dbe7cbab7339}{gcm\+\_\+init()}}. 
+
+This saves the initialization time. 
+\begin{DoxyParams}{Parameters}
+{\em gcm} & The G\+CM state to reset \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK on success 
+\end{DoxyReturn}
+
+
+Definition at line 23 of file gcm\+\_\+reset.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{24 \{}
+\DoxyCodeLine{25    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(gcm != NULL);}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(gcm->buf, \textcolor{keyword}{sizeof}(gcm->buf));}
+\DoxyCodeLine{28    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(gcm->X,   \textcolor{keyword}{sizeof}(gcm->X));}
+\DoxyCodeLine{29    gcm->mode     = LTC\_GCM\_MODE\_IV;}
+\DoxyCodeLine{30    gcm->ivmode   = 0;}
+\DoxyCodeLine{31    gcm->buflen   = 0;}
+\DoxyCodeLine{32    gcm->totlen   = 0;}
+\DoxyCodeLine{33    gcm->pttotlen = 0;}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{36 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, and zeromem().
+
+Here is the call graph for this function\+:
+% FIG 1

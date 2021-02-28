@@ -1,0 +1,2230 @@
+\hypertarget{tomcrypt__custom_8h}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/headers/tomcrypt\+\_\+custom.h File Reference}
+\label{tomcrypt__custom_8h}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/headers/tomcrypt\_custom.h@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/headers/tomcrypt\_custom.h}}
+This graph shows which files directly or indirectly include this file\+:
+% FIG 0
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a1877fd5e5019f9165749c55cf16be320}{X\+M\+A\+L\+L\+OC}}~malloc
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a39383dcb89fdcd1a91bbdd0cd81e3e1b}{X\+R\+E\+A\+L\+L\+OC}}~realloc
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a8503239c1e72ca92c157863382d59e59}{X\+C\+A\+L\+L\+OC}}~calloc
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_afbf096b8374086f38c83ae49b2f2c97b}{X\+F\+R\+EE}}~free
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_aecc88e1dabd4bc6bb25ea088991b26e8}{X\+M\+E\+M\+S\+ET}}~memset
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a3a156e6cb9a13df56d253051286d04b5}{X\+M\+E\+M\+C\+PY}}~memcpy
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_afcb7515f9b08d30a5b632e312fd33589}{X\+M\+E\+M\+M\+O\+VE}}~memmove
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_ae99c2288e4d00c78889edb56d1628e78}{X\+M\+E\+M\+C\+MP}}~memcmp
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a22bba7b26be62fc532bd7927a23c5a91}{X\+M\+E\+M\+\_\+\+N\+EQ}}~\mbox{\hyperlink{mem__neq_8c_a3733102f1f5f0fef112e2a2e79f647f9}{mem\+\_\+neq}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a953b493d66d1a8ae393a8a97cdb8d9c6}{X\+S\+T\+R\+C\+MP}}~strcmp
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a6746ebb3c59f81468d961836e198ef8b}{X\+S\+T\+R\+N\+C\+PY}}~strncpy
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a73526f064867d959b5bf0fa2b8579d5d}{X\+C\+L\+O\+CK}}~clock
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a60cc98c6e13b829221f6f80eab4a212f}{X\+Q\+S\+O\+RT}}~qsort
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a45365fe3f5598aa9589cf1e3054077b9}{L\+T\+C\+\_\+\+T\+E\+ST}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_aa41186c4e0790a952492c128950a4a85}{L\+T\+C\+\_\+\+B\+L\+O\+W\+F\+I\+SH}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_ab32f725b98a35686617648e2afb48bb5}{L\+T\+C\+\_\+\+R\+C2}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_aca17bbe6d81c7b97b05639d311eb26a8}{L\+T\+C\+\_\+\+R\+C5}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_ab38b2f71497dfa7ee76d8540577598a3}{L\+T\+C\+\_\+\+R\+C6}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_ac19c6063a540baf8a67eb95101468ab7}{L\+T\+C\+\_\+\+S\+A\+F\+E\+RP}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a7883d38c7db4a9c16d251b1e94764814}{L\+T\+C\+\_\+\+R\+I\+J\+N\+D\+A\+EL}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_aa5c464b2d5440fbbe45212ec1b38fe8a}{L\+T\+C\+\_\+\+X\+T\+EA}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_aa8a142c30a40e8b8896cd7258079cf95}{L\+T\+C\+\_\+\+T\+W\+O\+F\+I\+SH}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_ad23931e21183f88bea9be21727036943}{L\+T\+C\+\_\+\+T\+W\+O\+F\+I\+S\+H\+\_\+\+T\+A\+B\+L\+ES}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_aec4ad0d6b941a796025dcc02e1526a62}{L\+T\+C\+\_\+\+D\+ES}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a01ea76d6acbce91b19acd75305ebe7fb}{L\+T\+C\+\_\+\+C\+A\+S\+T5}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a51b907eb1ab21056ed71315f99d36f0b}{L\+T\+C\+\_\+\+N\+O\+E\+K\+E\+ON}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_abf94ca9fea78cf0ad90d573f0c62a07c}{L\+T\+C\+\_\+\+S\+K\+I\+P\+J\+A\+CK}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a8ecf3adf744201b32d326221beece733}{L\+T\+C\+\_\+\+S\+A\+F\+ER}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a04c82b8dfd5c283ccd7589383c87ae9c}{L\+T\+C\+\_\+\+K\+H\+A\+Z\+AD}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a7c71a2a6f9da1c40f48a6bb2f89ce6cf}{L\+T\+C\+\_\+\+A\+N\+U\+B\+IS}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a27ab8d251a0001e1d689fb422e523310}{L\+T\+C\+\_\+\+A\+N\+U\+B\+I\+S\+\_\+\+T\+W\+E\+AK}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_afe7124512007a185dc2f4607525cf150}{L\+T\+C\+\_\+\+K\+S\+E\+ED}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_ad9048a3d6433a0a854ec846e4878259c}{L\+T\+C\+\_\+\+K\+A\+S\+U\+MI}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_ac655188fb00c999df6bbc52af2419711}{L\+T\+C\+\_\+\+M\+U\+L\+T\+I2}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a7f2da11dc263b795b7cf34d6c8d9f892}{L\+T\+C\+\_\+\+C\+A\+M\+E\+L\+L\+IA}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a07e85153fd6bae543103946cfdd16d1f}{L\+T\+C\+\_\+\+I\+D\+EA}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_afa521610e31d2a1b9da07a2b4ebb5f2c}{L\+T\+C\+\_\+\+S\+E\+R\+P\+E\+NT}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a72c5fb7715246f212bc343894c5b9a59}{L\+T\+C\+\_\+\+C\+H\+A\+C\+HA}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_ac8d4faee8924c672e9d17e4cc8a5aec3}{L\+T\+C\+\_\+\+S\+A\+L\+S\+A20}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a9ed8cd64476571e4256381ee88b5842b}{L\+T\+C\+\_\+\+X\+S\+A\+L\+S\+A20}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a7aeeacc39365ebb9d8bb848c80f4502a}{L\+T\+C\+\_\+\+S\+O\+S\+E\+M\+A\+N\+UK}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_aa274bed126223afaf730d99023b80fd7}{L\+T\+C\+\_\+\+R\+A\+B\+B\+IT}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a92e92e76d829b8be63f643b40d476aea}{L\+T\+C\+\_\+\+R\+C4\+\_\+\+S\+T\+R\+E\+AM}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_afe1973cb9c8b8ec9640fdbc84d27eb28}{L\+T\+C\+\_\+\+S\+O\+B\+E\+R128\+\_\+\+S\+T\+R\+E\+AM}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a644d42f52adf17dc4dcf94c3bded7462}{L\+T\+C\+\_\+\+C\+F\+B\+\_\+\+M\+O\+DE}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a04c16e86531ceb4e884b72a4b341f952}{L\+T\+C\+\_\+\+O\+F\+B\+\_\+\+M\+O\+DE}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_adc5e1758f415a8fc77d1f410b332d71b}{L\+T\+C\+\_\+\+E\+C\+B\+\_\+\+M\+O\+DE}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a2ab8d52cc3907b3b7a729b4730c8da82}{L\+T\+C\+\_\+\+C\+B\+C\+\_\+\+M\+O\+DE}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_acef21672dc18cf1c1f4504e64daa82e9}{L\+T\+C\+\_\+\+C\+T\+R\+\_\+\+M\+O\+DE}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a710816aafe0fae00e2b909cb4ab703a9}{L\+T\+C\+\_\+\+F8\+\_\+\+M\+O\+DE}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_ad65dc04c72dea3435cfc5473fe0106d7}{L\+T\+C\+\_\+\+L\+R\+W\+\_\+\+M\+O\+DE}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a53ff13e092efcca3e0b880934d3b3ded}{L\+T\+C\+\_\+\+L\+R\+W\+\_\+\+T\+A\+B\+L\+ES}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_adbf02d4c37fab76fa2765dce050444cf}{L\+T\+C\+\_\+\+X\+T\+S\+\_\+\+M\+O\+DE}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_ac731e5ffb4fccff259e4dd9ea5cb17a4}{L\+T\+C\+\_\+\+C\+H\+C\+\_\+\+H\+A\+SH}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_af1abe10e587242ec9ddfd37b00697d76}{L\+T\+C\+\_\+\+W\+H\+I\+R\+L\+P\+O\+OL}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_adff5e157b4589ec9bacdc104f37c6862}{L\+T\+C\+\_\+\+S\+H\+A3}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a3bc7467b0dd169e5a588829580b2eb28}{L\+T\+C\+\_\+\+K\+E\+C\+C\+AK}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a569737ff40225b8921538b9ddce74599}{L\+T\+C\+\_\+\+S\+H\+A512}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a099787559637c08e7a27f2cf8fe9f889}{L\+T\+C\+\_\+\+S\+H\+A512\+\_\+256}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_afb66d0dd89a3e92aeaa9c3bb6a173eae}{L\+T\+C\+\_\+\+S\+H\+A512\+\_\+224}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a0db3e446b765fbc07c18517a50c67d03}{L\+T\+C\+\_\+\+S\+H\+A384}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_ac92fb91eac068a399d25e5274784ba24}{L\+T\+C\+\_\+\+S\+H\+A256}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a5ae7a281157e69f3642b9dd79cb28193}{L\+T\+C\+\_\+\+S\+H\+A224}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a49a0d67f44c91661c61e46d610292647}{L\+T\+C\+\_\+\+T\+I\+G\+ER}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a3c5bf18f862fc7d892b577635750455b}{L\+T\+C\+\_\+\+S\+H\+A1}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_abe3dc993b6d50a6197892a742efc012e}{L\+T\+C\+\_\+\+M\+D5}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a4e40d09feca44ebf8247600891287963}{L\+T\+C\+\_\+\+M\+D4}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_abcf9d5b5a20a22e6f060414481ff9591}{L\+T\+C\+\_\+\+M\+D2}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_ac7374ca3fff83272eabb96ca1e92075e}{L\+T\+C\+\_\+\+R\+I\+P\+E\+M\+D128}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_afcdc6b5a77faee54b6c5a49f27b75eeb}{L\+T\+C\+\_\+\+R\+I\+P\+E\+M\+D160}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a140c3e4b52f25a0ce0260c27f151ac8f}{L\+T\+C\+\_\+\+R\+I\+P\+E\+M\+D256}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a5274bdd0d0118e6cc5d80cba8b981ae1}{L\+T\+C\+\_\+\+R\+I\+P\+E\+M\+D320}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a918aaaa8a84eabcc674298fc4f2c96cb}{L\+T\+C\+\_\+\+B\+L\+A\+K\+E2S}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a6475b96089968cb9fbf27838e31f3eac}{L\+T\+C\+\_\+\+B\+L\+A\+K\+E2B}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_aaabf91924b9c371d578e7589ff03e4a0}{L\+T\+C\+\_\+\+H\+A\+S\+H\+\_\+\+H\+E\+L\+P\+E\+RS}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_adc8476d1ced2e85f865bb6df4a1f030c}{L\+T\+C\+\_\+\+H\+M\+AC}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a17e0447a51620b133bb31aa9e79accbe}{L\+T\+C\+\_\+\+O\+M\+AC}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a6d618bc1681da455fbcac150cf6ec867}{L\+T\+C\+\_\+\+P\+M\+AC}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a75c9989cb5e078d043198b38e9614498}{L\+T\+C\+\_\+\+X\+C\+BC}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_ad4077361cd3d2748c77b02df0b059ad6}{L\+T\+C\+\_\+\+F9\+\_\+\+M\+O\+DE}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_ab1dca3634fbf64c8fc8830c439ce5e09}{L\+T\+C\+\_\+\+P\+E\+L\+I\+C\+AN}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_af7bb47cfd06860c92c72edca3550d4ca}{L\+T\+C\+\_\+\+P\+O\+L\+Y1305}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_af399a6fe6a98db26b3568b4e4edd337a}{L\+T\+C\+\_\+\+B\+L\+A\+K\+E2\+S\+M\+AC}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a8605d08d7241d9101c7a3bba448ca939}{L\+T\+C\+\_\+\+B\+L\+A\+K\+E2\+B\+M\+AC}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a43d3f78ec694bf24d44012f965506acf}{L\+T\+C\+\_\+\+E\+A\+X\+\_\+\+M\+O\+DE}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a376e389cc4002728380f454b7057e716}{L\+T\+C\+\_\+\+O\+C\+B\+\_\+\+M\+O\+DE}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a2976e2a4e9dbbd40add4bb0da3ee92bd}{L\+T\+C\+\_\+\+O\+C\+B3\+\_\+\+M\+O\+DE}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a4be558936113a1ce0186e199236647b0}{L\+T\+C\+\_\+\+C\+C\+M\+\_\+\+M\+O\+DE}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a3f9ab50a84e8490486bc5fe543cc316b}{L\+T\+C\+\_\+\+G\+C\+M\+\_\+\+M\+O\+DE}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a8e837dc5fa093158f349e23ceaedb6c8}{L\+T\+C\+\_\+\+C\+H\+A\+C\+H\+A20\+P\+O\+L\+Y1305\+\_\+\+M\+O\+DE}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_af0b3f1130866eb0f80e301614d55212c}{L\+T\+C\+\_\+\+G\+C\+M\+\_\+\+T\+A\+B\+L\+ES}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a6d0a7e5111e6e0cee0b1daf7d0444734}{L\+T\+C\+\_\+\+Y\+A\+R\+R\+OW}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a0ad918dc52a3456ff2dd58054b813fa4}{L\+T\+C\+\_\+\+S\+P\+R\+NG}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a98f0124ab981b2487a47eb0332dbd383}{L\+T\+C\+\_\+\+R\+C4}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a0cc1db7ff5217e2b6c109b29183880b5}{L\+T\+C\+\_\+\+C\+H\+A\+C\+H\+A20\+\_\+\+P\+R\+NG}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a403f6681ba4dc0da8d96838aef03e942}{L\+T\+C\+\_\+\+F\+O\+R\+T\+U\+NA}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a56c488847c53b372b9a20739fdbba435}{L\+T\+C\+\_\+\+S\+O\+B\+E\+R128}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a0f4202c42cee0c199f3576b6233e5faa}{L\+T\+C\+\_\+\+D\+E\+V\+R\+A\+N\+D\+OM}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a5170c4541c694667d70d9230ae571ca4}{L\+T\+C\+\_\+\+T\+R\+Y\+\_\+\+U\+R\+A\+N\+D\+O\+M\+\_\+\+F\+I\+R\+ST}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a86f88c249e3ca6f8b9cd835ee8c420e8}{L\+T\+C\+\_\+\+R\+N\+G\+\_\+\+G\+E\+T\+\_\+\+B\+Y\+T\+ES}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a8a67cb7596bed2f7c07e89a0108ce8cb}{L\+T\+C\+\_\+\+R\+N\+G\+\_\+\+M\+A\+K\+E\+\_\+\+P\+R\+NG}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a26b2ffeb56612a6c361250f9cd82204f}{L\+T\+C\+\_\+\+Y\+A\+R\+R\+O\+W\+\_\+\+A\+ES}}~2
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_af58a920e681cb68756017d8364e4a692}{L\+T\+C\+\_\+\+F\+O\+R\+T\+U\+N\+A\+\_\+\+WD}}~10
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_aa38cc64a9bea21aba17c1936b453f77b}{L\+T\+C\+\_\+\+F\+O\+R\+T\+U\+N\+A\+\_\+\+P\+O\+O\+LS}}~32
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a7bc429d1d1b63c7c448802b16358a5e4}{L\+T\+C\+\_\+\+M\+R\+SA}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_ab144ebaee7cb0d1a535cfd5da9b643ee}{L\+T\+C\+\_\+\+M\+DH}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_afcce03b78c1c186a7f683ebe664761b9}{L\+T\+C\+\_\+\+D\+H768}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a71752598a63b26305da29e426f7e96c3}{L\+T\+C\+\_\+\+D\+H1024}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a8ede395d5abe8992e4303c2e85f0b86e}{L\+T\+C\+\_\+\+D\+H1536}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a034e28d3e598b58eacb71cbf4f1e21d6}{L\+T\+C\+\_\+\+D\+H2048}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_aab0b8bcf04495112faae5e29546db8b6}{L\+T\+C\+\_\+\+D\+H3072}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a5f3b4b9848ef51fd32ca3db87bc52e62}{L\+T\+C\+\_\+\+D\+H4096}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_aff352d93246f943d71d097224692d352}{L\+T\+C\+\_\+\+D\+H6144}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a14d8dda0edc51144b726d33dc0aa1889}{L\+T\+C\+\_\+\+D\+H8192}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_acb62ea2fa28c8cc63eda37aac346ff7c}{L\+T\+C\+\_\+\+M\+D\+SA}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a4f18dd45318a8d83687814413bda0818}{L\+T\+C\+\_\+\+M\+E\+CC}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_ac3b6fb191bf1bcde606d778b4e0c9325}{L\+T\+C\+\_\+\+E\+C\+C\+\_\+\+S\+H\+A\+M\+IR}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a33bea16507613bd9dd6089fee7cc2570}{L\+T\+C\+\_\+\+M\+E\+C\+C\+\_\+\+A\+C\+C\+EL}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a8592d7a6a6465d3e0c8974bb2045c941}{L\+T\+C\+\_\+\+R\+S\+A\+\_\+\+B\+L\+I\+N\+D\+I\+NG}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a058bfc4f9485f8925836d0095ecd6289}{L\+T\+C\+\_\+\+R\+S\+A\+\_\+\+C\+R\+T\+\_\+\+H\+A\+R\+D\+E\+N\+I\+NG}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_aca730227ae77ada45065644bff8680e9}{L\+T\+C\+\_\+\+E\+C\+C\+\_\+\+T\+I\+M\+I\+N\+G\+\_\+\+R\+E\+S\+I\+S\+T\+A\+NT}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_aa7036ad20160357547351666933dc289}{L\+T\+C\+\_\+\+P\+K\+C\+S\+\_\+1}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a82f05c2f54dafe59a5376d1427d41d74}{L\+T\+C\+\_\+\+P\+K\+C\+S\+\_\+5}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a74e0e28752e26f3c621d5ac5d231fa98}{L\+T\+C\+\_\+\+P\+K\+C\+S\+\_\+8}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a427fffc4c1f63b7da3db46e8631e80aa}{L\+T\+C\+\_\+\+P\+K\+C\+S\+\_\+12}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a9f932abc9e7681b6285e1961aa18184d}{L\+T\+C\+\_\+\+D\+ER}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_ab5aadc72c958a064a4831f2e76cff5e7}{L\+T\+C\+\_\+\+B\+A\+S\+E64}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_aea79a062d867058a55ea081d1c735244}{L\+T\+C\+\_\+\+B\+A\+S\+E64\+\_\+\+U\+RL}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a66a1f0f2d941f46df1daf58e5582b3dc}{L\+T\+C\+\_\+\+B\+A\+S\+E32}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_ad9ebf6820d2290816cc650f46469b2ca}{L\+T\+C\+\_\+\+B\+A\+S\+E16}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a44d0208a4492a509125d5d04fdeb13a3}{L\+T\+C\+\_\+\+H\+K\+DF}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a060316f2bf68810a89eb4ef8f3213244}{L\+T\+C\+\_\+\+A\+D\+L\+E\+R32}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_af895876d300d0c8a860601636f42e8fb}{L\+T\+C\+\_\+\+C\+R\+C32}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_ad90159826b0b7a69886d685f453b489c}{L\+T\+C\+\_\+\+S\+SH}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a18c134f727618d9ec82356276dfd2bd2}{L\+T\+C\+\_\+\+P\+A\+D\+D\+I\+NG}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a302862374bf4c5e91c723ffbcd29aaae}{L\+T\+C\+\_\+\+P\+B\+ES}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_abbc0f049eec3e1a621bf2620aa8b6ef6}{L\+T\+C\+\_\+\+E\+C\+C\+\_\+\+B\+R\+A\+I\+N\+P\+O\+O\+L\+P160\+R1}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_aa79a7e95adcf6fc4aed401a4915ebe0a}{L\+T\+C\+\_\+\+E\+C\+C\+\_\+\+B\+R\+A\+I\+N\+P\+O\+O\+L\+P160\+T1}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a87d1af1f7057384dd2dd1a6728fd2e58}{L\+T\+C\+\_\+\+E\+C\+C\+\_\+\+B\+R\+A\+I\+N\+P\+O\+O\+L\+P192\+R1}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a41554b88cedfb9e7b5fecdcaf6ecea5f}{L\+T\+C\+\_\+\+E\+C\+C\+\_\+\+B\+R\+A\+I\+N\+P\+O\+O\+L\+P192\+T1}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_aed7307d295866b8e15a2e602ef18f2af}{L\+T\+C\+\_\+\+E\+C\+C\+\_\+\+B\+R\+A\+I\+N\+P\+O\+O\+L\+P224\+R1}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a0f6773ddeee52af20d60e2513eefa76a}{L\+T\+C\+\_\+\+E\+C\+C\+\_\+\+B\+R\+A\+I\+N\+P\+O\+O\+L\+P224\+T1}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a4d49408d5b7d0790a20d062fceeb09b5}{L\+T\+C\+\_\+\+E\+C\+C\+\_\+\+B\+R\+A\+I\+N\+P\+O\+O\+L\+P256\+R1}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a6ea012867dc4312d4f39b67586e9238d}{L\+T\+C\+\_\+\+E\+C\+C\+\_\+\+B\+R\+A\+I\+N\+P\+O\+O\+L\+P256\+T1}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_aa21de3e899fbec55bf6bae595e5cb708}{L\+T\+C\+\_\+\+E\+C\+C\+\_\+\+B\+R\+A\+I\+N\+P\+O\+O\+L\+P320\+R1}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_adabe464bbec176de54468e453629ce17}{L\+T\+C\+\_\+\+E\+C\+C\+\_\+\+B\+R\+A\+I\+N\+P\+O\+O\+L\+P320\+T1}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_abbd4f4007b96bc508a4944e4751af1fe}{L\+T\+C\+\_\+\+E\+C\+C\+\_\+\+B\+R\+A\+I\+N\+P\+O\+O\+L\+P384\+R1}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a5d9f96634decfbdf7426dfca00618a2b}{L\+T\+C\+\_\+\+E\+C\+C\+\_\+\+B\+R\+A\+I\+N\+P\+O\+O\+L\+P384\+T1}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a4eda17788356291a058771a46dbb7974}{L\+T\+C\+\_\+\+E\+C\+C\+\_\+\+B\+R\+A\+I\+N\+P\+O\+O\+L\+P512\+R1}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a2ff7e0972fd91b39c2c34a34b6fe5133}{L\+T\+C\+\_\+\+E\+C\+C\+\_\+\+B\+R\+A\+I\+N\+P\+O\+O\+L\+P512\+T1}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a6a06070377f5a10b8eb4c9108e91958f}{L\+T\+C\+\_\+\+E\+C\+C\+\_\+\+P\+R\+I\+M\+E192\+V2}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a68274034a70e2283157f2eba4f671f47}{L\+T\+C\+\_\+\+E\+C\+C\+\_\+\+P\+R\+I\+M\+E192\+V3}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a1cb158a934bf5bad508f49768066bc53}{L\+T\+C\+\_\+\+E\+C\+C\+\_\+\+P\+R\+I\+M\+E239\+V1}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_ae46094b00b8d60a5bfab022a5272e031}{L\+T\+C\+\_\+\+E\+C\+C\+\_\+\+P\+R\+I\+M\+E239\+V2}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a13feb3483b21fdd4d17de98af61493d3}{L\+T\+C\+\_\+\+E\+C\+C\+\_\+\+P\+R\+I\+M\+E239\+V3}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a12c3dd3f28c5039e4154f18dcd499754}{L\+T\+C\+\_\+\+E\+C\+C\+\_\+\+S\+E\+C\+P112\+R1}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_ab0c9e6f824aeeba6f45fdd57e67b6ea7}{L\+T\+C\+\_\+\+E\+C\+C\+\_\+\+S\+E\+C\+P112\+R2}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_ac151d1388f1ad469a61536d6ed34cea2}{L\+T\+C\+\_\+\+E\+C\+C\+\_\+\+S\+E\+C\+P128\+R1}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a2e99aef6424e5dfe4cf267e776bd6170}{L\+T\+C\+\_\+\+E\+C\+C\+\_\+\+S\+E\+C\+P128\+R2}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a97e841d97bfc5105b3a5070532c00874}{L\+T\+C\+\_\+\+E\+C\+C\+\_\+\+S\+E\+C\+P160\+K1}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_ab6cd0bda20fce7461b0c2ea0cbc086b9}{L\+T\+C\+\_\+\+E\+C\+C\+\_\+\+S\+E\+C\+P160\+R1}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a323415561813d43bdb3778b7aea80c48}{L\+T\+C\+\_\+\+E\+C\+C\+\_\+\+S\+E\+C\+P160\+R2}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_af9a8f132d9ce6cfbd626eb8cbada44de}{L\+T\+C\+\_\+\+E\+C\+C\+\_\+\+S\+E\+C\+P192\+K1}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_af29fc00ec7889878b7bcf4331236ba56}{L\+T\+C\+\_\+\+E\+C\+C\+\_\+\+S\+E\+C\+P192\+R1}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a5486c4003dc24b7f15d71b224020f44c}{L\+T\+C\+\_\+\+E\+C\+C\+\_\+\+S\+E\+C\+P224\+K1}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_abad6e8376ec44b8dfae522804e5462a8}{L\+T\+C\+\_\+\+E\+C\+C\+\_\+\+S\+E\+C\+P224\+R1}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a6192765b87a3629846754b43b6760993}{L\+T\+C\+\_\+\+E\+C\+C\+\_\+\+S\+E\+C\+P256\+K1}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a86484067d0b8eb5392b99e9269e8691f}{L\+T\+C\+\_\+\+E\+C\+C\+\_\+\+S\+E\+C\+P256\+R1}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a55c0cd378133d30164c73a81107a85a2}{L\+T\+C\+\_\+\+E\+C\+C\+\_\+\+S\+E\+C\+P384\+R1}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_af1565e802f1bbf43ab661adaa6c2f29e}{L\+T\+C\+\_\+\+E\+C\+C\+\_\+\+S\+E\+C\+P521\+R1}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a5a19a31f751f88a7e1287c3d93317dba}{L\+T\+C\+\_\+\+D\+E\+R\+\_\+\+M\+A\+X\+\_\+\+R\+E\+C\+U\+R\+S\+I\+ON}}~30
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a5a79e528a3a28ec50f37e59243c69abc}{L\+T\+C\+\_\+\+M\+PI}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a62913bd9180a860012d74795f29f9f42}{L\+T\+C\+\_\+\+P\+K\+\_\+\+M\+A\+X\+\_\+\+R\+E\+T\+R\+I\+ES}}~20
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_aa7036ad20160357547351666933dc289}{L\+T\+C\+\_\+\+P\+K\+C\+S\+\_\+1}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a74e0e28752e26f3c621d5ac5d231fa98}{L\+T\+C\+\_\+\+P\+K\+C\+S\+\_\+8}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a18c134f727618d9ec82356276dfd2bd2}{L\+T\+C\+\_\+\+P\+A\+D\+D\+I\+NG}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a302862374bf4c5e91c723ffbcd29aaae}{L\+T\+C\+\_\+\+P\+B\+ES}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_aec6ff21ae508300430d5e2f4cd106579}{L\+T\+C\+\_\+\+M\+U\+T\+E\+X\+\_\+\+G\+L\+O\+B\+AL}}(x)
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a4d373437aef3cab728480c4e9b08fbaf}{L\+T\+C\+\_\+\+M\+U\+T\+E\+X\+\_\+\+P\+R\+O\+TO}}(x)
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_aee2265b5d5f1bbc5fb3ca394d7b0c913}{L\+T\+C\+\_\+\+M\+U\+T\+E\+X\+\_\+\+T\+Y\+PE}}(x)
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a450b04a6e1d004908791edaa0901d284}{L\+T\+C\+\_\+\+M\+U\+T\+E\+X\+\_\+\+I\+N\+IT}}(x)
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_a427a107414e4d775fbf23f4a499f4a31}{L\+T\+C\+\_\+\+M\+U\+T\+E\+X\+\_\+\+L\+O\+CK}}(x)
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_acdf267be91b178b4fafe8f992d57a7f1}{L\+T\+C\+\_\+\+M\+U\+T\+E\+X\+\_\+\+U\+N\+L\+O\+CK}}(x)
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_ae3979e1469d64fe3e864c9effca73724}{L\+T\+C\+\_\+\+M\+U\+T\+E\+X\+\_\+\+D\+E\+S\+T\+R\+OY}}(x)
+\item 
+\#define \mbox{\hyperlink{tomcrypt__custom_8h_ac4fd38d776468eef7213777e70f16124}{L\+T\+C\+\_\+\+F\+I\+L\+E\+\_\+\+R\+E\+A\+D\+\_\+\+B\+U\+F\+S\+I\+ZE}}~8192
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{tomcrypt__custom_8h_a060316f2bf68810a89eb4ef8f3213244}\label{tomcrypt__custom_8h_a060316f2bf68810a89eb4ef8f3213244}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_ADLER32@{LTC\_ADLER32}}
+\index{LTC\_ADLER32@{LTC\_ADLER32}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_ADLER32}{LTC\_ADLER32}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+A\+D\+L\+E\+R32}
+
+
+
+Definition at line 496 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a7c71a2a6f9da1c40f48a6bb2f89ce6cf}\label{tomcrypt__custom_8h_a7c71a2a6f9da1c40f48a6bb2f89ce6cf}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_ANUBIS@{LTC\_ANUBIS}}
+\index{LTC\_ANUBIS@{LTC\_ANUBIS}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_ANUBIS}{LTC\_ANUBIS}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+A\+N\+U\+B\+IS}
+
+
+
+Definition at line 202 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a27ab8d251a0001e1d689fb422e523310}\label{tomcrypt__custom_8h_a27ab8d251a0001e1d689fb422e523310}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_ANUBIS\_TWEAK@{LTC\_ANUBIS\_TWEAK}}
+\index{LTC\_ANUBIS\_TWEAK@{LTC\_ANUBIS\_TWEAK}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_ANUBIS\_TWEAK}{LTC\_ANUBIS\_TWEAK}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+A\+N\+U\+B\+I\+S\+\_\+\+T\+W\+E\+AK}
+
+
+
+Definition at line 203 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_ad9ebf6820d2290816cc650f46469b2ca}\label{tomcrypt__custom_8h_ad9ebf6820d2290816cc650f46469b2ca}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_BASE16@{LTC\_BASE16}}
+\index{LTC\_BASE16@{LTC\_BASE16}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_BASE16}{LTC\_BASE16}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+B\+A\+S\+E16}
+
+
+
+Definition at line 487 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a66a1f0f2d941f46df1daf58e5582b3dc}\label{tomcrypt__custom_8h_a66a1f0f2d941f46df1daf58e5582b3dc}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_BASE32@{LTC\_BASE32}}
+\index{LTC\_BASE32@{LTC\_BASE32}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_BASE32}{LTC\_BASE32}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+B\+A\+S\+E32}
+
+
+
+Definition at line 485 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_ab5aadc72c958a064a4831f2e76cff5e7}\label{tomcrypt__custom_8h_ab5aadc72c958a064a4831f2e76cff5e7}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_BASE64@{LTC\_BASE64}}
+\index{LTC\_BASE64@{LTC\_BASE64}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_BASE64}{LTC\_BASE64}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+B\+A\+S\+E64}
+
+
+
+Definition at line 481 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_aea79a062d867058a55ea081d1c735244}\label{tomcrypt__custom_8h_aea79a062d867058a55ea081d1c735244}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_BASE64\_URL@{LTC\_BASE64\_URL}}
+\index{LTC\_BASE64\_URL@{LTC\_BASE64\_URL}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_BASE64\_URL}{LTC\_BASE64\_URL}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+B\+A\+S\+E64\+\_\+\+U\+RL}
+
+
+
+Definition at line 483 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a6475b96089968cb9fbf27838e31f3eac}\label{tomcrypt__custom_8h_a6475b96089968cb9fbf27838e31f3eac}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_BLAKE2B@{LTC\_BLAKE2B}}
+\index{LTC\_BLAKE2B@{LTC\_BLAKE2B}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_BLAKE2B}{LTC\_BLAKE2B}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+B\+L\+A\+K\+E2B}
+
+
+
+Definition at line 272 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a8605d08d7241d9101c7a3bba448ca939}\label{tomcrypt__custom_8h_a8605d08d7241d9101c7a3bba448ca939}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_BLAKE2BMAC@{LTC\_BLAKE2BMAC}}
+\index{LTC\_BLAKE2BMAC@{LTC\_BLAKE2BMAC}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_BLAKE2BMAC}{LTC\_BLAKE2BMAC}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+B\+L\+A\+K\+E2\+B\+M\+AC}
+
+
+
+Definition at line 290 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a918aaaa8a84eabcc674298fc4f2c96cb}\label{tomcrypt__custom_8h_a918aaaa8a84eabcc674298fc4f2c96cb}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_BLAKE2S@{LTC\_BLAKE2S}}
+\index{LTC\_BLAKE2S@{LTC\_BLAKE2S}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_BLAKE2S}{LTC\_BLAKE2S}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+B\+L\+A\+K\+E2S}
+
+
+
+Definition at line 271 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_af399a6fe6a98db26b3568b4e4edd337a}\label{tomcrypt__custom_8h_af399a6fe6a98db26b3568b4e4edd337a}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_BLAKE2SMAC@{LTC\_BLAKE2SMAC}}
+\index{LTC\_BLAKE2SMAC@{LTC\_BLAKE2SMAC}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_BLAKE2SMAC}{LTC\_BLAKE2SMAC}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+B\+L\+A\+K\+E2\+S\+M\+AC}
+
+
+
+Definition at line 289 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_aa41186c4e0790a952492c128950a4a85}\label{tomcrypt__custom_8h_aa41186c4e0790a952492c128950a4a85}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_BLOWFISH@{LTC\_BLOWFISH}}
+\index{LTC\_BLOWFISH@{LTC\_BLOWFISH}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_BLOWFISH}{LTC\_BLOWFISH}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+B\+L\+O\+W\+F\+I\+SH}
+
+
+
+Definition at line 178 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a7f2da11dc263b795b7cf34d6c8d9f892}\label{tomcrypt__custom_8h_a7f2da11dc263b795b7cf34d6c8d9f892}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_CAMELLIA@{LTC\_CAMELLIA}}
+\index{LTC\_CAMELLIA@{LTC\_CAMELLIA}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_CAMELLIA}{LTC\_CAMELLIA}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+C\+A\+M\+E\+L\+L\+IA}
+
+
+
+Definition at line 207 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a01ea76d6acbce91b19acd75305ebe7fb}\label{tomcrypt__custom_8h_a01ea76d6acbce91b19acd75305ebe7fb}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_CAST5@{LTC\_CAST5}}
+\index{LTC\_CAST5@{LTC\_CAST5}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_CAST5}{LTC\_CAST5}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+C\+A\+S\+T5}
+
+
+
+Definition at line 197 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a2ab8d52cc3907b3b7a729b4730c8da82}\label{tomcrypt__custom_8h_a2ab8d52cc3907b3b7a729b4730c8da82}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_CBC\_MODE@{LTC\_CBC\_MODE}}
+\index{LTC\_CBC\_MODE@{LTC\_CBC\_MODE}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_CBC\_MODE}{LTC\_CBC\_MODE}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+C\+B\+C\+\_\+\+M\+O\+DE}
+
+
+
+Definition at line 229 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a4be558936113a1ce0186e199236647b0}\label{tomcrypt__custom_8h_a4be558936113a1ce0186e199236647b0}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_CCM\_MODE@{LTC\_CCM\_MODE}}
+\index{LTC\_CCM\_MODE@{LTC\_CCM\_MODE}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_CCM\_MODE}{LTC\_CCM\_MODE}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+C\+C\+M\+\_\+\+M\+O\+DE}
+
+
+
+Definition at line 298 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a644d42f52adf17dc4dcf94c3bded7462}\label{tomcrypt__custom_8h_a644d42f52adf17dc4dcf94c3bded7462}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_CFB\_MODE@{LTC\_CFB\_MODE}}
+\index{LTC\_CFB\_MODE@{LTC\_CFB\_MODE}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_CFB\_MODE}{LTC\_CFB\_MODE}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+C\+F\+B\+\_\+\+M\+O\+DE}
+
+
+
+Definition at line 226 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a72c5fb7715246f212bc343894c5b9a59}\label{tomcrypt__custom_8h_a72c5fb7715246f212bc343894c5b9a59}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_CHACHA@{LTC\_CHACHA}}
+\index{LTC\_CHACHA@{LTC\_CHACHA}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_CHACHA}{LTC\_CHACHA}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+C\+H\+A\+C\+HA}
+
+
+
+Definition at line 212 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a0cc1db7ff5217e2b6c109b29183880b5}\label{tomcrypt__custom_8h_a0cc1db7ff5217e2b6c109b29183880b5}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_CHACHA20\_PRNG@{LTC\_CHACHA20\_PRNG}}
+\index{LTC\_CHACHA20\_PRNG@{LTC\_CHACHA20\_PRNG}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_CHACHA20\_PRNG}{LTC\_CHACHA20\_PRNG}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+C\+H\+A\+C\+H\+A20\+\_\+\+P\+R\+NG}
+
+
+
+Definition at line 328 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a8e837dc5fa093158f349e23ceaedb6c8}\label{tomcrypt__custom_8h_a8e837dc5fa093158f349e23ceaedb6c8}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_CHACHA20POLY1305\_MODE@{LTC\_CHACHA20POLY1305\_MODE}}
+\index{LTC\_CHACHA20POLY1305\_MODE@{LTC\_CHACHA20POLY1305\_MODE}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_CHACHA20POLY1305\_MODE}{LTC\_CHACHA20POLY1305\_MODE}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+C\+H\+A\+C\+H\+A20\+P\+O\+L\+Y1305\+\_\+\+M\+O\+DE}
+
+
+
+Definition at line 300 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_ac731e5ffb4fccff259e4dd9ea5cb17a4}\label{tomcrypt__custom_8h_ac731e5ffb4fccff259e4dd9ea5cb17a4}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_CHC\_HASH@{LTC\_CHC\_HASH}}
+\index{LTC\_CHC\_HASH@{LTC\_CHC\_HASH}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_CHC\_HASH}{LTC\_CHC\_HASH}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+C\+H\+C\+\_\+\+H\+A\+SH}
+
+
+
+Definition at line 252 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_af895876d300d0c8a860601636f42e8fb}\label{tomcrypt__custom_8h_af895876d300d0c8a860601636f42e8fb}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_CRC32@{LTC\_CRC32}}
+\index{LTC\_CRC32@{LTC\_CRC32}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_CRC32}{LTC\_CRC32}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+C\+R\+C32}
+
+
+
+Definition at line 498 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_acef21672dc18cf1c1f4504e64daa82e9}\label{tomcrypt__custom_8h_acef21672dc18cf1c1f4504e64daa82e9}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_CTR\_MODE@{LTC\_CTR\_MODE}}
+\index{LTC\_CTR\_MODE@{LTC\_CTR\_MODE}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_CTR\_MODE}{LTC\_CTR\_MODE}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+C\+T\+R\+\_\+\+M\+O\+DE}
+
+
+
+Definition at line 230 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a9f932abc9e7681b6285e1961aa18184d}\label{tomcrypt__custom_8h_a9f932abc9e7681b6285e1961aa18184d}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_DER@{LTC\_DER}}
+\index{LTC\_DER@{LTC\_DER}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_DER}{LTC\_DER}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+D\+ER}
+
+
+
+Definition at line 473 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a5a19a31f751f88a7e1287c3d93317dba}\label{tomcrypt__custom_8h_a5a19a31f751f88a7e1287c3d93317dba}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_DER\_MAX\_RECURSION@{LTC\_DER\_MAX\_RECURSION}}
+\index{LTC\_DER\_MAX\_RECURSION@{LTC\_DER\_MAX\_RECURSION}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_DER\_MAX\_RECURSION}{LTC\_DER\_MAX\_RECURSION}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+D\+E\+R\+\_\+\+M\+A\+X\+\_\+\+R\+E\+C\+U\+R\+S\+I\+ON~30}
+
+
+
+Definition at line 553 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_aec4ad0d6b941a796025dcc02e1526a62}\label{tomcrypt__custom_8h_aec4ad0d6b941a796025dcc02e1526a62}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_DES@{LTC\_DES}}
+\index{LTC\_DES@{LTC\_DES}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_DES}{LTC\_DES}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+D\+ES}
+
+
+
+Definition at line 196 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a0f4202c42cee0c199f3576b6233e5faa}\label{tomcrypt__custom_8h_a0f4202c42cee0c199f3576b6233e5faa}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_DEVRANDOM@{LTC\_DEVRANDOM}}
+\index{LTC\_DEVRANDOM@{LTC\_DEVRANDOM}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_DEVRANDOM}{LTC\_DEVRANDOM}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+D\+E\+V\+R\+A\+N\+D\+OM}
+
+
+
+Definition at line 337 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a71752598a63b26305da29e426f7e96c3}\label{tomcrypt__custom_8h_a71752598a63b26305da29e426f7e96c3}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_DH1024@{LTC\_DH1024}}
+\index{LTC\_DH1024@{LTC\_DH1024}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_DH1024}{LTC\_DH1024}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+D\+H1024}
+
+
+
+Definition at line 419 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a8ede395d5abe8992e4303c2e85f0b86e}\label{tomcrypt__custom_8h_a8ede395d5abe8992e4303c2e85f0b86e}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_DH1536@{LTC\_DH1536}}
+\index{LTC\_DH1536@{LTC\_DH1536}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_DH1536}{LTC\_DH1536}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+D\+H1536}
+
+
+
+Definition at line 420 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a034e28d3e598b58eacb71cbf4f1e21d6}\label{tomcrypt__custom_8h_a034e28d3e598b58eacb71cbf4f1e21d6}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_DH2048@{LTC\_DH2048}}
+\index{LTC\_DH2048@{LTC\_DH2048}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_DH2048}{LTC\_DH2048}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+D\+H2048}
+
+
+
+Definition at line 421 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_aab0b8bcf04495112faae5e29546db8b6}\label{tomcrypt__custom_8h_aab0b8bcf04495112faae5e29546db8b6}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_DH3072@{LTC\_DH3072}}
+\index{LTC\_DH3072@{LTC\_DH3072}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_DH3072}{LTC\_DH3072}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+D\+H3072}
+
+
+
+Definition at line 425 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a5f3b4b9848ef51fd32ca3db87bc52e62}\label{tomcrypt__custom_8h_a5f3b4b9848ef51fd32ca3db87bc52e62}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_DH4096@{LTC\_DH4096}}
+\index{LTC\_DH4096@{LTC\_DH4096}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_DH4096}{LTC\_DH4096}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+D\+H4096}
+
+
+
+Definition at line 426 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_aff352d93246f943d71d097224692d352}\label{tomcrypt__custom_8h_aff352d93246f943d71d097224692d352}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_DH6144@{LTC\_DH6144}}
+\index{LTC\_DH6144@{LTC\_DH6144}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_DH6144}{LTC\_DH6144}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+D\+H6144}
+
+
+
+Definition at line 427 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_afcce03b78c1c186a7f683ebe664761b9}\label{tomcrypt__custom_8h_afcce03b78c1c186a7f683ebe664761b9}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_DH768@{LTC\_DH768}}
+\index{LTC\_DH768@{LTC\_DH768}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_DH768}{LTC\_DH768}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+D\+H768}
+
+
+
+Definition at line 418 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a14d8dda0edc51144b726d33dc0aa1889}\label{tomcrypt__custom_8h_a14d8dda0edc51144b726d33dc0aa1889}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_DH8192@{LTC\_DH8192}}
+\index{LTC\_DH8192@{LTC\_DH8192}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_DH8192}{LTC\_DH8192}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+D\+H8192}
+
+
+
+Definition at line 428 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a43d3f78ec694bf24d44012f965506acf}\label{tomcrypt__custom_8h_a43d3f78ec694bf24d44012f965506acf}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_EAX\_MODE@{LTC\_EAX\_MODE}}
+\index{LTC\_EAX\_MODE@{LTC\_EAX\_MODE}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_EAX\_MODE}{LTC\_EAX\_MODE}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+E\+A\+X\+\_\+\+M\+O\+DE}
+
+
+
+Definition at line 294 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_adc5e1758f415a8fc77d1f410b332d71b}\label{tomcrypt__custom_8h_adc5e1758f415a8fc77d1f410b332d71b}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_ECB\_MODE@{LTC\_ECB\_MODE}}
+\index{LTC\_ECB\_MODE@{LTC\_ECB\_MODE}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_ECB\_MODE}{LTC\_ECB\_MODE}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+E\+C\+B\+\_\+\+M\+O\+DE}
+
+
+
+Definition at line 228 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_abbc0f049eec3e1a621bf2620aa8b6ef6}\label{tomcrypt__custom_8h_abbc0f049eec3e1a621bf2620aa8b6ef6}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_ECC\_BRAINPOOLP160R1@{LTC\_ECC\_BRAINPOOLP160R1}}
+\index{LTC\_ECC\_BRAINPOOLP160R1@{LTC\_ECC\_BRAINPOOLP160R1}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_ECC\_BRAINPOOLP160R1}{LTC\_ECC\_BRAINPOOLP160R1}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+E\+C\+C\+\_\+\+B\+R\+A\+I\+N\+P\+O\+O\+L\+P160\+R1}
+
+
+
+Definition at line 513 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_aa79a7e95adcf6fc4aed401a4915ebe0a}\label{tomcrypt__custom_8h_aa79a7e95adcf6fc4aed401a4915ebe0a}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_ECC\_BRAINPOOLP160T1@{LTC\_ECC\_BRAINPOOLP160T1}}
+\index{LTC\_ECC\_BRAINPOOLP160T1@{LTC\_ECC\_BRAINPOOLP160T1}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_ECC\_BRAINPOOLP160T1}{LTC\_ECC\_BRAINPOOLP160T1}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+E\+C\+C\+\_\+\+B\+R\+A\+I\+N\+P\+O\+O\+L\+P160\+T1}
+
+
+
+Definition at line 514 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a87d1af1f7057384dd2dd1a6728fd2e58}\label{tomcrypt__custom_8h_a87d1af1f7057384dd2dd1a6728fd2e58}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_ECC\_BRAINPOOLP192R1@{LTC\_ECC\_BRAINPOOLP192R1}}
+\index{LTC\_ECC\_BRAINPOOLP192R1@{LTC\_ECC\_BRAINPOOLP192R1}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_ECC\_BRAINPOOLP192R1}{LTC\_ECC\_BRAINPOOLP192R1}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+E\+C\+C\+\_\+\+B\+R\+A\+I\+N\+P\+O\+O\+L\+P192\+R1}
+
+
+
+Definition at line 515 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a41554b88cedfb9e7b5fecdcaf6ecea5f}\label{tomcrypt__custom_8h_a41554b88cedfb9e7b5fecdcaf6ecea5f}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_ECC\_BRAINPOOLP192T1@{LTC\_ECC\_BRAINPOOLP192T1}}
+\index{LTC\_ECC\_BRAINPOOLP192T1@{LTC\_ECC\_BRAINPOOLP192T1}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_ECC\_BRAINPOOLP192T1}{LTC\_ECC\_BRAINPOOLP192T1}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+E\+C\+C\+\_\+\+B\+R\+A\+I\+N\+P\+O\+O\+L\+P192\+T1}
+
+
+
+Definition at line 516 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_aed7307d295866b8e15a2e602ef18f2af}\label{tomcrypt__custom_8h_aed7307d295866b8e15a2e602ef18f2af}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_ECC\_BRAINPOOLP224R1@{LTC\_ECC\_BRAINPOOLP224R1}}
+\index{LTC\_ECC\_BRAINPOOLP224R1@{LTC\_ECC\_BRAINPOOLP224R1}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_ECC\_BRAINPOOLP224R1}{LTC\_ECC\_BRAINPOOLP224R1}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+E\+C\+C\+\_\+\+B\+R\+A\+I\+N\+P\+O\+O\+L\+P224\+R1}
+
+
+
+Definition at line 517 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a0f6773ddeee52af20d60e2513eefa76a}\label{tomcrypt__custom_8h_a0f6773ddeee52af20d60e2513eefa76a}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_ECC\_BRAINPOOLP224T1@{LTC\_ECC\_BRAINPOOLP224T1}}
+\index{LTC\_ECC\_BRAINPOOLP224T1@{LTC\_ECC\_BRAINPOOLP224T1}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_ECC\_BRAINPOOLP224T1}{LTC\_ECC\_BRAINPOOLP224T1}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+E\+C\+C\+\_\+\+B\+R\+A\+I\+N\+P\+O\+O\+L\+P224\+T1}
+
+
+
+Definition at line 518 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a4d49408d5b7d0790a20d062fceeb09b5}\label{tomcrypt__custom_8h_a4d49408d5b7d0790a20d062fceeb09b5}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_ECC\_BRAINPOOLP256R1@{LTC\_ECC\_BRAINPOOLP256R1}}
+\index{LTC\_ECC\_BRAINPOOLP256R1@{LTC\_ECC\_BRAINPOOLP256R1}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_ECC\_BRAINPOOLP256R1}{LTC\_ECC\_BRAINPOOLP256R1}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+E\+C\+C\+\_\+\+B\+R\+A\+I\+N\+P\+O\+O\+L\+P256\+R1}
+
+
+
+Definition at line 519 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a6ea012867dc4312d4f39b67586e9238d}\label{tomcrypt__custom_8h_a6ea012867dc4312d4f39b67586e9238d}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_ECC\_BRAINPOOLP256T1@{LTC\_ECC\_BRAINPOOLP256T1}}
+\index{LTC\_ECC\_BRAINPOOLP256T1@{LTC\_ECC\_BRAINPOOLP256T1}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_ECC\_BRAINPOOLP256T1}{LTC\_ECC\_BRAINPOOLP256T1}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+E\+C\+C\+\_\+\+B\+R\+A\+I\+N\+P\+O\+O\+L\+P256\+T1}
+
+
+
+Definition at line 520 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_aa21de3e899fbec55bf6bae595e5cb708}\label{tomcrypt__custom_8h_aa21de3e899fbec55bf6bae595e5cb708}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_ECC\_BRAINPOOLP320R1@{LTC\_ECC\_BRAINPOOLP320R1}}
+\index{LTC\_ECC\_BRAINPOOLP320R1@{LTC\_ECC\_BRAINPOOLP320R1}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_ECC\_BRAINPOOLP320R1}{LTC\_ECC\_BRAINPOOLP320R1}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+E\+C\+C\+\_\+\+B\+R\+A\+I\+N\+P\+O\+O\+L\+P320\+R1}
+
+
+
+Definition at line 521 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_adabe464bbec176de54468e453629ce17}\label{tomcrypt__custom_8h_adabe464bbec176de54468e453629ce17}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_ECC\_BRAINPOOLP320T1@{LTC\_ECC\_BRAINPOOLP320T1}}
+\index{LTC\_ECC\_BRAINPOOLP320T1@{LTC\_ECC\_BRAINPOOLP320T1}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_ECC\_BRAINPOOLP320T1}{LTC\_ECC\_BRAINPOOLP320T1}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+E\+C\+C\+\_\+\+B\+R\+A\+I\+N\+P\+O\+O\+L\+P320\+T1}
+
+
+
+Definition at line 522 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_abbd4f4007b96bc508a4944e4751af1fe}\label{tomcrypt__custom_8h_abbd4f4007b96bc508a4944e4751af1fe}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_ECC\_BRAINPOOLP384R1@{LTC\_ECC\_BRAINPOOLP384R1}}
+\index{LTC\_ECC\_BRAINPOOLP384R1@{LTC\_ECC\_BRAINPOOLP384R1}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_ECC\_BRAINPOOLP384R1}{LTC\_ECC\_BRAINPOOLP384R1}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+E\+C\+C\+\_\+\+B\+R\+A\+I\+N\+P\+O\+O\+L\+P384\+R1}
+
+
+
+Definition at line 523 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a5d9f96634decfbdf7426dfca00618a2b}\label{tomcrypt__custom_8h_a5d9f96634decfbdf7426dfca00618a2b}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_ECC\_BRAINPOOLP384T1@{LTC\_ECC\_BRAINPOOLP384T1}}
+\index{LTC\_ECC\_BRAINPOOLP384T1@{LTC\_ECC\_BRAINPOOLP384T1}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_ECC\_BRAINPOOLP384T1}{LTC\_ECC\_BRAINPOOLP384T1}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+E\+C\+C\+\_\+\+B\+R\+A\+I\+N\+P\+O\+O\+L\+P384\+T1}
+
+
+
+Definition at line 524 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a4eda17788356291a058771a46dbb7974}\label{tomcrypt__custom_8h_a4eda17788356291a058771a46dbb7974}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_ECC\_BRAINPOOLP512R1@{LTC\_ECC\_BRAINPOOLP512R1}}
+\index{LTC\_ECC\_BRAINPOOLP512R1@{LTC\_ECC\_BRAINPOOLP512R1}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_ECC\_BRAINPOOLP512R1}{LTC\_ECC\_BRAINPOOLP512R1}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+E\+C\+C\+\_\+\+B\+R\+A\+I\+N\+P\+O\+O\+L\+P512\+R1}
+
+
+
+Definition at line 525 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a2ff7e0972fd91b39c2c34a34b6fe5133}\label{tomcrypt__custom_8h_a2ff7e0972fd91b39c2c34a34b6fe5133}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_ECC\_BRAINPOOLP512T1@{LTC\_ECC\_BRAINPOOLP512T1}}
+\index{LTC\_ECC\_BRAINPOOLP512T1@{LTC\_ECC\_BRAINPOOLP512T1}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_ECC\_BRAINPOOLP512T1}{LTC\_ECC\_BRAINPOOLP512T1}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+E\+C\+C\+\_\+\+B\+R\+A\+I\+N\+P\+O\+O\+L\+P512\+T1}
+
+
+
+Definition at line 526 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a6a06070377f5a10b8eb4c9108e91958f}\label{tomcrypt__custom_8h_a6a06070377f5a10b8eb4c9108e91958f}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_ECC\_PRIME192V2@{LTC\_ECC\_PRIME192V2}}
+\index{LTC\_ECC\_PRIME192V2@{LTC\_ECC\_PRIME192V2}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_ECC\_PRIME192V2}{LTC\_ECC\_PRIME192V2}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+E\+C\+C\+\_\+\+P\+R\+I\+M\+E192\+V2}
+
+
+
+Definition at line 527 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a68274034a70e2283157f2eba4f671f47}\label{tomcrypt__custom_8h_a68274034a70e2283157f2eba4f671f47}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_ECC\_PRIME192V3@{LTC\_ECC\_PRIME192V3}}
+\index{LTC\_ECC\_PRIME192V3@{LTC\_ECC\_PRIME192V3}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_ECC\_PRIME192V3}{LTC\_ECC\_PRIME192V3}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+E\+C\+C\+\_\+\+P\+R\+I\+M\+E192\+V3}
+
+
+
+Definition at line 528 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a1cb158a934bf5bad508f49768066bc53}\label{tomcrypt__custom_8h_a1cb158a934bf5bad508f49768066bc53}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_ECC\_PRIME239V1@{LTC\_ECC\_PRIME239V1}}
+\index{LTC\_ECC\_PRIME239V1@{LTC\_ECC\_PRIME239V1}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_ECC\_PRIME239V1}{LTC\_ECC\_PRIME239V1}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+E\+C\+C\+\_\+\+P\+R\+I\+M\+E239\+V1}
+
+
+
+Definition at line 529 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_ae46094b00b8d60a5bfab022a5272e031}\label{tomcrypt__custom_8h_ae46094b00b8d60a5bfab022a5272e031}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_ECC\_PRIME239V2@{LTC\_ECC\_PRIME239V2}}
+\index{LTC\_ECC\_PRIME239V2@{LTC\_ECC\_PRIME239V2}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_ECC\_PRIME239V2}{LTC\_ECC\_PRIME239V2}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+E\+C\+C\+\_\+\+P\+R\+I\+M\+E239\+V2}
+
+
+
+Definition at line 530 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a13feb3483b21fdd4d17de98af61493d3}\label{tomcrypt__custom_8h_a13feb3483b21fdd4d17de98af61493d3}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_ECC\_PRIME239V3@{LTC\_ECC\_PRIME239V3}}
+\index{LTC\_ECC\_PRIME239V3@{LTC\_ECC\_PRIME239V3}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_ECC\_PRIME239V3}{LTC\_ECC\_PRIME239V3}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+E\+C\+C\+\_\+\+P\+R\+I\+M\+E239\+V3}
+
+
+
+Definition at line 531 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a12c3dd3f28c5039e4154f18dcd499754}\label{tomcrypt__custom_8h_a12c3dd3f28c5039e4154f18dcd499754}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_ECC\_SECP112R1@{LTC\_ECC\_SECP112R1}}
+\index{LTC\_ECC\_SECP112R1@{LTC\_ECC\_SECP112R1}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_ECC\_SECP112R1}{LTC\_ECC\_SECP112R1}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+E\+C\+C\+\_\+\+S\+E\+C\+P112\+R1}
+
+
+
+Definition at line 532 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_ab0c9e6f824aeeba6f45fdd57e67b6ea7}\label{tomcrypt__custom_8h_ab0c9e6f824aeeba6f45fdd57e67b6ea7}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_ECC\_SECP112R2@{LTC\_ECC\_SECP112R2}}
+\index{LTC\_ECC\_SECP112R2@{LTC\_ECC\_SECP112R2}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_ECC\_SECP112R2}{LTC\_ECC\_SECP112R2}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+E\+C\+C\+\_\+\+S\+E\+C\+P112\+R2}
+
+
+
+Definition at line 533 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_ac151d1388f1ad469a61536d6ed34cea2}\label{tomcrypt__custom_8h_ac151d1388f1ad469a61536d6ed34cea2}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_ECC\_SECP128R1@{LTC\_ECC\_SECP128R1}}
+\index{LTC\_ECC\_SECP128R1@{LTC\_ECC\_SECP128R1}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_ECC\_SECP128R1}{LTC\_ECC\_SECP128R1}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+E\+C\+C\+\_\+\+S\+E\+C\+P128\+R1}
+
+
+
+Definition at line 534 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a2e99aef6424e5dfe4cf267e776bd6170}\label{tomcrypt__custom_8h_a2e99aef6424e5dfe4cf267e776bd6170}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_ECC\_SECP128R2@{LTC\_ECC\_SECP128R2}}
+\index{LTC\_ECC\_SECP128R2@{LTC\_ECC\_SECP128R2}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_ECC\_SECP128R2}{LTC\_ECC\_SECP128R2}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+E\+C\+C\+\_\+\+S\+E\+C\+P128\+R2}
+
+
+
+Definition at line 535 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a97e841d97bfc5105b3a5070532c00874}\label{tomcrypt__custom_8h_a97e841d97bfc5105b3a5070532c00874}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_ECC\_SECP160K1@{LTC\_ECC\_SECP160K1}}
+\index{LTC\_ECC\_SECP160K1@{LTC\_ECC\_SECP160K1}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_ECC\_SECP160K1}{LTC\_ECC\_SECP160K1}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+E\+C\+C\+\_\+\+S\+E\+C\+P160\+K1}
+
+
+
+Definition at line 536 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_ab6cd0bda20fce7461b0c2ea0cbc086b9}\label{tomcrypt__custom_8h_ab6cd0bda20fce7461b0c2ea0cbc086b9}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_ECC\_SECP160R1@{LTC\_ECC\_SECP160R1}}
+\index{LTC\_ECC\_SECP160R1@{LTC\_ECC\_SECP160R1}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_ECC\_SECP160R1}{LTC\_ECC\_SECP160R1}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+E\+C\+C\+\_\+\+S\+E\+C\+P160\+R1}
+
+
+
+Definition at line 537 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a323415561813d43bdb3778b7aea80c48}\label{tomcrypt__custom_8h_a323415561813d43bdb3778b7aea80c48}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_ECC\_SECP160R2@{LTC\_ECC\_SECP160R2}}
+\index{LTC\_ECC\_SECP160R2@{LTC\_ECC\_SECP160R2}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_ECC\_SECP160R2}{LTC\_ECC\_SECP160R2}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+E\+C\+C\+\_\+\+S\+E\+C\+P160\+R2}
+
+
+
+Definition at line 538 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_af9a8f132d9ce6cfbd626eb8cbada44de}\label{tomcrypt__custom_8h_af9a8f132d9ce6cfbd626eb8cbada44de}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_ECC\_SECP192K1@{LTC\_ECC\_SECP192K1}}
+\index{LTC\_ECC\_SECP192K1@{LTC\_ECC\_SECP192K1}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_ECC\_SECP192K1}{LTC\_ECC\_SECP192K1}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+E\+C\+C\+\_\+\+S\+E\+C\+P192\+K1}
+
+
+
+Definition at line 539 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_af29fc00ec7889878b7bcf4331236ba56}\label{tomcrypt__custom_8h_af29fc00ec7889878b7bcf4331236ba56}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_ECC\_SECP192R1@{LTC\_ECC\_SECP192R1}}
+\index{LTC\_ECC\_SECP192R1@{LTC\_ECC\_SECP192R1}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_ECC\_SECP192R1}{LTC\_ECC\_SECP192R1}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+E\+C\+C\+\_\+\+S\+E\+C\+P192\+R1}
+
+
+
+Definition at line 540 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a5486c4003dc24b7f15d71b224020f44c}\label{tomcrypt__custom_8h_a5486c4003dc24b7f15d71b224020f44c}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_ECC\_SECP224K1@{LTC\_ECC\_SECP224K1}}
+\index{LTC\_ECC\_SECP224K1@{LTC\_ECC\_SECP224K1}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_ECC\_SECP224K1}{LTC\_ECC\_SECP224K1}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+E\+C\+C\+\_\+\+S\+E\+C\+P224\+K1}
+
+
+
+Definition at line 541 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_abad6e8376ec44b8dfae522804e5462a8}\label{tomcrypt__custom_8h_abad6e8376ec44b8dfae522804e5462a8}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_ECC\_SECP224R1@{LTC\_ECC\_SECP224R1}}
+\index{LTC\_ECC\_SECP224R1@{LTC\_ECC\_SECP224R1}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_ECC\_SECP224R1}{LTC\_ECC\_SECP224R1}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+E\+C\+C\+\_\+\+S\+E\+C\+P224\+R1}
+
+
+
+Definition at line 542 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a6192765b87a3629846754b43b6760993}\label{tomcrypt__custom_8h_a6192765b87a3629846754b43b6760993}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_ECC\_SECP256K1@{LTC\_ECC\_SECP256K1}}
+\index{LTC\_ECC\_SECP256K1@{LTC\_ECC\_SECP256K1}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_ECC\_SECP256K1}{LTC\_ECC\_SECP256K1}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+E\+C\+C\+\_\+\+S\+E\+C\+P256\+K1}
+
+
+
+Definition at line 543 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a86484067d0b8eb5392b99e9269e8691f}\label{tomcrypt__custom_8h_a86484067d0b8eb5392b99e9269e8691f}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_ECC\_SECP256R1@{LTC\_ECC\_SECP256R1}}
+\index{LTC\_ECC\_SECP256R1@{LTC\_ECC\_SECP256R1}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_ECC\_SECP256R1}{LTC\_ECC\_SECP256R1}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+E\+C\+C\+\_\+\+S\+E\+C\+P256\+R1}
+
+
+
+Definition at line 544 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a55c0cd378133d30164c73a81107a85a2}\label{tomcrypt__custom_8h_a55c0cd378133d30164c73a81107a85a2}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_ECC\_SECP384R1@{LTC\_ECC\_SECP384R1}}
+\index{LTC\_ECC\_SECP384R1@{LTC\_ECC\_SECP384R1}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_ECC\_SECP384R1}{LTC\_ECC\_SECP384R1}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+E\+C\+C\+\_\+\+S\+E\+C\+P384\+R1}
+
+
+
+Definition at line 545 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_af1565e802f1bbf43ab661adaa6c2f29e}\label{tomcrypt__custom_8h_af1565e802f1bbf43ab661adaa6c2f29e}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_ECC\_SECP521R1@{LTC\_ECC\_SECP521R1}}
+\index{LTC\_ECC\_SECP521R1@{LTC\_ECC\_SECP521R1}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_ECC\_SECP521R1}{LTC\_ECC\_SECP521R1}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+E\+C\+C\+\_\+\+S\+E\+C\+P521\+R1}
+
+
+
+Definition at line 546 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_ac3b6fb191bf1bcde606d778b4e0c9325}\label{tomcrypt__custom_8h_ac3b6fb191bf1bcde606d778b4e0c9325}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_ECC\_SHAMIR@{LTC\_ECC\_SHAMIR}}
+\index{LTC\_ECC\_SHAMIR@{LTC\_ECC\_SHAMIR}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_ECC\_SHAMIR}{LTC\_ECC\_SHAMIR}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+E\+C\+C\+\_\+\+S\+H\+A\+M\+IR}
+
+
+
+Definition at line 438 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_aca730227ae77ada45065644bff8680e9}\label{tomcrypt__custom_8h_aca730227ae77ada45065644bff8680e9}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_ECC\_TIMING\_RESISTANT@{LTC\_ECC\_TIMING\_RESISTANT}}
+\index{LTC\_ECC\_TIMING\_RESISTANT@{LTC\_ECC\_TIMING\_RESISTANT}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_ECC\_TIMING\_RESISTANT}{LTC\_ECC\_TIMING\_RESISTANT}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+E\+C\+C\+\_\+\+T\+I\+M\+I\+N\+G\+\_\+\+R\+E\+S\+I\+S\+T\+A\+NT}
+
+
+
+Definition at line 461 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a710816aafe0fae00e2b909cb4ab703a9}\label{tomcrypt__custom_8h_a710816aafe0fae00e2b909cb4ab703a9}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_F8\_MODE@{LTC\_F8\_MODE}}
+\index{LTC\_F8\_MODE@{LTC\_F8\_MODE}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_F8\_MODE}{LTC\_F8\_MODE}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+F8\+\_\+\+M\+O\+DE}
+
+
+
+Definition at line 233 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_ad4077361cd3d2748c77b02df0b059ad6}\label{tomcrypt__custom_8h_ad4077361cd3d2748c77b02df0b059ad6}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_F9\_MODE@{LTC\_F9\_MODE}}
+\index{LTC\_F9\_MODE@{LTC\_F9\_MODE}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_F9\_MODE}{LTC\_F9\_MODE}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+F9\+\_\+\+M\+O\+DE}
+
+
+
+Definition at line 286 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_ac4fd38d776468eef7213777e70f16124}\label{tomcrypt__custom_8h_ac4fd38d776468eef7213777e70f16124}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_FILE\_READ\_BUFSIZE@{LTC\_FILE\_READ\_BUFSIZE}}
+\index{LTC\_FILE\_READ\_BUFSIZE@{LTC\_FILE\_READ\_BUFSIZE}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_FILE\_READ\_BUFSIZE}{LTC\_FILE\_READ\_BUFSIZE}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+F\+I\+L\+E\+\_\+\+R\+E\+A\+D\+\_\+\+B\+U\+F\+S\+I\+ZE~8192}
+
+
+
+Definition at line 672 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a403f6681ba4dc0da8d96838aef03e942}\label{tomcrypt__custom_8h_a403f6681ba4dc0da8d96838aef03e942}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_FORTUNA@{LTC\_FORTUNA}}
+\index{LTC\_FORTUNA@{LTC\_FORTUNA}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_FORTUNA}{LTC\_FORTUNA}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+F\+O\+R\+T\+U\+NA}
+
+
+
+Definition at line 331 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_aa38cc64a9bea21aba17c1936b453f77b}\label{tomcrypt__custom_8h_aa38cc64a9bea21aba17c1936b453f77b}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_FORTUNA\_POOLS@{LTC\_FORTUNA\_POOLS}}
+\index{LTC\_FORTUNA\_POOLS@{LTC\_FORTUNA\_POOLS}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_FORTUNA\_POOLS}{LTC\_FORTUNA\_POOLS}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+F\+O\+R\+T\+U\+N\+A\+\_\+\+P\+O\+O\+LS~32}
+
+
+
+Definition at line 402 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_af58a920e681cb68756017d8364e4a692}\label{tomcrypt__custom_8h_af58a920e681cb68756017d8364e4a692}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_FORTUNA\_WD@{LTC\_FORTUNA\_WD}}
+\index{LTC\_FORTUNA\_WD@{LTC\_FORTUNA\_WD}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_FORTUNA\_WD}{LTC\_FORTUNA\_WD}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+F\+O\+R\+T\+U\+N\+A\+\_\+\+WD~10}
+
+
+
+Definition at line 384 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a3f9ab50a84e8490486bc5fe543cc316b}\label{tomcrypt__custom_8h_a3f9ab50a84e8490486bc5fe543cc316b}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_GCM\_MODE@{LTC\_GCM\_MODE}}
+\index{LTC\_GCM\_MODE@{LTC\_GCM\_MODE}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_GCM\_MODE}{LTC\_GCM\_MODE}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+G\+C\+M\+\_\+\+M\+O\+DE}
+
+
+
+Definition at line 299 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_af0b3f1130866eb0f80e301614d55212c}\label{tomcrypt__custom_8h_af0b3f1130866eb0f80e301614d55212c}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_GCM\_TABLES@{LTC\_GCM\_TABLES}}
+\index{LTC\_GCM\_TABLES@{LTC\_GCM\_TABLES}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_GCM\_TABLES}{LTC\_GCM\_TABLES}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+G\+C\+M\+\_\+\+T\+A\+B\+L\+ES}
+
+
+
+Definition at line 304 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_aaabf91924b9c371d578e7589ff03e4a0}\label{tomcrypt__custom_8h_aaabf91924b9c371d578e7589ff03e4a0}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_HASH\_HELPERS@{LTC\_HASH\_HELPERS}}
+\index{LTC\_HASH\_HELPERS@{LTC\_HASH\_HELPERS}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_HASH\_HELPERS}{LTC\_HASH\_HELPERS}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+H\+A\+S\+H\+\_\+\+H\+E\+L\+P\+E\+RS}
+
+
+
+Definition at line 274 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a44d0208a4492a509125d5d04fdeb13a3}\label{tomcrypt__custom_8h_a44d0208a4492a509125d5d04fdeb13a3}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_HKDF@{LTC\_HKDF}}
+\index{LTC\_HKDF@{LTC\_HKDF}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_HKDF}{LTC\_HKDF}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+H\+K\+DF}
+
+
+
+Definition at line 493 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_adc8476d1ced2e85f865bb6df4a1f030c}\label{tomcrypt__custom_8h_adc8476d1ced2e85f865bb6df4a1f030c}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_HMAC@{LTC\_HMAC}}
+\index{LTC\_HMAC@{LTC\_HMAC}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_HMAC}{LTC\_HMAC}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+H\+M\+AC}
+
+
+
+Definition at line 282 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a07e85153fd6bae543103946cfdd16d1f}\label{tomcrypt__custom_8h_a07e85153fd6bae543103946cfdd16d1f}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_IDEA@{LTC\_IDEA}}
+\index{LTC\_IDEA@{LTC\_IDEA}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_IDEA}{LTC\_IDEA}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+I\+D\+EA}
+
+
+
+Definition at line 208 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_ad9048a3d6433a0a854ec846e4878259c}\label{tomcrypt__custom_8h_ad9048a3d6433a0a854ec846e4878259c}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_KASUMI@{LTC\_KASUMI}}
+\index{LTC\_KASUMI@{LTC\_KASUMI}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_KASUMI}{LTC\_KASUMI}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+K\+A\+S\+U\+MI}
+
+
+
+Definition at line 205 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a3bc7467b0dd169e5a588829580b2eb28}\label{tomcrypt__custom_8h_a3bc7467b0dd169e5a588829580b2eb28}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_KECCAK@{LTC\_KECCAK}}
+\index{LTC\_KECCAK@{LTC\_KECCAK}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_KECCAK}{LTC\_KECCAK}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+K\+E\+C\+C\+AK}
+
+
+
+Definition at line 255 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a04c82b8dfd5c283ccd7589383c87ae9c}\label{tomcrypt__custom_8h_a04c82b8dfd5c283ccd7589383c87ae9c}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_KHAZAD@{LTC\_KHAZAD}}
+\index{LTC\_KHAZAD@{LTC\_KHAZAD}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_KHAZAD}{LTC\_KHAZAD}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+K\+H\+A\+Z\+AD}
+
+
+
+Definition at line 201 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_afe7124512007a185dc2f4607525cf150}\label{tomcrypt__custom_8h_afe7124512007a185dc2f4607525cf150}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_KSEED@{LTC\_KSEED}}
+\index{LTC\_KSEED@{LTC\_KSEED}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_KSEED}{LTC\_KSEED}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+K\+S\+E\+ED}
+
+
+
+Definition at line 204 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_ad65dc04c72dea3435cfc5473fe0106d7}\label{tomcrypt__custom_8h_ad65dc04c72dea3435cfc5473fe0106d7}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_LRW\_MODE@{LTC\_LRW\_MODE}}
+\index{LTC\_LRW\_MODE@{LTC\_LRW\_MODE}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_LRW\_MODE}{LTC\_LRW\_MODE}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+L\+R\+W\+\_\+\+M\+O\+DE}
+
+
+
+Definition at line 236 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a53ff13e092efcca3e0b880934d3b3ded}\label{tomcrypt__custom_8h_a53ff13e092efcca3e0b880934d3b3ded}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_LRW\_TABLES@{LTC\_LRW\_TABLES}}
+\index{LTC\_LRW\_TABLES@{LTC\_LRW\_TABLES}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_LRW\_TABLES}{LTC\_LRW\_TABLES}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+L\+R\+W\+\_\+\+T\+A\+B\+L\+ES}
+
+
+
+Definition at line 241 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_abcf9d5b5a20a22e6f060414481ff9591}\label{tomcrypt__custom_8h_abcf9d5b5a20a22e6f060414481ff9591}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_MD2@{LTC\_MD2}}
+\index{LTC\_MD2@{LTC\_MD2}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_MD2}{LTC\_MD2}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+M\+D2}
+
+
+
+Definition at line 266 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a4e40d09feca44ebf8247600891287963}\label{tomcrypt__custom_8h_a4e40d09feca44ebf8247600891287963}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_MD4@{LTC\_MD4}}
+\index{LTC\_MD4@{LTC\_MD4}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_MD4}{LTC\_MD4}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+M\+D4}
+
+
+
+Definition at line 265 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_abe3dc993b6d50a6197892a742efc012e}\label{tomcrypt__custom_8h_abe3dc993b6d50a6197892a742efc012e}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_MD5@{LTC\_MD5}}
+\index{LTC\_MD5@{LTC\_MD5}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_MD5}{LTC\_MD5}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+M\+D5}
+
+
+
+Definition at line 264 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_ab144ebaee7cb0d1a535cfd5da9b643ee}\label{tomcrypt__custom_8h_ab144ebaee7cb0d1a535cfd5da9b643ee}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_MDH@{LTC\_MDH}}
+\index{LTC\_MDH@{LTC\_MDH}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_MDH}{LTC\_MDH}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+M\+DH}
+
+
+
+Definition at line 416 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_acb62ea2fa28c8cc63eda37aac346ff7c}\label{tomcrypt__custom_8h_acb62ea2fa28c8cc63eda37aac346ff7c}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_MDSA@{LTC\_MDSA}}
+\index{LTC\_MDSA@{LTC\_MDSA}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_MDSA}{LTC\_MDSA}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+M\+D\+SA}
+
+
+
+Definition at line 432 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a4f18dd45318a8d83687814413bda0818}\label{tomcrypt__custom_8h_a4f18dd45318a8d83687814413bda0818}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_MECC@{LTC\_MECC}}
+\index{LTC\_MECC@{LTC\_MECC}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_MECC}{LTC\_MECC}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+M\+E\+CC}
+
+
+
+Definition at line 435 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a33bea16507613bd9dd6089fee7cc2570}\label{tomcrypt__custom_8h_a33bea16507613bd9dd6089fee7cc2570}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_MECC\_ACCEL@{LTC\_MECC\_ACCEL}}
+\index{LTC\_MECC\_ACCEL@{LTC\_MECC\_ACCEL}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_MECC\_ACCEL}{LTC\_MECC\_ACCEL}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+M\+E\+C\+C\+\_\+\+A\+C\+C\+EL}
+
+
+
+Definition at line 441 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a5a79e528a3a28ec50f37e59243c69abc}\label{tomcrypt__custom_8h_a5a79e528a3a28ec50f37e59243c69abc}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_MPI@{LTC\_MPI}}
+\index{LTC\_MPI@{LTC\_MPI}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_MPI}{LTC\_MPI}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+M\+PI}
+
+
+
+Definition at line 559 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a7bc429d1d1b63c7c448802b16358a5e4}\label{tomcrypt__custom_8h_a7bc429d1d1b63c7c448802b16358a5e4}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_MRSA@{LTC\_MRSA}}
+\index{LTC\_MRSA@{LTC\_MRSA}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_MRSA}{LTC\_MRSA}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+M\+R\+SA}
+
+
+
+Definition at line 412 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_ac655188fb00c999df6bbc52af2419711}\label{tomcrypt__custom_8h_ac655188fb00c999df6bbc52af2419711}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_MULTI2@{LTC\_MULTI2}}
+\index{LTC\_MULTI2@{LTC\_MULTI2}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_MULTI2}{LTC\_MULTI2}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+M\+U\+L\+T\+I2}
+
+
+
+Definition at line 206 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_ae3979e1469d64fe3e864c9effca73724}\label{tomcrypt__custom_8h_ae3979e1469d64fe3e864c9effca73724}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_MUTEX\_DESTROY@{LTC\_MUTEX\_DESTROY}}
+\index{LTC\_MUTEX\_DESTROY@{LTC\_MUTEX\_DESTROY}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_MUTEX\_DESTROY}{LTC\_MUTEX\_DESTROY}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+M\+U\+T\+E\+X\+\_\+\+D\+E\+S\+T\+R\+OY(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})}
+
+
+
+Definition at line 658 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_aec6ff21ae508300430d5e2f4cd106579}\label{tomcrypt__custom_8h_aec6ff21ae508300430d5e2f4cd106579}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_MUTEX\_GLOBAL@{LTC\_MUTEX\_GLOBAL}}
+\index{LTC\_MUTEX\_GLOBAL@{LTC\_MUTEX\_GLOBAL}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_MUTEX\_GLOBAL}{LTC\_MUTEX\_GLOBAL}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+M\+U\+T\+E\+X\+\_\+\+G\+L\+O\+B\+AL(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})}
+
+
+
+Definition at line 652 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a450b04a6e1d004908791edaa0901d284}\label{tomcrypt__custom_8h_a450b04a6e1d004908791edaa0901d284}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_MUTEX\_INIT@{LTC\_MUTEX\_INIT}}
+\index{LTC\_MUTEX\_INIT@{LTC\_MUTEX\_INIT}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_MUTEX\_INIT}{LTC\_MUTEX\_INIT}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+M\+U\+T\+E\+X\+\_\+\+I\+N\+IT(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})}
+
+
+
+Definition at line 655 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a427a107414e4d775fbf23f4a499f4a31}\label{tomcrypt__custom_8h_a427a107414e4d775fbf23f4a499f4a31}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_MUTEX\_LOCK@{LTC\_MUTEX\_LOCK}}
+\index{LTC\_MUTEX\_LOCK@{LTC\_MUTEX\_LOCK}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_MUTEX\_LOCK}{LTC\_MUTEX\_LOCK}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+M\+U\+T\+E\+X\+\_\+\+L\+O\+CK(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})}
+
+
+
+Definition at line 656 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a4d373437aef3cab728480c4e9b08fbaf}\label{tomcrypt__custom_8h_a4d373437aef3cab728480c4e9b08fbaf}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_MUTEX\_PROTO@{LTC\_MUTEX\_PROTO}}
+\index{LTC\_MUTEX\_PROTO@{LTC\_MUTEX\_PROTO}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_MUTEX\_PROTO}{LTC\_MUTEX\_PROTO}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+M\+U\+T\+E\+X\+\_\+\+P\+R\+O\+TO(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})}
+
+
+
+Definition at line 653 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_aee2265b5d5f1bbc5fb3ca394d7b0c913}\label{tomcrypt__custom_8h_aee2265b5d5f1bbc5fb3ca394d7b0c913}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_MUTEX\_TYPE@{LTC\_MUTEX\_TYPE}}
+\index{LTC\_MUTEX\_TYPE@{LTC\_MUTEX\_TYPE}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_MUTEX\_TYPE}{LTC\_MUTEX\_TYPE}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+M\+U\+T\+E\+X\+\_\+\+T\+Y\+PE(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})}
+
+
+
+Definition at line 654 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_acdf267be91b178b4fafe8f992d57a7f1}\label{tomcrypt__custom_8h_acdf267be91b178b4fafe8f992d57a7f1}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_MUTEX\_UNLOCK@{LTC\_MUTEX\_UNLOCK}}
+\index{LTC\_MUTEX\_UNLOCK@{LTC\_MUTEX\_UNLOCK}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_MUTEX\_UNLOCK}{LTC\_MUTEX\_UNLOCK}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+M\+U\+T\+E\+X\+\_\+\+U\+N\+L\+O\+CK(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})}
+
+
+
+Definition at line 657 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a51b907eb1ab21056ed71315f99d36f0b}\label{tomcrypt__custom_8h_a51b907eb1ab21056ed71315f99d36f0b}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_NOEKEON@{LTC\_NOEKEON}}
+\index{LTC\_NOEKEON@{LTC\_NOEKEON}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_NOEKEON}{LTC\_NOEKEON}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+N\+O\+E\+K\+E\+ON}
+
+
+
+Definition at line 198 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a2976e2a4e9dbbd40add4bb0da3ee92bd}\label{tomcrypt__custom_8h_a2976e2a4e9dbbd40add4bb0da3ee92bd}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_OCB3\_MODE@{LTC\_OCB3\_MODE}}
+\index{LTC\_OCB3\_MODE@{LTC\_OCB3\_MODE}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_OCB3\_MODE}{LTC\_OCB3\_MODE}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+O\+C\+B3\+\_\+\+M\+O\+DE}
+
+
+
+Definition at line 297 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a376e389cc4002728380f454b7057e716}\label{tomcrypt__custom_8h_a376e389cc4002728380f454b7057e716}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_OCB\_MODE@{LTC\_OCB\_MODE}}
+\index{LTC\_OCB\_MODE@{LTC\_OCB\_MODE}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_OCB\_MODE}{LTC\_OCB\_MODE}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+O\+C\+B\+\_\+\+M\+O\+DE}
+
+
+
+Definition at line 296 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a04c16e86531ceb4e884b72a4b341f952}\label{tomcrypt__custom_8h_a04c16e86531ceb4e884b72a4b341f952}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_OFB\_MODE@{LTC\_OFB\_MODE}}
+\index{LTC\_OFB\_MODE@{LTC\_OFB\_MODE}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_OFB\_MODE}{LTC\_OFB\_MODE}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+O\+F\+B\+\_\+\+M\+O\+DE}
+
+
+
+Definition at line 227 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a17e0447a51620b133bb31aa9e79accbe}\label{tomcrypt__custom_8h_a17e0447a51620b133bb31aa9e79accbe}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_OMAC@{LTC\_OMAC}}
+\index{LTC\_OMAC@{LTC\_OMAC}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_OMAC}{LTC\_OMAC}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+O\+M\+AC}
+
+
+
+Definition at line 283 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a18c134f727618d9ec82356276dfd2bd2}\label{tomcrypt__custom_8h_a18c134f727618d9ec82356276dfd2bd2}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_PADDING@{LTC\_PADDING}}
+\index{LTC\_PADDING@{LTC\_PADDING}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_PADDING}{LTC\_PADDING}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+P\+A\+D\+D\+I\+NG}
+
+
+
+Definition at line 576 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a18c134f727618d9ec82356276dfd2bd2}\label{tomcrypt__custom_8h_a18c134f727618d9ec82356276dfd2bd2}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_PADDING@{LTC\_PADDING}}
+\index{LTC\_PADDING@{LTC\_PADDING}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_PADDING}{LTC\_PADDING}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+P\+A\+D\+D\+I\+NG}
+
+
+
+Definition at line 576 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a302862374bf4c5e91c723ffbcd29aaae}\label{tomcrypt__custom_8h_a302862374bf4c5e91c723ffbcd29aaae}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_PBES@{LTC\_PBES}}
+\index{LTC\_PBES@{LTC\_PBES}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_PBES}{LTC\_PBES}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+P\+B\+ES}
+
+
+
+Definition at line 577 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a302862374bf4c5e91c723ffbcd29aaae}\label{tomcrypt__custom_8h_a302862374bf4c5e91c723ffbcd29aaae}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_PBES@{LTC\_PBES}}
+\index{LTC\_PBES@{LTC\_PBES}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_PBES}{LTC\_PBES}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+P\+B\+ES}
+
+
+
+Definition at line 577 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_ab1dca3634fbf64c8fc8830c439ce5e09}\label{tomcrypt__custom_8h_ab1dca3634fbf64c8fc8830c439ce5e09}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_PELICAN@{LTC\_PELICAN}}
+\index{LTC\_PELICAN@{LTC\_PELICAN}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_PELICAN}{LTC\_PELICAN}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+P\+E\+L\+I\+C\+AN}
+
+
+
+Definition at line 287 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a62913bd9180a860012d74795f29f9f42}\label{tomcrypt__custom_8h_a62913bd9180a860012d74795f29f9f42}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_PK\_MAX\_RETRIES@{LTC\_PK\_MAX\_RETRIES}}
+\index{LTC\_PK\_MAX\_RETRIES@{LTC\_PK\_MAX\_RETRIES}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_PK\_MAX\_RETRIES}{LTC\_PK\_MAX\_RETRIES}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+P\+K\+\_\+\+M\+A\+X\+\_\+\+R\+E\+T\+R\+I\+ES~20}
+
+
+
+Definition at line 563 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_aa7036ad20160357547351666933dc289}\label{tomcrypt__custom_8h_aa7036ad20160357547351666933dc289}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_PKCS\_1@{LTC\_PKCS\_1}}
+\index{LTC\_PKCS\_1@{LTC\_PKCS\_1}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_PKCS\_1}{LTC\_PKCS\_1}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+P\+K\+C\+S\+\_\+1}
+
+
+
+Definition at line 568 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_aa7036ad20160357547351666933dc289}\label{tomcrypt__custom_8h_aa7036ad20160357547351666933dc289}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_PKCS\_1@{LTC\_PKCS\_1}}
+\index{LTC\_PKCS\_1@{LTC\_PKCS\_1}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_PKCS\_1}{LTC\_PKCS\_1}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+P\+K\+C\+S\+\_\+1}
+
+
+
+Definition at line 568 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a427fffc4c1f63b7da3db46e8631e80aa}\label{tomcrypt__custom_8h_a427fffc4c1f63b7da3db46e8631e80aa}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_PKCS\_12@{LTC\_PKCS\_12}}
+\index{LTC\_PKCS\_12@{LTC\_PKCS\_12}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_PKCS\_12}{LTC\_PKCS\_12}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+P\+K\+C\+S\+\_\+12}
+
+
+
+Definition at line 470 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a82f05c2f54dafe59a5376d1427d41d74}\label{tomcrypt__custom_8h_a82f05c2f54dafe59a5376d1427d41d74}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_PKCS\_5@{LTC\_PKCS\_5}}
+\index{LTC\_PKCS\_5@{LTC\_PKCS\_5}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_PKCS\_5}{LTC\_PKCS\_5}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+P\+K\+C\+S\+\_\+5}
+
+
+
+Definition at line 468 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a74e0e28752e26f3c621d5ac5d231fa98}\label{tomcrypt__custom_8h_a74e0e28752e26f3c621d5ac5d231fa98}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_PKCS\_8@{LTC\_PKCS\_8}}
+\index{LTC\_PKCS\_8@{LTC\_PKCS\_8}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_PKCS\_8}{LTC\_PKCS\_8}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+P\+K\+C\+S\+\_\+8}
+
+
+
+Definition at line 572 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a74e0e28752e26f3c621d5ac5d231fa98}\label{tomcrypt__custom_8h_a74e0e28752e26f3c621d5ac5d231fa98}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_PKCS\_8@{LTC\_PKCS\_8}}
+\index{LTC\_PKCS\_8@{LTC\_PKCS\_8}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_PKCS\_8}{LTC\_PKCS\_8}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+P\+K\+C\+S\+\_\+8}
+
+
+
+Definition at line 572 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a6d618bc1681da455fbcac150cf6ec867}\label{tomcrypt__custom_8h_a6d618bc1681da455fbcac150cf6ec867}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_PMAC@{LTC\_PMAC}}
+\index{LTC\_PMAC@{LTC\_PMAC}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_PMAC}{LTC\_PMAC}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+P\+M\+AC}
+
+
+
+Definition at line 284 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_af7bb47cfd06860c92c72edca3550d4ca}\label{tomcrypt__custom_8h_af7bb47cfd06860c92c72edca3550d4ca}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_POLY1305@{LTC\_POLY1305}}
+\index{LTC\_POLY1305@{LTC\_POLY1305}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_POLY1305}{LTC\_POLY1305}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+P\+O\+L\+Y1305}
+
+
+
+Definition at line 288 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_aa274bed126223afaf730d99023b80fd7}\label{tomcrypt__custom_8h_aa274bed126223afaf730d99023b80fd7}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_RABBIT@{LTC\_RABBIT}}
+\index{LTC\_RABBIT@{LTC\_RABBIT}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_RABBIT}{LTC\_RABBIT}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+R\+A\+B\+B\+IT}
+
+
+
+Definition at line 216 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_ab32f725b98a35686617648e2afb48bb5}\label{tomcrypt__custom_8h_ab32f725b98a35686617648e2afb48bb5}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_RC2@{LTC\_RC2}}
+\index{LTC\_RC2@{LTC\_RC2}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_RC2}{LTC\_RC2}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+R\+C2}
+
+
+
+Definition at line 179 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a98f0124ab981b2487a47eb0332dbd383}\label{tomcrypt__custom_8h_a98f0124ab981b2487a47eb0332dbd383}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_RC4@{LTC\_RC4}}
+\index{LTC\_RC4@{LTC\_RC4}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_RC4}{LTC\_RC4}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+R\+C4}
+
+
+
+Definition at line 325 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a92e92e76d829b8be63f643b40d476aea}\label{tomcrypt__custom_8h_a92e92e76d829b8be63f643b40d476aea}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_RC4\_STREAM@{LTC\_RC4\_STREAM}}
+\index{LTC\_RC4\_STREAM@{LTC\_RC4\_STREAM}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_RC4\_STREAM}{LTC\_RC4\_STREAM}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+R\+C4\+\_\+\+S\+T\+R\+E\+AM}
+
+
+
+Definition at line 217 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_aca17bbe6d81c7b97b05639d311eb26a8}\label{tomcrypt__custom_8h_aca17bbe6d81c7b97b05639d311eb26a8}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_RC5@{LTC\_RC5}}
+\index{LTC\_RC5@{LTC\_RC5}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_RC5}{LTC\_RC5}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+R\+C5}
+
+
+
+Definition at line 180 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_ab38b2f71497dfa7ee76d8540577598a3}\label{tomcrypt__custom_8h_ab38b2f71497dfa7ee76d8540577598a3}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_RC6@{LTC\_RC6}}
+\index{LTC\_RC6@{LTC\_RC6}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_RC6}{LTC\_RC6}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+R\+C6}
+
+
+
+Definition at line 181 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a7883d38c7db4a9c16d251b1e94764814}\label{tomcrypt__custom_8h_a7883d38c7db4a9c16d251b1e94764814}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_RIJNDAEL@{LTC\_RIJNDAEL}}
+\index{LTC\_RIJNDAEL@{LTC\_RIJNDAEL}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_RIJNDAEL}{LTC\_RIJNDAEL}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+R\+I\+J\+N\+D\+A\+EL}
+
+
+
+Definition at line 183 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_ac7374ca3fff83272eabb96ca1e92075e}\label{tomcrypt__custom_8h_ac7374ca3fff83272eabb96ca1e92075e}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_RIPEMD128@{LTC\_RIPEMD128}}
+\index{LTC\_RIPEMD128@{LTC\_RIPEMD128}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_RIPEMD128}{LTC\_RIPEMD128}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+R\+I\+P\+E\+M\+D128}
+
+
+
+Definition at line 267 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_afcdc6b5a77faee54b6c5a49f27b75eeb}\label{tomcrypt__custom_8h_afcdc6b5a77faee54b6c5a49f27b75eeb}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_RIPEMD160@{LTC\_RIPEMD160}}
+\index{LTC\_RIPEMD160@{LTC\_RIPEMD160}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_RIPEMD160}{LTC\_RIPEMD160}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+R\+I\+P\+E\+M\+D160}
+
+
+
+Definition at line 268 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a140c3e4b52f25a0ce0260c27f151ac8f}\label{tomcrypt__custom_8h_a140c3e4b52f25a0ce0260c27f151ac8f}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_RIPEMD256@{LTC\_RIPEMD256}}
+\index{LTC\_RIPEMD256@{LTC\_RIPEMD256}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_RIPEMD256}{LTC\_RIPEMD256}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+R\+I\+P\+E\+M\+D256}
+
+
+
+Definition at line 269 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a5274bdd0d0118e6cc5d80cba8b981ae1}\label{tomcrypt__custom_8h_a5274bdd0d0118e6cc5d80cba8b981ae1}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_RIPEMD320@{LTC\_RIPEMD320}}
+\index{LTC\_RIPEMD320@{LTC\_RIPEMD320}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_RIPEMD320}{LTC\_RIPEMD320}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+R\+I\+P\+E\+M\+D320}
+
+
+
+Definition at line 270 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a86f88c249e3ca6f8b9cd835ee8c420e8}\label{tomcrypt__custom_8h_a86f88c249e3ca6f8b9cd835ee8c420e8}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_RNG\_GET\_BYTES@{LTC\_RNG\_GET\_BYTES}}
+\index{LTC\_RNG\_GET\_BYTES@{LTC\_RNG\_GET\_BYTES}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_RNG\_GET\_BYTES}{LTC\_RNG\_GET\_BYTES}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+R\+N\+G\+\_\+\+G\+E\+T\+\_\+\+B\+Y\+T\+ES}
+
+
+
+Definition at line 342 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a8a67cb7596bed2f7c07e89a0108ce8cb}\label{tomcrypt__custom_8h_a8a67cb7596bed2f7c07e89a0108ce8cb}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_RNG\_MAKE\_PRNG@{LTC\_RNG\_MAKE\_PRNG}}
+\index{LTC\_RNG\_MAKE\_PRNG@{LTC\_RNG\_MAKE\_PRNG}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_RNG\_MAKE\_PRNG}{LTC\_RNG\_MAKE\_PRNG}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+R\+N\+G\+\_\+\+M\+A\+K\+E\+\_\+\+P\+R\+NG}
+
+
+
+Definition at line 344 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a8592d7a6a6465d3e0c8974bb2045c941}\label{tomcrypt__custom_8h_a8592d7a6a6465d3e0c8974bb2045c941}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_RSA\_BLINDING@{LTC\_RSA\_BLINDING}}
+\index{LTC\_RSA\_BLINDING@{LTC\_RSA\_BLINDING}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_RSA\_BLINDING}{LTC\_RSA\_BLINDING}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+R\+S\+A\+\_\+\+B\+L\+I\+N\+D\+I\+NG}
+
+
+
+Definition at line 451 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a058bfc4f9485f8925836d0095ecd6289}\label{tomcrypt__custom_8h_a058bfc4f9485f8925836d0095ecd6289}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_RSA\_CRT\_HARDENING@{LTC\_RSA\_CRT\_HARDENING}}
+\index{LTC\_RSA\_CRT\_HARDENING@{LTC\_RSA\_CRT\_HARDENING}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_RSA\_CRT\_HARDENING}{LTC\_RSA\_CRT\_HARDENING}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+R\+S\+A\+\_\+\+C\+R\+T\+\_\+\+H\+A\+R\+D\+E\+N\+I\+NG}
+
+
+
+Definition at line 456 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a8ecf3adf744201b32d326221beece733}\label{tomcrypt__custom_8h_a8ecf3adf744201b32d326221beece733}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_SAFER@{LTC\_SAFER}}
+\index{LTC\_SAFER@{LTC\_SAFER}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_SAFER}{LTC\_SAFER}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+S\+A\+F\+ER}
+
+
+
+Definition at line 200 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_ac19c6063a540baf8a67eb95101468ab7}\label{tomcrypt__custom_8h_ac19c6063a540baf8a67eb95101468ab7}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_SAFERP@{LTC\_SAFERP}}
+\index{LTC\_SAFERP@{LTC\_SAFERP}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_SAFERP}{LTC\_SAFERP}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+S\+A\+F\+E\+RP}
+
+
+
+Definition at line 182 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_ac8d4faee8924c672e9d17e4cc8a5aec3}\label{tomcrypt__custom_8h_ac8d4faee8924c672e9d17e4cc8a5aec3}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_SALSA20@{LTC\_SALSA20}}
+\index{LTC\_SALSA20@{LTC\_SALSA20}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_SALSA20}{LTC\_SALSA20}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+S\+A\+L\+S\+A20}
+
+
+
+Definition at line 213 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_afa521610e31d2a1b9da07a2b4ebb5f2c}\label{tomcrypt__custom_8h_afa521610e31d2a1b9da07a2b4ebb5f2c}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_SERPENT@{LTC\_SERPENT}}
+\index{LTC\_SERPENT@{LTC\_SERPENT}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_SERPENT}{LTC\_SERPENT}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+S\+E\+R\+P\+E\+NT}
+
+
+
+Definition at line 209 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a3c5bf18f862fc7d892b577635750455b}\label{tomcrypt__custom_8h_a3c5bf18f862fc7d892b577635750455b}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_SHA1@{LTC\_SHA1}}
+\index{LTC\_SHA1@{LTC\_SHA1}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_SHA1}{LTC\_SHA1}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+S\+H\+A1}
+
+
+
+Definition at line 263 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a5ae7a281157e69f3642b9dd79cb28193}\label{tomcrypt__custom_8h_a5ae7a281157e69f3642b9dd79cb28193}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_SHA224@{LTC\_SHA224}}
+\index{LTC\_SHA224@{LTC\_SHA224}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_SHA224}{LTC\_SHA224}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+S\+H\+A224}
+
+
+
+Definition at line 261 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_ac92fb91eac068a399d25e5274784ba24}\label{tomcrypt__custom_8h_ac92fb91eac068a399d25e5274784ba24}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_SHA256@{LTC\_SHA256}}
+\index{LTC\_SHA256@{LTC\_SHA256}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_SHA256}{LTC\_SHA256}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+S\+H\+A256}
+
+
+
+Definition at line 260 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_adff5e157b4589ec9bacdc104f37c6862}\label{tomcrypt__custom_8h_adff5e157b4589ec9bacdc104f37c6862}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_SHA3@{LTC\_SHA3}}
+\index{LTC\_SHA3@{LTC\_SHA3}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_SHA3}{LTC\_SHA3}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+S\+H\+A3}
+
+
+
+Definition at line 254 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a0db3e446b765fbc07c18517a50c67d03}\label{tomcrypt__custom_8h_a0db3e446b765fbc07c18517a50c67d03}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_SHA384@{LTC\_SHA384}}
+\index{LTC\_SHA384@{LTC\_SHA384}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_SHA384}{LTC\_SHA384}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+S\+H\+A384}
+
+
+
+Definition at line 259 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a569737ff40225b8921538b9ddce74599}\label{tomcrypt__custom_8h_a569737ff40225b8921538b9ddce74599}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_SHA512@{LTC\_SHA512}}
+\index{LTC\_SHA512@{LTC\_SHA512}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_SHA512}{LTC\_SHA512}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+S\+H\+A512}
+
+
+
+Definition at line 256 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_afb66d0dd89a3e92aeaa9c3bb6a173eae}\label{tomcrypt__custom_8h_afb66d0dd89a3e92aeaa9c3bb6a173eae}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_SHA512\_224@{LTC\_SHA512\_224}}
+\index{LTC\_SHA512\_224@{LTC\_SHA512\_224}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_SHA512\_224}{LTC\_SHA512\_224}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+S\+H\+A512\+\_\+224}
+
+
+
+Definition at line 258 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a099787559637c08e7a27f2cf8fe9f889}\label{tomcrypt__custom_8h_a099787559637c08e7a27f2cf8fe9f889}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_SHA512\_256@{LTC\_SHA512\_256}}
+\index{LTC\_SHA512\_256@{LTC\_SHA512\_256}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_SHA512\_256}{LTC\_SHA512\_256}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+S\+H\+A512\+\_\+256}
+
+
+
+Definition at line 257 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_abf94ca9fea78cf0ad90d573f0c62a07c}\label{tomcrypt__custom_8h_abf94ca9fea78cf0ad90d573f0c62a07c}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_SKIPJACK@{LTC\_SKIPJACK}}
+\index{LTC\_SKIPJACK@{LTC\_SKIPJACK}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_SKIPJACK}{LTC\_SKIPJACK}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+S\+K\+I\+P\+J\+A\+CK}
+
+
+
+Definition at line 199 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a56c488847c53b372b9a20739fdbba435}\label{tomcrypt__custom_8h_a56c488847c53b372b9a20739fdbba435}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_SOBER128@{LTC\_SOBER128}}
+\index{LTC\_SOBER128@{LTC\_SOBER128}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_SOBER128}{LTC\_SOBER128}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+S\+O\+B\+E\+R128}
+
+
+
+Definition at line 334 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_afe1973cb9c8b8ec9640fdbc84d27eb28}\label{tomcrypt__custom_8h_afe1973cb9c8b8ec9640fdbc84d27eb28}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_SOBER128\_STREAM@{LTC\_SOBER128\_STREAM}}
+\index{LTC\_SOBER128\_STREAM@{LTC\_SOBER128\_STREAM}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_SOBER128\_STREAM}{LTC\_SOBER128\_STREAM}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+S\+O\+B\+E\+R128\+\_\+\+S\+T\+R\+E\+AM}
+
+
+
+Definition at line 218 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a7aeeacc39365ebb9d8bb848c80f4502a}\label{tomcrypt__custom_8h_a7aeeacc39365ebb9d8bb848c80f4502a}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_SOSEMANUK@{LTC\_SOSEMANUK}}
+\index{LTC\_SOSEMANUK@{LTC\_SOSEMANUK}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_SOSEMANUK}{LTC\_SOSEMANUK}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+S\+O\+S\+E\+M\+A\+N\+UK}
+
+
+
+Definition at line 215 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a0ad918dc52a3456ff2dd58054b813fa4}\label{tomcrypt__custom_8h_a0ad918dc52a3456ff2dd58054b813fa4}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_SPRNG@{LTC\_SPRNG}}
+\index{LTC\_SPRNG@{LTC\_SPRNG}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_SPRNG}{LTC\_SPRNG}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+S\+P\+R\+NG}
+
+
+
+Definition at line 322 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_ad90159826b0b7a69886d685f453b489c}\label{tomcrypt__custom_8h_ad90159826b0b7a69886d685f453b489c}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_SSH@{LTC\_SSH}}
+\index{LTC\_SSH@{LTC\_SSH}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_SSH}{LTC\_SSH}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+S\+SH}
+
+
+
+Definition at line 500 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a45365fe3f5598aa9589cf1e3054077b9}\label{tomcrypt__custom_8h_a45365fe3f5598aa9589cf1e3054077b9}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_TEST@{LTC\_TEST}}
+\index{LTC\_TEST@{LTC\_TEST}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_TEST}{LTC\_TEST}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+T\+E\+ST}
+
+
+
+Definition at line 138 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a49a0d67f44c91661c61e46d610292647}\label{tomcrypt__custom_8h_a49a0d67f44c91661c61e46d610292647}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_TIGER@{LTC\_TIGER}}
+\index{LTC\_TIGER@{LTC\_TIGER}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_TIGER}{LTC\_TIGER}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+T\+I\+G\+ER}
+
+
+
+Definition at line 262 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a5170c4541c694667d70d9230ae571ca4}\label{tomcrypt__custom_8h_a5170c4541c694667d70d9230ae571ca4}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_TRY\_URANDOM\_FIRST@{LTC\_TRY\_URANDOM\_FIRST}}
+\index{LTC\_TRY\_URANDOM\_FIRST@{LTC\_TRY\_URANDOM\_FIRST}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_TRY\_URANDOM\_FIRST}{LTC\_TRY\_URANDOM\_FIRST}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+T\+R\+Y\+\_\+\+U\+R\+A\+N\+D\+O\+M\+\_\+\+F\+I\+R\+ST}
+
+
+
+Definition at line 340 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_aa8a142c30a40e8b8896cd7258079cf95}\label{tomcrypt__custom_8h_aa8a142c30a40e8b8896cd7258079cf95}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_TWOFISH@{LTC\_TWOFISH}}
+\index{LTC\_TWOFISH@{LTC\_TWOFISH}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_TWOFISH}{LTC\_TWOFISH}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+T\+W\+O\+F\+I\+SH}
+
+
+
+Definition at line 187 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_ad23931e21183f88bea9be21727036943}\label{tomcrypt__custom_8h_ad23931e21183f88bea9be21727036943}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_TWOFISH\_TABLES@{LTC\_TWOFISH\_TABLES}}
+\index{LTC\_TWOFISH\_TABLES@{LTC\_TWOFISH\_TABLES}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_TWOFISH\_TABLES}{LTC\_TWOFISH\_TABLES}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+T\+W\+O\+F\+I\+S\+H\+\_\+\+T\+A\+B\+L\+ES}
+
+
+
+Definition at line 189 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_af1abe10e587242ec9ddfd37b00697d76}\label{tomcrypt__custom_8h_af1abe10e587242ec9ddfd37b00697d76}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_WHIRLPOOL@{LTC\_WHIRLPOOL}}
+\index{LTC\_WHIRLPOOL@{LTC\_WHIRLPOOL}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_WHIRLPOOL}{LTC\_WHIRLPOOL}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+W\+H\+I\+R\+L\+P\+O\+OL}
+
+
+
+Definition at line 253 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a75c9989cb5e078d043198b38e9614498}\label{tomcrypt__custom_8h_a75c9989cb5e078d043198b38e9614498}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_XCBC@{LTC\_XCBC}}
+\index{LTC\_XCBC@{LTC\_XCBC}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_XCBC}{LTC\_XCBC}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+X\+C\+BC}
+
+
+
+Definition at line 285 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a9ed8cd64476571e4256381ee88b5842b}\label{tomcrypt__custom_8h_a9ed8cd64476571e4256381ee88b5842b}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_XSALSA20@{LTC\_XSALSA20}}
+\index{LTC\_XSALSA20@{LTC\_XSALSA20}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_XSALSA20}{LTC\_XSALSA20}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+X\+S\+A\+L\+S\+A20}
+
+
+
+Definition at line 214 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_aa5c464b2d5440fbbe45212ec1b38fe8a}\label{tomcrypt__custom_8h_aa5c464b2d5440fbbe45212ec1b38fe8a}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_XTEA@{LTC\_XTEA}}
+\index{LTC\_XTEA@{LTC\_XTEA}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_XTEA}{LTC\_XTEA}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+X\+T\+EA}
+
+
+
+Definition at line 184 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_adbf02d4c37fab76fa2765dce050444cf}\label{tomcrypt__custom_8h_adbf02d4c37fab76fa2765dce050444cf}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_XTS\_MODE@{LTC\_XTS\_MODE}}
+\index{LTC\_XTS\_MODE@{LTC\_XTS\_MODE}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_XTS\_MODE}{LTC\_XTS\_MODE}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+X\+T\+S\+\_\+\+M\+O\+DE}
+
+
+
+Definition at line 245 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a6d0a7e5111e6e0cee0b1daf7d0444734}\label{tomcrypt__custom_8h_a6d0a7e5111e6e0cee0b1daf7d0444734}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_YARROW@{LTC\_YARROW}}
+\index{LTC\_YARROW@{LTC\_YARROW}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_YARROW}{LTC\_YARROW}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+Y\+A\+R\+R\+OW}
+
+
+
+Definition at line 319 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a26b2ffeb56612a6c361250f9cd82204f}\label{tomcrypt__custom_8h_a26b2ffeb56612a6c361250f9cd82204f}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!LTC\_YARROW\_AES@{LTC\_YARROW\_AES}}
+\index{LTC\_YARROW\_AES@{LTC\_YARROW\_AES}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{LTC\_YARROW\_AES}{LTC\_YARROW\_AES}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+Y\+A\+R\+R\+O\+W\+\_\+\+A\+ES~2}
+
+
+
+Definition at line 358 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a8503239c1e72ca92c157863382d59e59}\label{tomcrypt__custom_8h_a8503239c1e72ca92c157863382d59e59}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!XCALLOC@{XCALLOC}}
+\index{XCALLOC@{XCALLOC}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{XCALLOC}{XCALLOC}}
+{\footnotesize\ttfamily \#define X\+C\+A\+L\+L\+OC~calloc}
+
+
+
+Definition at line 21 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a73526f064867d959b5bf0fa2b8579d5d}\label{tomcrypt__custom_8h_a73526f064867d959b5bf0fa2b8579d5d}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!XCLOCK@{XCLOCK}}
+\index{XCLOCK@{XCLOCK}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{XCLOCK}{XCLOCK}}
+{\footnotesize\ttfamily \#define X\+C\+L\+O\+CK~clock}
+
+
+
+Definition at line 53 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_afbf096b8374086f38c83ae49b2f2c97b}\label{tomcrypt__custom_8h_afbf096b8374086f38c83ae49b2f2c97b}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!XFREE@{XFREE}}
+\index{XFREE@{XFREE}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{XFREE}{XFREE}}
+{\footnotesize\ttfamily \#define X\+F\+R\+EE~free}
+
+
+
+Definition at line 24 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a1877fd5e5019f9165749c55cf16be320}\label{tomcrypt__custom_8h_a1877fd5e5019f9165749c55cf16be320}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!XMALLOC@{XMALLOC}}
+\index{XMALLOC@{XMALLOC}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{XMALLOC}{XMALLOC}}
+{\footnotesize\ttfamily \#define X\+M\+A\+L\+L\+OC~malloc}
+
+
+
+Definition at line 15 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a22bba7b26be62fc532bd7927a23c5a91}\label{tomcrypt__custom_8h_a22bba7b26be62fc532bd7927a23c5a91}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!XMEM\_NEQ@{XMEM\_NEQ}}
+\index{XMEM\_NEQ@{XMEM\_NEQ}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{XMEM\_NEQ}{XMEM\_NEQ}}
+{\footnotesize\ttfamily \#define X\+M\+E\+M\+\_\+\+N\+EQ~\mbox{\hyperlink{mem__neq_8c_a3733102f1f5f0fef112e2a2e79f647f9}{mem\+\_\+neq}}}
+
+
+
+Definition at line 43 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_ae99c2288e4d00c78889edb56d1628e78}\label{tomcrypt__custom_8h_ae99c2288e4d00c78889edb56d1628e78}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!XMEMCMP@{XMEMCMP}}
+\index{XMEMCMP@{XMEMCMP}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{XMEMCMP}{XMEMCMP}}
+{\footnotesize\ttfamily \#define X\+M\+E\+M\+C\+MP~memcmp}
+
+
+
+Definition at line 37 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a3a156e6cb9a13df56d253051286d04b5}\label{tomcrypt__custom_8h_a3a156e6cb9a13df56d253051286d04b5}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!XMEMCPY@{XMEMCPY}}
+\index{XMEMCPY@{XMEMCPY}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{XMEMCPY}{XMEMCPY}}
+{\footnotesize\ttfamily \#define X\+M\+E\+M\+C\+PY~memcpy}
+
+
+
+Definition at line 31 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_afcb7515f9b08d30a5b632e312fd33589}\label{tomcrypt__custom_8h_afcb7515f9b08d30a5b632e312fd33589}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!XMEMMOVE@{XMEMMOVE}}
+\index{XMEMMOVE@{XMEMMOVE}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{XMEMMOVE}{XMEMMOVE}}
+{\footnotesize\ttfamily \#define X\+M\+E\+M\+M\+O\+VE~memmove}
+
+
+
+Definition at line 34 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_aecc88e1dabd4bc6bb25ea088991b26e8}\label{tomcrypt__custom_8h_aecc88e1dabd4bc6bb25ea088991b26e8}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!XMEMSET@{XMEMSET}}
+\index{XMEMSET@{XMEMSET}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{XMEMSET}{XMEMSET}}
+{\footnotesize\ttfamily \#define X\+M\+E\+M\+S\+ET~memset}
+
+
+
+Definition at line 28 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a60cc98c6e13b829221f6f80eab4a212f}\label{tomcrypt__custom_8h_a60cc98c6e13b829221f6f80eab4a212f}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!XQSORT@{XQSORT}}
+\index{XQSORT@{XQSORT}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{XQSORT}{XQSORT}}
+{\footnotesize\ttfamily \#define X\+Q\+S\+O\+RT~qsort}
+
+
+
+Definition at line 57 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a39383dcb89fdcd1a91bbdd0cd81e3e1b}\label{tomcrypt__custom_8h_a39383dcb89fdcd1a91bbdd0cd81e3e1b}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!XREALLOC@{XREALLOC}}
+\index{XREALLOC@{XREALLOC}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{XREALLOC}{XREALLOC}}
+{\footnotesize\ttfamily \#define X\+R\+E\+A\+L\+L\+OC~realloc}
+
+
+
+Definition at line 18 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a953b493d66d1a8ae393a8a97cdb8d9c6}\label{tomcrypt__custom_8h_a953b493d66d1a8ae393a8a97cdb8d9c6}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!XSTRCMP@{XSTRCMP}}
+\index{XSTRCMP@{XSTRCMP}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{XSTRCMP}{XSTRCMP}}
+{\footnotesize\ttfamily \#define X\+S\+T\+R\+C\+MP~strcmp}
+
+
+
+Definition at line 46 of file tomcrypt\+\_\+custom.\+h.
+
+\mbox{\Hypertarget{tomcrypt__custom_8h_a6746ebb3c59f81468d961836e198ef8b}\label{tomcrypt__custom_8h_a6746ebb3c59f81468d961836e198ef8b}} 
+\index{tomcrypt\_custom.h@{tomcrypt\_custom.h}!XSTRNCPY@{XSTRNCPY}}
+\index{XSTRNCPY@{XSTRNCPY}!tomcrypt\_custom.h@{tomcrypt\_custom.h}}
+\subsubsection{\texorpdfstring{XSTRNCPY}{XSTRNCPY}}
+{\footnotesize\ttfamily \#define X\+S\+T\+R\+N\+C\+PY~strncpy}
+
+
+
+Definition at line 49 of file tomcrypt\+\_\+custom.\+h.
+

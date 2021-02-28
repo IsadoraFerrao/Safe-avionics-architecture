@@ -1,0 +1,74 @@
+\hypertarget{sober128__stream__memory_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/stream/sober128/sober128\+\_\+stream\+\_\+memory.c File Reference}
+\label{sober128__stream__memory_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/stream/sober128/sober128\_stream\_memory.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/stream/sober128/sober128\_stream\_memory.c}}
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for sober128\+\_\+stream\+\_\+memory.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{sober128__stream__memory_8c_a81dcb5a025f5672c4866d6d7cc906910}{sober128\+\_\+stream\+\_\+memory}} (const unsigned char $\ast$key, unsigned long keylen, const unsigned char $\ast$iv, unsigned long ivlen, const unsigned char $\ast$datain, unsigned long datalen, unsigned char $\ast$dataout)
+\begin{DoxyCompactList}\small\item\em Encrypt (or decrypt) bytes of ciphertext (or plaintext) with S\+O\+B\+E\+R128. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{sober128__stream__memory_8c_a81dcb5a025f5672c4866d6d7cc906910}\label{sober128__stream__memory_8c_a81dcb5a025f5672c4866d6d7cc906910}} 
+\index{sober128\_stream\_memory.c@{sober128\_stream\_memory.c}!sober128\_stream\_memory@{sober128\_stream\_memory}}
+\index{sober128\_stream\_memory@{sober128\_stream\_memory}!sober128\_stream\_memory.c@{sober128\_stream\_memory.c}}
+\subsubsection{\texorpdfstring{sober128\_stream\_memory()}{sober128\_stream\_memory()}}
+{\footnotesize\ttfamily int sober128\+\_\+stream\+\_\+memory (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{key,  }\item[{unsigned long}]{keylen,  }\item[{const unsigned char $\ast$}]{iv,  }\item[{unsigned long}]{ivlen,  }\item[{const unsigned char $\ast$}]{datain,  }\item[{unsigned long}]{datalen,  }\item[{unsigned char $\ast$}]{dataout }\end{DoxyParamCaption})}
+
+
+
+Encrypt (or decrypt) bytes of ciphertext (or plaintext) with S\+O\+B\+E\+R128. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The key \\
+\hline
+{\em keylen} & The key length \\
+\hline
+{\em iv} & The initial vector \\
+\hline
+{\em ivlen} & The initial vector length \\
+\hline
+{\em datain} & The plaintext (or ciphertext) \\
+\hline
+{\em datalen} & The length of the input and output (octets) \\
+\hline
+{\em dataout} & \mbox{[}out\mbox{]} The ciphertext (or plaintext) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 25 of file sober128\+\_\+stream\+\_\+memory.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{29 \{}
+\DoxyCodeLine{30    sober128\_state st;}
+\DoxyCodeLine{31    \textcolor{keywordtype}{int} err;}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{sober128__stream_8c_a0a1e7b2ff7cfbba83eee53e875ef8d6e}{sober128\_stream\_setup}}(\&st, key, keylen)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \textcolor{keywordflow}{goto} WIPE\_KEY;}
+\DoxyCodeLine{34    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{sober128__stream_8c_aad93d7243d0b6e8bb46f8637c1dab891}{sober128\_stream\_setiv}}(\&st, iv, ivlen))   != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \textcolor{keywordflow}{goto} WIPE\_KEY;}
+\DoxyCodeLine{35    err = \mbox{\hyperlink{sober128__stream_8c_ae518d65a1bd918959e0d52e3f7d963de}{sober128\_stream\_crypt}}(\&st, datain, datalen, dataout);}
+\DoxyCodeLine{36 WIPE\_KEY:}
+\DoxyCodeLine{37    \mbox{\hyperlink{sober128__stream_8c_a37c4a04830801bac9f4b432b4b45fb2d}{sober128\_stream\_done}}(\&st);}
+\DoxyCodeLine{38    \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{39 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, sober128\+\_\+stream\+\_\+crypt(), sober128\+\_\+stream\+\_\+done(), sober128\+\_\+stream\+\_\+setiv(), and sober128\+\_\+stream\+\_\+setup().
+
+
+
+Referenced by sober128\+\_\+stream\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2

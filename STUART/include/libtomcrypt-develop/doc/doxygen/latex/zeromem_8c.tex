@@ -1,0 +1,65 @@
+\hypertarget{zeromem_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/misc/zeromem.c File Reference}
+\label{zeromem_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/misc/zeromem.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/misc/zeromem.c}}
+
+
+Zero a block of memory, Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for zeromem.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{zeromem_8c_a63b6e188713790263bfd3612fe8b398f}{zeromem}} (volatile void $\ast$out, size\+\_\+t outlen)
+\begin{DoxyCompactList}\small\item\em Zero a block of memory. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Zero a block of memory, Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{zeromem_8c_a63b6e188713790263bfd3612fe8b398f}\label{zeromem_8c_a63b6e188713790263bfd3612fe8b398f}} 
+\index{zeromem.c@{zeromem.c}!zeromem@{zeromem}}
+\index{zeromem@{zeromem}!zeromem.c@{zeromem.c}}
+\subsubsection{\texorpdfstring{zeromem()}{zeromem()}}
+{\footnotesize\ttfamily void zeromem (\begin{DoxyParamCaption}\item[{volatile void $\ast$}]{out,  }\item[{size\+\_\+t}]{outlen }\end{DoxyParamCaption})}
+
+
+
+Zero a block of memory. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em out} & The destination of the area to zero \\
+\hline
+{\em outlen} & The length of the area to zero (octets) \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 21 of file zeromem.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{22 \{}
+\DoxyCodeLine{23    \textcolor{keyword}{volatile} \textcolor{keywordtype}{char} *mem = out;}
+\DoxyCodeLine{24    \mbox{\hyperlink{tomcrypt__argchk_8h_a67a6e5d66d0c7d80ddf5c583054608bd}{LTC\_ARGCHKVD}}(out != NULL);}
+\DoxyCodeLine{25    \textcolor{keywordflow}{while} (outlen-- > 0) \{}
+\DoxyCodeLine{26       *mem++ = \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{27    \}}
+\DoxyCodeLine{28 \}}
+
+\end{DoxyCode}
+
+
+References L\+T\+C\+\_\+\+A\+R\+G\+C\+H\+K\+VD.
+
+
+
+Referenced by \+\_\+dsa\+\_\+make\+\_\+params(), \+\_\+fortuna\+\_\+reseed(), \+\_\+ocb3\+\_\+int\+\_\+calc\+\_\+offset\+\_\+zero(), \+\_\+pkcs\+\_\+12\+\_\+wrap(), \+\_\+pkcs\+\_\+5\+\_\+alg1\+\_\+common(), blake2b\+\_\+done(), blake2b\+\_\+init(), blake2bmac\+\_\+file(), blake2bmac\+\_\+memory(), blake2bmac\+\_\+memory\+\_\+multi(), blake2s\+\_\+done(), blake2s\+\_\+init(), blake2smac\+\_\+file(), blake2smac\+\_\+memory(), blake2smac\+\_\+memory\+\_\+multi(), blowfish\+\_\+setup(), burn\+\_\+stack(), camellia\+\_\+test(), cast5\+\_\+setup(), ccm\+\_\+memory(), ccm\+\_\+reset(), ccm\+\_\+test(), chacha20\+\_\+prng\+\_\+add\+\_\+entropy(), chacha20poly1305\+\_\+memory(), chc\+\_\+compress(), chc\+\_\+done(), chc\+\_\+init(), der\+\_\+encode\+\_\+setof(), dh\+\_\+generate\+\_\+key(), dsa\+\_\+decrypt\+\_\+key(), dsa\+\_\+encrypt\+\_\+key(), dsa\+\_\+shared\+\_\+secret(), dsa\+\_\+sign\+\_\+hash\+\_\+raw(), eax\+\_\+decrypt\+\_\+verify\+\_\+memory(), eax\+\_\+done(), eax\+\_\+encrypt\+\_\+authenticate\+\_\+memory(), eax\+\_\+init(), ecc\+\_\+decrypt\+\_\+key(), ecc\+\_\+encrypt\+\_\+key(), ecc\+\_\+get\+\_\+key(), ecc\+\_\+shared\+\_\+secret(), ecc\+\_\+sign\+\_\+hash\+\_\+ex(), f8\+\_\+encrypt(), f8\+\_\+start(), f9\+\_\+done(), f9\+\_\+file(), f9\+\_\+init(), f9\+\_\+memory\+\_\+multi(), fortuna\+\_\+done(), fortuna\+\_\+read(), fortuna\+\_\+start(), fortuna\+\_\+update\+\_\+seed(), gcm\+\_\+add\+\_\+aad(), gcm\+\_\+gf\+\_\+mult(), gcm\+\_\+init(), gcm\+\_\+reset(), hash\+\_\+filehandle(), hash\+\_\+memory(), hash\+\_\+memory\+\_\+multi(), hkdf(), hkdf\+\_\+expand(), hmac\+\_\+done(), hmac\+\_\+file(), hmac\+\_\+init(), hmac\+\_\+memory(), hmac\+\_\+memory\+\_\+multi(), lrw\+\_\+start(), ltc\+\_\+ecc\+\_\+export\+\_\+point(), ltc\+\_\+ecc\+\_\+mul2add(), md2\+\_\+done(), md2\+\_\+init(), md4\+\_\+done(), md5\+\_\+done(), multi2\+\_\+setup(), noekeon\+\_\+test(), ocb3\+\_\+decrypt(), ocb3\+\_\+decrypt\+\_\+last(), ocb3\+\_\+decrypt\+\_\+verify\+\_\+memory(), ocb3\+\_\+done(), ocb3\+\_\+encrypt(), ocb3\+\_\+encrypt\+\_\+authenticate\+\_\+memory(), ocb3\+\_\+encrypt\+\_\+last(), ocb3\+\_\+init(), ocb\+\_\+decrypt(), ocb\+\_\+decrypt\+\_\+verify\+\_\+memory(), ocb\+\_\+done\+\_\+decrypt(), ocb\+\_\+encrypt(), ocb\+\_\+encrypt\+\_\+authenticate\+\_\+memory(), ocb\+\_\+init(), omac\+\_\+done(), omac\+\_\+file(), omac\+\_\+init(), omac\+\_\+memory(), omac\+\_\+memory\+\_\+multi(), pbes\+\_\+decrypt(), pelican\+\_\+init(), pkcs12\+\_\+kdf(), pkcs8\+\_\+decode\+\_\+flexi(), pkcs\+\_\+1\+\_\+i2osp(), pkcs\+\_\+1\+\_\+mgf1(), pkcs\+\_\+1\+\_\+oaep\+\_\+decode(), pkcs\+\_\+1\+\_\+oaep\+\_\+encode(), pkcs\+\_\+1\+\_\+pss\+\_\+decode(), pkcs\+\_\+1\+\_\+pss\+\_\+encode(), pkcs\+\_\+5\+\_\+alg2(), pmac\+\_\+done(), pmac\+\_\+file(), pmac\+\_\+init(), pmac\+\_\+memory(), pmac\+\_\+memory\+\_\+multi(), pmac\+\_\+process(), poly1305\+\_\+file(), poly1305\+\_\+memory(), poly1305\+\_\+memory\+\_\+multi(), rabbit\+\_\+done(), rabbit\+\_\+setup(), rand\+\_\+bn\+\_\+bits(), rand\+\_\+prime(), rc2\+\_\+setup\+\_\+ex(), rc2\+\_\+test(), rc4\+\_\+add\+\_\+entropy(), rijndael\+\_\+test(), rmd128\+\_\+done(), rmd160\+\_\+done(), rmd256\+\_\+done(), rmd320\+\_\+done(), rng\+\_\+make\+\_\+prng(), rsa\+\_\+exptmod(), rsa\+\_\+verify\+\_\+hash\+\_\+ex(), s\+\_\+ocb\+\_\+done(), Safer\+\_\+\+Expand\+\_\+\+Userkey(), saferp\+\_\+ecb\+\_\+decrypt(), saferp\+\_\+ecb\+\_\+encrypt(), saferp\+\_\+setup(), sha1\+\_\+done(), sha224\+\_\+done(), sha256\+\_\+done(), sha384\+\_\+done(), sha512\+\_\+224\+\_\+done(), sha512\+\_\+256\+\_\+done(), sha512\+\_\+done(), sober128\+\_\+add\+\_\+entropy(), tiger\+\_\+done(), whirlpool\+\_\+done(), whirlpool\+\_\+init(), xcbc\+\_\+done(), xcbc\+\_\+file(), xcbc\+\_\+init(), xcbc\+\_\+memory\+\_\+multi(), xsalsa20\+\_\+setup(), xtea\+\_\+setup(), xtea\+\_\+test(), yarrow\+\_\+read(), and yarrow\+\_\+start().
+
+Here is the caller graph for this function\+:
+% FIG 1

@@ -1,0 +1,53 @@
+digraph "sober128_stream_test"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node0 [label="sober128_stream_test",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node0 -> Node1 [color="midnightblue",fontsize="10",style="solid"];
+  Node1 [label="compare_testvector",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__misc_8h.html#a7764a7f27897c6182335752df00b5f8e",tooltip="Compare two test-vectors."];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid"];
+  Node2 [label="XMEMCMP",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cfg_8h.html#a372b974ec0ac07abcd55297554fe540f",tooltip=" "];
+  Node0 -> Node3 [color="midnightblue",fontsize="10",style="solid"];
+  Node3 [label="sober128_stream_crypt",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sober128__stream_8c.html#ae518d65a1bd918959e0d52e3f7d963de",tooltip="Encrypt (or decrypt) bytes of ciphertext (or plaintext) with Sober128."];
+  Node3 -> Node4 [color="midnightblue",fontsize="10",style="solid"];
+  Node4 [label="cycle",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sober128__stream_8c.html#a5ee309e1f2da8afec6f25f826763f55d",tooltip=" "];
+  Node3 -> Node5 [color="midnightblue",fontsize="10",style="solid"];
+  Node5 [label="nltap",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sober128__stream_8c.html#aa40918d0bb77cd616f54d859fe3ceb34",tooltip=" "];
+  Node3 -> Node6 [color="midnightblue",fontsize="10",style="solid"];
+  Node6 [label="XORWORD",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sober128__stream_8c.html#a272d26d71ca3e6dd2b4282302c91e5bd",tooltip=" "];
+  Node0 -> Node7 [color="midnightblue",fontsize="10",style="solid"];
+  Node7 [label="sober128_stream_done",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sober128__stream_8c.html#a37c4a04830801bac9f4b432b4b45fb2d",tooltip="Terminate and clear Sober128 state."];
+  Node7 -> Node8 [color="midnightblue",fontsize="10",style="solid"];
+  Node8 [label="XMEMSET",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cfg_8h.html#aa3c34a6f6c61de7da9258b5a30e32c2f",tooltip=" "];
+  Node0 -> Node9 [color="midnightblue",fontsize="10",style="solid"];
+  Node9 [label="sober128_stream_memory",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sober128__stream__memory_8c.html#a81dcb5a025f5672c4866d6d7cc906910",tooltip="Encrypt (or decrypt) bytes of ciphertext (or plaintext) with SOBER128."];
+  Node9 -> Node3 [color="midnightblue",fontsize="10",style="solid"];
+  Node9 -> Node7 [color="midnightblue",fontsize="10",style="solid"];
+  Node9 -> Node10 [color="midnightblue",fontsize="10",style="solid"];
+  Node10 [label="sober128_stream_setiv",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sober128__stream_8c.html#aad93d7243d0b6e8bb46f8637c1dab891",tooltip="Set IV to the Sober128 state."];
+  Node10 -> Node11 [color="midnightblue",fontsize="10",style="solid"];
+  Node11 [label="BYTE2WORD",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sober128__stream_8c.html#ae7acc8746ffb536a618b77f0e2042807",tooltip=" "];
+  Node10 -> Node4 [color="midnightblue",fontsize="10",style="solid"];
+  Node10 -> Node5 [color="midnightblue",fontsize="10",style="solid"];
+  Node10 -> Node12 [color="midnightblue",fontsize="10",style="solid"];
+  Node12 [label="s128_diffuse",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sober128__stream_8c.html#a90d35fdc987c8472cc4390a3dc4c7777",tooltip=" "];
+  Node10 -> Node13 [color="midnightblue",fontsize="10",style="solid"];
+  Node13 [label="s128_reloadstate",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sober128__stream_8c.html#a658f8c5cee73aa58ecf24133861c084d",tooltip=" "];
+  Node9 -> Node14 [color="midnightblue",fontsize="10",style="solid"];
+  Node14 [label="sober128_stream_setup",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sober128__stream_8c.html#a0a1e7b2ff7cfbba83eee53e875ef8d6e",tooltip="Initialize an Sober128 context (only the key)"];
+  Node14 -> Node11 [color="midnightblue",fontsize="10",style="solid"];
+  Node14 -> Node4 [color="midnightblue",fontsize="10",style="solid"];
+  Node14 -> Node5 [color="midnightblue",fontsize="10",style="solid"];
+  Node14 -> Node12 [color="midnightblue",fontsize="10",style="solid"];
+  Node14 -> Node15 [color="midnightblue",fontsize="10",style="solid"];
+  Node15 [label="s128_genkonst",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sober128__stream_8c.html#afeb3cc1b4facd7436b991dc552ffb038",tooltip=" "];
+  Node15 -> Node4 [color="midnightblue",fontsize="10",style="solid"];
+  Node15 -> Node5 [color="midnightblue",fontsize="10",style="solid"];
+  Node14 -> Node16 [color="midnightblue",fontsize="10",style="solid"];
+  Node16 [label="s128_savestate",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sober128__stream_8c.html#a884ca93789ee73dea18768f55567bc67",tooltip=" "];
+  Node0 -> Node10 [color="midnightblue",fontsize="10",style="solid"];
+  Node0 -> Node14 [color="midnightblue",fontsize="10",style="solid"];
+  Node0 -> Node8 [color="midnightblue",fontsize="10",style="solid"];
+}

@@ -1,0 +1,577 @@
+\hypertarget{kasumi_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/ciphers/kasumi.c File Reference}
+\label{kasumi_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/ciphers/kasumi.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/ciphers/kasumi.c}}
+
+
+Implementation of the 3G\+PP Kasumi block cipher Derived from the 3G\+PP standard source code.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for kasumi.\+c\+:
+% FIG 0
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{kasumi_8c_a2801daf7c5c32ff251ecfec7c33c41f4}{R\+O\+L16}}(x,  y)~((((x)$<$$<$(y)) $\vert$ ((x)$>$$>$(16-\/(y)))) \& 0x\+F\+F\+F\+F)
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef unsigned \mbox{\hyperlink{kasumi_8c_a18c6f483873a0711d69bfa29a735f251}{u16}}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{kasumi_8c_a18c6f483873a0711d69bfa29a735f251}{u16}} \mbox{\hyperlink{kasumi_8c_a7ad07bf9a541dd0b18d2004f996a96ee}{FI}} (\mbox{\hyperlink{kasumi_8c_a18c6f483873a0711d69bfa29a735f251}{u16}} in, \mbox{\hyperlink{kasumi_8c_a18c6f483873a0711d69bfa29a735f251}{u16}} subkey)
+\item 
+static \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} \mbox{\hyperlink{kasumi_8c_a8c54564943d23d74c6e93c41fad7dcff}{FO}} (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} in, int round\+\_\+no, const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$key)
+\item 
+static \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} \mbox{\hyperlink{kasumi_8c_a73e919d661cfefe82ce5cd1c05028e69}{FL}} (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} in, int round\+\_\+no, const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$key)
+\item 
+int \mbox{\hyperlink{kasumi_8c_a2b93a734eadc37860db94b936570c0bb}{kasumi\+\_\+ecb\+\_\+encrypt}} (const unsigned char $\ast$pt, unsigned char $\ast$ct, const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)
+\item 
+int \mbox{\hyperlink{kasumi_8c_ade25ab67061b122b4309d7187a55ead6}{kasumi\+\_\+ecb\+\_\+decrypt}} (const unsigned char $\ast$ct, unsigned char $\ast$pt, const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)
+\item 
+int \mbox{\hyperlink{kasumi_8c_a6f2be755c6a204eb76412d217ffb7e1c}{kasumi\+\_\+setup}} (const unsigned char $\ast$key, int keylen, int num\+\_\+rounds, \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)
+\item 
+void \mbox{\hyperlink{kasumi_8c_afb0a6949d7309dbc09a655a84bed3df9}{kasumi\+\_\+done}} (\mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)
+\item 
+int \mbox{\hyperlink{kasumi_8c_a53ae124aa1053dd85b517c9d06dab459}{kasumi\+\_\+keysize}} (int $\ast$keysize)
+\item 
+int \mbox{\hyperlink{kasumi_8c_aef063f4146ff8f960a6f8c39b2c9d6e9}{kasumi\+\_\+test}} (void)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const struct \mbox{\hyperlink{structltc__cipher__descriptor}{ltc\+\_\+cipher\+\_\+descriptor}} \mbox{\hyperlink{kasumi_8c_a0a9143785f21664be453500c0dd55099}{kasumi\+\_\+desc}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Implementation of the 3G\+PP Kasumi block cipher Derived from the 3G\+PP standard source code. 
+
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{kasumi_8c_a2801daf7c5c32ff251ecfec7c33c41f4}\label{kasumi_8c_a2801daf7c5c32ff251ecfec7c33c41f4}} 
+\index{kasumi.c@{kasumi.c}!ROL16@{ROL16}}
+\index{ROL16@{ROL16}!kasumi.c@{kasumi.c}}
+\subsubsection{\texorpdfstring{ROL16}{ROL16}}
+{\footnotesize\ttfamily \#define R\+O\+L16(\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{y }\end{DoxyParamCaption})~((((x)$<$$<$(y)) $\vert$ ((x)$>$$>$(16-\/(y)))) \& 0x\+F\+F\+F\+F)}
+
+
+
+Definition at line 22 of file kasumi.\+c.
+
+
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{kasumi_8c_a18c6f483873a0711d69bfa29a735f251}\label{kasumi_8c_a18c6f483873a0711d69bfa29a735f251}} 
+\index{kasumi.c@{kasumi.c}!u16@{u16}}
+\index{u16@{u16}!kasumi.c@{kasumi.c}}
+\subsubsection{\texorpdfstring{u16}{u16}}
+{\footnotesize\ttfamily typedef unsigned \mbox{\hyperlink{kasumi_8c_a18c6f483873a0711d69bfa29a735f251}{u16}}}
+
+
+
+Definition at line 20 of file kasumi.\+c.
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{kasumi_8c_a7ad07bf9a541dd0b18d2004f996a96ee}\label{kasumi_8c_a7ad07bf9a541dd0b18d2004f996a96ee}} 
+\index{kasumi.c@{kasumi.c}!FI@{FI}}
+\index{FI@{FI}!kasumi.c@{kasumi.c}}
+\subsubsection{\texorpdfstring{FI()}{FI()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{kasumi_8c_a18c6f483873a0711d69bfa29a735f251}{u16}} FI (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{kasumi_8c_a18c6f483873a0711d69bfa29a735f251}{u16}}}]{in,  }\item[{\mbox{\hyperlink{kasumi_8c_a18c6f483873a0711d69bfa29a735f251}{u16}}}]{subkey }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 37 of file kasumi.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{38 \{}
+\DoxyCodeLine{39    \mbox{\hyperlink{kasumi_8c_a18c6f483873a0711d69bfa29a735f251}{u16}} nine, seven;}
+\DoxyCodeLine{40    \textcolor{keyword}{static} \textcolor{keyword}{const} \mbox{\hyperlink{kasumi_8c_a18c6f483873a0711d69bfa29a735f251}{u16}} \mbox{\hyperlink{sosemanuk_8c_ac2e57256dd691d5825a889a7ba2a9952}{S7}}[128] = \{}
+\DoxyCodeLine{41       54, 50, 62, 56, 22, 34, 94, 96, 38, 6, 63, 93, 2, 18,123, 33,}
+\DoxyCodeLine{42       55,113, 39,114, 21, 67, 65, 12, 47, 73, 46, 27, 25,111,124, 81,}
+\DoxyCodeLine{43       53, 9,121, 79, 52, 60, 58, 48,101,127, 40,120,104, 70, 71, 43,}
+\DoxyCodeLine{44       20,122, 72, 61, 23,109, 13,100, 77, 1, 16, 7, 82, 10,105, 98,}
+\DoxyCodeLine{45       117,116, 76, 11, 89,106, 0,125,118, 99, 86, 69, 30, 57,126, 87,}
+\DoxyCodeLine{46       112, 51, 17, 5, 95, 14, 90, 84, 91, 8, 35,103, 32, 97, 28, 66,}
+\DoxyCodeLine{47       102, 31, 26, 45, 75, 4, 85, 92, 37, 74, 80, 49, 68, 29,115, 44,}
+\DoxyCodeLine{48       64,107,108, 24,110, 83, 36, 78, 42, 19, 15, 41, 88,119, 59, 3 \};}
+\DoxyCodeLine{49   \textcolor{keyword}{static} \textcolor{keyword}{const} \mbox{\hyperlink{kasumi_8c_a18c6f483873a0711d69bfa29a735f251}{u16}} S9[512] = \{}
+\DoxyCodeLine{50       167,239,161,379,391,334, 9,338, 38,226, 48,358,452,385, 90,397,}
+\DoxyCodeLine{51       183,253,147,331,415,340, 51,362,306,500,262, 82,216,159,356,177,}
+\DoxyCodeLine{52       175,241,489, 37,206, 17, 0,333, 44,254,378, 58,143,220, 81,400,}
+\DoxyCodeLine{53        95, 3,315,245, 54,235,218,405,472,264,172,494,371,290,399, 76,}
+\DoxyCodeLine{54       165,197,395,121,257,480,423,212,240, 28,462,176,406,507,288,223,}
+\DoxyCodeLine{55       501,407,249,265, 89,186,221,428,164, 74,440,196,458,421,350,163,}
+\DoxyCodeLine{56       232,158,134,354, 13,250,491,142,191, 69,193,425,152,227,366,135,}
+\DoxyCodeLine{57       344,300,276,242,437,320,113,278, 11,243, 87,317, 36, 93,496, 27,}
+\DoxyCodeLine{58       487,446,482, 41, 68,156,457,131,326,403,339, 20, 39,115,442,124,}
+\DoxyCodeLine{59       475,384,508, 53,112,170,479,151,126,169, 73,268,279,321,168,364,}
+\DoxyCodeLine{60       363,292, 46,499,393,327,324, 24,456,267,157,460,488,426,309,229,}
+\DoxyCodeLine{61       439,506,208,271,349,401,434,236, 16,209,359, 52, 56,120,199,277,}
+\DoxyCodeLine{62       465,416,252,287,246, 6, 83,305,420,345,153,502, 65, 61,244,282,}
+\DoxyCodeLine{63       173,222,418, 67,386,368,261,101,476,291,195,430, 49, 79,166,330,}
+\DoxyCodeLine{64       280,383,373,128,382,408,155,495,367,388,274,107,459,417, 62,454,}
+\DoxyCodeLine{65       132,225,203,316,234, 14,301, 91,503,286,424,211,347,307,140,374,}
+\DoxyCodeLine{66        35,103,125,427, 19,214,453,146,498,314,444,230,256,329,198,285,}
+\DoxyCodeLine{67        50,116, 78,410, 10,205,510,171,231, 45,139,467, 29, 86,505, 32,}
+\DoxyCodeLine{68        72, 26,342,150,313,490,431,238,411,325,149,473, 40,119,174,355,}
+\DoxyCodeLine{69       185,233,389, 71,448,273,372, 55,110,178,322, 12,469,392,369,190,}
+\DoxyCodeLine{70         1,109,375,137,181, 88, 75,308,260,484, 98,272,370,275,412,111,}
+\DoxyCodeLine{71       336,318, 4,504,492,259,304, 77,337,435, 21,357,303,332,483, 18,}
+\DoxyCodeLine{72        47, 85, 25,497,474,289,100,269,296,478,270,106, 31,104,433, 84,}
+\DoxyCodeLine{73       414,486,394, 96, 99,154,511,148,413,361,409,255,162,215,302,201,}
+\DoxyCodeLine{74       266,351,343,144,441,365,108,298,251, 34,182,509,138,210,335,133,}
+\DoxyCodeLine{75       311,352,328,141,396,346,123,319,450,281,429,228,443,481, 92,404,}
+\DoxyCodeLine{76       485,422,248,297, 23,213,130,466, 22,217,283, 70,294,360,419,127,}
+\DoxyCodeLine{77       312,377, 7,468,194, 2,117,295,463,258,224,447,247,187, 80,398,}
+\DoxyCodeLine{78       284,353,105,390,299,471,470,184, 57,200,348, 63,204,188, 33,451,}
+\DoxyCodeLine{79        97, 30,310,219, 94,160,129,493, 64,179,263,102,189,207,114,402,}
+\DoxyCodeLine{80       438,477,387,122,192, 42,381, 5,145,118,180,449,293,323,136,380,}
+\DoxyCodeLine{81        43, 66, 60,455,341,445,202,432, 8,237, 15,376,436,464, 59,461\};}
+\DoxyCodeLine{82 }
+\DoxyCodeLine{83   \textcolor{comment}{/* The sixteen bit input is split into two unequal halves, *}}
+\DoxyCodeLine{84 \textcolor{comment}{   * nine bits and seven bits - as is the subkey            */}}
+\DoxyCodeLine{85 }
+\DoxyCodeLine{86   nine  = (\mbox{\hyperlink{kasumi_8c_a18c6f483873a0711d69bfa29a735f251}{u16}})(in>>7)\&0x1FF;}
+\DoxyCodeLine{87   seven = (\mbox{\hyperlink{kasumi_8c_a18c6f483873a0711d69bfa29a735f251}{u16}})(in\&0x7F);}
+\DoxyCodeLine{88 }
+\DoxyCodeLine{89   \textcolor{comment}{/* Now run the various operations */}}
+\DoxyCodeLine{90   nine   = (\mbox{\hyperlink{kasumi_8c_a18c6f483873a0711d69bfa29a735f251}{u16}})(S9[nine] \string^ seven);}
+\DoxyCodeLine{91   seven  = (\mbox{\hyperlink{kasumi_8c_a18c6f483873a0711d69bfa29a735f251}{u16}})(\mbox{\hyperlink{sosemanuk_8c_ac2e57256dd691d5825a889a7ba2a9952}{S7}}[seven] \string^ (nine \& 0x7F));}
+\DoxyCodeLine{92   seven \string^= (subkey>>9);}
+\DoxyCodeLine{93   nine  \string^= (subkey\&0x1FF);}
+\DoxyCodeLine{94   nine   = (\mbox{\hyperlink{kasumi_8c_a18c6f483873a0711d69bfa29a735f251}{u16}})(S9[nine] \string^ seven);}
+\DoxyCodeLine{95   seven  = (\mbox{\hyperlink{kasumi_8c_a18c6f483873a0711d69bfa29a735f251}{u16}})(\mbox{\hyperlink{sosemanuk_8c_ac2e57256dd691d5825a889a7ba2a9952}{S7}}[seven] \string^ (nine \& 0x7F));}
+\DoxyCodeLine{96   \textcolor{keywordflow}{return} (\mbox{\hyperlink{kasumi_8c_a18c6f483873a0711d69bfa29a735f251}{u16}})(seven<<9) + nine;}
+\DoxyCodeLine{97 \}}
+
+\end{DoxyCode}
+
+
+References S7.
+
+
+
+Referenced by F\+O().
+
+Here is the caller graph for this function\+:
+% FIG 1
+\mbox{\Hypertarget{kasumi_8c_a73e919d661cfefe82ce5cd1c05028e69}\label{kasumi_8c_a73e919d661cfefe82ce5cd1c05028e69}} 
+\index{kasumi.c@{kasumi.c}!FL@{FL}}
+\index{FL@{FL}!kasumi.c@{kasumi.c}}
+\subsubsection{\texorpdfstring{FL()}{FL()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} FL (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}}}]{in,  }\item[{int}]{round\+\_\+no,  }\item[{const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$}]{key }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 123 of file kasumi.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{124 \{}
+\DoxyCodeLine{125     \mbox{\hyperlink{kasumi_8c_a18c6f483873a0711d69bfa29a735f251}{u16}} l, r, a, b;}
+\DoxyCodeLine{126     \textcolor{comment}{/* split out the left and right halves */}}
+\DoxyCodeLine{127     l = (\mbox{\hyperlink{kasumi_8c_a18c6f483873a0711d69bfa29a735f251}{u16}})(in>>16);}
+\DoxyCodeLine{128     r = (\mbox{\hyperlink{kasumi_8c_a18c6f483873a0711d69bfa29a735f251}{u16}})(in)\&0xFFFF;}
+\DoxyCodeLine{129     \textcolor{comment}{/* do the FL() operations           */}}
+\DoxyCodeLine{130     a = (\mbox{\hyperlink{kasumi_8c_a18c6f483873a0711d69bfa29a735f251}{u16}}) (l \& key->kasumi.KLi1[round\_no]);}
+\DoxyCodeLine{131     r \string^= \mbox{\hyperlink{kasumi_8c_a2801daf7c5c32ff251ecfec7c33c41f4}{ROL16}}(a,1);}
+\DoxyCodeLine{132     b = (\mbox{\hyperlink{kasumi_8c_a18c6f483873a0711d69bfa29a735f251}{u16}})(r | key->kasumi.KLi2[round\_no]);}
+\DoxyCodeLine{133     l \string^= \mbox{\hyperlink{kasumi_8c_a2801daf7c5c32ff251ecfec7c33c41f4}{ROL16}}(b,1);}
+\DoxyCodeLine{134     \textcolor{comment}{/* put the two halves back together */}}
+\DoxyCodeLine{135 }
+\DoxyCodeLine{136     \textcolor{keywordflow}{return} (((\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})l)<<16) + r;}
+\DoxyCodeLine{137 \}}
+
+\end{DoxyCode}
+
+
+References R\+O\+L16.
+
+
+
+Referenced by kasumi\+\_\+ecb\+\_\+decrypt(), and kasumi\+\_\+ecb\+\_\+encrypt().
+
+Here is the caller graph for this function\+:
+% FIG 2
+\mbox{\Hypertarget{kasumi_8c_a8c54564943d23d74c6e93c41fad7dcff}\label{kasumi_8c_a8c54564943d23d74c6e93c41fad7dcff}} 
+\index{kasumi.c@{kasumi.c}!FO@{FO}}
+\index{FO@{FO}!kasumi.c@{kasumi.c}}
+\subsubsection{\texorpdfstring{FO()}{FO()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} FO (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}}}]{in,  }\item[{int}]{round\+\_\+no,  }\item[{const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$}]{key }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 99 of file kasumi.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{100 \{}
+\DoxyCodeLine{101    \mbox{\hyperlink{kasumi_8c_a18c6f483873a0711d69bfa29a735f251}{u16}} left, right;}
+\DoxyCodeLine{102 }
+\DoxyCodeLine{103   \textcolor{comment}{/* Split the input into two 16-bit words */}}
+\DoxyCodeLine{104   left = (\mbox{\hyperlink{kasumi_8c_a18c6f483873a0711d69bfa29a735f251}{u16}})(in>>16);}
+\DoxyCodeLine{105   right = (\mbox{\hyperlink{kasumi_8c_a18c6f483873a0711d69bfa29a735f251}{u16}}) in\&0xFFFF;}
+\DoxyCodeLine{106 }
+\DoxyCodeLine{107   \textcolor{comment}{/* Now apply the same basic transformation three times */}}
+\DoxyCodeLine{108   left \string^= key->kasumi.KOi1[round\_no];}
+\DoxyCodeLine{109   left = \mbox{\hyperlink{kasumi_8c_a7ad07bf9a541dd0b18d2004f996a96ee}{FI}}( left, key->kasumi.KIi1[round\_no] );}
+\DoxyCodeLine{110   left \string^= right;}
+\DoxyCodeLine{111 }
+\DoxyCodeLine{112   right \string^= key->kasumi.KOi2[round\_no];}
+\DoxyCodeLine{113   right = \mbox{\hyperlink{kasumi_8c_a7ad07bf9a541dd0b18d2004f996a96ee}{FI}}( right, key->kasumi.KIi2[round\_no] );}
+\DoxyCodeLine{114   right \string^= left;}
+\DoxyCodeLine{115 }
+\DoxyCodeLine{116   left \string^= key->kasumi.KOi3[round\_no];}
+\DoxyCodeLine{117   left = \mbox{\hyperlink{kasumi_8c_a7ad07bf9a541dd0b18d2004f996a96ee}{FI}}( left, key->kasumi.KIi3[round\_no] );}
+\DoxyCodeLine{118   left \string^= right;}
+\DoxyCodeLine{119 }
+\DoxyCodeLine{120   \textcolor{keywordflow}{return} (((\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})right)<<16)+left;}
+\DoxyCodeLine{121 \}}
+
+\end{DoxyCode}
+
+
+References F\+I().
+
+
+
+Referenced by kasumi\+\_\+ecb\+\_\+decrypt(), and kasumi\+\_\+ecb\+\_\+encrypt().
+
+Here is the call graph for this function\+:
+% FIG 3
+Here is the caller graph for this function\+:
+% FIG 4
+\mbox{\Hypertarget{kasumi_8c_afb0a6949d7309dbc09a655a84bed3df9}\label{kasumi_8c_afb0a6949d7309dbc09a655a84bed3df9}} 
+\index{kasumi.c@{kasumi.c}!kasumi\_done@{kasumi\_done}}
+\index{kasumi\_done@{kasumi\_done}!kasumi.c@{kasumi.c}}
+\subsubsection{\texorpdfstring{kasumi\_done()}{kasumi\_done()}}
+{\footnotesize\ttfamily void kasumi\+\_\+done (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$}]{skey }\end{DoxyParamCaption})}
+
+
+
+Definition at line 235 of file kasumi.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{236 \{}
+\DoxyCodeLine{237   \mbox{\hyperlink{tomcrypt__macros_8h_accde4b007facd646a8327f8e64b2d1e0}{LTC\_UNUSED\_PARAM}}(skey);}
+\DoxyCodeLine{238 \}}
+
+\end{DoxyCode}
+
+
+References L\+T\+C\+\_\+\+U\+N\+U\+S\+E\+D\+\_\+\+P\+A\+R\+AM.
+
+\mbox{\Hypertarget{kasumi_8c_ade25ab67061b122b4309d7187a55ead6}\label{kasumi_8c_ade25ab67061b122b4309d7187a55ead6}} 
+\index{kasumi.c@{kasumi.c}!kasumi\_ecb\_decrypt@{kasumi\_ecb\_decrypt}}
+\index{kasumi\_ecb\_decrypt@{kasumi\_ecb\_decrypt}!kasumi.c@{kasumi.c}}
+\subsubsection{\texorpdfstring{kasumi\_ecb\_decrypt()}{kasumi\_ecb\_decrypt()}}
+{\footnotesize\ttfamily int kasumi\+\_\+ecb\+\_\+decrypt (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{ct,  }\item[{unsigned char $\ast$}]{pt,  }\item[{const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$}]{skey }\end{DoxyParamCaption})}
+
+
+
+Definition at line 166 of file kasumi.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{167 \{}
+\DoxyCodeLine{168     \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} left, right, temp;}
+\DoxyCodeLine{169     \textcolor{keywordtype}{int} n;}
+\DoxyCodeLine{170 }
+\DoxyCodeLine{171     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(pt   != NULL);}
+\DoxyCodeLine{172     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(ct   != NULL);}
+\DoxyCodeLine{173     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(skey != NULL);}
+\DoxyCodeLine{174 }
+\DoxyCodeLine{175     LOAD32H(left, ct);}
+\DoxyCodeLine{176     LOAD32H(right, ct+4);}
+\DoxyCodeLine{177 }
+\DoxyCodeLine{178     \textcolor{keywordflow}{for} (n = 7; n >= 0; ) \{}
+\DoxyCodeLine{179         temp = \mbox{\hyperlink{kasumi_8c_a8c54564943d23d74c6e93c41fad7dcff}{FO}}(right, n,   skey);}
+\DoxyCodeLine{180         temp = \mbox{\hyperlink{kasumi_8c_a73e919d661cfefe82ce5cd1c05028e69}{FL}}(temp,  n--, skey);}
+\DoxyCodeLine{181         left \string^= temp;}
+\DoxyCodeLine{182         temp = \mbox{\hyperlink{kasumi_8c_a73e919d661cfefe82ce5cd1c05028e69}{FL}}(left,  n,   skey);}
+\DoxyCodeLine{183         temp = \mbox{\hyperlink{kasumi_8c_a8c54564943d23d74c6e93c41fad7dcff}{FO}}(temp,  n--, skey);}
+\DoxyCodeLine{184         right \string^= temp;}
+\DoxyCodeLine{185     \}}
+\DoxyCodeLine{186 }
+\DoxyCodeLine{187     STORE32H(left, pt);}
+\DoxyCodeLine{188     STORE32H(right, pt+4);}
+\DoxyCodeLine{189 }
+\DoxyCodeLine{190     \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{191 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, F\+L(), F\+O(), and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+
+
+Referenced by kasumi\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 5
+Here is the caller graph for this function\+:
+% FIG 6
+\mbox{\Hypertarget{kasumi_8c_a2b93a734eadc37860db94b936570c0bb}\label{kasumi_8c_a2b93a734eadc37860db94b936570c0bb}} 
+\index{kasumi.c@{kasumi.c}!kasumi\_ecb\_encrypt@{kasumi\_ecb\_encrypt}}
+\index{kasumi\_ecb\_encrypt@{kasumi\_ecb\_encrypt}!kasumi.c@{kasumi.c}}
+\subsubsection{\texorpdfstring{kasumi\_ecb\_encrypt()}{kasumi\_ecb\_encrypt()}}
+{\footnotesize\ttfamily int kasumi\+\_\+ecb\+\_\+encrypt (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{pt,  }\item[{unsigned char $\ast$}]{ct,  }\item[{const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$}]{skey }\end{DoxyParamCaption})}
+
+
+
+Definition at line 139 of file kasumi.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{140 \{}
+\DoxyCodeLine{141     \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} left, right, temp;}
+\DoxyCodeLine{142     \textcolor{keywordtype}{int} n;}
+\DoxyCodeLine{143 }
+\DoxyCodeLine{144     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(pt   != NULL);}
+\DoxyCodeLine{145     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(ct   != NULL);}
+\DoxyCodeLine{146     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(skey != NULL);}
+\DoxyCodeLine{147 }
+\DoxyCodeLine{148     LOAD32H(left, pt);}
+\DoxyCodeLine{149     LOAD32H(right, pt+4);}
+\DoxyCodeLine{150 }
+\DoxyCodeLine{151     \textcolor{keywordflow}{for} (n = 0; n <= 7; ) \{}
+\DoxyCodeLine{152         temp = \mbox{\hyperlink{kasumi_8c_a73e919d661cfefe82ce5cd1c05028e69}{FL}}(left,  n,   skey);}
+\DoxyCodeLine{153         temp = \mbox{\hyperlink{kasumi_8c_a8c54564943d23d74c6e93c41fad7dcff}{FO}}(temp,  n++, skey);}
+\DoxyCodeLine{154         right \string^= temp;}
+\DoxyCodeLine{155         temp = \mbox{\hyperlink{kasumi_8c_a8c54564943d23d74c6e93c41fad7dcff}{FO}}(right, n,   skey);}
+\DoxyCodeLine{156         temp = \mbox{\hyperlink{kasumi_8c_a73e919d661cfefe82ce5cd1c05028e69}{FL}}(temp,  n++, skey);}
+\DoxyCodeLine{157         left \string^= temp;}
+\DoxyCodeLine{158     \}}
+\DoxyCodeLine{159 }
+\DoxyCodeLine{160     STORE32H(left, ct);}
+\DoxyCodeLine{161     STORE32H(right, ct+4);}
+\DoxyCodeLine{162 }
+\DoxyCodeLine{163     \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{164 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, F\+L(), F\+O(), and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+
+
+Referenced by kasumi\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 7
+Here is the caller graph for this function\+:
+% FIG 8
+\mbox{\Hypertarget{kasumi_8c_a53ae124aa1053dd85b517c9d06dab459}\label{kasumi_8c_a53ae124aa1053dd85b517c9d06dab459}} 
+\index{kasumi.c@{kasumi.c}!kasumi\_keysize@{kasumi\_keysize}}
+\index{kasumi\_keysize@{kasumi\_keysize}!kasumi.c@{kasumi.c}}
+\subsubsection{\texorpdfstring{kasumi\_keysize()}{kasumi\_keysize()}}
+{\footnotesize\ttfamily int kasumi\+\_\+keysize (\begin{DoxyParamCaption}\item[{int $\ast$}]{keysize }\end{DoxyParamCaption})}
+
+
+
+Definition at line 240 of file kasumi.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{241 \{}
+\DoxyCodeLine{242    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(keysize != NULL);}
+\DoxyCodeLine{243    \textcolor{keywordflow}{if} (*keysize >= 16) \{}
+\DoxyCodeLine{244       *keysize = 16;}
+\DoxyCodeLine{245       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{246    \}}
+\DoxyCodeLine{247    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caafed43f3b625e72191e08e65b4bb5e02}{CRYPT\_INVALID\_KEYSIZE}};}
+\DoxyCodeLine{248 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+K\+E\+Y\+S\+I\+ZE, C\+R\+Y\+P\+T\+\_\+\+OK, ltc\+\_\+cipher\+\_\+descriptor\+::keysize, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+\mbox{\Hypertarget{kasumi_8c_a6f2be755c6a204eb76412d217ffb7e1c}\label{kasumi_8c_a6f2be755c6a204eb76412d217ffb7e1c}} 
+\index{kasumi.c@{kasumi.c}!kasumi\_setup@{kasumi\_setup}}
+\index{kasumi\_setup@{kasumi\_setup}!kasumi.c@{kasumi.c}}
+\subsubsection{\texorpdfstring{kasumi\_setup()}{kasumi\_setup()}}
+{\footnotesize\ttfamily int kasumi\+\_\+setup (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{key,  }\item[{int}]{keylen,  }\item[{int}]{num\+\_\+rounds,  }\item[{\mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$}]{skey }\end{DoxyParamCaption})}
+
+
+
+Definition at line 193 of file kasumi.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{194 \{}
+\DoxyCodeLine{195     \textcolor{keyword}{static} \textcolor{keyword}{const} \mbox{\hyperlink{kasumi_8c_a18c6f483873a0711d69bfa29a735f251}{u16}} C[8] = \{ 0x0123,0x4567,0x89AB,0xCDEF, 0xFEDC,0xBA98,0x7654,0x3210 \};}
+\DoxyCodeLine{196     \mbox{\hyperlink{kasumi_8c_a18c6f483873a0711d69bfa29a735f251}{u16}} ukey[8], Kprime[8];}
+\DoxyCodeLine{197     \textcolor{keywordtype}{int} n;}
+\DoxyCodeLine{198 }
+\DoxyCodeLine{199     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(key  != NULL);}
+\DoxyCodeLine{200     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(skey != NULL);}
+\DoxyCodeLine{201 }
+\DoxyCodeLine{202     \textcolor{keywordflow}{if} (keylen != 16) \{}
+\DoxyCodeLine{203        \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caafed43f3b625e72191e08e65b4bb5e02}{CRYPT\_INVALID\_KEYSIZE}};}
+\DoxyCodeLine{204     \}}
+\DoxyCodeLine{205 }
+\DoxyCodeLine{206     \textcolor{keywordflow}{if} (num\_rounds != 0 \&\& num\_rounds != 8) \{}
+\DoxyCodeLine{207        \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca69aff0280b5845d03130f8700009caf5}{CRYPT\_INVALID\_ROUNDS}};}
+\DoxyCodeLine{208     \}}
+\DoxyCodeLine{209 }
+\DoxyCodeLine{210     \textcolor{comment}{/* Start by ensuring the subkeys are endian correct on a 16-bit basis */}}
+\DoxyCodeLine{211     \textcolor{keywordflow}{for} (n = 0; n < 8; n++ ) \{}
+\DoxyCodeLine{212         ukey[n] = (((\mbox{\hyperlink{kasumi_8c_a18c6f483873a0711d69bfa29a735f251}{u16}})key[2*n]) << 8) | key[2*n+1];}
+\DoxyCodeLine{213     \}}
+\DoxyCodeLine{214 }
+\DoxyCodeLine{215     \textcolor{comment}{/* Now build the K'[] keys */}}
+\DoxyCodeLine{216     \textcolor{keywordflow}{for} (n = 0; n < 8; n++) \{}
+\DoxyCodeLine{217         Kprime[n] = ukey[n] \string^ C[n];}
+\DoxyCodeLine{218     \}}
+\DoxyCodeLine{219 }
+\DoxyCodeLine{220     \textcolor{comment}{/* Finally construct the various sub keys */}}
+\DoxyCodeLine{221     \textcolor{keywordflow}{for}(n = 0; n < 8; n++) \{}
+\DoxyCodeLine{222         skey->kasumi.KLi1[n] = \mbox{\hyperlink{kasumi_8c_a2801daf7c5c32ff251ecfec7c33c41f4}{ROL16}}(ukey[n],1);}
+\DoxyCodeLine{223         skey->kasumi.KLi2[n] = Kprime[(n+2)\&0x7];}
+\DoxyCodeLine{224         skey->kasumi.KOi1[n] = \mbox{\hyperlink{kasumi_8c_a2801daf7c5c32ff251ecfec7c33c41f4}{ROL16}}(ukey[(n+1)\&0x7],5);}
+\DoxyCodeLine{225         skey->kasumi.KOi2[n] = \mbox{\hyperlink{kasumi_8c_a2801daf7c5c32ff251ecfec7c33c41f4}{ROL16}}(ukey[(n+5)\&0x7],8);}
+\DoxyCodeLine{226         skey->kasumi.KOi3[n] = \mbox{\hyperlink{kasumi_8c_a2801daf7c5c32ff251ecfec7c33c41f4}{ROL16}}(ukey[(n+6)\&0x7],13);}
+\DoxyCodeLine{227         skey->kasumi.KIi1[n] = Kprime[(n+4)\&0x7];}
+\DoxyCodeLine{228         skey->kasumi.KIi2[n] = Kprime[(n+3)\&0x7];}
+\DoxyCodeLine{229         skey->kasumi.KIi3[n] = Kprime[(n+7)\&0x7];}
+\DoxyCodeLine{230     \}}
+\DoxyCodeLine{231 }
+\DoxyCodeLine{232     \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{233 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+K\+E\+Y\+S\+I\+ZE, C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+R\+O\+U\+N\+DS, C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, and R\+O\+L16.
+
+
+
+Referenced by kasumi\+\_\+test().
+
+Here is the caller graph for this function\+:
+% FIG 9
+\mbox{\Hypertarget{kasumi_8c_aef063f4146ff8f960a6f8c39b2c9d6e9}\label{kasumi_8c_aef063f4146ff8f960a6f8c39b2c9d6e9}} 
+\index{kasumi.c@{kasumi.c}!kasumi\_test@{kasumi\_test}}
+\index{kasumi\_test@{kasumi\_test}!kasumi.c@{kasumi.c}}
+\subsubsection{\texorpdfstring{kasumi\_test()}{kasumi\_test()}}
+{\footnotesize\ttfamily int kasumi\+\_\+test (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 250 of file kasumi.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{251 \{}
+\DoxyCodeLine{252 \textcolor{preprocessor}{\#ifndef LTC\_TEST}}
+\DoxyCodeLine{253    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cac43a7799c7fd5f515172da6cfc0f9cf5}{CRYPT\_NOP}};}
+\DoxyCodeLine{254 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{255    \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{256       \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} key[16], pt[8], ct[8];}
+\DoxyCodeLine{257    \} tests[] = \{}
+\DoxyCodeLine{258 }
+\DoxyCodeLine{259 \{}
+\DoxyCodeLine{260    \{ 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{261    \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{262    \{ 0x4B, 0x58, 0xA7, 0x71, 0xAF, 0xC7, 0xE5, 0xE8 \}}
+\DoxyCodeLine{263 \},}
+\DoxyCodeLine{264 }
+\DoxyCodeLine{265 \{}
+\DoxyCodeLine{266    \{ 0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{267    \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{268    \{ 0x7E, 0xEF, 0x11, 0x3C, 0x95, 0xBB, 0x5A, 0x77 \}}
+\DoxyCodeLine{269 \},}
+\DoxyCodeLine{270 }
+\DoxyCodeLine{271 \{}
+\DoxyCodeLine{272    \{ 0x00, 0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{273    \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{274    \{ 0x5F, 0x14, 0x06, 0x86, 0xD7, 0xAD, 0x5A, 0x39 \},}
+\DoxyCodeLine{275 \},}
+\DoxyCodeLine{276 }
+\DoxyCodeLine{277 \{}
+\DoxyCodeLine{278    \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01 \},}
+\DoxyCodeLine{279    \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{280    \{ 0x2E, 0x14, 0x91, 0xCF, 0x70, 0xAA, 0x46, 0x5D \}}
+\DoxyCodeLine{281 \},}
+\DoxyCodeLine{282 }
+\DoxyCodeLine{283 \{}
+\DoxyCodeLine{284    \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00 \},}
+\DoxyCodeLine{285    \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{286    \{ 0xB5, 0x45, 0x86, 0xF4, 0xAB, 0x9A, 0xE5, 0x46 \}}
+\DoxyCodeLine{287 \},}
+\DoxyCodeLine{288 }
+\DoxyCodeLine{289 \};}
+\DoxyCodeLine{290    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} buf[2][8];}
+\DoxyCodeLine{291    \mbox{\hyperlink{unionSymmetric__key}{symmetric\_key}} key;}
+\DoxyCodeLine{292    \textcolor{keywordtype}{int} err, x;}
+\DoxyCodeLine{293 }
+\DoxyCodeLine{294    \textcolor{keywordflow}{for} (x = 0; x < (int)(\textcolor{keyword}{sizeof}(tests)/\textcolor{keyword}{sizeof}(tests[0])); x++) \{}
+\DoxyCodeLine{295        \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{kasumi_8c_a6f2be755c6a204eb76412d217ffb7e1c}{kasumi\_setup}}(tests[x].key, 16, 0, \&key)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{296           \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{297        \}}
+\DoxyCodeLine{298        \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{kasumi_8c_a2b93a734eadc37860db94b936570c0bb}{kasumi\_ecb\_encrypt}}(tests[x].pt, buf[0], \&key)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{299           \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{300        \}}
+\DoxyCodeLine{301        \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{kasumi_8c_ade25ab67061b122b4309d7187a55ead6}{kasumi\_ecb\_decrypt}}(tests[x].ct, buf[1], \&key)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{302           \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{303        \}}
+\DoxyCodeLine{304        \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(buf[1], 8, tests[x].pt, 8, \textcolor{stringliteral}{"Kasumi Decrypt"}, x) ||}
+\DoxyCodeLine{305              \mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(buf[0], 8, tests[x].ct, 8, \textcolor{stringliteral}{"Kasumi Encrypt"}, x)) \{}
+\DoxyCodeLine{306           \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{307        \}}
+\DoxyCodeLine{308    \}}
+\DoxyCodeLine{309    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{310 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{311 \}}
+
+\end{DoxyCode}
+
+
+References compare\+\_\+testvector(), C\+R\+Y\+P\+T\+\_\+\+F\+A\+I\+L\+\_\+\+T\+E\+S\+T\+V\+E\+C\+T\+OR, C\+R\+Y\+P\+T\+\_\+\+N\+OP, C\+R\+Y\+P\+T\+\_\+\+OK, kasumi\+\_\+ecb\+\_\+decrypt(), kasumi\+\_\+ecb\+\_\+encrypt(), and kasumi\+\_\+setup().
+
+Here is the call graph for this function\+:
+% FIG 10
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{kasumi_8c_a0a9143785f21664be453500c0dd55099}\label{kasumi_8c_a0a9143785f21664be453500c0dd55099}} 
+\index{kasumi.c@{kasumi.c}!kasumi\_desc@{kasumi\_desc}}
+\index{kasumi\_desc@{kasumi\_desc}!kasumi.c@{kasumi.c}}
+\subsubsection{\texorpdfstring{kasumi\_desc}{kasumi\_desc}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structltc__cipher__descriptor}{ltc\+\_\+cipher\+\_\+descriptor}} kasumi\+\_\+desc}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{   \textcolor{stringliteral}{"kasumi"},}
+\DoxyCodeLine{   21,}
+\DoxyCodeLine{   16, 16, 8, 8,}
+\DoxyCodeLine{   \&\mbox{\hyperlink{kasumi_8c_a6f2be755c6a204eb76412d217ffb7e1c}{kasumi\_setup}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{kasumi_8c_a2b93a734eadc37860db94b936570c0bb}{kasumi\_ecb\_encrypt}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{kasumi_8c_ade25ab67061b122b4309d7187a55ead6}{kasumi\_ecb\_decrypt}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{kasumi_8c_aef063f4146ff8f960a6f8c39b2c9d6e9}{kasumi\_test}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{kasumi_8c_afb0a6949d7309dbc09a655a84bed3df9}{kasumi\_done}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{kasumi_8c_a53ae124aa1053dd85b517c9d06dab459}{kasumi\_keysize}},}
+\DoxyCodeLine{   NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line 24 of file kasumi.\+c.
+
+
+
+Referenced by register\+\_\+all\+\_\+ciphers().
+

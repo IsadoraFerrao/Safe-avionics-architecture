@@ -1,0 +1,16 @@
+digraph "ocb3_encrypt"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node5 [label="ocb3_encrypt",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Encrypt blocks of data with OCB."];
+  Node5 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="ocb3_encrypt_last",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ocb3__encrypt__last_8c.html#a7059d3b0e1618f0f4dd88b6314830ba6",tooltip="Finish an OCB (encryption) stream."];
+  Node6 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="ocb3_encrypt_authenticate\l_memory",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ocb3__encrypt__authenticate__memory_8c.html#a4f2509ac5594dc6dcead8ac840a30b91",tooltip="Encrypt and generate an authentication code for a buffer of memory."];
+  Node7 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="ocb3_test",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ocb3__test_8c.html#afafd01785264b534d0ef8efb9fe530ef",tooltip="Test the OCB protocol."];
+  Node6 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}

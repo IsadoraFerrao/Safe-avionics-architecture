@@ -1,0 +1,98 @@
+\hypertarget{ltc__ecc__is__point_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/pk/ecc/ltc\+\_\+ecc\+\_\+is\+\_\+point.c File Reference}
+\label{ltc__ecc__is__point_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/ecc/ltc\_ecc\_is\_point.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/ecc/ltc\_ecc\_is\_point.c}}
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for ltc\+\_\+ecc\+\_\+is\+\_\+point.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{ltc__ecc__is__point_8c_affd37f56571ffc28d2c2687a76014b11}{ltc\+\_\+ecc\+\_\+is\+\_\+point}} (const ltc\+\_\+ecc\+\_\+dp $\ast$dp, void $\ast$x, void $\ast$y)
+\begin{DoxyCompactList}\small\item\em Returns whether \mbox{[}x,y\mbox{]} is a point on curve defined by dp. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{ltc__ecc__is__point_8c_affd37f56571ffc28d2c2687a76014b11}\label{ltc__ecc__is__point_8c_affd37f56571ffc28d2c2687a76014b11}} 
+\index{ltc\_ecc\_is\_point.c@{ltc\_ecc\_is\_point.c}!ltc\_ecc\_is\_point@{ltc\_ecc\_is\_point}}
+\index{ltc\_ecc\_is\_point@{ltc\_ecc\_is\_point}!ltc\_ecc\_is\_point.c@{ltc\_ecc\_is\_point.c}}
+\subsubsection{\texorpdfstring{ltc\_ecc\_is\_point()}{ltc\_ecc\_is\_point()}}
+{\footnotesize\ttfamily int ltc\+\_\+ecc\+\_\+is\+\_\+point (\begin{DoxyParamCaption}\item[{const ltc\+\_\+ecc\+\_\+dp $\ast$}]{dp,  }\item[{void $\ast$}]{x,  }\item[{void $\ast$}]{y }\end{DoxyParamCaption})}
+
+
+
+Returns whether \mbox{[}x,y\mbox{]} is a point on curve defined by dp. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dp} & curve parameters \\
+\hline
+{\em x} & x point coordinate \\
+\hline
+{\em y} & y point coordinate \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if valid 
+\end{DoxyReturn}
+
+
+Definition at line 21 of file ltc\+\_\+ecc\+\_\+is\+\_\+point.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{22 \{}
+\DoxyCodeLine{23   \textcolor{keywordtype}{void} *prime, *a, *b, *\mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}}, *\mbox{\hyperlink{tiger_8c_aa4652e2d6053d420dcbea07a113db5fe}{t2}};}
+\DoxyCodeLine{24   \textcolor{keywordtype}{int} err;}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26   prime = dp->prime;}
+\DoxyCodeLine{27   b     = dp->B;}
+\DoxyCodeLine{28   a     = dp->A;}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30   \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_adb6322247b1a4f0347219acab3120bd3}{mp\_init\_multi}}(\&\mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}}, \&\mbox{\hyperlink{tiger_8c_aa4652e2d6053d420dcbea07a113db5fe}{t2}}, NULL)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})  \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32   \textcolor{comment}{/* compute y\string^2 */}}
+\DoxyCodeLine{33   \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_aea81d79b5462e99068908d80edb8bd1a}{mp\_sqr}}(y, \mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}})) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                  \textcolor{keywordflow}{goto} cleanup;}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35   \textcolor{comment}{/* compute x\string^3 */}}
+\DoxyCodeLine{36   \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_aea81d79b5462e99068908d80edb8bd1a}{mp\_sqr}}(x, \mbox{\hyperlink{tiger_8c_aa4652e2d6053d420dcbea07a113db5fe}{t2}})) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                  \textcolor{keywordflow}{goto} cleanup;}
+\DoxyCodeLine{37   \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_ac7deed6f00e289706070b16f98c430fe}{mp\_mod}}(\mbox{\hyperlink{tiger_8c_aa4652e2d6053d420dcbea07a113db5fe}{t2}}, prime, \mbox{\hyperlink{tiger_8c_aa4652e2d6053d420dcbea07a113db5fe}{t2}})) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})          \textcolor{keywordflow}{goto} cleanup;}
+\DoxyCodeLine{38   \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a7606d2423856b32b09245a2fa1ef34ee}{mp\_mul}}(x, \mbox{\hyperlink{tiger_8c_aa4652e2d6053d420dcbea07a113db5fe}{t2}}, \mbox{\hyperlink{tiger_8c_aa4652e2d6053d420dcbea07a113db5fe}{t2}})) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})              \textcolor{keywordflow}{goto} cleanup;}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{40   \textcolor{comment}{/* compute y\string^2 - x\string^3 */}}
+\DoxyCodeLine{41   \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_ab8d0882c3b58263b638b41fbf110fde8}{mp\_sub}}(\mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}}, \mbox{\hyperlink{tiger_8c_aa4652e2d6053d420dcbea07a113db5fe}{t2}}, \mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}})) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})             \textcolor{keywordflow}{goto} cleanup;}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{43   \textcolor{comment}{/* compute y\string^2 - x\string^3 - a*x */}}
+\DoxyCodeLine{44   \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a15e2f6c11b3fcebe885ecc14d759ac01}{mp\_submod}}(prime, a, prime, \mbox{\hyperlink{tiger_8c_aa4652e2d6053d420dcbea07a113db5fe}{t2}})) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \textcolor{keywordflow}{goto} cleanup;}
+\DoxyCodeLine{45   \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a0c32b20b84951870c7b09f5b6f2679c9}{mp\_mulmod}}(\mbox{\hyperlink{tiger_8c_aa4652e2d6053d420dcbea07a113db5fe}{t2}}, x, prime, \mbox{\hyperlink{tiger_8c_aa4652e2d6053d420dcbea07a113db5fe}{t2}})) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})    \textcolor{keywordflow}{goto} cleanup;}
+\DoxyCodeLine{46   \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a3cc86fdd66c67023afe490b3534d459b}{mp\_addmod}}(\mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}}, \mbox{\hyperlink{tiger_8c_aa4652e2d6053d420dcbea07a113db5fe}{t2}}, prime, \mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}})) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})   \textcolor{keywordflow}{goto} cleanup;}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48   \textcolor{comment}{/* adjust range (0, prime) */}}
+\DoxyCodeLine{49   \textcolor{keywordflow}{while} (\mbox{\hyperlink{tomcrypt__private_8h_a6ce44f2e6f872565a468b67d9a93dc28}{mp\_cmp\_d}}(\mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}}, 0) == \mbox{\hyperlink{tomcrypt__math_8h_a42d0c7d4c09793df79660774d3436db2}{LTC\_MP\_LT}}) \{}
+\DoxyCodeLine{50      \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a175d04f8aeaa1c3895fe14de6cc0d2db}{mp\_add}}(\mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}}, prime, \mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}})) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})       \textcolor{keywordflow}{goto} cleanup;}
+\DoxyCodeLine{51   \}}
+\DoxyCodeLine{52   \textcolor{keywordflow}{while} (\mbox{\hyperlink{tomcrypt__private_8h_a62ea02fbe7dd2d456e49520264d775ee}{mp\_cmp}}(\mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}}, prime) != \mbox{\hyperlink{tomcrypt__math_8h_a42d0c7d4c09793df79660774d3436db2}{LTC\_MP\_LT}}) \{}
+\DoxyCodeLine{53      \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_ab8d0882c3b58263b638b41fbf110fde8}{mp\_sub}}(\mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}}, prime, \mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}})) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})       \textcolor{keywordflow}{goto} cleanup;}
+\DoxyCodeLine{54   \}}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{56   \textcolor{comment}{/* compare to b */}}
+\DoxyCodeLine{57   \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__private_8h_a62ea02fbe7dd2d456e49520264d775ee}{mp\_cmp}}(\mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}}, b) != \mbox{\hyperlink{tomcrypt__math_8h_a035a31bde4f31419eb259e36e5776607}{LTC\_MP\_EQ}}) \{}
+\DoxyCodeLine{58      err = \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca980088f10ffe9009aec286038a9e79da}{CRYPT\_INVALID\_PACKET}};}
+\DoxyCodeLine{59   \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{60      err = \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{61   \}}
+\DoxyCodeLine{62 }
+\DoxyCodeLine{63 cleanup:}
+\DoxyCodeLine{64   \mbox{\hyperlink{tomcrypt__private_8h_aad5c8a3112b3e4613f9efc86692c43cb}{mp\_clear\_multi}}(\mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}}, \mbox{\hyperlink{tiger_8c_aa4652e2d6053d420dcbea07a113db5fe}{t2}}, NULL);}
+\DoxyCodeLine{65   \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{66 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+P\+A\+C\+K\+ET, C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+M\+P\+\_\+\+EQ, L\+T\+C\+\_\+\+M\+P\+\_\+\+LT, mp\+\_\+add, mp\+\_\+addmod, mp\+\_\+clear\+\_\+multi, mp\+\_\+cmp, mp\+\_\+cmp\+\_\+d, mp\+\_\+init\+\_\+multi, mp\+\_\+mod, mp\+\_\+mul, mp\+\_\+mulmod, mp\+\_\+sqr, mp\+\_\+sub, mp\+\_\+submod, t1, and t2.
+
+
+
+Referenced by ltc\+\_\+ecc\+\_\+verify\+\_\+key().
+
+Here is the caller graph for this function\+:
+% FIG 1

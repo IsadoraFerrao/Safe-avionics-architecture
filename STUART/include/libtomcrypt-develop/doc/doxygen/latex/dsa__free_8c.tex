@@ -1,0 +1,61 @@
+\hypertarget{dsa__free_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/pk/dsa/dsa\+\_\+free.c File Reference}
+\label{dsa__free_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/dsa/dsa\_free.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/dsa/dsa\_free.c}}
+
+
+D\+SA implementation, free a D\+SA key, Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for dsa\+\_\+free.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{dsa__free_8c_aa303a866d72fa5c2967b7d26410ec69c}{dsa\+\_\+free}} (dsa\+\_\+key $\ast$key)
+\begin{DoxyCompactList}\small\item\em Free a D\+SA key. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+D\+SA implementation, free a D\+SA key, Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{dsa__free_8c_aa303a866d72fa5c2967b7d26410ec69c}\label{dsa__free_8c_aa303a866d72fa5c2967b7d26410ec69c}} 
+\index{dsa\_free.c@{dsa\_free.c}!dsa\_free@{dsa\_free}}
+\index{dsa\_free@{dsa\_free}!dsa\_free.c@{dsa\_free.c}}
+\subsubsection{\texorpdfstring{dsa\_free()}{dsa\_free()}}
+{\footnotesize\ttfamily void dsa\+\_\+free (\begin{DoxyParamCaption}\item[{dsa\+\_\+key $\ast$}]{key }\end{DoxyParamCaption})}
+
+
+
+Free a D\+SA key. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The key to free from memory \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 22 of file dsa\+\_\+free.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{23 \{}
+\DoxyCodeLine{24    \mbox{\hyperlink{tomcrypt__argchk_8h_a67a6e5d66d0c7d80ddf5c583054608bd}{LTC\_ARGCHKVD}}(key != NULL);}
+\DoxyCodeLine{25    \mbox{\hyperlink{tomcrypt__private_8h_ad0d492c0676e4944383a7ae9e9ebd63b}{mp\_cleanup\_multi}}(\&key->y, \&key->x, \&key->q, \&key->g, \&key->p, NULL);}
+\DoxyCodeLine{26    key->type = key->qord = 0;}
+\DoxyCodeLine{27 \}}
+
+\end{DoxyCode}
+
+
+References L\+T\+C\+\_\+\+A\+R\+G\+C\+H\+K\+VD, and mp\+\_\+cleanup\+\_\+multi.
+
+
+
+Referenced by dsa\+\_\+generate\+\_\+pqg(), dsa\+\_\+import(), dsa\+\_\+set\+\_\+key(), dsa\+\_\+set\+\_\+pqg(), and dsa\+\_\+set\+\_\+pqg\+\_\+dsaparam().
+
+Here is the caller graph for this function\+:
+% FIG 1

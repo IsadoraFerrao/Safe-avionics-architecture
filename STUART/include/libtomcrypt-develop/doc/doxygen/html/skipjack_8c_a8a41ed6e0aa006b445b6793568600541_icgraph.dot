@@ -1,0 +1,10 @@
+digraph "skipjack_ecb_decrypt"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node7 [label="skipjack_ecb_decrypt",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Decrypts a block of text with Skipjack."];
+  Node7 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="skipjack_test",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$skipjack_8c.html#aa9c44f10e6f1dbacf9e7547f67b81fc3",tooltip="Performs a self-test of the Skipjack block cipher."];
+}

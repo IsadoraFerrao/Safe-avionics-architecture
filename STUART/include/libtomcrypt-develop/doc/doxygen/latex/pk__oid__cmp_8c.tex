@@ -1,0 +1,92 @@
+\hypertarget{pk__oid__cmp_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/pk/asn1/oid/pk\+\_\+oid\+\_\+cmp.c File Reference}
+\label{pk__oid__cmp_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/asn1/oid/pk\_oid\_cmp.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/asn1/oid/pk\_oid\_cmp.c}}
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for pk\+\_\+oid\+\_\+cmp.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{pk__oid__cmp_8c_a4283c0cfa77d37ab8add0b7c531d3d6f}{pk\+\_\+oid\+\_\+cmp\+\_\+with\+\_\+ulong}} (const char $\ast$o1, const unsigned long $\ast$o2, unsigned long o2size)
+\item 
+int \mbox{\hyperlink{pk__oid__cmp_8c_aaa860b1fbc776e0760df8934a6aa245a}{pk\+\_\+oid\+\_\+cmp\+\_\+with\+\_\+asn1}} (const char $\ast$o1, const ltc\+\_\+asn1\+\_\+list $\ast$o2)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{pk__oid__cmp_8c_aaa860b1fbc776e0760df8934a6aa245a}\label{pk__oid__cmp_8c_aaa860b1fbc776e0760df8934a6aa245a}} 
+\index{pk\_oid\_cmp.c@{pk\_oid\_cmp.c}!pk\_oid\_cmp\_with\_asn1@{pk\_oid\_cmp\_with\_asn1}}
+\index{pk\_oid\_cmp\_with\_asn1@{pk\_oid\_cmp\_with\_asn1}!pk\_oid\_cmp.c@{pk\_oid\_cmp.c}}
+\subsubsection{\texorpdfstring{pk\_oid\_cmp\_with\_asn1()}{pk\_oid\_cmp\_with\_asn1()}}
+{\footnotesize\ttfamily int pk\+\_\+oid\+\_\+cmp\+\_\+with\+\_\+asn1 (\begin{DoxyParamCaption}\item[{const char $\ast$}]{o1,  }\item[{const ltc\+\_\+asn1\+\_\+list $\ast$}]{o2 }\end{DoxyParamCaption})}
+
+
+
+Definition at line 41 of file pk\+\_\+oid\+\_\+cmp.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{42 \{}
+\DoxyCodeLine{43    \textcolor{keywordflow}{if} (o1 == NULL || o2 == NULL) \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca03c22220d7538be04455cd2aa6ddf9da}{CRYPT\_ERROR}};}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45    \textcolor{keywordflow}{if} (o2->type != LTC\_ASN1\_OBJECT\_IDENTIFIER) \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{46 }
+\DoxyCodeLine{47    \textcolor{keywordflow}{return} \mbox{\hyperlink{pk__oid__cmp_8c_a4283c0cfa77d37ab8add0b7c531d3d6f}{pk\_oid\_cmp\_with\_ulong}}(o1, o2->data, o2->size);}
+\DoxyCodeLine{48 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+E\+R\+R\+OR, C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+A\+RG, and pk\+\_\+oid\+\_\+cmp\+\_\+with\+\_\+ulong().
+
+
+
+Referenced by \+\_\+pbes1\+\_\+from\+\_\+oid(), \+\_\+pbes2\+\_\+from\+\_\+oid(), ecc\+\_\+import\+\_\+pkcs8(), pbes2\+\_\+extract(), rsa\+\_\+import\+\_\+pkcs8(), and x509\+\_\+decode\+\_\+subject\+\_\+public\+\_\+key\+\_\+info().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2
+\mbox{\Hypertarget{pk__oid__cmp_8c_a4283c0cfa77d37ab8add0b7c531d3d6f}\label{pk__oid__cmp_8c_a4283c0cfa77d37ab8add0b7c531d3d6f}} 
+\index{pk\_oid\_cmp.c@{pk\_oid\_cmp.c}!pk\_oid\_cmp\_with\_ulong@{pk\_oid\_cmp\_with\_ulong}}
+\index{pk\_oid\_cmp\_with\_ulong@{pk\_oid\_cmp\_with\_ulong}!pk\_oid\_cmp.c@{pk\_oid\_cmp.c}}
+\subsubsection{\texorpdfstring{pk\_oid\_cmp\_with\_ulong()}{pk\_oid\_cmp\_with\_ulong()}}
+{\footnotesize\ttfamily int pk\+\_\+oid\+\_\+cmp\+\_\+with\+\_\+ulong (\begin{DoxyParamCaption}\item[{const char $\ast$}]{o1,  }\item[{const unsigned long $\ast$}]{o2,  }\item[{unsigned long}]{o2size }\end{DoxyParamCaption})}
+
+
+
+Definition at line 17 of file pk\+\_\+oid\+\_\+cmp.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{18 \{}
+\DoxyCodeLine{19    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} i;}
+\DoxyCodeLine{20    \textcolor{keywordtype}{char} tmp[256] = \{ 0 \};}
+\DoxyCodeLine{21    \textcolor{keywordtype}{int} err;}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23    \textcolor{keywordflow}{if} (o1 == NULL || o2 == NULL) \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca03c22220d7538be04455cd2aa6ddf9da}{CRYPT\_ERROR}};}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25    i = \textcolor{keyword}{sizeof}(tmp);}
+\DoxyCodeLine{26    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a5ead1435fcad3d1f1842a6419079f036}{pk\_oid\_num\_to\_str}}(o2, o2size, tmp, \&i)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{27       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{28    \}}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30    \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__cfg_8h_a5d6e3d69e1d3f54de008b963bba3c6b3}{XSTRCMP}}(o1, tmp) != 0) \{}
+\DoxyCodeLine{31       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca18dac5b6ef2e90712e2ae43c4734f00d}{CRYPT\_PK\_INVALID\_TYPE}};}
+\DoxyCodeLine{32    \}}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{35 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+E\+R\+R\+OR, C\+R\+Y\+P\+T\+\_\+\+OK, C\+R\+Y\+P\+T\+\_\+\+P\+K\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+T\+Y\+PE, pk\+\_\+oid\+\_\+num\+\_\+to\+\_\+str(), and X\+S\+T\+R\+C\+M\+P().
+
+
+
+Referenced by ecc\+\_\+recover\+\_\+key(), ecc\+\_\+sign\+\_\+hash\+\_\+ex(), ecc\+\_\+verify\+\_\+hash\+\_\+ex(), and pk\+\_\+oid\+\_\+cmp\+\_\+with\+\_\+asn1().
+
+Here is the call graph for this function\+:
+% FIG 3
+Here is the caller graph for this function\+:
+% FIG 4

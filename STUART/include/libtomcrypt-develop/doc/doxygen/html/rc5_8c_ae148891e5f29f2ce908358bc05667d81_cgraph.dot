@@ -1,0 +1,20 @@
+digraph "rc5_test"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node14 [label="rc5_test",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Performs a self-test of the LTC_RC5 block cipher."];
+  Node14 -> Node15 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node15 [label="compare_testvector",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__misc_8h.html#a7764a7f27897c6182335752df00b5f8e",tooltip="Compare two test-vectors."];
+  Node15 -> Node16 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node16 [label="XMEMCMP",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cfg_8h.html#a372b974ec0ac07abcd55297554fe540f",tooltip=" "];
+  Node14 -> Node17 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node17 [label="rc5_ecb_decrypt",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rc5_8c.html#a651d80a7ac5348628170b5f9ac95072d",tooltip="Decrypts a block of text with LTC_RC5."];
+  Node14 -> Node18 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node18 [label="rc5_ecb_encrypt",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rc5_8c.html#a2f3eefccd0bcb25545267736102915a5",tooltip="Encrypts a block of text with LTC_RC5."];
+  Node14 -> Node19 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node19 [label="rc5_setup",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rc5_8c.html#a0d3b66925591fd1f5ee4e65a271e5168",tooltip="Initialize the LTC_RC5 block cipher."];
+  Node19 -> Node20 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node20 [label="XMEMCPY",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cfg_8h.html#a7691dd48d60d5fc6daf2fa7ec4c55e12",tooltip=" "];
+}

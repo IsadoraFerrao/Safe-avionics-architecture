@@ -1,0 +1,139 @@
+\hypertarget{gcm__init_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/encauth/gcm/gcm\+\_\+init.c File Reference}
+\label{gcm__init_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/encauth/gcm/gcm\_init.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/encauth/gcm/gcm\_init.c}}
+
+
+G\+CM implementation, initialize state, by Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for gcm\+\_\+init.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{gcm__init_8c_aa8fa50bfa0ec8b07b363dbe7cbab7339}{gcm\+\_\+init}} (gcm\+\_\+state $\ast$gcm, int cipher, const unsigned char $\ast$key, int keylen)
+\begin{DoxyCompactList}\small\item\em Initialize a G\+CM state. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+G\+CM implementation, initialize state, by Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{gcm__init_8c_aa8fa50bfa0ec8b07b363dbe7cbab7339}\label{gcm__init_8c_aa8fa50bfa0ec8b07b363dbe7cbab7339}} 
+\index{gcm\_init.c@{gcm\_init.c}!gcm\_init@{gcm\_init}}
+\index{gcm\_init@{gcm\_init}!gcm\_init.c@{gcm\_init.c}}
+\subsubsection{\texorpdfstring{gcm\_init()}{gcm\_init()}}
+{\footnotesize\ttfamily int gcm\+\_\+init (\begin{DoxyParamCaption}\item[{gcm\+\_\+state $\ast$}]{gcm,  }\item[{int}]{cipher,  }\item[{const unsigned char $\ast$}]{key,  }\item[{int}]{keylen }\end{DoxyParamCaption})}
+
+
+
+Initialize a G\+CM state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gcm} & The G\+CM state to initialize \\
+\hline
+{\em cipher} & The index of the cipher to use \\
+\hline
+{\em key} & The secret key \\
+\hline
+{\em keylen} & The length of the secret key \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK on success 
+\end{DoxyReturn}
+
+
+Definition at line 26 of file gcm\+\_\+init.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{28 \{}
+\DoxyCodeLine{29    \textcolor{keywordtype}{int}           err;}
+\DoxyCodeLine{30    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} B[16];}
+\DoxyCodeLine{31 \textcolor{preprocessor}{\#ifdef LTC\_GCM\_TABLES}}
+\DoxyCodeLine{32    \textcolor{keywordtype}{int}           x, y, z, t;}
+\DoxyCodeLine{33 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(gcm != NULL);}
+\DoxyCodeLine{36    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(key != NULL);}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{38 \textcolor{preprocessor}{\#ifdef LTC\_FAST}}
+\DoxyCodeLine{39    \textcolor{keywordflow}{if} (16 \% \textcolor{keyword}{sizeof}(LTC\_FAST\_TYPE)) \{}
+\DoxyCodeLine{40       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{41    \}}
+\DoxyCodeLine{42 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44    \textcolor{comment}{/* is cipher valid? */}}
+\DoxyCodeLine{45    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_ac30eb68934c4ca07205344dc9d159221}{cipher\_is\_valid}}(cipher)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{46       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{47    \}}
+\DoxyCodeLine{48    \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[cipher].block\_length != 16) \{}
+\DoxyCodeLine{49       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca302b958f5664adeb427c22f57c9d90a4}{CRYPT\_INVALID\_CIPHER}};}
+\DoxyCodeLine{50    \}}
+\DoxyCodeLine{51 }
+\DoxyCodeLine{52    \textcolor{comment}{/* schedule key */}}
+\DoxyCodeLine{53    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[cipher].\mbox{\hyperlink{multi2_8c_ad0625943f7d847668b869ed827c51d47}{setup}}(key, keylen, 0, \&gcm->K)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{54       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{55    \}}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{57    \textcolor{comment}{/* H = E(0) */}}
+\DoxyCodeLine{58    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(B, 16);}
+\DoxyCodeLine{59    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[cipher].\mbox{\hyperlink{ecb__encrypt_8c_affdcc93fca272998e2545fcabac4e7f0}{ecb\_encrypt}}(B, gcm->H, \&gcm->K)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{60       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{61    \}}
+\DoxyCodeLine{62 }
+\DoxyCodeLine{63    \textcolor{comment}{/* setup state */}}
+\DoxyCodeLine{64    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(gcm->buf, \textcolor{keyword}{sizeof}(gcm->buf));}
+\DoxyCodeLine{65    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(gcm->X,   \textcolor{keyword}{sizeof}(gcm->X));}
+\DoxyCodeLine{66    gcm->cipher   = cipher;}
+\DoxyCodeLine{67    gcm->mode     = LTC\_GCM\_MODE\_IV;}
+\DoxyCodeLine{68    gcm->ivmode   = 0;}
+\DoxyCodeLine{69    gcm->buflen   = 0;}
+\DoxyCodeLine{70    gcm->totlen   = 0;}
+\DoxyCodeLine{71    gcm->pttotlen = 0;}
+\DoxyCodeLine{72 }
+\DoxyCodeLine{73 \textcolor{preprocessor}{\#ifdef LTC\_GCM\_TABLES}}
+\DoxyCodeLine{74    \textcolor{comment}{/* setup tables */}}
+\DoxyCodeLine{75 }
+\DoxyCodeLine{76    \textcolor{comment}{/* generate the first table as it has no shifting (from which we make the other tables) */}}
+\DoxyCodeLine{77    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(B, 16);}
+\DoxyCodeLine{78    \textcolor{keywordflow}{for} (y = 0; y < 256; y++) \{}
+\DoxyCodeLine{79         B[0] = y;}
+\DoxyCodeLine{80         \mbox{\hyperlink{gcm__gf__mult_8c_af64448959cfcae8b0a774822f2219f47}{gcm\_gf\_mult}}(gcm->H, B, \&gcm->PC[0][y][0]);}
+\DoxyCodeLine{81    \}}
+\DoxyCodeLine{82 }
+\DoxyCodeLine{83    \textcolor{comment}{/* now generate the rest of the tables based the previous table */}}
+\DoxyCodeLine{84    \textcolor{keywordflow}{for} (x = 1; x < 16; x++) \{}
+\DoxyCodeLine{85       \textcolor{keywordflow}{for} (y = 0; y < 256; y++) \{}
+\DoxyCodeLine{86          \textcolor{comment}{/* now shift it right by 8 bits */}}
+\DoxyCodeLine{87          t = gcm->PC[x-1][y][15];}
+\DoxyCodeLine{88          \textcolor{keywordflow}{for} (z = 15; z > 0; z--) \{}
+\DoxyCodeLine{89              gcm->PC[x][y][z] = gcm->PC[x-1][y][z-1];}
+\DoxyCodeLine{90          \}}
+\DoxyCodeLine{91          gcm->PC[x][y][0] = \mbox{\hyperlink{gcm__gf__mult_8c_afed0599464ad3983ee906b9e7364425f}{gcm\_shift\_table}}[t<<1];}
+\DoxyCodeLine{92          gcm->PC[x][y][1] \string^= \mbox{\hyperlink{gcm__gf__mult_8c_afed0599464ad3983ee906b9e7364425f}{gcm\_shift\_table}}[(t<<1)+1];}
+\DoxyCodeLine{93       \}}
+\DoxyCodeLine{94    \}}
+\DoxyCodeLine{95 }
+\DoxyCodeLine{96 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{97 }
+\DoxyCodeLine{98    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{99 \}}
+
+\end{DoxyCode}
+
+
+References cipher\+\_\+descriptor, cipher\+\_\+is\+\_\+valid(), C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+A\+RG, C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+C\+I\+P\+H\+ER, C\+R\+Y\+P\+T\+\_\+\+OK, ecb\+\_\+encrypt(), gcm\+\_\+gf\+\_\+mult(), gcm\+\_\+shift\+\_\+table, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, setup(), and zeromem().
+
+
+
+Referenced by gcm\+\_\+memory(), and gcm\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2

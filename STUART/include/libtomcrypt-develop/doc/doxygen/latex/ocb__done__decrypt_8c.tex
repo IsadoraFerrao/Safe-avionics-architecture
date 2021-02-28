@@ -1,0 +1,112 @@
+\hypertarget{ocb__done__decrypt_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/encauth/ocb/ocb\+\_\+done\+\_\+decrypt.c File Reference}
+\label{ocb__done__decrypt_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/encauth/ocb/ocb\_done\_decrypt.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/encauth/ocb/ocb\_done\_decrypt.c}}
+
+
+O\+CB implementation, terminate decryption, by Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for ocb\+\_\+done\+\_\+decrypt.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{ocb__done__decrypt_8c_a9f8c7f1d6dd8025f8b4375841707a096}{ocb\+\_\+done\+\_\+decrypt}} (ocb\+\_\+state $\ast$ocb, const unsigned char $\ast$ct, unsigned long ctlen, unsigned char $\ast$pt, const unsigned char $\ast$tag, unsigned long taglen, int $\ast$stat)
+\begin{DoxyCompactList}\small\item\em Terminate a decrypting O\+CB state. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+O\+CB implementation, terminate decryption, by Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{ocb__done__decrypt_8c_a9f8c7f1d6dd8025f8b4375841707a096}\label{ocb__done__decrypt_8c_a9f8c7f1d6dd8025f8b4375841707a096}} 
+\index{ocb\_done\_decrypt.c@{ocb\_done\_decrypt.c}!ocb\_done\_decrypt@{ocb\_done\_decrypt}}
+\index{ocb\_done\_decrypt@{ocb\_done\_decrypt}!ocb\_done\_decrypt.c@{ocb\_done\_decrypt.c}}
+\subsubsection{\texorpdfstring{ocb\_done\_decrypt()}{ocb\_done\_decrypt()}}
+{\footnotesize\ttfamily int ocb\+\_\+done\+\_\+decrypt (\begin{DoxyParamCaption}\item[{ocb\+\_\+state $\ast$}]{ocb,  }\item[{const unsigned char $\ast$}]{ct,  }\item[{unsigned long}]{ctlen,  }\item[{unsigned char $\ast$}]{pt,  }\item[{const unsigned char $\ast$}]{tag,  }\item[{unsigned long}]{taglen,  }\item[{int $\ast$}]{stat }\end{DoxyParamCaption})}
+
+
+
+Terminate a decrypting O\+CB state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ocb} & The O\+CB state \\
+\hline
+{\em ct} & The ciphertext (if any) \\
+\hline
+{\em ctlen} & The length of the ciphertext (octets) \\
+\hline
+{\em pt} & \mbox{[}out\mbox{]} The plaintext \\
+\hline
+{\em tag} & The authentication tag (to compare against) \\
+\hline
+{\em taglen} & The length of the authentication tag provided \\
+\hline
+{\em stat} & \mbox{[}out\mbox{]} The result of the tag comparison \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if the process was successful regardless if the tag is valid 
+\end{DoxyReturn}
+
+
+Definition at line 29 of file ocb\+\_\+done\+\_\+decrypt.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{33 \{}
+\DoxyCodeLine{34    \textcolor{keywordtype}{int} err;}
+\DoxyCodeLine{35    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *tagbuf;}
+\DoxyCodeLine{36    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} tagbuflen;}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{38    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(ocb  != NULL);}
+\DoxyCodeLine{39    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(pt   != NULL);}
+\DoxyCodeLine{40    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(ct   != NULL);}
+\DoxyCodeLine{41    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(tag  != NULL);}
+\DoxyCodeLine{42    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(stat != NULL);}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44    \textcolor{comment}{/* default to failed */}}
+\DoxyCodeLine{45    *stat = 0;}
+\DoxyCodeLine{46 }
+\DoxyCodeLine{47    \textcolor{comment}{/* allocate memory */}}
+\DoxyCodeLine{48    tagbuf = \mbox{\hyperlink{tomcrypt__cfg_8h_af363355f38fbaacdefacf270436ae1c9}{XMALLOC}}(\mbox{\hyperlink{tomcrypt_8h_ab59933beebb2b857c992b93cf53f0d10}{MAXBLOCKSIZE}});}
+\DoxyCodeLine{49    \textcolor{keywordflow}{if} (tagbuf == NULL) \{}
+\DoxyCodeLine{50       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca0ce0d27adc7ea10b74b7ea904b8bfa82}{CRYPT\_MEM}};}
+\DoxyCodeLine{51    \}}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{53    tagbuflen = \mbox{\hyperlink{tomcrypt_8h_ab59933beebb2b857c992b93cf53f0d10}{MAXBLOCKSIZE}};}
+\DoxyCodeLine{54    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{s__ocb__done_8c_a0e6dd21746be44a0949d16b9e1ac796d}{s\_ocb\_done}}(ocb, ct, ctlen, pt, tagbuf, \&tagbuflen, 1)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{55       \textcolor{keywordflow}{goto} LBL\_ERR;}
+\DoxyCodeLine{56    \}}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{58    \textcolor{keywordflow}{if} (taglen <= tagbuflen \&\& \mbox{\hyperlink{tomcrypt__custom_8h_a22bba7b26be62fc532bd7927a23c5a91}{XMEM\_NEQ}}(tagbuf, tag, taglen) == 0) \{}
+\DoxyCodeLine{59       *stat = 1;}
+\DoxyCodeLine{60    \}}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{62    err = \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{63 LBL\_ERR:}
+\DoxyCodeLine{64 \textcolor{preprocessor}{\#ifdef LTC\_CLEAN\_STACK}}
+\DoxyCodeLine{65    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(tagbuf, \mbox{\hyperlink{tomcrypt_8h_ab59933beebb2b857c992b93cf53f0d10}{MAXBLOCKSIZE}});}
+\DoxyCodeLine{66 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{68    \mbox{\hyperlink{tomcrypt__cfg_8h_a260d66fc0690e0502cf3bfe7b5244b75}{XFREE}}(tagbuf);}
+\DoxyCodeLine{69 }
+\DoxyCodeLine{70    \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{71 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+M\+EM, C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, M\+A\+X\+B\+L\+O\+C\+K\+S\+I\+ZE, s\+\_\+ocb\+\_\+done(), X\+F\+R\+E\+E(), X\+M\+A\+L\+L\+O\+C(), X\+M\+E\+M\+\_\+\+N\+EQ, and zeromem().
+
+
+
+Referenced by ocb\+\_\+decrypt\+\_\+verify\+\_\+memory().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2

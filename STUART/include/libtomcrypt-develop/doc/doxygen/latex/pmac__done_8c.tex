@@ -1,0 +1,96 @@
+\hypertarget{pmac__done_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/mac/pmac/pmac\+\_\+done.c File Reference}
+\label{pmac__done_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/mac/pmac/pmac\_done.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/mac/pmac/pmac\_done.c}}
+
+
+P\+M\+AC implementation, terminate a session, by Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for pmac\+\_\+done.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{pmac__done_8c_a28451cb8ae23f8bed3a577b101aac5a0}{pmac\+\_\+done}} (pmac\+\_\+state $\ast$pmac, unsigned char $\ast$out, unsigned long $\ast$outlen)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+P\+M\+AC implementation, terminate a session, by Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{pmac__done_8c_a28451cb8ae23f8bed3a577b101aac5a0}\label{pmac__done_8c_a28451cb8ae23f8bed3a577b101aac5a0}} 
+\index{pmac\_done.c@{pmac\_done.c}!pmac\_done@{pmac\_done}}
+\index{pmac\_done@{pmac\_done}!pmac\_done.c@{pmac\_done.c}}
+\subsubsection{\texorpdfstring{pmac\_done()}{pmac\_done()}}
+{\footnotesize\ttfamily int pmac\+\_\+done (\begin{DoxyParamCaption}\item[{pmac\+\_\+state $\ast$}]{pmac,  }\item[{unsigned char $\ast$}]{out,  }\item[{unsigned long $\ast$}]{outlen }\end{DoxyParamCaption})}
+
+
+
+Definition at line 18 of file pmac\+\_\+done.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{19 \{}
+\DoxyCodeLine{20    \textcolor{keywordtype}{int} err, x;}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(pmac != NULL);}
+\DoxyCodeLine{23    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(out  != NULL);}
+\DoxyCodeLine{24    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_ac30eb68934c4ca07205344dc9d159221}{cipher\_is\_valid}}(pmac->cipher\_idx)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{25       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{26    \}}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28    \textcolor{keywordflow}{if} ((pmac->buflen > (\textcolor{keywordtype}{int})\textcolor{keyword}{sizeof}(pmac->block)) || (pmac->buflen < 0) ||}
+\DoxyCodeLine{29        (pmac->block\_len > (\textcolor{keywordtype}{int})\textcolor{keyword}{sizeof}(pmac->block)) || (pmac->buflen > pmac->block\_len)) \{}
+\DoxyCodeLine{30       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{31    \}}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34    \textcolor{comment}{/* handle padding.  If multiple xor in L/x */}}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36    \textcolor{keywordflow}{if} (pmac->buflen == pmac->block\_len) \{}
+\DoxyCodeLine{37       \textcolor{comment}{/* xor Lr against the checksum */}}
+\DoxyCodeLine{38       \textcolor{keywordflow}{for} (x = 0; x < pmac->block\_len; x++) \{}
+\DoxyCodeLine{39           pmac->checksum[x] \string^= pmac->block[x] \string^ pmac->Lr[x];}
+\DoxyCodeLine{40       \}}
+\DoxyCodeLine{41    \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{42       \textcolor{comment}{/* otherwise xor message bytes then the 0x80 byte */}}
+\DoxyCodeLine{43       \textcolor{keywordflow}{for} (x = 0; x < pmac->buflen; x++) \{}
+\DoxyCodeLine{44           pmac->checksum[x] \string^= pmac->block[x];}
+\DoxyCodeLine{45       \}}
+\DoxyCodeLine{46       pmac->checksum[x] \string^= 0x80;}
+\DoxyCodeLine{47    \}}
+\DoxyCodeLine{48 }
+\DoxyCodeLine{49    \textcolor{comment}{/* encrypt it */}}
+\DoxyCodeLine{50    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[pmac->cipher\_idx].\mbox{\hyperlink{structltc__cipher__descriptor_a46141d86abe22a7c8d382c62a894dd63}{ecb\_encrypt}}(pmac->checksum, pmac->checksum, \&pmac->key)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{51       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{52    \}}
+\DoxyCodeLine{53    \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[pmac->cipher\_idx].\mbox{\hyperlink{structltc__cipher__descriptor_a0ad1c101005c70a69e40fded0e606191}{done}}(\&pmac->key);}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55    \textcolor{comment}{/* store it */}}
+\DoxyCodeLine{56    \textcolor{keywordflow}{for} (x = 0; x < pmac->block\_len \&\& x < (int)*outlen; x++) \{}
+\DoxyCodeLine{57        out[x] = pmac->checksum[x];}
+\DoxyCodeLine{58    \}}
+\DoxyCodeLine{59    *outlen = x;}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{61 \textcolor{preprocessor}{\#ifdef LTC\_CLEAN\_STACK}}
+\DoxyCodeLine{62    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(pmac, \textcolor{keyword}{sizeof}(*pmac));}
+\DoxyCodeLine{63 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{64    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{65 \}}
+
+\end{DoxyCode}
+
+
+References cipher\+\_\+descriptor, cipher\+\_\+is\+\_\+valid(), C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+A\+RG, C\+R\+Y\+P\+T\+\_\+\+OK, ltc\+\_\+cipher\+\_\+descriptor\+::done, ltc\+\_\+cipher\+\_\+descriptor\+::ecb\+\_\+encrypt, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, and zeromem().
+
+
+
+Referenced by pmac\+\_\+file(), pmac\+\_\+memory(), and pmac\+\_\+memory\+\_\+multi().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2

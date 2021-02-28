@@ -1,0 +1,44 @@
+digraph "multi2_test"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node45 [label="multi2_test",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Performs a self-test of the multi2 block cipher."];
+  Node45 -> Node46 [color="midnightblue",fontsize="10",style="solid"];
+  Node46 [label="compare_testvector",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__misc_8h.html#a7764a7f27897c6182335752df00b5f8e",tooltip="Compare two test-vectors."];
+  Node46 -> Node47 [color="midnightblue",fontsize="10",style="solid"];
+  Node47 [label="XMEMCMP",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cfg_8h.html#a372b974ec0ac07abcd55297554fe540f",tooltip=" "];
+  Node45 -> Node48 [color="midnightblue",fontsize="10",style="solid"];
+  Node48 [label="multi2_ecb_decrypt",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$multi2_8c.html#ad6e67f569cb1b1f464c023cadb21fd9d",tooltip="Decrypts a block of text with multi2."];
+  Node48 -> Node49 [color="midnightblue",fontsize="10",style="solid"];
+  Node49 [label="decrypt",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$multi2_8c.html#a940720511cfb9050452b9ff6fce87f6d",tooltip=" "];
+  Node49 -> Node50 [color="midnightblue",fontsize="10",style="solid"];
+  Node50 [label="pi1",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$multi2_8c.html#aa6e28a79517b509154714e51c2c1dc3b",tooltip=" "];
+  Node49 -> Node51 [color="midnightblue",fontsize="10",style="solid"];
+  Node51 [label="pi2",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$multi2_8c.html#a37c4b6b09dd5493456b3c765914b1481",tooltip=" "];
+  Node49 -> Node52 [color="midnightblue",fontsize="10",style="solid"];
+  Node52 [label="pi3",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$multi2_8c.html#a3e3c386a25d0f6950651f1fa5277c147",tooltip=" "];
+  Node49 -> Node53 [color="midnightblue",fontsize="10",style="solid"];
+  Node53 [label="pi4",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$multi2_8c.html#ad94b543f7f2133e851ecb20bd9324e12",tooltip=" "];
+  Node45 -> Node54 [color="midnightblue",fontsize="10",style="solid"];
+  Node54 [label="multi2_ecb_encrypt",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$multi2_8c.html#a4d5e7e3e85d11d58746cef6b7d73d5a9",tooltip="Encrypts a block of text with multi2."];
+  Node54 -> Node55 [color="midnightblue",fontsize="10",style="solid"];
+  Node55 [label="encrypt",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$multi2_8c.html#a1880f806f5190f632ae5d05760c16dd4",tooltip=" "];
+  Node55 -> Node50 [color="midnightblue",fontsize="10",style="solid"];
+  Node55 -> Node51 [color="midnightblue",fontsize="10",style="solid"];
+  Node55 -> Node52 [color="midnightblue",fontsize="10",style="solid"];
+  Node55 -> Node53 [color="midnightblue",fontsize="10",style="solid"];
+  Node45 -> Node56 [color="midnightblue",fontsize="10",style="solid"];
+  Node56 [label="multi2_setup",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$multi2_8c.html#a81011180b7f45ba07b0f1b7f759e6d02",tooltip=" "];
+  Node56 -> Node57 [color="midnightblue",fontsize="10",style="solid"];
+  Node57 [label="setup",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$multi2_8c.html#ad0625943f7d847668b869ed827c51d47",tooltip=" "];
+  Node57 -> Node50 [color="midnightblue",fontsize="10",style="solid"];
+  Node57 -> Node51 [color="midnightblue",fontsize="10",style="solid"];
+  Node57 -> Node52 [color="midnightblue",fontsize="10",style="solid"];
+  Node57 -> Node53 [color="midnightblue",fontsize="10",style="solid"];
+  Node56 -> Node58 [color="midnightblue",fontsize="10",style="solid"];
+  Node58 [label="zeromem",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__misc_8h.html#a63b6e188713790263bfd3612fe8b398f",tooltip="Zero a block of memory."];
+  Node45 -> Node59 [color="midnightblue",fontsize="10",style="solid"];
+  Node59 [label="rounds",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$kseed_8c.html#a51da46362a22c8107683876e9c12ec82",tooltip=" "];
+}

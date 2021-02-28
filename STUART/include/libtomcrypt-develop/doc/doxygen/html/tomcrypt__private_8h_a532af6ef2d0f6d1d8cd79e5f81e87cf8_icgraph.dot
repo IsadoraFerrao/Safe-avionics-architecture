@@ -1,0 +1,54 @@
+digraph "ltc_ecc_new_point"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node771 [label="ltc_ecc_new_point",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Allocate a new ECC point."];
+  Node771 -> Node772 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node772 [label="ecc_recover_key",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ecc__recover__key_8c.html#a42d1c0f03dd10a8ea98836bab2c1e6c6",tooltip="Recover ECC public key from signature and hash."];
+  Node771 -> Node773 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node773 [label="ecc_shared_secret",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ecc__shared__secret_8c.html#aca2bced5e25b262ad6fdafe15f5ea784",tooltip="Create an ECC shared secret between two keys."];
+  Node773 -> Node774 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node774 [label="ecc_decrypt_key",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ecc__decrypt__key_8c.html#adfbc21632ec24dad838fa0700154a57d",tooltip="Decrypt an ECC encrypted key."];
+  Node773 -> Node775 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node775 [label="ecc_encrypt_key",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ecc__encrypt__key_8c.html#a16164f1e295b1c88e6b81a9ece26cd70",tooltip="Encrypt a symmetric key with ECC."];
+  Node771 -> Node776 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node776 [label="ecc_verify_hash_ex",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ecc__verify__hash_8c.html#a6c4f6d0c99e8dbcff4e1064179f20214",tooltip="Verify an ECC signature in RFC7518 format."];
+  Node771 -> Node777 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node777 [label="ltc_ecc_mul2add",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ltc__ecc__mul2add_8c.html#a4aaa757939c4f4b54a3db21afc6aef9f",tooltip="Computes kA*A + kB*B = C using Shamir's Trick."];
+  Node771 -> Node778 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node778 [label="ltc_ecc_mulmod",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ltc__ecc__mulmod__timing_8c.html#a818e5e4135d8aa58cf09e502e98ccc90",tooltip="Perform a point multiplication (timing resistant)"];
+  Node778 -> Node779 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node779 [label="ltc_ecc_verify_key",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ltc__ecc__verify__key_8c.html#ac0dfaf009d9b0101291727341a20bb40",tooltip="Verify a key according to ANSI spec."];
+  Node779 -> Node780 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node780 [label="ecc_import_ex",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ecc__import_8c.html#ab9bceabc3a4d16f6b714325ac383e024",tooltip="Import an ECC key from a binary packet, using user supplied domain params rather than one of the NIST..."];
+  Node780 -> Node781 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node781 [label="ecc_import",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ecc__import_8c.html#aa2f73e9fe5de2132d2716638e2ff7ca8",tooltip="Import an ECC key from a binary packet."];
+  Node779 -> Node772 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node779 -> Node782 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node782 [label="ecc_set_key",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ecc__set__key_8c.html#ab9df550c0c55f7e0054a82ae98eec1bf",tooltip=" "];
+  Node782 -> Node783 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node783 [label="ecc_ansi_x963_import_ex",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ecc__ansi__x963__import_8c.html#a5fe5cc4b4d9072dbf3c4d2b6f7f26282",tooltip=" "];
+  Node783 -> Node784 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node784 [label="ecc_ansi_x963_import",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ecc__ansi__x963__import_8c.html#a83af689aa24cc4abd654f877084e23d5",tooltip="Import an ANSI X9.63 format public key."];
+  Node782 -> Node774 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node782 -> Node785 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node785 [label="_ecc_import_private\l_with_oid",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ecc__import__openssl_8c.html#a575520694cdd251fbe84b186a1d3d102",tooltip=" "];
+  Node785 -> Node786 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node786 [label="ecc_import_openssl",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ecc__import__openssl_8c.html#a62e764a9d768652402f730abef32780a",tooltip=" "];
+  Node782 -> Node787 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node787 [label="_ecc_import_private\l_with_curve",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ecc__import__openssl_8c.html#adcadf3f801ec6d9091ab3d7001e3295e",tooltip=" "];
+  Node787 -> Node786 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node782 -> Node788 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node788 [label="ecc_import_pkcs8",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ecc__import__pkcs8_8c.html#a0f0e747f119685eee3cc412f4480c52e",tooltip=" "];
+  Node782 -> Node789 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node789 [label="_ecc_import_x509_with_oid",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ecc__import__x509_8c.html#a95f6b54b054138d6b43afc3876908bad",tooltip=" "];
+  Node789 -> Node790 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node790 [label="ecc_import_subject\l_public_key_info",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$ecc__import__x509_8c.html#a6e24f3e6a3975c4d9e261a6031cab7b5",tooltip=" "];
+  Node790 -> Node786 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node782 -> Node792 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node792 [label="_ecc_import_x509_with\l_curve",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ecc__import__x509_8c.html#adf48b3ba468c0324055e9413a82d39f5",tooltip=" "];
+  Node792 -> Node790 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node771 -> Node779 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}

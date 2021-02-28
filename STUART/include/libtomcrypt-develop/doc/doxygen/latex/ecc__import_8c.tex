@@ -1,0 +1,174 @@
+\hypertarget{ecc__import_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/pk/ecc/ecc\+\_\+import.c File Reference}
+\label{ecc__import_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/ecc/ecc\_import.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/ecc/ecc\_import.c}}
+
+
+E\+CC Crypto, Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for ecc\+\_\+import.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{ecc__import_8c_aa2f73e9fe5de2132d2716638e2ff7ca8}{ecc\+\_\+import}} (const unsigned char $\ast$in, unsigned long inlen, ecc\+\_\+key $\ast$key)
+\begin{DoxyCompactList}\small\item\em Import an E\+CC key from a binary packet. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{ecc__import_8c_ab9bceabc3a4d16f6b714325ac383e024}{ecc\+\_\+import\+\_\+ex}} (const unsigned char $\ast$in, unsigned long inlen, ecc\+\_\+key $\ast$key, const ltc\+\_\+ecc\+\_\+curve $\ast$cu)
+\begin{DoxyCompactList}\small\item\em Import an E\+CC key from a binary packet, using user supplied domain params rather than one of the N\+I\+ST ones. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+E\+CC Crypto, Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{ecc__import_8c_aa2f73e9fe5de2132d2716638e2ff7ca8}\label{ecc__import_8c_aa2f73e9fe5de2132d2716638e2ff7ca8}} 
+\index{ecc\_import.c@{ecc\_import.c}!ecc\_import@{ecc\_import}}
+\index{ecc\_import@{ecc\_import}!ecc\_import.c@{ecc\_import.c}}
+\subsubsection{\texorpdfstring{ecc\_import()}{ecc\_import()}}
+{\footnotesize\ttfamily int ecc\+\_\+import (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{in,  }\item[{unsigned long}]{inlen,  }\item[{ecc\+\_\+key $\ast$}]{key }\end{DoxyParamCaption})}
+
+
+
+Import an E\+CC key from a binary packet. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em in} & The packet to import \\
+\hline
+{\em inlen} & The length of the packet \\
+\hline
+{\em key} & \mbox{[}out\mbox{]} The destination of the import \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful, upon error all allocated memory will be freed 
+\end{DoxyReturn}
+
+
+Definition at line 26 of file ecc\+\_\+import.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{27 \{}
+\DoxyCodeLine{28    \textcolor{keywordflow}{return} \mbox{\hyperlink{ecc__import_8c_ab9bceabc3a4d16f6b714325ac383e024}{ecc\_import\_ex}}(in, inlen, key, NULL);}
+\DoxyCodeLine{29 \}}
+
+\end{DoxyCode}
+
+
+References ecc\+\_\+import\+\_\+ex().
+
+Here is the call graph for this function\+:
+% FIG 1
+\mbox{\Hypertarget{ecc__import_8c_ab9bceabc3a4d16f6b714325ac383e024}\label{ecc__import_8c_ab9bceabc3a4d16f6b714325ac383e024}} 
+\index{ecc\_import.c@{ecc\_import.c}!ecc\_import\_ex@{ecc\_import\_ex}}
+\index{ecc\_import\_ex@{ecc\_import\_ex}!ecc\_import.c@{ecc\_import.c}}
+\subsubsection{\texorpdfstring{ecc\_import\_ex()}{ecc\_import\_ex()}}
+{\footnotesize\ttfamily int ecc\+\_\+import\+\_\+ex (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{in,  }\item[{unsigned long}]{inlen,  }\item[{ecc\+\_\+key $\ast$}]{key,  }\item[{const ltc\+\_\+ecc\+\_\+curve $\ast$}]{cu }\end{DoxyParamCaption})}
+
+
+
+Import an E\+CC key from a binary packet, using user supplied domain params rather than one of the N\+I\+ST ones. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em in} & The packet to import \\
+\hline
+{\em inlen} & The length of the packet \\
+\hline
+{\em key} & \mbox{[}out\mbox{]} The destination of the import \\
+\hline
+{\em cu} & pointer to user supplied params; must be the same as the params used when exporting \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful, upon error all allocated memory will be freed 
+\end{DoxyReturn}
+
+
+Definition at line 39 of file ecc\+\_\+import.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{40 \{}
+\DoxyCodeLine{41    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} key\_size;}
+\DoxyCodeLine{42    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} flags[1];}
+\DoxyCodeLine{43    \textcolor{keywordtype}{int}           err;}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(in  != NULL);}
+\DoxyCodeLine{46    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(key != NULL);}
+\DoxyCodeLine{47    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(\mbox{\hyperlink{tomcrypt__math_8h_a3d38c44518c63b7a8abd0938f3d41c65}{ltc\_mp}}.\mbox{\hyperlink{structltc__math__descriptor_a8838126de4a27e382f91096e369a2728}{name}} != NULL);}
+\DoxyCodeLine{48 }
+\DoxyCodeLine{49    \textcolor{comment}{/* find out what type of key it is */}}
+\DoxyCodeLine{50    err = \mbox{\hyperlink{der__decode__sequence__multi_8c_a6d86b670c8f3801b0fe6e2cd544df678}{der\_decode\_sequence\_multi}}(in, inlen, LTC\_ASN1\_BIT\_STRING,    1UL, flags,}
+\DoxyCodeLine{51                                               LTC\_ASN1\_SHORT\_INTEGER, 1UL, \&key\_size,}
+\DoxyCodeLine{52                                               LTC\_ASN1\_EOL,           0UL, NULL);}
+\DoxyCodeLine{53    \textcolor{keywordflow}{if} (err != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}} \&\& err != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cadf938469ecf1be83eff1b661288fae7a}{CRYPT\_INPUT\_TOO\_LONG}}) \{}
+\DoxyCodeLine{54       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{55    \}}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{57    \textcolor{comment}{/* allocate \& initialize the key */}}
+\DoxyCodeLine{58    \textcolor{keywordflow}{if} (cu == NULL) \{}
+\DoxyCodeLine{59       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_ae380263c82c1fe0cde8dc08e89f7940c}{ecc\_set\_curve\_by\_size}}(key\_size, key)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{ \textcolor{keywordflow}{goto} done; \}}
+\DoxyCodeLine{60    \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{61       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{ecc__set__curve_8c_ae59e3d6f85b87d050df0ece7c6f5c661}{ecc\_set\_curve}}(cu, key)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})               \{ \textcolor{keywordflow}{goto} done; \}}
+\DoxyCodeLine{62    \}}
+\DoxyCodeLine{63 }
+\DoxyCodeLine{64    \textcolor{keywordflow}{if} (flags[0] == 1) \{}
+\DoxyCodeLine{65       \textcolor{comment}{/* private key */}}
+\DoxyCodeLine{66       key->type = \mbox{\hyperlink{tomcrypt__pk_8h_afb69d121a43f5ae8b47e6b83611d9272a7295b3dea2c5277912c6e040e1c96649}{PK\_PRIVATE}};}
+\DoxyCodeLine{67       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{der__decode__sequence__multi_8c_a6d86b670c8f3801b0fe6e2cd544df678}{der\_decode\_sequence\_multi}}(in, inlen,}
+\DoxyCodeLine{68                                      LTC\_ASN1\_BIT\_STRING,      1UL, flags,}
+\DoxyCodeLine{69                                      LTC\_ASN1\_SHORT\_INTEGER,   1UL, \&key\_size,}
+\DoxyCodeLine{70                                      LTC\_ASN1\_INTEGER,         1UL, key->pubkey.x,}
+\DoxyCodeLine{71                                      LTC\_ASN1\_INTEGER,         1UL, key->pubkey.y,}
+\DoxyCodeLine{72                                      LTC\_ASN1\_INTEGER,         1UL, key->k,}
+\DoxyCodeLine{73                                      LTC\_ASN1\_EOL,             0UL, NULL)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{74          \textcolor{keywordflow}{goto} done;}
+\DoxyCodeLine{75       \}}
+\DoxyCodeLine{76    \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (flags[0] == 0) \{}
+\DoxyCodeLine{77       \textcolor{comment}{/* public key */}}
+\DoxyCodeLine{78       key->type = \mbox{\hyperlink{tomcrypt__pk_8h_afb69d121a43f5ae8b47e6b83611d9272a77f8a3a3339971a6b937140f6333d465}{PK\_PUBLIC}};}
+\DoxyCodeLine{79       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{der__decode__sequence__multi_8c_a6d86b670c8f3801b0fe6e2cd544df678}{der\_decode\_sequence\_multi}}(in, inlen,}
+\DoxyCodeLine{80                                      LTC\_ASN1\_BIT\_STRING,      1UL, flags,}
+\DoxyCodeLine{81                                      LTC\_ASN1\_SHORT\_INTEGER,   1UL, \&key\_size,}
+\DoxyCodeLine{82                                      LTC\_ASN1\_INTEGER,         1UL, key->pubkey.x,}
+\DoxyCodeLine{83                                      LTC\_ASN1\_INTEGER,         1UL, key->pubkey.y,}
+\DoxyCodeLine{84                                      LTC\_ASN1\_EOL,             0UL, NULL)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{85          \textcolor{keywordflow}{goto} done;}
+\DoxyCodeLine{86       \}}
+\DoxyCodeLine{87    \}}
+\DoxyCodeLine{88    \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{89       err = \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca980088f10ffe9009aec286038a9e79da}{CRYPT\_INVALID\_PACKET}};}
+\DoxyCodeLine{90       \textcolor{keywordflow}{goto} done;}
+\DoxyCodeLine{91    \}}
+\DoxyCodeLine{92 }
+\DoxyCodeLine{93    \textcolor{comment}{/* set z */}}
+\DoxyCodeLine{94    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a000b0542ef4ecf639ff69895490fdb8f}{mp\_set}}(key->pubkey.z, 1)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{ \textcolor{keywordflow}{goto} done; \}}
+\DoxyCodeLine{95 }
+\DoxyCodeLine{96    \textcolor{comment}{/* point on the curve + other checks */}}
+\DoxyCodeLine{97    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_ac0dfaf009d9b0101291727341a20bb40}{ltc\_ecc\_verify\_key}}(key)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})  \{ \textcolor{keywordflow}{goto} done; \}}
+\DoxyCodeLine{98 }
+\DoxyCodeLine{99    \textcolor{comment}{/* we're good */}}
+\DoxyCodeLine{100    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{101 }
+\DoxyCodeLine{102 done:}
+\DoxyCodeLine{103    \mbox{\hyperlink{ecc__free_8c_a73cd81ea7d3b24f2d9ef309c4b22e3b7}{ecc\_free}}(key);}
+\DoxyCodeLine{104    \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{105 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+I\+N\+P\+U\+T\+\_\+\+T\+O\+O\+\_\+\+L\+O\+NG, C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+P\+A\+C\+K\+ET, C\+R\+Y\+P\+T\+\_\+\+OK, der\+\_\+decode\+\_\+sequence\+\_\+multi(), ecc\+\_\+free(), ecc\+\_\+set\+\_\+curve(), ecc\+\_\+set\+\_\+curve\+\_\+by\+\_\+size(), L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, ltc\+\_\+ecc\+\_\+verify\+\_\+key(), ltc\+\_\+mp, mp\+\_\+set, ltc\+\_\+math\+\_\+descriptor\+::name, P\+K\+\_\+\+P\+R\+I\+V\+A\+TE, and P\+K\+\_\+\+P\+U\+B\+L\+IC.
+
+
+
+Referenced by ecc\+\_\+import().
+
+Here is the call graph for this function\+:
+% FIG 2
+Here is the caller graph for this function\+:
+% FIG 3

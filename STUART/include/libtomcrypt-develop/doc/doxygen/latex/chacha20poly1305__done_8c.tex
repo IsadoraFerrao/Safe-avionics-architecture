@@ -1,0 +1,74 @@
+\hypertarget{chacha20poly1305__done_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/encauth/chachapoly/chacha20poly1305\+\_\+done.c File Reference}
+\label{chacha20poly1305__done_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/encauth/chachapoly/chacha20poly1305\_done.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/encauth/chachapoly/chacha20poly1305\_done.c}}
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for chacha20poly1305\+\_\+done.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{chacha20poly1305__done_8c_a8e23c78c75ba0774fb8d0c914e1a8020}{chacha20poly1305\+\_\+done}} (chacha20poly1305\+\_\+state $\ast$st, unsigned char $\ast$tag, unsigned long $\ast$taglen)
+\begin{DoxyCompactList}\small\item\em Terminate a Cha\+Cha20\+Poly1305 stream. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{chacha20poly1305__done_8c_a8e23c78c75ba0774fb8d0c914e1a8020}\label{chacha20poly1305__done_8c_a8e23c78c75ba0774fb8d0c914e1a8020}} 
+\index{chacha20poly1305\_done.c@{chacha20poly1305\_done.c}!chacha20poly1305\_done@{chacha20poly1305\_done}}
+\index{chacha20poly1305\_done@{chacha20poly1305\_done}!chacha20poly1305\_done.c@{chacha20poly1305\_done.c}}
+\subsubsection{\texorpdfstring{chacha20poly1305\_done()}{chacha20poly1305\_done()}}
+{\footnotesize\ttfamily int chacha20poly1305\+\_\+done (\begin{DoxyParamCaption}\item[{chacha20poly1305\+\_\+state $\ast$}]{st,  }\item[{unsigned char $\ast$}]{tag,  }\item[{unsigned long $\ast$}]{taglen }\end{DoxyParamCaption})}
+
+
+
+Terminate a Cha\+Cha20\+Poly1305 stream. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em st} & The Cha\+Cha20\+Poly1305 state \\
+\hline
+{\em tag} & \mbox{[}out\mbox{]} The destination for the M\+AC tag \\
+\hline
+{\em taglen} & \mbox{[}in/out\mbox{]} The length of the M\+AC tag \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK on success 
+\end{DoxyReturn}
+
+
+Definition at line 21 of file chacha20poly1305\+\_\+done.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{22 \{}
+\DoxyCodeLine{23    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} padzero[16] = \{ 0 \};}
+\DoxyCodeLine{24    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} padlen;}
+\DoxyCodeLine{25    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} buf[16];}
+\DoxyCodeLine{26    \textcolor{keywordtype}{int} err;}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(st != NULL);}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30    padlen = 16 - (\textcolor{keywordtype}{unsigned} long)(st->ctlen \% 16);}
+\DoxyCodeLine{31    \textcolor{keywordflow}{if} (padlen < 16) \{}
+\DoxyCodeLine{32      \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{poly1305_8c_a44ef0e35cc1f514f942c015c105b9f01}{poly1305\_process}}(\&st->poly, padzero, padlen)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{33    \}}
+\DoxyCodeLine{34    STORE64L(st->aadlen, buf);}
+\DoxyCodeLine{35    STORE64L(st->ctlen, buf + 8);}
+\DoxyCodeLine{36    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{poly1305_8c_a44ef0e35cc1f514f942c015c105b9f01}{poly1305\_process}}(\&st->poly, buf, 16)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})           \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{37    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{poly1305_8c_af7ae26dde05dcb271ec4f15e6f406f8d}{poly1305\_done}}(\&st->poly, tag, taglen)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})          \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{38    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{chacha__done_8c_a4936c207e7ef938d31047954fae30e39}{chacha\_done}}(\&st->chacha)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{39    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{40 \}}
+
+\end{DoxyCode}
+
+
+References chacha\+\_\+done(), C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, poly1305\+\_\+done(), and poly1305\+\_\+process().
+
+
+
+Referenced by chacha20poly1305\+\_\+memory(), and chacha20poly1305\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2

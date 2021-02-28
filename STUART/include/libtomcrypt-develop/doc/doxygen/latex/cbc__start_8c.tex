@@ -1,0 +1,96 @@
+\hypertarget{cbc__start_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/modes/cbc/cbc\+\_\+start.c File Reference}
+\label{cbc__start_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/modes/cbc/cbc\_start.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/modes/cbc/cbc\_start.c}}
+
+
+C\+BC implementation, start chain, Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for cbc\+\_\+start.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{cbc__start_8c_abba6632aa97f200faf29cdb7f5d99eee}{cbc\+\_\+start}} (int cipher, const unsigned char $\ast$IV, const unsigned char $\ast$key, int keylen, int num\+\_\+rounds, symmetric\+\_\+\+C\+BC $\ast$cbc)
+\begin{DoxyCompactList}\small\item\em Initialize a C\+BC context. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+C\+BC implementation, start chain, Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{cbc__start_8c_abba6632aa97f200faf29cdb7f5d99eee}\label{cbc__start_8c_abba6632aa97f200faf29cdb7f5d99eee}} 
+\index{cbc\_start.c@{cbc\_start.c}!cbc\_start@{cbc\_start}}
+\index{cbc\_start@{cbc\_start}!cbc\_start.c@{cbc\_start.c}}
+\subsubsection{\texorpdfstring{cbc\_start()}{cbc\_start()}}
+{\footnotesize\ttfamily int cbc\+\_\+start (\begin{DoxyParamCaption}\item[{int}]{cipher,  }\item[{const unsigned char $\ast$}]{IV,  }\item[{const unsigned char $\ast$}]{key,  }\item[{int}]{keylen,  }\item[{int}]{num\+\_\+rounds,  }\item[{symmetric\+\_\+\+C\+BC $\ast$}]{cbc }\end{DoxyParamCaption})}
+
+
+
+Initialize a C\+BC context. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cipher} & The index of the cipher desired \\
+\hline
+{\em IV} & The initialization vector \\
+\hline
+{\em key} & The secret key \\
+\hline
+{\em keylen} & The length of the secret key (octets) \\
+\hline
+{\em num\+\_\+rounds} & Number of rounds in the cipher desired (0 for default) \\
+\hline
+{\em cbc} & The C\+BC state to initialize \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 28 of file cbc\+\_\+start.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{30 \{}
+\DoxyCodeLine{31    \textcolor{keywordtype}{int} x, err;}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(IV != NULL);}
+\DoxyCodeLine{34    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(key != NULL);}
+\DoxyCodeLine{35    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(cbc != NULL);}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37    \textcolor{comment}{/* bad param? */}}
+\DoxyCodeLine{38    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_ac30eb68934c4ca07205344dc9d159221}{cipher\_is\_valid}}(cipher)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{39       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{40    \}}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{42    \textcolor{comment}{/* setup cipher */}}
+\DoxyCodeLine{43    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[cipher].\mbox{\hyperlink{multi2_8c_ad0625943f7d847668b869ed827c51d47}{setup}}(key, keylen, num\_rounds, \&cbc->key)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{44       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{45    \}}
+\DoxyCodeLine{46 }
+\DoxyCodeLine{47    \textcolor{comment}{/* copy IV */}}
+\DoxyCodeLine{48    cbc->blocklen = \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[cipher].\mbox{\hyperlink{structltc__cipher__descriptor_afa2af7325fd3a834910dd92e8c9acf49}{block\_length}};}
+\DoxyCodeLine{49    cbc->cipher   = cipher;}
+\DoxyCodeLine{50    \textcolor{keywordflow}{for} (x = 0; x < cbc->blocklen; x++) \{}
+\DoxyCodeLine{51        cbc->IV[x] = IV[x];}
+\DoxyCodeLine{52    \}}
+\DoxyCodeLine{53    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{54 \}}
+
+\end{DoxyCode}
+
+
+References ltc\+\_\+cipher\+\_\+descriptor\+::block\+\_\+length, cipher\+\_\+descriptor, cipher\+\_\+is\+\_\+valid(), C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, and setup().
+
+
+
+Referenced by pbes\+\_\+decrypt().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2

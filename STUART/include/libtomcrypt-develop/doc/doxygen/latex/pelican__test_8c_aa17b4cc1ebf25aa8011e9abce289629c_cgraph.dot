@@ -1,0 +1,23 @@
+digraph "pelican_test"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node0 [label="pelican_test",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node0 -> Node1 [color="midnightblue",fontsize="10",style="solid"];
+  Node1 [label="compare_testvector",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__misc_8h.html#a7764a7f27897c6182335752df00b5f8e",tooltip="Compare two test-vectors."];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid"];
+  Node2 [label="XMEMCMP",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cfg_8h.html#a372b974ec0ac07abcd55297554fe540f",tooltip=" "];
+  Node0 -> Node3 [color="midnightblue",fontsize="10",style="solid"];
+  Node3 [label="pelican_done",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$pelican_8c.html#a70b6868acfc0b1287d358a8e890e648a",tooltip="Terminate Pelican MAC."];
+  Node3 -> Node4 [color="midnightblue",fontsize="10",style="solid"];
+  Node4 [label="_four_rounds",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$pelican_8c.html#a295658c56a732ddef9c71036e54aa0e2",tooltip=" "];
+  Node0 -> Node5 [color="midnightblue",fontsize="10",style="solid"];
+  Node5 [label="pelican_init",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$pelican_8c.html#a0e62b20609006626506ac50406906920",tooltip="Initialize a Pelican state."];
+  Node5 -> Node6 [color="midnightblue",fontsize="10",style="solid"];
+  Node6 [label="zeromem",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__misc_8h.html#a63b6e188713790263bfd3612fe8b398f",tooltip="Zero a block of memory."];
+  Node0 -> Node7 [color="midnightblue",fontsize="10",style="solid"];
+  Node7 [label="pelican_process",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$pelican_8c.html#aef428c8672b216a7d31256baee8c1a95",tooltip="Process a block of text through Pelican."];
+  Node7 -> Node4 [color="midnightblue",fontsize="10",style="solid"];
+}

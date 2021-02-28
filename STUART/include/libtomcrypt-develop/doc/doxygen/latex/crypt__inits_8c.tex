@@ -1,0 +1,156 @@
+\hypertarget{crypt__inits_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/misc/crypt/crypt\+\_\+inits.c File Reference}
+\label{crypt__inits_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/misc/crypt/crypt\_inits.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/misc/crypt/crypt\_inits.c}}
+
+
+Provide math library functions for dynamic languages like Python -\/ Larry Bugbee, February 2013.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for crypt\+\_\+inits.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{crypt__inits_8c_acde00969edd9b6f787ebd407572af613}{init\+\_\+\+L\+TM}} (void)
+\item 
+void \mbox{\hyperlink{crypt__inits_8c_addca4c6c25db51c56e714c00b89baf93}{init\+\_\+\+T\+FM}} (void)
+\item 
+void \mbox{\hyperlink{crypt__inits_8c_a8eb3bd340d5ec84bf3f4567c0762d904}{init\+\_\+\+G\+MP}} (void)
+\item 
+int \mbox{\hyperlink{crypt__inits_8c_a615b172b3ce177d8d0bb4fe391f613bf}{crypt\+\_\+mp\+\_\+init}} (const char $\ast$mpi)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Provide math library functions for dynamic languages like Python -\/ Larry Bugbee, February 2013. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{crypt__inits_8c_a615b172b3ce177d8d0bb4fe391f613bf}\label{crypt__inits_8c_a615b172b3ce177d8d0bb4fe391f613bf}} 
+\index{crypt\_inits.c@{crypt\_inits.c}!crypt\_mp\_init@{crypt\_mp\_init}}
+\index{crypt\_mp\_init@{crypt\_mp\_init}!crypt\_inits.c@{crypt\_inits.c}}
+\subsubsection{\texorpdfstring{crypt\_mp\_init()}{crypt\_mp\_init()}}
+{\footnotesize\ttfamily int crypt\+\_\+mp\+\_\+init (\begin{DoxyParamCaption}\item[{const char $\ast$}]{mpi }\end{DoxyParamCaption})}
+
+
+
+Definition at line 40 of file crypt\+\_\+inits.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{41 \{}
+\DoxyCodeLine{42    \textcolor{keywordflow}{if} (mpi == NULL) \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca03c22220d7538be04455cd2aa6ddf9da}{CRYPT\_ERROR}};}
+\DoxyCodeLine{43    \textcolor{keywordflow}{switch} (mpi[0]) \{}
+\DoxyCodeLine{44 \textcolor{preprocessor}{\#ifdef LTM\_DESC}}
+\DoxyCodeLine{45       \textcolor{keywordflow}{case} \textcolor{charliteral}{'l'}:}
+\DoxyCodeLine{46       \textcolor{keywordflow}{case} \textcolor{charliteral}{'L'}:}
+\DoxyCodeLine{47          \mbox{\hyperlink{tomcrypt__math_8h_a3d38c44518c63b7a8abd0938f3d41c65}{ltc\_mp}} = \mbox{\hyperlink{tomcrypt__math_8h_afe891d73619b608bf983d9079e410c9d}{ltm\_desc}};}
+\DoxyCodeLine{48          \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{49 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{50 \textcolor{preprocessor}{\#ifdef TFM\_DESC}}
+\DoxyCodeLine{51       \textcolor{keywordflow}{case} \textcolor{charliteral}{'t'}:}
+\DoxyCodeLine{52       \textcolor{keywordflow}{case} \textcolor{charliteral}{'T'}:}
+\DoxyCodeLine{53          \mbox{\hyperlink{tomcrypt__math_8h_a3d38c44518c63b7a8abd0938f3d41c65}{ltc\_mp}} = \mbox{\hyperlink{tomcrypt__math_8h_a131e0ca0f71f66455b888ee883b062a2}{tfm\_desc}};}
+\DoxyCodeLine{54          \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{55 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{56 \textcolor{preprocessor}{\#ifdef GMP\_DESC}}
+\DoxyCodeLine{57       \textcolor{keywordflow}{case} \textcolor{charliteral}{'g'}:}
+\DoxyCodeLine{58       \textcolor{keywordflow}{case} \textcolor{charliteral}{'G'}:}
+\DoxyCodeLine{59          \mbox{\hyperlink{tomcrypt__math_8h_a3d38c44518c63b7a8abd0938f3d41c65}{ltc\_mp}} = \mbox{\hyperlink{tomcrypt__math_8h_a923f2740bf923975ee49f7b150304f9b}{gmp\_desc}};}
+\DoxyCodeLine{60          \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{61 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{62 \textcolor{preprocessor}{\#ifdef EXT\_MATH\_LIB}}
+\DoxyCodeLine{63       \textcolor{keywordflow}{case} \textcolor{charliteral}{'e'}:}
+\DoxyCodeLine{64       \textcolor{keywordflow}{case} \textcolor{charliteral}{'E'}:}
+\DoxyCodeLine{65          \{}
+\DoxyCodeLine{66             \textcolor{keyword}{extern} \mbox{\hyperlink{structltc__math__descriptor}{ltc\_math\_descriptor}} EXT\_MATH\_LIB;}
+\DoxyCodeLine{67             \mbox{\hyperlink{tomcrypt__math_8h_a3d38c44518c63b7a8abd0938f3d41c65}{ltc\_mp}} = EXT\_MATH\_LIB;}
+\DoxyCodeLine{68          \}}
+\DoxyCodeLine{69 }
+\DoxyCodeLine{70 \textcolor{preprocessor}{\#if defined(LTC\_TEST\_DBG)}}
+\DoxyCodeLine{71 \textcolor{preprocessor}{\#define NAME\_VALUE(s) \#s"="NAME(s)}}
+\DoxyCodeLine{72 \textcolor{preprocessor}{\#define NAME(s) \#s}}
+\DoxyCodeLine{73          printf(\textcolor{stringliteral}{"EXT\_MATH\_LIB = \%s\(\backslash\)n"}, \mbox{\hyperlink{crypt_8c_af7d10aa94f24cc3e66bcd3ae8e68280d}{NAME\_VALUE}}(EXT\_MATH\_LIB));}
+\DoxyCodeLine{74 \textcolor{preprocessor}{\#undef NAME\_VALUE}}
+\DoxyCodeLine{75 \textcolor{preprocessor}{\#undef NAME}}
+\DoxyCodeLine{76 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{77 }
+\DoxyCodeLine{78          \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{79 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{80       \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{81 \textcolor{preprocessor}{\#if defined(LTC\_TEST\_DBG)}}
+\DoxyCodeLine{82          printf(\textcolor{stringliteral}{"Unknown/Invalid MPI provider: \%s\(\backslash\)n"}, mpi);}
+\DoxyCodeLine{83 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{84          \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca03c22220d7538be04455cd2aa6ddf9da}{CRYPT\_ERROR}};}
+\DoxyCodeLine{85    \}}
+\DoxyCodeLine{86 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+E\+R\+R\+OR, C\+R\+Y\+P\+T\+\_\+\+OK, gmp\+\_\+desc, ltc\+\_\+mp, ltm\+\_\+desc, N\+A\+M\+E\+\_\+\+V\+A\+L\+UE, and tfm\+\_\+desc.
+
+\mbox{\Hypertarget{crypt__inits_8c_a8eb3bd340d5ec84bf3f4567c0762d904}\label{crypt__inits_8c_a8eb3bd340d5ec84bf3f4567c0762d904}} 
+\index{crypt\_inits.c@{crypt\_inits.c}!init\_GMP@{init\_GMP}}
+\index{init\_GMP@{init\_GMP}!crypt\_inits.c@{crypt\_inits.c}}
+\subsubsection{\texorpdfstring{init\_GMP()}{init\_GMP()}}
+{\footnotesize\ttfamily void init\+\_\+\+G\+MP (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 34 of file crypt\+\_\+inits.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{35 \{}
+\DoxyCodeLine{36     \mbox{\hyperlink{tomcrypt__math_8h_a3d38c44518c63b7a8abd0938f3d41c65}{ltc\_mp}} = \mbox{\hyperlink{tomcrypt__math_8h_a923f2740bf923975ee49f7b150304f9b}{gmp\_desc}};}
+\DoxyCodeLine{37 \}}
+
+\end{DoxyCode}
+
+
+References gmp\+\_\+desc, and ltc\+\_\+mp.
+
+\mbox{\Hypertarget{crypt__inits_8c_acde00969edd9b6f787ebd407572af613}\label{crypt__inits_8c_acde00969edd9b6f787ebd407572af613}} 
+\index{crypt\_inits.c@{crypt\_inits.c}!init\_LTM@{init\_LTM}}
+\index{init\_LTM@{init\_LTM}!crypt\_inits.c@{crypt\_inits.c}}
+\subsubsection{\texorpdfstring{init\_LTM()}{init\_LTM()}}
+{\footnotesize\ttfamily void init\+\_\+\+L\+TM (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 20 of file crypt\+\_\+inits.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{21 \{}
+\DoxyCodeLine{22     \mbox{\hyperlink{tomcrypt__math_8h_a3d38c44518c63b7a8abd0938f3d41c65}{ltc\_mp}} = \mbox{\hyperlink{tomcrypt__math_8h_afe891d73619b608bf983d9079e410c9d}{ltm\_desc}};}
+\DoxyCodeLine{23 \}}
+
+\end{DoxyCode}
+
+
+References ltc\+\_\+mp, and ltm\+\_\+desc.
+
+\mbox{\Hypertarget{crypt__inits_8c_addca4c6c25db51c56e714c00b89baf93}\label{crypt__inits_8c_addca4c6c25db51c56e714c00b89baf93}} 
+\index{crypt\_inits.c@{crypt\_inits.c}!init\_TFM@{init\_TFM}}
+\index{init\_TFM@{init\_TFM}!crypt\_inits.c@{crypt\_inits.c}}
+\subsubsection{\texorpdfstring{init\_TFM()}{init\_TFM()}}
+{\footnotesize\ttfamily void init\+\_\+\+T\+FM (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 27 of file crypt\+\_\+inits.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{28 \{}
+\DoxyCodeLine{29     \mbox{\hyperlink{tomcrypt__math_8h_a3d38c44518c63b7a8abd0938f3d41c65}{ltc\_mp}} = \mbox{\hyperlink{tomcrypt__math_8h_a131e0ca0f71f66455b888ee883b062a2}{tfm\_desc}};}
+\DoxyCodeLine{30 \}}
+
+\end{DoxyCode}
+
+
+References ltc\+\_\+mp, and tfm\+\_\+desc.
+

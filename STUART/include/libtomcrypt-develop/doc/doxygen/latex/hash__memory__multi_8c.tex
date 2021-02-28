@@ -1,0 +1,126 @@
+\hypertarget{hash__memory__multi_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/hashes/helper/hash\+\_\+memory\+\_\+multi.c File Reference}
+\label{hash__memory__multi_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/hashes/helper/hash\_memory\_multi.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/hashes/helper/hash\_memory\_multi.c}}
+
+
+Hash (multiple buffers) memory helper, Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdarg.\+h$>$}\newline
+Include dependency graph for hash\+\_\+memory\+\_\+multi.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{hash__memory__multi_8c_a85566393d0f13710bafc9501361eff06}{hash\+\_\+memory\+\_\+multi}} (int hash, unsigned char $\ast$out, unsigned long $\ast$outlen, const unsigned char $\ast$in, unsigned long inlen,...)
+\begin{DoxyCompactList}\small\item\em Hash multiple (non-\/adjacent) blocks of memory at once. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Hash (multiple buffers) memory helper, Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{hash__memory__multi_8c_a85566393d0f13710bafc9501361eff06}\label{hash__memory__multi_8c_a85566393d0f13710bafc9501361eff06}} 
+\index{hash\_memory\_multi.c@{hash\_memory\_multi.c}!hash\_memory\_multi@{hash\_memory\_multi}}
+\index{hash\_memory\_multi@{hash\_memory\_multi}!hash\_memory\_multi.c@{hash\_memory\_multi.c}}
+\subsubsection{\texorpdfstring{hash\_memory\_multi()}{hash\_memory\_multi()}}
+{\footnotesize\ttfamily int hash\+\_\+memory\+\_\+multi (\begin{DoxyParamCaption}\item[{int}]{hash,  }\item[{unsigned char $\ast$}]{out,  }\item[{unsigned long $\ast$}]{outlen,  }\item[{const unsigned char $\ast$}]{in,  }\item[{unsigned long}]{inlen,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+
+
+Hash multiple (non-\/adjacent) blocks of memory at once. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em hash} & The index of the hash you wish to use \\
+\hline
+{\em out} & \mbox{[}out\mbox{]} Where to store the digest \\
+\hline
+{\em outlen} & \mbox{[}in/out\mbox{]} Max size and resulting size of the digest \\
+\hline
+{\em in} & The data you wish to hash \\
+\hline
+{\em inlen} & The length of the data to hash (octets) \\
+\hline
+{\em ...} & tuples of (data,len) pairs to hash, terminated with a (N\+U\+LL,x) (x=don\textquotesingle{}t care) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 28 of file hash\+\_\+memory\+\_\+multi.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{30 \{}
+\DoxyCodeLine{31     \mbox{\hyperlink{unionHash__state}{hash\_state}}          *md;}
+\DoxyCodeLine{32     \textcolor{keywordtype}{int}                  err;}
+\DoxyCodeLine{33     va\_list              args;}
+\DoxyCodeLine{34     \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *curptr;}
+\DoxyCodeLine{35     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long}        curlen;}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(in     != NULL);}
+\DoxyCodeLine{38     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(out    != NULL);}
+\DoxyCodeLine{39     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(outlen != NULL);}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41     \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__hash_8h_a79647f22bf48bfa7de03fe5fc958c846}{hash\_is\_valid}}(hash)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{42         \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{43     \}}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45     \textcolor{keywordflow}{if} (*outlen < \mbox{\hyperlink{tomcrypt__hash_8h_ab0e4f02e30a47da79baa9240e79cde92}{hash\_descriptor}}[hash].hashsize) \{}
+\DoxyCodeLine{46        *outlen = \mbox{\hyperlink{tomcrypt__hash_8h_ab0e4f02e30a47da79baa9240e79cde92}{hash\_descriptor}}[hash].\mbox{\hyperlink{structltc__hash__descriptor_a49bd027653ff21408cb2661748d719ef}{hashsize}};}
+\DoxyCodeLine{47        \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caccd878f5599f3036ffe759dbe1a1ac16}{CRYPT\_BUFFER\_OVERFLOW}};}
+\DoxyCodeLine{48     \}}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{50     md = \mbox{\hyperlink{tomcrypt__cfg_8h_af363355f38fbaacdefacf270436ae1c9}{XMALLOC}}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{unionHash__state}{hash\_state}}));}
+\DoxyCodeLine{51     \textcolor{keywordflow}{if} (md == NULL) \{}
+\DoxyCodeLine{52        \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca0ce0d27adc7ea10b74b7ea904b8bfa82}{CRYPT\_MEM}};}
+\DoxyCodeLine{53     \}}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55     \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__hash_8h_ab0e4f02e30a47da79baa9240e79cde92}{hash\_descriptor}}[hash].\mbox{\hyperlink{gmp__desc_8c_a4f8948d7c94899bf8ddee4721114d593}{init}}(md)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{56        \textcolor{keywordflow}{goto} LBL\_ERR;}
+\DoxyCodeLine{57     \}}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{59     va\_start(args, inlen);}
+\DoxyCodeLine{60     curptr = in;}
+\DoxyCodeLine{61     curlen = inlen;}
+\DoxyCodeLine{62     \textcolor{keywordflow}{for} (;;) \{}
+\DoxyCodeLine{63        \textcolor{comment}{/* process buf */}}
+\DoxyCodeLine{64        \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__hash_8h_ab0e4f02e30a47da79baa9240e79cde92}{hash\_descriptor}}[hash].process(md, curptr, curlen)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{65           \textcolor{keywordflow}{goto} LBL\_ERR;}
+\DoxyCodeLine{66        \}}
+\DoxyCodeLine{67        \textcolor{comment}{/* step to next */}}
+\DoxyCodeLine{68        curptr = va\_arg(args, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}*);}
+\DoxyCodeLine{69        \textcolor{keywordflow}{if} (curptr == NULL) \{}
+\DoxyCodeLine{70           \textcolor{keywordflow}{break};}
+\DoxyCodeLine{71        \}}
+\DoxyCodeLine{72        curlen = va\_arg(args, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long});}
+\DoxyCodeLine{73     \}}
+\DoxyCodeLine{74     err = \mbox{\hyperlink{tomcrypt__hash_8h_ab0e4f02e30a47da79baa9240e79cde92}{hash\_descriptor}}[hash].\mbox{\hyperlink{structltc__hash__descriptor_a97978ff7b1c57c7e3c8b9a416f1226ed}{done}}(md, out);}
+\DoxyCodeLine{75     *outlen = \mbox{\hyperlink{tomcrypt__hash_8h_ab0e4f02e30a47da79baa9240e79cde92}{hash\_descriptor}}[hash].\mbox{\hyperlink{structltc__hash__descriptor_a49bd027653ff21408cb2661748d719ef}{hashsize}};}
+\DoxyCodeLine{76 LBL\_ERR:}
+\DoxyCodeLine{77 \textcolor{preprocessor}{\#ifdef LTC\_CLEAN\_STACK}}
+\DoxyCodeLine{78     \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(md, \textcolor{keyword}{sizeof}(\mbox{\hyperlink{unionHash__state}{hash\_state}}));}
+\DoxyCodeLine{79 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{80     \mbox{\hyperlink{tomcrypt__cfg_8h_a260d66fc0690e0502cf3bfe7b5244b75}{XFREE}}(md);}
+\DoxyCodeLine{81     va\_end(args);}
+\DoxyCodeLine{82     \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{83 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+O\+V\+E\+R\+F\+L\+OW, C\+R\+Y\+P\+T\+\_\+\+M\+EM, C\+R\+Y\+P\+T\+\_\+\+OK, ltc\+\_\+hash\+\_\+descriptor\+::done, hash\+\_\+descriptor, hash\+\_\+is\+\_\+valid(), ltc\+\_\+hash\+\_\+descriptor\+::hashsize, init(), L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, X\+F\+R\+E\+E(), X\+M\+A\+L\+L\+O\+C(), and zeromem().
+
+
+
+Referenced by pkcs12\+\_\+kdf().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2

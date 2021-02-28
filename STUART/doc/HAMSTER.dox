@@ -1,0 +1,52 @@
+/*!
+ * \page HAMSTER HAMSTER Architecture
+ *
+ * The HAMSTER (HeAlthy, Mobility and Security based data communication 
+ * archiTEctuRe) \cite Pigatto2014Hamster is a data communication architecture 
+ * for unmanned vehicles designed for improving mobility, security and safety 
+ * of the overall system. It specifies a well-defined ways of achieving 
+ * communication goals through a reference model.
+ *
+ * The architecture has different versions for each type of Unmanned Vehicle 
+ * (UV). In its present state, presented below, the architecture is divided 
+ * into three main versions according to the most common types of UV:
+ *   - <b>Flying HAMSTER</b>, designed for the aerial segment;
+ *   - <b>Running HAMSTER</b>, designed for the terrestrial segment;
+ *   - <b>Swimming HAMSTER</b>, designed fot the aquatic segment.
+ *
+ * HAMSTER can be extended for other vehicles and systems, such as unmanned 
+ * trains or domestic robots.
+ *
+ * HAMSTER includes four different platforms:
+ * - \b SPHERE: handles safety and security aspects of the architecture;
+ * - \b NIMBLE: handles the external communication of unmanned vehicles;
+ * - \b NCI: handles a rich index for Quality of Service (QoS) and security and 
+ *      safety;
+ * - \b NP: handles the state of each unmanned vehicle module during each phase 
+ *      of a flight or mission, intending on reducing energy consumption.
+ *
+ * \todo Colocar Figura da HAMSTER com as plataformas. E só. Nada das especializações.
+ * \anchor Figure1
+ * \n
+ *
+ * \section HAM_Unit HAMSTER Unit
+ * Basic HAMSTER functionality is implemented by a HAMSTER unit. The unit may 
+ * be a dedicated hardware or software running on a microprocessor, acting as
+ * an intermediate between the application and the communication module 
+ * (wired or wireless).
+ * 
+ * HAMSTER Units can be either \b Entities, which handl the vehicles as a whole,
+ * or \b Objects, which handle the internal sensors/actuators of an entity. 
+ * HAMSTER Objects are further specialized into \b Modules and \b Clusters. A
+ * HAMSTER Module is a unit which handles a single sensor/actuator of the
+ * unmanned vehicle, like the GPS sensor; a HAMSTER Cluster is a unit which
+ * handles a set of sensor/actuators with one common communication interface.
+ *
+ * Each HAMSTER unit will have within itself the necessary implementation of 
+ * HAMSTER platforms.
+ * 
+ * For more information on HAMSTER platforms, see \ref SPHERE, \ref NIMBLE, 
+ * \ref NCI, \ref NP.
+ *
+ */
+

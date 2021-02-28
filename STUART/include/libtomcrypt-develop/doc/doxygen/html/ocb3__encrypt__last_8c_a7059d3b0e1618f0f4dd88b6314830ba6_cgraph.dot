@@ -1,0 +1,21 @@
+digraph "ocb3_encrypt_last"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node0 [label="ocb3_encrypt_last",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Finish an OCB (encryption) stream."];
+  Node0 -> Node1 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 [label="cipher_is_valid",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cipher_8h.html#ac30eb68934c4ca07205344dc9d159221",tooltip=" "];
+  Node0 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="ocb3_encrypt",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ocb3__encrypt_8c.html#a0e9e87fe853d64959bd70533d1952bfa",tooltip="Encrypt blocks of data with OCB."];
+  Node2 -> Node1 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="ocb3_int_ntz",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ocb3__int__ntz_8c.html#ac4af92f890be670e795a758ec452b402",tooltip="Returns the number of leading zero bits [from lsb up] (internal function)"];
+  Node2 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="ocb3_int_xor_blocks",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ocb3__int__xor__blocks_8c.html#a5bf6caa4615657cdfd8f8941620a987c",tooltip="Compute xor for two blocks of bytes 'out = block_a XOR block_b' (internal function)"];
+  Node2 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="zeromem",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__misc_8h.html#a63b6e188713790263bfd3612fe8b398f",tooltip="Zero a block of memory."];
+  Node0 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node0 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}

@@ -1,0 +1,66 @@
+\hypertarget{der__length__asn1__length_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/pk/asn1/der/general/der\+\_\+length\+\_\+asn1\+\_\+length.c File Reference}
+\label{der__length__asn1__length_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/asn1/der/general/der\_length\_asn1\_length.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/asn1/der/general/der\_length\_asn1\_length.c}}
+
+
+A\+S\+N.\+1 D\+ER, determine the length of the A\+S\+N.\+1 length field, Steffen Jaeckel.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for der\+\_\+length\+\_\+asn1\+\_\+length.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{der__length__asn1__length_8c_a8999e23c66cda0d777570e54f3a5c795}{der\+\_\+length\+\_\+asn1\+\_\+length}} (unsigned long \mbox{\hyperlink{pmac__init_8c_afed088663f8704004425cdae2120b9b3}{len}}, unsigned long $\ast$outlen)
+\begin{DoxyCompactList}\small\item\em Determine the length required to encode len in the A\+S\+N.\+1 length field. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A\+S\+N.\+1 D\+ER, determine the length of the A\+S\+N.\+1 length field, Steffen Jaeckel. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{der__length__asn1__length_8c_a8999e23c66cda0d777570e54f3a5c795}\label{der__length__asn1__length_8c_a8999e23c66cda0d777570e54f3a5c795}} 
+\index{der\_length\_asn1\_length.c@{der\_length\_asn1\_length.c}!der\_length\_asn1\_length@{der\_length\_asn1\_length}}
+\index{der\_length\_asn1\_length@{der\_length\_asn1\_length}!der\_length\_asn1\_length.c@{der\_length\_asn1\_length.c}}
+\subsubsection{\texorpdfstring{der\_length\_asn1\_length()}{der\_length\_asn1\_length()}}
+{\footnotesize\ttfamily int der\+\_\+length\+\_\+asn1\+\_\+length (\begin{DoxyParamCaption}\item[{unsigned long}]{len,  }\item[{unsigned long $\ast$}]{outlen }\end{DoxyParamCaption})}
+
+
+
+Determine the length required to encode len in the A\+S\+N.\+1 length field. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em len} & The length to encode \\
+\hline
+{\em outlen} & \mbox{[}out\mbox{]} The length that\textquotesingle{}s required to store len \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 23 of file der\+\_\+length\+\_\+asn1\+\_\+length.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{24 \{}
+\DoxyCodeLine{25    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt__private_8h_ae0b6c1f1188a5aa201aa84de9a659550}{der\_encode\_asn1\_length}}(\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}, NULL, outlen);}
+\DoxyCodeLine{26 \}}
+
+\end{DoxyCode}
+
+
+References der\+\_\+encode\+\_\+asn1\+\_\+length(), and len.
+
+
+
+Referenced by der\+\_\+encode\+\_\+utf8\+\_\+string(), der\+\_\+length\+\_\+bit\+\_\+string(), der\+\_\+length\+\_\+custom\+\_\+type(), der\+\_\+length\+\_\+ia5\+\_\+string(), der\+\_\+length\+\_\+integer(), der\+\_\+length\+\_\+octet\+\_\+string(), der\+\_\+length\+\_\+printable\+\_\+string(), der\+\_\+length\+\_\+sequence\+\_\+ex(), der\+\_\+length\+\_\+short\+\_\+integer(), der\+\_\+length\+\_\+teletex\+\_\+string(), and der\+\_\+length\+\_\+utf8\+\_\+string().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2

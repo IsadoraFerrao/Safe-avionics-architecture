@@ -1,0 +1,64 @@
+\hypertarget{tomcrypt__argchk_8h}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/headers/tomcrypt\+\_\+argchk.h File Reference}
+\label{tomcrypt__argchk_8h}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/headers/tomcrypt\_argchk.h@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/headers/tomcrypt\_argchk.h}}
+{\ttfamily \#include $<$signal.\+h$>$}\newline
+Include dependency graph for tomcrypt\+\_\+argchk.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{L\+T\+C\+\_\+\+A\+R\+G\+C\+HK}}(x)~do \{ if (!(x)) \{ \mbox{\hyperlink{crypt__argchk_8c_a0b7940cf16cca41a3ad7ea40ac46e037}{crypt\+\_\+argchk}}(\#x, \+\_\+\+\_\+\+F\+I\+L\+E\+\_\+\+\_\+, \+\_\+\+\_\+\+L\+I\+N\+E\+\_\+\+\_\+); \} \}while(0)
+\item 
+\#define \mbox{\hyperlink{tomcrypt__argchk_8h_a67a6e5d66d0c7d80ddf5c583054608bd}{L\+T\+C\+\_\+\+A\+R\+G\+C\+H\+K\+VD}}(x)~do \{ if (!(x)) \{ \mbox{\hyperlink{crypt__argchk_8c_a0b7940cf16cca41a3ad7ea40ac46e037}{crypt\+\_\+argchk}}(\#x, \+\_\+\+\_\+\+F\+I\+L\+E\+\_\+\+\_\+, \+\_\+\+\_\+\+L\+I\+N\+E\+\_\+\+\_\+); \} \}while(0)
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{tomcrypt__argchk_8h_a06e0c34b69f6ce744c53a3d9471f452a}{crypt\+\_\+argchk}} (const char $\ast$v, const char $\ast$s, int d) \mbox{\hyperlink{tomcrypt__cfg_8h_a6366bc4175918bd668dcd65dbb1769bf}{L\+T\+C\+\_\+\+N\+O\+R\+E\+T\+U\+RN}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}\label{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}} 
+\index{tomcrypt\_argchk.h@{tomcrypt\_argchk.h}!LTC\_ARGCHK@{LTC\_ARGCHK}}
+\index{LTC\_ARGCHK@{LTC\_ARGCHK}!tomcrypt\_argchk.h@{tomcrypt\_argchk.h}}
+\subsubsection{\texorpdfstring{LTC\_ARGCHK}{LTC\_ARGCHK}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+A\+R\+G\+C\+HK(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~do \{ if (!(x)) \{ \mbox{\hyperlink{crypt__argchk_8c_a0b7940cf16cca41a3ad7ea40ac46e037}{crypt\+\_\+argchk}}(\#x, \+\_\+\+\_\+\+F\+I\+L\+E\+\_\+\+\_\+, \+\_\+\+\_\+\+L\+I\+N\+E\+\_\+\+\_\+); \} \}while(0)}
+
+
+
+Definition at line 19 of file tomcrypt\+\_\+argchk.\+h.
+
+\mbox{\Hypertarget{tomcrypt__argchk_8h_a67a6e5d66d0c7d80ddf5c583054608bd}\label{tomcrypt__argchk_8h_a67a6e5d66d0c7d80ddf5c583054608bd}} 
+\index{tomcrypt\_argchk.h@{tomcrypt\_argchk.h}!LTC\_ARGCHKVD@{LTC\_ARGCHKVD}}
+\index{LTC\_ARGCHKVD@{LTC\_ARGCHKVD}!tomcrypt\_argchk.h@{tomcrypt\_argchk.h}}
+\subsubsection{\texorpdfstring{LTC\_ARGCHKVD}{LTC\_ARGCHKVD}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+A\+R\+G\+C\+H\+K\+VD(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~do \{ if (!(x)) \{ \mbox{\hyperlink{crypt__argchk_8c_a0b7940cf16cca41a3ad7ea40ac46e037}{crypt\+\_\+argchk}}(\#x, \+\_\+\+\_\+\+F\+I\+L\+E\+\_\+\+\_\+, \+\_\+\+\_\+\+L\+I\+N\+E\+\_\+\+\_\+); \} \}while(0)}
+
+
+
+Definition at line 20 of file tomcrypt\+\_\+argchk.\+h.
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{tomcrypt__argchk_8h_a06e0c34b69f6ce744c53a3d9471f452a}\label{tomcrypt__argchk_8h_a06e0c34b69f6ce744c53a3d9471f452a}} 
+\index{tomcrypt\_argchk.h@{tomcrypt\_argchk.h}!crypt\_argchk@{crypt\_argchk}}
+\index{crypt\_argchk@{crypt\_argchk}!tomcrypt\_argchk.h@{tomcrypt\_argchk.h}}
+\subsubsection{\texorpdfstring{crypt\_argchk()}{crypt\_argchk()}}
+{\footnotesize\ttfamily void crypt\+\_\+argchk (\begin{DoxyParamCaption}\item[{const char $\ast$}]{v,  }\item[{const char $\ast$}]{s,  }\item[{int}]{d }\end{DoxyParamCaption})}
+
+
+
+Definition at line 17 of file crypt\+\_\+argchk.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{18 \{}
+\DoxyCodeLine{19  fprintf(stderr, \textcolor{stringliteral}{"LTC\_ARGCHK '\%s' failure on line \%d of file \%s\(\backslash\)n"},}
+\DoxyCodeLine{20          v, d, s);}
+\DoxyCodeLine{21  abort();}
+\DoxyCodeLine{22 \}}
+
+\end{DoxyCode}

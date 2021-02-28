@@ -1,0 +1,10 @@
+digraph "khazad_setup"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node18 [label="khazad_setup",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Initialize the Khazad block cipher."];
+  Node18 -> Node19 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node19 [label="khazad_test",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$khazad_8c.html#a84954dad5480d2d51bbabec6f639a662",tooltip="Performs a self-test of the Khazad block cipher."];
+}

@@ -1,0 +1,32 @@
+digraph "fortuna_import"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node39 [label="fortuna_import",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Import a PRNG state."];
+  Node39 -> Node40 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node40 [label="fortuna_start",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$fortuna_8c.html#a54822f5e172e6f2a025448f6e9430e22",tooltip="Start the PRNG."];
+  Node40 -> Node41 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node41 [label="sha256_init",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sha256_8c.html#a6290ad544b02c822c2ca6c30b8d1ee07",tooltip="Initialize the hash state."];
+  Node40 -> Node42 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node42 [label="sha256_done",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sha256_8c.html#a53db56f3eb9f35c59b134533be31c301",tooltip="Terminate the hash to get the digest."];
+  Node42 -> Node43 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node43 [label="sha256_compress",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sha256_8c.html#ac87e8a7c22810735390e70611006bfe5",tooltip=" "];
+  Node42 -> Node44 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node44 [label="zeromem",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__misc_8h.html#a63b6e188713790263bfd3612fe8b398f",tooltip="Zero a block of memory."];
+  Node40 -> Node44 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node40 -> Node45 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node45 [label="rijndael_setup",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$aes_8c.html#a3b2fab908c22514c91332a5c9a3d7166",tooltip="Initialize the AES (Rijndael) block cipher."];
+  Node45 -> Node46 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node46 [label="setup_mix",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$aes_8c.html#a523ac00c3bbdb4656024ab0ad32f571f",tooltip=" "];
+  Node39 -> Node47 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node47 [label="fortuna_update_seed",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$fortuna_8c.html#a8a0df3516c28ad940932db01cfa194f9",tooltip="\"Update Seed File\"-compliant update of K"];
+  Node47 -> Node41 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node47 -> Node48 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node48 [label="sha256_process",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sha256_8c.html#a8b983a80c9edd5d997a3937963ae7856",tooltip="Process a block of memory though the hash."];
+  Node47 -> Node42 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node47 -> Node49 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node49 [label="_fortuna_update_iv",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$fortuna_8c.html#a5e5b2b7f0a18fae044e2f53384a51c6b",tooltip=" "];
+  Node47 -> Node44 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}

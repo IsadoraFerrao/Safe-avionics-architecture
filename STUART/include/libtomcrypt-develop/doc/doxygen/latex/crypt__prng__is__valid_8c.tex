@@ -1,0 +1,56 @@
+\hypertarget{crypt__prng__is__valid_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/misc/crypt/crypt\+\_\+prng\+\_\+is\+\_\+valid.c File Reference}
+\label{crypt__prng__is__valid_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/misc/crypt/crypt\_prng\_is\_valid.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/misc/crypt/crypt\_prng\_is\_valid.c}}
+
+
+Determine if P\+R\+NG is valid, Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for crypt\+\_\+prng\+\_\+is\+\_\+valid.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{crypt__prng__is__valid_8c_a7e4a212c1a29a3b8bb4f8d5a34676a1e}{prng\+\_\+is\+\_\+valid}} (int idx)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Determine if P\+R\+NG is valid, Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{crypt__prng__is__valid_8c_a7e4a212c1a29a3b8bb4f8d5a34676a1e}\label{crypt__prng__is__valid_8c_a7e4a212c1a29a3b8bb4f8d5a34676a1e}} 
+\index{crypt\_prng\_is\_valid.c@{crypt\_prng\_is\_valid.c}!prng\_is\_valid@{prng\_is\_valid}}
+\index{prng\_is\_valid@{prng\_is\_valid}!crypt\_prng\_is\_valid.c@{crypt\_prng\_is\_valid.c}}
+\subsubsection{\texorpdfstring{prng\_is\_valid()}{prng\_is\_valid()}}
+{\footnotesize\ttfamily int prng\+\_\+is\+\_\+valid (\begin{DoxyParamCaption}\item[{int}]{idx }\end{DoxyParamCaption})}
+
+
+
+Definition at line 21 of file crypt\+\_\+prng\+\_\+is\+\_\+valid.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{22 \{}
+\DoxyCodeLine{23    \mbox{\hyperlink{tomcrypt__custom_8h_a427a107414e4d775fbf23f4a499f4a31}{LTC\_MUTEX\_LOCK}}(\&ltc\_prng\_mutex);}
+\DoxyCodeLine{24    \textcolor{keywordflow}{if} (idx < 0 || idx >= \mbox{\hyperlink{tomcrypt_8h_a9ad1b4a1e4f7381611cfd2ae6620a727}{TAB\_SIZE}} || \mbox{\hyperlink{tomcrypt__prng_8h_ac03ee9f603bf966f3afb3f6be156239b}{prng\_descriptor}}[idx].name == NULL) \{}
+\DoxyCodeLine{25       \mbox{\hyperlink{tomcrypt__custom_8h_acdf267be91b178b4fafe8f992d57a7f1}{LTC\_MUTEX\_UNLOCK}}(\&ltc\_prng\_mutex);}
+\DoxyCodeLine{26       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca6228a32cdab04099a1ef0f956312f532}{CRYPT\_INVALID\_PRNG}};}
+\DoxyCodeLine{27    \}}
+\DoxyCodeLine{28    \mbox{\hyperlink{tomcrypt__custom_8h_acdf267be91b178b4fafe8f992d57a7f1}{LTC\_MUTEX\_UNLOCK}}(\&ltc\_prng\_mutex);}
+\DoxyCodeLine{29    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{30 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+P\+R\+NG, C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+M\+U\+T\+E\+X\+\_\+\+L\+O\+CK, L\+T\+C\+\_\+\+M\+U\+T\+E\+X\+\_\+\+U\+N\+L\+O\+CK, ltc\+\_\+prng\+\_\+descriptor\+::name, prng\+\_\+descriptor, and T\+A\+B\+\_\+\+S\+I\+ZE.
+
+
+
+Referenced by dh\+\_\+generate\+\_\+key(), dsa\+\_\+encrypt\+\_\+key(), dsa\+\_\+sign\+\_\+hash\+\_\+raw(), pkcs\+\_\+1\+\_\+oaep\+\_\+encode(), pkcs\+\_\+1\+\_\+pss\+\_\+encode(), pkcs\+\_\+1\+\_\+v1\+\_\+5\+\_\+encode(), rand\+\_\+bn\+\_\+bits(), rand\+\_\+prime(), rng\+\_\+make\+\_\+prng(), rsa\+\_\+encrypt\+\_\+key\+\_\+ex(), rsa\+\_\+make\+\_\+key(), and rsa\+\_\+sign\+\_\+hash\+\_\+ex().
+
+Here is the caller graph for this function\+:
+% FIG 1

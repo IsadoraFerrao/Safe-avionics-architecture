@@ -1,0 +1,27 @@
+digraph "_rabbit_next_state"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node20 [label="_rabbit_next_state",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node20 -> Node21 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node21 [label="_rabbit_gen_1_block",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rabbit_8c.html#a5908dd91ace42986a5ee525efe536246",tooltip=" "];
+  Node21 -> Node22 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node22 [label="rabbit_crypt",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rabbit_8c.html#a5391d40531a20557491ef7d58fb93cda",tooltip=" "];
+  Node22 -> Node23 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node23 [label="rabbit_keystream",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rabbit_8c.html#a40bafb857ec94e37f6e74bf92cbb5e44",tooltip=" "];
+  Node22 -> Node24 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node24 [label="rabbit_test",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rabbit_8c.html#ab40e398f9527a72a8ae06d7ceb310fe0",tooltip=" "];
+  Node22 -> Node25 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node25 [label="rabbit_memory",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rabbit__memory_8c.html#a10314f2825525c0c69881907d65ab91b",tooltip="Encrypt (or decrypt) bytes of ciphertext (or plaintext) with Rabbit."];
+  Node25 -> Node24 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node20 -> Node26 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node26 [label="rabbit_setiv",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rabbit_8c.html#ac6f6bf7b05fa527a8fed39dcae781cec",tooltip=" "];
+  Node26 -> Node24 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node26 -> Node25 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node20 -> Node27 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node27 [label="rabbit_setup",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rabbit_8c.html#ac522e3bb890d2fe32276a4a596371461",tooltip=" "];
+  Node27 -> Node24 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node27 -> Node25 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+}

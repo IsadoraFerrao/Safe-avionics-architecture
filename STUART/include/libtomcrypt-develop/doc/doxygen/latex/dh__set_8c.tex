@@ -1,0 +1,201 @@
+\hypertarget{dh__set_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/pk/dh/dh\+\_\+set.c File Reference}
+\label{dh__set_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/dh/dh\_set.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/dh/dh\_set.c}}
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for dh\+\_\+set.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{dh__set_8c_a15a37c84cde75fe05b98bfd8b61f9302}{dh\+\_\+set\+\_\+pg}} (const unsigned char $\ast$p, unsigned long plen, const unsigned char $\ast$g, unsigned long glen, dh\+\_\+key $\ast$key)
+\begin{DoxyCompactList}\small\item\em Import DH key parts p and g from raw numbers. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{dh__set_8c_a17eee63bc3d213adc1fc63d2d2e49472}{dh\+\_\+set\+\_\+pg\+\_\+groupsize}} (int groupsize, dh\+\_\+key $\ast$key)
+\begin{DoxyCompactList}\small\item\em Import DH key parts p and g from built-\/in DH groups. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{dh__set_8c_a608aa2ac033bf5a6636a7fcd2194af92}{dh\+\_\+set\+\_\+key}} (const unsigned char $\ast$in, unsigned long inlen, int type, dh\+\_\+key $\ast$key)
+\begin{DoxyCompactList}\small\item\em Import DH public or private key part from raw numbers. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{dh__set_8c_a608aa2ac033bf5a6636a7fcd2194af92}\label{dh__set_8c_a608aa2ac033bf5a6636a7fcd2194af92}} 
+\index{dh\_set.c@{dh\_set.c}!dh\_set\_key@{dh\_set\_key}}
+\index{dh\_set\_key@{dh\_set\_key}!dh\_set.c@{dh\_set.c}}
+\subsubsection{\texorpdfstring{dh\_set\_key()}{dh\_set\_key()}}
+{\footnotesize\ttfamily int dh\+\_\+set\+\_\+key (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{in,  }\item[{unsigned long}]{inlen,  }\item[{int}]{type,  }\item[{dh\+\_\+key $\ast$}]{key }\end{DoxyParamCaption})}
+
+
+
+Import DH public or private key part from raw numbers. 
+
+NB\+: The p \& g parts must be set beforehand
+
+
+\begin{DoxyParams}{Parameters}
+{\em in} & The key-\/part to import, either public or private. \\
+\hline
+{\em inlen} & The key-\/part\textquotesingle{}s length \\
+\hline
+{\em type} & Which type of key (P\+K\+\_\+\+P\+R\+I\+V\+A\+TE or P\+K\+\_\+\+P\+U\+B\+L\+IC) \\
+\hline
+{\em key} & \mbox{[}out\mbox{]} the destination for the imported key \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 91 of file dh\+\_\+set.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{92 \{}
+\DoxyCodeLine{93    \textcolor{keywordtype}{int} err;}
+\DoxyCodeLine{94 }
+\DoxyCodeLine{95    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(key         != NULL);}
+\DoxyCodeLine{96    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(\mbox{\hyperlink{tomcrypt__math_8h_a3d38c44518c63b7a8abd0938f3d41c65}{ltc\_mp}}.\mbox{\hyperlink{structltc__math__descriptor_a8838126de4a27e382f91096e369a2728}{name}} != NULL);}
+\DoxyCodeLine{97 }
+\DoxyCodeLine{98    \textcolor{keywordflow}{if} (type == \mbox{\hyperlink{tomcrypt__pk_8h_afb69d121a43f5ae8b47e6b83611d9272a7295b3dea2c5277912c6e040e1c96649}{PK\_PRIVATE}}) \{}
+\DoxyCodeLine{99       key->type = \mbox{\hyperlink{tomcrypt__pk_8h_afb69d121a43f5ae8b47e6b83611d9272a7295b3dea2c5277912c6e040e1c96649}{PK\_PRIVATE}};}
+\DoxyCodeLine{100       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a9e20e2044bb5a279e27512d1e1b65754}{mp\_read\_unsigned\_bin}}(key->x, (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}*)in, inlen)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{ \textcolor{keywordflow}{goto} LBL\_ERR; \}}
+\DoxyCodeLine{101       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a4fb1221fbef91bf8163390e3cfb82085}{mp\_exptmod}}(key->base, key->x, key->prime, key->y)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})       \{ \textcolor{keywordflow}{goto} LBL\_ERR; \}}
+\DoxyCodeLine{102    \}}
+\DoxyCodeLine{103    \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{104       key->type = \mbox{\hyperlink{tomcrypt__pk_8h_afb69d121a43f5ae8b47e6b83611d9272a77f8a3a3339971a6b937140f6333d465}{PK\_PUBLIC}};}
+\DoxyCodeLine{105       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a9e20e2044bb5a279e27512d1e1b65754}{mp\_read\_unsigned\_bin}}(key->y, (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}*)in, inlen)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{ \textcolor{keywordflow}{goto} LBL\_ERR; \}}
+\DoxyCodeLine{106    \}}
+\DoxyCodeLine{107 }
+\DoxyCodeLine{108    \textcolor{comment}{/* check public key */}}
+\DoxyCodeLine{109    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a88fc16c33e95216e30eae5beb8e92da1}{dh\_check\_pubkey}}(key)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{110       \textcolor{keywordflow}{goto} LBL\_ERR;}
+\DoxyCodeLine{111    \}}
+\DoxyCodeLine{112 }
+\DoxyCodeLine{113    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{114 }
+\DoxyCodeLine{115 LBL\_ERR:}
+\DoxyCodeLine{116    \mbox{\hyperlink{dh__free_8c_ac6413849059daca7d0482fa400db5d82}{dh\_free}}(key);}
+\DoxyCodeLine{117    \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{118 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, dh\+\_\+check\+\_\+pubkey(), dh\+\_\+free(), L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, ltc\+\_\+mp, mp\+\_\+exptmod, mp\+\_\+read\+\_\+unsigned\+\_\+bin, ltc\+\_\+math\+\_\+descriptor\+::name, P\+K\+\_\+\+P\+R\+I\+V\+A\+TE, and P\+K\+\_\+\+P\+U\+B\+L\+IC.
+
+Here is the call graph for this function\+:
+% FIG 1
+\mbox{\Hypertarget{dh__set_8c_a15a37c84cde75fe05b98bfd8b61f9302}\label{dh__set_8c_a15a37c84cde75fe05b98bfd8b61f9302}} 
+\index{dh\_set.c@{dh\_set.c}!dh\_set\_pg@{dh\_set\_pg}}
+\index{dh\_set\_pg@{dh\_set\_pg}!dh\_set.c@{dh\_set.c}}
+\subsubsection{\texorpdfstring{dh\_set\_pg()}{dh\_set\_pg()}}
+{\footnotesize\ttfamily int dh\+\_\+set\+\_\+pg (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{p,  }\item[{unsigned long}]{plen,  }\item[{const unsigned char $\ast$}]{g,  }\item[{unsigned long}]{glen,  }\item[{dh\+\_\+key $\ast$}]{key }\end{DoxyParamCaption})}
+
+
+
+Import DH key parts p and g from raw numbers. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p} & DH\textquotesingle{}s p (prime) \\
+\hline
+{\em plen} & DH\textquotesingle{}s p\textquotesingle{}s length \\
+\hline
+{\em g} & DH\textquotesingle{}s g (group) \\
+\hline
+{\em glen} & DH\textquotesingle{}s g\textquotesingle{}s length \\
+\hline
+{\em key} & \mbox{[}out\mbox{]} the destination for the imported key \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 24 of file dh\+\_\+set.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{27 \{}
+\DoxyCodeLine{28    \textcolor{keywordtype}{int} err;}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(key         != NULL);}
+\DoxyCodeLine{31    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(p           != NULL);}
+\DoxyCodeLine{32    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(g           != NULL);}
+\DoxyCodeLine{33    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(\mbox{\hyperlink{tomcrypt__math_8h_a3d38c44518c63b7a8abd0938f3d41c65}{ltc\_mp}}.\mbox{\hyperlink{structltc__math__descriptor_a8838126de4a27e382f91096e369a2728}{name}} != NULL);}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_adb6322247b1a4f0347219acab3120bd3}{mp\_init\_multi}}(\&key->x, \&key->y, \&key->base, \&key->prime, NULL)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{36       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{37    \}}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a9e20e2044bb5a279e27512d1e1b65754}{mp\_read\_unsigned\_bin}}(key->base, (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}*)g, glen)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})     \{ \textcolor{keywordflow}{goto} LBL\_ERR; \}}
+\DoxyCodeLine{40    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a9e20e2044bb5a279e27512d1e1b65754}{mp\_read\_unsigned\_bin}}(key->prime, (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}*)p, plen)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})  \{ \textcolor{keywordflow}{goto} LBL\_ERR; \}}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{42    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44 LBL\_ERR:}
+\DoxyCodeLine{45    \mbox{\hyperlink{dh__free_8c_ac6413849059daca7d0482fa400db5d82}{dh\_free}}(key);}
+\DoxyCodeLine{46    \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{47 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, dh\+\_\+free(), L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, ltc\+\_\+mp, mp\+\_\+init\+\_\+multi, mp\+\_\+read\+\_\+unsigned\+\_\+bin, and ltc\+\_\+math\+\_\+descriptor\+::name.
+
+Here is the call graph for this function\+:
+% FIG 2
+\mbox{\Hypertarget{dh__set_8c_a17eee63bc3d213adc1fc63d2d2e49472}\label{dh__set_8c_a17eee63bc3d213adc1fc63d2d2e49472}} 
+\index{dh\_set.c@{dh\_set.c}!dh\_set\_pg\_groupsize@{dh\_set\_pg\_groupsize}}
+\index{dh\_set\_pg\_groupsize@{dh\_set\_pg\_groupsize}!dh\_set.c@{dh\_set.c}}
+\subsubsection{\texorpdfstring{dh\_set\_pg\_groupsize()}{dh\_set\_pg\_groupsize()}}
+{\footnotesize\ttfamily int dh\+\_\+set\+\_\+pg\+\_\+groupsize (\begin{DoxyParamCaption}\item[{int}]{groupsize,  }\item[{dh\+\_\+key $\ast$}]{key }\end{DoxyParamCaption})}
+
+
+
+Import DH key parts p and g from built-\/in DH groups. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em groupsize} & The size of the DH group to use \\
+\hline
+{\em key} & \mbox{[}out\mbox{]} Where the newly created DH key will be stored \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful, note\+: on error all allocated memory will be freed automatically. 
+\end{DoxyReturn}
+
+
+Definition at line 56 of file dh\+\_\+set.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{57 \{}
+\DoxyCodeLine{58    \textcolor{keywordtype}{int} err, i;}
+\DoxyCodeLine{59 }
+\DoxyCodeLine{60    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(key         != NULL);}
+\DoxyCodeLine{61    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(\mbox{\hyperlink{tomcrypt__math_8h_a3d38c44518c63b7a8abd0938f3d41c65}{ltc\_mp}}.\mbox{\hyperlink{structltc__math__descriptor_a8838126de4a27e382f91096e369a2728}{name}} != NULL);}
+\DoxyCodeLine{62    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(groupsize   > 0);}
+\DoxyCodeLine{63 }
+\DoxyCodeLine{64    \textcolor{keywordflow}{for} (i = 0; (groupsize > \mbox{\hyperlink{tomcrypt__private_8h_a45c19266abadb7a8a27dc330b000cfc4}{ltc\_dh\_sets}}[i].\mbox{\hyperlink{structltc__dh__set__type_a2b9cb28186fe61b5f2c86195af6fb397}{size}}) \&\& (\mbox{\hyperlink{tomcrypt__private_8h_a45c19266abadb7a8a27dc330b000cfc4}{ltc\_dh\_sets}}[i].\mbox{\hyperlink{structedge_a64bdc14a16193c014f1ef50be358441d}{size}} != 0); i++);}
+\DoxyCodeLine{65    \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__private_8h_a45c19266abadb7a8a27dc330b000cfc4}{ltc\_dh\_sets}}[i].\mbox{\hyperlink{structedge_a64bdc14a16193c014f1ef50be358441d}{size}} == 0) \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caafed43f3b625e72191e08e65b4bb5e02}{CRYPT\_INVALID\_KEYSIZE}};}
+\DoxyCodeLine{66 }
+\DoxyCodeLine{67    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_adb6322247b1a4f0347219acab3120bd3}{mp\_init\_multi}}(\&key->x, \&key->y, \&key->base, \&key->prime, NULL)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{68       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{69    \}}
+\DoxyCodeLine{70    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a12263d4d7da068c2a630d2ffc0c8bc1b}{mp\_read\_radix}}(key->base, \mbox{\hyperlink{tomcrypt__private_8h_a45c19266abadb7a8a27dc330b000cfc4}{ltc\_dh\_sets}}[i].\mbox{\hyperlink{structltc__dh__set__type_a36eaf483f7dfc52c1798cf80f9a8cef4}{base}}, 16)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})  \{ \textcolor{keywordflow}{goto} LBL\_ERR; \}}
+\DoxyCodeLine{71    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a12263d4d7da068c2a630d2ffc0c8bc1b}{mp\_read\_radix}}(key->prime, \mbox{\hyperlink{tomcrypt__private_8h_a45c19266abadb7a8a27dc330b000cfc4}{ltc\_dh\_sets}}[i].\mbox{\hyperlink{structltc__dh__set__type_a075dd36bc203e54e802194a7a0ac4d0a}{prime}}, 16)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{ \textcolor{keywordflow}{goto} LBL\_ERR; \}}
+\DoxyCodeLine{72 }
+\DoxyCodeLine{73    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{74 }
+\DoxyCodeLine{75 LBL\_ERR:}
+\DoxyCodeLine{76    \mbox{\hyperlink{dh__free_8c_ac6413849059daca7d0482fa400db5d82}{dh\_free}}(key);}
+\DoxyCodeLine{77    \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{78 \}}
+
+\end{DoxyCode}
+
+
+References ltc\+\_\+dh\+\_\+set\+\_\+type\+::base, C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+K\+E\+Y\+S\+I\+ZE, C\+R\+Y\+P\+T\+\_\+\+OK, dh\+\_\+free(), L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, ltc\+\_\+dh\+\_\+sets, ltc\+\_\+mp, mp\+\_\+init\+\_\+multi, mp\+\_\+read\+\_\+radix, ltc\+\_\+math\+\_\+descriptor\+::name, ltc\+\_\+dh\+\_\+set\+\_\+type\+::prime, and ltc\+\_\+dh\+\_\+set\+\_\+type\+::size.
+
+Here is the call graph for this function\+:
+% FIG 3

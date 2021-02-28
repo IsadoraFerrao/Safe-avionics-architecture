@@ -1,0 +1,68 @@
+\hypertarget{ocb__shift__xor_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/encauth/ocb/ocb\+\_\+shift\+\_\+xor.c File Reference}
+\label{ocb__shift__xor_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/encauth/ocb/ocb\_shift\_xor.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/encauth/ocb/ocb\_shift\_xor.c}}
+
+
+O\+CB implementation, internal function, by Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for ocb\+\_\+shift\+\_\+xor.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{ocb__shift__xor_8c_a516c53bd11c00b98b911778b136f3658}{ocb\+\_\+shift\+\_\+xor}} (ocb\+\_\+state $\ast$ocb, unsigned char $\ast$Z)
+\begin{DoxyCompactList}\small\item\em Compute the shift/xor for O\+CB (internal function) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+O\+CB implementation, internal function, by Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{ocb__shift__xor_8c_a516c53bd11c00b98b911778b136f3658}\label{ocb__shift__xor_8c_a516c53bd11c00b98b911778b136f3658}} 
+\index{ocb\_shift\_xor.c@{ocb\_shift\_xor.c}!ocb\_shift\_xor@{ocb\_shift\_xor}}
+\index{ocb\_shift\_xor@{ocb\_shift\_xor}!ocb\_shift\_xor.c@{ocb\_shift\_xor.c}}
+\subsubsection{\texorpdfstring{ocb\_shift\_xor()}{ocb\_shift\_xor()}}
+{\footnotesize\ttfamily void ocb\+\_\+shift\+\_\+xor (\begin{DoxyParamCaption}\item[{ocb\+\_\+state $\ast$}]{ocb,  }\item[{unsigned char $\ast$}]{Z }\end{DoxyParamCaption})}
+
+
+
+Compute the shift/xor for O\+CB (internal function) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ocb} & The O\+CB state \\
+\hline
+{\em Z} & The destination of the shift \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 23 of file ocb\+\_\+shift\+\_\+xor.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{24 \{}
+\DoxyCodeLine{25    \textcolor{keywordtype}{int} x, y;}
+\DoxyCodeLine{26    y = \mbox{\hyperlink{ocb__ntz_8c_a85349886e5d37c031c02fe46296fc303}{ocb\_ntz}}(ocb->block\_index++);}
+\DoxyCodeLine{27    \textcolor{keywordflow}{for} (x = 0; x < ocb->block\_len; x++) \{}
+\DoxyCodeLine{28        ocb->Li[x] \string^= ocb->Ls[y][x];}
+\DoxyCodeLine{29        Z[x]        = ocb->Li[x] \string^ ocb->R[x];}
+\DoxyCodeLine{30    \}}
+\DoxyCodeLine{31 \}}
+
+\end{DoxyCode}
+
+
+References ocb\+\_\+ntz().
+
+
+
+Referenced by ocb\+\_\+decrypt(), ocb\+\_\+encrypt(), and s\+\_\+ocb\+\_\+done().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2

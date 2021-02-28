@@ -1,0 +1,300 @@
+\hypertarget{tomcrypt_8h}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/headers/tomcrypt.h File Reference}
+\label{tomcrypt_8h}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/headers/tomcrypt.h@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/headers/tomcrypt.h}}
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$stddef.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+{\ttfamily \#include $<$ctype.\+h$>$}\newline
+{\ttfamily \#include $<$limits.\+h$>$}\newline
+{\ttfamily \#include $<$tomcrypt\+\_\+custom.\+h$>$}\newline
+{\ttfamily \#include $<$tomcrypt\+\_\+cfg.\+h$>$}\newline
+{\ttfamily \#include $<$tomcrypt\+\_\+macros.\+h$>$}\newline
+{\ttfamily \#include $<$tomcrypt\+\_\+cipher.\+h$>$}\newline
+{\ttfamily \#include $<$tomcrypt\+\_\+hash.\+h$>$}\newline
+{\ttfamily \#include $<$tomcrypt\+\_\+mac.\+h$>$}\newline
+{\ttfamily \#include $<$tomcrypt\+\_\+prng.\+h$>$}\newline
+{\ttfamily \#include $<$tomcrypt\+\_\+pk.\+h$>$}\newline
+{\ttfamily \#include $<$tomcrypt\+\_\+math.\+h$>$}\newline
+{\ttfamily \#include $<$tomcrypt\+\_\+misc.\+h$>$}\newline
+{\ttfamily \#include $<$tomcrypt\+\_\+argchk.\+h$>$}\newline
+{\ttfamily \#include $<$tomcrypt\+\_\+pkcs.\+h$>$}\newline
+Include dependency graph for tomcrypt.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{tomcrypt_8h_acb7a2c988958e59fe25354c1a04be6a4}{C\+R\+Y\+PT}}~0x0118
+\item 
+\#define \mbox{\hyperlink{tomcrypt_8h_a63273c49fdf80e2bdfa669811a59151a}{S\+C\+R\+Y\+PT}}~\char`\"{}1.\+18.\+2-\/develop\char`\"{}
+\item 
+\#define \mbox{\hyperlink{tomcrypt_8h_ab59933beebb2b857c992b93cf53f0d10}{M\+A\+X\+B\+L\+O\+C\+K\+S\+I\+ZE}}~144
+\item 
+\#define \mbox{\hyperlink{tomcrypt_8h_a9ad1b4a1e4f7381611cfd2ae6620a727}{T\+A\+B\+\_\+\+S\+I\+ZE}}~34
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \{ \newline
+\mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{C\+R\+Y\+P\+T\+\_\+\+OK}} =0, 
+\newline
+\mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca03c22220d7538be04455cd2aa6ddf9da}{C\+R\+Y\+P\+T\+\_\+\+E\+R\+R\+OR}}, 
+\newline
+\mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cac43a7799c7fd5f515172da6cfc0f9cf5}{C\+R\+Y\+P\+T\+\_\+\+N\+OP}}, 
+\newline
+\mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caafed43f3b625e72191e08e65b4bb5e02}{C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+K\+E\+Y\+S\+I\+ZE}}, 
+\newline
+\mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca69aff0280b5845d03130f8700009caf5}{C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+R\+O\+U\+N\+DS}}, 
+\newline
+\mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{C\+R\+Y\+P\+T\+\_\+\+F\+A\+I\+L\+\_\+\+T\+E\+S\+T\+V\+E\+C\+T\+OR}}, 
+\newline
+\mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caccd878f5599f3036ffe759dbe1a1ac16}{C\+R\+Y\+P\+T\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+O\+V\+E\+R\+F\+L\+OW}}, 
+\newline
+\mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca980088f10ffe9009aec286038a9e79da}{C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+P\+A\+C\+K\+ET}}, 
+\newline
+\mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cac0b40f0b62c40baa800489c75940b0a1}{C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+P\+R\+N\+G\+S\+I\+ZE}}, 
+\newline
+\mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca68eea82b3b71f23031cd94b10c920bf3}{C\+R\+Y\+P\+T\+\_\+\+E\+R\+R\+O\+R\+\_\+\+R\+E\+A\+D\+P\+R\+NG}}, 
+\newline
+\mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca302b958f5664adeb427c22f57c9d90a4}{C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+C\+I\+P\+H\+ER}}, 
+\newline
+\mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cae729ddc4864ea7e12e9865bf6264642d}{C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+H\+A\+SH}}, 
+\newline
+\mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca6228a32cdab04099a1ef0f956312f532}{C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+P\+R\+NG}}, 
+\newline
+\mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca0ce0d27adc7ea10b74b7ea904b8bfa82}{C\+R\+Y\+P\+T\+\_\+\+M\+EM}}, 
+\newline
+\mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca48b20c804be422f37699bb4846ccf8e0}{C\+R\+Y\+P\+T\+\_\+\+P\+K\+\_\+\+T\+Y\+P\+E\+\_\+\+M\+I\+S\+M\+A\+T\+CH}}, 
+\newline
+\mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cab2387c6b394ca945bc65060fd43b69b8}{C\+R\+Y\+P\+T\+\_\+\+P\+K\+\_\+\+N\+O\+T\+\_\+\+P\+R\+I\+V\+A\+TE}}, 
+\newline
+\mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+A\+RG}}, 
+\newline
+\mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca9c972a504d3de1863b3e7708836bc6d1}{C\+R\+Y\+P\+T\+\_\+\+F\+I\+L\+E\+\_\+\+N\+O\+T\+F\+O\+U\+ND}}, 
+\newline
+\mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca18dac5b6ef2e90712e2ae43c4734f00d}{C\+R\+Y\+P\+T\+\_\+\+P\+K\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+T\+Y\+PE}}, 
+\newline
+\mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca3a147cc0bbea3f8779364ad00c2678b4}{C\+R\+Y\+P\+T\+\_\+\+O\+V\+E\+R\+F\+L\+OW}}, 
+\newline
+\mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca001cb5383cce7c4581790abe472e816f}{C\+R\+Y\+P\+T\+\_\+\+P\+K\+\_\+\+A\+S\+N1\+\_\+\+E\+R\+R\+OR}}, 
+\newline
+\mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cadf938469ecf1be83eff1b661288fae7a}{C\+R\+Y\+P\+T\+\_\+\+I\+N\+P\+U\+T\+\_\+\+T\+O\+O\+\_\+\+L\+O\+NG}}, 
+\newline
+\mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cadfac76b902650db645da5999f2b78b4e}{C\+R\+Y\+P\+T\+\_\+\+P\+K\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+S\+I\+ZE}}, 
+\newline
+\mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca576541d9dacc9866dd2a77512aa37bd7}{C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+P\+R\+I\+M\+E\+\_\+\+S\+I\+ZE}}, 
+\newline
+\mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caee3022c2372277db42c7d43310bcb43b}{C\+R\+Y\+P\+T\+\_\+\+P\+K\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+P\+A\+D\+D\+I\+NG}}, 
+\newline
+\mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad2105b6b6cf40ed1961673e347d532f2}{C\+R\+Y\+P\+T\+\_\+\+H\+A\+S\+H\+\_\+\+O\+V\+E\+R\+F\+L\+OW}}
+ \}
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{tomcrypt_8h_acb7a2c988958e59fe25354c1a04be6a4}\label{tomcrypt_8h_acb7a2c988958e59fe25354c1a04be6a4}} 
+\index{tomcrypt.h@{tomcrypt.h}!CRYPT@{CRYPT}}
+\index{CRYPT@{CRYPT}!tomcrypt.h@{tomcrypt.h}}
+\subsubsection{\texorpdfstring{CRYPT}{CRYPT}}
+{\footnotesize\ttfamily \#define C\+R\+Y\+PT~0x0118}
+
+
+
+Definition at line 29 of file tomcrypt.\+h.
+
+\mbox{\Hypertarget{tomcrypt_8h_ab59933beebb2b857c992b93cf53f0d10}\label{tomcrypt_8h_ab59933beebb2b857c992b93cf53f0d10}} 
+\index{tomcrypt.h@{tomcrypt.h}!MAXBLOCKSIZE@{MAXBLOCKSIZE}}
+\index{MAXBLOCKSIZE@{MAXBLOCKSIZE}!tomcrypt.h@{tomcrypt.h}}
+\subsubsection{\texorpdfstring{MAXBLOCKSIZE}{MAXBLOCKSIZE}}
+{\footnotesize\ttfamily \#define M\+A\+X\+B\+L\+O\+C\+K\+S\+I\+ZE~144}
+
+
+
+Definition at line 33 of file tomcrypt.\+h.
+
+\mbox{\Hypertarget{tomcrypt_8h_a63273c49fdf80e2bdfa669811a59151a}\label{tomcrypt_8h_a63273c49fdf80e2bdfa669811a59151a}} 
+\index{tomcrypt.h@{tomcrypt.h}!SCRYPT@{SCRYPT}}
+\index{SCRYPT@{SCRYPT}!tomcrypt.h@{tomcrypt.h}}
+\subsubsection{\texorpdfstring{SCRYPT}{SCRYPT}}
+{\footnotesize\ttfamily \#define S\+C\+R\+Y\+PT~\char`\"{}1.\+18.\+2-\/develop\char`\"{}}
+
+
+
+Definition at line 30 of file tomcrypt.\+h.
+
+\mbox{\Hypertarget{tomcrypt_8h_a9ad1b4a1e4f7381611cfd2ae6620a727}\label{tomcrypt_8h_a9ad1b4a1e4f7381611cfd2ae6620a727}} 
+\index{tomcrypt.h@{tomcrypt.h}!TAB\_SIZE@{TAB\_SIZE}}
+\index{TAB\_SIZE@{TAB\_SIZE}!tomcrypt.h@{tomcrypt.h}}
+\subsubsection{\texorpdfstring{TAB\_SIZE}{TAB\_SIZE}}
+{\footnotesize\ttfamily \#define T\+A\+B\+\_\+\+S\+I\+ZE~34}
+
+
+
+Definition at line 37 of file tomcrypt.\+h.
+
+
+
+\subsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06c}\label{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06c}} 
+\subsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
+{\footnotesize\ttfamily anonymous enum}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CRYPT\_OK@{CRYPT\_OK}!tomcrypt.h@{tomcrypt.h}}\index{tomcrypt.h@{tomcrypt.h}!CRYPT\_OK@{CRYPT\_OK}}}\mbox{\Hypertarget{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}\label{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}} 
+C\+R\+Y\+P\+T\+\_\+\+OK&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CRYPT\_ERROR@{CRYPT\_ERROR}!tomcrypt.h@{tomcrypt.h}}\index{tomcrypt.h@{tomcrypt.h}!CRYPT\_ERROR@{CRYPT\_ERROR}}}\mbox{\Hypertarget{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca03c22220d7538be04455cd2aa6ddf9da}\label{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca03c22220d7538be04455cd2aa6ddf9da}} 
+C\+R\+Y\+P\+T\+\_\+\+E\+R\+R\+OR&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CRYPT\_NOP@{CRYPT\_NOP}!tomcrypt.h@{tomcrypt.h}}\index{tomcrypt.h@{tomcrypt.h}!CRYPT\_NOP@{CRYPT\_NOP}}}\mbox{\Hypertarget{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cac43a7799c7fd5f515172da6cfc0f9cf5}\label{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cac43a7799c7fd5f515172da6cfc0f9cf5}} 
+C\+R\+Y\+P\+T\+\_\+\+N\+OP&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CRYPT\_INVALID\_KEYSIZE@{CRYPT\_INVALID\_KEYSIZE}!tomcrypt.h@{tomcrypt.h}}\index{tomcrypt.h@{tomcrypt.h}!CRYPT\_INVALID\_KEYSIZE@{CRYPT\_INVALID\_KEYSIZE}}}\mbox{\Hypertarget{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caafed43f3b625e72191e08e65b4bb5e02}\label{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caafed43f3b625e72191e08e65b4bb5e02}} 
+C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+K\+E\+Y\+S\+I\+ZE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CRYPT\_INVALID\_ROUNDS@{CRYPT\_INVALID\_ROUNDS}!tomcrypt.h@{tomcrypt.h}}\index{tomcrypt.h@{tomcrypt.h}!CRYPT\_INVALID\_ROUNDS@{CRYPT\_INVALID\_ROUNDS}}}\mbox{\Hypertarget{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca69aff0280b5845d03130f8700009caf5}\label{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca69aff0280b5845d03130f8700009caf5}} 
+C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+R\+O\+U\+N\+DS&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CRYPT\_FAIL\_TESTVECTOR@{CRYPT\_FAIL\_TESTVECTOR}!tomcrypt.h@{tomcrypt.h}}\index{tomcrypt.h@{tomcrypt.h}!CRYPT\_FAIL\_TESTVECTOR@{CRYPT\_FAIL\_TESTVECTOR}}}\mbox{\Hypertarget{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}\label{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}} 
+C\+R\+Y\+P\+T\+\_\+\+F\+A\+I\+L\+\_\+\+T\+E\+S\+T\+V\+E\+C\+T\+OR&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CRYPT\_BUFFER\_OVERFLOW@{CRYPT\_BUFFER\_OVERFLOW}!tomcrypt.h@{tomcrypt.h}}\index{tomcrypt.h@{tomcrypt.h}!CRYPT\_BUFFER\_OVERFLOW@{CRYPT\_BUFFER\_OVERFLOW}}}\mbox{\Hypertarget{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caccd878f5599f3036ffe759dbe1a1ac16}\label{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caccd878f5599f3036ffe759dbe1a1ac16}} 
+C\+R\+Y\+P\+T\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+O\+V\+E\+R\+F\+L\+OW&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CRYPT\_INVALID\_PACKET@{CRYPT\_INVALID\_PACKET}!tomcrypt.h@{tomcrypt.h}}\index{tomcrypt.h@{tomcrypt.h}!CRYPT\_INVALID\_PACKET@{CRYPT\_INVALID\_PACKET}}}\mbox{\Hypertarget{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca980088f10ffe9009aec286038a9e79da}\label{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca980088f10ffe9009aec286038a9e79da}} 
+C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+P\+A\+C\+K\+ET&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CRYPT\_INVALID\_PRNGSIZE@{CRYPT\_INVALID\_PRNGSIZE}!tomcrypt.h@{tomcrypt.h}}\index{tomcrypt.h@{tomcrypt.h}!CRYPT\_INVALID\_PRNGSIZE@{CRYPT\_INVALID\_PRNGSIZE}}}\mbox{\Hypertarget{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cac0b40f0b62c40baa800489c75940b0a1}\label{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cac0b40f0b62c40baa800489c75940b0a1}} 
+C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+P\+R\+N\+G\+S\+I\+ZE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CRYPT\_ERROR\_READPRNG@{CRYPT\_ERROR\_READPRNG}!tomcrypt.h@{tomcrypt.h}}\index{tomcrypt.h@{tomcrypt.h}!CRYPT\_ERROR\_READPRNG@{CRYPT\_ERROR\_READPRNG}}}\mbox{\Hypertarget{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca68eea82b3b71f23031cd94b10c920bf3}\label{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca68eea82b3b71f23031cd94b10c920bf3}} 
+C\+R\+Y\+P\+T\+\_\+\+E\+R\+R\+O\+R\+\_\+\+R\+E\+A\+D\+P\+R\+NG&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CRYPT\_INVALID\_CIPHER@{CRYPT\_INVALID\_CIPHER}!tomcrypt.h@{tomcrypt.h}}\index{tomcrypt.h@{tomcrypt.h}!CRYPT\_INVALID\_CIPHER@{CRYPT\_INVALID\_CIPHER}}}\mbox{\Hypertarget{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca302b958f5664adeb427c22f57c9d90a4}\label{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca302b958f5664adeb427c22f57c9d90a4}} 
+C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+C\+I\+P\+H\+ER&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CRYPT\_INVALID\_HASH@{CRYPT\_INVALID\_HASH}!tomcrypt.h@{tomcrypt.h}}\index{tomcrypt.h@{tomcrypt.h}!CRYPT\_INVALID\_HASH@{CRYPT\_INVALID\_HASH}}}\mbox{\Hypertarget{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cae729ddc4864ea7e12e9865bf6264642d}\label{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cae729ddc4864ea7e12e9865bf6264642d}} 
+C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+H\+A\+SH&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CRYPT\_INVALID\_PRNG@{CRYPT\_INVALID\_PRNG}!tomcrypt.h@{tomcrypt.h}}\index{tomcrypt.h@{tomcrypt.h}!CRYPT\_INVALID\_PRNG@{CRYPT\_INVALID\_PRNG}}}\mbox{\Hypertarget{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca6228a32cdab04099a1ef0f956312f532}\label{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca6228a32cdab04099a1ef0f956312f532}} 
+C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+P\+R\+NG&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CRYPT\_MEM@{CRYPT\_MEM}!tomcrypt.h@{tomcrypt.h}}\index{tomcrypt.h@{tomcrypt.h}!CRYPT\_MEM@{CRYPT\_MEM}}}\mbox{\Hypertarget{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca0ce0d27adc7ea10b74b7ea904b8bfa82}\label{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca0ce0d27adc7ea10b74b7ea904b8bfa82}} 
+C\+R\+Y\+P\+T\+\_\+\+M\+EM&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CRYPT\_PK\_TYPE\_MISMATCH@{CRYPT\_PK\_TYPE\_MISMATCH}!tomcrypt.h@{tomcrypt.h}}\index{tomcrypt.h@{tomcrypt.h}!CRYPT\_PK\_TYPE\_MISMATCH@{CRYPT\_PK\_TYPE\_MISMATCH}}}\mbox{\Hypertarget{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca48b20c804be422f37699bb4846ccf8e0}\label{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca48b20c804be422f37699bb4846ccf8e0}} 
+C\+R\+Y\+P\+T\+\_\+\+P\+K\+\_\+\+T\+Y\+P\+E\+\_\+\+M\+I\+S\+M\+A\+T\+CH&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CRYPT\_PK\_NOT\_PRIVATE@{CRYPT\_PK\_NOT\_PRIVATE}!tomcrypt.h@{tomcrypt.h}}\index{tomcrypt.h@{tomcrypt.h}!CRYPT\_PK\_NOT\_PRIVATE@{CRYPT\_PK\_NOT\_PRIVATE}}}\mbox{\Hypertarget{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cab2387c6b394ca945bc65060fd43b69b8}\label{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cab2387c6b394ca945bc65060fd43b69b8}} 
+C\+R\+Y\+P\+T\+\_\+\+P\+K\+\_\+\+N\+O\+T\+\_\+\+P\+R\+I\+V\+A\+TE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CRYPT\_INVALID\_ARG@{CRYPT\_INVALID\_ARG}!tomcrypt.h@{tomcrypt.h}}\index{tomcrypt.h@{tomcrypt.h}!CRYPT\_INVALID\_ARG@{CRYPT\_INVALID\_ARG}}}\mbox{\Hypertarget{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}\label{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}} 
+C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+A\+RG&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CRYPT\_FILE\_NOTFOUND@{CRYPT\_FILE\_NOTFOUND}!tomcrypt.h@{tomcrypt.h}}\index{tomcrypt.h@{tomcrypt.h}!CRYPT\_FILE\_NOTFOUND@{CRYPT\_FILE\_NOTFOUND}}}\mbox{\Hypertarget{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca9c972a504d3de1863b3e7708836bc6d1}\label{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca9c972a504d3de1863b3e7708836bc6d1}} 
+C\+R\+Y\+P\+T\+\_\+\+F\+I\+L\+E\+\_\+\+N\+O\+T\+F\+O\+U\+ND&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CRYPT\_PK\_INVALID\_TYPE@{CRYPT\_PK\_INVALID\_TYPE}!tomcrypt.h@{tomcrypt.h}}\index{tomcrypt.h@{tomcrypt.h}!CRYPT\_PK\_INVALID\_TYPE@{CRYPT\_PK\_INVALID\_TYPE}}}\mbox{\Hypertarget{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca18dac5b6ef2e90712e2ae43c4734f00d}\label{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca18dac5b6ef2e90712e2ae43c4734f00d}} 
+C\+R\+Y\+P\+T\+\_\+\+P\+K\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+T\+Y\+PE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CRYPT\_OVERFLOW@{CRYPT\_OVERFLOW}!tomcrypt.h@{tomcrypt.h}}\index{tomcrypt.h@{tomcrypt.h}!CRYPT\_OVERFLOW@{CRYPT\_OVERFLOW}}}\mbox{\Hypertarget{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca3a147cc0bbea3f8779364ad00c2678b4}\label{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca3a147cc0bbea3f8779364ad00c2678b4}} 
+C\+R\+Y\+P\+T\+\_\+\+O\+V\+E\+R\+F\+L\+OW&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CRYPT\_PK\_ASN1\_ERROR@{CRYPT\_PK\_ASN1\_ERROR}!tomcrypt.h@{tomcrypt.h}}\index{tomcrypt.h@{tomcrypt.h}!CRYPT\_PK\_ASN1\_ERROR@{CRYPT\_PK\_ASN1\_ERROR}}}\mbox{\Hypertarget{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca001cb5383cce7c4581790abe472e816f}\label{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca001cb5383cce7c4581790abe472e816f}} 
+C\+R\+Y\+P\+T\+\_\+\+P\+K\+\_\+\+A\+S\+N1\+\_\+\+E\+R\+R\+OR&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CRYPT\_INPUT\_TOO\_LONG@{CRYPT\_INPUT\_TOO\_LONG}!tomcrypt.h@{tomcrypt.h}}\index{tomcrypt.h@{tomcrypt.h}!CRYPT\_INPUT\_TOO\_LONG@{CRYPT\_INPUT\_TOO\_LONG}}}\mbox{\Hypertarget{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cadf938469ecf1be83eff1b661288fae7a}\label{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cadf938469ecf1be83eff1b661288fae7a}} 
+C\+R\+Y\+P\+T\+\_\+\+I\+N\+P\+U\+T\+\_\+\+T\+O\+O\+\_\+\+L\+O\+NG&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CRYPT\_PK\_INVALID\_SIZE@{CRYPT\_PK\_INVALID\_SIZE}!tomcrypt.h@{tomcrypt.h}}\index{tomcrypt.h@{tomcrypt.h}!CRYPT\_PK\_INVALID\_SIZE@{CRYPT\_PK\_INVALID\_SIZE}}}\mbox{\Hypertarget{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cadfac76b902650db645da5999f2b78b4e}\label{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cadfac76b902650db645da5999f2b78b4e}} 
+C\+R\+Y\+P\+T\+\_\+\+P\+K\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+S\+I\+ZE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CRYPT\_INVALID\_PRIME\_SIZE@{CRYPT\_INVALID\_PRIME\_SIZE}!tomcrypt.h@{tomcrypt.h}}\index{tomcrypt.h@{tomcrypt.h}!CRYPT\_INVALID\_PRIME\_SIZE@{CRYPT\_INVALID\_PRIME\_SIZE}}}\mbox{\Hypertarget{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca576541d9dacc9866dd2a77512aa37bd7}\label{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca576541d9dacc9866dd2a77512aa37bd7}} 
+C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+P\+R\+I\+M\+E\+\_\+\+S\+I\+ZE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CRYPT\_PK\_INVALID\_PADDING@{CRYPT\_PK\_INVALID\_PADDING}!tomcrypt.h@{tomcrypt.h}}\index{tomcrypt.h@{tomcrypt.h}!CRYPT\_PK\_INVALID\_PADDING@{CRYPT\_PK\_INVALID\_PADDING}}}\mbox{\Hypertarget{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caee3022c2372277db42c7d43310bcb43b}\label{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caee3022c2372277db42c7d43310bcb43b}} 
+C\+R\+Y\+P\+T\+\_\+\+P\+K\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+P\+A\+D\+D\+I\+NG&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CRYPT\_HASH\_OVERFLOW@{CRYPT\_HASH\_OVERFLOW}!tomcrypt.h@{tomcrypt.h}}\index{tomcrypt.h@{tomcrypt.h}!CRYPT\_HASH\_OVERFLOW@{CRYPT\_HASH\_OVERFLOW}}}\mbox{\Hypertarget{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad2105b6b6cf40ed1961673e347d532f2}\label{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad2105b6b6cf40ed1961673e347d532f2}} 
+C\+R\+Y\+P\+T\+\_\+\+H\+A\+S\+H\+\_\+\+O\+V\+E\+R\+F\+L\+OW&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line 41 of file tomcrypt.\+h.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{41      \{}
+\DoxyCodeLine{42    \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}=0,             \textcolor{comment}{/* Result OK */}}
+\DoxyCodeLine{43    \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca03c22220d7538be04455cd2aa6ddf9da}{CRYPT\_ERROR}},            \textcolor{comment}{/* Generic Error */}}
+\DoxyCodeLine{44    \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cac43a7799c7fd5f515172da6cfc0f9cf5}{CRYPT\_NOP}},              \textcolor{comment}{/* Not a failure but no operation was performed */}}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46    \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caafed43f3b625e72191e08e65b4bb5e02}{CRYPT\_INVALID\_KEYSIZE}},  \textcolor{comment}{/* Invalid key size given */}}
+\DoxyCodeLine{47    \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca69aff0280b5845d03130f8700009caf5}{CRYPT\_INVALID\_ROUNDS}},   \textcolor{comment}{/* Invalid number of rounds */}}
+\DoxyCodeLine{48    \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}},  \textcolor{comment}{/* Algorithm failed test vectors */}}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{50    \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caccd878f5599f3036ffe759dbe1a1ac16}{CRYPT\_BUFFER\_OVERFLOW}},  \textcolor{comment}{/* Not enough space for output */}}
+\DoxyCodeLine{51    \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca980088f10ffe9009aec286038a9e79da}{CRYPT\_INVALID\_PACKET}},   \textcolor{comment}{/* Invalid input packet given */}}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{53    \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cac0b40f0b62c40baa800489c75940b0a1}{CRYPT\_INVALID\_PRNGSIZE}}, \textcolor{comment}{/* Invalid number of bits for a PRNG */}}
+\DoxyCodeLine{54    \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca68eea82b3b71f23031cd94b10c920bf3}{CRYPT\_ERROR\_READPRNG}},   \textcolor{comment}{/* Could not read enough from PRNG */}}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{56    \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca302b958f5664adeb427c22f57c9d90a4}{CRYPT\_INVALID\_CIPHER}},   \textcolor{comment}{/* Invalid cipher specified */}}
+\DoxyCodeLine{57    \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cae729ddc4864ea7e12e9865bf6264642d}{CRYPT\_INVALID\_HASH}},     \textcolor{comment}{/* Invalid hash specified */}}
+\DoxyCodeLine{58    \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca6228a32cdab04099a1ef0f956312f532}{CRYPT\_INVALID\_PRNG}},     \textcolor{comment}{/* Invalid PRNG specified */}}
+\DoxyCodeLine{59 }
+\DoxyCodeLine{60    \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca0ce0d27adc7ea10b74b7ea904b8bfa82}{CRYPT\_MEM}},              \textcolor{comment}{/* Out of memory */}}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{62    \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca48b20c804be422f37699bb4846ccf8e0}{CRYPT\_PK\_TYPE\_MISMATCH}}, \textcolor{comment}{/* Not equivalent types of PK keys */}}
+\DoxyCodeLine{63    \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cab2387c6b394ca945bc65060fd43b69b8}{CRYPT\_PK\_NOT\_PRIVATE}},   \textcolor{comment}{/* Requires a private PK key */}}
+\DoxyCodeLine{64 }
+\DoxyCodeLine{65    \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}},      \textcolor{comment}{/* Generic invalid argument */}}
+\DoxyCodeLine{66    \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca9c972a504d3de1863b3e7708836bc6d1}{CRYPT\_FILE\_NOTFOUND}},    \textcolor{comment}{/* File Not Found */}}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{68    \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca18dac5b6ef2e90712e2ae43c4734f00d}{CRYPT\_PK\_INVALID\_TYPE}},  \textcolor{comment}{/* Invalid type of PK key */}}
+\DoxyCodeLine{69 }
+\DoxyCodeLine{70    \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca3a147cc0bbea3f8779364ad00c2678b4}{CRYPT\_OVERFLOW}},         \textcolor{comment}{/* An overflow of a value was detected/prevented */}}
+\DoxyCodeLine{71 }
+\DoxyCodeLine{72    \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca001cb5383cce7c4581790abe472e816f}{CRYPT\_PK\_ASN1\_ERROR}},    \textcolor{comment}{/* An error occurred while en- or decoding ASN.1 data */}}
+\DoxyCodeLine{73 }
+\DoxyCodeLine{74    \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cadf938469ecf1be83eff1b661288fae7a}{CRYPT\_INPUT\_TOO\_LONG}},   \textcolor{comment}{/* The input was longer than expected. */}}
+\DoxyCodeLine{75 }
+\DoxyCodeLine{76    \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cadfac76b902650db645da5999f2b78b4e}{CRYPT\_PK\_INVALID\_SIZE}},  \textcolor{comment}{/* Invalid size input for PK parameters */}}
+\DoxyCodeLine{77 }
+\DoxyCodeLine{78    \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca576541d9dacc9866dd2a77512aa37bd7}{CRYPT\_INVALID\_PRIME\_SIZE}},\textcolor{comment}{/* Invalid size of prime requested */}}
+\DoxyCodeLine{79    \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caee3022c2372277db42c7d43310bcb43b}{CRYPT\_PK\_INVALID\_PADDING}}, \textcolor{comment}{/* Invalid padding on input */}}
+\DoxyCodeLine{80 }
+\DoxyCodeLine{81    \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad2105b6b6cf40ed1961673e347d532f2}{CRYPT\_HASH\_OVERFLOW}}      \textcolor{comment}{/* Hash applied to too many bits */}}
+\DoxyCodeLine{82 \};}
+
+\end{DoxyCode}

@@ -1,0 +1,112 @@
+\hypertarget{blake2smac__file_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/mac/blake2/blake2smac\+\_\+file.c File Reference}
+\label{blake2smac__file_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/mac/blake2/blake2smac\_file.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/mac/blake2/blake2smac\_file.c}}
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for blake2smac\+\_\+file.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{blake2smac__file_8c_abc529c6de44b41397be3a1d166d9a7ba}{blake2smac\+\_\+file}} (const char $\ast$fname, const unsigned char $\ast$key, unsigned long keylen, unsigned char $\ast$mac, unsigned long $\ast$maclen)
+\begin{DoxyCompactList}\small\item\em B\+L\+A\+K\+E2S M\+AC a file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{blake2smac__file_8c_abc529c6de44b41397be3a1d166d9a7ba}\label{blake2smac__file_8c_abc529c6de44b41397be3a1d166d9a7ba}} 
+\index{blake2smac\_file.c@{blake2smac\_file.c}!blake2smac\_file@{blake2smac\_file}}
+\index{blake2smac\_file@{blake2smac\_file}!blake2smac\_file.c@{blake2smac\_file.c}}
+\subsubsection{\texorpdfstring{blake2smac\_file()}{blake2smac\_file()}}
+{\footnotesize\ttfamily int blake2smac\+\_\+file (\begin{DoxyParamCaption}\item[{const char $\ast$}]{fname,  }\item[{const unsigned char $\ast$}]{key,  }\item[{unsigned long}]{keylen,  }\item[{unsigned char $\ast$}]{mac,  }\item[{unsigned long $\ast$}]{maclen }\end{DoxyParamCaption})}
+
+
+
+B\+L\+A\+K\+E2S M\+AC a file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fname} & The name of the file you wish to B\+L\+A\+K\+E2S M\+AC \\
+\hline
+{\em key} & The secret key \\
+\hline
+{\em keylen} & The length of the secret key \\
+\hline
+{\em mac} & \mbox{[}out\mbox{]} The B\+L\+A\+K\+E2S M\+AC authentication tag \\
+\hline
+{\em maclen} & \mbox{[}in/out\mbox{]} The max size and resulting size of the authentication tag \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful, C\+R\+Y\+P\+T\+\_\+\+N\+OP if file support has been disabled 
+\end{DoxyReturn}
+
+
+Definition at line 23 of file blake2smac\+\_\+file.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{24 \{}
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#ifdef LTC\_NO\_FILE}}
+\DoxyCodeLine{26    \mbox{\hyperlink{tomcrypt__macros_8h_accde4b007facd646a8327f8e64b2d1e0}{LTC\_UNUSED\_PARAM}}(fname);}
+\DoxyCodeLine{27    \mbox{\hyperlink{tomcrypt__macros_8h_accde4b007facd646a8327f8e64b2d1e0}{LTC\_UNUSED\_PARAM}}(key);}
+\DoxyCodeLine{28    \mbox{\hyperlink{tomcrypt__macros_8h_accde4b007facd646a8327f8e64b2d1e0}{LTC\_UNUSED\_PARAM}}(keylen);}
+\DoxyCodeLine{29    \mbox{\hyperlink{tomcrypt__macros_8h_accde4b007facd646a8327f8e64b2d1e0}{LTC\_UNUSED\_PARAM}}(mac);}
+\DoxyCodeLine{30    \mbox{\hyperlink{tomcrypt__macros_8h_accde4b007facd646a8327f8e64b2d1e0}{LTC\_UNUSED\_PARAM}}(maclen);}
+\DoxyCodeLine{31    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cac43a7799c7fd5f515172da6cfc0f9cf5}{CRYPT\_NOP}};}
+\DoxyCodeLine{32 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{33    blake2smac\_state st;}
+\DoxyCodeLine{34    FILE *in;}
+\DoxyCodeLine{35    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *buf;}
+\DoxyCodeLine{36    \textcolor{keywordtype}{size\_t} x;}
+\DoxyCodeLine{37    \textcolor{keywordtype}{int} err;}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(fname  != NULL);}
+\DoxyCodeLine{40    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(key    != NULL);}
+\DoxyCodeLine{41    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(mac    != NULL);}
+\DoxyCodeLine{42    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(maclen != NULL);}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44    \textcolor{keywordflow}{if} ((buf = \mbox{\hyperlink{tomcrypt__cfg_8h_af363355f38fbaacdefacf270436ae1c9}{XMALLOC}}(\mbox{\hyperlink{tomcrypt__custom_8h_ac4fd38d776468eef7213777e70f16124}{LTC\_FILE\_READ\_BUFSIZE}})) == NULL) \{}
+\DoxyCodeLine{45       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca0ce0d27adc7ea10b74b7ea904b8bfa82}{CRYPT\_MEM}};}
+\DoxyCodeLine{46    \}}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{blake2smac_8c_ac5b0577823c5740bc16b658ba4dbfd02}{blake2smac\_init}}(\&st, *maclen, key, keylen)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{49       \textcolor{keywordflow}{goto} LBL\_ERR;}
+\DoxyCodeLine{50    \}}
+\DoxyCodeLine{51 }
+\DoxyCodeLine{52    in = fopen(fname, \textcolor{stringliteral}{"rb"});}
+\DoxyCodeLine{53    \textcolor{keywordflow}{if} (in == NULL) \{}
+\DoxyCodeLine{54       err = \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca9c972a504d3de1863b3e7708836bc6d1}{CRYPT\_FILE\_NOTFOUND}};}
+\DoxyCodeLine{55       \textcolor{keywordflow}{goto} LBL\_ERR;}
+\DoxyCodeLine{56    \}}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{58    \textcolor{keywordflow}{do} \{}
+\DoxyCodeLine{59       x = fread(buf, 1, \mbox{\hyperlink{tomcrypt__custom_8h_ac4fd38d776468eef7213777e70f16124}{LTC\_FILE\_READ\_BUFSIZE}}, in);}
+\DoxyCodeLine{60       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{blake2smac_8c_a6d340d92c2d47da70bb0d1cbf471869c}{blake2smac\_process}}(\&st, buf, (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long})x)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{61          fclose(in);}
+\DoxyCodeLine{62          \textcolor{keywordflow}{goto} LBL\_CLEANBUF;}
+\DoxyCodeLine{63       \}}
+\DoxyCodeLine{64    \} \textcolor{keywordflow}{while} (x == \mbox{\hyperlink{tomcrypt__custom_8h_ac4fd38d776468eef7213777e70f16124}{LTC\_FILE\_READ\_BUFSIZE}});}
+\DoxyCodeLine{65 }
+\DoxyCodeLine{66    \textcolor{keywordflow}{if} (fclose(in) != 0) \{}
+\DoxyCodeLine{67       err = \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca03c22220d7538be04455cd2aa6ddf9da}{CRYPT\_ERROR}};}
+\DoxyCodeLine{68       \textcolor{keywordflow}{goto} LBL\_CLEANBUF;}
+\DoxyCodeLine{69    \}}
+\DoxyCodeLine{70 }
+\DoxyCodeLine{71    err = \mbox{\hyperlink{blake2smac_8c_af268b3c5222438337934ed26be851579}{blake2smac\_done}}(\&st, mac, maclen);}
+\DoxyCodeLine{72 }
+\DoxyCodeLine{73 LBL\_CLEANBUF:}
+\DoxyCodeLine{74    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(buf, \mbox{\hyperlink{tomcrypt__custom_8h_ac4fd38d776468eef7213777e70f16124}{LTC\_FILE\_READ\_BUFSIZE}});}
+\DoxyCodeLine{75 LBL\_ERR:}
+\DoxyCodeLine{76 \textcolor{preprocessor}{\#ifdef LTC\_CLEAN\_STACK}}
+\DoxyCodeLine{77    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(\&st, \textcolor{keyword}{sizeof}(blake2smac\_state));}
+\DoxyCodeLine{78 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{79    \mbox{\hyperlink{tomcrypt__cfg_8h_a260d66fc0690e0502cf3bfe7b5244b75}{XFREE}}(buf);}
+\DoxyCodeLine{80    \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{81 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{82 \}}
+
+\end{DoxyCode}
+
+
+References blake2smac\+\_\+done(), blake2smac\+\_\+init(), blake2smac\+\_\+process(), C\+R\+Y\+P\+T\+\_\+\+E\+R\+R\+OR, C\+R\+Y\+P\+T\+\_\+\+F\+I\+L\+E\+\_\+\+N\+O\+T\+F\+O\+U\+ND, C\+R\+Y\+P\+T\+\_\+\+M\+EM, C\+R\+Y\+P\+T\+\_\+\+N\+OP, C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, L\+T\+C\+\_\+\+F\+I\+L\+E\+\_\+\+R\+E\+A\+D\+\_\+\+B\+U\+F\+S\+I\+ZE, L\+T\+C\+\_\+\+U\+N\+U\+S\+E\+D\+\_\+\+P\+A\+R\+AM, X\+F\+R\+E\+E(), X\+M\+A\+L\+L\+O\+C(), and zeromem().
+
+Here is the call graph for this function\+:
+% FIG 1

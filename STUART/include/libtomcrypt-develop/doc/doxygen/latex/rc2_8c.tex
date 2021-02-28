@@ -1,0 +1,613 @@
+\hypertarget{rc2_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/ciphers/rc2.c File Reference}
+\label{rc2_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/ciphers/rc2.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/ciphers/rc2.c}}
+
+
+Implementation of R\+C2 with fixed effective key length of 64bits.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for rc2.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{rc2_8c_a972f755861aeda91edb3d961881db3ea}{rc2\+\_\+setup\+\_\+ex}} (const unsigned char $\ast$key, int keylen, int bits, int num\+\_\+rounds, \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)
+\begin{DoxyCompactList}\small\item\em Initialize the R\+C2 block cipher. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{rc2_8c_a3d992548480d21ad0d23dac89c4c2ccf}{rc2\+\_\+setup}} (const unsigned char $\ast$key, int keylen, int num\+\_\+rounds, \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)
+\begin{DoxyCompactList}\small\item\em Initialize the R\+C2 block cipher. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{rc2_8c_a58703b6ee00798ef781b194931d05dc1}{rc2\+\_\+ecb\+\_\+encrypt}} (const unsigned char $\ast$pt, unsigned char $\ast$ct, const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)
+\begin{DoxyCompactList}\small\item\em Encrypts a block of text with R\+C2. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{rc2_8c_a0c165bbdc013646b3db268d1197c5a21}{rc2\+\_\+ecb\+\_\+decrypt}} (const unsigned char $\ast$ct, unsigned char $\ast$pt, const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)
+\begin{DoxyCompactList}\small\item\em Decrypts a block of text with R\+C2. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{rc2_8c_a6263c717b1805331d7b96b4751332def}{rc2\+\_\+test}} (void)
+\begin{DoxyCompactList}\small\item\em Performs a self-\/test of the R\+C2 block cipher. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{rc2_8c_ab759ea8dbf7e1a246365aa6f0d6895fc}{rc2\+\_\+done}} (\mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)
+\begin{DoxyCompactList}\small\item\em Terminate the context. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{rc2_8c_a298f7d75bbae6884cc224ff30ca7e44f}{rc2\+\_\+keysize}} (int $\ast$keysize)
+\begin{DoxyCompactList}\small\item\em Gets suitable key size. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const struct \mbox{\hyperlink{structltc__cipher__descriptor}{ltc\+\_\+cipher\+\_\+descriptor}} \mbox{\hyperlink{rc2_8c_af2a69c5eed0f0f5201a34c72801bdcb9}{rc2\+\_\+desc}}
+\item 
+static const unsigned char \mbox{\hyperlink{rc2_8c_a7b6b7fbaa72c91122f9d391f2cf6ab63}{permute}} \mbox{[}256\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Implementation of R\+C2 with fixed effective key length of 64bits. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{rc2_8c_ab759ea8dbf7e1a246365aa6f0d6895fc}\label{rc2_8c_ab759ea8dbf7e1a246365aa6f0d6895fc}} 
+\index{rc2.c@{rc2.c}!rc2\_done@{rc2\_done}}
+\index{rc2\_done@{rc2\_done}!rc2.c@{rc2.c}}
+\subsubsection{\texorpdfstring{rc2\_done()}{rc2\_done()}}
+{\footnotesize\ttfamily void rc2\+\_\+done (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$}]{skey }\end{DoxyParamCaption})}
+
+
+
+Terminate the context. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em skey} & The scheduled key \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 389 of file rc2.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{390 \{}
+\DoxyCodeLine{391   \mbox{\hyperlink{tomcrypt__macros_8h_accde4b007facd646a8327f8e64b2d1e0}{LTC\_UNUSED\_PARAM}}(skey);}
+\DoxyCodeLine{392 \}}
+
+\end{DoxyCode}
+
+
+References L\+T\+C\+\_\+\+U\+N\+U\+S\+E\+D\+\_\+\+P\+A\+R\+AM.
+
+\mbox{\Hypertarget{rc2_8c_a0c165bbdc013646b3db268d1197c5a21}\label{rc2_8c_a0c165bbdc013646b3db268d1197c5a21}} 
+\index{rc2.c@{rc2.c}!rc2\_ecb\_decrypt@{rc2\_ecb\_decrypt}}
+\index{rc2\_ecb\_decrypt@{rc2\_ecb\_decrypt}!rc2.c@{rc2.c}}
+\subsubsection{\texorpdfstring{rc2\_ecb\_decrypt()}{rc2\_ecb\_decrypt()}}
+{\footnotesize\ttfamily int rc2\+\_\+ecb\+\_\+decrypt (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{ct,  }\item[{unsigned char $\ast$}]{pt,  }\item[{const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$}]{skey }\end{DoxyParamCaption})}
+
+
+
+Decrypts a block of text with R\+C2. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ct} & The input ciphertext (8 bytes) \\
+\hline
+{\em pt} & The output plaintext (8 bytes) \\
+\hline
+{\em skey} & The key as scheduled \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 230 of file rc2.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{234 \{}
+\DoxyCodeLine{235     \textcolor{keywordtype}{unsigned} x76, x54, x32, x10;}
+\DoxyCodeLine{236     \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} *xkey;}
+\DoxyCodeLine{237     \textcolor{keywordtype}{int} i;}
+\DoxyCodeLine{238 }
+\DoxyCodeLine{239     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(pt  != NULL);}
+\DoxyCodeLine{240     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(ct != NULL);}
+\DoxyCodeLine{241     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(skey   != NULL);}
+\DoxyCodeLine{242 }
+\DoxyCodeLine{243     xkey = skey->rc2.xkey;}
+\DoxyCodeLine{244 }
+\DoxyCodeLine{245     x76 = ((unsigned)ct[7] << 8) + (unsigned)ct[6];}
+\DoxyCodeLine{246     x54 = ((unsigned)ct[5] << 8) + (unsigned)ct[4];}
+\DoxyCodeLine{247     x32 = ((unsigned)ct[3] << 8) + (unsigned)ct[2];}
+\DoxyCodeLine{248     x10 = ((unsigned)ct[1] << 8) + (unsigned)ct[0];}
+\DoxyCodeLine{249 }
+\DoxyCodeLine{250     \textcolor{keywordflow}{for} (i = 15; i >= 0; i--) \{}
+\DoxyCodeLine{251         \textcolor{keywordflow}{if} (i == 4 || i == 10) \{}
+\DoxyCodeLine{252             x76 = (x76 - xkey[x54 \& 63]) \& 0xFFFF;}
+\DoxyCodeLine{253             x54 = (x54 - xkey[x32 \& 63]) \& 0xFFFF;}
+\DoxyCodeLine{254             x32 = (x32 - xkey[x10 \& 63]) \& 0xFFFF;}
+\DoxyCodeLine{255             x10 = (x10 - xkey[x76 \& 63]) \& 0xFFFF;}
+\DoxyCodeLine{256         \}}
+\DoxyCodeLine{257 }
+\DoxyCodeLine{258         x76 = ((x76 << 11) | (x76 >> 5));}
+\DoxyCodeLine{259         x76 = (x76 - ((x10 \& ~x54) + (x32 \& x54) + xkey[4*i+3])) \& 0xFFFF;}
+\DoxyCodeLine{260 }
+\DoxyCodeLine{261         x54 = ((x54 << 13) | (x54 >> 3));}
+\DoxyCodeLine{262         x54 = (x54 - ((x76 \& ~x32) + (x10 \& x32) + xkey[4*i+2])) \& 0xFFFF;}
+\DoxyCodeLine{263 }
+\DoxyCodeLine{264         x32 = ((x32 << 14) | (x32 >> 2));}
+\DoxyCodeLine{265         x32 = (x32 - ((x54 \& ~x10) + (x76 \& x10) + xkey[4*i+1])) \& 0xFFFF;}
+\DoxyCodeLine{266 }
+\DoxyCodeLine{267         x10 = ((x10 << 15) | (x10 >> 1));}
+\DoxyCodeLine{268         x10 = (x10 - ((x32 \& ~x76) + (x54 \& x76) + xkey[4*i+0])) \& 0xFFFF;}
+\DoxyCodeLine{269     \}}
+\DoxyCodeLine{270 }
+\DoxyCodeLine{271     pt[0] = (\textcolor{keywordtype}{unsigned} char)x10;}
+\DoxyCodeLine{272     pt[1] = (\textcolor{keywordtype}{unsigned} char)(x10 >> 8);}
+\DoxyCodeLine{273     pt[2] = (\textcolor{keywordtype}{unsigned} char)x32;}
+\DoxyCodeLine{274     pt[3] = (\textcolor{keywordtype}{unsigned} char)(x32 >> 8);}
+\DoxyCodeLine{275     pt[4] = (\textcolor{keywordtype}{unsigned} char)x54;}
+\DoxyCodeLine{276     pt[5] = (\textcolor{keywordtype}{unsigned} char)(x54 >> 8);}
+\DoxyCodeLine{277     pt[6] = (\textcolor{keywordtype}{unsigned} char)x76;}
+\DoxyCodeLine{278     pt[7] = (\textcolor{keywordtype}{unsigned} char)(x76 >> 8);}
+\DoxyCodeLine{279 }
+\DoxyCodeLine{280     \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{281 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+
+
+Referenced by rc2\+\_\+test().
+
+Here is the caller graph for this function\+:
+% FIG 1
+\mbox{\Hypertarget{rc2_8c_a58703b6ee00798ef781b194931d05dc1}\label{rc2_8c_a58703b6ee00798ef781b194931d05dc1}} 
+\index{rc2.c@{rc2.c}!rc2\_ecb\_encrypt@{rc2\_ecb\_encrypt}}
+\index{rc2\_ecb\_encrypt@{rc2\_ecb\_encrypt}!rc2.c@{rc2.c}}
+\subsubsection{\texorpdfstring{rc2\_ecb\_encrypt()}{rc2\_ecb\_encrypt()}}
+{\footnotesize\ttfamily int rc2\+\_\+ecb\+\_\+encrypt (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{pt,  }\item[{unsigned char $\ast$}]{ct,  }\item[{const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$}]{skey }\end{DoxyParamCaption})}
+
+
+
+Encrypts a block of text with R\+C2. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pt} & The input plaintext (8 bytes) \\
+\hline
+{\em ct} & The output ciphertext (8 bytes) \\
+\hline
+{\em skey} & The key as scheduled \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 152 of file rc2.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{156 \{}
+\DoxyCodeLine{157     \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} *xkey;}
+\DoxyCodeLine{158     \textcolor{keywordtype}{unsigned} x76, x54, x32, x10, i;}
+\DoxyCodeLine{159 }
+\DoxyCodeLine{160     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(pt  != NULL);}
+\DoxyCodeLine{161     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(ct != NULL);}
+\DoxyCodeLine{162     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(skey   != NULL);}
+\DoxyCodeLine{163 }
+\DoxyCodeLine{164     xkey = skey->rc2.xkey;}
+\DoxyCodeLine{165 }
+\DoxyCodeLine{166     x76 = ((unsigned)pt[7] << 8) + (unsigned)pt[6];}
+\DoxyCodeLine{167     x54 = ((unsigned)pt[5] << 8) + (unsigned)pt[4];}
+\DoxyCodeLine{168     x32 = ((unsigned)pt[3] << 8) + (unsigned)pt[2];}
+\DoxyCodeLine{169     x10 = ((unsigned)pt[1] << 8) + (unsigned)pt[0];}
+\DoxyCodeLine{170 }
+\DoxyCodeLine{171     \textcolor{keywordflow}{for} (i = 0; i < 16; i++) \{}
+\DoxyCodeLine{172         x10 = (x10 + (x32 \& ~x76) + (x54 \& x76) + xkey[4*i+0]) \& 0xFFFF;}
+\DoxyCodeLine{173         x10 = ((x10 << 1) | (x10 >> 15));}
+\DoxyCodeLine{174 }
+\DoxyCodeLine{175         x32 = (x32 + (x54 \& ~x10) + (x76 \& x10) + xkey[4*i+1]) \& 0xFFFF;}
+\DoxyCodeLine{176         x32 = ((x32 << 2) | (x32 >> 14));}
+\DoxyCodeLine{177 }
+\DoxyCodeLine{178         x54 = (x54 + (x76 \& ~x32) + (x10 \& x32) + xkey[4*i+2]) \& 0xFFFF;}
+\DoxyCodeLine{179         x54 = ((x54 << 3) | (x54 >> 13));}
+\DoxyCodeLine{180 }
+\DoxyCodeLine{181         x76 = (x76 + (x10 \& ~x54) + (x32 \& x54) + xkey[4*i+3]) \& 0xFFFF;}
+\DoxyCodeLine{182         x76 = ((x76 << 5) | (x76 >> 11));}
+\DoxyCodeLine{183 }
+\DoxyCodeLine{184         \textcolor{keywordflow}{if} (i == 4 || i == 10) \{}
+\DoxyCodeLine{185             x10 = (x10 + xkey[x76 \& 63]) \& 0xFFFF;}
+\DoxyCodeLine{186             x32 = (x32 + xkey[x10 \& 63]) \& 0xFFFF;}
+\DoxyCodeLine{187             x54 = (x54 + xkey[x32 \& 63]) \& 0xFFFF;}
+\DoxyCodeLine{188             x76 = (x76 + xkey[x54 \& 63]) \& 0xFFFF;}
+\DoxyCodeLine{189         \}}
+\DoxyCodeLine{190     \}}
+\DoxyCodeLine{191 }
+\DoxyCodeLine{192     ct[0] = (\textcolor{keywordtype}{unsigned} char)x10;}
+\DoxyCodeLine{193     ct[1] = (\textcolor{keywordtype}{unsigned} char)(x10 >> 8);}
+\DoxyCodeLine{194     ct[2] = (\textcolor{keywordtype}{unsigned} char)x32;}
+\DoxyCodeLine{195     ct[3] = (\textcolor{keywordtype}{unsigned} char)(x32 >> 8);}
+\DoxyCodeLine{196     ct[4] = (\textcolor{keywordtype}{unsigned} char)x54;}
+\DoxyCodeLine{197     ct[5] = (\textcolor{keywordtype}{unsigned} char)(x54 >> 8);}
+\DoxyCodeLine{198     ct[6] = (\textcolor{keywordtype}{unsigned} char)x76;}
+\DoxyCodeLine{199     ct[7] = (\textcolor{keywordtype}{unsigned} char)(x76 >> 8);}
+\DoxyCodeLine{200 }
+\DoxyCodeLine{201     \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{202 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+
+
+Referenced by rc2\+\_\+test().
+
+Here is the caller graph for this function\+:
+% FIG 2
+\mbox{\Hypertarget{rc2_8c_a298f7d75bbae6884cc224ff30ca7e44f}\label{rc2_8c_a298f7d75bbae6884cc224ff30ca7e44f}} 
+\index{rc2.c@{rc2.c}!rc2\_keysize@{rc2\_keysize}}
+\index{rc2\_keysize@{rc2\_keysize}!rc2.c@{rc2.c}}
+\subsubsection{\texorpdfstring{rc2\_keysize()}{rc2\_keysize()}}
+{\footnotesize\ttfamily int rc2\+\_\+keysize (\begin{DoxyParamCaption}\item[{int $\ast$}]{keysize }\end{DoxyParamCaption})}
+
+
+
+Gets suitable key size. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em keysize} & \mbox{[}in/out\mbox{]} The length of the recommended key (in bytes). This function will store the suitable size back in this variable. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if the input key size is acceptable. 
+\end{DoxyReturn}
+
+
+Definition at line 399 of file rc2.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{400 \{}
+\DoxyCodeLine{401    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(keysize != NULL);}
+\DoxyCodeLine{402    \textcolor{keywordflow}{if} (*keysize < 1) \{}
+\DoxyCodeLine{403        \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caafed43f3b625e72191e08e65b4bb5e02}{CRYPT\_INVALID\_KEYSIZE}};}
+\DoxyCodeLine{404    \}}
+\DoxyCodeLine{405    \textcolor{keywordflow}{if} (*keysize > 128) \{}
+\DoxyCodeLine{406        *keysize = 128;}
+\DoxyCodeLine{407    \}}
+\DoxyCodeLine{408    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{409 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+K\+E\+Y\+S\+I\+ZE, C\+R\+Y\+P\+T\+\_\+\+OK, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+\mbox{\Hypertarget{rc2_8c_a3d992548480d21ad0d23dac89c4c2ccf}\label{rc2_8c_a3d992548480d21ad0d23dac89c4c2ccf}} 
+\index{rc2.c@{rc2.c}!rc2\_setup@{rc2\_setup}}
+\index{rc2\_setup@{rc2\_setup}!rc2.c@{rc2.c}}
+\subsubsection{\texorpdfstring{rc2\_setup()}{rc2\_setup()}}
+{\footnotesize\ttfamily int rc2\+\_\+setup (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{key,  }\item[{int}]{keylen,  }\item[{int}]{num\+\_\+rounds,  }\item[{\mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$}]{skey }\end{DoxyParamCaption})}
+
+
+
+Initialize the R\+C2 block cipher. 
+
+The effective key length is here always keylen $\ast$ 8
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The symmetric key you wish to pass \\
+\hline
+{\em keylen} & The key length in bytes \\
+\hline
+{\em num\+\_\+rounds} & The number of rounds desired (0 for default) \\
+\hline
+{\em skey} & The key in as scheduled by this function. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 132 of file rc2.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{133 \{}
+\DoxyCodeLine{134    \textcolor{keywordflow}{return} \mbox{\hyperlink{rc2_8c_a972f755861aeda91edb3d961881db3ea}{rc2\_setup\_ex}}(key, keylen, keylen * 8, num\_rounds, skey);}
+\DoxyCodeLine{135 \}}
+
+\end{DoxyCode}
+
+
+References rc2\+\_\+setup\+\_\+ex().
+
+
+
+Referenced by rc2\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 3
+Here is the caller graph for this function\+:
+% FIG 4
+\mbox{\Hypertarget{rc2_8c_a972f755861aeda91edb3d961881db3ea}\label{rc2_8c_a972f755861aeda91edb3d961881db3ea}} 
+\index{rc2.c@{rc2.c}!rc2\_setup\_ex@{rc2\_setup\_ex}}
+\index{rc2\_setup\_ex@{rc2\_setup\_ex}!rc2.c@{rc2.c}}
+\subsubsection{\texorpdfstring{rc2\_setup\_ex()}{rc2\_setup\_ex()}}
+{\footnotesize\ttfamily int rc2\+\_\+setup\+\_\+ex (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{key,  }\item[{int}]{keylen,  }\item[{int}]{bits,  }\item[{int}]{num\+\_\+rounds,  }\item[{\mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$}]{skey }\end{DoxyParamCaption})}
+
+
+
+Initialize the R\+C2 block cipher. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The symmetric key you wish to pass \\
+\hline
+{\em keylen} & The key length in bytes \\
+\hline
+{\em bits} & The effective key length in bits \\
+\hline
+{\em num\+\_\+rounds} & The number of rounds desired (0 for default) \\
+\hline
+{\em skey} & The key in as scheduled by this function. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 69 of file rc2.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{70 \{}
+\DoxyCodeLine{71    \textcolor{keywordtype}{unsigned} *xkey = skey->rc2.xkey;}
+\DoxyCodeLine{72    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} tmp[128];}
+\DoxyCodeLine{73    \textcolor{keywordtype}{unsigned} T8, TM;}
+\DoxyCodeLine{74    \textcolor{keywordtype}{int} i;}
+\DoxyCodeLine{75 }
+\DoxyCodeLine{76    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(key  != NULL);}
+\DoxyCodeLine{77    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(skey != NULL);}
+\DoxyCodeLine{78 }
+\DoxyCodeLine{79    \textcolor{keywordflow}{if} (keylen == 0 || keylen > 128 || bits > 1024) \{}
+\DoxyCodeLine{80       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caafed43f3b625e72191e08e65b4bb5e02}{CRYPT\_INVALID\_KEYSIZE}};}
+\DoxyCodeLine{81    \}}
+\DoxyCodeLine{82    \textcolor{keywordflow}{if} (bits == 0) \{}
+\DoxyCodeLine{83       bits = 1024;}
+\DoxyCodeLine{84    \}}
+\DoxyCodeLine{85 }
+\DoxyCodeLine{86    \textcolor{keywordflow}{if} (num\_rounds != 0 \&\& num\_rounds != 16) \{}
+\DoxyCodeLine{87       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca69aff0280b5845d03130f8700009caf5}{CRYPT\_INVALID\_ROUNDS}};}
+\DoxyCodeLine{88    \}}
+\DoxyCodeLine{89 }
+\DoxyCodeLine{90    \textcolor{keywordflow}{for} (i = 0; i < keylen; i++) \{}
+\DoxyCodeLine{91       tmp[i] = key[i] \& 255;}
+\DoxyCodeLine{92    \}}
+\DoxyCodeLine{93 }
+\DoxyCodeLine{94    \textcolor{comment}{/* Phase 1: Expand input key to 128 bytes */}}
+\DoxyCodeLine{95    \textcolor{keywordflow}{if} (keylen < 128) \{}
+\DoxyCodeLine{96       \textcolor{keywordflow}{for} (i = keylen; i < 128; i++) \{}
+\DoxyCodeLine{97          tmp[i] = \mbox{\hyperlink{rc2_8c_a7b6b7fbaa72c91122f9d391f2cf6ab63}{permute}}[(tmp[i - 1] + tmp[i - keylen]) \& 255];}
+\DoxyCodeLine{98       \}}
+\DoxyCodeLine{99    \}}
+\DoxyCodeLine{100 }
+\DoxyCodeLine{101    \textcolor{comment}{/* Phase 2 - reduce effective key size to "bits" */}}
+\DoxyCodeLine{102    T8   = (unsigned)(bits+7)>>3;}
+\DoxyCodeLine{103    TM   = (255 >> (unsigned)(7 \& -bits));}
+\DoxyCodeLine{104    tmp[128 - T8] = \mbox{\hyperlink{rc2_8c_a7b6b7fbaa72c91122f9d391f2cf6ab63}{permute}}[tmp[128 - T8] \& TM];}
+\DoxyCodeLine{105    \textcolor{keywordflow}{for} (i = 127 - T8; i >= 0; i--) \{}
+\DoxyCodeLine{106       tmp[i] = \mbox{\hyperlink{rc2_8c_a7b6b7fbaa72c91122f9d391f2cf6ab63}{permute}}[tmp[i + 1] \string^ tmp[i + T8]];}
+\DoxyCodeLine{107    \}}
+\DoxyCodeLine{108 }
+\DoxyCodeLine{109    \textcolor{comment}{/* Phase 3 - copy to xkey in little-endian order */}}
+\DoxyCodeLine{110    \textcolor{keywordflow}{for} (i = 0; i < 64; i++) \{}
+\DoxyCodeLine{111       xkey[i] =  (unsigned)tmp[2*i] + ((\textcolor{keywordtype}{unsigned})tmp[2*i+1] << 8);}
+\DoxyCodeLine{112    \}}
+\DoxyCodeLine{113 }
+\DoxyCodeLine{114 \textcolor{preprocessor}{\#ifdef LTC\_CLEAN\_STACK}}
+\DoxyCodeLine{115    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(tmp, \textcolor{keyword}{sizeof}(tmp));}
+\DoxyCodeLine{116 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{117 }
+\DoxyCodeLine{118    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{119 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+K\+E\+Y\+S\+I\+ZE, C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+R\+O\+U\+N\+DS, C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, permute, and zeromem().
+
+
+
+Referenced by rc2\+\_\+setup(), and rc2\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 5
+Here is the caller graph for this function\+:
+% FIG 6
+\mbox{\Hypertarget{rc2_8c_a6263c717b1805331d7b96b4751332def}\label{rc2_8c_a6263c717b1805331d7b96b4751332def}} 
+\index{rc2.c@{rc2.c}!rc2\_test@{rc2\_test}}
+\index{rc2\_test@{rc2\_test}!rc2.c@{rc2.c}}
+\subsubsection{\texorpdfstring{rc2\_test()}{rc2\_test()}}
+{\footnotesize\ttfamily int rc2\+\_\+test (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Performs a self-\/test of the R\+C2 block cipher. 
+
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if functional, C\+R\+Y\+P\+T\+\_\+\+N\+OP if self-\/test has been disabled 
+\end{DoxyReturn}
+
+
+Definition at line 298 of file rc2.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{299 \{}
+\DoxyCodeLine{300 \textcolor{preprocessor}{ \#ifndef LTC\_TEST}}
+\DoxyCodeLine{301     \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cac43a7799c7fd5f515172da6cfc0f9cf5}{CRYPT\_NOP}};}
+\DoxyCodeLine{302 \textcolor{preprocessor}{ \#else}}
+\DoxyCodeLine{303    \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{304         \textcolor{keywordtype}{int} keylen, bits;}
+\DoxyCodeLine{305         \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} key[16], pt[8], ct[8];}
+\DoxyCodeLine{306    \} tests[] = \{}
+\DoxyCodeLine{307 }
+\DoxyCodeLine{308    \{ 8, 63,}
+\DoxyCodeLine{309      \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{310        0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{311      \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{312      \{ 0xeb, 0xb7, 0x73, 0xf9, 0x93, 0x27, 0x8e, 0xff \}}
+\DoxyCodeLine{313    \},}
+\DoxyCodeLine{314    \{ 8, 64,}
+\DoxyCodeLine{315      \{ 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff,}
+\DoxyCodeLine{316        0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{317      \{ 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff \},}
+\DoxyCodeLine{318      \{ 0x27, 0x8b, 0x27, 0xe4, 0x2e, 0x2f, 0x0d, 0x49 \}}
+\DoxyCodeLine{319    \},}
+\DoxyCodeLine{320    \{ 8, 64,}
+\DoxyCodeLine{321      \{ 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{322        0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{323      \{ 0x10, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01 \},}
+\DoxyCodeLine{324      \{ 0x30, 0x64, 0x9e, 0xdf, 0x9b, 0xe7, 0xd2, 0xc2 \}}
+\DoxyCodeLine{325    \},}
+\DoxyCodeLine{326    \{ 1, 64,}
+\DoxyCodeLine{327      \{ 0x88, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{328        0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{329      \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{330      \{ 0x61, 0xa8, 0xa2, 0x44, 0xad, 0xac, 0xcc, 0xf0 \}}
+\DoxyCodeLine{331    \},}
+\DoxyCodeLine{332    \{ 7, 64,}
+\DoxyCodeLine{333      \{ 0x88, 0xbc, 0xa9, 0x0e, 0x90, 0x87, 0x5a, 0x00,}
+\DoxyCodeLine{334        0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{335      \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{336      \{ 0x6c, 0xcf, 0x43, 0x08, 0x97, 0x4c, 0x26, 0x7f \}}
+\DoxyCodeLine{337    \},}
+\DoxyCodeLine{338    \{ 16, 64,}
+\DoxyCodeLine{339      \{ 0x88, 0xbc, 0xa9, 0x0e, 0x90, 0x87, 0x5a, 0x7f,}
+\DoxyCodeLine{340        0x0f, 0x79, 0xc3, 0x84, 0x62, 0x7b, 0xaf, 0xb2 \},}
+\DoxyCodeLine{341      \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{342      \{ 0x1a, 0x80, 0x7d, 0x27, 0x2b, 0xbe, 0x5d, 0xb1 \}}
+\DoxyCodeLine{343    \},}
+\DoxyCodeLine{344    \{ 16, 128,}
+\DoxyCodeLine{345      \{ 0x88, 0xbc, 0xa9, 0x0e, 0x90, 0x87, 0x5a, 0x7f,}
+\DoxyCodeLine{346        0x0f, 0x79, 0xc3, 0x84, 0x62, 0x7b, 0xaf, 0xb2 \},}
+\DoxyCodeLine{347      \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{348      \{ 0x22, 0x69, 0x55, 0x2a, 0xb0, 0xf8, 0x5c, 0xa6 \}}
+\DoxyCodeLine{349    \}}
+\DoxyCodeLine{350   \};}
+\DoxyCodeLine{351     \textcolor{keywordtype}{int} x, y, err;}
+\DoxyCodeLine{352     \mbox{\hyperlink{unionSymmetric__key}{symmetric\_key}} skey;}
+\DoxyCodeLine{353     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} tmp[2][8];}
+\DoxyCodeLine{354 }
+\DoxyCodeLine{355     \textcolor{keywordflow}{for} (x = 0; x < (int)(\textcolor{keyword}{sizeof}(tests) / \textcolor{keyword}{sizeof}(tests[0])); x++) \{}
+\DoxyCodeLine{356         \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(tmp, \textcolor{keyword}{sizeof}(tmp));}
+\DoxyCodeLine{357         \textcolor{keywordflow}{if} (tests[x].bits == (tests[x].keylen * 8)) \{}
+\DoxyCodeLine{358            \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{rc2_8c_a3d992548480d21ad0d23dac89c4c2ccf}{rc2\_setup}}(tests[x].key, tests[x].keylen, 0, \&skey)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{359               \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{360            \}}
+\DoxyCodeLine{361         \}}
+\DoxyCodeLine{362         \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{363            \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{rc2_8c_a972f755861aeda91edb3d961881db3ea}{rc2\_setup\_ex}}(tests[x].key, tests[x].keylen, tests[x].bits, 0, \&skey)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{364               \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{365            \}}
+\DoxyCodeLine{366         \}}
+\DoxyCodeLine{367 }
+\DoxyCodeLine{368         \mbox{\hyperlink{rc2_8c_a58703b6ee00798ef781b194931d05dc1}{rc2\_ecb\_encrypt}}(tests[x].pt, tmp[0], \&skey);}
+\DoxyCodeLine{369         \mbox{\hyperlink{rc2_8c_a0c165bbdc013646b3db268d1197c5a21}{rc2\_ecb\_decrypt}}(tmp[0], tmp[1], \&skey);}
+\DoxyCodeLine{370 }
+\DoxyCodeLine{371         \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(tmp[0], 8, tests[x].ct, 8, \textcolor{stringliteral}{"RC2 CT"}, x) ||}
+\DoxyCodeLine{372               \mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(tmp[1], 8, tests[x].pt, 8, \textcolor{stringliteral}{"RC2 PT"}, x)) \{}
+\DoxyCodeLine{373            \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{374         \}}
+\DoxyCodeLine{375 }
+\DoxyCodeLine{376       \textcolor{comment}{/* now see if we can encrypt all zero bytes 1000 times, decrypt and come back where we started */}}
+\DoxyCodeLine{377       \textcolor{keywordflow}{for} (y = 0; y < 8; y++) tmp[0][y] = 0;}
+\DoxyCodeLine{378       \textcolor{keywordflow}{for} (y = 0; y < 1000; y++) \mbox{\hyperlink{rc2_8c_a58703b6ee00798ef781b194931d05dc1}{rc2\_ecb\_encrypt}}(tmp[0], tmp[0], \&skey);}
+\DoxyCodeLine{379       \textcolor{keywordflow}{for} (y = 0; y < 1000; y++) \mbox{\hyperlink{rc2_8c_a0c165bbdc013646b3db268d1197c5a21}{rc2\_ecb\_decrypt}}(tmp[0], tmp[0], \&skey);}
+\DoxyCodeLine{380       \textcolor{keywordflow}{for} (y = 0; y < 8; y++) \textcolor{keywordflow}{if} (tmp[0][y] != 0) \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{381     \}}
+\DoxyCodeLine{382     \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{383 \textcolor{preprocessor}{   \#endif}}
+\DoxyCodeLine{384 \}}
+
+\end{DoxyCode}
+
+
+References compare\+\_\+testvector(), C\+R\+Y\+P\+T\+\_\+\+F\+A\+I\+L\+\_\+\+T\+E\+S\+T\+V\+E\+C\+T\+OR, C\+R\+Y\+P\+T\+\_\+\+N\+OP, C\+R\+Y\+P\+T\+\_\+\+OK, rc2\+\_\+ecb\+\_\+decrypt(), rc2\+\_\+ecb\+\_\+encrypt(), rc2\+\_\+setup(), rc2\+\_\+setup\+\_\+ex(), and zeromem().
+
+Here is the call graph for this function\+:
+% FIG 7
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{rc2_8c_a7b6b7fbaa72c91122f9d391f2cf6ab63}\label{rc2_8c_a7b6b7fbaa72c91122f9d391f2cf6ab63}} 
+\index{rc2.c@{rc2.c}!permute@{permute}}
+\index{permute@{permute}!rc2.c@{rc2.c}}
+\subsubsection{\texorpdfstring{permute}{permute}}
+{\footnotesize\ttfamily const unsigned char permute\mbox{[}256\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{        217,120,249,196, 25,221,181,237, 40,233,253,121, 74,160,216,157,}
+\DoxyCodeLine{        198,126, 55,131, 43,118, 83,142, 98, 76,100,136, 68,139,251,162,}
+\DoxyCodeLine{         23,154, 89,245,135,179, 79, 19, 97, 69,109,141,  9,129,125, 50,}
+\DoxyCodeLine{        189,143, 64,235,134,183,123, 11,240,149, 33, 34, 92,107, 78,130,}
+\DoxyCodeLine{         84,214,101,147,206, 96,178, 28,115, 86,192, 20,167,140,241,220,}
+\DoxyCodeLine{         18,117,202, 31, 59,190,228,209, 66, 61,212, 48,163, 60,182, 38,}
+\DoxyCodeLine{        111,191, 14,218, 70,105,  7, 87, 39,242, 29,155,188,148, 67,  3,}
+\DoxyCodeLine{        248, 17,199,246,144,239, 62,231,  6,195,213, 47,200,102, 30,215,}
+\DoxyCodeLine{          8,232,234,222,128, 82,238,247,132,170,114,172, 53, 77,106, 42,}
+\DoxyCodeLine{        150, 26,210,113, 90, 21, 73,116, 75,159,208, 94,  4, 24,164,236,}
+\DoxyCodeLine{        194,224, 65,110, 15, 81,203,204, 36,145,175, 80,161,244,112, 57,}
+\DoxyCodeLine{        153,124, 58,133, 35,184,180,122,252,  2, 54, 91, 37, 85,151, 49,}
+\DoxyCodeLine{         45, 93,250,152,227,138,146,174,  5,223, 41, 16,103,108,186,201,}
+\DoxyCodeLine{        211,  0,230,207,225,158,168, 44, 99, 22,  1, 63, 88,226,137,169,}
+\DoxyCodeLine{         13, 56, 52, 27,171, 51,255,176,187, 72, 12, 95,185,177,205, 46,}
+\DoxyCodeLine{        197,243,219, 71,229,165,156,119, 10,166, 32,104,254,127,193,173}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line 41 of file rc2.\+c.
+
+
+
+Referenced by rc2\+\_\+setup\+\_\+ex().
+
+\mbox{\Hypertarget{rc2_8c_af2a69c5eed0f0f5201a34c72801bdcb9}\label{rc2_8c_af2a69c5eed0f0f5201a34c72801bdcb9}} 
+\index{rc2.c@{rc2.c}!rc2\_desc@{rc2\_desc}}
+\index{rc2\_desc@{rc2\_desc}!rc2.c@{rc2.c}}
+\subsubsection{\texorpdfstring{rc2\_desc}{rc2\_desc}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structltc__cipher__descriptor}{ltc\+\_\+cipher\+\_\+descriptor}} rc2\+\_\+desc}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{   \textcolor{stringliteral}{"rc2"},}
+\DoxyCodeLine{   12, 8, 128, 8, 16,}
+\DoxyCodeLine{   \&\mbox{\hyperlink{rc2_8c_a3d992548480d21ad0d23dac89c4c2ccf}{rc2\_setup}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{rc2_8c_a58703b6ee00798ef781b194931d05dc1}{rc2\_ecb\_encrypt}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{rc2_8c_a0c165bbdc013646b3db268d1197c5a21}{rc2\_ecb\_decrypt}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{rc2_8c_a6263c717b1805331d7b96b4751332def}{rc2\_test}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{rc2_8c_ab759ea8dbf7e1a246365aa6f0d6895fc}{rc2\_done}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{rc2_8c_a298f7d75bbae6884cc224ff30ca7e44f}{rc2\_keysize}},}
+\DoxyCodeLine{   NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line 28 of file rc2.\+c.
+
+
+
+Referenced by register\+\_\+all\+\_\+ciphers(), and yarrow\+\_\+start().
+

@@ -1,0 +1,40 @@
+digraph "sosemanuk_test"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node0 [label="sosemanuk_test",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node0 -> Node1 [color="midnightblue",fontsize="10",style="solid"];
+  Node1 [label="compare_testvector",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__misc_8h.html#a7764a7f27897c6182335752df00b5f8e",tooltip="Compare two test-vectors."];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid"];
+  Node2 [label="XMEMCMP",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cfg_8h.html#a372b974ec0ac07abcd55297554fe540f",tooltip=" "];
+  Node0 -> Node3 [color="midnightblue",fontsize="10",style="solid"];
+  Node3 [label="sosemanuk_crypt",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sosemanuk_8c.html#ae473e1b8845f3b37e79e6c099e54247c",tooltip=" "];
+  Node3 -> Node4 [color="midnightblue",fontsize="10",style="solid"];
+  Node4 [label="_sosemanuk_internal",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sosemanuk_8c.html#a5658cccde993c8eca129036736eb7527",tooltip=" "];
+  Node3 -> Node5 [color="midnightblue",fontsize="10",style="solid"];
+  Node5 [label="_xorbuf",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sosemanuk_8c.html#ac769bae0f590a35230b80e113aaee135",tooltip=" "];
+  Node0 -> Node6 [color="midnightblue",fontsize="10",style="solid"];
+  Node6 [label="sosemanuk_done",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sosemanuk_8c.html#a7ee39bd7ec8f061e89d6fa7c34058200",tooltip=" "];
+  Node6 -> Node7 [color="midnightblue",fontsize="10",style="solid"];
+  Node7 [label="XMEMSET",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cfg_8h.html#aa3c34a6f6c61de7da9258b5a30e32c2f",tooltip=" "];
+  Node0 -> Node8 [color="midnightblue",fontsize="10",style="solid"];
+  Node8 [label="sosemanuk_keystream",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sosemanuk_8c.html#ac9cf23b2cb5a1585248c91498f3dd026",tooltip=" "];
+  Node8 -> Node3 [color="midnightblue",fontsize="10",style="solid"];
+  Node8 -> Node7 [color="midnightblue",fontsize="10",style="solid"];
+  Node0 -> Node9 [color="midnightblue",fontsize="10",style="solid"];
+  Node9 [label="sosemanuk_memory",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sosemanuk__memory_8c.html#af5bb4d327884d7b137ddf18366f8d47d",tooltip="Encrypt (or decrypt) bytes of ciphertext (or plaintext) with Sosemanuk."];
+  Node9 -> Node3 [color="midnightblue",fontsize="10",style="solid"];
+  Node9 -> Node6 [color="midnightblue",fontsize="10",style="solid"];
+  Node9 -> Node10 [color="midnightblue",fontsize="10",style="solid"];
+  Node10 [label="sosemanuk_setiv",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sosemanuk_8c.html#ac24c0c364f5334d8c8e387e900b468d1",tooltip=" "];
+  Node10 -> Node11 [color="midnightblue",fontsize="10",style="solid"];
+  Node11 [label="XMEMCPY",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cfg_8h.html#a7691dd48d60d5fc6daf2fa7ec4c55e12",tooltip=" "];
+  Node9 -> Node12 [color="midnightblue",fontsize="10",style="solid"];
+  Node12 [label="sosemanuk_setup",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sosemanuk_8c.html#ae244858ccf7bca175242f8c1b775a9f4",tooltip=" "];
+  Node12 -> Node11 [color="midnightblue",fontsize="10",style="solid"];
+  Node12 -> Node7 [color="midnightblue",fontsize="10",style="solid"];
+  Node0 -> Node10 [color="midnightblue",fontsize="10",style="solid"];
+  Node0 -> Node12 [color="midnightblue",fontsize="10",style="solid"];
+}

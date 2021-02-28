@@ -1,0 +1,896 @@
+\hypertarget{sha3__test_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/hashes/sha3\+\_\+test.c File Reference}
+\label{sha3__test_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/hashes/sha3\_test.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/hashes/sha3\_test.c}}
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for sha3\+\_\+test.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{sha3__test_8c_a53d3cf451582bb9c57a032d967cbdecb}{sha3\+\_\+224\+\_\+test}} (void)
+\item 
+int \mbox{\hyperlink{sha3__test_8c_aafa6f2186a83cf477969e60264de4d7c}{sha3\+\_\+256\+\_\+test}} (void)
+\item 
+int \mbox{\hyperlink{sha3__test_8c_a2b995816e706a145a50e2714a48bc37d}{sha3\+\_\+384\+\_\+test}} (void)
+\item 
+int \mbox{\hyperlink{sha3__test_8c_a64686c97ddb8c28598ee5d0d36f2af6c}{sha3\+\_\+512\+\_\+test}} (void)
+\item 
+int \mbox{\hyperlink{sha3__test_8c_a2eef76efd0a49571403592f9e3f08273}{sha3\+\_\+shake\+\_\+test}} (void)
+\item 
+int \mbox{\hyperlink{sha3__test_8c_abbe20bf64ded7367985637fe50b79bf6}{keccak\+\_\+224\+\_\+test}} (void)
+\item 
+int \mbox{\hyperlink{sha3__test_8c_ae239a7f95920b29d1f93a1fa8a243e1f}{keccak\+\_\+256\+\_\+test}} (void)
+\item 
+int \mbox{\hyperlink{sha3__test_8c_a90630c908fb0ac0a009c63152d56f0a0}{keccak\+\_\+384\+\_\+test}} (void)
+\item 
+int \mbox{\hyperlink{sha3__test_8c_a47fd72744c16de6a8c777d52f63f0879}{keccak\+\_\+512\+\_\+test}} (void)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{sha3__test_8c_abbe20bf64ded7367985637fe50b79bf6}\label{sha3__test_8c_abbe20bf64ded7367985637fe50b79bf6}} 
+\index{sha3\_test.c@{sha3\_test.c}!keccak\_224\_test@{keccak\_224\_test}}
+\index{keccak\_224\_test@{keccak\_224\_test}!sha3\_test.c@{sha3\_test.c}}
+\subsubsection{\texorpdfstring{keccak\_224\_test()}{keccak\_224\_test()}}
+{\footnotesize\ttfamily int keccak\+\_\+224\+\_\+test (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 401 of file sha3\+\_\+test.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{402 \{}
+\DoxyCodeLine{403 \textcolor{preprocessor}{\#ifndef LTC\_TEST}}
+\DoxyCodeLine{404    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cac43a7799c7fd5f515172da6cfc0f9cf5}{CRYPT\_NOP}};}
+\DoxyCodeLine{405 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{406    \mbox{\hyperlink{unionHash__state}{hash\_state}} \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}};}
+\DoxyCodeLine{407    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} hash[\mbox{\hyperlink{tomcrypt_8h_ab59933beebb2b857c992b93cf53f0d10}{MAXBLOCKSIZE}}];}
+\DoxyCodeLine{408 }
+\DoxyCodeLine{409    keccak\_224\_init(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}});}
+\DoxyCodeLine{410    keccak\_process(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}*) \textcolor{stringliteral}{"\(\backslash\)xcc"}, 1);}
+\DoxyCodeLine{411    \mbox{\hyperlink{sha3_8c_a31831af26bc9cc4951ec2808dee5d4f3}{keccak\_done}}(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, hash);}
+\DoxyCodeLine{412    \textcolor{keywordflow}{if}(\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(hash, 28,}
+\DoxyCodeLine{413                          \textcolor{stringliteral}{"\(\backslash\)xa9\(\backslash\)xca\(\backslash\)xb5\(\backslash\)x9e\(\backslash\)xb4\(\backslash\)x0a\(\backslash\)x10\(\backslash\)xb2"}}
+\DoxyCodeLine{414                          \textcolor{stringliteral}{"\(\backslash\)x46\(\backslash\)x29\(\backslash\)x0f\(\backslash\)x2d\(\backslash\)x60\(\backslash\)x86\(\backslash\)xe3\(\backslash\)x2e"}}
+\DoxyCodeLine{415                          \textcolor{stringliteral}{"\(\backslash\)x36\(\backslash\)x89\(\backslash\)xfa\(\backslash\)xf1\(\backslash\)xd2\(\backslash\)x6b\(\backslash\)x47\(\backslash\)x0c"}}
+\DoxyCodeLine{416                          \textcolor{stringliteral}{"\(\backslash\)x89\(\backslash\)x9f\(\backslash\)x28\(\backslash\)x02"}, 28,}
+\DoxyCodeLine{417                          \textcolor{stringliteral}{"KECCAK-224"}, 0) != 0) \{}
+\DoxyCodeLine{418        \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{419    \}}
+\DoxyCodeLine{420 }
+\DoxyCodeLine{421    keccak\_224\_init(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}});}
+\DoxyCodeLine{422    keccak\_process(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}*)\textcolor{stringliteral}{"\(\backslash\)x41\(\backslash\)xfb"}, 2);}
+\DoxyCodeLine{423    \mbox{\hyperlink{sha3_8c_a31831af26bc9cc4951ec2808dee5d4f3}{keccak\_done}}(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, hash);}
+\DoxyCodeLine{424    \textcolor{keywordflow}{if}(\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(hash, 28,}
+\DoxyCodeLine{425                          \textcolor{stringliteral}{"\(\backslash\)x61\(\backslash\)x5b\(\backslash\)xa3\(\backslash\)x67\(\backslash\)xaf\(\backslash\)xdc\(\backslash\)x35\(\backslash\)xaa"}}
+\DoxyCodeLine{426                          \textcolor{stringliteral}{"\(\backslash\)xc3\(\backslash\)x97\(\backslash\)xbc\(\backslash\)x7e\(\backslash\)xb5\(\backslash\)xd5\(\backslash\)x8d\(\backslash\)x10"}}
+\DoxyCodeLine{427                          \textcolor{stringliteral}{"\(\backslash\)x6a\(\backslash\)x73\(\backslash\)x4b\(\backslash\)x24\(\backslash\)x98\(\backslash\)x6d\(\backslash\)x5d\(\backslash\)x97"}}
+\DoxyCodeLine{428                          \textcolor{stringliteral}{"\(\backslash\)x8f\(\backslash\)xef\(\backslash\)xd6\(\backslash\)x2c"}, 28,}
+\DoxyCodeLine{429                          \textcolor{stringliteral}{"KECCAK-224"}, 1) != 0) \{}
+\DoxyCodeLine{430        \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{431    \}}
+\DoxyCodeLine{432 }
+\DoxyCodeLine{433    keccak\_224\_init(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}});}
+\DoxyCodeLine{434    keccak\_process(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}*)}
+\DoxyCodeLine{435                     \textcolor{stringliteral}{"\(\backslash\)x52\(\backslash\)xa6\(\backslash\)x08\(\backslash\)xab\(\backslash\)x21\(\backslash\)xcc\(\backslash\)xdd\(\backslash\)x8a"}}
+\DoxyCodeLine{436                     \textcolor{stringliteral}{"\(\backslash\)x44\(\backslash\)x57\(\backslash\)xa5\(\backslash\)x7e\(\backslash\)xde\(\backslash\)x78\(\backslash\)x21\(\backslash\)x76"}, 16);}
+\DoxyCodeLine{437    \mbox{\hyperlink{sha3_8c_a31831af26bc9cc4951ec2808dee5d4f3}{keccak\_done}}(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, hash);}
+\DoxyCodeLine{438    \textcolor{keywordflow}{if}(\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(hash, 28,}
+\DoxyCodeLine{439                          \textcolor{stringliteral}{"\(\backslash\)x56\(\backslash\)x79\(\backslash\)xcd\(\backslash\)x50\(\backslash\)x9c\(\backslash\)x51\(\backslash\)x20\(\backslash\)xaf"}}
+\DoxyCodeLine{440                          \textcolor{stringliteral}{"\(\backslash\)x54\(\backslash\)x79\(\backslash\)x5c\(\backslash\)xf4\(\backslash\)x77\(\backslash\)x14\(\backslash\)x96\(\backslash\)x41"}}
+\DoxyCodeLine{441                          \textcolor{stringliteral}{"\(\backslash\)xcf\(\backslash\)x27\(\backslash\)xb2\(\backslash\)xeb\(\backslash\)xb6\(\backslash\)xa5\(\backslash\)xf9\(\backslash\)x03"}}
+\DoxyCodeLine{442                          \textcolor{stringliteral}{"\(\backslash\)x40\(\backslash\)x70\(\backslash\)x4e\(\backslash\)x57"}, 28,}
+\DoxyCodeLine{443                          \textcolor{stringliteral}{"KECCAK-224"}, 2) != 0) \{}
+\DoxyCodeLine{444        \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{445    \}}
+\DoxyCodeLine{446 }
+\DoxyCodeLine{447    keccak\_224\_init(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}});}
+\DoxyCodeLine{448    keccak\_process(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}*)}
+\DoxyCodeLine{449                     \textcolor{stringliteral}{"\(\backslash\)x43\(\backslash\)x3c\(\backslash\)x53\(\backslash\)x03\(\backslash\)x13\(\backslash\)x16\(\backslash\)x24\(\backslash\)xc0"}}
+\DoxyCodeLine{450                     \textcolor{stringliteral}{"\(\backslash\)x02\(\backslash\)x1d\(\backslash\)x86\(\backslash\)x8a\(\backslash\)x30\(\backslash\)x82\(\backslash\)x54\(\backslash\)x75"}}
+\DoxyCodeLine{451                     \textcolor{stringliteral}{"\(\backslash\)xe8\(\backslash\)xd0\(\backslash\)xbd\(\backslash\)x30\(\backslash\)x52\(\backslash\)xa0\(\backslash\)x22\(\backslash\)x18"}}
+\DoxyCodeLine{452                     \textcolor{stringliteral}{"\(\backslash\)x03\(\backslash\)x98\(\backslash\)xf4\(\backslash\)xca\(\backslash\)x44\(\backslash\)x23\(\backslash\)xb9\(\backslash\)x82"}}
+\DoxyCodeLine{453                     \textcolor{stringliteral}{"\(\backslash\)x14\(\backslash\)xb6\(\backslash\)xbe\(\backslash\)xaa\(\backslash\)xc2\(\backslash\)x1c\(\backslash\)x88\(\backslash\)x07"}}
+\DoxyCodeLine{454                     \textcolor{stringliteral}{"\(\backslash\)xa2\(\backslash\)xc3\(\backslash\)x3f\(\backslash\)x8c\(\backslash\)x93\(\backslash\)xbd\(\backslash\)x42\(\backslash\)xb0"}}
+\DoxyCodeLine{455                     \textcolor{stringliteral}{"\(\backslash\)x92\(\backslash\)xcc\(\backslash\)x1b\(\backslash\)x06\(\backslash\)xce\(\backslash\)xdf\(\backslash\)x32\(\backslash\)x24"}}
+\DoxyCodeLine{456                     \textcolor{stringliteral}{"\(\backslash\)xd5\(\backslash\)xed\(\backslash\)x1e\(\backslash\)xc2\(\backslash\)x97\(\backslash\)x84\(\backslash\)x44\(\backslash\)x4f"}}
+\DoxyCodeLine{457                     \textcolor{stringliteral}{"\(\backslash\)x22\(\backslash\)xe0\(\backslash\)x8a\(\backslash\)x55\(\backslash\)xaa\(\backslash\)x58\(\backslash\)x54\(\backslash\)x2b"}}
+\DoxyCodeLine{458                     \textcolor{stringliteral}{"\(\backslash\)x52\(\backslash\)x4b\(\backslash\)x02\(\backslash\)xcd\(\backslash\)x3d\(\backslash\)x5d\(\backslash\)x5f\(\backslash\)x69"}}
+\DoxyCodeLine{459                     \textcolor{stringliteral}{"\(\backslash\)x07\(\backslash\)xaf\(\backslash\)xe7\(\backslash\)x1c\(\backslash\)x5d\(\backslash\)x74\(\backslash\)x62\(\backslash\)x22"}}
+\DoxyCodeLine{460                     \textcolor{stringliteral}{"\(\backslash\)x4a\(\backslash\)x3f\(\backslash\)x9d\(\backslash\)x9e\(\backslash\)x53\(\backslash\)xe7\(\backslash\)xe0\(\backslash\)x84"}}
+\DoxyCodeLine{461                     \textcolor{stringliteral}{"\(\backslash\)x6d\(\backslash\)xcb\(\backslash\)xb4\(\backslash\)xce"}, 100);}
+\DoxyCodeLine{462    \mbox{\hyperlink{sha3_8c_a31831af26bc9cc4951ec2808dee5d4f3}{keccak\_done}}(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, hash);}
+\DoxyCodeLine{463    \textcolor{keywordflow}{if}(\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(hash, 28,}
+\DoxyCodeLine{464                          \textcolor{stringliteral}{"\(\backslash\)x62\(\backslash\)xb1\(\backslash\)x0f\(\backslash\)x1b\(\backslash\)x62\(\backslash\)x36\(\backslash\)xeb\(\backslash\)xc2"}}
+\DoxyCodeLine{465                          \textcolor{stringliteral}{"\(\backslash\)xda\(\backslash\)x72\(\backslash\)x95\(\backslash\)x77\(\backslash\)x42\(\backslash\)xa8\(\backslash\)xd4\(\backslash\)xe4"}}
+\DoxyCodeLine{466                          \textcolor{stringliteral}{"\(\backslash\)x8e\(\backslash\)x21\(\backslash\)x3b\(\backslash\)x5f\(\backslash\)x89\(\backslash\)x34\(\backslash\)x60\(\backslash\)x4b"}}
+\DoxyCodeLine{467                          \textcolor{stringliteral}{"\(\backslash\)xfd\(\backslash\)x4d\(\backslash\)x2c\(\backslash\)x3a"}, 28,}
+\DoxyCodeLine{468                          \textcolor{stringliteral}{"KECCAK-224"}, 3) != 0) \{}
+\DoxyCodeLine{469        \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{470    \}}
+\DoxyCodeLine{471 }
+\DoxyCodeLine{472    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{473 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{474 \}}
+
+\end{DoxyCode}
+
+
+References c, compare\+\_\+testvector(), C\+R\+Y\+P\+T\+\_\+\+F\+A\+I\+L\+\_\+\+T\+E\+S\+T\+V\+E\+C\+T\+OR, C\+R\+Y\+P\+T\+\_\+\+N\+OP, C\+R\+Y\+P\+T\+\_\+\+OK, keccak\+\_\+done(), and M\+A\+X\+B\+L\+O\+C\+K\+S\+I\+ZE.
+
+Here is the call graph for this function\+:
+% FIG 1
+\mbox{\Hypertarget{sha3__test_8c_ae239a7f95920b29d1f93a1fa8a243e1f}\label{sha3__test_8c_ae239a7f95920b29d1f93a1fa8a243e1f}} 
+\index{sha3\_test.c@{sha3\_test.c}!keccak\_256\_test@{keccak\_256\_test}}
+\index{keccak\_256\_test@{keccak\_256\_test}!sha3\_test.c@{sha3\_test.c}}
+\subsubsection{\texorpdfstring{keccak\_256\_test()}{keccak\_256\_test()}}
+{\footnotesize\ttfamily int keccak\+\_\+256\+\_\+test (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 476 of file sha3\+\_\+test.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{477 \{}
+\DoxyCodeLine{478 \textcolor{preprocessor}{\#ifndef LTC\_TEST}}
+\DoxyCodeLine{479    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cac43a7799c7fd5f515172da6cfc0f9cf5}{CRYPT\_NOP}};}
+\DoxyCodeLine{480 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{481    \mbox{\hyperlink{unionHash__state}{hash\_state}} \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}};}
+\DoxyCodeLine{482    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} hash[\mbox{\hyperlink{tomcrypt_8h_ab59933beebb2b857c992b93cf53f0d10}{MAXBLOCKSIZE}}];}
+\DoxyCodeLine{483 }
+\DoxyCodeLine{484    keccak\_256\_init(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}});}
+\DoxyCodeLine{485    keccak\_process(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}*) \textcolor{stringliteral}{"\(\backslash\)xcc"}, 1);}
+\DoxyCodeLine{486    \mbox{\hyperlink{sha3_8c_a31831af26bc9cc4951ec2808dee5d4f3}{keccak\_done}}(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, hash);}
+\DoxyCodeLine{487    \textcolor{keywordflow}{if}(\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(hash, 32,}
+\DoxyCodeLine{488                          \textcolor{stringliteral}{"\(\backslash\)xee\(\backslash\)xad\(\backslash\)x6d\(\backslash\)xbf\(\backslash\)xc7\(\backslash\)x34\(\backslash\)x0a\(\backslash\)x56"}}
+\DoxyCodeLine{489                          \textcolor{stringliteral}{"\(\backslash\)xca\(\backslash\)xed\(\backslash\)xc0\(\backslash\)x44\(\backslash\)x69\(\backslash\)x6a\(\backslash\)x16\(\backslash\)x88"}}
+\DoxyCodeLine{490                          \textcolor{stringliteral}{"\(\backslash\)x70\(\backslash\)x54\(\backslash\)x9a\(\backslash\)x6a\(\backslash\)x7f\(\backslash\)x6f\(\backslash\)x56\(\backslash\)x96"}}
+\DoxyCodeLine{491                          \textcolor{stringliteral}{"\(\backslash\)x1e\(\backslash\)x84\(\backslash\)xa5\(\backslash\)x4b\(\backslash\)xd9\(\backslash\)x97\(\backslash\)x0b\(\backslash\)x8a"}, 32,}
+\DoxyCodeLine{492                          \textcolor{stringliteral}{"KECCAK-256"}, 0) != 0) \{}
+\DoxyCodeLine{493        \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{494    \}}
+\DoxyCodeLine{495 }
+\DoxyCodeLine{496    keccak\_256\_init(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}});}
+\DoxyCodeLine{497    keccak\_process(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}*)\textcolor{stringliteral}{"\(\backslash\)x41\(\backslash\)xfb"}, 2);}
+\DoxyCodeLine{498    \mbox{\hyperlink{sha3_8c_a31831af26bc9cc4951ec2808dee5d4f3}{keccak\_done}}(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, hash);}
+\DoxyCodeLine{499    \textcolor{keywordflow}{if}(\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(hash, 32,}
+\DoxyCodeLine{500                          \textcolor{stringliteral}{"\(\backslash\)xa8\(\backslash\)xea\(\backslash\)xce\(\backslash\)xda\(\backslash\)x4d\(\backslash\)x47\(\backslash\)xb3\(\backslash\)x28"}}
+\DoxyCodeLine{501                          \textcolor{stringliteral}{"\(\backslash\)x1a\(\backslash\)x79\(\backslash\)x5a\(\backslash\)xd9\(\backslash\)xe1\(\backslash\)xea\(\backslash\)x21\(\backslash\)x22"}}
+\DoxyCodeLine{502                          \textcolor{stringliteral}{"\(\backslash\)xb4\(\backslash\)x07\(\backslash\)xba\(\backslash\)xf9\(\backslash\)xaa\(\backslash\)xbc\(\backslash\)xb9\(\backslash\)xe1"}}
+\DoxyCodeLine{503                          \textcolor{stringliteral}{"\(\backslash\)x8b\(\backslash\)x57\(\backslash\)x17\(\backslash\)xb7\(\backslash\)x87\(\backslash\)x35\(\backslash\)x37\(\backslash\)xd2"}, 32,}
+\DoxyCodeLine{504                          \textcolor{stringliteral}{"KECCAK-256"}, 1) != 0) \{}
+\DoxyCodeLine{505        \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{506    \}}
+\DoxyCodeLine{507 }
+\DoxyCodeLine{508    keccak\_256\_init(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}});}
+\DoxyCodeLine{509    keccak\_process(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}*)}
+\DoxyCodeLine{510                     \textcolor{stringliteral}{"\(\backslash\)x52\(\backslash\)xa6\(\backslash\)x08\(\backslash\)xab\(\backslash\)x21\(\backslash\)xcc\(\backslash\)xdd\(\backslash\)x8a"}}
+\DoxyCodeLine{511                     \textcolor{stringliteral}{"\(\backslash\)x44\(\backslash\)x57\(\backslash\)xa5\(\backslash\)x7e\(\backslash\)xde\(\backslash\)x78\(\backslash\)x21\(\backslash\)x76"}, 16);}
+\DoxyCodeLine{512    \mbox{\hyperlink{sha3_8c_a31831af26bc9cc4951ec2808dee5d4f3}{keccak\_done}}(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, hash);}
+\DoxyCodeLine{513    \textcolor{keywordflow}{if}(\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(hash, 32,}
+\DoxyCodeLine{514                          \textcolor{stringliteral}{"\(\backslash\)x0e\(\backslash\)x32\(\backslash\)xde\(\backslash\)xfa\(\backslash\)x20\(\backslash\)x71\(\backslash\)xf0\(\backslash\)xb5"}}
+\DoxyCodeLine{515                          \textcolor{stringliteral}{"\(\backslash\)xac\(\backslash\)x0e\(\backslash\)x6a\(\backslash\)x10\(\backslash\)x8b\(\backslash\)x84\(\backslash\)x2e\(\backslash\)xd0"}}
+\DoxyCodeLine{516                          \textcolor{stringliteral}{"\(\backslash\)xf1\(\backslash\)xd3\(\backslash\)x24\(\backslash\)x97\(\backslash\)x12\(\backslash\)xf5\(\backslash\)x8e\(\backslash\)xe0"}}
+\DoxyCodeLine{517                          \textcolor{stringliteral}{"\(\backslash\)xdd\(\backslash\)xf9\(\backslash\)x56\(\backslash\)xfe\(\backslash\)x33\(\backslash\)x2a\(\backslash\)x5f\(\backslash\)x95"}, 32,}
+\DoxyCodeLine{518                          \textcolor{stringliteral}{"KECCAK-256"}, 2) != 0) \{}
+\DoxyCodeLine{519        \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{520    \}}
+\DoxyCodeLine{521 }
+\DoxyCodeLine{522    keccak\_256\_init(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}});}
+\DoxyCodeLine{523    keccak\_process(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}*)}
+\DoxyCodeLine{524                     \textcolor{stringliteral}{"\(\backslash\)x43\(\backslash\)x3c\(\backslash\)x53\(\backslash\)x03\(\backslash\)x13\(\backslash\)x16\(\backslash\)x24\(\backslash\)xc0"}}
+\DoxyCodeLine{525                     \textcolor{stringliteral}{"\(\backslash\)x02\(\backslash\)x1d\(\backslash\)x86\(\backslash\)x8a\(\backslash\)x30\(\backslash\)x82\(\backslash\)x54\(\backslash\)x75"}}
+\DoxyCodeLine{526                     \textcolor{stringliteral}{"\(\backslash\)xe8\(\backslash\)xd0\(\backslash\)xbd\(\backslash\)x30\(\backslash\)x52\(\backslash\)xa0\(\backslash\)x22\(\backslash\)x18"}}
+\DoxyCodeLine{527                     \textcolor{stringliteral}{"\(\backslash\)x03\(\backslash\)x98\(\backslash\)xf4\(\backslash\)xca\(\backslash\)x44\(\backslash\)x23\(\backslash\)xb9\(\backslash\)x82"}}
+\DoxyCodeLine{528                     \textcolor{stringliteral}{"\(\backslash\)x14\(\backslash\)xb6\(\backslash\)xbe\(\backslash\)xaa\(\backslash\)xc2\(\backslash\)x1c\(\backslash\)x88\(\backslash\)x07"}}
+\DoxyCodeLine{529                     \textcolor{stringliteral}{"\(\backslash\)xa2\(\backslash\)xc3\(\backslash\)x3f\(\backslash\)x8c\(\backslash\)x93\(\backslash\)xbd\(\backslash\)x42\(\backslash\)xb0"}}
+\DoxyCodeLine{530                     \textcolor{stringliteral}{"\(\backslash\)x92\(\backslash\)xcc\(\backslash\)x1b\(\backslash\)x06\(\backslash\)xce\(\backslash\)xdf\(\backslash\)x32\(\backslash\)x24"}}
+\DoxyCodeLine{531                     \textcolor{stringliteral}{"\(\backslash\)xd5\(\backslash\)xed\(\backslash\)x1e\(\backslash\)xc2\(\backslash\)x97\(\backslash\)x84\(\backslash\)x44\(\backslash\)x4f"}}
+\DoxyCodeLine{532                     \textcolor{stringliteral}{"\(\backslash\)x22\(\backslash\)xe0\(\backslash\)x8a\(\backslash\)x55\(\backslash\)xaa\(\backslash\)x58\(\backslash\)x54\(\backslash\)x2b"}}
+\DoxyCodeLine{533                     \textcolor{stringliteral}{"\(\backslash\)x52\(\backslash\)x4b\(\backslash\)x02\(\backslash\)xcd\(\backslash\)x3d\(\backslash\)x5d\(\backslash\)x5f\(\backslash\)x69"}}
+\DoxyCodeLine{534                     \textcolor{stringliteral}{"\(\backslash\)x07\(\backslash\)xaf\(\backslash\)xe7\(\backslash\)x1c\(\backslash\)x5d\(\backslash\)x74\(\backslash\)x62\(\backslash\)x22"}}
+\DoxyCodeLine{535                     \textcolor{stringliteral}{"\(\backslash\)x4a\(\backslash\)x3f\(\backslash\)x9d\(\backslash\)x9e\(\backslash\)x53\(\backslash\)xe7\(\backslash\)xe0\(\backslash\)x84"}}
+\DoxyCodeLine{536                     \textcolor{stringliteral}{"\(\backslash\)x6d\(\backslash\)xcb\(\backslash\)xb4\(\backslash\)xce"}, 100);}
+\DoxyCodeLine{537    \mbox{\hyperlink{sha3_8c_a31831af26bc9cc4951ec2808dee5d4f3}{keccak\_done}}(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, hash);}
+\DoxyCodeLine{538    \textcolor{keywordflow}{if}(\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(hash, 32,}
+\DoxyCodeLine{539                          \textcolor{stringliteral}{"\(\backslash\)xce\(\backslash\)x87\(\backslash\)xa5\(\backslash\)x17\(\backslash\)x3b\(\backslash\)xff\(\backslash\)xd9\(\backslash\)x23"}}
+\DoxyCodeLine{540                          \textcolor{stringliteral}{"\(\backslash\)x99\(\backslash\)x22\(\backslash\)x16\(\backslash\)x58\(\backslash\)xf8\(\backslash\)x01\(\backslash\)xd4\(\backslash\)x5c"}}
+\DoxyCodeLine{541                          \textcolor{stringliteral}{"\(\backslash\)x29\(\backslash\)x4d\(\backslash\)x90\(\backslash\)x06\(\backslash\)xee\(\backslash\)x9f\(\backslash\)x3f\(\backslash\)x9d"}}
+\DoxyCodeLine{542                          \textcolor{stringliteral}{"\(\backslash\)x41\(\backslash\)x9c\(\backslash\)x8d\(\backslash\)x42\(\backslash\)x77\(\backslash\)x48\(\backslash\)xdc\(\backslash\)x41"}, 32,}
+\DoxyCodeLine{543                          \textcolor{stringliteral}{"KECCAK-256"}, 3) != 0) \{}
+\DoxyCodeLine{544        \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{545    \}}
+\DoxyCodeLine{546 }
+\DoxyCodeLine{547    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{548 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{549 \}}
+
+\end{DoxyCode}
+
+
+References c, compare\+\_\+testvector(), C\+R\+Y\+P\+T\+\_\+\+F\+A\+I\+L\+\_\+\+T\+E\+S\+T\+V\+E\+C\+T\+OR, C\+R\+Y\+P\+T\+\_\+\+N\+OP, C\+R\+Y\+P\+T\+\_\+\+OK, keccak\+\_\+done(), and M\+A\+X\+B\+L\+O\+C\+K\+S\+I\+ZE.
+
+Here is the call graph for this function\+:
+% FIG 2
+\mbox{\Hypertarget{sha3__test_8c_a90630c908fb0ac0a009c63152d56f0a0}\label{sha3__test_8c_a90630c908fb0ac0a009c63152d56f0a0}} 
+\index{sha3\_test.c@{sha3\_test.c}!keccak\_384\_test@{keccak\_384\_test}}
+\index{keccak\_384\_test@{keccak\_384\_test}!sha3\_test.c@{sha3\_test.c}}
+\subsubsection{\texorpdfstring{keccak\_384\_test()}{keccak\_384\_test()}}
+{\footnotesize\ttfamily int keccak\+\_\+384\+\_\+test (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 551 of file sha3\+\_\+test.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{552 \{}
+\DoxyCodeLine{553 \textcolor{preprocessor}{\#ifndef LTC\_TEST}}
+\DoxyCodeLine{554    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cac43a7799c7fd5f515172da6cfc0f9cf5}{CRYPT\_NOP}};}
+\DoxyCodeLine{555 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{556    \mbox{\hyperlink{unionHash__state}{hash\_state}} \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}};}
+\DoxyCodeLine{557    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} hash[\mbox{\hyperlink{tomcrypt_8h_ab59933beebb2b857c992b93cf53f0d10}{MAXBLOCKSIZE}}];}
+\DoxyCodeLine{558 }
+\DoxyCodeLine{559    keccak\_384\_init(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}});}
+\DoxyCodeLine{560    keccak\_process(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}*) \textcolor{stringliteral}{"\(\backslash\)xcc"}, 1);}
+\DoxyCodeLine{561    \mbox{\hyperlink{sha3_8c_a31831af26bc9cc4951ec2808dee5d4f3}{keccak\_done}}(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, hash);}
+\DoxyCodeLine{562    \textcolor{keywordflow}{if}(\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(hash, 48,}
+\DoxyCodeLine{563                          \textcolor{stringliteral}{"\(\backslash\)x1b\(\backslash\)x84\(\backslash\)xe6\(\backslash\)x2a\(\backslash\)x46\(\backslash\)xe5\(\backslash\)xa2\(\backslash\)x01"}}
+\DoxyCodeLine{564                          \textcolor{stringliteral}{"\(\backslash\)x86\(\backslash\)x17\(\backslash\)x54\(\backslash\)xaf\(\backslash\)x5d\(\backslash\)xc9\(\backslash\)x5c\(\backslash\)x4a"}}
+\DoxyCodeLine{565                          \textcolor{stringliteral}{"\(\backslash\)x1a\(\backslash\)x69\(\backslash\)xca\(\backslash\)xf4\(\backslash\)xa7\(\backslash\)x96\(\backslash\)xae\(\backslash\)x40"}}
+\DoxyCodeLine{566                          \textcolor{stringliteral}{"\(\backslash\)x56\(\backslash\)x80\(\backslash\)x16\(\backslash\)x1e\(\backslash\)x29\(\backslash\)x57\(\backslash\)x26\(\backslash\)x41"}}
+\DoxyCodeLine{567                          \textcolor{stringliteral}{"\(\backslash\)xf5\(\backslash\)xfa\(\backslash\)x1e\(\backslash\)x86\(\backslash\)x41\(\backslash\)xd7\(\backslash\)x95\(\backslash\)x83"}}
+\DoxyCodeLine{568                          \textcolor{stringliteral}{"\(\backslash\)x36\(\backslash\)xee\(\backslash\)x7b\(\backslash\)x11\(\backslash\)xc5\(\backslash\)x8f\(\backslash\)x73\(\backslash\)xe9"}, 48,}
+\DoxyCodeLine{569                          \textcolor{stringliteral}{"KECCAK-384"}, 0) != 0) \{}
+\DoxyCodeLine{570        \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{571    \}}
+\DoxyCodeLine{572 }
+\DoxyCodeLine{573    keccak\_384\_init(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}});}
+\DoxyCodeLine{574    keccak\_process(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}*)\textcolor{stringliteral}{"\(\backslash\)x41\(\backslash\)xfb"}, 2);}
+\DoxyCodeLine{575    \mbox{\hyperlink{sha3_8c_a31831af26bc9cc4951ec2808dee5d4f3}{keccak\_done}}(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, hash);}
+\DoxyCodeLine{576    \textcolor{keywordflow}{if}(\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(hash, 48,}
+\DoxyCodeLine{577                          \textcolor{stringliteral}{"\(\backslash\)x49\(\backslash\)x5c\(\backslash\)xce\(\backslash\)x27\(\backslash\)x14\(\backslash\)xcd\(\backslash\)x72\(\backslash\)xc8"}}
+\DoxyCodeLine{578                          \textcolor{stringliteral}{"\(\backslash\)xc5\(\backslash\)x3c\(\backslash\)x33\(\backslash\)x63\(\backslash\)xd2\(\backslash\)x2c\(\backslash\)x58\(\backslash\)xb5"}}
+\DoxyCodeLine{579                          \textcolor{stringliteral}{"\(\backslash\)x59\(\backslash\)x60\(\backslash\)xfe\(\backslash\)x26\(\backslash\)xbe\(\backslash\)x0b\(\backslash\)xf3\(\backslash\)xbb"}}
+\DoxyCodeLine{580                          \textcolor{stringliteral}{"\(\backslash\)xc7\(\backslash\)xa3\(\backslash\)x31\(\backslash\)x6d\(\backslash\)xd5\(\backslash\)x63\(\backslash\)xad\(\backslash\)x1d"}}
+\DoxyCodeLine{581                          \textcolor{stringliteral}{"\(\backslash\)xb8\(\backslash\)x41\(\backslash\)x0e\(\backslash\)x75\(\backslash\)xee\(\backslash\)xfe\(\backslash\)xa6\(\backslash\)x55"}}
+\DoxyCodeLine{582                          \textcolor{stringliteral}{"\(\backslash\)xe3\(\backslash\)x9d\(\backslash\)x46\(\backslash\)x70\(\backslash\)xec\(\backslash\)x0b\(\backslash\)x17\(\backslash\)x92"}, 48,}
+\DoxyCodeLine{583                          \textcolor{stringliteral}{"KECCAK-384"}, 1) != 0) \{}
+\DoxyCodeLine{584        \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{585    \}}
+\DoxyCodeLine{586 }
+\DoxyCodeLine{587    keccak\_384\_init(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}});}
+\DoxyCodeLine{588    keccak\_process(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}*)}
+\DoxyCodeLine{589                     \textcolor{stringliteral}{"\(\backslash\)x52\(\backslash\)xa6\(\backslash\)x08\(\backslash\)xab\(\backslash\)x21\(\backslash\)xcc\(\backslash\)xdd\(\backslash\)x8a"}}
+\DoxyCodeLine{590                     \textcolor{stringliteral}{"\(\backslash\)x44\(\backslash\)x57\(\backslash\)xa5\(\backslash\)x7e\(\backslash\)xde\(\backslash\)x78\(\backslash\)x21\(\backslash\)x76"}, 16);}
+\DoxyCodeLine{591    \mbox{\hyperlink{sha3_8c_a31831af26bc9cc4951ec2808dee5d4f3}{keccak\_done}}(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, hash);}
+\DoxyCodeLine{592    \textcolor{keywordflow}{if}(\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(hash, 48,}
+\DoxyCodeLine{593                          \textcolor{stringliteral}{"\(\backslash\)x18\(\backslash\)x42\(\backslash\)x2a\(\backslash\)xc1\(\backslash\)xd3\(\backslash\)xa1\(\backslash\)xe5\(\backslash\)x4b"}}
+\DoxyCodeLine{594                          \textcolor{stringliteral}{"\(\backslash\)xad\(\backslash\)x87\(\backslash\)x68\(\backslash\)x83\(\backslash\)xd2\(\backslash\)xd6\(\backslash\)xdd\(\backslash\)x65"}}
+\DoxyCodeLine{595                          \textcolor{stringliteral}{"\(\backslash\)xf6\(\backslash\)x5c\(\backslash\)x1d\(\backslash\)x5f\(\backslash\)x33\(\backslash\)xa7\(\backslash\)x12\(\backslash\)x5c"}}
+\DoxyCodeLine{596                          \textcolor{stringliteral}{"\(\backslash\)xc4\(\backslash\)xc1\(\backslash\)x86\(\backslash\)x40\(\backslash\)x5a\(\backslash\)x12\(\backslash\)xed\(\backslash\)x64"}}
+\DoxyCodeLine{597                          \textcolor{stringliteral}{"\(\backslash\)xba\(\backslash\)x96\(\backslash\)x67\(\backslash\)x2e\(\backslash\)xed\(\backslash\)xda\(\backslash\)x8c\(\backslash\)x5a"}}
+\DoxyCodeLine{598                          \textcolor{stringliteral}{"\(\backslash\)x63\(\backslash\)x31\(\backslash\)xd2\(\backslash\)x86\(\backslash\)x83\(\backslash\)xf4\(\backslash\)x88\(\backslash\)xeb"}, 48,}
+\DoxyCodeLine{599                          \textcolor{stringliteral}{"KECCAK-384"}, 2) != 0) \{}
+\DoxyCodeLine{600        \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{601    \}}
+\DoxyCodeLine{602 }
+\DoxyCodeLine{603    keccak\_384\_init(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}});}
+\DoxyCodeLine{604    keccak\_process(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}*)}
+\DoxyCodeLine{605                     \textcolor{stringliteral}{"\(\backslash\)x43\(\backslash\)x3c\(\backslash\)x53\(\backslash\)x03\(\backslash\)x13\(\backslash\)x16\(\backslash\)x24\(\backslash\)xc0"}}
+\DoxyCodeLine{606                     \textcolor{stringliteral}{"\(\backslash\)x02\(\backslash\)x1d\(\backslash\)x86\(\backslash\)x8a\(\backslash\)x30\(\backslash\)x82\(\backslash\)x54\(\backslash\)x75"}}
+\DoxyCodeLine{607                     \textcolor{stringliteral}{"\(\backslash\)xe8\(\backslash\)xd0\(\backslash\)xbd\(\backslash\)x30\(\backslash\)x52\(\backslash\)xa0\(\backslash\)x22\(\backslash\)x18"}}
+\DoxyCodeLine{608                     \textcolor{stringliteral}{"\(\backslash\)x03\(\backslash\)x98\(\backslash\)xf4\(\backslash\)xca\(\backslash\)x44\(\backslash\)x23\(\backslash\)xb9\(\backslash\)x82"}}
+\DoxyCodeLine{609                     \textcolor{stringliteral}{"\(\backslash\)x14\(\backslash\)xb6\(\backslash\)xbe\(\backslash\)xaa\(\backslash\)xc2\(\backslash\)x1c\(\backslash\)x88\(\backslash\)x07"}}
+\DoxyCodeLine{610                     \textcolor{stringliteral}{"\(\backslash\)xa2\(\backslash\)xc3\(\backslash\)x3f\(\backslash\)x8c\(\backslash\)x93\(\backslash\)xbd\(\backslash\)x42\(\backslash\)xb0"}}
+\DoxyCodeLine{611                     \textcolor{stringliteral}{"\(\backslash\)x92\(\backslash\)xcc\(\backslash\)x1b\(\backslash\)x06\(\backslash\)xce\(\backslash\)xdf\(\backslash\)x32\(\backslash\)x24"}}
+\DoxyCodeLine{612                     \textcolor{stringliteral}{"\(\backslash\)xd5\(\backslash\)xed\(\backslash\)x1e\(\backslash\)xc2\(\backslash\)x97\(\backslash\)x84\(\backslash\)x44\(\backslash\)x4f"}}
+\DoxyCodeLine{613                     \textcolor{stringliteral}{"\(\backslash\)x22\(\backslash\)xe0\(\backslash\)x8a\(\backslash\)x55\(\backslash\)xaa\(\backslash\)x58\(\backslash\)x54\(\backslash\)x2b"}}
+\DoxyCodeLine{614                     \textcolor{stringliteral}{"\(\backslash\)x52\(\backslash\)x4b\(\backslash\)x02\(\backslash\)xcd\(\backslash\)x3d\(\backslash\)x5d\(\backslash\)x5f\(\backslash\)x69"}}
+\DoxyCodeLine{615                     \textcolor{stringliteral}{"\(\backslash\)x07\(\backslash\)xaf\(\backslash\)xe7\(\backslash\)x1c\(\backslash\)x5d\(\backslash\)x74\(\backslash\)x62\(\backslash\)x22"}}
+\DoxyCodeLine{616                     \textcolor{stringliteral}{"\(\backslash\)x4a\(\backslash\)x3f\(\backslash\)x9d\(\backslash\)x9e\(\backslash\)x53\(\backslash\)xe7\(\backslash\)xe0\(\backslash\)x84"}}
+\DoxyCodeLine{617                     \textcolor{stringliteral}{"\(\backslash\)x6d\(\backslash\)xcb\(\backslash\)xb4\(\backslash\)xce"}, 100);}
+\DoxyCodeLine{618    \mbox{\hyperlink{sha3_8c_a31831af26bc9cc4951ec2808dee5d4f3}{keccak\_done}}(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, hash);}
+\DoxyCodeLine{619    \textcolor{keywordflow}{if}(\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(hash, 48,}
+\DoxyCodeLine{620                          \textcolor{stringliteral}{"\(\backslash\)x13\(\backslash\)x51\(\backslash\)x14\(\backslash\)x50\(\backslash\)x8d\(\backslash\)xd6\(\backslash\)x3e\(\backslash\)x27"}}
+\DoxyCodeLine{621                          \textcolor{stringliteral}{"\(\backslash\)x9e\(\backslash\)x70\(\backslash\)x9c\(\backslash\)x26\(\backslash\)xf7\(\backslash\)x81\(\backslash\)x7c\(\backslash\)x04"}}
+\DoxyCodeLine{622                          \textcolor{stringliteral}{"\(\backslash\)x82\(\backslash\)x76\(\backslash\)x6c\(\backslash\)xde\(\backslash\)x49\(\backslash\)x13\(\backslash\)x2e\(\backslash\)x3e"}}
+\DoxyCodeLine{623                          \textcolor{stringliteral}{"\(\backslash\)xdf\(\backslash\)x2e\(\backslash\)xed\(\backslash\)xd8\(\backslash\)x99\(\backslash\)x6f\(\backslash\)x4e\(\backslash\)x35"}}
+\DoxyCodeLine{624                          \textcolor{stringliteral}{"\(\backslash\)x96\(\backslash\)xd1\(\backslash\)x84\(\backslash\)x10\(\backslash\)x0b\(\backslash\)x38\(\backslash\)x48\(\backslash\)x68"}}
+\DoxyCodeLine{625                          \textcolor{stringliteral}{"\(\backslash\)x24\(\backslash\)x9f\(\backslash\)x1d\(\backslash\)x8b\(\backslash\)x8f\(\backslash\)xda\(\backslash\)xa2\(\backslash\)xc9"}, 48,}
+\DoxyCodeLine{626                          \textcolor{stringliteral}{"KECCAK-384"}, 3) != 0) \{}
+\DoxyCodeLine{627        \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{628    \}}
+\DoxyCodeLine{629 }
+\DoxyCodeLine{630    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{631 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{632 \}}
+
+\end{DoxyCode}
+
+
+References c, compare\+\_\+testvector(), C\+R\+Y\+P\+T\+\_\+\+F\+A\+I\+L\+\_\+\+T\+E\+S\+T\+V\+E\+C\+T\+OR, C\+R\+Y\+P\+T\+\_\+\+N\+OP, C\+R\+Y\+P\+T\+\_\+\+OK, keccak\+\_\+done(), and M\+A\+X\+B\+L\+O\+C\+K\+S\+I\+ZE.
+
+Here is the call graph for this function\+:
+% FIG 3
+\mbox{\Hypertarget{sha3__test_8c_a47fd72744c16de6a8c777d52f63f0879}\label{sha3__test_8c_a47fd72744c16de6a8c777d52f63f0879}} 
+\index{sha3\_test.c@{sha3\_test.c}!keccak\_512\_test@{keccak\_512\_test}}
+\index{keccak\_512\_test@{keccak\_512\_test}!sha3\_test.c@{sha3\_test.c}}
+\subsubsection{\texorpdfstring{keccak\_512\_test()}{keccak\_512\_test()}}
+{\footnotesize\ttfamily int keccak\+\_\+512\+\_\+test (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 634 of file sha3\+\_\+test.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{635 \{}
+\DoxyCodeLine{636 \textcolor{preprocessor}{\#ifndef LTC\_TEST}}
+\DoxyCodeLine{637    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cac43a7799c7fd5f515172da6cfc0f9cf5}{CRYPT\_NOP}};}
+\DoxyCodeLine{638 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{639    \mbox{\hyperlink{unionHash__state}{hash\_state}} \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}};}
+\DoxyCodeLine{640    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} hash[\mbox{\hyperlink{tomcrypt_8h_ab59933beebb2b857c992b93cf53f0d10}{MAXBLOCKSIZE}}];}
+\DoxyCodeLine{641 }
+\DoxyCodeLine{642    keccak\_512\_init(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}});}
+\DoxyCodeLine{643    keccak\_process(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}*) \textcolor{stringliteral}{"\(\backslash\)xcc"}, 1);}
+\DoxyCodeLine{644    \mbox{\hyperlink{sha3_8c_a31831af26bc9cc4951ec2808dee5d4f3}{keccak\_done}}(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, hash);}
+\DoxyCodeLine{645    \textcolor{keywordflow}{if}(\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(hash, 64,}
+\DoxyCodeLine{646                          \textcolor{stringliteral}{"\(\backslash\)x86\(\backslash\)x30\(\backslash\)xc1\(\backslash\)x3c\(\backslash\)xbd\(\backslash\)x06\(\backslash\)x6e\(\backslash\)xa7"}}
+\DoxyCodeLine{647                          \textcolor{stringliteral}{"\(\backslash\)x4b\(\backslash\)xbe\(\backslash\)x7f\(\backslash\)xe4\(\backslash\)x68\(\backslash\)xfe\(\backslash\)xc1\(\backslash\)xde"}}
+\DoxyCodeLine{648                          \textcolor{stringliteral}{"\(\backslash\)xe1\(\backslash\)x0e\(\backslash\)xdc\(\backslash\)x12\(\backslash\)x54\(\backslash\)xfb\(\backslash\)x4c\(\backslash\)x1b"}}
+\DoxyCodeLine{649                          \textcolor{stringliteral}{"\(\backslash\)x7c\(\backslash\)x5f\(\backslash\)xd6\(\backslash\)x9b\(\backslash\)x64\(\backslash\)x6e\(\backslash\)x44\(\backslash\)x16"}}
+\DoxyCodeLine{650                          \textcolor{stringliteral}{"\(\backslash\)x0b\(\backslash\)x8c\(\backslash\)xe0\(\backslash\)x1d\(\backslash\)x05\(\backslash\)xa0\(\backslash\)x90\(\backslash\)x8c"}}
+\DoxyCodeLine{651                          \textcolor{stringliteral}{"\(\backslash\)xa7\(\backslash\)x90\(\backslash\)xdf\(\backslash\)xb0\(\backslash\)x80\(\backslash\)xf4\(\backslash\)xb5\(\backslash\)x13"}}
+\DoxyCodeLine{652                          \textcolor{stringliteral}{"\(\backslash\)xbc\(\backslash\)x3b\(\backslash\)x62\(\backslash\)x25\(\backslash\)xec\(\backslash\)xe7\(\backslash\)xa8\(\backslash\)x10"}}
+\DoxyCodeLine{653                          \textcolor{stringliteral}{"\(\backslash\)x37\(\backslash\)x14\(\backslash\)x41\(\backslash\)xa5\(\backslash\)xac\(\backslash\)x66\(\backslash\)x6e\(\backslash\)xb9"}, 64,}
+\DoxyCodeLine{654                          \textcolor{stringliteral}{"KECCAK-512"}, 0) != 0) \{}
+\DoxyCodeLine{655        \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{656    \}}
+\DoxyCodeLine{657 }
+\DoxyCodeLine{658    keccak\_512\_init(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}});}
+\DoxyCodeLine{659    keccak\_process(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}*)\textcolor{stringliteral}{"\(\backslash\)x41\(\backslash\)xfb"}, 2);}
+\DoxyCodeLine{660    \mbox{\hyperlink{sha3_8c_a31831af26bc9cc4951ec2808dee5d4f3}{keccak\_done}}(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, hash);}
+\DoxyCodeLine{661    \textcolor{keywordflow}{if}(\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(hash, 64,}
+\DoxyCodeLine{662                          \textcolor{stringliteral}{"\(\backslash\)x55\(\backslash\)x1d\(\backslash\)xa6\(\backslash\)x23\(\backslash\)x6f\(\backslash\)x8b\(\backslash\)x96\(\backslash\)xfc"}}
+\DoxyCodeLine{663                          \textcolor{stringliteral}{"\(\backslash\)xe9\(\backslash\)xf9\(\backslash\)x7f\(\backslash\)x11\(\backslash\)x90\(\backslash\)xe9\(\backslash\)x01\(\backslash\)x32"}}
+\DoxyCodeLine{664                          \textcolor{stringliteral}{"\(\backslash\)x4f\(\backslash\)x0b\(\backslash\)x45\(\backslash\)xe0\(\backslash\)x6d\(\backslash\)xbb\(\backslash\)xb5\(\backslash\)xcd"}}
+\DoxyCodeLine{665                          \textcolor{stringliteral}{"\(\backslash\)xb8\(\backslash\)x35\(\backslash\)x5d\(\backslash\)x6e\(\backslash\)xd1\(\backslash\)xdc\(\backslash\)x34\(\backslash\)xb3"}}
+\DoxyCodeLine{666                          \textcolor{stringliteral}{"\(\backslash\)xf0\(\backslash\)xea\(\backslash\)xe7\(\backslash\)xdc\(\backslash\)xb6\(\backslash\)x86\(\backslash\)x22\(\backslash\)xff"}}
+\DoxyCodeLine{667                          \textcolor{stringliteral}{"\(\backslash\)x23\(\backslash\)x2f\(\backslash\)xa3\(\backslash\)xce\(\backslash\)xce\(\backslash\)x0d\(\backslash\)x46\(\backslash\)x16"}}
+\DoxyCodeLine{668                          \textcolor{stringliteral}{"\(\backslash\)xcd\(\backslash\)xeb\(\backslash\)x39\(\backslash\)x31\(\backslash\)xf9\(\backslash\)x38\(\backslash\)x03\(\backslash\)x66"}}
+\DoxyCodeLine{669                          \textcolor{stringliteral}{"\(\backslash\)x2a\(\backslash\)x28\(\backslash\)xdf\(\backslash\)x1c\(\backslash\)xd5\(\backslash\)x35\(\backslash\)xb7\(\backslash\)x31"}, 64,}
+\DoxyCodeLine{670                          \textcolor{stringliteral}{"KECCAK-512"}, 1) != 0) \{}
+\DoxyCodeLine{671        \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{672    \}}
+\DoxyCodeLine{673 }
+\DoxyCodeLine{674    keccak\_512\_init(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}});}
+\DoxyCodeLine{675    keccak\_process(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}*)}
+\DoxyCodeLine{676                     \textcolor{stringliteral}{"\(\backslash\)x52\(\backslash\)xa6\(\backslash\)x08\(\backslash\)xab\(\backslash\)x21\(\backslash\)xcc\(\backslash\)xdd\(\backslash\)x8a"}}
+\DoxyCodeLine{677                     \textcolor{stringliteral}{"\(\backslash\)x44\(\backslash\)x57\(\backslash\)xa5\(\backslash\)x7e\(\backslash\)xde\(\backslash\)x78\(\backslash\)x21\(\backslash\)x76"}, 16);}
+\DoxyCodeLine{678    \mbox{\hyperlink{sha3_8c_a31831af26bc9cc4951ec2808dee5d4f3}{keccak\_done}}(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, hash);}
+\DoxyCodeLine{679    \textcolor{keywordflow}{if}(\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(hash, 64,}
+\DoxyCodeLine{680                          \textcolor{stringliteral}{"\(\backslash\)x4b\(\backslash\)x39\(\backslash\)xd3\(\backslash\)xda\(\backslash\)x5b\(\backslash\)xcd\(\backslash\)xf4\(\backslash\)xd9"}}
+\DoxyCodeLine{681                          \textcolor{stringliteral}{"\(\backslash\)xb7\(\backslash\)x69\(\backslash\)x01\(\backslash\)x59\(\backslash\)x95\(\backslash\)x64\(\backslash\)x43\(\backslash\)x11"}}
+\DoxyCodeLine{682                          \textcolor{stringliteral}{"\(\backslash\)xc1\(\backslash\)x4c\(\backslash\)x43\(\backslash\)x5b\(\backslash\)xf7\(\backslash\)x2b\(\backslash\)x10\(\backslash\)x09"}}
+\DoxyCodeLine{683                          \textcolor{stringliteral}{"\(\backslash\)xd6\(\backslash\)xdd\(\backslash\)x71\(\backslash\)xb0\(\backslash\)x1a\(\backslash\)x63\(\backslash\)xb9\(\backslash\)x7c"}}
+\DoxyCodeLine{684                          \textcolor{stringliteral}{"\(\backslash\)xfb\(\backslash\)x59\(\backslash\)x64\(\backslash\)x18\(\backslash\)xe8\(\backslash\)xe4\(\backslash\)x23\(\backslash\)x42"}}
+\DoxyCodeLine{685                          \textcolor{stringliteral}{"\(\backslash\)xd1\(\backslash\)x17\(\backslash\)xe0\(\backslash\)x74\(\backslash\)x71\(\backslash\)xa8\(\backslash\)x91\(\backslash\)x43"}}
+\DoxyCodeLine{686                          \textcolor{stringliteral}{"\(\backslash\)x14\(\backslash\)xba\(\backslash\)x7b\(\backslash\)x0e\(\backslash\)x26\(\backslash\)x4d\(\backslash\)xad\(\backslash\)xf0"}}
+\DoxyCodeLine{687                          \textcolor{stringliteral}{"\(\backslash\)xce\(\backslash\)xa3\(\backslash\)x81\(\backslash\)x86\(\backslash\)x8c\(\backslash\)xbd\(\backslash\)x43\(\backslash\)xd1"}, 64,}
+\DoxyCodeLine{688                          \textcolor{stringliteral}{"KECCAK-512"}, 2) != 0) \{}
+\DoxyCodeLine{689        \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{690    \}}
+\DoxyCodeLine{691 }
+\DoxyCodeLine{692    keccak\_512\_init(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}});}
+\DoxyCodeLine{693    keccak\_process(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}*)}
+\DoxyCodeLine{694                     \textcolor{stringliteral}{"\(\backslash\)x43\(\backslash\)x3c\(\backslash\)x53\(\backslash\)x03\(\backslash\)x13\(\backslash\)x16\(\backslash\)x24\(\backslash\)xc0"}}
+\DoxyCodeLine{695                     \textcolor{stringliteral}{"\(\backslash\)x02\(\backslash\)x1d\(\backslash\)x86\(\backslash\)x8a\(\backslash\)x30\(\backslash\)x82\(\backslash\)x54\(\backslash\)x75"}}
+\DoxyCodeLine{696                     \textcolor{stringliteral}{"\(\backslash\)xe8\(\backslash\)xd0\(\backslash\)xbd\(\backslash\)x30\(\backslash\)x52\(\backslash\)xa0\(\backslash\)x22\(\backslash\)x18"}}
+\DoxyCodeLine{697                     \textcolor{stringliteral}{"\(\backslash\)x03\(\backslash\)x98\(\backslash\)xf4\(\backslash\)xca\(\backslash\)x44\(\backslash\)x23\(\backslash\)xb9\(\backslash\)x82"}}
+\DoxyCodeLine{698                     \textcolor{stringliteral}{"\(\backslash\)x14\(\backslash\)xb6\(\backslash\)xbe\(\backslash\)xaa\(\backslash\)xc2\(\backslash\)x1c\(\backslash\)x88\(\backslash\)x07"}}
+\DoxyCodeLine{699                     \textcolor{stringliteral}{"\(\backslash\)xa2\(\backslash\)xc3\(\backslash\)x3f\(\backslash\)x8c\(\backslash\)x93\(\backslash\)xbd\(\backslash\)x42\(\backslash\)xb0"}}
+\DoxyCodeLine{700                     \textcolor{stringliteral}{"\(\backslash\)x92\(\backslash\)xcc\(\backslash\)x1b\(\backslash\)x06\(\backslash\)xce\(\backslash\)xdf\(\backslash\)x32\(\backslash\)x24"}}
+\DoxyCodeLine{701                     \textcolor{stringliteral}{"\(\backslash\)xd5\(\backslash\)xed\(\backslash\)x1e\(\backslash\)xc2\(\backslash\)x97\(\backslash\)x84\(\backslash\)x44\(\backslash\)x4f"}}
+\DoxyCodeLine{702                     \textcolor{stringliteral}{"\(\backslash\)x22\(\backslash\)xe0\(\backslash\)x8a\(\backslash\)x55\(\backslash\)xaa\(\backslash\)x58\(\backslash\)x54\(\backslash\)x2b"}}
+\DoxyCodeLine{703                     \textcolor{stringliteral}{"\(\backslash\)x52\(\backslash\)x4b\(\backslash\)x02\(\backslash\)xcd\(\backslash\)x3d\(\backslash\)x5d\(\backslash\)x5f\(\backslash\)x69"}}
+\DoxyCodeLine{704                     \textcolor{stringliteral}{"\(\backslash\)x07\(\backslash\)xaf\(\backslash\)xe7\(\backslash\)x1c\(\backslash\)x5d\(\backslash\)x74\(\backslash\)x62\(\backslash\)x22"}}
+\DoxyCodeLine{705                     \textcolor{stringliteral}{"\(\backslash\)x4a\(\backslash\)x3f\(\backslash\)x9d\(\backslash\)x9e\(\backslash\)x53\(\backslash\)xe7\(\backslash\)xe0\(\backslash\)x84"}}
+\DoxyCodeLine{706                     \textcolor{stringliteral}{"\(\backslash\)x6d\(\backslash\)xcb\(\backslash\)xb4\(\backslash\)xce"}, 100);}
+\DoxyCodeLine{707    \mbox{\hyperlink{sha3_8c_a31831af26bc9cc4951ec2808dee5d4f3}{keccak\_done}}(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, hash);}
+\DoxyCodeLine{708    \textcolor{keywordflow}{if}(\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(hash, 64,}
+\DoxyCodeLine{709                          \textcolor{stringliteral}{"\(\backslash\)x52\(\backslash\)x7d\(\backslash\)x28\(\backslash\)xe3\(\backslash\)x41\(\backslash\)xe6\(\backslash\)xb1\(\backslash\)x4f"}}
+\DoxyCodeLine{710                          \textcolor{stringliteral}{"\(\backslash\)x46\(\backslash\)x84\(\backslash\)xad\(\backslash\)xb4\(\backslash\)xb8\(\backslash\)x24\(\backslash\)xc4\(\backslash\)x96"}}
+\DoxyCodeLine{711                          \textcolor{stringliteral}{"\(\backslash\)xc6\(\backslash\)x48\(\backslash\)x2e\(\backslash\)x51\(\backslash\)x14\(\backslash\)x95\(\backslash\)x65\(\backslash\)xd3"}}
+\DoxyCodeLine{712                          \textcolor{stringliteral}{"\(\backslash\)xd1\(\backslash\)x72\(\backslash\)x26\(\backslash\)x82\(\backslash\)x88\(\backslash\)x84\(\backslash\)x30\(\backslash\)x6b"}}
+\DoxyCodeLine{713                          \textcolor{stringliteral}{"\(\backslash\)x51\(\backslash\)xd6\(\backslash\)x14\(\backslash\)x8a\(\backslash\)x72\(\backslash\)x62\(\backslash\)x2c\(\backslash\)x2b"}}
+\DoxyCodeLine{714                          \textcolor{stringliteral}{"\(\backslash\)x75\(\backslash\)xf5\(\backslash\)xd3\(\backslash\)x51\(\backslash\)x0b\(\backslash\)x79\(\backslash\)x9d\(\backslash\)x8b"}}
+\DoxyCodeLine{715                          \textcolor{stringliteral}{"\(\backslash\)xdc\(\backslash\)x03\(\backslash\)xea\(\backslash\)xed\(\backslash\)xe4\(\backslash\)x53\(\backslash\)x67\(\backslash\)x6a"}}
+\DoxyCodeLine{716                          \textcolor{stringliteral}{"\(\backslash\)x6e\(\backslash\)xc8\(\backslash\)xfe\(\backslash\)x03\(\backslash\)xa1\(\backslash\)xad\(\backslash\)x0e\(\backslash\)xab"}, 64,}
+\DoxyCodeLine{717                          \textcolor{stringliteral}{"KECCAK-512"}, 3) != 0) \{}
+\DoxyCodeLine{718        \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{719    \}}
+\DoxyCodeLine{720 }
+\DoxyCodeLine{721    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{722 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{723 \}}
+
+\end{DoxyCode}
+
+
+References c, compare\+\_\+testvector(), C\+R\+Y\+P\+T\+\_\+\+F\+A\+I\+L\+\_\+\+T\+E\+S\+T\+V\+E\+C\+T\+OR, C\+R\+Y\+P\+T\+\_\+\+N\+OP, C\+R\+Y\+P\+T\+\_\+\+OK, keccak\+\_\+done(), and M\+A\+X\+B\+L\+O\+C\+K\+S\+I\+ZE.
+
+Here is the call graph for this function\+:
+% FIG 4
+\mbox{\Hypertarget{sha3__test_8c_a53d3cf451582bb9c57a032d967cbdecb}\label{sha3__test_8c_a53d3cf451582bb9c57a032d967cbdecb}} 
+\index{sha3\_test.c@{sha3\_test.c}!sha3\_224\_test@{sha3\_224\_test}}
+\index{sha3\_224\_test@{sha3\_224\_test}!sha3\_test.c@{sha3\_test.c}}
+\subsubsection{\texorpdfstring{sha3\_224\_test()}{sha3\_224\_test()}}
+{\footnotesize\ttfamily int sha3\+\_\+224\+\_\+test (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 16 of file sha3\+\_\+test.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{17 \{}
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#ifndef LTC\_TEST}}
+\DoxyCodeLine{19    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cac43a7799c7fd5f515172da6cfc0f9cf5}{CRYPT\_NOP}};}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{21    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} buf[200], hash[224 / 8];}
+\DoxyCodeLine{22    \textcolor{keywordtype}{int} i;}
+\DoxyCodeLine{23    \mbox{\hyperlink{unionHash__state}{hash\_state}} \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}};}
+\DoxyCodeLine{24    \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} c1 = 0xa3;}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26    \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} sha3\_224\_empty[224 / 8] = \{}
+\DoxyCodeLine{27       0x6b, 0x4e, 0x03, 0x42, 0x36, 0x67, 0xdb, 0xb7,}
+\DoxyCodeLine{28       0x3b, 0x6e, 0x15, 0x45, 0x4f, 0x0e, 0xb1, 0xab,}
+\DoxyCodeLine{29       0xd4, 0x59, 0x7f, 0x9a, 0x1b, 0x07, 0x8e, 0x3f,}
+\DoxyCodeLine{30       0x5b, 0x5a, 0x6b, 0xc7}
+\DoxyCodeLine{31    \};}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33    \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} sha3\_224\_0xa3\_200\_times[224 / 8] = \{}
+\DoxyCodeLine{34       0x93, 0x76, 0x81, 0x6a, 0xba, 0x50, 0x3f, 0x72,}
+\DoxyCodeLine{35       0xf9, 0x6c, 0xe7, 0xeb, 0x65, 0xac, 0x09, 0x5d,}
+\DoxyCodeLine{36       0xee, 0xe3, 0xbe, 0x4b, 0xf9, 0xbb, 0xc2, 0xa1,}
+\DoxyCodeLine{37       0xcb, 0x7e, 0x11, 0xe0}
+\DoxyCodeLine{38    \};}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{40    \mbox{\hyperlink{tomcrypt__cfg_8h_aa3c34a6f6c61de7da9258b5a30e32c2f}{XMEMSET}}(buf, c1, \textcolor{keyword}{sizeof}(buf));}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{42    \textcolor{comment}{/* SHA3-224 on an empty buffer */}}
+\DoxyCodeLine{43    \mbox{\hyperlink{sha3_8c_ab24df1989694bccf62793acb23184bf0}{sha3\_224\_init}}(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}});}
+\DoxyCodeLine{44    \mbox{\hyperlink{sha3_8c_a366200437edbbf12e1dda073566619e9}{sha3\_done}}(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, hash);}
+\DoxyCodeLine{45    \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(hash, \textcolor{keyword}{sizeof}(hash), sha3\_224\_empty, \textcolor{keyword}{sizeof}(sha3\_224\_empty), \textcolor{stringliteral}{"SHA3-224"}, 0)) \{}
+\DoxyCodeLine{46       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{47    \}}
+\DoxyCodeLine{48 }
+\DoxyCodeLine{49    \textcolor{comment}{/* SHA3-224 in two steps. [FIPS 202] */}}
+\DoxyCodeLine{50    \mbox{\hyperlink{sha3_8c_ab24df1989694bccf62793acb23184bf0}{sha3\_224\_init}}(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}});}
+\DoxyCodeLine{51    \mbox{\hyperlink{sha3_8c_a219bb33c73fc17f796f3673ee079d1e2}{sha3\_process}}(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, buf, \textcolor{keyword}{sizeof}(buf) / 2);}
+\DoxyCodeLine{52    \mbox{\hyperlink{sha3_8c_a219bb33c73fc17f796f3673ee079d1e2}{sha3\_process}}(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, buf + \textcolor{keyword}{sizeof}(buf) / 2, \textcolor{keyword}{sizeof}(buf) / 2);}
+\DoxyCodeLine{53    \mbox{\hyperlink{sha3_8c_a366200437edbbf12e1dda073566619e9}{sha3\_done}}(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, hash);}
+\DoxyCodeLine{54    \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(hash, \textcolor{keyword}{sizeof}(hash), sha3\_224\_0xa3\_200\_times, \textcolor{keyword}{sizeof}(sha3\_224\_0xa3\_200\_times), \textcolor{stringliteral}{"SHA3-224"}, 1)) \{}
+\DoxyCodeLine{55       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{56    \}}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{58    \textcolor{comment}{/* SHA3-224 byte-by-byte: 200 steps. [FIPS 202] */}}
+\DoxyCodeLine{59    i = 200;}
+\DoxyCodeLine{60    \mbox{\hyperlink{sha3_8c_ab24df1989694bccf62793acb23184bf0}{sha3\_224\_init}}(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}});}
+\DoxyCodeLine{61    \textcolor{keywordflow}{while} (i--) \{}
+\DoxyCodeLine{62        \mbox{\hyperlink{sha3_8c_a219bb33c73fc17f796f3673ee079d1e2}{sha3\_process}}(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, \&c1, 1);}
+\DoxyCodeLine{63    \}}
+\DoxyCodeLine{64    \mbox{\hyperlink{sha3_8c_a366200437edbbf12e1dda073566619e9}{sha3\_done}}(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, hash);}
+\DoxyCodeLine{65    \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(hash, \textcolor{keyword}{sizeof}(hash), sha3\_224\_0xa3\_200\_times, \textcolor{keyword}{sizeof}(sha3\_224\_0xa3\_200\_times), \textcolor{stringliteral}{"SHA3-224"}, 2)) \{}
+\DoxyCodeLine{66       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{67    \}}
+\DoxyCodeLine{68 }
+\DoxyCodeLine{69    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{70 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{71 \}}
+
+\end{DoxyCode}
+
+
+References c, compare\+\_\+testvector(), C\+R\+Y\+P\+T\+\_\+\+F\+A\+I\+L\+\_\+\+T\+E\+S\+T\+V\+E\+C\+T\+OR, C\+R\+Y\+P\+T\+\_\+\+N\+OP, C\+R\+Y\+P\+T\+\_\+\+OK, sha3\+\_\+224\+\_\+init(), sha3\+\_\+done(), sha3\+\_\+process(), and X\+M\+E\+M\+S\+E\+T().
+
+Here is the call graph for this function\+:
+% FIG 5
+\mbox{\Hypertarget{sha3__test_8c_aafa6f2186a83cf477969e60264de4d7c}\label{sha3__test_8c_aafa6f2186a83cf477969e60264de4d7c}} 
+\index{sha3\_test.c@{sha3\_test.c}!sha3\_256\_test@{sha3\_256\_test}}
+\index{sha3\_256\_test@{sha3\_256\_test}!sha3\_test.c@{sha3\_test.c}}
+\subsubsection{\texorpdfstring{sha3\_256\_test()}{sha3\_256\_test()}}
+{\footnotesize\ttfamily int sha3\+\_\+256\+\_\+test (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 73 of file sha3\+\_\+test.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{74 \{}
+\DoxyCodeLine{75 \textcolor{preprocessor}{\#ifndef LTC\_TEST}}
+\DoxyCodeLine{76    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cac43a7799c7fd5f515172da6cfc0f9cf5}{CRYPT\_NOP}};}
+\DoxyCodeLine{77 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{78    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} buf[200], hash[256 / 8];}
+\DoxyCodeLine{79    \textcolor{keywordtype}{int} i;}
+\DoxyCodeLine{80    \mbox{\hyperlink{unionHash__state}{hash\_state}} \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}};}
+\DoxyCodeLine{81    \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} c1 = 0xa3;}
+\DoxyCodeLine{82 }
+\DoxyCodeLine{83    \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} sha3\_256\_empty[256 / 8] = \{}
+\DoxyCodeLine{84       0xa7, 0xff, 0xc6, 0xf8, 0xbf, 0x1e, 0xd7, 0x66,}
+\DoxyCodeLine{85       0x51, 0xc1, 0x47, 0x56, 0xa0, 0x61, 0xd6, 0x62,}
+\DoxyCodeLine{86       0xf5, 0x80, 0xff, 0x4d, 0xe4, 0x3b, 0x49, 0xfa,}
+\DoxyCodeLine{87       0x82, 0xd8, 0x0a, 0x4b, 0x80, 0xf8, 0x43, 0x4a}
+\DoxyCodeLine{88    \};}
+\DoxyCodeLine{89    \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} sha3\_256\_0xa3\_200\_times[256 / 8] = \{}
+\DoxyCodeLine{90       0x79, 0xf3, 0x8a, 0xde, 0xc5, 0xc2, 0x03, 0x07,}
+\DoxyCodeLine{91       0xa9, 0x8e, 0xf7, 0x6e, 0x83, 0x24, 0xaf, 0xbf,}
+\DoxyCodeLine{92       0xd4, 0x6c, 0xfd, 0x81, 0xb2, 0x2e, 0x39, 0x73,}
+\DoxyCodeLine{93       0xc6, 0x5f, 0xa1, 0xbd, 0x9d, 0xe3, 0x17, 0x87}
+\DoxyCodeLine{94    \};}
+\DoxyCodeLine{95 }
+\DoxyCodeLine{96    \mbox{\hyperlink{tomcrypt__cfg_8h_aa3c34a6f6c61de7da9258b5a30e32c2f}{XMEMSET}}(buf, c1, \textcolor{keyword}{sizeof}(buf));}
+\DoxyCodeLine{97 }
+\DoxyCodeLine{98    \textcolor{comment}{/* SHA3-256 on an empty buffer */}}
+\DoxyCodeLine{99    \mbox{\hyperlink{sha3_8c_ae9cca742da51fb0723121936067e2a72}{sha3\_256\_init}}(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}});}
+\DoxyCodeLine{100    \mbox{\hyperlink{sha3_8c_a366200437edbbf12e1dda073566619e9}{sha3\_done}}(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, hash);}
+\DoxyCodeLine{101    \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(hash, \textcolor{keyword}{sizeof}(hash), sha3\_256\_empty, \textcolor{keyword}{sizeof}(sha3\_256\_empty), \textcolor{stringliteral}{"SHA3-256"}, 0)) \{}
+\DoxyCodeLine{102       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{103    \}}
+\DoxyCodeLine{104 }
+\DoxyCodeLine{105    \textcolor{comment}{/* SHA3-256 as a single buffer. [FIPS 202] */}}
+\DoxyCodeLine{106    \mbox{\hyperlink{sha3_8c_ae9cca742da51fb0723121936067e2a72}{sha3\_256\_init}}(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}});}
+\DoxyCodeLine{107    \mbox{\hyperlink{sha3_8c_a219bb33c73fc17f796f3673ee079d1e2}{sha3\_process}}(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, buf, \textcolor{keyword}{sizeof}(buf));}
+\DoxyCodeLine{108    \mbox{\hyperlink{sha3_8c_a366200437edbbf12e1dda073566619e9}{sha3\_done}}(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, hash);}
+\DoxyCodeLine{109    \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(hash, \textcolor{keyword}{sizeof}(hash), sha3\_256\_0xa3\_200\_times, \textcolor{keyword}{sizeof}(sha3\_256\_0xa3\_200\_times), \textcolor{stringliteral}{"SHA3-256"}, 1)) \{}
+\DoxyCodeLine{110       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{111    \}}
+\DoxyCodeLine{112 }
+\DoxyCodeLine{113    \textcolor{comment}{/* SHA3-256 in two steps. [FIPS 202] */}}
+\DoxyCodeLine{114    \mbox{\hyperlink{sha3_8c_ae9cca742da51fb0723121936067e2a72}{sha3\_256\_init}}(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}});}
+\DoxyCodeLine{115    \mbox{\hyperlink{sha3_8c_a219bb33c73fc17f796f3673ee079d1e2}{sha3\_process}}(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, buf, \textcolor{keyword}{sizeof}(buf) / 2);}
+\DoxyCodeLine{116    \mbox{\hyperlink{sha3_8c_a219bb33c73fc17f796f3673ee079d1e2}{sha3\_process}}(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, buf + \textcolor{keyword}{sizeof}(buf) / 2, \textcolor{keyword}{sizeof}(buf) / 2);}
+\DoxyCodeLine{117    \mbox{\hyperlink{sha3_8c_a366200437edbbf12e1dda073566619e9}{sha3\_done}}(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, hash);}
+\DoxyCodeLine{118    \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(hash, \textcolor{keyword}{sizeof}(hash), sha3\_256\_0xa3\_200\_times, \textcolor{keyword}{sizeof}(sha3\_256\_0xa3\_200\_times), \textcolor{stringliteral}{"SHA3-256"}, 2)) \{}
+\DoxyCodeLine{119       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{120    \}}
+\DoxyCodeLine{121 }
+\DoxyCodeLine{122    \textcolor{comment}{/* SHA3-256 byte-by-byte: 200 steps. [FIPS 202] */}}
+\DoxyCodeLine{123    i = 200;}
+\DoxyCodeLine{124    \mbox{\hyperlink{sha3_8c_ae9cca742da51fb0723121936067e2a72}{sha3\_256\_init}}(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}});}
+\DoxyCodeLine{125    \textcolor{keywordflow}{while} (i--) \{}
+\DoxyCodeLine{126        \mbox{\hyperlink{sha3_8c_a219bb33c73fc17f796f3673ee079d1e2}{sha3\_process}}(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, \&c1, 1);}
+\DoxyCodeLine{127    \}}
+\DoxyCodeLine{128    \mbox{\hyperlink{sha3_8c_a366200437edbbf12e1dda073566619e9}{sha3\_done}}(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, hash);}
+\DoxyCodeLine{129    \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(hash, \textcolor{keyword}{sizeof}(hash), sha3\_256\_0xa3\_200\_times, \textcolor{keyword}{sizeof}(sha3\_256\_0xa3\_200\_times), \textcolor{stringliteral}{"SHA3-256"}, 3)) \{}
+\DoxyCodeLine{130       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{131    \}}
+\DoxyCodeLine{132 }
+\DoxyCodeLine{133    \textcolor{comment}{/* SHA3-256 byte-by-byte: 135 bytes. Input from [Keccak]. Output}}
+\DoxyCodeLine{134 \textcolor{comment}{    * matched with sha3sum. */}}
+\DoxyCodeLine{135    \mbox{\hyperlink{sha3_8c_ae9cca742da51fb0723121936067e2a72}{sha3\_256\_init}}(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}});}
+\DoxyCodeLine{136    \mbox{\hyperlink{sha3_8c_a219bb33c73fc17f796f3673ee079d1e2}{sha3\_process}}(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}*)}
+\DoxyCodeLine{137            \textcolor{stringliteral}{"\(\backslash\)xb7\(\backslash\)x71\(\backslash\)xd5\(\backslash\)xce\(\backslash\)xf5\(\backslash\)xd1\(\backslash\)xa4\(\backslash\)x1a"}}
+\DoxyCodeLine{138            \textcolor{stringliteral}{"\(\backslash\)x93\(\backslash\)xd1\(\backslash\)x56\(\backslash\)x43\(\backslash\)xd7\(\backslash\)x18\(\backslash\)x1d\(\backslash\)x2a"}}
+\DoxyCodeLine{139            \textcolor{stringliteral}{"\(\backslash\)x2e\(\backslash\)xf0\(\backslash\)xa8\(\backslash\)xe8\(\backslash\)x4d\(\backslash\)x91\(\backslash\)x81\(\backslash\)x2f"}}
+\DoxyCodeLine{140            \textcolor{stringliteral}{"\(\backslash\)x20\(\backslash\)xed\(\backslash\)x21\(\backslash\)xf1\(\backslash\)x47\(\backslash\)xbe\(\backslash\)xf7\(\backslash\)x32"}}
+\DoxyCodeLine{141            \textcolor{stringliteral}{"\(\backslash\)xbf\(\backslash\)x3a\(\backslash\)x60\(\backslash\)xef\(\backslash\)x40\(\backslash\)x67\(\backslash\)xc3\(\backslash\)x73"}}
+\DoxyCodeLine{142            \textcolor{stringliteral}{"\(\backslash\)x4b\(\backslash\)x85\(\backslash\)xbc\(\backslash\)x8c\(\backslash\)xd4\(\backslash\)x71\(\backslash\)x78\(\backslash\)x0f"}}
+\DoxyCodeLine{143            \textcolor{stringliteral}{"\(\backslash\)x10\(\backslash\)xdc\(\backslash\)x9e\(\backslash\)x82\(\backslash\)x91\(\backslash\)xb5\(\backslash\)x83\(\backslash\)x39"}}
+\DoxyCodeLine{144            \textcolor{stringliteral}{"\(\backslash\)xa6\(\backslash\)x77\(\backslash\)xb9\(\backslash\)x60\(\backslash\)x21\(\backslash\)x8f\(\backslash\)x71\(\backslash\)xe7"}}
+\DoxyCodeLine{145            \textcolor{stringliteral}{"\(\backslash\)x93\(\backslash\)xf2\(\backslash\)x79\(\backslash\)x7a\(\backslash\)xea\(\backslash\)x34\(\backslash\)x94\(\backslash\)x06"}}
+\DoxyCodeLine{146            \textcolor{stringliteral}{"\(\backslash\)x51\(\backslash\)x28\(\backslash\)x29\(\backslash\)x06\(\backslash\)x5d\(\backslash\)x37\(\backslash\)xbb\(\backslash\)x55"}}
+\DoxyCodeLine{147            \textcolor{stringliteral}{"\(\backslash\)xea\(\backslash\)x79\(\backslash\)x6f\(\backslash\)xa4\(\backslash\)xf5\(\backslash\)x6f\(\backslash\)xd8\(\backslash\)x89"}}
+\DoxyCodeLine{148            \textcolor{stringliteral}{"\(\backslash\)x6b\(\backslash\)x49\(\backslash\)xb2\(\backslash\)xcd\(\backslash\)x19\(\backslash\)xb4\(\backslash\)x32\(\backslash\)x15"}}
+\DoxyCodeLine{149            \textcolor{stringliteral}{"\(\backslash\)xad\(\backslash\)x96\(\backslash\)x7c\(\backslash\)x71\(\backslash\)x2b\(\backslash\)x24\(\backslash\)xe5\(\backslash\)x03"}}
+\DoxyCodeLine{150            \textcolor{stringliteral}{"\(\backslash\)x2d\(\backslash\)x06\(\backslash\)x52\(\backslash\)x32\(\backslash\)xe0\(\backslash\)x2c\(\backslash\)x12\(\backslash\)x74"}}
+\DoxyCodeLine{151            \textcolor{stringliteral}{"\(\backslash\)x09\(\backslash\)xd2\(\backslash\)xed\(\backslash\)x41\(\backslash\)x46\(\backslash\)xb9\(\backslash\)xd7\(\backslash\)x5d"}}
+\DoxyCodeLine{152            \textcolor{stringliteral}{"\(\backslash\)x76\(\backslash\)x3d\(\backslash\)x52\(\backslash\)xdb\(\backslash\)x98\(\backslash\)xd9\(\backslash\)x49\(\backslash\)xd3"}}
+\DoxyCodeLine{153            \textcolor{stringliteral}{"\(\backslash\)xb0\(\backslash\)xfe\(\backslash\)xd6\(\backslash\)xa8\(\backslash\)x05\(\backslash\)x2f\(\backslash\)xbb"}, 1080 / 8);}
+\DoxyCodeLine{154    \mbox{\hyperlink{sha3_8c_a366200437edbbf12e1dda073566619e9}{sha3\_done}}(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, hash);}
+\DoxyCodeLine{155    \textcolor{keywordflow}{if}(\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(hash, \textcolor{keyword}{sizeof}(hash),}
+\DoxyCodeLine{156            \textcolor{stringliteral}{"\(\backslash\)xa1\(\backslash\)x9e\(\backslash\)xee\(\backslash\)x92\(\backslash\)xbb\(\backslash\)x20\(\backslash\)x97\(\backslash\)xb6"}}
+\DoxyCodeLine{157            \textcolor{stringliteral}{"\(\backslash\)x4e\(\backslash\)x82\(\backslash\)x3d\(\backslash\)x59\(\backslash\)x77\(\backslash\)x98\(\backslash\)xaa\(\backslash\)x18"}}
+\DoxyCodeLine{158            \textcolor{stringliteral}{"\(\backslash\)xbe\(\backslash\)x9b\(\backslash\)x7c\(\backslash\)x73\(\backslash\)x6b\(\backslash\)x80\(\backslash\)x59\(\backslash\)xab"}}
+\DoxyCodeLine{159            \textcolor{stringliteral}{"\(\backslash\)xfd\(\backslash\)x67\(\backslash\)x79\(\backslash\)xac\(\backslash\)x35\(\backslash\)xac\(\backslash\)x81\(\backslash\)xb5"}, 256 / 8, \textcolor{stringliteral}{"SHA3-256"}, 4)) \{}
+\DoxyCodeLine{160       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{161    \}}
+\DoxyCodeLine{162 }
+\DoxyCodeLine{163    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{164 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{165 \}}
+
+\end{DoxyCode}
+
+
+References c, compare\+\_\+testvector(), C\+R\+Y\+P\+T\+\_\+\+F\+A\+I\+L\+\_\+\+T\+E\+S\+T\+V\+E\+C\+T\+OR, C\+R\+Y\+P\+T\+\_\+\+N\+OP, C\+R\+Y\+P\+T\+\_\+\+OK, sha3\+\_\+256\+\_\+init(), sha3\+\_\+done(), sha3\+\_\+process(), and X\+M\+E\+M\+S\+E\+T().
+
+Here is the call graph for this function\+:
+% FIG 6
+\mbox{\Hypertarget{sha3__test_8c_a2b995816e706a145a50e2714a48bc37d}\label{sha3__test_8c_a2b995816e706a145a50e2714a48bc37d}} 
+\index{sha3\_test.c@{sha3\_test.c}!sha3\_384\_test@{sha3\_384\_test}}
+\index{sha3\_384\_test@{sha3\_384\_test}!sha3\_test.c@{sha3\_test.c}}
+\subsubsection{\texorpdfstring{sha3\_384\_test()}{sha3\_384\_test()}}
+{\footnotesize\ttfamily int sha3\+\_\+384\+\_\+test (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 167 of file sha3\+\_\+test.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{168 \{}
+\DoxyCodeLine{169 \textcolor{preprocessor}{\#ifndef LTC\_TEST}}
+\DoxyCodeLine{170    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cac43a7799c7fd5f515172da6cfc0f9cf5}{CRYPT\_NOP}};}
+\DoxyCodeLine{171 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{172    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} buf[200], hash[384 / 8];}
+\DoxyCodeLine{173    \textcolor{keywordtype}{int} i;}
+\DoxyCodeLine{174    \mbox{\hyperlink{unionHash__state}{hash\_state}} \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}};}
+\DoxyCodeLine{175    \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} c1 = 0xa3;}
+\DoxyCodeLine{176 }
+\DoxyCodeLine{177    \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} sha3\_384\_0xa3\_200\_times[384 / 8] = \{}
+\DoxyCodeLine{178       0x18, 0x81, 0xde, 0x2c, 0xa7, 0xe4, 0x1e, 0xf9,}
+\DoxyCodeLine{179       0x5d, 0xc4, 0x73, 0x2b, 0x8f, 0x5f, 0x00, 0x2b,}
+\DoxyCodeLine{180       0x18, 0x9c, 0xc1, 0xe4, 0x2b, 0x74, 0x16, 0x8e,}
+\DoxyCodeLine{181       0xd1, 0x73, 0x26, 0x49, 0xce, 0x1d, 0xbc, 0xdd,}
+\DoxyCodeLine{182       0x76, 0x19, 0x7a, 0x31, 0xfd, 0x55, 0xee, 0x98,}
+\DoxyCodeLine{183       0x9f, 0x2d, 0x70, 0x50, 0xdd, 0x47, 0x3e, 0x8f}
+\DoxyCodeLine{184    \};}
+\DoxyCodeLine{185 }
+\DoxyCodeLine{186    \mbox{\hyperlink{tomcrypt__cfg_8h_aa3c34a6f6c61de7da9258b5a30e32c2f}{XMEMSET}}(buf, c1, \textcolor{keyword}{sizeof}(buf));}
+\DoxyCodeLine{187 }
+\DoxyCodeLine{188    \textcolor{comment}{/* SHA3-384 as a single buffer. [FIPS 202] */}}
+\DoxyCodeLine{189    \mbox{\hyperlink{sha3_8c_ae32e36c847895e0350bc4ccccf6e0e8a}{sha3\_384\_init}}(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}});}
+\DoxyCodeLine{190    \mbox{\hyperlink{sha3_8c_a219bb33c73fc17f796f3673ee079d1e2}{sha3\_process}}(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, buf, \textcolor{keyword}{sizeof}(buf));}
+\DoxyCodeLine{191    \mbox{\hyperlink{sha3_8c_a366200437edbbf12e1dda073566619e9}{sha3\_done}}(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, hash);}
+\DoxyCodeLine{192    \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(hash, \textcolor{keyword}{sizeof}(hash), sha3\_384\_0xa3\_200\_times, \textcolor{keyword}{sizeof}(sha3\_384\_0xa3\_200\_times), \textcolor{stringliteral}{"SHA3-384"}, 0)) \{}
+\DoxyCodeLine{193       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{194    \}}
+\DoxyCodeLine{195 }
+\DoxyCodeLine{196    \textcolor{comment}{/* SHA3-384 in two steps. [FIPS 202] */}}
+\DoxyCodeLine{197    \mbox{\hyperlink{sha3_8c_ae32e36c847895e0350bc4ccccf6e0e8a}{sha3\_384\_init}}(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}});}
+\DoxyCodeLine{198    \mbox{\hyperlink{sha3_8c_a219bb33c73fc17f796f3673ee079d1e2}{sha3\_process}}(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, buf, \textcolor{keyword}{sizeof}(buf) / 2);}
+\DoxyCodeLine{199    \mbox{\hyperlink{sha3_8c_a219bb33c73fc17f796f3673ee079d1e2}{sha3\_process}}(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, buf + \textcolor{keyword}{sizeof}(buf) / 2, \textcolor{keyword}{sizeof}(buf) / 2);}
+\DoxyCodeLine{200    \mbox{\hyperlink{sha3_8c_a366200437edbbf12e1dda073566619e9}{sha3\_done}}(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, hash);}
+\DoxyCodeLine{201    \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(hash, \textcolor{keyword}{sizeof}(hash), sha3\_384\_0xa3\_200\_times, \textcolor{keyword}{sizeof}(sha3\_384\_0xa3\_200\_times), \textcolor{stringliteral}{"SHA3-384"}, 1)) \{}
+\DoxyCodeLine{202       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{203    \}}
+\DoxyCodeLine{204 }
+\DoxyCodeLine{205    \textcolor{comment}{/* SHA3-384 byte-by-byte: 200 steps. [FIPS 202] */}}
+\DoxyCodeLine{206    i = 200;}
+\DoxyCodeLine{207    \mbox{\hyperlink{sha3_8c_ae32e36c847895e0350bc4ccccf6e0e8a}{sha3\_384\_init}}(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}});}
+\DoxyCodeLine{208    \textcolor{keywordflow}{while} (i--) \{}
+\DoxyCodeLine{209        \mbox{\hyperlink{sha3_8c_a219bb33c73fc17f796f3673ee079d1e2}{sha3\_process}}(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, \&c1, 1);}
+\DoxyCodeLine{210    \}}
+\DoxyCodeLine{211    \mbox{\hyperlink{sha3_8c_a366200437edbbf12e1dda073566619e9}{sha3\_done}}(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, hash);}
+\DoxyCodeLine{212    \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(hash, \textcolor{keyword}{sizeof}(hash), sha3\_384\_0xa3\_200\_times, \textcolor{keyword}{sizeof}(sha3\_384\_0xa3\_200\_times), \textcolor{stringliteral}{"SHA3-384"}, 2)) \{}
+\DoxyCodeLine{213       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{214    \}}
+\DoxyCodeLine{215 }
+\DoxyCodeLine{216    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{217 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{218 \}}
+
+\end{DoxyCode}
+
+
+References c, compare\+\_\+testvector(), C\+R\+Y\+P\+T\+\_\+\+F\+A\+I\+L\+\_\+\+T\+E\+S\+T\+V\+E\+C\+T\+OR, C\+R\+Y\+P\+T\+\_\+\+N\+OP, C\+R\+Y\+P\+T\+\_\+\+OK, sha3\+\_\+384\+\_\+init(), sha3\+\_\+done(), sha3\+\_\+process(), and X\+M\+E\+M\+S\+E\+T().
+
+Here is the call graph for this function\+:
+% FIG 7
+\mbox{\Hypertarget{sha3__test_8c_a64686c97ddb8c28598ee5d0d36f2af6c}\label{sha3__test_8c_a64686c97ddb8c28598ee5d0d36f2af6c}} 
+\index{sha3\_test.c@{sha3\_test.c}!sha3\_512\_test@{sha3\_512\_test}}
+\index{sha3\_512\_test@{sha3\_512\_test}!sha3\_test.c@{sha3\_test.c}}
+\subsubsection{\texorpdfstring{sha3\_512\_test()}{sha3\_512\_test()}}
+{\footnotesize\ttfamily int sha3\+\_\+512\+\_\+test (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 220 of file sha3\+\_\+test.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{221 \{}
+\DoxyCodeLine{222 \textcolor{preprocessor}{\#ifndef LTC\_TEST}}
+\DoxyCodeLine{223    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cac43a7799c7fd5f515172da6cfc0f9cf5}{CRYPT\_NOP}};}
+\DoxyCodeLine{224 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{225    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} buf[200], hash[512 / 8];}
+\DoxyCodeLine{226    \textcolor{keywordtype}{int} i;}
+\DoxyCodeLine{227    \mbox{\hyperlink{unionHash__state}{hash\_state}} \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}};}
+\DoxyCodeLine{228    \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} c1 = 0xa3;}
+\DoxyCodeLine{229 }
+\DoxyCodeLine{230    \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} sha3\_512\_0xa3\_200\_times[512 / 8] = \{}
+\DoxyCodeLine{231       0xe7, 0x6d, 0xfa, 0xd2, 0x20, 0x84, 0xa8, 0xb1,}
+\DoxyCodeLine{232       0x46, 0x7f, 0xcf, 0x2f, 0xfa, 0x58, 0x36, 0x1b,}
+\DoxyCodeLine{233       0xec, 0x76, 0x28, 0xed, 0xf5, 0xf3, 0xfd, 0xc0,}
+\DoxyCodeLine{234       0xe4, 0x80, 0x5d, 0xc4, 0x8c, 0xae, 0xec, 0xa8,}
+\DoxyCodeLine{235       0x1b, 0x7c, 0x13, 0xc3, 0x0a, 0xdf, 0x52, 0xa3,}
+\DoxyCodeLine{236       0x65, 0x95, 0x84, 0x73, 0x9a, 0x2d, 0xf4, 0x6b,}
+\DoxyCodeLine{237       0xe5, 0x89, 0xc5, 0x1c, 0xa1, 0xa4, 0xa8, 0x41,}
+\DoxyCodeLine{238       0x6d, 0xf6, 0x54, 0x5a, 0x1c, 0xe8, 0xba, 0x00}
+\DoxyCodeLine{239    \};}
+\DoxyCodeLine{240 }
+\DoxyCodeLine{241    \mbox{\hyperlink{tomcrypt__cfg_8h_aa3c34a6f6c61de7da9258b5a30e32c2f}{XMEMSET}}(buf, c1, \textcolor{keyword}{sizeof}(buf));}
+\DoxyCodeLine{242 }
+\DoxyCodeLine{243    \textcolor{comment}{/* SHA3-512 as a single buffer. [FIPS 202] */}}
+\DoxyCodeLine{244    \mbox{\hyperlink{sha3_8c_a16645fcb0695ae6c3231fcc15cd471d1}{sha3\_512\_init}}(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}});}
+\DoxyCodeLine{245    \mbox{\hyperlink{sha3_8c_a219bb33c73fc17f796f3673ee079d1e2}{sha3\_process}}(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, buf, \textcolor{keyword}{sizeof}(buf));}
+\DoxyCodeLine{246    \mbox{\hyperlink{sha3_8c_a366200437edbbf12e1dda073566619e9}{sha3\_done}}(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, hash);}
+\DoxyCodeLine{247    \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(hash, \textcolor{keyword}{sizeof}(hash), sha3\_512\_0xa3\_200\_times, \textcolor{keyword}{sizeof}(sha3\_512\_0xa3\_200\_times), \textcolor{stringliteral}{"SHA3-512"}, 0)) \{}
+\DoxyCodeLine{248       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{249    \}}
+\DoxyCodeLine{250 }
+\DoxyCodeLine{251    \textcolor{comment}{/* SHA3-512 in two steps. [FIPS 202] */}}
+\DoxyCodeLine{252    \mbox{\hyperlink{sha3_8c_a16645fcb0695ae6c3231fcc15cd471d1}{sha3\_512\_init}}(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}});}
+\DoxyCodeLine{253    \mbox{\hyperlink{sha3_8c_a219bb33c73fc17f796f3673ee079d1e2}{sha3\_process}}(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, buf, \textcolor{keyword}{sizeof}(buf) / 2);}
+\DoxyCodeLine{254    \mbox{\hyperlink{sha3_8c_a219bb33c73fc17f796f3673ee079d1e2}{sha3\_process}}(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, buf + \textcolor{keyword}{sizeof}(buf) / 2, \textcolor{keyword}{sizeof}(buf) / 2);}
+\DoxyCodeLine{255    \mbox{\hyperlink{sha3_8c_a366200437edbbf12e1dda073566619e9}{sha3\_done}}(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, hash);}
+\DoxyCodeLine{256    \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(hash, \textcolor{keyword}{sizeof}(hash), sha3\_512\_0xa3\_200\_times, \textcolor{keyword}{sizeof}(sha3\_512\_0xa3\_200\_times), \textcolor{stringliteral}{"SHA3-512"}, 1)) \{}
+\DoxyCodeLine{257       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{258    \}}
+\DoxyCodeLine{259 }
+\DoxyCodeLine{260    \textcolor{comment}{/* SHA3-512 byte-by-byte: 200 steps. [FIPS 202] */}}
+\DoxyCodeLine{261    i = 200;}
+\DoxyCodeLine{262    \mbox{\hyperlink{sha3_8c_a16645fcb0695ae6c3231fcc15cd471d1}{sha3\_512\_init}}(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}});}
+\DoxyCodeLine{263    \textcolor{keywordflow}{while} (i--) \{}
+\DoxyCodeLine{264        \mbox{\hyperlink{sha3_8c_a219bb33c73fc17f796f3673ee079d1e2}{sha3\_process}}(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, \&c1, 1);}
+\DoxyCodeLine{265    \}}
+\DoxyCodeLine{266    \mbox{\hyperlink{sha3_8c_a366200437edbbf12e1dda073566619e9}{sha3\_done}}(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, hash);}
+\DoxyCodeLine{267    \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(hash, \textcolor{keyword}{sizeof}(hash), sha3\_512\_0xa3\_200\_times, \textcolor{keyword}{sizeof}(sha3\_512\_0xa3\_200\_times), \textcolor{stringliteral}{"SHA3-512"}, 2)) \{}
+\DoxyCodeLine{268       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{269    \}}
+\DoxyCodeLine{270 }
+\DoxyCodeLine{271    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{272 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{273 \}}
+
+\end{DoxyCode}
+
+
+References c, compare\+\_\+testvector(), C\+R\+Y\+P\+T\+\_\+\+F\+A\+I\+L\+\_\+\+T\+E\+S\+T\+V\+E\+C\+T\+OR, C\+R\+Y\+P\+T\+\_\+\+N\+OP, C\+R\+Y\+P\+T\+\_\+\+OK, sha3\+\_\+512\+\_\+init(), sha3\+\_\+done(), sha3\+\_\+process(), and X\+M\+E\+M\+S\+E\+T().
+
+Here is the call graph for this function\+:
+% FIG 8
+\mbox{\Hypertarget{sha3__test_8c_a2eef76efd0a49571403592f9e3f08273}\label{sha3__test_8c_a2eef76efd0a49571403592f9e3f08273}} 
+\index{sha3\_test.c@{sha3\_test.c}!sha3\_shake\_test@{sha3\_shake\_test}}
+\index{sha3\_shake\_test@{sha3\_shake\_test}!sha3\_test.c@{sha3\_test.c}}
+\subsubsection{\texorpdfstring{sha3\_shake\_test()}{sha3\_shake\_test()}}
+{\footnotesize\ttfamily int sha3\+\_\+shake\+\_\+test (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 275 of file sha3\+\_\+test.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{276 \{}
+\DoxyCodeLine{277 \textcolor{preprocessor}{\#ifndef LTC\_TEST}}
+\DoxyCodeLine{278    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cac43a7799c7fd5f515172da6cfc0f9cf5}{CRYPT\_NOP}};}
+\DoxyCodeLine{279 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{280    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} buf[200], hash[512];}
+\DoxyCodeLine{281    \textcolor{keywordtype}{int} i;}
+\DoxyCodeLine{282    \mbox{\hyperlink{unionHash__state}{hash\_state}} \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}};}
+\DoxyCodeLine{283    \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} c1 = 0xa3;}
+\DoxyCodeLine{284    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}};}
+\DoxyCodeLine{285 }
+\DoxyCodeLine{286    \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} shake256\_empty[32] = \{}
+\DoxyCodeLine{287       0xab, 0x0b, 0xae, 0x31, 0x63, 0x39, 0x89, 0x43,}
+\DoxyCodeLine{288       0x04, 0xe3, 0x58, 0x77, 0xb0, 0xc2, 0x8a, 0x9b,}
+\DoxyCodeLine{289       0x1f, 0xd1, 0x66, 0xc7, 0x96, 0xb9, 0xcc, 0x25,}
+\DoxyCodeLine{290       0x8a, 0x06, 0x4a, 0x8f, 0x57, 0xe2, 0x7f, 0x2a}
+\DoxyCodeLine{291    \};}
+\DoxyCodeLine{292    \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} shake256\_0xa3\_200\_times[32] = \{}
+\DoxyCodeLine{293       0x6a, 0x1a, 0x9d, 0x78, 0x46, 0x43, 0x6e, 0x4d,}
+\DoxyCodeLine{294       0xca, 0x57, 0x28, 0xb6, 0xf7, 0x60, 0xee, 0xf0,}
+\DoxyCodeLine{295       0xca, 0x92, 0xbf, 0x0b, 0xe5, 0x61, 0x5e, 0x96,}
+\DoxyCodeLine{296       0x95, 0x9d, 0x76, 0x71, 0x97, 0xa0, 0xbe, 0xeb}
+\DoxyCodeLine{297    \};}
+\DoxyCodeLine{298    \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} shake128\_empty[32] = \{}
+\DoxyCodeLine{299       0x43, 0xe4, 0x1b, 0x45, 0xa6, 0x53, 0xf2, 0xa5,}
+\DoxyCodeLine{300       0xc4, 0x49, 0x2c, 0x1a, 0xdd, 0x54, 0x45, 0x12,}
+\DoxyCodeLine{301       0xdd, 0xa2, 0x52, 0x98, 0x33, 0x46, 0x2b, 0x71,}
+\DoxyCodeLine{302       0xa4, 0x1a, 0x45, 0xbe, 0x97, 0x29, 0x0b, 0x6f}
+\DoxyCodeLine{303    \};}
+\DoxyCodeLine{304    \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} shake128\_0xa3\_200\_times[32] = \{}
+\DoxyCodeLine{305       0x44, 0xc9, 0xfb, 0x35, 0x9f, 0xd5, 0x6a, 0xc0,}
+\DoxyCodeLine{306       0xa9, 0xa7, 0x5a, 0x74, 0x3c, 0xff, 0x68, 0x62,}
+\DoxyCodeLine{307       0xf1, 0x7d, 0x72, 0x59, 0xab, 0x07, 0x52, 0x16,}
+\DoxyCodeLine{308       0xc0, 0x69, 0x95, 0x11, 0x64, 0x3b, 0x64, 0x39}
+\DoxyCodeLine{309    \};}
+\DoxyCodeLine{310 }
+\DoxyCodeLine{311    \mbox{\hyperlink{tomcrypt__cfg_8h_aa3c34a6f6c61de7da9258b5a30e32c2f}{XMEMSET}}(buf, c1, \textcolor{keyword}{sizeof}(buf));}
+\DoxyCodeLine{312 }
+\DoxyCodeLine{313    \textcolor{comment}{/* SHAKE256 on an empty buffer */}}
+\DoxyCodeLine{314    \mbox{\hyperlink{sha3_8c_af50f8a0f885a2483d8123b44e80176cf}{sha3\_shake\_init}}(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, 256);}
+\DoxyCodeLine{315    \textcolor{keywordflow}{for} (i = 0; i < 16; i++) \mbox{\hyperlink{sha3_8c_a28a11ba4ab2b4ab690d50af5a192ee22}{sha3\_shake\_done}}(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, hash, 32); \textcolor{comment}{/* get 512 bytes, keep in hash the last 32 */}}
+\DoxyCodeLine{316    \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(hash, \textcolor{keyword}{sizeof}(shake256\_empty), shake256\_empty, \textcolor{keyword}{sizeof}(shake256\_empty), \textcolor{stringliteral}{"SHAKE256"}, 0)) \{}
+\DoxyCodeLine{317       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{318    \}}
+\DoxyCodeLine{319 }
+\DoxyCodeLine{320    \textcolor{comment}{/* SHAKE256 via sha3\_shake\_memory [FIPS 202] */}}
+\DoxyCodeLine{321    \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}} = 512;}
+\DoxyCodeLine{322    \mbox{\hyperlink{sha3_8c_a7de1578a754c0ec8629d465bab3cd55c}{sha3\_shake\_memory}}(256, buf, \textcolor{keyword}{sizeof}(buf), hash, \&\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}});}
+\DoxyCodeLine{323    \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(hash + 480, \textcolor{keyword}{sizeof}(shake256\_0xa3\_200\_times), shake256\_0xa3\_200\_times, \textcolor{keyword}{sizeof}(shake256\_0xa3\_200\_times), \textcolor{stringliteral}{"SHAKE256"}, 1)) \{}
+\DoxyCodeLine{324       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{325    \}}
+\DoxyCodeLine{326 }
+\DoxyCodeLine{327    \textcolor{comment}{/* SHAKE256 as a single buffer. [FIPS 202] */}}
+\DoxyCodeLine{328    \mbox{\hyperlink{sha3_8c_af50f8a0f885a2483d8123b44e80176cf}{sha3\_shake\_init}}(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, 256);}
+\DoxyCodeLine{329    sha3\_shake\_process(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, buf, \textcolor{keyword}{sizeof}(buf));}
+\DoxyCodeLine{330    \textcolor{keywordflow}{for} (i = 0; i < 16; i++) \mbox{\hyperlink{sha3_8c_a28a11ba4ab2b4ab690d50af5a192ee22}{sha3\_shake\_done}}(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, hash, 32); \textcolor{comment}{/* get 512 bytes, keep in hash the last 32 */}}
+\DoxyCodeLine{331    \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(hash, \textcolor{keyword}{sizeof}(shake256\_0xa3\_200\_times), shake256\_0xa3\_200\_times, \textcolor{keyword}{sizeof}(shake256\_0xa3\_200\_times), \textcolor{stringliteral}{"SHAKE256"}, 2)) \{}
+\DoxyCodeLine{332       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{333    \}}
+\DoxyCodeLine{334 }
+\DoxyCodeLine{335    \textcolor{comment}{/* SHAKE256 in two steps. [FIPS 202] */}}
+\DoxyCodeLine{336    \mbox{\hyperlink{sha3_8c_af50f8a0f885a2483d8123b44e80176cf}{sha3\_shake\_init}}(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, 256);}
+\DoxyCodeLine{337    sha3\_shake\_process(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, buf, \textcolor{keyword}{sizeof}(buf) / 2);}
+\DoxyCodeLine{338    sha3\_shake\_process(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, buf + \textcolor{keyword}{sizeof}(buf) / 2, \textcolor{keyword}{sizeof}(buf) / 2);}
+\DoxyCodeLine{339    \textcolor{keywordflow}{for} (i = 0; i < 16; i++) \mbox{\hyperlink{sha3_8c_a28a11ba4ab2b4ab690d50af5a192ee22}{sha3\_shake\_done}}(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, hash, 32); \textcolor{comment}{/* get 512 bytes, keep in hash the last 32 */}}
+\DoxyCodeLine{340    \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(hash, \textcolor{keyword}{sizeof}(shake256\_0xa3\_200\_times), shake256\_0xa3\_200\_times, \textcolor{keyword}{sizeof}(shake256\_0xa3\_200\_times), \textcolor{stringliteral}{"SHAKE256"}, 3)) \{}
+\DoxyCodeLine{341       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{342    \}}
+\DoxyCodeLine{343 }
+\DoxyCodeLine{344    \textcolor{comment}{/* SHAKE256 byte-by-byte: 200 steps. [FIPS 202] */}}
+\DoxyCodeLine{345    i = 200;}
+\DoxyCodeLine{346    \mbox{\hyperlink{sha3_8c_af50f8a0f885a2483d8123b44e80176cf}{sha3\_shake\_init}}(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, 256);}
+\DoxyCodeLine{347    \textcolor{keywordflow}{while} (i--) sha3\_shake\_process(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, \&c1, 1);}
+\DoxyCodeLine{348    \textcolor{keywordflow}{for} (i = 0; i < 16; i++) \mbox{\hyperlink{sha3_8c_a28a11ba4ab2b4ab690d50af5a192ee22}{sha3\_shake\_done}}(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, hash, 32); \textcolor{comment}{/* get 512 bytes, keep in hash the last 32 */}}
+\DoxyCodeLine{349    \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(hash, \textcolor{keyword}{sizeof}(shake256\_0xa3\_200\_times), shake256\_0xa3\_200\_times, \textcolor{keyword}{sizeof}(shake256\_0xa3\_200\_times), \textcolor{stringliteral}{"SHAKE256"}, 4)) \{}
+\DoxyCodeLine{350       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{351    \}}
+\DoxyCodeLine{352 }
+\DoxyCodeLine{353    \textcolor{comment}{/* SHAKE128 on an empty buffer */}}
+\DoxyCodeLine{354    \mbox{\hyperlink{sha3_8c_af50f8a0f885a2483d8123b44e80176cf}{sha3\_shake\_init}}(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, 128);}
+\DoxyCodeLine{355    \textcolor{keywordflow}{for} (i = 0; i < 16; i++) \mbox{\hyperlink{sha3_8c_a28a11ba4ab2b4ab690d50af5a192ee22}{sha3\_shake\_done}}(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, hash, 32); \textcolor{comment}{/* get 512 bytes, keep in hash the last 32 */}}
+\DoxyCodeLine{356    \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(hash, \textcolor{keyword}{sizeof}(shake128\_empty), shake128\_empty, \textcolor{keyword}{sizeof}(shake128\_empty), \textcolor{stringliteral}{"SHAKE128"}, 0)) \{}
+\DoxyCodeLine{357       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{358    \}}
+\DoxyCodeLine{359 }
+\DoxyCodeLine{360    \textcolor{comment}{/* SHAKE128 via sha3\_shake\_memory [FIPS 202] */}}
+\DoxyCodeLine{361    \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}} = 512;}
+\DoxyCodeLine{362    \mbox{\hyperlink{sha3_8c_a7de1578a754c0ec8629d465bab3cd55c}{sha3\_shake\_memory}}(128, buf, \textcolor{keyword}{sizeof}(buf), hash, \&\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}});}
+\DoxyCodeLine{363    \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(hash + 480, \textcolor{keyword}{sizeof}(shake128\_0xa3\_200\_times), shake128\_0xa3\_200\_times, \textcolor{keyword}{sizeof}(shake128\_0xa3\_200\_times), \textcolor{stringliteral}{"SHAKE128"}, 1)) \{}
+\DoxyCodeLine{364       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{365    \}}
+\DoxyCodeLine{366 }
+\DoxyCodeLine{367    \textcolor{comment}{/* SHAKE128 as a single buffer. [FIPS 202] */}}
+\DoxyCodeLine{368    \mbox{\hyperlink{sha3_8c_af50f8a0f885a2483d8123b44e80176cf}{sha3\_shake\_init}}(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, 128);}
+\DoxyCodeLine{369    sha3\_shake\_process(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, buf, \textcolor{keyword}{sizeof}(buf));}
+\DoxyCodeLine{370    \textcolor{keywordflow}{for} (i = 0; i < 16; i++) \mbox{\hyperlink{sha3_8c_a28a11ba4ab2b4ab690d50af5a192ee22}{sha3\_shake\_done}}(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, hash, 32); \textcolor{comment}{/* get 512 bytes, keep in hash the last 32 */}}
+\DoxyCodeLine{371    \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(hash, \textcolor{keyword}{sizeof}(shake128\_0xa3\_200\_times), shake128\_0xa3\_200\_times, \textcolor{keyword}{sizeof}(shake128\_0xa3\_200\_times), \textcolor{stringliteral}{"SHAKE128"}, 2)) \{}
+\DoxyCodeLine{372       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{373    \}}
+\DoxyCodeLine{374 }
+\DoxyCodeLine{375    \textcolor{comment}{/* SHAKE128 in two steps. [FIPS 202] */}}
+\DoxyCodeLine{376    \mbox{\hyperlink{sha3_8c_af50f8a0f885a2483d8123b44e80176cf}{sha3\_shake\_init}}(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, 128);}
+\DoxyCodeLine{377    sha3\_shake\_process(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, buf, \textcolor{keyword}{sizeof}(buf) / 2);}
+\DoxyCodeLine{378    sha3\_shake\_process(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, buf + \textcolor{keyword}{sizeof}(buf) / 2, \textcolor{keyword}{sizeof}(buf) / 2);}
+\DoxyCodeLine{379    \textcolor{keywordflow}{for} (i = 0; i < 16; i++) \mbox{\hyperlink{sha3_8c_a28a11ba4ab2b4ab690d50af5a192ee22}{sha3\_shake\_done}}(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, hash, 32); \textcolor{comment}{/* get 512 bytes, keep in hash the last 32 */}}
+\DoxyCodeLine{380    \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(hash, \textcolor{keyword}{sizeof}(shake128\_0xa3\_200\_times), shake128\_0xa3\_200\_times, \textcolor{keyword}{sizeof}(shake128\_0xa3\_200\_times), \textcolor{stringliteral}{"SHAKE128"}, 3)) \{}
+\DoxyCodeLine{381       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{382    \}}
+\DoxyCodeLine{383 }
+\DoxyCodeLine{384    \textcolor{comment}{/* SHAKE128 byte-by-byte: 200 steps. [FIPS 202] */}}
+\DoxyCodeLine{385    i = 200;}
+\DoxyCodeLine{386    \mbox{\hyperlink{sha3_8c_af50f8a0f885a2483d8123b44e80176cf}{sha3\_shake\_init}}(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, 128);}
+\DoxyCodeLine{387    \textcolor{keywordflow}{while} (i--) sha3\_shake\_process(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, \&c1, 1);}
+\DoxyCodeLine{388    \textcolor{keywordflow}{for} (i = 0; i < 16; i++) \mbox{\hyperlink{sha3_8c_a28a11ba4ab2b4ab690d50af5a192ee22}{sha3\_shake\_done}}(\&\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, hash, 32); \textcolor{comment}{/* get 512 bytes, keep in hash the last 32 */}}
+\DoxyCodeLine{389    \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(hash, \textcolor{keyword}{sizeof}(shake128\_0xa3\_200\_times), shake128\_0xa3\_200\_times, \textcolor{keyword}{sizeof}(shake128\_0xa3\_200\_times), \textcolor{stringliteral}{"SHAKE128"}, 4)) \{}
+\DoxyCodeLine{390       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{391    \}}
+\DoxyCodeLine{392 }
+\DoxyCodeLine{393    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{394 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{395 \}}
+
+\end{DoxyCode}
+
+
+References c, compare\+\_\+testvector(), C\+R\+Y\+P\+T\+\_\+\+F\+A\+I\+L\+\_\+\+T\+E\+S\+T\+V\+E\+C\+T\+OR, C\+R\+Y\+P\+T\+\_\+\+N\+OP, C\+R\+Y\+P\+T\+\_\+\+OK, len, sha3\+\_\+shake\+\_\+done(), sha3\+\_\+shake\+\_\+init(), sha3\+\_\+shake\+\_\+memory(), and X\+M\+E\+M\+S\+E\+T().
+
+Here is the call graph for this function\+:
+% FIG 9

@@ -1,0 +1,67 @@
+\hypertarget{ofb__decrypt_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/modes/ofb/ofb\+\_\+decrypt.c File Reference}
+\label{ofb__decrypt_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/modes/ofb/ofb\_decrypt.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/modes/ofb/ofb\_decrypt.c}}
+
+
+O\+FB implementation, decrypt data, Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for ofb\+\_\+decrypt.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{ofb__decrypt_8c_ae6389c9784d9e59386fca78a48c70410}{ofb\+\_\+decrypt}} (const unsigned char $\ast$ct, unsigned char $\ast$pt, unsigned long \mbox{\hyperlink{pmac__init_8c_afed088663f8704004425cdae2120b9b3}{len}}, symmetric\+\_\+\+O\+FB $\ast$ofb)
+\begin{DoxyCompactList}\small\item\em O\+FB decrypt. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+O\+FB implementation, decrypt data, Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{ofb__decrypt_8c_ae6389c9784d9e59386fca78a48c70410}\label{ofb__decrypt_8c_ae6389c9784d9e59386fca78a48c70410}} 
+\index{ofb\_decrypt.c@{ofb\_decrypt.c}!ofb\_decrypt@{ofb\_decrypt}}
+\index{ofb\_decrypt@{ofb\_decrypt}!ofb\_decrypt.c@{ofb\_decrypt.c}}
+\subsubsection{\texorpdfstring{ofb\_decrypt()}{ofb\_decrypt()}}
+{\footnotesize\ttfamily int ofb\+\_\+decrypt (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{ct,  }\item[{unsigned char $\ast$}]{pt,  }\item[{unsigned long}]{len,  }\item[{symmetric\+\_\+\+O\+FB $\ast$}]{ofb }\end{DoxyParamCaption})}
+
+
+
+O\+FB decrypt. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ct} & Ciphertext \\
+\hline
+{\em pt} & \mbox{[}out\mbox{]} Plaintext \\
+\hline
+{\em len} & Length of ciphertext (octets) \\
+\hline
+{\em ofb} & O\+FB state \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 26 of file ofb\+\_\+decrypt.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{27 \{}
+\DoxyCodeLine{28    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(pt != NULL);}
+\DoxyCodeLine{29    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(ct != NULL);}
+\DoxyCodeLine{30    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(ofb != NULL);}
+\DoxyCodeLine{31    \textcolor{keywordflow}{return} \mbox{\hyperlink{ofb__encrypt_8c_ab5455409bdb2ea8ef0ccc2c227161abc}{ofb\_encrypt}}(ct, pt, \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}, ofb);}
+\DoxyCodeLine{32 \}}
+
+\end{DoxyCode}
+
+
+References len, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, and ofb\+\_\+encrypt().
+
+Here is the call graph for this function\+:
+% FIG 1

@@ -1,0 +1,76 @@
+\hypertarget{salsa20__memory_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/stream/salsa20/salsa20\+\_\+memory.c File Reference}
+\label{salsa20__memory_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/stream/salsa20/salsa20\_memory.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/stream/salsa20/salsa20\_memory.c}}
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for salsa20\+\_\+memory.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{salsa20__memory_8c_a5f1eb225450c6f7ccd042dbce38db56a}{salsa20\+\_\+memory}} (const unsigned char $\ast$key, unsigned long keylen, unsigned long \mbox{\hyperlink{kseed_8c_a51da46362a22c8107683876e9c12ec82}{rounds}}, const unsigned char $\ast$iv, unsigned long ivlen, \mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}} counter, const unsigned char $\ast$datain, unsigned long datalen, unsigned char $\ast$dataout)
+\begin{DoxyCompactList}\small\item\em Encrypt (or decrypt) bytes of ciphertext (or plaintext) with Salsa20. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{salsa20__memory_8c_a5f1eb225450c6f7ccd042dbce38db56a}\label{salsa20__memory_8c_a5f1eb225450c6f7ccd042dbce38db56a}} 
+\index{salsa20\_memory.c@{salsa20\_memory.c}!salsa20\_memory@{salsa20\_memory}}
+\index{salsa20\_memory@{salsa20\_memory}!salsa20\_memory.c@{salsa20\_memory.c}}
+\subsubsection{\texorpdfstring{salsa20\_memory()}{salsa20\_memory()}}
+{\footnotesize\ttfamily int salsa20\+\_\+memory (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{key,  }\item[{unsigned long}]{keylen,  }\item[{unsigned long}]{rounds,  }\item[{const unsigned char $\ast$}]{iv,  }\item[{unsigned long}]{ivlen,  }\item[{\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}}}]{counter,  }\item[{const unsigned char $\ast$}]{datain,  }\item[{unsigned long}]{datalen,  }\item[{unsigned char $\ast$}]{dataout }\end{DoxyParamCaption})}
+
+
+
+Encrypt (or decrypt) bytes of ciphertext (or plaintext) with Salsa20. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The key \\
+\hline
+{\em keylen} & The key length \\
+\hline
+{\em iv} & The initial vector \\
+\hline
+{\em ivlen} & The initial vector length \\
+\hline
+{\em datain} & The plaintext (or ciphertext) \\
+\hline
+{\em datalen} & The length of the input and output (octets) \\
+\hline
+{\em rounds} & The number of rounds \\
+\hline
+{\em dataout} & \mbox{[}out\mbox{]} The ciphertext (or plaintext) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 26 of file salsa20\+\_\+memory.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{29 \{}
+\DoxyCodeLine{30    salsa20\_state st;}
+\DoxyCodeLine{31    \textcolor{keywordtype}{int} err;}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{salsa20__setup_8c_a9e658fb807e99cde7c674b9c9861cd9c}{salsa20\_setup}}(\&st, key, keylen, \mbox{\hyperlink{kseed_8c_a51da46362a22c8107683876e9c12ec82}{rounds}}))  != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \textcolor{keywordflow}{goto} WIPE\_KEY;}
+\DoxyCodeLine{34    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{salsa20__ivctr64_8c_a883b02e52a18d08c077bcdde612def0a}{salsa20\_ivctr64}}(\&st, iv, ivlen, counter)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \textcolor{keywordflow}{goto} WIPE\_KEY;}
+\DoxyCodeLine{35    err = \mbox{\hyperlink{salsa20__crypt_8c_ac9983b8790b277b19ac0e6efcd5bc298}{salsa20\_crypt}}(\&st, datain, datalen, dataout);}
+\DoxyCodeLine{36 WIPE\_KEY:}
+\DoxyCodeLine{37    \mbox{\hyperlink{salsa20__done_8c_a465c34bbeed87ae78733565f8c2c698c}{salsa20\_done}}(\&st);}
+\DoxyCodeLine{38    \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{39 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, rounds(), salsa20\+\_\+crypt(), salsa20\+\_\+done(), salsa20\+\_\+ivctr64(), and salsa20\+\_\+setup().
+
+
+
+Referenced by salsa20\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2

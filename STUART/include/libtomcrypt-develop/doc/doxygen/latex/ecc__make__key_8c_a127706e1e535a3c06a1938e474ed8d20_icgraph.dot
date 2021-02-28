@@ -1,0 +1,16 @@
+digraph "ecc_generate_key"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node8 [label="ecc_generate_key",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node8 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node9 [label="ecc_encrypt_key",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ecc__encrypt__key_8c.html#a16164f1e295b1c88e6b81a9ece26cd70",tooltip="Encrypt a symmetric key with ECC."];
+  Node8 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node10 [label="ecc_make_key",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ecc__make__key_8c.html#a7a315bba6da1275feab6ca1c5a16e87a",tooltip="Make a new ECC key."];
+  Node8 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node11 [label="ecc_make_key_ex",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ecc__make__key_8c.html#aa162146ab36462700056738f96b2dfcb",tooltip=" "];
+  Node8 -> Node12 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node12 [label="ecc_sign_hash_ex",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ecc__sign__hash_8c.html#a96afaf55b03386145e3061fc42a9636b",tooltip="Sign a message digest."];
+}

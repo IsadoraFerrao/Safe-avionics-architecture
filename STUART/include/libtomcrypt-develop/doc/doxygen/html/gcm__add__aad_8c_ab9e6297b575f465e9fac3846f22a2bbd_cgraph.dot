@@ -1,0 +1,23 @@
+digraph "gcm_add_aad"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node0 [label="gcm_add_aad",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Add AAD to the GCM state."];
+  Node0 -> Node1 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 [label="cipher_is_valid",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cipher_8h.html#ac30eb68934c4ca07205344dc9d159221",tooltip=" "];
+  Node0 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="gcm_mult_h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$gcm__mult__h_8c.html#a198e51a3d6b56455cc781d140ebd6f6d",tooltip="GCM multiply by H."];
+  Node2 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="XMEMCPY",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cfg_8h.html#a7691dd48d60d5fc6daf2fa7ec4c55e12",tooltip=" "];
+  Node2 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="gcm_gf_mult",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$gcm__gf__mult_8c.html#af64448959cfcae8b0a774822f2219f47",tooltip="GCM GF multiplier (internal use only) bitserial."];
+  Node4 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="zeromem",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__misc_8h.html#a63b6e188713790263bfd3612fe8b398f",tooltip="Zero a block of memory."];
+  Node4 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="_gcm_rightshift",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$gcm__gf__mult_8c.html#abf44db599e40033f4320e5fbc9ffd93c",tooltip=" "];
+  Node0 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node0 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}

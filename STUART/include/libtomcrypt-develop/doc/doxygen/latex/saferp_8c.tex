@@ -1,0 +1,829 @@
+\hypertarget{saferp_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/ciphers/safer/saferp.c File Reference}
+\label{saferp_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/ciphers/safer/saferp.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/ciphers/safer/saferp.c}}
+
+
+L\+T\+C\+\_\+\+S\+A\+F\+E\+R+ Implementation by Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}safer\+\_\+tab.\+c\char`\"{}}\newline
+Include dependency graph for saferp.\+c\+:
+% FIG 0
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{saferp_8c_a298b95f35e1bcdd80f7b2ce6c328dcd9}{\+\_\+\+\_\+\+L\+T\+C\+\_\+\+S\+A\+F\+E\+R\+\_\+\+T\+A\+B\+\_\+\+C\+\_\+\+\_\+}}
+\item 
+\#define \mbox{\hyperlink{saferp_8c_ad69cd28baafd5d8a85ca9eeca8722a6e}{R\+O\+U\+ND}}(b,  i)
+\item 
+\#define \mbox{\hyperlink{saferp_8c_ad0227b7a5ad8c24114b4cc29dc39ce46}{i\+R\+O\+U\+ND}}(b,  i)
+\item 
+\#define \mbox{\hyperlink{saferp_8c_a4d8c05e7429360d8855305d106760e0f}{P\+HT}}(b)
+\item 
+\#define \mbox{\hyperlink{saferp_8c_aa55882edbfdd672a517eebf8c997ac07}{i\+P\+HT}}(b)
+\item 
+\#define \mbox{\hyperlink{saferp_8c_aacc78cfa016f04d26dbb977e237bb4d0}{S\+H\+UF}}(b,  b2)
+\item 
+\#define \mbox{\hyperlink{saferp_8c_a48ab5f1ee7880336e1406af599d56b14}{i\+S\+H\+UF}}(b,  b2)
+\item 
+\#define \mbox{\hyperlink{saferp_8c_aa17bb7e6eb8c95d853e07f94f06abf72}{LT}}(b,  b2)
+\item 
+\#define \mbox{\hyperlink{saferp_8c_a6cae0bf98b78bfe0c7da9b95c9d50216}{i\+LT}}(b,  b2)
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{saferp_8c_ac1e881047264199d7629a8792ce8d274}{saferp\+\_\+setup}} (const unsigned char $\ast$key, int keylen, int num\+\_\+rounds, \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)
+\begin{DoxyCompactList}\small\item\em Initialize the L\+T\+C\+\_\+\+S\+A\+F\+E\+R+ block cipher. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{saferp_8c_a59d49e6e1a07b020fa94c3f381c314e6}{saferp\+\_\+ecb\+\_\+encrypt}} (const unsigned char $\ast$pt, unsigned char $\ast$ct, const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)
+\begin{DoxyCompactList}\small\item\em Encrypts a block of text with L\+T\+C\+\_\+\+S\+A\+F\+E\+R+. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{saferp_8c_a14934fc3e8b18abd206c4e900bf9e0d0}{saferp\+\_\+ecb\+\_\+decrypt}} (const unsigned char $\ast$ct, unsigned char $\ast$pt, const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)
+\begin{DoxyCompactList}\small\item\em Decrypts a block of text with L\+T\+C\+\_\+\+S\+A\+F\+E\+R+. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{saferp_8c_a33ce7f7b30a0c6b0a57aff742fb5546b}{saferp\+\_\+test}} (void)
+\begin{DoxyCompactList}\small\item\em Performs a self-\/test of the L\+T\+C\+\_\+\+S\+A\+F\+E\+R+ block cipher. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{saferp_8c_a2caa762288e3bf9666bf29a05ee9e742}{saferp\+\_\+done}} (\mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)
+\begin{DoxyCompactList}\small\item\em Terminate the context. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{saferp_8c_a0f251273c78124518d1c43c7ffa38d64}{saferp\+\_\+keysize}} (int $\ast$keysize)
+\begin{DoxyCompactList}\small\item\em Gets suitable key size. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const struct \mbox{\hyperlink{structltc__cipher__descriptor}{ltc\+\_\+cipher\+\_\+descriptor}} \mbox{\hyperlink{saferp_8c_a2b33e3e25708b5e3cf97aa55e9488229}{saferp\+\_\+desc}}
+\item 
+static const unsigned char \mbox{\hyperlink{saferp_8c_a09d2c58ff35b03ada59e9b0dafd06034}{safer\+\_\+bias}} \mbox{[}33\mbox{]}\mbox{[}16\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+L\+T\+C\+\_\+\+S\+A\+F\+E\+R+ Implementation by Tom St Denis. 
+
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{saferp_8c_a298b95f35e1bcdd80f7b2ce6c328dcd9}\label{saferp_8c_a298b95f35e1bcdd80f7b2ce6c328dcd9}} 
+\index{saferp.c@{saferp.c}!\_\_LTC\_SAFER\_TAB\_C\_\_@{\_\_LTC\_SAFER\_TAB\_C\_\_}}
+\index{\_\_LTC\_SAFER\_TAB\_C\_\_@{\_\_LTC\_SAFER\_TAB\_C\_\_}!saferp.c@{saferp.c}}
+\subsubsection{\texorpdfstring{\_\_LTC\_SAFER\_TAB\_C\_\_}{\_\_LTC\_SAFER\_TAB\_C\_\_}}
+{\footnotesize\ttfamily \#define \+\_\+\+\_\+\+L\+T\+C\+\_\+\+S\+A\+F\+E\+R\+\_\+\+T\+A\+B\+\_\+\+C\+\_\+\+\_\+}
+
+
+
+Definition at line 18 of file saferp.\+c.
+
+\mbox{\Hypertarget{saferp_8c_a6cae0bf98b78bfe0c7da9b95c9d50216}\label{saferp_8c_a6cae0bf98b78bfe0c7da9b95c9d50216}} 
+\index{saferp.c@{saferp.c}!iLT@{iLT}}
+\index{iLT@{iLT}!saferp.c@{saferp.c}}
+\subsubsection{\texorpdfstring{iLT}{iLT}}
+{\footnotesize\ttfamily \#define i\+LT(\begin{DoxyParamCaption}\item[{}]{b,  }\item[{}]{b2 }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{       \(\backslash\)}
+\DoxyCodeLine{    iPHT(b);                  \(\backslash\)}
+\DoxyCodeLine{    iSHUF(b, b2); \mbox{\hyperlink{saferp_8c_aa55882edbfdd672a517eebf8c997ac07}{iPHT}}(b2);   \(\backslash\)}
+\DoxyCodeLine{    iSHUF(b2, b); \mbox{\hyperlink{saferp_8c_aa55882edbfdd672a517eebf8c997ac07}{iPHT}}(b);    \(\backslash\)}
+\DoxyCodeLine{    iSHUF(b, b2); \mbox{\hyperlink{saferp_8c_aa55882edbfdd672a517eebf8c997ac07}{iPHT}}(b2);   \(\backslash\)}
+\DoxyCodeLine{\} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+
+
+Definition at line 137 of file saferp.\+c.
+
+\mbox{\Hypertarget{saferp_8c_aa55882edbfdd672a517eebf8c997ac07}\label{saferp_8c_aa55882edbfdd672a517eebf8c997ac07}} 
+\index{saferp.c@{saferp.c}!iPHT@{iPHT}}
+\index{iPHT@{iPHT}!saferp.c@{saferp.c}}
+\subsubsection{\texorpdfstring{iPHT}{iPHT}}
+{\footnotesize\ttfamily \#define i\+P\+HT(\begin{DoxyParamCaption}\item[{}]{b }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{                                          \(\backslash\)}
+\DoxyCodeLine{    b[15] = (b[15] - (b[14] = (b[14] - b[15]) \& 255)) \& 255;  \(\backslash\)}
+\DoxyCodeLine{    b[13] = (b[13] - (b[12] = (b[12] - b[13]) \& 255)) \& 255;  \(\backslash\)}
+\DoxyCodeLine{    b[11] = (b[11] - (b[10] = (b[10] - b[11]) \& 255)) \& 255;  \(\backslash\)}
+\DoxyCodeLine{    b[9]  = (b[9] - (b[8] = (b[8] - b[9]) \& 255)) \& 255;      \(\backslash\)}
+\DoxyCodeLine{    b[7]  = (b[7] - (b[6] = (b[6] - b[7]) \& 255)) \& 255;      \(\backslash\)}
+\DoxyCodeLine{    b[5]  = (b[5] - (b[4] = (b[4] - b[5]) \& 255)) \& 255;      \(\backslash\)}
+\DoxyCodeLine{    b[3]  = (b[3] - (b[2] = (b[2] - b[3]) \& 255)) \& 255;      \(\backslash\)}
+\DoxyCodeLine{    b[1]  = (b[1] - (b[0] = (b[0] - b[1]) \& 255)) \& 255;      \(\backslash\)}
+\DoxyCodeLine{ \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+
+
+Definition at line 98 of file saferp.\+c.
+
+\mbox{\Hypertarget{saferp_8c_ad0227b7a5ad8c24114b4cc29dc39ce46}\label{saferp_8c_ad0227b7a5ad8c24114b4cc29dc39ce46}} 
+\index{saferp.c@{saferp.c}!iROUND@{iROUND}}
+\index{iROUND@{iROUND}!saferp.c@{saferp.c}}
+\subsubsection{\texorpdfstring{iROUND}{iROUND}}
+{\footnotesize\ttfamily \#define i\+R\+O\+U\+ND(\begin{DoxyParamCaption}\item[{}]{b,  }\item[{}]{i }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{                                                                        \(\backslash\)}
+\DoxyCodeLine{    b[0]  = safer\_lbox[(b[0] - skey->saferp.K[i+1][0]) \& 255] \string^ skey->saferp.K[i][0];            \(\backslash\)}
+\DoxyCodeLine{    b[1]  = (safer\_ebox[(b[1] \string^ skey->saferp.K[i+1][1]) \& 255] - skey->saferp.K[i][1]) \& 255;    \(\backslash\)}
+\DoxyCodeLine{    b[2]  = (safer\_ebox[(b[2] \string^ skey->saferp.K[i+1][2]) \& 255] - skey->saferp.K[i][2]) \& 255;    \(\backslash\)}
+\DoxyCodeLine{    b[3]  = safer\_lbox[(b[3] - skey->saferp.K[i+1][3]) \& 255] \string^ skey->saferp.K[i][3];            \(\backslash\)}
+\DoxyCodeLine{    b[4]  = safer\_lbox[(b[4] - skey->saferp.K[i+1][4]) \& 255] \string^ skey->saferp.K[i][4];            \(\backslash\)}
+\DoxyCodeLine{    b[5]  = (safer\_ebox[(b[5] \string^ skey->saferp.K[i+1][5]) \& 255] - skey->saferp.K[i][5]) \& 255;    \(\backslash\)}
+\DoxyCodeLine{    b[6]  = (safer\_ebox[(b[6] \string^ skey->saferp.K[i+1][6]) \& 255] - skey->saferp.K[i][6]) \& 255;    \(\backslash\)}
+\DoxyCodeLine{    b[7]  = safer\_lbox[(b[7] - skey->saferp.K[i+1][7]) \& 255] \string^ skey->saferp.K[i][7];            \(\backslash\)}
+\DoxyCodeLine{    b[8]  = safer\_lbox[(b[8] - skey->saferp.K[i+1][8]) \& 255] \string^ skey->saferp.K[i][8];            \(\backslash\)}
+\DoxyCodeLine{    b[9]  = (safer\_ebox[(b[9] \string^ skey->saferp.K[i+1][9]) \& 255] - skey->saferp.K[i][9]) \& 255;    \(\backslash\)}
+\DoxyCodeLine{    b[10] = (safer\_ebox[(b[10] \string^ skey->saferp.K[i+1][10]) \& 255] - skey->saferp.K[i][10]) \& 255; \(\backslash\)}
+\DoxyCodeLine{    b[11] = safer\_lbox[(b[11] - skey->saferp.K[i+1][11]) \& 255] \string^ skey->saferp.K[i][11];         \(\backslash\)}
+\DoxyCodeLine{    b[12] = safer\_lbox[(b[12] - skey->saferp.K[i+1][12]) \& 255] \string^ skey->saferp.K[i][12];         \(\backslash\)}
+\DoxyCodeLine{    b[13] = (safer\_ebox[(b[13] \string^ skey->saferp.K[i+1][13]) \& 255] - skey->saferp.K[i][13]) \& 255; \(\backslash\)}
+\DoxyCodeLine{    b[14] = (safer\_ebox[(b[14] \string^ skey->saferp.K[i+1][14]) \& 255] - skey->saferp.K[i][14]) \& 255; \(\backslash\)}
+\DoxyCodeLine{    b[15] = safer\_lbox[(b[15] - skey->saferp.K[i+1][15]) \& 255] \string^ skey->saferp.K[i][15];         \(\backslash\)}
+\DoxyCodeLine{\} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+
+
+Definition at line 66 of file saferp.\+c.
+
+\mbox{\Hypertarget{saferp_8c_a48ab5f1ee7880336e1406af599d56b14}\label{saferp_8c_a48ab5f1ee7880336e1406af599d56b14}} 
+\index{saferp.c@{saferp.c}!iSHUF@{iSHUF}}
+\index{iSHUF@{iSHUF}!saferp.c@{saferp.c}}
+\subsubsection{\texorpdfstring{iSHUF}{iSHUF}}
+{\footnotesize\ttfamily \#define i\+S\+H\+UF(\begin{DoxyParamCaption}\item[{}]{b,  }\item[{}]{b2 }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{                                          \(\backslash\)}
+\DoxyCodeLine{    b2[0] = b[12]; b2[1] = b[5]; b2[2] = b[4]; b2[3] = b[15];      \(\backslash\)}
+\DoxyCodeLine{    b2[4] = b[14]; b2[5] = b[7]; b2[6] = b[6]; b2[7] = b[13];      \(\backslash\)}
+\DoxyCodeLine{    b2[8] = b[0]; b2[9] = b[9]; b2[10] = b[8]; b2[11] = b[1];      \(\backslash\)}
+\DoxyCodeLine{    b2[12] = b[2]; b2[13] = b[11]; b2[14] = b[10]; b2[15] = b[3];  \(\backslash\)}
+\DoxyCodeLine{\} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+
+
+Definition at line 118 of file saferp.\+c.
+
+\mbox{\Hypertarget{saferp_8c_aa17bb7e6eb8c95d853e07f94f06abf72}\label{saferp_8c_aa17bb7e6eb8c95d853e07f94f06abf72}} 
+\index{saferp.c@{saferp.c}!LT@{LT}}
+\index{LT@{LT}!saferp.c@{saferp.c}}
+\subsubsection{\texorpdfstring{LT}{LT}}
+{\footnotesize\ttfamily \#define LT(\begin{DoxyParamCaption}\item[{}]{b,  }\item[{}]{b2 }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{        \(\backslash\)}
+\DoxyCodeLine{    PHT(b);  \mbox{\hyperlink{saferp_8c_aacc78cfa016f04d26dbb977e237bb4d0}{SHUF}}(b, b2);     \(\backslash\)}
+\DoxyCodeLine{    PHT(b2); \mbox{\hyperlink{saferp_8c_aacc78cfa016f04d26dbb977e237bb4d0}{SHUF}}(b2, b);     \(\backslash\)}
+\DoxyCodeLine{    PHT(b);  \mbox{\hyperlink{saferp_8c_aacc78cfa016f04d26dbb977e237bb4d0}{SHUF}}(b, b2);     \(\backslash\)}
+\DoxyCodeLine{    PHT(b2);                  \(\backslash\)}
+\DoxyCodeLine{\} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+
+
+Definition at line 129 of file saferp.\+c.
+
+\mbox{\Hypertarget{saferp_8c_a4d8c05e7429360d8855305d106760e0f}\label{saferp_8c_a4d8c05e7429360d8855305d106760e0f}} 
+\index{saferp.c@{saferp.c}!PHT@{PHT}}
+\index{PHT@{PHT}!saferp.c@{saferp.c}}
+\subsubsection{\texorpdfstring{PHT}{PHT}}
+{\footnotesize\ttfamily \#define P\+HT(\begin{DoxyParamCaption}\item[{}]{b }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{                                          \(\backslash\)}
+\DoxyCodeLine{    b[0]  = (b[0] + (b[1] = (b[0] + b[1]) \& 255)) \& 255;     \(\backslash\)}
+\DoxyCodeLine{    b[2]  = (b[2] + (b[3] = (b[3] + b[2]) \& 255)) \& 255;     \(\backslash\)}
+\DoxyCodeLine{    b[4]  = (b[4] + (b[5] = (b[5] + b[4]) \& 255)) \& 255;     \(\backslash\)}
+\DoxyCodeLine{    b[6]  = (b[6] + (b[7] = (b[7] + b[6]) \& 255)) \& 255;     \(\backslash\)}
+\DoxyCodeLine{    b[8]  = (b[8] + (b[9] = (b[9] + b[8]) \& 255)) \& 255;     \(\backslash\)}
+\DoxyCodeLine{    b[10] = (b[10] + (b[11] = (b[11] + b[10]) \& 255)) \& 255; \(\backslash\)}
+\DoxyCodeLine{    b[12] = (b[12] + (b[13] = (b[13] + b[12]) \& 255)) \& 255; \(\backslash\)}
+\DoxyCodeLine{    b[14] = (b[14] + (b[15] = (b[15] + b[14]) \& 255)) \& 255; \(\backslash\)}
+\DoxyCodeLine{\} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+
+
+Definition at line 86 of file saferp.\+c.
+
+\mbox{\Hypertarget{saferp_8c_ad69cd28baafd5d8a85ca9eeca8722a6e}\label{saferp_8c_ad69cd28baafd5d8a85ca9eeca8722a6e}} 
+\index{saferp.c@{saferp.c}!ROUND@{ROUND}}
+\index{ROUND@{ROUND}!saferp.c@{saferp.c}}
+\subsubsection{\texorpdfstring{ROUND}{ROUND}}
+{\footnotesize\ttfamily \#define R\+O\+U\+ND(\begin{DoxyParamCaption}\item[{}]{b,  }\item[{}]{i }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{                                                                         \(\backslash\)}
+\DoxyCodeLine{    b[0]  = (safer\_ebox[(b[0] \string^ skey->saferp.K[i][0]) \& 255] + skey->saferp.K[i+1][0]) \& 255;    \(\backslash\)}
+\DoxyCodeLine{    b[1]  = safer\_lbox[(b[1] + skey->saferp.K[i][1]) \& 255] \string^ skey->saferp.K[i+1][1];            \(\backslash\)}
+\DoxyCodeLine{    b[2]  = safer\_lbox[(b[2] + skey->saferp.K[i][2]) \& 255] \string^ skey->saferp.K[i+1][2];            \(\backslash\)}
+\DoxyCodeLine{    b[3]  = (safer\_ebox[(b[3] \string^ skey->saferp.K[i][3]) \& 255] + skey->saferp.K[i+1][3]) \& 255;    \(\backslash\)}
+\DoxyCodeLine{    b[4]  = (safer\_ebox[(b[4] \string^ skey->saferp.K[i][4]) \& 255] + skey->saferp.K[i+1][4]) \& 255;    \(\backslash\)}
+\DoxyCodeLine{    b[5]  = safer\_lbox[(b[5] + skey->saferp.K[i][5]) \& 255] \string^ skey->saferp.K[i+1][5];            \(\backslash\)}
+\DoxyCodeLine{    b[6]  = safer\_lbox[(b[6] + skey->saferp.K[i][6]) \& 255] \string^ skey->saferp.K[i+1][6];            \(\backslash\)}
+\DoxyCodeLine{    b[7]  = (safer\_ebox[(b[7] \string^ skey->saferp.K[i][7]) \& 255] + skey->saferp.K[i+1][7]) \& 255;    \(\backslash\)}
+\DoxyCodeLine{    b[8]  = (safer\_ebox[(b[8] \string^ skey->saferp.K[i][8]) \& 255] + skey->saferp.K[i+1][8]) \& 255;    \(\backslash\)}
+\DoxyCodeLine{    b[9]  = safer\_lbox[(b[9] + skey->saferp.K[i][9]) \& 255] \string^ skey->saferp.K[i+1][9];            \(\backslash\)}
+\DoxyCodeLine{    b[10] = safer\_lbox[(b[10] + skey->saferp.K[i][10]) \& 255] \string^ skey->saferp.K[i+1][10];         \(\backslash\)}
+\DoxyCodeLine{    b[11] = (safer\_ebox[(b[11] \string^ skey->saferp.K[i][11]) \& 255] + skey->saferp.K[i+1][11]) \& 255; \(\backslash\)}
+\DoxyCodeLine{    b[12] = (safer\_ebox[(b[12] \string^ skey->saferp.K[i][12]) \& 255] + skey->saferp.K[i+1][12]) \& 255; \(\backslash\)}
+\DoxyCodeLine{    b[13] = safer\_lbox[(b[13] + skey->saferp.K[i][13]) \& 255] \string^ skey->saferp.K[i+1][13];         \(\backslash\)}
+\DoxyCodeLine{    b[14] = safer\_lbox[(b[14] + skey->saferp.K[i][14]) \& 255] \string^ skey->saferp.K[i+1][14];         \(\backslash\)}
+\DoxyCodeLine{    b[15] = (safer\_ebox[(b[15] \string^ skey->saferp.K[i][15]) \& 255] + skey->saferp.K[i+1][15]) \& 255; \(\backslash\)}
+\DoxyCodeLine{\} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+
+
+Definition at line 46 of file saferp.\+c.
+
+\mbox{\Hypertarget{saferp_8c_aacc78cfa016f04d26dbb977e237bb4d0}\label{saferp_8c_aacc78cfa016f04d26dbb977e237bb4d0}} 
+\index{saferp.c@{saferp.c}!SHUF@{SHUF}}
+\index{SHUF@{SHUF}!saferp.c@{saferp.c}}
+\subsubsection{\texorpdfstring{SHUF}{SHUF}}
+{\footnotesize\ttfamily \#define S\+H\+UF(\begin{DoxyParamCaption}\item[{}]{b,  }\item[{}]{b2 }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{                                         \(\backslash\)}
+\DoxyCodeLine{    b2[0] = b[8]; b2[1] = b[11]; b2[2] = b[12]; b2[3] = b[15];   \(\backslash\)}
+\DoxyCodeLine{    b2[4] = b[2]; b2[5] = b[1]; b2[6] = b[6]; b2[7] = b[5];      \(\backslash\)}
+\DoxyCodeLine{    b2[8] = b[10]; b2[9] = b[9]; b2[10] = b[14]; b2[11] = b[13]; \(\backslash\)}
+\DoxyCodeLine{    b2[12] = b[0]; b2[13] = b[7]; b2[14] = b[4]; b2[15] = b[3];  \(\backslash\)}
+\DoxyCodeLine{\} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+
+
+Definition at line 110 of file saferp.\+c.
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{saferp_8c_a2caa762288e3bf9666bf29a05ee9e742}\label{saferp_8c_a2caa762288e3bf9666bf29a05ee9e742}} 
+\index{saferp.c@{saferp.c}!saferp\_done@{saferp\_done}}
+\index{saferp\_done@{saferp\_done}!saferp.c@{saferp.c}}
+\subsubsection{\texorpdfstring{saferp\_done()}{saferp\_done()}}
+{\footnotesize\ttfamily void saferp\+\_\+done (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$}]{skey }\end{DoxyParamCaption})}
+
+
+
+Terminate the context. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em skey} & The scheduled key \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 536 of file saferp.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{537 \{}
+\DoxyCodeLine{538   \mbox{\hyperlink{tomcrypt__macros_8h_accde4b007facd646a8327f8e64b2d1e0}{LTC\_UNUSED\_PARAM}}(skey);}
+\DoxyCodeLine{539 \}}
+
+\end{DoxyCode}
+
+
+References L\+T\+C\+\_\+\+U\+N\+U\+S\+E\+D\+\_\+\+P\+A\+R\+AM.
+
+\mbox{\Hypertarget{saferp_8c_a14934fc3e8b18abd206c4e900bf9e0d0}\label{saferp_8c_a14934fc3e8b18abd206c4e900bf9e0d0}} 
+\index{saferp.c@{saferp.c}!saferp\_ecb\_decrypt@{saferp\_ecb\_decrypt}}
+\index{saferp\_ecb\_decrypt@{saferp\_ecb\_decrypt}!saferp.c@{saferp.c}}
+\subsubsection{\texorpdfstring{saferp\_ecb\_decrypt()}{saferp\_ecb\_decrypt()}}
+{\footnotesize\ttfamily int saferp\+\_\+ecb\+\_\+decrypt (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{ct,  }\item[{unsigned char $\ast$}]{pt,  }\item[{const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$}]{skey }\end{DoxyParamCaption})}
+
+
+
+Decrypts a block of text with L\+T\+C\+\_\+\+S\+A\+F\+E\+R+. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ct} & The input ciphertext (16 bytes) \\
+\hline
+{\em pt} & The output plaintext (16 bytes) \\
+\hline
+{\em skey} & The key as scheduled \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 405 of file saferp.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{406 \{}
+\DoxyCodeLine{407    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} b[16];}
+\DoxyCodeLine{408    \textcolor{keywordtype}{int} x;}
+\DoxyCodeLine{409 }
+\DoxyCodeLine{410    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(pt   != NULL);}
+\DoxyCodeLine{411    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(ct   != NULL);}
+\DoxyCodeLine{412    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(skey != NULL);}
+\DoxyCodeLine{413 }
+\DoxyCodeLine{414    \textcolor{comment}{/* do eight rounds */}}
+\DoxyCodeLine{415    b[0] = ct[0] \string^ skey->saferp.K[skey->saferp.rounds*2][0];}
+\DoxyCodeLine{416    b[1] = (ct[1] - skey->saferp.K[skey->saferp.rounds*2][1]) \& 255;}
+\DoxyCodeLine{417    b[2] = (ct[2] - skey->saferp.K[skey->saferp.rounds*2][2]) \& 255;}
+\DoxyCodeLine{418    b[3] = ct[3] \string^ skey->saferp.K[skey->saferp.rounds*2][3];}
+\DoxyCodeLine{419    b[4] = ct[4] \string^ skey->saferp.K[skey->saferp.rounds*2][4];}
+\DoxyCodeLine{420    b[5] = (ct[5] - skey->saferp.K[skey->saferp.rounds*2][5]) \& 255;}
+\DoxyCodeLine{421    b[6] = (ct[6] - skey->saferp.K[skey->saferp.rounds*2][6]) \& 255;}
+\DoxyCodeLine{422    b[7] = ct[7] \string^ skey->saferp.K[skey->saferp.rounds*2][7];}
+\DoxyCodeLine{423    b[8] = ct[8] \string^ skey->saferp.K[skey->saferp.rounds*2][8];}
+\DoxyCodeLine{424    b[9] = (ct[9] - skey->saferp.K[skey->saferp.rounds*2][9]) \& 255;}
+\DoxyCodeLine{425    b[10] = (ct[10] - skey->saferp.K[skey->saferp.rounds*2][10]) \& 255;}
+\DoxyCodeLine{426    b[11] = ct[11] \string^ skey->saferp.K[skey->saferp.rounds*2][11];}
+\DoxyCodeLine{427    b[12] = ct[12] \string^ skey->saferp.K[skey->saferp.rounds*2][12];}
+\DoxyCodeLine{428    b[13] = (ct[13] - skey->saferp.K[skey->saferp.rounds*2][13]) \& 255;}
+\DoxyCodeLine{429    b[14] = (ct[14] - skey->saferp.K[skey->saferp.rounds*2][14]) \& 255;}
+\DoxyCodeLine{430    b[15] = ct[15] \string^ skey->saferp.K[skey->saferp.rounds*2][15];}
+\DoxyCodeLine{431    \textcolor{comment}{/* 256-bit key? */}}
+\DoxyCodeLine{432    \textcolor{keywordflow}{if} (skey->saferp.rounds > 12) \{}
+\DoxyCodeLine{433       \mbox{\hyperlink{saferp_8c_a6cae0bf98b78bfe0c7da9b95c9d50216}{iLT}}(b, pt); \mbox{\hyperlink{saferp_8c_ad0227b7a5ad8c24114b4cc29dc39ce46}{iROUND}}(pt, 30);}
+\DoxyCodeLine{434       \mbox{\hyperlink{saferp_8c_a6cae0bf98b78bfe0c7da9b95c9d50216}{iLT}}(pt, b); \mbox{\hyperlink{saferp_8c_ad0227b7a5ad8c24114b4cc29dc39ce46}{iROUND}}(b, 28);}
+\DoxyCodeLine{435       \mbox{\hyperlink{saferp_8c_a6cae0bf98b78bfe0c7da9b95c9d50216}{iLT}}(b, pt); \mbox{\hyperlink{saferp_8c_ad0227b7a5ad8c24114b4cc29dc39ce46}{iROUND}}(pt, 26);}
+\DoxyCodeLine{436       \mbox{\hyperlink{saferp_8c_a6cae0bf98b78bfe0c7da9b95c9d50216}{iLT}}(pt, b); \mbox{\hyperlink{saferp_8c_ad0227b7a5ad8c24114b4cc29dc39ce46}{iROUND}}(b, 24);}
+\DoxyCodeLine{437    \}}
+\DoxyCodeLine{438    \textcolor{comment}{/* 192-bit key? */}}
+\DoxyCodeLine{439    \textcolor{keywordflow}{if} (skey->saferp.rounds > 8) \{}
+\DoxyCodeLine{440       \mbox{\hyperlink{saferp_8c_a6cae0bf98b78bfe0c7da9b95c9d50216}{iLT}}(b, pt); \mbox{\hyperlink{saferp_8c_ad0227b7a5ad8c24114b4cc29dc39ce46}{iROUND}}(pt, 22);}
+\DoxyCodeLine{441       \mbox{\hyperlink{saferp_8c_a6cae0bf98b78bfe0c7da9b95c9d50216}{iLT}}(pt, b); \mbox{\hyperlink{saferp_8c_ad0227b7a5ad8c24114b4cc29dc39ce46}{iROUND}}(b, 20);}
+\DoxyCodeLine{442       \mbox{\hyperlink{saferp_8c_a6cae0bf98b78bfe0c7da9b95c9d50216}{iLT}}(b, pt); \mbox{\hyperlink{saferp_8c_ad0227b7a5ad8c24114b4cc29dc39ce46}{iROUND}}(pt, 18);}
+\DoxyCodeLine{443       \mbox{\hyperlink{saferp_8c_a6cae0bf98b78bfe0c7da9b95c9d50216}{iLT}}(pt, b); \mbox{\hyperlink{saferp_8c_ad0227b7a5ad8c24114b4cc29dc39ce46}{iROUND}}(b, 16);}
+\DoxyCodeLine{444    \}}
+\DoxyCodeLine{445    \mbox{\hyperlink{saferp_8c_a6cae0bf98b78bfe0c7da9b95c9d50216}{iLT}}(b, pt); \mbox{\hyperlink{saferp_8c_ad0227b7a5ad8c24114b4cc29dc39ce46}{iROUND}}(pt, 14);}
+\DoxyCodeLine{446    \mbox{\hyperlink{saferp_8c_a6cae0bf98b78bfe0c7da9b95c9d50216}{iLT}}(pt, b); \mbox{\hyperlink{saferp_8c_ad0227b7a5ad8c24114b4cc29dc39ce46}{iROUND}}(b, 12);}
+\DoxyCodeLine{447    \mbox{\hyperlink{saferp_8c_a6cae0bf98b78bfe0c7da9b95c9d50216}{iLT}}(b, pt); \mbox{\hyperlink{saferp_8c_ad0227b7a5ad8c24114b4cc29dc39ce46}{iROUND}}(pt,10);}
+\DoxyCodeLine{448    \mbox{\hyperlink{saferp_8c_a6cae0bf98b78bfe0c7da9b95c9d50216}{iLT}}(pt, b); \mbox{\hyperlink{saferp_8c_ad0227b7a5ad8c24114b4cc29dc39ce46}{iROUND}}(b, 8);}
+\DoxyCodeLine{449    \mbox{\hyperlink{saferp_8c_a6cae0bf98b78bfe0c7da9b95c9d50216}{iLT}}(b, pt); \mbox{\hyperlink{saferp_8c_ad0227b7a5ad8c24114b4cc29dc39ce46}{iROUND}}(pt,6);}
+\DoxyCodeLine{450    \mbox{\hyperlink{saferp_8c_a6cae0bf98b78bfe0c7da9b95c9d50216}{iLT}}(pt, b); \mbox{\hyperlink{saferp_8c_ad0227b7a5ad8c24114b4cc29dc39ce46}{iROUND}}(b, 4);}
+\DoxyCodeLine{451    \mbox{\hyperlink{saferp_8c_a6cae0bf98b78bfe0c7da9b95c9d50216}{iLT}}(b, pt); \mbox{\hyperlink{saferp_8c_ad0227b7a5ad8c24114b4cc29dc39ce46}{iROUND}}(pt,2);}
+\DoxyCodeLine{452    \mbox{\hyperlink{saferp_8c_a6cae0bf98b78bfe0c7da9b95c9d50216}{iLT}}(pt, b); \mbox{\hyperlink{saferp_8c_ad0227b7a5ad8c24114b4cc29dc39ce46}{iROUND}}(b, 0);}
+\DoxyCodeLine{453    \textcolor{keywordflow}{for} (x = 0; x < 16; x++) \{}
+\DoxyCodeLine{454        pt[x] = b[x];}
+\DoxyCodeLine{455    \}}
+\DoxyCodeLine{456 \textcolor{preprocessor}{\#ifdef LTC\_CLEAN\_STACK}}
+\DoxyCodeLine{457    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(b, \textcolor{keyword}{sizeof}(b));}
+\DoxyCodeLine{458 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{459    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{460 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, i\+LT, i\+R\+O\+U\+ND, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, and zeromem().
+
+
+
+Referenced by saferp\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2
+\mbox{\Hypertarget{saferp_8c_a59d49e6e1a07b020fa94c3f381c314e6}\label{saferp_8c_a59d49e6e1a07b020fa94c3f381c314e6}} 
+\index{saferp.c@{saferp.c}!saferp\_ecb\_encrypt@{saferp\_ecb\_encrypt}}
+\index{saferp\_ecb\_encrypt@{saferp\_ecb\_encrypt}!saferp.c@{saferp.c}}
+\subsubsection{\texorpdfstring{saferp\_ecb\_encrypt()}{saferp\_ecb\_encrypt()}}
+{\footnotesize\ttfamily int saferp\+\_\+ecb\+\_\+encrypt (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{pt,  }\item[{unsigned char $\ast$}]{ct,  }\item[{const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$}]{skey }\end{DoxyParamCaption})}
+
+
+
+Encrypts a block of text with L\+T\+C\+\_\+\+S\+A\+F\+E\+R+. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pt} & The input plaintext (16 bytes) \\
+\hline
+{\em ct} & The output ciphertext (16 bytes) \\
+\hline
+{\em skey} & The key as scheduled \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 341 of file saferp.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{342 \{}
+\DoxyCodeLine{343    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} b[16];}
+\DoxyCodeLine{344    \textcolor{keywordtype}{int} x;}
+\DoxyCodeLine{345 }
+\DoxyCodeLine{346    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(pt   != NULL);}
+\DoxyCodeLine{347    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(ct   != NULL);}
+\DoxyCodeLine{348    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(skey != NULL);}
+\DoxyCodeLine{349 }
+\DoxyCodeLine{350    \textcolor{comment}{/* do eight rounds */}}
+\DoxyCodeLine{351    \textcolor{keywordflow}{for} (x = 0; x < 16; x++) \{}
+\DoxyCodeLine{352        b[x] = pt[x];}
+\DoxyCodeLine{353    \}}
+\DoxyCodeLine{354    \mbox{\hyperlink{saferp_8c_ad69cd28baafd5d8a85ca9eeca8722a6e}{ROUND}}(b,  0);  \mbox{\hyperlink{saferp_8c_aa17bb7e6eb8c95d853e07f94f06abf72}{LT}}(b, ct);}
+\DoxyCodeLine{355    \mbox{\hyperlink{saferp_8c_ad69cd28baafd5d8a85ca9eeca8722a6e}{ROUND}}(ct, 2);  \mbox{\hyperlink{saferp_8c_aa17bb7e6eb8c95d853e07f94f06abf72}{LT}}(ct, b);}
+\DoxyCodeLine{356    \mbox{\hyperlink{saferp_8c_ad69cd28baafd5d8a85ca9eeca8722a6e}{ROUND}}(b,  4);  \mbox{\hyperlink{saferp_8c_aa17bb7e6eb8c95d853e07f94f06abf72}{LT}}(b, ct);}
+\DoxyCodeLine{357    \mbox{\hyperlink{saferp_8c_ad69cd28baafd5d8a85ca9eeca8722a6e}{ROUND}}(ct, 6);  \mbox{\hyperlink{saferp_8c_aa17bb7e6eb8c95d853e07f94f06abf72}{LT}}(ct, b);}
+\DoxyCodeLine{358    \mbox{\hyperlink{saferp_8c_ad69cd28baafd5d8a85ca9eeca8722a6e}{ROUND}}(b,  8);  \mbox{\hyperlink{saferp_8c_aa17bb7e6eb8c95d853e07f94f06abf72}{LT}}(b, ct);}
+\DoxyCodeLine{359    \mbox{\hyperlink{saferp_8c_ad69cd28baafd5d8a85ca9eeca8722a6e}{ROUND}}(ct, 10); \mbox{\hyperlink{saferp_8c_aa17bb7e6eb8c95d853e07f94f06abf72}{LT}}(ct, b);}
+\DoxyCodeLine{360    \mbox{\hyperlink{saferp_8c_ad69cd28baafd5d8a85ca9eeca8722a6e}{ROUND}}(b,  12); \mbox{\hyperlink{saferp_8c_aa17bb7e6eb8c95d853e07f94f06abf72}{LT}}(b, ct);}
+\DoxyCodeLine{361    \mbox{\hyperlink{saferp_8c_ad69cd28baafd5d8a85ca9eeca8722a6e}{ROUND}}(ct, 14); \mbox{\hyperlink{saferp_8c_aa17bb7e6eb8c95d853e07f94f06abf72}{LT}}(ct, b);}
+\DoxyCodeLine{362    \textcolor{comment}{/* 192-bit key? */}}
+\DoxyCodeLine{363    \textcolor{keywordflow}{if} (skey->saferp.rounds > 8) \{}
+\DoxyCodeLine{364       \mbox{\hyperlink{saferp_8c_ad69cd28baafd5d8a85ca9eeca8722a6e}{ROUND}}(b, 16);  \mbox{\hyperlink{saferp_8c_aa17bb7e6eb8c95d853e07f94f06abf72}{LT}}(b, ct);}
+\DoxyCodeLine{365       \mbox{\hyperlink{saferp_8c_ad69cd28baafd5d8a85ca9eeca8722a6e}{ROUND}}(ct, 18); \mbox{\hyperlink{saferp_8c_aa17bb7e6eb8c95d853e07f94f06abf72}{LT}}(ct, b);}
+\DoxyCodeLine{366       \mbox{\hyperlink{saferp_8c_ad69cd28baafd5d8a85ca9eeca8722a6e}{ROUND}}(b, 20);  \mbox{\hyperlink{saferp_8c_aa17bb7e6eb8c95d853e07f94f06abf72}{LT}}(b, ct);}
+\DoxyCodeLine{367       \mbox{\hyperlink{saferp_8c_ad69cd28baafd5d8a85ca9eeca8722a6e}{ROUND}}(ct, 22); \mbox{\hyperlink{saferp_8c_aa17bb7e6eb8c95d853e07f94f06abf72}{LT}}(ct, b);}
+\DoxyCodeLine{368    \}}
+\DoxyCodeLine{369    \textcolor{comment}{/* 256-bit key? */}}
+\DoxyCodeLine{370    \textcolor{keywordflow}{if} (skey->saferp.rounds > 12) \{}
+\DoxyCodeLine{371       \mbox{\hyperlink{saferp_8c_ad69cd28baafd5d8a85ca9eeca8722a6e}{ROUND}}(b, 24);  \mbox{\hyperlink{saferp_8c_aa17bb7e6eb8c95d853e07f94f06abf72}{LT}}(b, ct);}
+\DoxyCodeLine{372       \mbox{\hyperlink{saferp_8c_ad69cd28baafd5d8a85ca9eeca8722a6e}{ROUND}}(ct, 26); \mbox{\hyperlink{saferp_8c_aa17bb7e6eb8c95d853e07f94f06abf72}{LT}}(ct, b);}
+\DoxyCodeLine{373       \mbox{\hyperlink{saferp_8c_ad69cd28baafd5d8a85ca9eeca8722a6e}{ROUND}}(b, 28);  \mbox{\hyperlink{saferp_8c_aa17bb7e6eb8c95d853e07f94f06abf72}{LT}}(b, ct);}
+\DoxyCodeLine{374       \mbox{\hyperlink{saferp_8c_ad69cd28baafd5d8a85ca9eeca8722a6e}{ROUND}}(ct, 30); \mbox{\hyperlink{saferp_8c_aa17bb7e6eb8c95d853e07f94f06abf72}{LT}}(ct, b);}
+\DoxyCodeLine{375    \}}
+\DoxyCodeLine{376    ct[0] = b[0] \string^ skey->saferp.K[skey->saferp.rounds*2][0];}
+\DoxyCodeLine{377    ct[1] = (b[1] + skey->saferp.K[skey->saferp.rounds*2][1]) \& 255;}
+\DoxyCodeLine{378    ct[2] = (b[2] + skey->saferp.K[skey->saferp.rounds*2][2]) \& 255;}
+\DoxyCodeLine{379    ct[3] = b[3] \string^ skey->saferp.K[skey->saferp.rounds*2][3];}
+\DoxyCodeLine{380    ct[4] = b[4] \string^ skey->saferp.K[skey->saferp.rounds*2][4];}
+\DoxyCodeLine{381    ct[5] = (b[5] + skey->saferp.K[skey->saferp.rounds*2][5]) \& 255;}
+\DoxyCodeLine{382    ct[6] = (b[6] + skey->saferp.K[skey->saferp.rounds*2][6]) \& 255;}
+\DoxyCodeLine{383    ct[7] = b[7] \string^ skey->saferp.K[skey->saferp.rounds*2][7];}
+\DoxyCodeLine{384    ct[8] = b[8] \string^ skey->saferp.K[skey->saferp.rounds*2][8];}
+\DoxyCodeLine{385    ct[9] = (b[9] + skey->saferp.K[skey->saferp.rounds*2][9]) \& 255;}
+\DoxyCodeLine{386    ct[10] = (b[10] + skey->saferp.K[skey->saferp.rounds*2][10]) \& 255;}
+\DoxyCodeLine{387    ct[11] = b[11] \string^ skey->saferp.K[skey->saferp.rounds*2][11];}
+\DoxyCodeLine{388    ct[12] = b[12] \string^ skey->saferp.K[skey->saferp.rounds*2][12];}
+\DoxyCodeLine{389    ct[13] = (b[13] + skey->saferp.K[skey->saferp.rounds*2][13]) \& 255;}
+\DoxyCodeLine{390    ct[14] = (b[14] + skey->saferp.K[skey->saferp.rounds*2][14]) \& 255;}
+\DoxyCodeLine{391    ct[15] = b[15] \string^ skey->saferp.K[skey->saferp.rounds*2][15];}
+\DoxyCodeLine{392 \textcolor{preprocessor}{\#ifdef LTC\_CLEAN\_STACK}}
+\DoxyCodeLine{393    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(b, \textcolor{keyword}{sizeof}(b));}
+\DoxyCodeLine{394 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{395    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{396 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, LT, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, R\+O\+U\+ND, and zeromem().
+
+
+
+Referenced by saferp\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 3
+Here is the caller graph for this function\+:
+% FIG 4
+\mbox{\Hypertarget{saferp_8c_a0f251273c78124518d1c43c7ffa38d64}\label{saferp_8c_a0f251273c78124518d1c43c7ffa38d64}} 
+\index{saferp.c@{saferp.c}!saferp\_keysize@{saferp\_keysize}}
+\index{saferp\_keysize@{saferp\_keysize}!saferp.c@{saferp.c}}
+\subsubsection{\texorpdfstring{saferp\_keysize()}{saferp\_keysize()}}
+{\footnotesize\ttfamily int saferp\+\_\+keysize (\begin{DoxyParamCaption}\item[{int $\ast$}]{keysize }\end{DoxyParamCaption})}
+
+
+
+Gets suitable key size. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em keysize} & \mbox{[}in/out\mbox{]} The length of the recommended key (in bytes). This function will store the suitable size back in this variable. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if the input key size is acceptable. 
+\end{DoxyReturn}
+
+
+Definition at line 546 of file saferp.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{547 \{}
+\DoxyCodeLine{548    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(keysize != NULL);}
+\DoxyCodeLine{549 }
+\DoxyCodeLine{550    \textcolor{keywordflow}{if} (*keysize < 16) \{}
+\DoxyCodeLine{551       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caafed43f3b625e72191e08e65b4bb5e02}{CRYPT\_INVALID\_KEYSIZE}};}
+\DoxyCodeLine{552    \}}
+\DoxyCodeLine{553    \textcolor{keywordflow}{if} (*keysize < 24) \{}
+\DoxyCodeLine{554       *keysize = 16;}
+\DoxyCodeLine{555    \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (*keysize < 32) \{}
+\DoxyCodeLine{556       *keysize = 24;}
+\DoxyCodeLine{557    \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{558       *keysize = 32;}
+\DoxyCodeLine{559    \}}
+\DoxyCodeLine{560    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{561 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+K\+E\+Y\+S\+I\+ZE, C\+R\+Y\+P\+T\+\_\+\+OK, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+\mbox{\Hypertarget{saferp_8c_ac1e881047264199d7629a8792ce8d274}\label{saferp_8c_ac1e881047264199d7629a8792ce8d274}} 
+\index{saferp.c@{saferp.c}!saferp\_setup@{saferp\_setup}}
+\index{saferp\_setup@{saferp\_setup}!saferp.c@{saferp.c}}
+\subsubsection{\texorpdfstring{saferp\_setup()}{saferp\_setup()}}
+{\footnotesize\ttfamily int saferp\+\_\+setup (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{key,  }\item[{int}]{keylen,  }\item[{int}]{num\+\_\+rounds,  }\item[{\mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$}]{skey }\end{DoxyParamCaption})}
+
+
+
+Initialize the L\+T\+C\+\_\+\+S\+A\+F\+E\+R+ block cipher. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The symmetric key you wish to pass \\
+\hline
+{\em keylen} & The key length in bytes \\
+\hline
+{\em num\+\_\+rounds} & The number of rounds desired (0 for default) \\
+\hline
+{\em skey} & The key in as scheduled by this function. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 223 of file saferp.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{224 \{}
+\DoxyCodeLine{225    \textcolor{keywordtype}{unsigned} x, y, z;}
+\DoxyCodeLine{226    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} t[33];}
+\DoxyCodeLine{227    \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{int} \mbox{\hyperlink{kseed_8c_a51da46362a22c8107683876e9c12ec82}{rounds}}[3] = \{ 8, 12, 16 \};}
+\DoxyCodeLine{228 }
+\DoxyCodeLine{229    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(key  != NULL);}
+\DoxyCodeLine{230    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(skey != NULL);}
+\DoxyCodeLine{231 }
+\DoxyCodeLine{232    \textcolor{comment}{/* check arguments */}}
+\DoxyCodeLine{233    \textcolor{keywordflow}{if} (keylen != 16 \&\& keylen != 24 \&\& keylen != 32) \{}
+\DoxyCodeLine{234       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caafed43f3b625e72191e08e65b4bb5e02}{CRYPT\_INVALID\_KEYSIZE}};}
+\DoxyCodeLine{235    \}}
+\DoxyCodeLine{236 }
+\DoxyCodeLine{237    \textcolor{comment}{/* Is the number of rounds valid?  Either use zero for default or}}
+\DoxyCodeLine{238 \textcolor{comment}{    * 8,12,16 rounds for 16,24,32 byte keys}}
+\DoxyCodeLine{239 \textcolor{comment}{    */}}
+\DoxyCodeLine{240    \textcolor{keywordflow}{if} (num\_rounds != 0 \&\& num\_rounds != \mbox{\hyperlink{kseed_8c_a51da46362a22c8107683876e9c12ec82}{rounds}}[(keylen/8)-2]) \{}
+\DoxyCodeLine{241       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca69aff0280b5845d03130f8700009caf5}{CRYPT\_INVALID\_ROUNDS}};}
+\DoxyCodeLine{242    \}}
+\DoxyCodeLine{243 }
+\DoxyCodeLine{244    \textcolor{comment}{/* 128 bit key version */}}
+\DoxyCodeLine{245    \textcolor{keywordflow}{if} (keylen == 16) \{}
+\DoxyCodeLine{246        \textcolor{comment}{/* copy key into t */}}
+\DoxyCodeLine{247        \textcolor{keywordflow}{for} (x = y = 0; x < 16; x++) \{}
+\DoxyCodeLine{248            t[x] = key[x];}
+\DoxyCodeLine{249            y \string^= key[x];}
+\DoxyCodeLine{250        \}}
+\DoxyCodeLine{251        t[16] = y;}
+\DoxyCodeLine{252 }
+\DoxyCodeLine{253        \textcolor{comment}{/* make round keys */}}
+\DoxyCodeLine{254        \textcolor{keywordflow}{for} (x = 0; x < 16; x++) \{}
+\DoxyCodeLine{255            skey->saferp.K[0][x] = t[x];}
+\DoxyCodeLine{256        \}}
+\DoxyCodeLine{257 }
+\DoxyCodeLine{258        \textcolor{comment}{/* make the 16 other keys as a transformation of the first key */}}
+\DoxyCodeLine{259        \textcolor{keywordflow}{for} (x = 1; x < 17; x++) \{}
+\DoxyCodeLine{260            \textcolor{comment}{/* rotate 3 bits each */}}
+\DoxyCodeLine{261            \textcolor{keywordflow}{for} (y = 0; y < 17; y++) \{}
+\DoxyCodeLine{262                t[y] = ((t[y]<<3)|(t[y]>>5)) \& 255;}
+\DoxyCodeLine{263            \}}
+\DoxyCodeLine{264 }
+\DoxyCodeLine{265            \textcolor{comment}{/* select and add */}}
+\DoxyCodeLine{266            z = x;}
+\DoxyCodeLine{267            \textcolor{keywordflow}{for} (y = 0; y < 16; y++) \{}
+\DoxyCodeLine{268                skey->saferp.K[x][y] = (t[z] + \mbox{\hyperlink{saferp_8c_a09d2c58ff35b03ada59e9b0dafd06034}{safer\_bias}}[x-1][y]) \& 255;}
+\DoxyCodeLine{269                \textcolor{keywordflow}{if} (++z == 17) \{ z = 0; \}}
+\DoxyCodeLine{270            \}}
+\DoxyCodeLine{271        \}}
+\DoxyCodeLine{272        skey->saferp.rounds = 8;}
+\DoxyCodeLine{273    \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (keylen == 24) \{}
+\DoxyCodeLine{274        \textcolor{comment}{/* copy key into t */}}
+\DoxyCodeLine{275        \textcolor{keywordflow}{for} (x = y = 0; x < 24; x++) \{}
+\DoxyCodeLine{276            t[x] = key[x];}
+\DoxyCodeLine{277            y \string^= key[x];}
+\DoxyCodeLine{278        \}}
+\DoxyCodeLine{279        t[24] = y;}
+\DoxyCodeLine{280 }
+\DoxyCodeLine{281        \textcolor{comment}{/* make round keys */}}
+\DoxyCodeLine{282        \textcolor{keywordflow}{for} (x = 0; x < 16; x++) \{}
+\DoxyCodeLine{283            skey->saferp.K[0][x] = t[x];}
+\DoxyCodeLine{284        \}}
+\DoxyCodeLine{285 }
+\DoxyCodeLine{286        \textcolor{keywordflow}{for} (x = 1; x < 25; x++) \{}
+\DoxyCodeLine{287            \textcolor{comment}{/* rotate 3 bits each */}}
+\DoxyCodeLine{288            \textcolor{keywordflow}{for} (y = 0; y < 25; y++) \{}
+\DoxyCodeLine{289                t[y] = ((t[y]<<3)|(t[y]>>5)) \& 255;}
+\DoxyCodeLine{290            \}}
+\DoxyCodeLine{291 }
+\DoxyCodeLine{292            \textcolor{comment}{/* select and add */}}
+\DoxyCodeLine{293            z = x;}
+\DoxyCodeLine{294            \textcolor{keywordflow}{for} (y = 0; y < 16; y++) \{}
+\DoxyCodeLine{295                skey->saferp.K[x][y] = (t[z] + \mbox{\hyperlink{saferp_8c_a09d2c58ff35b03ada59e9b0dafd06034}{safer\_bias}}[x-1][y]) \& 255;}
+\DoxyCodeLine{296                \textcolor{keywordflow}{if} (++z == 25) \{ z = 0; \}}
+\DoxyCodeLine{297            \}}
+\DoxyCodeLine{298        \}}
+\DoxyCodeLine{299        skey->saferp.rounds = 12;}
+\DoxyCodeLine{300    \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{301        \textcolor{comment}{/* copy key into t */}}
+\DoxyCodeLine{302        \textcolor{keywordflow}{for} (x = y = 0; x < 32; x++) \{}
+\DoxyCodeLine{303            t[x] = key[x];}
+\DoxyCodeLine{304            y \string^= key[x];}
+\DoxyCodeLine{305        \}}
+\DoxyCodeLine{306        t[32] = y;}
+\DoxyCodeLine{307 }
+\DoxyCodeLine{308        \textcolor{comment}{/* make round keys */}}
+\DoxyCodeLine{309        \textcolor{keywordflow}{for} (x = 0; x < 16; x++) \{}
+\DoxyCodeLine{310            skey->saferp.K[0][x] = t[x];}
+\DoxyCodeLine{311        \}}
+\DoxyCodeLine{312 }
+\DoxyCodeLine{313        \textcolor{keywordflow}{for} (x = 1; x < 33; x++) \{}
+\DoxyCodeLine{314            \textcolor{comment}{/* rotate 3 bits each */}}
+\DoxyCodeLine{315            \textcolor{keywordflow}{for} (y = 0; y < 33; y++) \{}
+\DoxyCodeLine{316                t[y] = ((t[y]<<3)|(t[y]>>5)) \& 255;}
+\DoxyCodeLine{317            \}}
+\DoxyCodeLine{318 }
+\DoxyCodeLine{319            \textcolor{comment}{/* select and add */}}
+\DoxyCodeLine{320            z = x;}
+\DoxyCodeLine{321            \textcolor{keywordflow}{for} (y = 0; y < 16; y++) \{}
+\DoxyCodeLine{322                skey->saferp.K[x][y] = (t[z] + \mbox{\hyperlink{saferp_8c_a09d2c58ff35b03ada59e9b0dafd06034}{safer\_bias}}[x-1][y]) \& 255;}
+\DoxyCodeLine{323                \textcolor{keywordflow}{if} (++z == 33) \{ z = 0; \}}
+\DoxyCodeLine{324            \}}
+\DoxyCodeLine{325        \}}
+\DoxyCodeLine{326        skey->saferp.rounds = 16;}
+\DoxyCodeLine{327    \}}
+\DoxyCodeLine{328 \textcolor{preprocessor}{\#ifdef LTC\_CLEAN\_STACK}}
+\DoxyCodeLine{329    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(t, \textcolor{keyword}{sizeof}(t));}
+\DoxyCodeLine{330 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{331    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{332 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+K\+E\+Y\+S\+I\+ZE, C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+R\+O\+U\+N\+DS, C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, rounds(), safer\+\_\+bias, and zeromem().
+
+
+
+Referenced by saferp\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 5
+Here is the caller graph for this function\+:
+% FIG 6
+\mbox{\Hypertarget{saferp_8c_a33ce7f7b30a0c6b0a57aff742fb5546b}\label{saferp_8c_a33ce7f7b30a0c6b0a57aff742fb5546b}} 
+\index{saferp.c@{saferp.c}!saferp\_test@{saferp\_test}}
+\index{saferp\_test@{saferp\_test}!saferp.c@{saferp.c}}
+\subsubsection{\texorpdfstring{saferp\_test()}{saferp\_test()}}
+{\footnotesize\ttfamily int saferp\+\_\+test (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Performs a self-\/test of the L\+T\+C\+\_\+\+S\+A\+F\+E\+R+ block cipher. 
+
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if functional, C\+R\+Y\+P\+T\+\_\+\+N\+OP if self-\/test has been disabled 
+\end{DoxyReturn}
+
+
+Definition at line 466 of file saferp.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{467 \{}
+\DoxyCodeLine{468 \textcolor{preprocessor}{ \#ifndef LTC\_TEST}}
+\DoxyCodeLine{469     \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cac43a7799c7fd5f515172da6cfc0f9cf5}{CRYPT\_NOP}};}
+\DoxyCodeLine{470 \textcolor{preprocessor}{ \#else}}
+\DoxyCodeLine{471    \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{472        \textcolor{keywordtype}{int} keylen;}
+\DoxyCodeLine{473        \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} key[32], pt[16], ct[16];}
+\DoxyCodeLine{474    \} tests[] = \{}
+\DoxyCodeLine{475        \{}
+\DoxyCodeLine{476            16,}
+\DoxyCodeLine{477            \{ 41, 35, 190, 132, 225, 108, 214, 174,}
+\DoxyCodeLine{478              82, 144, 73, 241, 241, 187, 233, 235 \},}
+\DoxyCodeLine{479            \{ 179, 166, 219, 60, 135, 12, 62, 153,}
+\DoxyCodeLine{480              36, 94, 13, 28, 6, 183, 71, 222 \},}
+\DoxyCodeLine{481            \{ 224, 31, 182, 10, 12, 255, 84, 70,}
+\DoxyCodeLine{482              127, 13, 89, 249, 9, 57, 165, 220 \}}
+\DoxyCodeLine{483        \}, \{}
+\DoxyCodeLine{484            24,}
+\DoxyCodeLine{485            \{ 72, 211, 143, 117, 230, 217, 29, 42,}
+\DoxyCodeLine{486              229, 192, 247, 43, 120, 129, 135, 68,}
+\DoxyCodeLine{487              14, 95, 80, 0, 212, 97, 141, 190 \},}
+\DoxyCodeLine{488            \{ 123, 5, 21, 7, 59, 51, 130, 31,}
+\DoxyCodeLine{489              24, 112, 146, 218, 100, 84, 206, 177 \},}
+\DoxyCodeLine{490            \{ 92, 136, 4, 63, 57, 95, 100, 0,}
+\DoxyCodeLine{491              150, 130, 130, 16, 193, 111, 219, 133 \}}
+\DoxyCodeLine{492        \}, \{}
+\DoxyCodeLine{493            32,}
+\DoxyCodeLine{494            \{ 243, 168, 141, 254, 190, 242, 235, 113,}
+\DoxyCodeLine{495              255, 160, 208, 59, 117, 6, 140, 126,}
+\DoxyCodeLine{496              135, 120, 115, 77, 208, 190, 130, 190,}
+\DoxyCodeLine{497              219, 194, 70, 65, 43, 140, 250, 48 \},}
+\DoxyCodeLine{498            \{ 127, 112, 240, 167, 84, 134, 50, 149,}
+\DoxyCodeLine{499              170, 91, 104, 19, 11, 230, 252, 245 \},}
+\DoxyCodeLine{500            \{ 88, 11, 25, 36, 172, 229, 202, 213,}
+\DoxyCodeLine{501              170, 65, 105, 153, 220, 104, 153, 138 \}}
+\DoxyCodeLine{502        \}}
+\DoxyCodeLine{503     \};}
+\DoxyCodeLine{504 }
+\DoxyCodeLine{505    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} tmp[2][16];}
+\DoxyCodeLine{506    \mbox{\hyperlink{unionSymmetric__key}{symmetric\_key}} skey;}
+\DoxyCodeLine{507    \textcolor{keywordtype}{int} err, i, y;}
+\DoxyCodeLine{508 }
+\DoxyCodeLine{509    \textcolor{keywordflow}{for} (i = 0; i < (int)(\textcolor{keyword}{sizeof}(tests) / \textcolor{keyword}{sizeof}(tests[0])); i++) \{}
+\DoxyCodeLine{510       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{saferp_8c_ac1e881047264199d7629a8792ce8d274}{saferp\_setup}}(tests[i].key, tests[i].keylen, 0, \&skey)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})  \{}
+\DoxyCodeLine{511          \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{512       \}}
+\DoxyCodeLine{513       \mbox{\hyperlink{saferp_8c_a59d49e6e1a07b020fa94c3f381c314e6}{saferp\_ecb\_encrypt}}(tests[i].pt, tmp[0], \&skey);}
+\DoxyCodeLine{514       \mbox{\hyperlink{saferp_8c_a14934fc3e8b18abd206c4e900bf9e0d0}{saferp\_ecb\_decrypt}}(tmp[0], tmp[1], \&skey);}
+\DoxyCodeLine{515 }
+\DoxyCodeLine{516       \textcolor{comment}{/* compare */}}
+\DoxyCodeLine{517       \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(tmp[0], 16, tests[i].ct, 16, \textcolor{stringliteral}{"Safer+ Encrypt"}, i) ||}
+\DoxyCodeLine{518             \mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(tmp[1], 16, tests[i].pt, 16, \textcolor{stringliteral}{"Safer+ Decrypt"}, i)) \{}
+\DoxyCodeLine{519          \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{520       \}}
+\DoxyCodeLine{521 }
+\DoxyCodeLine{522       \textcolor{comment}{/* now see if we can encrypt all zero bytes 1000 times, decrypt and come back where we started */}}
+\DoxyCodeLine{523       \textcolor{keywordflow}{for} (y = 0; y < 16; y++) tmp[0][y] = 0;}
+\DoxyCodeLine{524       \textcolor{keywordflow}{for} (y = 0; y < 1000; y++) \mbox{\hyperlink{saferp_8c_a59d49e6e1a07b020fa94c3f381c314e6}{saferp\_ecb\_encrypt}}(tmp[0], tmp[0], \&skey);}
+\DoxyCodeLine{525       \textcolor{keywordflow}{for} (y = 0; y < 1000; y++) \mbox{\hyperlink{saferp_8c_a14934fc3e8b18abd206c4e900bf9e0d0}{saferp\_ecb\_decrypt}}(tmp[0], tmp[0], \&skey);}
+\DoxyCodeLine{526       \textcolor{keywordflow}{for} (y = 0; y < 16; y++) \textcolor{keywordflow}{if} (tmp[0][y] != 0) \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{527    \}}
+\DoxyCodeLine{528 }
+\DoxyCodeLine{529    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{530 \textcolor{preprocessor}{ \#endif}}
+\DoxyCodeLine{531 \}}
+
+\end{DoxyCode}
+
+
+References compare\+\_\+testvector(), C\+R\+Y\+P\+T\+\_\+\+F\+A\+I\+L\+\_\+\+T\+E\+S\+T\+V\+E\+C\+T\+OR, C\+R\+Y\+P\+T\+\_\+\+N\+OP, C\+R\+Y\+P\+T\+\_\+\+OK, saferp\+\_\+ecb\+\_\+decrypt(), saferp\+\_\+ecb\+\_\+encrypt(), and saferp\+\_\+setup().
+
+Here is the call graph for this function\+:
+% FIG 7
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{saferp_8c_a09d2c58ff35b03ada59e9b0dafd06034}\label{saferp_8c_a09d2c58ff35b03ada59e9b0dafd06034}} 
+\index{saferp.c@{saferp.c}!safer\_bias@{safer\_bias}}
+\index{safer\_bias@{safer\_bias}!saferp.c@{saferp.c}}
+\subsubsection{\texorpdfstring{safer\_bias}{safer\_bias}}
+{\footnotesize\ttfamily const unsigned char safer\+\_\+bias\mbox{[}33\mbox{]}\mbox{[}16\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 181 of file saferp.\+c.
+
+
+
+Referenced by saferp\+\_\+setup().
+
+\mbox{\Hypertarget{saferp_8c_a2b33e3e25708b5e3cf97aa55e9488229}\label{saferp_8c_a2b33e3e25708b5e3cf97aa55e9488229}} 
+\index{saferp.c@{saferp.c}!saferp\_desc@{saferp\_desc}}
+\index{saferp\_desc@{saferp\_desc}!saferp.c@{saferp.c}}
+\subsubsection{\texorpdfstring{saferp\_desc}{saferp\_desc}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structltc__cipher__descriptor}{ltc\+\_\+cipher\+\_\+descriptor}} saferp\+\_\+desc}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    \textcolor{stringliteral}{"safer+"},}
+\DoxyCodeLine{    4,}
+\DoxyCodeLine{    16, 32, 16, 8,}
+\DoxyCodeLine{    \&\mbox{\hyperlink{saferp_8c_ac1e881047264199d7629a8792ce8d274}{saferp\_setup}},}
+\DoxyCodeLine{    \&\mbox{\hyperlink{saferp_8c_a59d49e6e1a07b020fa94c3f381c314e6}{saferp\_ecb\_encrypt}},}
+\DoxyCodeLine{    \&\mbox{\hyperlink{saferp_8c_a14934fc3e8b18abd206c4e900bf9e0d0}{saferp\_ecb\_decrypt}},}
+\DoxyCodeLine{    \&\mbox{\hyperlink{saferp_8c_a33ce7f7b30a0c6b0a57aff742fb5546b}{saferp\_test}},}
+\DoxyCodeLine{    \&\mbox{\hyperlink{saferp_8c_a2caa762288e3bf9666bf29a05ee9e742}{saferp\_done}},}
+\DoxyCodeLine{    \&\mbox{\hyperlink{saferp_8c_a0f251273c78124518d1c43c7ffa38d64}{saferp\_keysize}},}
+\DoxyCodeLine{    NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line 21 of file saferp.\+c.
+
+
+
+Referenced by register\+\_\+all\+\_\+ciphers(), and yarrow\+\_\+start().
+

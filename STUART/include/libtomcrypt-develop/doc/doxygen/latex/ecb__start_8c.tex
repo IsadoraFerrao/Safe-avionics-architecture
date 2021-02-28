@@ -1,0 +1,75 @@
+\hypertarget{ecb__start_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/modes/ecb/ecb\+\_\+start.c File Reference}
+\label{ecb__start_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/modes/ecb/ecb\_start.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/modes/ecb/ecb\_start.c}}
+
+
+E\+CB implementation, start chain, Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for ecb\+\_\+start.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{ecb__start_8c_a81ca5485007e3adc41c1ba76341bc167}{ecb\+\_\+start}} (int cipher, const unsigned char $\ast$key, int keylen, int num\+\_\+rounds, symmetric\+\_\+\+E\+CB $\ast$ecb)
+\begin{DoxyCompactList}\small\item\em Initialize a E\+CB context. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+E\+CB implementation, start chain, Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{ecb__start_8c_a81ca5485007e3adc41c1ba76341bc167}\label{ecb__start_8c_a81ca5485007e3adc41c1ba76341bc167}} 
+\index{ecb\_start.c@{ecb\_start.c}!ecb\_start@{ecb\_start}}
+\index{ecb\_start@{ecb\_start}!ecb\_start.c@{ecb\_start.c}}
+\subsubsection{\texorpdfstring{ecb\_start()}{ecb\_start()}}
+{\footnotesize\ttfamily int ecb\+\_\+start (\begin{DoxyParamCaption}\item[{int}]{cipher,  }\item[{const unsigned char $\ast$}]{key,  }\item[{int}]{keylen,  }\item[{int}]{num\+\_\+rounds,  }\item[{symmetric\+\_\+\+E\+CB $\ast$}]{ecb }\end{DoxyParamCaption})}
+
+
+
+Initialize a E\+CB context. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cipher} & The index of the cipher desired \\
+\hline
+{\em key} & The secret key \\
+\hline
+{\em keylen} & The length of the secret key (octets) \\
+\hline
+{\em num\+\_\+rounds} & Number of rounds in the cipher desired (0 for default) \\
+\hline
+{\em ecb} & The E\+CB state to initialize \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 28 of file ecb\+\_\+start.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{29 \{}
+\DoxyCodeLine{30    \textcolor{keywordtype}{int} err;}
+\DoxyCodeLine{31    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(key != NULL);}
+\DoxyCodeLine{32    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(ecb != NULL);}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_ac30eb68934c4ca07205344dc9d159221}{cipher\_is\_valid}}(cipher)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{35       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{36    \}}
+\DoxyCodeLine{37    ecb->cipher = cipher;}
+\DoxyCodeLine{38    ecb->blocklen = \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[cipher].\mbox{\hyperlink{structltc__cipher__descriptor_afa2af7325fd3a834910dd92e8c9acf49}{block\_length}};}
+\DoxyCodeLine{39    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[cipher].\mbox{\hyperlink{structltc__cipher__descriptor_a2f6a2e251c83c5d3b6bd62674a82d602}{setup}}(key, keylen, num\_rounds, \&ecb->key);}
+\DoxyCodeLine{40 \}}
+
+\end{DoxyCode}
+
+
+References ltc\+\_\+cipher\+\_\+descriptor\+::block\+\_\+length, cipher\+\_\+descriptor, cipher\+\_\+is\+\_\+valid(), C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, and ltc\+\_\+cipher\+\_\+descriptor\+::setup.
+
+Here is the call graph for this function\+:
+% FIG 1

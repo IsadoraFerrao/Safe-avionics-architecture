@@ -1,0 +1,208 @@
+\hypertarget{der__length__ia5__string_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/pk/asn1/der/ia5/der\+\_\+length\+\_\+ia5\+\_\+string.c File Reference}
+\label{der__length__ia5__string_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/asn1/der/ia5/der\_length\_ia5\_string.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/asn1/der/ia5/der\_length\_ia5\_string.c}}
+
+
+A\+S\+N.\+1 D\+ER, get length of I\+A5 S\+T\+R\+I\+NG, Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for der\+\_\+length\+\_\+ia5\+\_\+string.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{der__length__ia5__string_8c_aa9cad5f213317520165e72ac9420bb65}{der\+\_\+ia5\+\_\+char\+\_\+encode}} (int \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}})
+\item 
+int \mbox{\hyperlink{der__length__ia5__string_8c_a52dbde67731f9a92da76ff73f6c960de}{der\+\_\+ia5\+\_\+value\+\_\+decode}} (int v)
+\item 
+int \mbox{\hyperlink{der__length__ia5__string_8c_a37e6cf2c534040fe726a760956eade04}{der\+\_\+length\+\_\+ia5\+\_\+string}} (const unsigned char $\ast$octets, unsigned long noctets, unsigned long $\ast$outlen)
+\begin{DoxyCompactList}\small\item\em Gets length of D\+ER encoding of I\+A5 S\+T\+R\+I\+NG. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+struct \{\\
+\>int \mbox{\hyperlink{der__length__ia5__string_8c_a45a5b7c00a796a23f01673cef1dbe0a9}{code}}\\
+\>int \mbox{\hyperlink{der__length__ia5__string_8c_ac4f474c82e82cbb89ca7c36dd52be0ed}{value}}\\
+\} \mbox{\hyperlink{der__length__ia5__string_8c_a86d204cd78a980e70a9f116af63f0ff7}{ia5\_table}} \mbox{[}$\,$\mbox{]}\\
+
+\end{tabbing}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A\+S\+N.\+1 D\+ER, get length of I\+A5 S\+T\+R\+I\+NG, Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{der__length__ia5__string_8c_aa9cad5f213317520165e72ac9420bb65}\label{der__length__ia5__string_8c_aa9cad5f213317520165e72ac9420bb65}} 
+\index{der\_length\_ia5\_string.c@{der\_length\_ia5\_string.c}!der\_ia5\_char\_encode@{der\_ia5\_char\_encode}}
+\index{der\_ia5\_char\_encode@{der\_ia5\_char\_encode}!der\_length\_ia5\_string.c@{der\_length\_ia5\_string.c}}
+\subsubsection{\texorpdfstring{der\_ia5\_char\_encode()}{der\_ia5\_char\_encode()}}
+{\footnotesize\ttfamily int der\+\_\+ia5\+\_\+char\+\_\+encode (\begin{DoxyParamCaption}\item[{int}]{c }\end{DoxyParamCaption})}
+
+
+
+Definition at line 125 of file der\+\_\+length\+\_\+ia5\+\_\+string.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{126 \{}
+\DoxyCodeLine{127    \textcolor{keywordtype}{int} x;}
+\DoxyCodeLine{128    \textcolor{keywordflow}{for} (x = 0; x < (int)(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{der__length__ia5__string_8c_a86d204cd78a980e70a9f116af63f0ff7}{ia5\_table}})/\textcolor{keyword}{sizeof}(\mbox{\hyperlink{der__length__ia5__string_8c_a86d204cd78a980e70a9f116af63f0ff7}{ia5\_table}}[0])); x++) \{}
+\DoxyCodeLine{129        \textcolor{keywordflow}{if} (\mbox{\hyperlink{der__length__ia5__string_8c_a86d204cd78a980e70a9f116af63f0ff7}{ia5\_table}}[x].\mbox{\hyperlink{der__length__ia5__string_8c_a45a5b7c00a796a23f01673cef1dbe0a9}{code}} == \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}) \{}
+\DoxyCodeLine{130           \textcolor{keywordflow}{return} \mbox{\hyperlink{der__length__ia5__string_8c_a86d204cd78a980e70a9f116af63f0ff7}{ia5\_table}}[x].value;}
+\DoxyCodeLine{131        \}}
+\DoxyCodeLine{132    \}}
+\DoxyCodeLine{133    \textcolor{keywordflow}{return} -1;}
+\DoxyCodeLine{134 \}}
+
+\end{DoxyCode}
+
+
+References c, code, and ia5\+\_\+table.
+
+
+
+Referenced by der\+\_\+encode\+\_\+generalizedtime(), der\+\_\+encode\+\_\+ia5\+\_\+string(), der\+\_\+encode\+\_\+utctime(), and der\+\_\+length\+\_\+ia5\+\_\+string().
+
+Here is the caller graph for this function\+:
+% FIG 1
+\mbox{\Hypertarget{der__length__ia5__string_8c_a52dbde67731f9a92da76ff73f6c960de}\label{der__length__ia5__string_8c_a52dbde67731f9a92da76ff73f6c960de}} 
+\index{der\_length\_ia5\_string.c@{der\_length\_ia5\_string.c}!der\_ia5\_value\_decode@{der\_ia5\_value\_decode}}
+\index{der\_ia5\_value\_decode@{der\_ia5\_value\_decode}!der\_length\_ia5\_string.c@{der\_length\_ia5\_string.c}}
+\subsubsection{\texorpdfstring{der\_ia5\_value\_decode()}{der\_ia5\_value\_decode()}}
+{\footnotesize\ttfamily int der\+\_\+ia5\+\_\+value\+\_\+decode (\begin{DoxyParamCaption}\item[{int}]{v }\end{DoxyParamCaption})}
+
+
+
+Definition at line 136 of file der\+\_\+length\+\_\+ia5\+\_\+string.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{137 \{}
+\DoxyCodeLine{138    \textcolor{keywordtype}{int} x;}
+\DoxyCodeLine{139    \textcolor{keywordflow}{for} (x = 0; x < (int)(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{der__length__ia5__string_8c_a86d204cd78a980e70a9f116af63f0ff7}{ia5\_table}})/\textcolor{keyword}{sizeof}(\mbox{\hyperlink{der__length__ia5__string_8c_a86d204cd78a980e70a9f116af63f0ff7}{ia5\_table}}[0])); x++) \{}
+\DoxyCodeLine{140        \textcolor{keywordflow}{if} (\mbox{\hyperlink{der__length__ia5__string_8c_a86d204cd78a980e70a9f116af63f0ff7}{ia5\_table}}[x].\mbox{\hyperlink{der__length__ia5__string_8c_ac4f474c82e82cbb89ca7c36dd52be0ed}{value}} == v) \{}
+\DoxyCodeLine{141           \textcolor{keywordflow}{return} \mbox{\hyperlink{der__length__ia5__string_8c_a86d204cd78a980e70a9f116af63f0ff7}{ia5\_table}}[x].code;}
+\DoxyCodeLine{142        \}}
+\DoxyCodeLine{143    \}}
+\DoxyCodeLine{144    \textcolor{keywordflow}{return} -1;}
+\DoxyCodeLine{145 \}}
+
+\end{DoxyCode}
+
+
+References ia5\+\_\+table, and value.
+
+
+
+Referenced by der\+\_\+decode\+\_\+generalizedtime(), der\+\_\+decode\+\_\+ia5\+\_\+string(), and der\+\_\+decode\+\_\+utctime().
+
+Here is the caller graph for this function\+:
+% FIG 2
+\mbox{\Hypertarget{der__length__ia5__string_8c_a37e6cf2c534040fe726a760956eade04}\label{der__length__ia5__string_8c_a37e6cf2c534040fe726a760956eade04}} 
+\index{der\_length\_ia5\_string.c@{der\_length\_ia5\_string.c}!der\_length\_ia5\_string@{der\_length\_ia5\_string}}
+\index{der\_length\_ia5\_string@{der\_length\_ia5\_string}!der\_length\_ia5\_string.c@{der\_length\_ia5\_string.c}}
+\subsubsection{\texorpdfstring{der\_length\_ia5\_string()}{der\_length\_ia5\_string()}}
+{\footnotesize\ttfamily int der\+\_\+length\+\_\+ia5\+\_\+string (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{octets,  }\item[{unsigned long}]{noctets,  }\item[{unsigned long $\ast$}]{outlen }\end{DoxyParamCaption})}
+
+
+
+Gets length of D\+ER encoding of I\+A5 S\+T\+R\+I\+NG. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em octets} & The values you want to encode \\
+\hline
+{\em noctets} & The number of octets in the string to encode \\
+\hline
+{\em outlen} & \mbox{[}out\mbox{]} The length of the D\+ER encoding for the given string \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 154 of file der\+\_\+length\+\_\+ia5\+\_\+string.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{155 \{}
+\DoxyCodeLine{156    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} x;}
+\DoxyCodeLine{157    \textcolor{keywordtype}{int} err;}
+\DoxyCodeLine{158 }
+\DoxyCodeLine{159    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(outlen != NULL);}
+\DoxyCodeLine{160    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(octets != NULL);}
+\DoxyCodeLine{161 }
+\DoxyCodeLine{162    \textcolor{comment}{/* scan string for validity */}}
+\DoxyCodeLine{163    \textcolor{keywordflow}{for} (x = 0; x < noctets; x++) \{}
+\DoxyCodeLine{164        \textcolor{keywordflow}{if} (\mbox{\hyperlink{der__length__ia5__string_8c_aa9cad5f213317520165e72ac9420bb65}{der\_ia5\_char\_encode}}(octets[x]) == -1) \{}
+\DoxyCodeLine{165           \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{166        \}}
+\DoxyCodeLine{167    \}}
+\DoxyCodeLine{168 }
+\DoxyCodeLine{169    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a8999e23c66cda0d777570e54f3a5c795}{der\_length\_asn1\_length}}(noctets, \&x)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{170       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{171    \}}
+\DoxyCodeLine{172    *outlen = 1 + x + noctets;}
+\DoxyCodeLine{173 }
+\DoxyCodeLine{174    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{175 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+A\+RG, C\+R\+Y\+P\+T\+\_\+\+OK, der\+\_\+ia5\+\_\+char\+\_\+encode(), der\+\_\+length\+\_\+asn1\+\_\+length(), and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+
+
+Referenced by der\+\_\+decode\+\_\+choice(), der\+\_\+decode\+\_\+custom\+\_\+type\+\_\+ex(), der\+\_\+decode\+\_\+sequence\+\_\+flexi(), der\+\_\+encode\+\_\+ia5\+\_\+string(), der\+\_\+length\+\_\+custom\+\_\+type(), and der\+\_\+length\+\_\+sequence\+\_\+ex().
+
+Here is the call graph for this function\+:
+% FIG 3
+Here is the caller graph for this function\+:
+% FIG 4
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{der__length__ia5__string_8c_a45a5b7c00a796a23f01673cef1dbe0a9}\label{der__length__ia5__string_8c_a45a5b7c00a796a23f01673cef1dbe0a9}} 
+\index{der\_length\_ia5\_string.c@{der\_length\_ia5\_string.c}!code@{code}}
+\index{code@{code}!der\_length\_ia5\_string.c@{der\_length\_ia5\_string.c}}
+\subsubsection{\texorpdfstring{code}{code}}
+{\footnotesize\ttfamily int code}
+
+
+
+Definition at line 19 of file der\+\_\+length\+\_\+ia5\+\_\+string.\+c.
+
+
+
+Referenced by der\+\_\+ia5\+\_\+char\+\_\+encode().
+
+\mbox{\Hypertarget{der__length__ia5__string_8c_a86d204cd78a980e70a9f116af63f0ff7}\label{der__length__ia5__string_8c_a86d204cd78a980e70a9f116af63f0ff7}} 
+\index{der\_length\_ia5\_string.c@{der\_length\_ia5\_string.c}!ia5\_table@{ia5\_table}}
+\index{ia5\_table@{ia5\_table}!der\_length\_ia5\_string.c@{der\_length\_ia5\_string.c}}
+\subsubsection{\texorpdfstring{ia5\_table}{ia5\_table}}
+{\footnotesize\ttfamily const \{ ... \}   ia5\+\_\+table\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Referenced by der\+\_\+ia5\+\_\+char\+\_\+encode(), and der\+\_\+ia5\+\_\+value\+\_\+decode().
+
+\mbox{\Hypertarget{der__length__ia5__string_8c_ac4f474c82e82cbb89ca7c36dd52be0ed}\label{der__length__ia5__string_8c_ac4f474c82e82cbb89ca7c36dd52be0ed}} 
+\index{der\_length\_ia5\_string.c@{der\_length\_ia5\_string.c}!value@{value}}
+\index{value@{value}!der\_length\_ia5\_string.c@{der\_length\_ia5\_string.c}}
+\subsubsection{\texorpdfstring{value}{value}}
+{\footnotesize\ttfamily int value}
+
+
+
+Definition at line 19 of file der\+\_\+length\+\_\+ia5\+\_\+string.\+c.
+
+
+
+Referenced by crypt\+\_\+list\+\_\+all\+\_\+constants(), and der\+\_\+ia5\+\_\+value\+\_\+decode().
+

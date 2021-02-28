@@ -1,0 +1,20 @@
+digraph "sober128_read"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node45 [label="sober128_read",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Read from the PRNG."];
+  Node45 -> Node46 [color="midnightblue",fontsize="10",style="solid"];
+  Node46 [label="sober128_stream_keystream",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sober128__stream_8c.html#a8f44e316ae3d51801843156a64966a34",tooltip=" "];
+  Node46 -> Node47 [color="midnightblue",fontsize="10",style="solid"];
+  Node47 [label="XMEMSET",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cfg_8h.html#aa3c34a6f6c61de7da9258b5a30e32c2f",tooltip=" "];
+  Node46 -> Node48 [color="midnightblue",fontsize="10",style="solid"];
+  Node48 [label="sober128_stream_crypt",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sober128__stream_8c.html#ae518d65a1bd918959e0d52e3f7d963de",tooltip="Encrypt (or decrypt) bytes of ciphertext (or plaintext) with Sober128."];
+  Node48 -> Node49 [color="midnightblue",fontsize="10",style="solid"];
+  Node49 [label="cycle",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sober128__stream_8c.html#a5ee309e1f2da8afec6f25f826763f55d",tooltip=" "];
+  Node48 -> Node50 [color="midnightblue",fontsize="10",style="solid"];
+  Node50 [label="nltap",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sober128__stream_8c.html#aa40918d0bb77cd616f54d859fe3ceb34",tooltip=" "];
+  Node48 -> Node51 [color="midnightblue",fontsize="10",style="solid"];
+  Node51 [label="XORWORD",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sober128__stream_8c.html#a272d26d71ca3e6dd2b4282302c91e5bd",tooltip=" "];
+}

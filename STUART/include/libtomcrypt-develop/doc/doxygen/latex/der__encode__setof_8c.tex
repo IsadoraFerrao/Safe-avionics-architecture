@@ -1,0 +1,221 @@
+\hypertarget{der__encode__setof_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/pk/asn1/der/set/der\+\_\+encode\+\_\+setof.c File Reference}
+\label{der__encode__setof_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/asn1/der/set/der\_encode\_setof.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/asn1/der/set/der\_encode\_setof.c}}
+
+
+A\+S\+N.\+1 D\+ER, Encode S\+ET OF, Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for der\+\_\+encode\+\_\+setof.\+c\+:
+% FIG 0
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structedge}{edge}}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{der__encode__setof_8c_a343e2cf2b34f7d54860f6e7c4e6fef61}{\+\_\+qsort\+\_\+helper}} (const void $\ast$a, const void $\ast$b)
+\item 
+int \mbox{\hyperlink{der__encode__setof_8c_a5187d93224e9b002d4e7db8c7d721339}{der\+\_\+encode\+\_\+setof}} (const ltc\+\_\+asn1\+\_\+list $\ast$list, unsigned long inlen, unsigned char $\ast$out, unsigned long $\ast$outlen)
+\begin{DoxyCompactList}\small\item\em Encode a S\+E\+T\+OF stucture. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A\+S\+N.\+1 D\+ER, Encode S\+ET OF, Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{der__encode__setof_8c_a343e2cf2b34f7d54860f6e7c4e6fef61}\label{der__encode__setof_8c_a343e2cf2b34f7d54860f6e7c4e6fef61}} 
+\index{der\_encode\_setof.c@{der\_encode\_setof.c}!\_qsort\_helper@{\_qsort\_helper}}
+\index{\_qsort\_helper@{\_qsort\_helper}!der\_encode\_setof.c@{der\_encode\_setof.c}}
+\subsubsection{\texorpdfstring{\_qsort\_helper()}{\_qsort\_helper()}}
+{\footnotesize\ttfamily static int \+\_\+qsort\+\_\+helper (\begin{DoxyParamCaption}\item[{const void $\ast$}]{a,  }\item[{const void $\ast$}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 23 of file der\+\_\+encode\+\_\+setof.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{24 \{}
+\DoxyCodeLine{25    \textcolor{keyword}{struct }\mbox{\hyperlink{structedge}{edge}}   *A = (\textcolor{keyword}{struct }\mbox{\hyperlink{structedge}{edge}} *)a, *B = (\textcolor{keyword}{struct} \mbox{\hyperlink{structedge}{edge}} *)b;}
+\DoxyCodeLine{26    \textcolor{keywordtype}{int}            r;}
+\DoxyCodeLine{27    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long}  x;}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29    \textcolor{comment}{/* compare min length */}}
+\DoxyCodeLine{30    r = \mbox{\hyperlink{tomcrypt__cfg_8h_a372b974ec0ac07abcd55297554fe540f}{XMEMCMP}}(A->\mbox{\hyperlink{structedge_ac8d50f8cbdc126000b0836cacfa19d73}{start}}, B->start, \mbox{\hyperlink{tomcrypt__macros_8h_a74e75242132eaabbc1c512488a135926}{MIN}}(A->\mbox{\hyperlink{structedge_a64bdc14a16193c014f1ef50be358441d}{size}}, B->size));}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32    \textcolor{keywordflow}{if} (r == 0 \&\& A->\mbox{\hyperlink{structedge_a64bdc14a16193c014f1ef50be358441d}{size}} != B->size) \{}
+\DoxyCodeLine{33       \textcolor{keywordflow}{if} (A->\mbox{\hyperlink{structedge_a64bdc14a16193c014f1ef50be358441d}{size}} > B->size) \{}
+\DoxyCodeLine{34          \textcolor{keywordflow}{for} (x = B->size; x < A->\mbox{\hyperlink{structedge_a64bdc14a16193c014f1ef50be358441d}{size}}; x++) \{}
+\DoxyCodeLine{35             \textcolor{keywordflow}{if} (A->\mbox{\hyperlink{structedge_ac8d50f8cbdc126000b0836cacfa19d73}{start}}[x]) \{}
+\DoxyCodeLine{36                \textcolor{keywordflow}{return} 1;}
+\DoxyCodeLine{37             \}}
+\DoxyCodeLine{38          \}}
+\DoxyCodeLine{39       \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{40          \textcolor{keywordflow}{for} (x = A->\mbox{\hyperlink{structedge_a64bdc14a16193c014f1ef50be358441d}{size}}; x < B->\mbox{\hyperlink{structedge_a64bdc14a16193c014f1ef50be358441d}{size}}; x++) \{}
+\DoxyCodeLine{41             \textcolor{keywordflow}{if} (B->start[x]) \{}
+\DoxyCodeLine{42                \textcolor{keywordflow}{return} -1;}
+\DoxyCodeLine{43             \}}
+\DoxyCodeLine{44          \}}
+\DoxyCodeLine{45       \}}
+\DoxyCodeLine{46    \}}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48    \textcolor{keywordflow}{return} r;}
+\DoxyCodeLine{49 \}}
+
+\end{DoxyCode}
+
+
+References M\+IN, edge\+::size, edge\+::start, and X\+M\+E\+M\+C\+M\+P().
+
+
+
+Referenced by der\+\_\+encode\+\_\+setof().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2
+\mbox{\Hypertarget{der__encode__setof_8c_a5187d93224e9b002d4e7db8c7d721339}\label{der__encode__setof_8c_a5187d93224e9b002d4e7db8c7d721339}} 
+\index{der\_encode\_setof.c@{der\_encode\_setof.c}!der\_encode\_setof@{der\_encode\_setof}}
+\index{der\_encode\_setof@{der\_encode\_setof}!der\_encode\_setof.c@{der\_encode\_setof.c}}
+\subsubsection{\texorpdfstring{der\_encode\_setof()}{der\_encode\_setof()}}
+{\footnotesize\ttfamily int der\+\_\+encode\+\_\+setof (\begin{DoxyParamCaption}\item[{const ltc\+\_\+asn1\+\_\+list $\ast$}]{list,  }\item[{unsigned long}]{inlen,  }\item[{unsigned char $\ast$}]{out,  }\item[{unsigned long $\ast$}]{outlen }\end{DoxyParamCaption})}
+
+
+
+Encode a S\+E\+T\+OF stucture. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list} & The list of items to encode \\
+\hline
+{\em inlen} & The number of items in the list \\
+\hline
+{\em out} & \mbox{[}out\mbox{]} The destination \\
+\hline
+{\em outlen} & \mbox{[}in/out\mbox{]} The size of the output \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK on success 
+\end{DoxyReturn}
+
+
+Definition at line 59 of file der\+\_\+encode\+\_\+setof.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{61 \{}
+\DoxyCodeLine{62    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long}  x, y, z;}
+\DoxyCodeLine{63    ptrdiff\_t hdrlen;}
+\DoxyCodeLine{64    \textcolor{keywordtype}{int}            err;}
+\DoxyCodeLine{65    \textcolor{keyword}{struct }\mbox{\hyperlink{structedge}{edge}}   *edges;}
+\DoxyCodeLine{66    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *ptr, *buf;}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{68    \textcolor{comment}{/* check that they're all the same type */}}
+\DoxyCodeLine{69    \textcolor{keywordflow}{for} (x = 1; x < inlen; x++) \{}
+\DoxyCodeLine{70       \textcolor{keywordflow}{if} (list[x].type != list[x-1].type) \{}
+\DoxyCodeLine{71          \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{72       \}}
+\DoxyCodeLine{73    \}}
+\DoxyCodeLine{74 }
+\DoxyCodeLine{75    \textcolor{comment}{/* alloc buffer to store copy of output */}}
+\DoxyCodeLine{76    buf = \mbox{\hyperlink{tomcrypt__cfg_8h_a151dda14cd7acae31eaf1102b0cc0685}{XCALLOC}}(1, *outlen);}
+\DoxyCodeLine{77    \textcolor{keywordflow}{if} (buf == NULL) \{}
+\DoxyCodeLine{78       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca0ce0d27adc7ea10b74b7ea904b8bfa82}{CRYPT\_MEM}};}
+\DoxyCodeLine{79    \}}
+\DoxyCodeLine{80 }
+\DoxyCodeLine{81    \textcolor{comment}{/* encode list */}}
+\DoxyCodeLine{82    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{der__encode__sequence__ex_8c_af435bfc378dd9f42af2a211c0fe1aced}{der\_encode\_sequence\_ex}}(list, inlen, buf, outlen, LTC\_ASN1\_SETOF)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{83        \mbox{\hyperlink{tomcrypt__cfg_8h_a260d66fc0690e0502cf3bfe7b5244b75}{XFREE}}(buf);}
+\DoxyCodeLine{84        \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{85    \}}
+\DoxyCodeLine{86 }
+\DoxyCodeLine{87    \textcolor{comment}{/* allocate edges */}}
+\DoxyCodeLine{88    edges = \mbox{\hyperlink{tomcrypt__cfg_8h_a151dda14cd7acae31eaf1102b0cc0685}{XCALLOC}}(inlen, \textcolor{keyword}{sizeof}(*edges));}
+\DoxyCodeLine{89    \textcolor{keywordflow}{if} (edges == NULL) \{}
+\DoxyCodeLine{90       \mbox{\hyperlink{tomcrypt__cfg_8h_a260d66fc0690e0502cf3bfe7b5244b75}{XFREE}}(buf);}
+\DoxyCodeLine{91       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca0ce0d27adc7ea10b74b7ea904b8bfa82}{CRYPT\_MEM}};}
+\DoxyCodeLine{92    \}}
+\DoxyCodeLine{93 }
+\DoxyCodeLine{94    \textcolor{comment}{/* skip header */}}
+\DoxyCodeLine{95    ptr = buf + 1;}
+\DoxyCodeLine{96 }
+\DoxyCodeLine{97    \textcolor{comment}{/* now skip length data */}}
+\DoxyCodeLine{98    x = *ptr++;}
+\DoxyCodeLine{99    \textcolor{keywordflow}{if} (x >= 0x80) \{}
+\DoxyCodeLine{100       ptr += (x \& 0x7F);}
+\DoxyCodeLine{101    \}}
+\DoxyCodeLine{102 }
+\DoxyCodeLine{103    \textcolor{comment}{/* get the size of the static header */}}
+\DoxyCodeLine{104    hdrlen = ptr - buf;}
+\DoxyCodeLine{105 }
+\DoxyCodeLine{106 }
+\DoxyCodeLine{107    \textcolor{comment}{/* scan for edges */}}
+\DoxyCodeLine{108    x = 0;}
+\DoxyCodeLine{109    \textcolor{keywordflow}{while} (ptr < (buf + *outlen)) \{}
+\DoxyCodeLine{110       \textcolor{comment}{/* store start */}}
+\DoxyCodeLine{111       edges[x].\mbox{\hyperlink{structedge_ac8d50f8cbdc126000b0836cacfa19d73}{start}} = ptr;}
+\DoxyCodeLine{112 }
+\DoxyCodeLine{113       \textcolor{comment}{/* skip type */}}
+\DoxyCodeLine{114       z = 1;}
+\DoxyCodeLine{115 }
+\DoxyCodeLine{116       \textcolor{comment}{/* parse length */}}
+\DoxyCodeLine{117       y = ptr[z++];}
+\DoxyCodeLine{118       \textcolor{keywordflow}{if} (y < 128) \{}
+\DoxyCodeLine{119          edges[x].\mbox{\hyperlink{structedge_a64bdc14a16193c014f1ef50be358441d}{size}} = y;}
+\DoxyCodeLine{120       \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{121          y \&= 0x7F;}
+\DoxyCodeLine{122          edges[x].\mbox{\hyperlink{structedge_a64bdc14a16193c014f1ef50be358441d}{size}} = 0;}
+\DoxyCodeLine{123          \textcolor{keywordflow}{while} (y--) \{}
+\DoxyCodeLine{124             edges[x].\mbox{\hyperlink{structedge_a64bdc14a16193c014f1ef50be358441d}{size}} = (edges[x].\mbox{\hyperlink{structedge_a64bdc14a16193c014f1ef50be358441d}{size}} << 8) | ((\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long})ptr[z++]);}
+\DoxyCodeLine{125          \}}
+\DoxyCodeLine{126       \}}
+\DoxyCodeLine{127 }
+\DoxyCodeLine{128       \textcolor{comment}{/* skip content */}}
+\DoxyCodeLine{129       edges[x].\mbox{\hyperlink{structedge_a64bdc14a16193c014f1ef50be358441d}{size}} += z;}
+\DoxyCodeLine{130       ptr           += edges[x].\mbox{\hyperlink{structedge_a64bdc14a16193c014f1ef50be358441d}{size}};}
+\DoxyCodeLine{131       ++x;}
+\DoxyCodeLine{132    \}}
+\DoxyCodeLine{133 }
+\DoxyCodeLine{134    \textcolor{comment}{/* sort based on contents (using edges) */}}
+\DoxyCodeLine{135    \mbox{\hyperlink{tomcrypt__cfg_8h_aceefd8dacef70eb3f302b8df2da8aec9}{XQSORT}}(edges, inlen, \textcolor{keyword}{sizeof}(*edges), \&\mbox{\hyperlink{der__encode__setof_8c_a343e2cf2b34f7d54860f6e7c4e6fef61}{\_qsort\_helper}});}
+\DoxyCodeLine{136 }
+\DoxyCodeLine{137    \textcolor{comment}{/* copy static header */}}
+\DoxyCodeLine{138    \mbox{\hyperlink{tomcrypt__cfg_8h_a7691dd48d60d5fc6daf2fa7ec4c55e12}{XMEMCPY}}(out, buf, hdrlen);}
+\DoxyCodeLine{139 }
+\DoxyCodeLine{140    \textcolor{comment}{/* copy+sort using edges+indecies to output from buffer */}}
+\DoxyCodeLine{141    \textcolor{keywordflow}{for} (y = (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long})hdrlen, x = 0; x < inlen; x++) \{}
+\DoxyCodeLine{142       \mbox{\hyperlink{tomcrypt__cfg_8h_a7691dd48d60d5fc6daf2fa7ec4c55e12}{XMEMCPY}}(out+y, edges[x].\mbox{\hyperlink{structedge_ac8d50f8cbdc126000b0836cacfa19d73}{start}}, edges[x].\mbox{\hyperlink{structedge_a64bdc14a16193c014f1ef50be358441d}{size}});}
+\DoxyCodeLine{143       y += edges[x].\mbox{\hyperlink{structedge_a64bdc14a16193c014f1ef50be358441d}{size}};}
+\DoxyCodeLine{144    \}}
+\DoxyCodeLine{145 }
+\DoxyCodeLine{146 \textcolor{preprocessor}{\#ifdef LTC\_CLEAN\_STACK}}
+\DoxyCodeLine{147    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(buf, *outlen);}
+\DoxyCodeLine{148 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{149 }
+\DoxyCodeLine{150    \textcolor{comment}{/* free buffers */}}
+\DoxyCodeLine{151    \mbox{\hyperlink{tomcrypt__cfg_8h_a260d66fc0690e0502cf3bfe7b5244b75}{XFREE}}(edges);}
+\DoxyCodeLine{152    \mbox{\hyperlink{tomcrypt__cfg_8h_a260d66fc0690e0502cf3bfe7b5244b75}{XFREE}}(buf);}
+\DoxyCodeLine{153 }
+\DoxyCodeLine{154    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{155 \}}
+
+\end{DoxyCode}
+
+
+References \+\_\+qsort\+\_\+helper(), C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+A\+RG, C\+R\+Y\+P\+T\+\_\+\+M\+EM, C\+R\+Y\+P\+T\+\_\+\+OK, der\+\_\+encode\+\_\+sequence\+\_\+ex(), edge\+::size, edge\+::start, X\+C\+A\+L\+L\+O\+C(), X\+F\+R\+E\+E(), X\+M\+E\+M\+C\+P\+Y(), X\+Q\+S\+O\+R\+T(), and zeromem().
+
+
+
+Referenced by der\+\_\+encode\+\_\+custom\+\_\+type(), and der\+\_\+encode\+\_\+sequence\+\_\+ex().
+
+Here is the call graph for this function\+:
+% FIG 3
+Here is the caller graph for this function\+:
+% FIG 4

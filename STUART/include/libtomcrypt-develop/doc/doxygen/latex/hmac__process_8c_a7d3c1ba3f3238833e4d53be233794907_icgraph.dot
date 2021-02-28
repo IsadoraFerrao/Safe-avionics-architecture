@@ -1,0 +1,30 @@
+digraph "hmac_process"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node2 [label="hmac_process",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Process data through HMAC."];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node3 [label="hmac_file",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$hmac__file_8c.html#a61c2b2aeca9a287224c20e7fceff11cd",tooltip="HMAC a file."];
+  Node2 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node4 [label="hmac_memory",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$hmac__memory_8c.html#a6bf2dff4537e6332dec46266a9db7580",tooltip="HMAC a block of memory to produce the authentication tag."];
+  Node4 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node5 [label="hkdf_expand",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$hkdf_8c.html#a1fa3c2a1e44fc629a059ae5c61cc0197",tooltip=" "];
+  Node5 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node6 [label="hkdf",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$hkdf_8c.html#ac79c8ae04bc15c69e9704277e38d22be",tooltip=" "];
+  Node6 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node7 [label="hkdf_test",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$hkdf__test_8c.html#a373d92dae833619c1fccb018f21357dd",tooltip="LTC_HKDF self-test."];
+  Node4 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node8 [label="hkdf_extract",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$hkdf_8c.html#a6af77e2823d3b6e691098963b07ea26a",tooltip=" "];
+  Node8 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node4 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node9 [label="hmac_test",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$hmac__test_8c.html#af43c4e10ec1984cf428cf69cd3184e53",tooltip="HMAC self-test."];
+  Node4 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node10 [label="pkcs_5_alg2",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$pkcs__5__2_8c.html#a738b05376774b9a5b311a59ec73966f0",tooltip="Execute PKCS #5 v2."];
+  Node10 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node11 [label="pkcs_5_test",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$pkcs__5__test_8c.html#a1a78c0bca3595115dd9272c2026b607e",tooltip="PKCS #5 self-test."];
+  Node2 -> Node12 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node12 [label="hmac_memory_multi",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$hmac__memory__multi_8c.html#a42b0c424c7e01653550dc7d9ac3bb4b9",tooltip="HMAC multiple blocks of memory to produce the authentication tag."];
+  Node2 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+}

@@ -1,0 +1,24 @@
+digraph "rc2_test"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node20 [label="rc2_test",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Performs a self-test of the RC2 block cipher."];
+  Node20 -> Node21 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node21 [label="compare_testvector",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__misc_8h.html#a7764a7f27897c6182335752df00b5f8e",tooltip="Compare two test-vectors."];
+  Node21 -> Node22 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node22 [label="XMEMCMP",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cfg_8h.html#a372b974ec0ac07abcd55297554fe540f",tooltip=" "];
+  Node20 -> Node23 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node23 [label="rc2_ecb_decrypt",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rc2_8c.html#a0c165bbdc013646b3db268d1197c5a21",tooltip="Decrypts a block of text with RC2."];
+  Node20 -> Node24 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node24 [label="rc2_ecb_encrypt",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rc2_8c.html#a58703b6ee00798ef781b194931d05dc1",tooltip="Encrypts a block of text with RC2."];
+  Node20 -> Node25 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node25 [label="rc2_setup",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rc2_8c.html#a3d992548480d21ad0d23dac89c4c2ccf",tooltip="Initialize the RC2 block cipher."];
+  Node25 -> Node26 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node26 [label="rc2_setup_ex",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rc2_8c.html#a972f755861aeda91edb3d961881db3ea",tooltip="Initialize the RC2 block cipher."];
+  Node26 -> Node27 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node27 [label="zeromem",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__misc_8h.html#a63b6e188713790263bfd3612fe8b398f",tooltip="Zero a block of memory."];
+  Node20 -> Node26 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node20 -> Node27 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}

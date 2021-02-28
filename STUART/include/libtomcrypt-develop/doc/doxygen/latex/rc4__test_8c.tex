@@ -1,0 +1,56 @@
+\hypertarget{rc4__test_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/stream/rc4/rc4\+\_\+test.c File Reference}
+\label{rc4__test_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/stream/rc4/rc4\_test.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/stream/rc4/rc4\_test.c}}
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for rc4\+\_\+test.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{rc4__test_8c_a3ac84750a90eadf1320f534b3c8a7e3a}{rc4\+\_\+stream\+\_\+test}} (void)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{rc4__test_8c_a3ac84750a90eadf1320f534b3c8a7e3a}\label{rc4__test_8c_a3ac84750a90eadf1320f534b3c8a7e3a}} 
+\index{rc4\_test.c@{rc4\_test.c}!rc4\_stream\_test@{rc4\_stream\_test}}
+\index{rc4\_stream\_test@{rc4\_stream\_test}!rc4\_test.c@{rc4\_test.c}}
+\subsubsection{\texorpdfstring{rc4\_stream\_test()}{rc4\_stream\_test()}}
+{\footnotesize\ttfamily int rc4\+\_\+stream\+\_\+test (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 14 of file rc4\+\_\+test.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{15 \{}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#ifndef LTC\_TEST}}
+\DoxyCodeLine{17    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cac43a7799c7fd5f515172da6cfc0f9cf5}{CRYPT\_NOP}};}
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{19    rc4\_state st;}
+\DoxyCodeLine{20    \textcolor{keywordtype}{int} err;}
+\DoxyCodeLine{21    \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} key[] = \{ 0x01, 0x23, 0x45, 0x67, 0x89, 0xab, 0xcd, 0xef \};}
+\DoxyCodeLine{22    \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} pt[]  = \{ 0x01, 0x23, 0x45, 0x67, 0x89, 0xab, 0xcd, 0xef \};}
+\DoxyCodeLine{23    \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} ct[]  = \{ 0x75, 0xb7, 0x87, 0x80, 0x99, 0xe0, 0xc5, 0x96 \};}
+\DoxyCodeLine{24    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} buf[10];}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{rc4__stream_8c_a4f9ba9106b0ee28cffced552636662a2}{rc4\_stream\_setup}}(\&st, key, \textcolor{keyword}{sizeof}(key))) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})    \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{27    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{rc4__stream_8c_a0a9515051ae76dc9e68c8eb2c31537d7}{rc4\_stream\_crypt}}(\&st, pt, \textcolor{keyword}{sizeof}(pt), buf)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{28    \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(buf, \textcolor{keyword}{sizeof}(ct), ct, \textcolor{keyword}{sizeof}(ct), \textcolor{stringliteral}{"RC4-TV1"}, 0))  \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{29    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{rc4__stream_8c_ade109a0be5199381ba2f0b9627d0a9f6}{rc4\_stream\_done}}(\&st)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31    \textcolor{comment}{/* crypt in a single call */}}
+\DoxyCodeLine{32    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{rc4__stream__memory_8c_a3d744655eede094f61a105587ddf5fba}{rc4\_stream\_memory}}(key, \textcolor{keyword}{sizeof}(key), pt, \textcolor{keyword}{sizeof}(pt), buf)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{33    \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(buf, \textcolor{keyword}{sizeof}(ct), ct, \textcolor{keyword}{sizeof}(ct), \textcolor{stringliteral}{"RC4-TV2"}, 0))  \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{36 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{37 \}}
+
+\end{DoxyCode}
+
+
+References compare\+\_\+testvector(), C\+R\+Y\+P\+T\+\_\+\+F\+A\+I\+L\+\_\+\+T\+E\+S\+T\+V\+E\+C\+T\+OR, C\+R\+Y\+P\+T\+\_\+\+N\+OP, C\+R\+Y\+P\+T\+\_\+\+OK, rc4\+\_\+stream\+\_\+crypt(), rc4\+\_\+stream\+\_\+done(), rc4\+\_\+stream\+\_\+memory(), and rc4\+\_\+stream\+\_\+setup().
+
+Here is the call graph for this function\+:
+% FIG 1

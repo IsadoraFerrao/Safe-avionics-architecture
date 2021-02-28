@@ -1,0 +1,232 @@
+\hypertarget{ocb__init_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/encauth/ocb/ocb\+\_\+init.c File Reference}
+\label{ocb__init_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/encauth/ocb/ocb\_init.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/encauth/ocb/ocb\_init.c}}
+
+
+O\+CB implementation, initialize state, by Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for ocb\+\_\+init.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{ocb__init_8c_a3c0eb0dbcf72f41b0455237adc8d967b}{ocb\+\_\+init}} (ocb\+\_\+state $\ast$ocb, int cipher, const unsigned char $\ast$key, unsigned long keylen, const unsigned char $\ast$nonce)
+\begin{DoxyCompactList}\small\item\em Initialize an O\+CB context. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+struct \{\\
+\>int \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}\\
+\>unsigned char \mbox{\hyperlink{ocb__init_8c_a3f0ece932ebbc550b50514c8ff1ae8fd}{poly\_div}} \mbox{[}144\mbox{]}\\
+\>unsigned char \mbox{\hyperlink{ocb__init_8c_ac5b1f3791dbd8ac847ef239d0171c0ce}{poly\_mul}} \mbox{[}144\mbox{]}\\
+\} \mbox{\hyperlink{ocb__init_8c_ad8d68317406e4dcae582726a89f4dbe3}{polys}} \mbox{[}$\,$\mbox{]}\\
+
+\end{tabbing}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+O\+CB implementation, initialize state, by Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{ocb__init_8c_a3c0eb0dbcf72f41b0455237adc8d967b}\label{ocb__init_8c_a3c0eb0dbcf72f41b0455237adc8d967b}} 
+\index{ocb\_init.c@{ocb\_init.c}!ocb\_init@{ocb\_init}}
+\index{ocb\_init@{ocb\_init}!ocb\_init.c@{ocb\_init.c}}
+\subsubsection{\texorpdfstring{ocb\_init()}{ocb\_init()}}
+{\footnotesize\ttfamily int ocb\+\_\+init (\begin{DoxyParamCaption}\item[{ocb\+\_\+state $\ast$}]{ocb,  }\item[{int}]{cipher,  }\item[{const unsigned char $\ast$}]{key,  }\item[{unsigned long}]{keylen,  }\item[{const unsigned char $\ast$}]{nonce }\end{DoxyParamCaption})}
+
+
+
+Initialize an O\+CB context. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ocb} & \mbox{[}out\mbox{]} The destination of the O\+CB state \\
+\hline
+{\em cipher} & The index of the desired cipher \\
+\hline
+{\em key} & The secret key \\
+\hline
+{\em keylen} & The length of the secret key (octets) \\
+\hline
+{\em nonce} & The session nonce (length of the block size of the cipher) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 45 of file ocb\+\_\+init.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{47 \{}
+\DoxyCodeLine{48    \textcolor{keywordtype}{int} \mbox{\hyperlink{gcm__gf__mult_8c_ae7cb7582a0d3b2ec78b665193cbac9ae}{poly}}, x, y, m, err;}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{50    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(ocb   != NULL);}
+\DoxyCodeLine{51    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(key   != NULL);}
+\DoxyCodeLine{52    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(nonce != NULL);}
+\DoxyCodeLine{53 }
+\DoxyCodeLine{54    \textcolor{comment}{/* valid cipher? */}}
+\DoxyCodeLine{55    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_ac30eb68934c4ca07205344dc9d159221}{cipher\_is\_valid}}(cipher)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{56       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{57    \}}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{59    \textcolor{comment}{/* determine which polys to use */}}
+\DoxyCodeLine{60    ocb->block\_len = \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[cipher].\mbox{\hyperlink{structltc__cipher__descriptor_afa2af7325fd3a834910dd92e8c9acf49}{block\_length}};}
+\DoxyCodeLine{61    x = (int)(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{ocb__init_8c_ad8d68317406e4dcae582726a89f4dbe3}{polys}})/\textcolor{keyword}{sizeof}(\mbox{\hyperlink{ocb__init_8c_ad8d68317406e4dcae582726a89f4dbe3}{polys}}[0]));}
+\DoxyCodeLine{62    \textcolor{keywordflow}{for} (\mbox{\hyperlink{gcm__gf__mult_8c_ae7cb7582a0d3b2ec78b665193cbac9ae}{poly}} = 0; \mbox{\hyperlink{gcm__gf__mult_8c_ae7cb7582a0d3b2ec78b665193cbac9ae}{poly}} < x; \mbox{\hyperlink{gcm__gf__mult_8c_ae7cb7582a0d3b2ec78b665193cbac9ae}{poly}}++) \{}
+\DoxyCodeLine{63        \textcolor{keywordflow}{if} (\mbox{\hyperlink{ocb__init_8c_ad8d68317406e4dcae582726a89f4dbe3}{polys}}[\mbox{\hyperlink{gcm__gf__mult_8c_ae7cb7582a0d3b2ec78b665193cbac9ae}{poly}}].\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}} == ocb->block\_len) \{}
+\DoxyCodeLine{64           \textcolor{keywordflow}{break};}
+\DoxyCodeLine{65        \}}
+\DoxyCodeLine{66    \}}
+\DoxyCodeLine{67    \textcolor{keywordflow}{if} (\mbox{\hyperlink{gcm__gf__mult_8c_ae7cb7582a0d3b2ec78b665193cbac9ae}{poly}} == x) \{}
+\DoxyCodeLine{68       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}}; \textcolor{comment}{/* block\_len not found in polys */}}
+\DoxyCodeLine{69    \}}
+\DoxyCodeLine{70    \textcolor{keywordflow}{if} (\mbox{\hyperlink{ocb__init_8c_ad8d68317406e4dcae582726a89f4dbe3}{polys}}[\mbox{\hyperlink{gcm__gf__mult_8c_ae7cb7582a0d3b2ec78b665193cbac9ae}{poly}}].\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}} != ocb->block\_len) \{}
+\DoxyCodeLine{71       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{72    \}}
+\DoxyCodeLine{73 }
+\DoxyCodeLine{74    \textcolor{comment}{/* schedule the key */}}
+\DoxyCodeLine{75    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[cipher].\mbox{\hyperlink{multi2_8c_ad0625943f7d847668b869ed827c51d47}{setup}}(key, keylen, 0, \&ocb->key)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{76       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{77    \}}
+\DoxyCodeLine{78 }
+\DoxyCodeLine{79    \textcolor{comment}{/* find L = E[0] */}}
+\DoxyCodeLine{80    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(ocb->L, ocb->block\_len);}
+\DoxyCodeLine{81    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[cipher].\mbox{\hyperlink{ecb__encrypt_8c_affdcc93fca272998e2545fcabac4e7f0}{ecb\_encrypt}}(ocb->L, ocb->L, \&ocb->key)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{82       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{83    \}}
+\DoxyCodeLine{84 }
+\DoxyCodeLine{85    \textcolor{comment}{/* find R = E[N xor L] */}}
+\DoxyCodeLine{86    \textcolor{keywordflow}{for} (x = 0; x < ocb->block\_len; x++) \{}
+\DoxyCodeLine{87        ocb->R[x] = ocb->L[x] \string^ nonce[x];}
+\DoxyCodeLine{88    \}}
+\DoxyCodeLine{89    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[cipher].\mbox{\hyperlink{ecb__encrypt_8c_affdcc93fca272998e2545fcabac4e7f0}{ecb\_encrypt}}(ocb->R, ocb->R, \&ocb->key)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{90       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{91    \}}
+\DoxyCodeLine{92 }
+\DoxyCodeLine{93    \textcolor{comment}{/* find Ls[i] = L << i for i == 0..31 */}}
+\DoxyCodeLine{94    \mbox{\hyperlink{tomcrypt__cfg_8h_a7691dd48d60d5fc6daf2fa7ec4c55e12}{XMEMCPY}}(ocb->Ls[0], ocb->L, ocb->block\_len);}
+\DoxyCodeLine{95    \textcolor{keywordflow}{for} (x = 1; x < 32; x++) \{}
+\DoxyCodeLine{96        m = ocb->Ls[x-1][0] >> 7;}
+\DoxyCodeLine{97        \textcolor{keywordflow}{for} (y = 0; y < ocb->block\_len-1; y++) \{}
+\DoxyCodeLine{98            ocb->Ls[x][y] = ((ocb->Ls[x-1][y] << 1) | (ocb->Ls[x-1][y+1] >> 7)) \& 255;}
+\DoxyCodeLine{99        \}}
+\DoxyCodeLine{100        ocb->Ls[x][ocb->block\_len-1] = (ocb->Ls[x-1][ocb->block\_len-1] << 1) \& 255;}
+\DoxyCodeLine{101 }
+\DoxyCodeLine{102        \textcolor{keywordflow}{if} (m == 1) \{}
+\DoxyCodeLine{103           \textcolor{keywordflow}{for} (y = 0; y < ocb->block\_len; y++) \{}
+\DoxyCodeLine{104               ocb->Ls[x][y] \string^= \mbox{\hyperlink{ocb__init_8c_ad8d68317406e4dcae582726a89f4dbe3}{polys}}[\mbox{\hyperlink{gcm__gf__mult_8c_ae7cb7582a0d3b2ec78b665193cbac9ae}{poly}}].poly\_mul[y];}
+\DoxyCodeLine{105           \}}
+\DoxyCodeLine{106        \}}
+\DoxyCodeLine{107    \}}
+\DoxyCodeLine{108 }
+\DoxyCodeLine{109    \textcolor{comment}{/* find Lr = L / x */}}
+\DoxyCodeLine{110    m = ocb->L[ocb->block\_len-1] \& 1;}
+\DoxyCodeLine{111 }
+\DoxyCodeLine{112    \textcolor{comment}{/* shift right */}}
+\DoxyCodeLine{113    \textcolor{keywordflow}{for} (x = ocb->block\_len - 1; x > 0; x--) \{}
+\DoxyCodeLine{114       ocb->Lr[x] = ((ocb->L[x] >> 1) | (ocb->L[x-1] << 7)) \& 255;}
+\DoxyCodeLine{115    \}}
+\DoxyCodeLine{116    ocb->Lr[0] = ocb->L[0] >> 1;}
+\DoxyCodeLine{117 }
+\DoxyCodeLine{118    \textcolor{keywordflow}{if} (m == 1) \{}
+\DoxyCodeLine{119       \textcolor{keywordflow}{for} (x = 0; x < ocb->block\_len; x++) \{}
+\DoxyCodeLine{120          ocb->Lr[x] \string^= \mbox{\hyperlink{ocb__init_8c_ad8d68317406e4dcae582726a89f4dbe3}{polys}}[\mbox{\hyperlink{gcm__gf__mult_8c_ae7cb7582a0d3b2ec78b665193cbac9ae}{poly}}].poly\_div[x];}
+\DoxyCodeLine{121       \}}
+\DoxyCodeLine{122    \}}
+\DoxyCodeLine{123 }
+\DoxyCodeLine{124    \textcolor{comment}{/* set Li, checksum */}}
+\DoxyCodeLine{125    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(ocb->Li,       ocb->block\_len);}
+\DoxyCodeLine{126    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(ocb->checksum, ocb->block\_len);}
+\DoxyCodeLine{127 }
+\DoxyCodeLine{128    \textcolor{comment}{/* set other params */}}
+\DoxyCodeLine{129    ocb->block\_index = 1;}
+\DoxyCodeLine{130    ocb->cipher      = cipher;}
+\DoxyCodeLine{131 }
+\DoxyCodeLine{132    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{133 \}}
+
+\end{DoxyCode}
+
+
+References ltc\+\_\+cipher\+\_\+descriptor\+::block\+\_\+length, cipher\+\_\+descriptor, cipher\+\_\+is\+\_\+valid(), C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+A\+RG, C\+R\+Y\+P\+T\+\_\+\+OK, ecb\+\_\+encrypt(), len, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, poly, polys, setup(), X\+M\+E\+M\+C\+P\+Y(), and zeromem().
+
+
+
+Referenced by ocb\+\_\+decrypt\+\_\+verify\+\_\+memory(), and ocb\+\_\+encrypt\+\_\+authenticate\+\_\+memory().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{ocb__init_8c_afed088663f8704004425cdae2120b9b3}\label{ocb__init_8c_afed088663f8704004425cdae2120b9b3}} 
+\index{ocb\_init.c@{ocb\_init.c}!len@{len}}
+\index{len@{len}!ocb\_init.c@{ocb\_init.c}}
+\subsubsection{\texorpdfstring{len}{len}}
+{\footnotesize\ttfamily int len}
+
+
+
+Definition at line 19 of file ocb\+\_\+init.\+c.
+
+
+
+Referenced by \+\_\+ctr\+\_\+encrypt(), \+\_\+ecc\+\_\+import\+\_\+private\+\_\+with\+\_\+oid(), \+\_\+ecc\+\_\+import\+\_\+x509\+\_\+with\+\_\+curve(), \+\_\+ecc\+\_\+import\+\_\+x509\+\_\+with\+\_\+oid(), \+\_\+rng\+\_\+ansic(), \+\_\+rng\+\_\+nix(), burn\+\_\+stack(), cbc\+\_\+decrypt(), cbc\+\_\+encrypt(), cbc\+\_\+getiv(), cbc\+\_\+setiv(), ccm\+\_\+add\+\_\+nonce(), ccm\+\_\+memory(), cfb\+\_\+decrypt(), cfb\+\_\+encrypt(), cfb\+\_\+getiv(), cfb\+\_\+setiv(), chacha20poly1305\+\_\+test(), chacha\+\_\+test(), chc\+\_\+test(), copy\+\_\+or\+\_\+zeromem(), ctr\+\_\+decrypt(), ctr\+\_\+encrypt(), ctr\+\_\+getiv(), ctr\+\_\+setiv(), der\+\_\+decode\+\_\+ia5\+\_\+string(), der\+\_\+decode\+\_\+object\+\_\+identifier(), der\+\_\+decode\+\_\+octet\+\_\+string(), der\+\_\+decode\+\_\+printable\+\_\+string(), der\+\_\+decode\+\_\+sequence\+\_\+flexi(), der\+\_\+decode\+\_\+short\+\_\+integer(), der\+\_\+decode\+\_\+teletex\+\_\+string(), der\+\_\+decode\+\_\+utf8\+\_\+string(), der\+\_\+encode\+\_\+asn1\+\_\+length(), der\+\_\+encode\+\_\+bit\+\_\+string(), der\+\_\+encode\+\_\+generalizedtime(), der\+\_\+encode\+\_\+ia5\+\_\+string(), der\+\_\+encode\+\_\+integer(), der\+\_\+encode\+\_\+octet\+\_\+string(), der\+\_\+encode\+\_\+printable\+\_\+string(), der\+\_\+encode\+\_\+raw\+\_\+bit\+\_\+string(), der\+\_\+encode\+\_\+short\+\_\+integer(), der\+\_\+encode\+\_\+utf8\+\_\+string(), der\+\_\+length\+\_\+asn1\+\_\+length(), der\+\_\+length\+\_\+generalizedtime(), der\+\_\+length\+\_\+integer(), der\+\_\+length\+\_\+utf8\+\_\+string(), dh\+\_\+export\+\_\+key(), dsa\+\_\+import(), eax\+\_\+done(), eax\+\_\+init(), eax\+\_\+test(), ecb\+\_\+decrypt(), ecb\+\_\+encrypt(), ecc\+\_\+import\+\_\+pkcs8(), ecc\+\_\+import\+\_\+x509(), f8\+\_\+decrypt(), f8\+\_\+encrypt(), f8\+\_\+getiv(), f8\+\_\+setiv(), lrw\+\_\+decrypt(), lrw\+\_\+encrypt(), lrw\+\_\+getiv(), lrw\+\_\+process(), lrw\+\_\+setiv(), ltc\+\_\+ecc\+\_\+mul2add(), mem\+\_\+neq(), ocb3\+\_\+test(), ocb\+\_\+init(), ocb\+\_\+test(), ofb\+\_\+decrypt(), ofb\+\_\+encrypt(), ofb\+\_\+getiv(), ofb\+\_\+setiv(), omac\+\_\+init(), omac\+\_\+test(), pkcs12\+\_\+utf8\+\_\+to\+\_\+utf16(), pkcs8\+\_\+decode\+\_\+flexi(), pmac\+\_\+test(), poly1305\+\_\+test(), radix\+\_\+to\+\_\+bin(), rand\+\_\+prime(), rc4\+\_\+ready(), rsa\+\_\+import(), rsa\+\_\+import\+\_\+x509(), salsa20\+\_\+test(), sha3\+\_\+shake\+\_\+test(), sober128\+\_\+stream\+\_\+test(), sosemanuk\+\_\+test(), unsigned\+\_\+read(), whirlpool\+\_\+test(), x509\+\_\+decode\+\_\+subject\+\_\+public\+\_\+key\+\_\+info(), and xts\+\_\+test().
+
+\mbox{\Hypertarget{ocb__init_8c_a3f0ece932ebbc550b50514c8ff1ae8fd}\label{ocb__init_8c_a3f0ece932ebbc550b50514c8ff1ae8fd}} 
+\index{ocb\_init.c@{ocb\_init.c}!poly\_div@{poly\_div}}
+\index{poly\_div@{poly\_div}!ocb\_init.c@{ocb\_init.c}}
+\subsubsection{\texorpdfstring{poly\_div}{poly\_div}}
+{\footnotesize\ttfamily unsigned char poly\+\_\+div\mbox{[}144\mbox{]}}
+
+
+
+Definition at line 20 of file ocb\+\_\+init.\+c.
+
+\mbox{\Hypertarget{ocb__init_8c_ac5b1f3791dbd8ac847ef239d0171c0ce}\label{ocb__init_8c_ac5b1f3791dbd8ac847ef239d0171c0ce}} 
+\index{ocb\_init.c@{ocb\_init.c}!poly\_mul@{poly\_mul}}
+\index{poly\_mul@{poly\_mul}!ocb\_init.c@{ocb\_init.c}}
+\subsubsection{\texorpdfstring{poly\_mul}{poly\_mul}}
+{\footnotesize\ttfamily unsigned char poly\+\_\+mul\mbox{[}144\mbox{]}}
+
+
+
+Definition at line 20 of file ocb\+\_\+init.\+c.
+
+\mbox{\Hypertarget{ocb__init_8c_ad8d68317406e4dcae582726a89f4dbe3}\label{ocb__init_8c_ad8d68317406e4dcae582726a89f4dbe3}} 
+\index{ocb\_init.c@{ocb\_init.c}!polys@{polys}}
+\index{polys@{polys}!ocb\_init.c@{ocb\_init.c}}
+\subsubsection{\texorpdfstring{polys}{polys}}
+{\footnotesize\ttfamily const \{ ... \}   polys\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    8,}
+\DoxyCodeLine{    \{ 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0D \},}
+\DoxyCodeLine{    \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x1B \}}
+\DoxyCodeLine{\}, \{}
+\DoxyCodeLine{    16,}
+\DoxyCodeLine{    \{ 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x43 \},}
+\DoxyCodeLine{    \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x87 \}}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Referenced by ocb\+\_\+init().
+

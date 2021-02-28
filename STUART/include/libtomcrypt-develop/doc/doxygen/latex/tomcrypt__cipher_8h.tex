@@ -1,0 +1,466 @@
+\hypertarget{tomcrypt__cipher_8h}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/headers/tomcrypt\+\_\+cipher.h File Reference}
+\label{tomcrypt__cipher_8h}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/headers/tomcrypt\_cipher.h@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/headers/tomcrypt\_cipher.h}}
+This graph shows which files directly or indirectly include this file\+:
+% FIG 0
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+union \mbox{\hyperlink{unionSymmetric__key}{Symmetric\+\_\+key}}
+\item 
+struct \mbox{\hyperlink{structltc__cipher__descriptor}{ltc\+\_\+cipher\+\_\+descriptor}}
+\begin{DoxyCompactList}\small\item\em cipher descriptor table, last entry has \char`\"{}name == N\+U\+L\+L\char`\"{} to mark the end of table \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef union \mbox{\hyperlink{unionSymmetric__key}{Symmetric\+\_\+key}} \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{tomcrypt__cipher_8h_af5c3882342fd65a17239cd04bfdf44e2}{find\+\_\+cipher}} (const char $\ast$name)
+\begin{DoxyCompactList}\small\item\em Find a registered cipher by name. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{tomcrypt__cipher_8h_a292925e244bbb7c919aa60eedcba5bf6}{find\+\_\+cipher\+\_\+any}} (const char $\ast$name, int blocklen, int keylen)
+\begin{DoxyCompactList}\small\item\em Find a cipher flexibly. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{tomcrypt__cipher_8h_aa38dbe448d907f5cf9b6554c2e52776b}{find\+\_\+cipher\+\_\+id}} (unsigned char ID)
+\begin{DoxyCompactList}\small\item\em Find a cipher by ID number. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{tomcrypt__cipher_8h_a61ac42bfbce4e88791a80140e8854a72}{register\+\_\+cipher}} (const struct \mbox{\hyperlink{structltc__cipher__descriptor}{ltc\+\_\+cipher\+\_\+descriptor}} $\ast$cipher)
+\begin{DoxyCompactList}\small\item\em Register a cipher with the descriptor table. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{tomcrypt__cipher_8h_a32a2e786ce8ad88333dd6693f98f4046}{unregister\+\_\+cipher}} (const struct \mbox{\hyperlink{structltc__cipher__descriptor}{ltc\+\_\+cipher\+\_\+descriptor}} $\ast$cipher)
+\begin{DoxyCompactList}\small\item\em Unregister a cipher from the descriptor table. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{tomcrypt__cipher_8h_a6ac4768959e71b972dbc6e7fccd80f3e}{register\+\_\+all\+\_\+ciphers}} (void)
+\item 
+int \mbox{\hyperlink{tomcrypt__cipher_8h_ac30eb68934c4ca07205344dc9d159221}{cipher\+\_\+is\+\_\+valid}} (int idx)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structltc__cipher__descriptor}{ltc\+\_\+cipher\+\_\+descriptor}} \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\+\_\+descriptor}} \mbox{[}$\,$\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}\label{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}} 
+\index{tomcrypt\_cipher.h@{tomcrypt\_cipher.h}!symmetric\_key@{symmetric\_key}}
+\index{symmetric\_key@{symmetric\_key}!tomcrypt\_cipher.h@{tomcrypt\_cipher.h}}
+\subsubsection{\texorpdfstring{symmetric\_key}{symmetric\_key}}
+{\footnotesize\ttfamily typedef union \mbox{\hyperlink{unionSymmetric__key}{Symmetric\+\_\+key}}  \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}}}
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{tomcrypt__cipher_8h_ac30eb68934c4ca07205344dc9d159221}\label{tomcrypt__cipher_8h_ac30eb68934c4ca07205344dc9d159221}} 
+\index{tomcrypt\_cipher.h@{tomcrypt\_cipher.h}!cipher\_is\_valid@{cipher\_is\_valid}}
+\index{cipher\_is\_valid@{cipher\_is\_valid}!tomcrypt\_cipher.h@{tomcrypt\_cipher.h}}
+\subsubsection{\texorpdfstring{cipher\_is\_valid()}{cipher\_is\_valid()}}
+{\footnotesize\ttfamily int cipher\+\_\+is\+\_\+valid (\begin{DoxyParamCaption}\item[{int}]{idx }\end{DoxyParamCaption})}
+
+
+
+Definition at line 21 of file crypt\+\_\+cipher\+\_\+is\+\_\+valid.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{22 \{}
+\DoxyCodeLine{23    \mbox{\hyperlink{tomcrypt__custom_8h_a427a107414e4d775fbf23f4a499f4a31}{LTC\_MUTEX\_LOCK}}(\&ltc\_cipher\_mutex);}
+\DoxyCodeLine{24    \textcolor{keywordflow}{if} (idx < 0 || idx >= \mbox{\hyperlink{tomcrypt_8h_a9ad1b4a1e4f7381611cfd2ae6620a727}{TAB\_SIZE}} || \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[idx].name == NULL) \{}
+\DoxyCodeLine{25       \mbox{\hyperlink{tomcrypt__custom_8h_acdf267be91b178b4fafe8f992d57a7f1}{LTC\_MUTEX\_UNLOCK}}(\&ltc\_cipher\_mutex);}
+\DoxyCodeLine{26       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca302b958f5664adeb427c22f57c9d90a4}{CRYPT\_INVALID\_CIPHER}};}
+\DoxyCodeLine{27    \}}
+\DoxyCodeLine{28    \mbox{\hyperlink{tomcrypt__custom_8h_acdf267be91b178b4fafe8f992d57a7f1}{LTC\_MUTEX\_UNLOCK}}(\&ltc\_cipher\_mutex);}
+\DoxyCodeLine{29    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{30 \}}
+
+\end{DoxyCode}
+
+
+References cipher\+\_\+descriptor, C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+C\+I\+P\+H\+ER, C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+M\+U\+T\+E\+X\+\_\+\+L\+O\+CK, L\+T\+C\+\_\+\+M\+U\+T\+E\+X\+\_\+\+U\+N\+L\+O\+CK, ltc\+\_\+cipher\+\_\+descriptor\+::name, and T\+A\+B\+\_\+\+S\+I\+ZE.
+
+
+
+Referenced by cbc\+\_\+decrypt(), cbc\+\_\+done(), cbc\+\_\+encrypt(), cbc\+\_\+start(), ccm\+\_\+init(), ccm\+\_\+memory(), cfb\+\_\+decrypt(), cfb\+\_\+done(), cfb\+\_\+encrypt(), cfb\+\_\+setiv(), cfb\+\_\+start(), chc\+\_\+done(), chc\+\_\+init(), chc\+\_\+process(), chc\+\_\+register(), ctr\+\_\+done(), ctr\+\_\+encrypt(), ctr\+\_\+setiv(), ctr\+\_\+start(), eax\+\_\+init(), ecb\+\_\+decrypt(), ecb\+\_\+done(), ecb\+\_\+encrypt(), ecb\+\_\+start(), f8\+\_\+done(), f8\+\_\+encrypt(), f8\+\_\+setiv(), f8\+\_\+start(), f9\+\_\+done(), f9\+\_\+init(), f9\+\_\+memory(), f9\+\_\+process(), gcm\+\_\+add\+\_\+aad(), gcm\+\_\+add\+\_\+iv(), gcm\+\_\+done(), gcm\+\_\+init(), gcm\+\_\+memory(), gcm\+\_\+process(), lrw\+\_\+decrypt(), lrw\+\_\+done(), lrw\+\_\+encrypt(), lrw\+\_\+setiv(), lrw\+\_\+start(), ocb3\+\_\+decrypt(), ocb3\+\_\+decrypt\+\_\+last(), ocb3\+\_\+done(), ocb3\+\_\+encrypt(), ocb3\+\_\+encrypt\+\_\+last(), ocb3\+\_\+init(), ocb\+\_\+decrypt(), ocb\+\_\+encrypt(), ocb\+\_\+init(), ofb\+\_\+done(), ofb\+\_\+encrypt(), ofb\+\_\+setiv(), ofb\+\_\+start(), omac\+\_\+done(), omac\+\_\+init(), omac\+\_\+memory(), omac\+\_\+process(), pmac\+\_\+done(), pmac\+\_\+init(), pmac\+\_\+process(), s\+\_\+ocb\+\_\+done(), xcbc\+\_\+done(), xcbc\+\_\+init(), xcbc\+\_\+memory(), xcbc\+\_\+process(), xts\+\_\+decrypt(), xts\+\_\+encrypt(), xts\+\_\+start(), yarrow\+\_\+ready(), and yarrow\+\_\+start().
+
+Here is the caller graph for this function\+:
+% FIG 1
+\mbox{\Hypertarget{tomcrypt__cipher_8h_af5c3882342fd65a17239cd04bfdf44e2}\label{tomcrypt__cipher_8h_af5c3882342fd65a17239cd04bfdf44e2}} 
+\index{tomcrypt\_cipher.h@{tomcrypt\_cipher.h}!find\_cipher@{find\_cipher}}
+\index{find\_cipher@{find\_cipher}!tomcrypt\_cipher.h@{tomcrypt\_cipher.h}}
+\subsubsection{\texorpdfstring{find\_cipher()}{find\_cipher()}}
+{\footnotesize\ttfamily int find\+\_\+cipher (\begin{DoxyParamCaption}\item[{const char $\ast$}]{name }\end{DoxyParamCaption})}
+
+
+
+Find a registered cipher by name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the cipher to look for \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+$>$= 0 if found, -\/1 if not present 
+\end{DoxyReturn}
+
+
+Definition at line 21 of file crypt\+\_\+find\+\_\+cipher.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{22 \{}
+\DoxyCodeLine{23    \textcolor{keywordtype}{int} x;}
+\DoxyCodeLine{24    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(name != NULL);}
+\DoxyCodeLine{25    \mbox{\hyperlink{tomcrypt__custom_8h_a427a107414e4d775fbf23f4a499f4a31}{LTC\_MUTEX\_LOCK}}(\&ltc\_cipher\_mutex);}
+\DoxyCodeLine{26    \textcolor{keywordflow}{for} (x = 0; x < \mbox{\hyperlink{tomcrypt_8h_a9ad1b4a1e4f7381611cfd2ae6620a727}{TAB\_SIZE}}; x++) \{}
+\DoxyCodeLine{27        \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[x].name != NULL \&\& !\mbox{\hyperlink{tomcrypt__cfg_8h_a5d6e3d69e1d3f54de008b963bba3c6b3}{XSTRCMP}}(\mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[x].name, name)) \{}
+\DoxyCodeLine{28           \mbox{\hyperlink{tomcrypt__custom_8h_acdf267be91b178b4fafe8f992d57a7f1}{LTC\_MUTEX\_UNLOCK}}(\&ltc\_cipher\_mutex);}
+\DoxyCodeLine{29           \textcolor{keywordflow}{return} x;}
+\DoxyCodeLine{30        \}}
+\DoxyCodeLine{31    \}}
+\DoxyCodeLine{32    \mbox{\hyperlink{tomcrypt__custom_8h_acdf267be91b178b4fafe8f992d57a7f1}{LTC\_MUTEX\_UNLOCK}}(\&ltc\_cipher\_mutex);}
+\DoxyCodeLine{33    \textcolor{keywordflow}{return} -1;}
+\DoxyCodeLine{34 \}}
+
+\end{DoxyCode}
+
+
+References cipher\+\_\+descriptor, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, L\+T\+C\+\_\+\+M\+U\+T\+E\+X\+\_\+\+L\+O\+CK, L\+T\+C\+\_\+\+M\+U\+T\+E\+X\+\_\+\+U\+N\+L\+O\+CK, T\+A\+B\+\_\+\+S\+I\+ZE, and X\+S\+T\+R\+C\+M\+P().
+
+
+
+Referenced by \+\_\+xts\+\_\+test\+\_\+accel\+\_\+xts\+\_\+decrypt(), \+\_\+xts\+\_\+test\+\_\+accel\+\_\+xts\+\_\+encrypt(), ccm\+\_\+test(), chc\+\_\+test(), ctr\+\_\+test(), eax\+\_\+test(), f8\+\_\+test\+\_\+mode(), f9\+\_\+test(), find\+\_\+cipher\+\_\+any(), gcm\+\_\+test(), lrw\+\_\+test(), ocb3\+\_\+test(), ocb\+\_\+test(), omac\+\_\+test(), pbes\+\_\+decrypt(), pmac\+\_\+test(), xcbc\+\_\+test(), and xts\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 2
+Here is the caller graph for this function\+:
+% FIG 3
+\mbox{\Hypertarget{tomcrypt__cipher_8h_a292925e244bbb7c919aa60eedcba5bf6}\label{tomcrypt__cipher_8h_a292925e244bbb7c919aa60eedcba5bf6}} 
+\index{tomcrypt\_cipher.h@{tomcrypt\_cipher.h}!find\_cipher\_any@{find\_cipher\_any}}
+\index{find\_cipher\_any@{find\_cipher\_any}!tomcrypt\_cipher.h@{tomcrypt\_cipher.h}}
+\subsubsection{\texorpdfstring{find\_cipher\_any()}{find\_cipher\_any()}}
+{\footnotesize\ttfamily int find\+\_\+cipher\+\_\+any (\begin{DoxyParamCaption}\item[{const char $\ast$}]{name,  }\item[{int}]{blocklen,  }\item[{int}]{keylen }\end{DoxyParamCaption})}
+
+
+
+Find a cipher flexibly. 
+
+First by name then if not present by block and key size 
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the cipher desired \\
+\hline
+{\em blocklen} & The minimum length of the block cipher desired (octets) \\
+\hline
+{\em keylen} & The minimum length of the key size desired (octets) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+$>$= 0 if found, -\/1 if not present 
+\end{DoxyReturn}
+
+
+Definition at line 23 of file crypt\+\_\+find\+\_\+cipher\+\_\+any.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{24 \{}
+\DoxyCodeLine{25    \textcolor{keywordtype}{int} x;}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27    \textcolor{keywordflow}{if}(name != NULL) \{}
+\DoxyCodeLine{28       x = \mbox{\hyperlink{tomcrypt__cipher_8h_af5c3882342fd65a17239cd04bfdf44e2}{find\_cipher}}(name);}
+\DoxyCodeLine{29       \textcolor{keywordflow}{if} (x != -1) \textcolor{keywordflow}{return} x;}
+\DoxyCodeLine{30    \}}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32    \mbox{\hyperlink{tomcrypt__custom_8h_a427a107414e4d775fbf23f4a499f4a31}{LTC\_MUTEX\_LOCK}}(\&ltc\_cipher\_mutex);}
+\DoxyCodeLine{33    \textcolor{keywordflow}{for} (x = 0; x < \mbox{\hyperlink{tomcrypt_8h_a9ad1b4a1e4f7381611cfd2ae6620a727}{TAB\_SIZE}}; x++) \{}
+\DoxyCodeLine{34        \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[x].name == NULL) \{}
+\DoxyCodeLine{35           \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{36        \}}
+\DoxyCodeLine{37        \textcolor{keywordflow}{if} (blocklen <= (\textcolor{keywordtype}{int})\mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[x].block\_length \&\& keylen <= (\textcolor{keywordtype}{int})\mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[x].max\_key\_length) \{}
+\DoxyCodeLine{38           \mbox{\hyperlink{tomcrypt__custom_8h_acdf267be91b178b4fafe8f992d57a7f1}{LTC\_MUTEX\_UNLOCK}}(\&ltc\_cipher\_mutex);}
+\DoxyCodeLine{39           \textcolor{keywordflow}{return} x;}
+\DoxyCodeLine{40        \}}
+\DoxyCodeLine{41    \}}
+\DoxyCodeLine{42    \mbox{\hyperlink{tomcrypt__custom_8h_acdf267be91b178b4fafe8f992d57a7f1}{LTC\_MUTEX\_UNLOCK}}(\&ltc\_cipher\_mutex);}
+\DoxyCodeLine{43    \textcolor{keywordflow}{return} -1;}
+\DoxyCodeLine{44 \}}
+
+\end{DoxyCode}
+
+
+References cipher\+\_\+descriptor, find\+\_\+cipher(), L\+T\+C\+\_\+\+M\+U\+T\+E\+X\+\_\+\+L\+O\+CK, L\+T\+C\+\_\+\+M\+U\+T\+E\+X\+\_\+\+U\+N\+L\+O\+CK, and T\+A\+B\+\_\+\+S\+I\+ZE.
+
+
+
+Referenced by register\+\_\+all\+\_\+hashes().
+
+Here is the call graph for this function\+:
+% FIG 4
+Here is the caller graph for this function\+:
+% FIG 5
+\mbox{\Hypertarget{tomcrypt__cipher_8h_aa38dbe448d907f5cf9b6554c2e52776b}\label{tomcrypt__cipher_8h_aa38dbe448d907f5cf9b6554c2e52776b}} 
+\index{tomcrypt\_cipher.h@{tomcrypt\_cipher.h}!find\_cipher\_id@{find\_cipher\_id}}
+\index{find\_cipher\_id@{find\_cipher\_id}!tomcrypt\_cipher.h@{tomcrypt\_cipher.h}}
+\subsubsection{\texorpdfstring{find\_cipher\_id()}{find\_cipher\_id()}}
+{\footnotesize\ttfamily int find\+\_\+cipher\+\_\+id (\begin{DoxyParamCaption}\item[{unsigned char}]{ID }\end{DoxyParamCaption})}
+
+
+
+Find a cipher by ID number. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ID} & The ID (not same as index) of the cipher to find \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+$>$= 0 if found, -\/1 if not present 
+\end{DoxyReturn}
+
+
+Definition at line 21 of file crypt\+\_\+find\+\_\+cipher\+\_\+id.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{22 \{}
+\DoxyCodeLine{23    \textcolor{keywordtype}{int} x;}
+\DoxyCodeLine{24    \mbox{\hyperlink{tomcrypt__custom_8h_a427a107414e4d775fbf23f4a499f4a31}{LTC\_MUTEX\_LOCK}}(\&ltc\_cipher\_mutex);}
+\DoxyCodeLine{25    \textcolor{keywordflow}{for} (x = 0; x < \mbox{\hyperlink{tomcrypt_8h_a9ad1b4a1e4f7381611cfd2ae6620a727}{TAB\_SIZE}}; x++) \{}
+\DoxyCodeLine{26        \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[x].ID == ID) \{}
+\DoxyCodeLine{27           x = (\mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[x].\mbox{\hyperlink{structltc__cipher__descriptor_af0cf296468366b502b0584af87168058}{name}} == NULL) ? -1 : x;}
+\DoxyCodeLine{28           \mbox{\hyperlink{tomcrypt__custom_8h_acdf267be91b178b4fafe8f992d57a7f1}{LTC\_MUTEX\_UNLOCK}}(\&ltc\_cipher\_mutex);}
+\DoxyCodeLine{29           \textcolor{keywordflow}{return} x;}
+\DoxyCodeLine{30        \}}
+\DoxyCodeLine{31    \}}
+\DoxyCodeLine{32    \mbox{\hyperlink{tomcrypt__custom_8h_acdf267be91b178b4fafe8f992d57a7f1}{LTC\_MUTEX\_UNLOCK}}(\&ltc\_cipher\_mutex);}
+\DoxyCodeLine{33    \textcolor{keywordflow}{return} -1;}
+\DoxyCodeLine{34 \}}
+
+\end{DoxyCode}
+
+
+References cipher\+\_\+descriptor, L\+T\+C\+\_\+\+M\+U\+T\+E\+X\+\_\+\+L\+O\+CK, L\+T\+C\+\_\+\+M\+U\+T\+E\+X\+\_\+\+U\+N\+L\+O\+CK, ltc\+\_\+cipher\+\_\+descriptor\+::name, and T\+A\+B\+\_\+\+S\+I\+ZE.
+
+\mbox{\Hypertarget{tomcrypt__cipher_8h_a6ac4768959e71b972dbc6e7fccd80f3e}\label{tomcrypt__cipher_8h_a6ac4768959e71b972dbc6e7fccd80f3e}} 
+\index{tomcrypt\_cipher.h@{tomcrypt\_cipher.h}!register\_all\_ciphers@{register\_all\_ciphers}}
+\index{register\_all\_ciphers@{register\_all\_ciphers}!tomcrypt\_cipher.h@{tomcrypt\_cipher.h}}
+\subsubsection{\texorpdfstring{register\_all\_ciphers()}{register\_all\_ciphers()}}
+{\footnotesize\ttfamily int register\+\_\+all\+\_\+ciphers (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 22 of file crypt\+\_\+register\+\_\+all\+\_\+ciphers.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{23 \{}
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#ifdef LTC\_RIJNDAEL}}
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#ifdef ENCRYPT\_ONLY}}
+\DoxyCodeLine{26    \textcolor{comment}{/* alternative would be}}
+\DoxyCodeLine{27 \textcolor{comment}{    * register\_cipher(\&rijndael\_enc\_desc);}}
+\DoxyCodeLine{28 \textcolor{comment}{    */}}
+\DoxyCodeLine{29    \mbox{\hyperlink{crypt__register__all__ciphers_8c_a612b5d315b033e9d231dca71256b00ac}{REGISTER\_CIPHER}}(\&aes\_enc\_desc);}
+\DoxyCodeLine{30 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{31    \textcolor{comment}{/* alternative would be}}
+\DoxyCodeLine{32 \textcolor{comment}{    * register\_cipher(\&rijndael\_desc);}}
+\DoxyCodeLine{33 \textcolor{comment}{    */}}
+\DoxyCodeLine{34    \mbox{\hyperlink{crypt__register__all__ciphers_8c_a612b5d315b033e9d231dca71256b00ac}{REGISTER\_CIPHER}}(\&\mbox{\hyperlink{aes_8c_a2aa48c4ff0b29440e5c83b7dac768801}{aes\_desc}});}
+\DoxyCodeLine{35 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{36 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{37 \textcolor{preprocessor}{\#ifdef LTC\_BLOWFISH}}
+\DoxyCodeLine{38    \mbox{\hyperlink{crypt__register__all__ciphers_8c_a612b5d315b033e9d231dca71256b00ac}{REGISTER\_CIPHER}}(\&\mbox{\hyperlink{blowfish_8c_aa69cbd19d84b49f3863a4443e51433ba}{blowfish\_desc}});}
+\DoxyCodeLine{39 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{40 \textcolor{preprocessor}{\#ifdef LTC\_XTEA}}
+\DoxyCodeLine{41    \mbox{\hyperlink{crypt__register__all__ciphers_8c_a612b5d315b033e9d231dca71256b00ac}{REGISTER\_CIPHER}}(\&\mbox{\hyperlink{xtea_8c_a6fe160700a333cae733af99b30449aef}{xtea\_desc}});}
+\DoxyCodeLine{42 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{43 \textcolor{preprocessor}{\#ifdef LTC\_RC5}}
+\DoxyCodeLine{44    \mbox{\hyperlink{crypt__register__all__ciphers_8c_a612b5d315b033e9d231dca71256b00ac}{REGISTER\_CIPHER}}(\&\mbox{\hyperlink{rc5_8c_a694a18b2153a39eea83dbe59d619b6dc}{rc5\_desc}});}
+\DoxyCodeLine{45 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{46 \textcolor{preprocessor}{\#ifdef LTC\_RC6}}
+\DoxyCodeLine{47    \mbox{\hyperlink{crypt__register__all__ciphers_8c_a612b5d315b033e9d231dca71256b00ac}{REGISTER\_CIPHER}}(\&\mbox{\hyperlink{rc6_8c_a4bc4cd50d3da515c89e6df4d00371b3d}{rc6\_desc}});}
+\DoxyCodeLine{48 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{49 \textcolor{preprocessor}{\#ifdef LTC\_SAFERP}}
+\DoxyCodeLine{50    \mbox{\hyperlink{crypt__register__all__ciphers_8c_a612b5d315b033e9d231dca71256b00ac}{REGISTER\_CIPHER}}(\&\mbox{\hyperlink{saferp_8c_a2b33e3e25708b5e3cf97aa55e9488229}{saferp\_desc}});}
+\DoxyCodeLine{51 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{52 \textcolor{preprocessor}{\#ifdef LTC\_TWOFISH}}
+\DoxyCodeLine{53    \mbox{\hyperlink{crypt__register__all__ciphers_8c_a612b5d315b033e9d231dca71256b00ac}{REGISTER\_CIPHER}}(\&\mbox{\hyperlink{twofish_8c_af0de9cc3deb118ab8ca14f7ff6d52fd3}{twofish\_desc}});}
+\DoxyCodeLine{54 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{55 \textcolor{preprocessor}{\#ifdef LTC\_SAFER}}
+\DoxyCodeLine{56    \mbox{\hyperlink{crypt__register__all__ciphers_8c_a612b5d315b033e9d231dca71256b00ac}{REGISTER\_CIPHER}}(\&\mbox{\hyperlink{safer_8c_a93709ca54132dfbb88c8929f195044a7}{safer\_k64\_desc}});}
+\DoxyCodeLine{57    \mbox{\hyperlink{crypt__register__all__ciphers_8c_a612b5d315b033e9d231dca71256b00ac}{REGISTER\_CIPHER}}(\&\mbox{\hyperlink{safer_8c_aa1e344aed15e529eb252da3506cfbc27}{safer\_sk64\_desc}});}
+\DoxyCodeLine{58    \mbox{\hyperlink{crypt__register__all__ciphers_8c_a612b5d315b033e9d231dca71256b00ac}{REGISTER\_CIPHER}}(\&\mbox{\hyperlink{safer_8c_a915866930788beb465e50a0e0d762a20}{safer\_k128\_desc}});}
+\DoxyCodeLine{59    \mbox{\hyperlink{crypt__register__all__ciphers_8c_a612b5d315b033e9d231dca71256b00ac}{REGISTER\_CIPHER}}(\&\mbox{\hyperlink{safer_8c_ad84579c3b6c86e51d479d189502e1827}{safer\_sk128\_desc}});}
+\DoxyCodeLine{60 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{61 \textcolor{preprocessor}{\#ifdef LTC\_RC2}}
+\DoxyCodeLine{62    \mbox{\hyperlink{crypt__register__all__ciphers_8c_a612b5d315b033e9d231dca71256b00ac}{REGISTER\_CIPHER}}(\&\mbox{\hyperlink{rc2_8c_af2a69c5eed0f0f5201a34c72801bdcb9}{rc2\_desc}});}
+\DoxyCodeLine{63 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{64 \textcolor{preprocessor}{\#ifdef LTC\_DES}}
+\DoxyCodeLine{65    \mbox{\hyperlink{crypt__register__all__ciphers_8c_a612b5d315b033e9d231dca71256b00ac}{REGISTER\_CIPHER}}(\&\mbox{\hyperlink{des_8c_a3063e5b41add687be02cd6b134f5a73f}{des\_desc}});}
+\DoxyCodeLine{66    \mbox{\hyperlink{crypt__register__all__ciphers_8c_a612b5d315b033e9d231dca71256b00ac}{REGISTER\_CIPHER}}(\&\mbox{\hyperlink{des_8c_af3193b5d652e9e91159ff5a098fd95d3}{des3\_desc}});}
+\DoxyCodeLine{67 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{68 \textcolor{preprocessor}{\#ifdef LTC\_CAST5}}
+\DoxyCodeLine{69    \mbox{\hyperlink{crypt__register__all__ciphers_8c_a612b5d315b033e9d231dca71256b00ac}{REGISTER\_CIPHER}}(\&\mbox{\hyperlink{cast5_8c_a3c28f696b4ea4bc133a4889b6d1a72d1}{cast5\_desc}});}
+\DoxyCodeLine{70 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{71 \textcolor{preprocessor}{\#ifdef LTC\_NOEKEON}}
+\DoxyCodeLine{72    \mbox{\hyperlink{crypt__register__all__ciphers_8c_a612b5d315b033e9d231dca71256b00ac}{REGISTER\_CIPHER}}(\&\mbox{\hyperlink{noekeon_8c_a9d3c31904b318246bbc99df8bf5f74b3}{noekeon\_desc}});}
+\DoxyCodeLine{73 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{74 \textcolor{preprocessor}{\#ifdef LTC\_SKIPJACK}}
+\DoxyCodeLine{75    \mbox{\hyperlink{crypt__register__all__ciphers_8c_a612b5d315b033e9d231dca71256b00ac}{REGISTER\_CIPHER}}(\&\mbox{\hyperlink{skipjack_8c_a15ea2ed4036004060ddc9e763fea84de}{skipjack\_desc}});}
+\DoxyCodeLine{76 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{77 \textcolor{preprocessor}{\#ifdef LTC\_ANUBIS}}
+\DoxyCodeLine{78    \mbox{\hyperlink{crypt__register__all__ciphers_8c_a612b5d315b033e9d231dca71256b00ac}{REGISTER\_CIPHER}}(\&\mbox{\hyperlink{anubis_8c_a90e32a17644ba7c27cee346ddb2517ef}{anubis\_desc}});}
+\DoxyCodeLine{79 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{80 \textcolor{preprocessor}{\#ifdef LTC\_KHAZAD}}
+\DoxyCodeLine{81    \mbox{\hyperlink{crypt__register__all__ciphers_8c_a612b5d315b033e9d231dca71256b00ac}{REGISTER\_CIPHER}}(\&\mbox{\hyperlink{khazad_8c_a07a193e67bcb1833c10b1fbcba1d90fc}{khazad\_desc}});}
+\DoxyCodeLine{82 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{83 \textcolor{preprocessor}{\#ifdef LTC\_KSEED}}
+\DoxyCodeLine{84    \mbox{\hyperlink{crypt__register__all__ciphers_8c_a612b5d315b033e9d231dca71256b00ac}{REGISTER\_CIPHER}}(\&\mbox{\hyperlink{kseed_8c_abb75fd3d7465d0109cb6577b350b7b07}{kseed\_desc}});}
+\DoxyCodeLine{85 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{86 \textcolor{preprocessor}{\#ifdef LTC\_KASUMI}}
+\DoxyCodeLine{87    \mbox{\hyperlink{crypt__register__all__ciphers_8c_a612b5d315b033e9d231dca71256b00ac}{REGISTER\_CIPHER}}(\&\mbox{\hyperlink{kasumi_8c_a0a9143785f21664be453500c0dd55099}{kasumi\_desc}});}
+\DoxyCodeLine{88 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{89 \textcolor{preprocessor}{\#ifdef LTC\_MULTI2}}
+\DoxyCodeLine{90    \mbox{\hyperlink{crypt__register__all__ciphers_8c_a612b5d315b033e9d231dca71256b00ac}{REGISTER\_CIPHER}}(\&\mbox{\hyperlink{multi2_8c_aebf3a1b41bc8763287eecb37dc846bca}{multi2\_desc}});}
+\DoxyCodeLine{91 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{92 \textcolor{preprocessor}{\#ifdef LTC\_CAMELLIA}}
+\DoxyCodeLine{93    \mbox{\hyperlink{crypt__register__all__ciphers_8c_a612b5d315b033e9d231dca71256b00ac}{REGISTER\_CIPHER}}(\&\mbox{\hyperlink{camellia_8c_a10d3fccfb54d69182deb1c6ed8c699db}{camellia\_desc}});}
+\DoxyCodeLine{94 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{95 \textcolor{preprocessor}{\#ifdef LTC\_IDEA}}
+\DoxyCodeLine{96    \mbox{\hyperlink{crypt__register__all__ciphers_8c_a612b5d315b033e9d231dca71256b00ac}{REGISTER\_CIPHER}}(\&\mbox{\hyperlink{idea_8c_ab86cc28faab2395bdfc121bde0c170a2}{idea\_desc}});}
+\DoxyCodeLine{97 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{98 \textcolor{preprocessor}{\#ifdef LTC\_SERPENT}}
+\DoxyCodeLine{99    \mbox{\hyperlink{crypt__register__all__ciphers_8c_a612b5d315b033e9d231dca71256b00ac}{REGISTER\_CIPHER}}(\&\mbox{\hyperlink{serpent_8c_a84d78de33832ca89c1ddfb9f164246b1}{serpent\_desc}});}
+\DoxyCodeLine{100 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{101    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{102 \}}
+
+\end{DoxyCode}
+
+
+References aes\+\_\+desc, anubis\+\_\+desc, blowfish\+\_\+desc, camellia\+\_\+desc, cast5\+\_\+desc, C\+R\+Y\+P\+T\+\_\+\+OK, des3\+\_\+desc, des\+\_\+desc, idea\+\_\+desc, kasumi\+\_\+desc, khazad\+\_\+desc, kseed\+\_\+desc, multi2\+\_\+desc, noekeon\+\_\+desc, rc2\+\_\+desc, rc5\+\_\+desc, rc6\+\_\+desc, R\+E\+G\+I\+S\+T\+E\+R\+\_\+\+C\+I\+P\+H\+ER, safer\+\_\+k128\+\_\+desc, safer\+\_\+k64\+\_\+desc, safer\+\_\+sk128\+\_\+desc, safer\+\_\+sk64\+\_\+desc, saferp\+\_\+desc, serpent\+\_\+desc, skipjack\+\_\+desc, twofish\+\_\+desc, and xtea\+\_\+desc.
+
+\mbox{\Hypertarget{tomcrypt__cipher_8h_a61ac42bfbce4e88791a80140e8854a72}\label{tomcrypt__cipher_8h_a61ac42bfbce4e88791a80140e8854a72}} 
+\index{tomcrypt\_cipher.h@{tomcrypt\_cipher.h}!register\_cipher@{register\_cipher}}
+\index{register\_cipher@{register\_cipher}!tomcrypt\_cipher.h@{tomcrypt\_cipher.h}}
+\subsubsection{\texorpdfstring{register\_cipher()}{register\_cipher()}}
+{\footnotesize\ttfamily int register\+\_\+cipher (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structltc__cipher__descriptor}{ltc\+\_\+cipher\+\_\+descriptor}} $\ast$}]{cipher }\end{DoxyParamCaption})}
+
+
+
+Register a cipher with the descriptor table. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cipher} & The cipher you wish to register \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+value $>$= 0 if successfully added (or already present), -\/1 if unsuccessful 
+\end{DoxyReturn}
+
+
+Definition at line 21 of file crypt\+\_\+register\+\_\+cipher.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{22 \{}
+\DoxyCodeLine{23    \textcolor{keywordtype}{int} x;}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(cipher != NULL);}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27    \textcolor{comment}{/* is it already registered? */}}
+\DoxyCodeLine{28    \mbox{\hyperlink{tomcrypt__custom_8h_a427a107414e4d775fbf23f4a499f4a31}{LTC\_MUTEX\_LOCK}}(\&ltc\_cipher\_mutex);}
+\DoxyCodeLine{29    \textcolor{keywordflow}{for} (x = 0; x < \mbox{\hyperlink{tomcrypt_8h_a9ad1b4a1e4f7381611cfd2ae6620a727}{TAB\_SIZE}}; x++) \{}
+\DoxyCodeLine{30        \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[x].name != NULL \&\& \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[x].ID == cipher->\mbox{\hyperlink{structltc__cipher__descriptor_a75a932af8e44b27b5952e512a2fe5678}{ID}}) \{}
+\DoxyCodeLine{31           \mbox{\hyperlink{tomcrypt__custom_8h_acdf267be91b178b4fafe8f992d57a7f1}{LTC\_MUTEX\_UNLOCK}}(\&ltc\_cipher\_mutex);}
+\DoxyCodeLine{32           \textcolor{keywordflow}{return} x;}
+\DoxyCodeLine{33        \}}
+\DoxyCodeLine{34    \}}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36    \textcolor{comment}{/* find a blank spot */}}
+\DoxyCodeLine{37    \textcolor{keywordflow}{for} (x = 0; x < \mbox{\hyperlink{tomcrypt_8h_a9ad1b4a1e4f7381611cfd2ae6620a727}{TAB\_SIZE}}; x++) \{}
+\DoxyCodeLine{38        \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[x].name == NULL) \{}
+\DoxyCodeLine{39           \mbox{\hyperlink{tomcrypt__cfg_8h_a7691dd48d60d5fc6daf2fa7ec4c55e12}{XMEMCPY}}(\&\mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[x], cipher, \textcolor{keyword}{sizeof}(\textcolor{keyword}{struct} \mbox{\hyperlink{structltc__cipher__descriptor}{ltc\_cipher\_descriptor}}));}
+\DoxyCodeLine{40           \mbox{\hyperlink{tomcrypt__custom_8h_acdf267be91b178b4fafe8f992d57a7f1}{LTC\_MUTEX\_UNLOCK}}(\&ltc\_cipher\_mutex);}
+\DoxyCodeLine{41           \textcolor{keywordflow}{return} x;}
+\DoxyCodeLine{42        \}}
+\DoxyCodeLine{43    \}}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45    \textcolor{comment}{/* no spot */}}
+\DoxyCodeLine{46    \mbox{\hyperlink{tomcrypt__custom_8h_acdf267be91b178b4fafe8f992d57a7f1}{LTC\_MUTEX\_UNLOCK}}(\&ltc\_cipher\_mutex);}
+\DoxyCodeLine{47    \textcolor{keywordflow}{return} -1;}
+\DoxyCodeLine{48 \}}
+
+\end{DoxyCode}
+
+
+References cipher\+\_\+descriptor, ltc\+\_\+cipher\+\_\+descriptor\+::\+ID, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, L\+T\+C\+\_\+\+M\+U\+T\+E\+X\+\_\+\+L\+O\+CK, L\+T\+C\+\_\+\+M\+U\+T\+E\+X\+\_\+\+U\+N\+L\+O\+CK, ltc\+\_\+prng\+\_\+descriptor\+::name, T\+A\+B\+\_\+\+S\+I\+ZE, and X\+M\+E\+M\+C\+P\+Y().
+
+
+
+Referenced by crypt\+\_\+fsa(), and yarrow\+\_\+start().
+
+Here is the call graph for this function\+:
+% FIG 6
+Here is the caller graph for this function\+:
+% FIG 7
+\mbox{\Hypertarget{tomcrypt__cipher_8h_a32a2e786ce8ad88333dd6693f98f4046}\label{tomcrypt__cipher_8h_a32a2e786ce8ad88333dd6693f98f4046}} 
+\index{tomcrypt\_cipher.h@{tomcrypt\_cipher.h}!unregister\_cipher@{unregister\_cipher}}
+\index{unregister\_cipher@{unregister\_cipher}!tomcrypt\_cipher.h@{tomcrypt\_cipher.h}}
+\subsubsection{\texorpdfstring{unregister\_cipher()}{unregister\_cipher()}}
+{\footnotesize\ttfamily int unregister\+\_\+cipher (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structltc__cipher__descriptor}{ltc\+\_\+cipher\+\_\+descriptor}} $\ast$}]{cipher }\end{DoxyParamCaption})}
+
+
+
+Unregister a cipher from the descriptor table. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cipher} & The cipher descriptor to remove \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK on success 
+\end{DoxyReturn}
+
+
+Definition at line 21 of file crypt\+\_\+unregister\+\_\+cipher.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{22 \{}
+\DoxyCodeLine{23    \textcolor{keywordtype}{int} x;}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(cipher != NULL);}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27    \textcolor{comment}{/* is it already registered? */}}
+\DoxyCodeLine{28    \mbox{\hyperlink{tomcrypt__custom_8h_a427a107414e4d775fbf23f4a499f4a31}{LTC\_MUTEX\_LOCK}}(\&ltc\_cipher\_mutex);}
+\DoxyCodeLine{29    \textcolor{keywordflow}{for} (x = 0; x < \mbox{\hyperlink{tomcrypt_8h_a9ad1b4a1e4f7381611cfd2ae6620a727}{TAB\_SIZE}}; x++) \{}
+\DoxyCodeLine{30        \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__cfg_8h_a372b974ec0ac07abcd55297554fe540f}{XMEMCMP}}(\&\mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[x], cipher, \textcolor{keyword}{sizeof}(\textcolor{keyword}{struct} \mbox{\hyperlink{structltc__cipher__descriptor}{ltc\_cipher\_descriptor}})) == 0) \{}
+\DoxyCodeLine{31           \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[x].\mbox{\hyperlink{structltc__cipher__descriptor_af0cf296468366b502b0584af87168058}{name}} = NULL;}
+\DoxyCodeLine{32           \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[x].\mbox{\hyperlink{structltc__cipher__descriptor_a75a932af8e44b27b5952e512a2fe5678}{ID}}   = 255;}
+\DoxyCodeLine{33           \mbox{\hyperlink{tomcrypt__custom_8h_acdf267be91b178b4fafe8f992d57a7f1}{LTC\_MUTEX\_UNLOCK}}(\&ltc\_cipher\_mutex);}
+\DoxyCodeLine{34           \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{35        \}}
+\DoxyCodeLine{36    \}}
+\DoxyCodeLine{37    \mbox{\hyperlink{tomcrypt__custom_8h_acdf267be91b178b4fafe8f992d57a7f1}{LTC\_MUTEX\_UNLOCK}}(\&ltc\_cipher\_mutex);}
+\DoxyCodeLine{38    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca03c22220d7538be04455cd2aa6ddf9da}{CRYPT\_ERROR}};}
+\DoxyCodeLine{39 \}}
+
+\end{DoxyCode}
+
+
+References cipher\+\_\+descriptor, C\+R\+Y\+P\+T\+\_\+\+E\+R\+R\+OR, C\+R\+Y\+P\+T\+\_\+\+OK, ltc\+\_\+cipher\+\_\+descriptor\+::\+ID, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, L\+T\+C\+\_\+\+M\+U\+T\+E\+X\+\_\+\+L\+O\+CK, L\+T\+C\+\_\+\+M\+U\+T\+E\+X\+\_\+\+U\+N\+L\+O\+CK, ltc\+\_\+cipher\+\_\+descriptor\+::name, T\+A\+B\+\_\+\+S\+I\+ZE, and X\+M\+E\+M\+C\+M\+P().
+
+Here is the call graph for this function\+:
+% FIG 8
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}\label{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}} 
+\index{tomcrypt\_cipher.h@{tomcrypt\_cipher.h}!cipher\_descriptor@{cipher\_descriptor}}
+\index{cipher\_descriptor@{cipher\_descriptor}!tomcrypt\_cipher.h@{tomcrypt\_cipher.h}}
+\subsubsection{\texorpdfstring{cipher\_descriptor}{cipher\_descriptor}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structltc__cipher__descriptor}{ltc\+\_\+cipher\+\_\+descriptor}}  cipher\+\_\+descriptor\mbox{[}$\,$\mbox{]}}
+
+
+
+Referenced by \+\_\+ctr\+\_\+encrypt(), \+\_\+ocb3\+\_\+int\+\_\+aad\+\_\+add\+\_\+block(), \+\_\+ocb3\+\_\+int\+\_\+calc\+\_\+offset\+\_\+zero(), \+\_\+tweak\+\_\+crypt(), \+\_\+tweak\+\_\+uncrypt(), \+\_\+xts\+\_\+test\+\_\+accel\+\_\+xts\+\_\+decrypt(), \+\_\+xts\+\_\+test\+\_\+accel\+\_\+xts\+\_\+encrypt(), cbc\+\_\+decrypt(), cbc\+\_\+done(), cbc\+\_\+encrypt(), cbc\+\_\+start(), ccm\+\_\+add\+\_\+aad(), ccm\+\_\+add\+\_\+nonce(), ccm\+\_\+done(), ccm\+\_\+init(), ccm\+\_\+memory(), ccm\+\_\+process(), ccm\+\_\+test(), cfb\+\_\+decrypt(), cfb\+\_\+done(), cfb\+\_\+encrypt(), cfb\+\_\+setiv(), cfb\+\_\+start(), chc\+\_\+compress(), chc\+\_\+done(), chc\+\_\+init(), chc\+\_\+process(), chc\+\_\+register(), cipher\+\_\+is\+\_\+valid(), ctr\+\_\+done(), ctr\+\_\+encrypt(), ctr\+\_\+setiv(), ctr\+\_\+start(), eax\+\_\+init(), ecb\+\_\+decrypt(), ecb\+\_\+done(), ecb\+\_\+encrypt(), ecb\+\_\+start(), f8\+\_\+done(), f8\+\_\+encrypt(), f8\+\_\+setiv(), f8\+\_\+start(), f9\+\_\+done(), f9\+\_\+init(), f9\+\_\+memory(), f9\+\_\+process(), find\+\_\+cipher(), find\+\_\+cipher\+\_\+any(), find\+\_\+cipher\+\_\+id(), gcm\+\_\+done(), gcm\+\_\+init(), gcm\+\_\+memory(), gcm\+\_\+process(), lrw\+\_\+decrypt(), lrw\+\_\+done(), lrw\+\_\+encrypt(), lrw\+\_\+process(), lrw\+\_\+setiv(), lrw\+\_\+start(), ocb3\+\_\+decrypt(), ocb3\+\_\+decrypt\+\_\+last(), ocb3\+\_\+done(), ocb3\+\_\+encrypt(), ocb3\+\_\+encrypt\+\_\+last(), ocb3\+\_\+init(), ocb\+\_\+decrypt(), ocb\+\_\+encrypt(), ocb\+\_\+init(), ofb\+\_\+done(), ofb\+\_\+encrypt(), ofb\+\_\+setiv(), ofb\+\_\+start(), omac\+\_\+done(), omac\+\_\+init(), omac\+\_\+memory(), omac\+\_\+process(), pbes\+\_\+decrypt(), pmac\+\_\+done(), pmac\+\_\+init(), pmac\+\_\+process(), register\+\_\+cipher(), s\+\_\+ocb\+\_\+done(), unregister\+\_\+cipher(), xcbc\+\_\+done(), xcbc\+\_\+init(), xcbc\+\_\+memory(), xcbc\+\_\+process(), xts\+\_\+decrypt(), xts\+\_\+done(), xts\+\_\+encrypt(), xts\+\_\+start(), xts\+\_\+test(), yarrow\+\_\+ready(), and yarrow\+\_\+test().
+

@@ -1,0 +1,12 @@
+digraph "decrypt"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node5 [label="decrypt",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node5 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node6 [label="multi2_ecb_decrypt",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$multi2_8c.html#ad6e67f569cb1b1f464c023cadb21fd9d",tooltip="Decrypts a block of text with multi2."];
+  Node6 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node7 [label="multi2_test",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$multi2_8c.html#aab1e868d611655e77b28eabddabb84f1",tooltip="Performs a self-test of the multi2 block cipher."];
+}

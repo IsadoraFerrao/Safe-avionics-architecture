@@ -1,0 +1,131 @@
+\hypertarget{pelican__test_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/mac/pelican/pelican\+\_\+test.c File Reference}
+\label{pelican__test_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/mac/pelican/pelican\_test.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/mac/pelican/pelican\_test.c}}
+
+
+Pelican M\+AC, test, by Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for pelican\+\_\+test.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{pelican__test_8c_aa17b4cc1ebf25aa8011e9abce289629c}{pelican\+\_\+test}} (void)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Pelican M\+AC, test, by Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{pelican__test_8c_aa17b4cc1ebf25aa8011e9abce289629c}\label{pelican__test_8c_aa17b4cc1ebf25aa8011e9abce289629c}} 
+\index{pelican\_test.c@{pelican\_test.c}!pelican\_test@{pelican\_test}}
+\index{pelican\_test@{pelican\_test}!pelican\_test.c@{pelican\_test.c}}
+\subsubsection{\texorpdfstring{pelican\_test()}{pelican\_test()}}
+{\footnotesize\ttfamily int pelican\+\_\+test (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 18 of file pelican\+\_\+test.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{19 \{}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#ifndef LTC\_TEST}}
+\DoxyCodeLine{21    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cac43a7799c7fd5f515172da6cfc0f9cf5}{CRYPT\_NOP}};}
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{23    \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{24         \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} \mbox{\hyperlink{sha512_8c_a2d167a3caf30de6442abc69780199a52}{K}}[32], MSG[64], T[16];}
+\DoxyCodeLine{25    \textcolor{keywordtype}{int} keylen, ptlen;}
+\DoxyCodeLine{26    \} tests[] = \{}
+\DoxyCodeLine{27 \textcolor{comment}{/* K=16, M=0 */}}
+\DoxyCodeLine{28 \{}
+\DoxyCodeLine{29    \{ 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07,}
+\DoxyCodeLine{30      0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F \},}
+\DoxyCodeLine{31    \{ 0 \},}
+\DoxyCodeLine{32    \{ 0xeb, 0x58, 0x37, 0x15, 0xf8, 0x34, 0xde, 0xe5,}
+\DoxyCodeLine{33      0xa4, 0xd1, 0x6e, 0xe4, 0xb9, 0xd7, 0x76, 0x0e, \},}
+\DoxyCodeLine{34    16, 0}
+\DoxyCodeLine{35 \},}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37 \textcolor{comment}{/* K=16, M=3 */}}
+\DoxyCodeLine{38 \{}
+\DoxyCodeLine{39    \{ 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07,}
+\DoxyCodeLine{40      0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F \},}
+\DoxyCodeLine{41    \{ 0x00, 0x01, 0x02 \},}
+\DoxyCodeLine{42    \{ 0x1c, 0x97, 0x40, 0x60, 0x6c, 0x58, 0x17, 0x2d,}
+\DoxyCodeLine{43      0x03, 0x94, 0x19, 0x70, 0x81, 0xc4, 0x38, 0x54, \},}
+\DoxyCodeLine{44    16, 3}
+\DoxyCodeLine{45 \},}
+\DoxyCodeLine{46 }
+\DoxyCodeLine{47 \textcolor{comment}{/* K=16, M=16 */}}
+\DoxyCodeLine{48 \{}
+\DoxyCodeLine{49    \{ 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07,}
+\DoxyCodeLine{50      0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F \},}
+\DoxyCodeLine{51    \{ 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07,}
+\DoxyCodeLine{52      0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F \},}
+\DoxyCodeLine{53    \{ 0x03, 0xcc, 0x46, 0xb8, 0xac, 0xa7, 0x9c, 0x36,}
+\DoxyCodeLine{54      0x1e, 0x8c, 0x6e, 0xa6, 0x7b, 0x89, 0x32, 0x49, \},}
+\DoxyCodeLine{55    16, 16}
+\DoxyCodeLine{56 \},}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{58 \textcolor{comment}{/* K=16, M=32 */}}
+\DoxyCodeLine{59 \{}
+\DoxyCodeLine{60    \{ 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07,}
+\DoxyCodeLine{61      0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F \},}
+\DoxyCodeLine{62    \{ 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07,}
+\DoxyCodeLine{63      0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F,}
+\DoxyCodeLine{64      0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17,}
+\DoxyCodeLine{65      0x18, 0x19, 0x1A, 0x1B, 0x1C, 0x1D, 0x1E, 0x1F \},}
+\DoxyCodeLine{66    \{ 0x89, 0xcc, 0x36, 0x58, 0x1b, 0xdd, 0x4d, 0xb5,}
+\DoxyCodeLine{67      0x78, 0xbb, 0xac, 0xf0, 0xff, 0x8b, 0x08, 0x15, \},}
+\DoxyCodeLine{68    16, 32}
+\DoxyCodeLine{69 \},}
+\DoxyCodeLine{70 }
+\DoxyCodeLine{71 \textcolor{comment}{/* K=16, M=35 */}}
+\DoxyCodeLine{72 \{}
+\DoxyCodeLine{73    \{ 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07,}
+\DoxyCodeLine{74      0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F \},}
+\DoxyCodeLine{75    \{ 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07,}
+\DoxyCodeLine{76      0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F,}
+\DoxyCodeLine{77      0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17,}
+\DoxyCodeLine{78      0x18, 0x19, 0x1A, 0x1B, 0x1C, 0x1D, 0x1E, 0x1F,}
+\DoxyCodeLine{79      0x20, 0x21, 0x23 \},}
+\DoxyCodeLine{80    \{ 0x4a, 0x7d, 0x45, 0x4d, 0xcd, 0xb5, 0xda, 0x8d,}
+\DoxyCodeLine{81      0x48, 0x78, 0x16, 0x48, 0x5d, 0x45, 0x95, 0x99, \},}
+\DoxyCodeLine{82    16, 35}
+\DoxyCodeLine{83 \},}
+\DoxyCodeLine{84 \};}
+\DoxyCodeLine{85    \textcolor{keywordtype}{int} x, err;}
+\DoxyCodeLine{86    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} out[16];}
+\DoxyCodeLine{87    pelican\_state pel;}
+\DoxyCodeLine{88 }
+\DoxyCodeLine{89    \textcolor{keywordflow}{for} (x = 0; x < (int)(\textcolor{keyword}{sizeof}(tests)/\textcolor{keyword}{sizeof}(tests[0])); x++) \{}
+\DoxyCodeLine{90        \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{pelican_8c_a0e62b20609006626506ac50406906920}{pelican\_init}}(\&pel, tests[x].\mbox{\hyperlink{sha512_8c_a2d167a3caf30de6442abc69780199a52}{K}}, tests[x].keylen)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{91           \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{92        \}}
+\DoxyCodeLine{93        \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{pelican_8c_aef428c8672b216a7d31256baee8c1a95}{pelican\_process}}(\&pel, tests[x].MSG, tests[x].ptlen)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{94           \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{95        \}}
+\DoxyCodeLine{96        \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{pelican_8c_a70b6868acfc0b1287d358a8e890e648a}{pelican\_done}}(\&pel, out)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{97           \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{98        \}}
+\DoxyCodeLine{99 }
+\DoxyCodeLine{100        \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(out, 16, tests[x].T, 16, \textcolor{stringliteral}{"PELICAN"}, x)) \{}
+\DoxyCodeLine{101            \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{102        \}}
+\DoxyCodeLine{103    \}}
+\DoxyCodeLine{104    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{105 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{106 \}}
+
+\end{DoxyCode}
+
+
+References compare\+\_\+testvector(), C\+R\+Y\+P\+T\+\_\+\+F\+A\+I\+L\+\_\+\+T\+E\+S\+T\+V\+E\+C\+T\+OR, C\+R\+Y\+P\+T\+\_\+\+N\+OP, C\+R\+Y\+P\+T\+\_\+\+OK, K, pelican\+\_\+done(), pelican\+\_\+init(), and pelican\+\_\+process().
+
+Here is the call graph for this function\+:
+% FIG 1

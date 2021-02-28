@@ -1,0 +1,30 @@
+digraph "ocb3_init"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node7 [label="ocb3_init",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Initialize an OCB context."];
+  Node7 -> Node8 [color="midnightblue",fontsize="10",style="solid"];
+  Node8 [label="_ocb3_int_calc_offset_zero",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ocb3__init_8c.html#ac90454e332f63cdeab4a6ab4c4b9ac25",tooltip=" "];
+  Node8 -> Node9 [color="midnightblue",fontsize="10",style="solid"];
+  Node9 [label="zeromem",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__misc_8h.html#a63b6e188713790263bfd3612fe8b398f",tooltip="Zero a block of memory."];
+  Node7 -> Node10 [color="midnightblue",fontsize="10",style="solid"];
+  Node10 [label="cipher_is_valid",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cipher_8h.html#ac30eb68934c4ca07205344dc9d159221",tooltip=" "];
+  Node7 -> Node11 [color="midnightblue",fontsize="10",style="solid"];
+  Node11 [label="ecb_encrypt",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ecb__encrypt_8c.html#affdcc93fca272998e2545fcabac4e7f0",tooltip="ECB encrypt."];
+  Node11 -> Node10 [color="midnightblue",fontsize="10",style="solid"];
+  Node7 -> Node12 [color="midnightblue",fontsize="10",style="solid"];
+  Node12 [label="ocb3_int_xor_blocks",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ocb3__int__xor__blocks_8c.html#a5bf6caa4615657cdfd8f8941620a987c",tooltip="Compute xor for two blocks of bytes 'out = block_a XOR block_b' (internal function)"];
+  Node7 -> Node13 [color="midnightblue",fontsize="10",style="solid"];
+  Node13 [label="setup",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$multi2_8c.html#ad0625943f7d847668b869ed827c51d47",tooltip=" "];
+  Node13 -> Node14 [color="midnightblue",fontsize="10",style="solid"];
+  Node14 [label="pi1",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$multi2_8c.html#aa6e28a79517b509154714e51c2c1dc3b",tooltip=" "];
+  Node13 -> Node15 [color="midnightblue",fontsize="10",style="solid"];
+  Node15 [label="pi2",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$multi2_8c.html#a37c4b6b09dd5493456b3c765914b1481",tooltip=" "];
+  Node13 -> Node16 [color="midnightblue",fontsize="10",style="solid"];
+  Node16 [label="pi3",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$multi2_8c.html#a3e3c386a25d0f6950651f1fa5277c147",tooltip=" "];
+  Node13 -> Node17 [color="midnightblue",fontsize="10",style="solid"];
+  Node17 [label="pi4",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$multi2_8c.html#ad94b543f7f2133e851ecb20bd9324e12",tooltip=" "];
+  Node7 -> Node9 [color="midnightblue",fontsize="10",style="solid"];
+}

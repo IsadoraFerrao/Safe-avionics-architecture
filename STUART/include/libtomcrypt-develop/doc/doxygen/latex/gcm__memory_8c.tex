@@ -1,0 +1,160 @@
+\hypertarget{gcm__memory_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/encauth/gcm/gcm\+\_\+memory.c File Reference}
+\label{gcm__memory_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/encauth/gcm/gcm\_memory.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/encauth/gcm/gcm\_memory.c}}
+
+
+G\+CM implementation, process a packet, by Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for gcm\+\_\+memory.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{gcm__memory_8c_a43d9862e1013606d01bab2c57fef74f5}{gcm\+\_\+memory}} (int cipher, const unsigned char $\ast$key, unsigned long keylen, const unsigned char $\ast$IV, unsigned long I\+Vlen, const unsigned char $\ast$adata, unsigned long adatalen, unsigned char $\ast$pt, unsigned long ptlen, unsigned char $\ast$ct, unsigned char $\ast$tag, unsigned long $\ast$taglen, int direction)
+\begin{DoxyCompactList}\small\item\em Process an entire G\+CM packet in one call. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+G\+CM implementation, process a packet, by Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{gcm__memory_8c_a43d9862e1013606d01bab2c57fef74f5}\label{gcm__memory_8c_a43d9862e1013606d01bab2c57fef74f5}} 
+\index{gcm\_memory.c@{gcm\_memory.c}!gcm\_memory@{gcm\_memory}}
+\index{gcm\_memory@{gcm\_memory}!gcm\_memory.c@{gcm\_memory.c}}
+\subsubsection{\texorpdfstring{gcm\_memory()}{gcm\_memory()}}
+{\footnotesize\ttfamily int gcm\+\_\+memory (\begin{DoxyParamCaption}\item[{int}]{cipher,  }\item[{const unsigned char $\ast$}]{key,  }\item[{unsigned long}]{keylen,  }\item[{const unsigned char $\ast$}]{IV,  }\item[{unsigned long}]{I\+Vlen,  }\item[{const unsigned char $\ast$}]{adata,  }\item[{unsigned long}]{adatalen,  }\item[{unsigned char $\ast$}]{pt,  }\item[{unsigned long}]{ptlen,  }\item[{unsigned char $\ast$}]{ct,  }\item[{unsigned char $\ast$}]{tag,  }\item[{unsigned long $\ast$}]{taglen,  }\item[{int}]{direction }\end{DoxyParamCaption})}
+
+
+
+Process an entire G\+CM packet in one call. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cipher} & Index of cipher to use \\
+\hline
+{\em key} & The secret key \\
+\hline
+{\em keylen} & The length of the secret key \\
+\hline
+{\em IV} & The initialization vector \\
+\hline
+{\em I\+Vlen} & The length of the initialization vector \\
+\hline
+{\em adata} & The additional authentication data (header) \\
+\hline
+{\em adatalen} & The length of the adata \\
+\hline
+{\em pt} & The plaintext \\
+\hline
+{\em ptlen} & The length of the plaintext (ciphertext length is the same) \\
+\hline
+{\em ct} & The ciphertext \\
+\hline
+{\em tag} & \mbox{[}out\mbox{]} The M\+AC tag \\
+\hline
+{\em taglen} & \mbox{[}in/out\mbox{]} The M\+AC tag length \\
+\hline
+{\em direction} & Encrypt or Decrypt mode (G\+C\+M\+\_\+\+E\+N\+C\+R\+Y\+PT or G\+C\+M\+\_\+\+D\+E\+C\+R\+Y\+PT) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK on success 
+\end{DoxyReturn}
+
+
+Definition at line 35 of file gcm\+\_\+memory.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{43 \{}
+\DoxyCodeLine{44     \textcolor{keywordtype}{void}      *orig;}
+\DoxyCodeLine{45     gcm\_state *gcm;}
+\DoxyCodeLine{46     \textcolor{keywordtype}{int}        err;}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48     \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_ac30eb68934c4ca07205344dc9d159221}{cipher\_is\_valid}}(cipher)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{49        \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{50     \}}
+\DoxyCodeLine{51 }
+\DoxyCodeLine{52     \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[cipher].accel\_gcm\_memory != NULL) \{}
+\DoxyCodeLine{53        \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[cipher].\mbox{\hyperlink{structltc__cipher__descriptor_a6a2519c6c7563a41e3e2485a87ef0959}{accel\_gcm\_memory}}}
+\DoxyCodeLine{54                                           (key,   keylen,}
+\DoxyCodeLine{55                                            IV,    IVlen,}
+\DoxyCodeLine{56                                            adata, adatalen,}
+\DoxyCodeLine{57                                            pt,    ptlen,}
+\DoxyCodeLine{58                                            ct,}
+\DoxyCodeLine{59                                            tag,   taglen,}
+\DoxyCodeLine{60                                            direction);}
+\DoxyCodeLine{61     \}}
+\DoxyCodeLine{62 }
+\DoxyCodeLine{63 }
+\DoxyCodeLine{64 }
+\DoxyCodeLine{65 \textcolor{preprocessor}{\#ifndef LTC\_GCM\_TABLES\_SSE2}}
+\DoxyCodeLine{66     orig = gcm = \mbox{\hyperlink{tomcrypt__cfg_8h_af363355f38fbaacdefacf270436ae1c9}{XMALLOC}}(\textcolor{keyword}{sizeof}(*gcm));}
+\DoxyCodeLine{67 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{68     orig = gcm = \mbox{\hyperlink{tomcrypt__cfg_8h_af363355f38fbaacdefacf270436ae1c9}{XMALLOC}}(\textcolor{keyword}{sizeof}(*gcm) + 16);}
+\DoxyCodeLine{69 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{70     \textcolor{keywordflow}{if} (gcm == NULL) \{}
+\DoxyCodeLine{71         \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca0ce0d27adc7ea10b74b7ea904b8bfa82}{CRYPT\_MEM}};}
+\DoxyCodeLine{72     \}}
+\DoxyCodeLine{73 }
+\DoxyCodeLine{74    \textcolor{comment}{/* Force GCM to be on a multiple of 16 so we can use 128-bit aligned operations}}
+\DoxyCodeLine{75 \textcolor{comment}{    * note that we only modify gcm and keep orig intact.  This code is not portable}}
+\DoxyCodeLine{76 \textcolor{comment}{    * but again it's only for SSE2 anyways, so who cares?}}
+\DoxyCodeLine{77 \textcolor{comment}{    */}}
+\DoxyCodeLine{78 \textcolor{preprocessor}{\#ifdef LTC\_GCM\_TABLES\_SSE2}}
+\DoxyCodeLine{79    \textcolor{keywordflow}{if} ((\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long})gcm \& 15) \{}
+\DoxyCodeLine{80       gcm = (gcm\_state *)((\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long})gcm + (16 - ((\textcolor{keywordtype}{unsigned} long)gcm \& 15)));}
+\DoxyCodeLine{81    \}}
+\DoxyCodeLine{82 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{83 }
+\DoxyCodeLine{84     \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{gcm__init_8c_aa8fa50bfa0ec8b07b363dbe7cbab7339}{gcm\_init}}(gcm, cipher, key, keylen)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{85        \textcolor{keywordflow}{goto} LTC\_ERR;}
+\DoxyCodeLine{86     \}}
+\DoxyCodeLine{87     \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{gcm__add__iv_8c_a05c018a26305857461c773ce2e458fc5}{gcm\_add\_iv}}(gcm, IV, IVlen)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{88        \textcolor{keywordflow}{goto} LTC\_ERR;}
+\DoxyCodeLine{89     \}}
+\DoxyCodeLine{90     \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{gcm__add__aad_8c_ab9e6297b575f465e9fac3846f22a2bbd}{gcm\_add\_aad}}(gcm, adata, adatalen)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{91        \textcolor{keywordflow}{goto} LTC\_ERR;}
+\DoxyCodeLine{92     \}}
+\DoxyCodeLine{93     \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{gcm__process_8c_a9de6ff96ed00a8296355d52b9a2e1ba0}{gcm\_process}}(gcm, pt, ptlen, ct, direction)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{94        \textcolor{keywordflow}{goto} LTC\_ERR;}
+\DoxyCodeLine{95     \}}
+\DoxyCodeLine{96     \textcolor{keywordflow}{if} (direction == GCM\_ENCRYPT) \{}
+\DoxyCodeLine{97       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{gcm__done_8c_a802604cf97f0f3103881fc43bdc060f3}{gcm\_done}}(gcm, tag, taglen)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{98          \textcolor{keywordflow}{goto} LTC\_ERR;}
+\DoxyCodeLine{99       \}}
+\DoxyCodeLine{100     \}}
+\DoxyCodeLine{101     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (direction == GCM\_DECRYPT) \{}
+\DoxyCodeLine{102        \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} buf[\mbox{\hyperlink{tomcrypt_8h_ab59933beebb2b857c992b93cf53f0d10}{MAXBLOCKSIZE}}];}
+\DoxyCodeLine{103        \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} buflen = \textcolor{keyword}{sizeof}(buf);}
+\DoxyCodeLine{104        \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{gcm__done_8c_a802604cf97f0f3103881fc43bdc060f3}{gcm\_done}}(gcm, buf, \&buflen)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{105           \textcolor{keywordflow}{goto} LTC\_ERR;}
+\DoxyCodeLine{106        \}}
+\DoxyCodeLine{107        \textcolor{keywordflow}{if} (buflen != *taglen || \mbox{\hyperlink{tomcrypt__custom_8h_a22bba7b26be62fc532bd7927a23c5a91}{XMEM\_NEQ}}(buf, tag, buflen) != 0) \{}
+\DoxyCodeLine{108           err = \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca03c22220d7538be04455cd2aa6ddf9da}{CRYPT\_ERROR}};}
+\DoxyCodeLine{109        \}}
+\DoxyCodeLine{110     \}}
+\DoxyCodeLine{111     \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{112        err = \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{113     \}}
+\DoxyCodeLine{114 LTC\_ERR:}
+\DoxyCodeLine{115     \mbox{\hyperlink{tomcrypt__cfg_8h_a260d66fc0690e0502cf3bfe7b5244b75}{XFREE}}(orig);}
+\DoxyCodeLine{116     \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{117 \}}
+
+\end{DoxyCode}
+
+
+References ltc\+\_\+cipher\+\_\+descriptor\+::accel\+\_\+gcm\+\_\+memory, cipher\+\_\+descriptor, cipher\+\_\+is\+\_\+valid(), C\+R\+Y\+P\+T\+\_\+\+E\+R\+R\+OR, C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+A\+RG, C\+R\+Y\+P\+T\+\_\+\+M\+EM, C\+R\+Y\+P\+T\+\_\+\+OK, gcm\+\_\+add\+\_\+aad(), gcm\+\_\+add\+\_\+iv(), gcm\+\_\+done(), gcm\+\_\+init(), gcm\+\_\+process(), M\+A\+X\+B\+L\+O\+C\+K\+S\+I\+ZE, X\+F\+R\+E\+E(), X\+M\+A\+L\+L\+O\+C(), and X\+M\+E\+M\+\_\+\+N\+EQ.
+
+
+
+Referenced by gcm\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2

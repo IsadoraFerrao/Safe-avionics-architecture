@@ -1,0 +1,163 @@
+\hypertarget{ecc__find__curve_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/pk/ecc/ecc\+\_\+find\+\_\+curve.c File Reference}
+\label{ecc__find__curve_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/ecc/ecc\_find\_curve.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/ecc/ecc\_find\_curve.c}}
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for ecc\+\_\+find\+\_\+curve.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{ecc__find__curve_8c_a78e7ebed1017ea1869d0a9eb80fcfb0f}{\+\_\+name\+\_\+match}} (const char $\ast$left, const char $\ast$right)
+\item 
+int \mbox{\hyperlink{ecc__find__curve_8c_ad928083861ba212cb0c270bcf10b0403}{ecc\+\_\+find\+\_\+curve}} (const char $\ast$name\+\_\+or\+\_\+oid, const ltc\+\_\+ecc\+\_\+curve $\ast$$\ast$cu)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+struct \{\\
+\>const char $\ast$ \mbox{\hyperlink{ecc__find__curve_8c_a3b9aae9990e63034f7d199729f025b23}{OID}}\\
+\>const char $\ast$ \mbox{\hyperlink{ecc__find__curve_8c_a1e8ca8a733e4ad11be5586411e83e98c}{names}} \mbox{[}6\mbox{]}\\
+\} \mbox{\hyperlink{ecc__find__curve_8c_a59d916ebf792b931ef849337be51e38a}{\_curve\_names}} \mbox{[}$\,$\mbox{]}\\
+
+\end{tabbing}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{ecc__find__curve_8c_a78e7ebed1017ea1869d0a9eb80fcfb0f}\label{ecc__find__curve_8c_a78e7ebed1017ea1869d0a9eb80fcfb0f}} 
+\index{ecc\_find\_curve.c@{ecc\_find\_curve.c}!\_name\_match@{\_name\_match}}
+\index{\_name\_match@{\_name\_match}!ecc\_find\_curve.c@{ecc\_find\_curve.c}}
+\subsubsection{\texorpdfstring{\_name\_match()}{\_name\_match()}}
+{\footnotesize\ttfamily static int \+\_\+name\+\_\+match (\begin{DoxyParamCaption}\item[{const char $\ast$}]{left,  }\item[{const char $\ast$}]{right }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 194 of file ecc\+\_\+find\+\_\+curve.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{195 \{}
+\DoxyCodeLine{196    \textcolor{keywordtype}{char} lc\_r, lc\_l;}
+\DoxyCodeLine{197 }
+\DoxyCodeLine{198    \textcolor{keywordflow}{while} ((*left != \textcolor{charliteral}{'\(\backslash\)0'}) \&\& (*right != \textcolor{charliteral}{'\(\backslash\)0'})) \{}
+\DoxyCodeLine{199       \textcolor{keywordflow}{while} ((*left  == \textcolor{charliteral}{' '}) || (*left  == \textcolor{charliteral}{'-'}) || (*left  == \textcolor{charliteral}{'\_'})) left++;}
+\DoxyCodeLine{200       \textcolor{keywordflow}{while} ((*right == \textcolor{charliteral}{' '}) || (*right == \textcolor{charliteral}{'-'}) || (*right == \textcolor{charliteral}{'\_'})) right++;}
+\DoxyCodeLine{201       \textcolor{keywordflow}{if} (*left == \textcolor{charliteral}{'\(\backslash\)0'} || *right == \textcolor{charliteral}{'\(\backslash\)0'}) \textcolor{keywordflow}{break};}
+\DoxyCodeLine{202       lc\_r = *right;}
+\DoxyCodeLine{203       lc\_l = *left;}
+\DoxyCodeLine{204       \textcolor{keywordflow}{if} ((lc\_r >= \textcolor{charliteral}{'A'}) \&\& (lc\_r <= \textcolor{charliteral}{'Z'})) lc\_r += 32;}
+\DoxyCodeLine{205       \textcolor{keywordflow}{if} ((lc\_l >= \textcolor{charliteral}{'A'}) \&\& (lc\_l <= \textcolor{charliteral}{'Z'})) lc\_l += 32;}
+\DoxyCodeLine{206       \textcolor{keywordflow}{if} (lc\_l != lc\_r) \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{207       left++;}
+\DoxyCodeLine{208       right++;}
+\DoxyCodeLine{209    \}}
+\DoxyCodeLine{210 }
+\DoxyCodeLine{211    \textcolor{keywordflow}{if} ((*left == \textcolor{charliteral}{'\(\backslash\)0'}) \&\& (*right == \textcolor{charliteral}{'\(\backslash\)0'})) \textcolor{keywordflow}{return} 1;}
+\DoxyCodeLine{212    \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{213 \}}
+
+\end{DoxyCode}
+
+
+Referenced by ecc\+\_\+find\+\_\+curve().
+
+Here is the caller graph for this function\+:
+% FIG 1
+\mbox{\Hypertarget{ecc__find__curve_8c_ad928083861ba212cb0c270bcf10b0403}\label{ecc__find__curve_8c_ad928083861ba212cb0c270bcf10b0403}} 
+\index{ecc\_find\_curve.c@{ecc\_find\_curve.c}!ecc\_find\_curve@{ecc\_find\_curve}}
+\index{ecc\_find\_curve@{ecc\_find\_curve}!ecc\_find\_curve.c@{ecc\_find\_curve.c}}
+\subsubsection{\texorpdfstring{ecc\_find\_curve()}{ecc\_find\_curve()}}
+{\footnotesize\ttfamily int ecc\+\_\+find\+\_\+curve (\begin{DoxyParamCaption}\item[{const char $\ast$}]{name\+\_\+or\+\_\+oid,  }\item[{const ltc\+\_\+ecc\+\_\+curve $\ast$$\ast$}]{cu }\end{DoxyParamCaption})}
+
+
+
+Definition at line 215 of file ecc\+\_\+find\+\_\+curve.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{216 \{}
+\DoxyCodeLine{217    \textcolor{keywordtype}{int} i, j;}
+\DoxyCodeLine{218    \textcolor{keyword}{const} \textcolor{keywordtype}{char} *\mbox{\hyperlink{ecc__find__curve_8c_a3b9aae9990e63034f7d199729f025b23}{OID}} = NULL;}
+\DoxyCodeLine{219 }
+\DoxyCodeLine{220    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(cu != NULL);}
+\DoxyCodeLine{221    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(name\_or\_oid != NULL);}
+\DoxyCodeLine{222 }
+\DoxyCodeLine{223    *cu = NULL;}
+\DoxyCodeLine{224 }
+\DoxyCodeLine{225    \textcolor{keywordflow}{for} (i = 0; \mbox{\hyperlink{ecc__find__curve_8c_a59d916ebf792b931ef849337be51e38a}{\_curve\_names}}[i].OID != NULL \&\& !\mbox{\hyperlink{ecc__find__curve_8c_a3b9aae9990e63034f7d199729f025b23}{OID}}; i++) \{}
+\DoxyCodeLine{226       \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__cfg_8h_a5d6e3d69e1d3f54de008b963bba3c6b3}{XSTRCMP}}(\mbox{\hyperlink{ecc__find__curve_8c_a59d916ebf792b931ef849337be51e38a}{\_curve\_names}}[i].\mbox{\hyperlink{ecc__find__curve_8c_a3b9aae9990e63034f7d199729f025b23}{OID}}, name\_or\_oid) == 0) \{}
+\DoxyCodeLine{227          \mbox{\hyperlink{ecc__find__curve_8c_a3b9aae9990e63034f7d199729f025b23}{OID}} = \mbox{\hyperlink{ecc__find__curve_8c_a59d916ebf792b931ef849337be51e38a}{\_curve\_names}}[i].OID;}
+\DoxyCodeLine{228       \}}
+\DoxyCodeLine{229       \textcolor{keywordflow}{for} (j = 0; \mbox{\hyperlink{ecc__find__curve_8c_a59d916ebf792b931ef849337be51e38a}{\_curve\_names}}[i].names[j] != NULL \&\& !\mbox{\hyperlink{ecc__find__curve_8c_a3b9aae9990e63034f7d199729f025b23}{OID}}; j++) \{}
+\DoxyCodeLine{230          \textcolor{keywordflow}{if} (\mbox{\hyperlink{ecc__find__curve_8c_a78e7ebed1017ea1869d0a9eb80fcfb0f}{\_name\_match}}(\mbox{\hyperlink{ecc__find__curve_8c_a59d916ebf792b931ef849337be51e38a}{\_curve\_names}}[i].\mbox{\hyperlink{ecc__find__curve_8c_a1e8ca8a733e4ad11be5586411e83e98c}{names}}[j], name\_or\_oid)) \{}
+\DoxyCodeLine{231             \mbox{\hyperlink{ecc__find__curve_8c_a3b9aae9990e63034f7d199729f025b23}{OID}} = \mbox{\hyperlink{ecc__find__curve_8c_a59d916ebf792b931ef849337be51e38a}{\_curve\_names}}[i].OID;}
+\DoxyCodeLine{232          \}}
+\DoxyCodeLine{233       \}}
+\DoxyCodeLine{234    \}}
+\DoxyCodeLine{235 }
+\DoxyCodeLine{236    \textcolor{keywordflow}{if} (\mbox{\hyperlink{ecc__find__curve_8c_a3b9aae9990e63034f7d199729f025b23}{OID}} != NULL) \{}
+\DoxyCodeLine{237       \textcolor{keywordflow}{for} (i = 0; \mbox{\hyperlink{ecc_8c_a1cbb8387a24ed5042ad1e00db59082cb}{ltc\_ecc\_curves}}[i].prime != NULL; i++) \{}
+\DoxyCodeLine{238          \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__cfg_8h_a5d6e3d69e1d3f54de008b963bba3c6b3}{XSTRCMP}}(\mbox{\hyperlink{ecc_8c_a1cbb8387a24ed5042ad1e00db59082cb}{ltc\_ecc\_curves}}[i].\mbox{\hyperlink{ecc__find__curve_8c_a3b9aae9990e63034f7d199729f025b23}{OID}}, \mbox{\hyperlink{ecc__find__curve_8c_a3b9aae9990e63034f7d199729f025b23}{OID}}) == 0) \{}
+\DoxyCodeLine{239             *cu = \&\mbox{\hyperlink{ecc_8c_a1cbb8387a24ed5042ad1e00db59082cb}{ltc\_ecc\_curves}}[i];}
+\DoxyCodeLine{240             \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{241          \}}
+\DoxyCodeLine{242       \}}
+\DoxyCodeLine{243    \}}
+\DoxyCodeLine{244 }
+\DoxyCodeLine{245    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}}; \textcolor{comment}{/* not found */}}
+\DoxyCodeLine{246 \}}
+
+\end{DoxyCode}
+
+
+References \+\_\+curve\+\_\+names, \+\_\+name\+\_\+match(), C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+A\+RG, C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, ltc\+\_\+ecc\+\_\+curves, names, O\+ID, and X\+S\+T\+R\+C\+M\+P().
+
+
+
+Referenced by \+\_\+ecc\+\_\+import\+\_\+private\+\_\+with\+\_\+oid(), \+\_\+ecc\+\_\+import\+\_\+x509\+\_\+with\+\_\+oid(), ecc\+\_\+import\+\_\+pkcs8(), and ecc\+\_\+set\+\_\+curve\+\_\+by\+\_\+size().
+
+Here is the call graph for this function\+:
+% FIG 2
+Here is the caller graph for this function\+:
+% FIG 3
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{ecc__find__curve_8c_a59d916ebf792b931ef849337be51e38a}\label{ecc__find__curve_8c_a59d916ebf792b931ef849337be51e38a}} 
+\index{ecc\_find\_curve.c@{ecc\_find\_curve.c}!\_curve\_names@{\_curve\_names}}
+\index{\_curve\_names@{\_curve\_names}!ecc\_find\_curve.c@{ecc\_find\_curve.c}}
+\subsubsection{\texorpdfstring{\_curve\_names}{\_curve\_names}}
+{\footnotesize\ttfamily const \{ ... \}   \+\_\+curve\+\_\+names\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Referenced by ecc\+\_\+find\+\_\+curve().
+
+\mbox{\Hypertarget{ecc__find__curve_8c_a1e8ca8a733e4ad11be5586411e83e98c}\label{ecc__find__curve_8c_a1e8ca8a733e4ad11be5586411e83e98c}} 
+\index{ecc\_find\_curve.c@{ecc\_find\_curve.c}!names@{names}}
+\index{names@{names}!ecc\_find\_curve.c@{ecc\_find\_curve.c}}
+\subsubsection{\texorpdfstring{names}{names}}
+{\footnotesize\ttfamily const char$\ast$ names\mbox{[}6\mbox{]}}
+
+
+
+Definition at line 16 of file ecc\+\_\+find\+\_\+curve.\+c.
+
+
+
+Referenced by ecc\+\_\+find\+\_\+curve().
+
+\mbox{\Hypertarget{ecc__find__curve_8c_a3b9aae9990e63034f7d199729f025b23}\label{ecc__find__curve_8c_a3b9aae9990e63034f7d199729f025b23}} 
+\index{ecc\_find\_curve.c@{ecc\_find\_curve.c}!OID@{OID}}
+\index{OID@{OID}!ecc\_find\_curve.c@{ecc\_find\_curve.c}}
+\subsubsection{\texorpdfstring{OID}{OID}}
+{\footnotesize\ttfamily const char$\ast$ O\+ID}
+
+
+
+Definition at line 15 of file ecc\+\_\+find\+\_\+curve.\+c.
+
+
+
+Referenced by \+\_\+ecc\+\_\+import\+\_\+private\+\_\+with\+\_\+oid(), \+\_\+ecc\+\_\+import\+\_\+x509\+\_\+with\+\_\+oid(), dsa\+\_\+encrypt\+\_\+key(), ecc\+\_\+encrypt\+\_\+key(), ecc\+\_\+export\+\_\+openssl(), ecc\+\_\+find\+\_\+curve(), ecc\+\_\+import\+\_\+pkcs8(), find\+\_\+hash\+\_\+oid(), pk\+\_\+oid\+\_\+num\+\_\+to\+\_\+str(), pk\+\_\+oid\+\_\+str\+\_\+to\+\_\+num(), rsa\+\_\+sign\+\_\+hash\+\_\+ex(), rsa\+\_\+verify\+\_\+hash\+\_\+ex(), and x509\+\_\+encode\+\_\+subject\+\_\+public\+\_\+key\+\_\+info().
+

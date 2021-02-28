@@ -1,0 +1,158 @@
+\hypertarget{dsa__encrypt__key_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/pk/dsa/dsa\+\_\+encrypt\+\_\+key.c File Reference}
+\label{dsa__encrypt__key_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/dsa/dsa\_encrypt\_key.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/dsa/dsa\_encrypt\_key.c}}
+
+
+D\+SA Crypto, Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for dsa\+\_\+encrypt\+\_\+key.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{dsa__encrypt__key_8c_ab65138d407e0660f6f2f7cb7e7dcb24b}{dsa\+\_\+encrypt\+\_\+key}} (const unsigned char $\ast$in, unsigned long inlen, unsigned char $\ast$out, unsigned long $\ast$outlen, \mbox{\hyperlink{structprng__state}{prng\+\_\+state}} $\ast$prng, int wprng, int hash, const dsa\+\_\+key $\ast$key)
+\begin{DoxyCompactList}\small\item\em Encrypt a symmetric key with D\+SA. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+D\+SA Crypto, Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{dsa__encrypt__key_8c_ab65138d407e0660f6f2f7cb7e7dcb24b}\label{dsa__encrypt__key_8c_ab65138d407e0660f6f2f7cb7e7dcb24b}} 
+\index{dsa\_encrypt\_key.c@{dsa\_encrypt\_key.c}!dsa\_encrypt\_key@{dsa\_encrypt\_key}}
+\index{dsa\_encrypt\_key@{dsa\_encrypt\_key}!dsa\_encrypt\_key.c@{dsa\_encrypt\_key.c}}
+\subsubsection{\texorpdfstring{dsa\_encrypt\_key()}{dsa\_encrypt\_key()}}
+{\footnotesize\ttfamily int dsa\+\_\+encrypt\+\_\+key (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{in,  }\item[{unsigned long}]{inlen,  }\item[{unsigned char $\ast$}]{out,  }\item[{unsigned long $\ast$}]{outlen,  }\item[{\mbox{\hyperlink{structprng__state}{prng\+\_\+state}} $\ast$}]{prng,  }\item[{int}]{wprng,  }\item[{int}]{hash,  }\item[{const dsa\+\_\+key $\ast$}]{key }\end{DoxyParamCaption})}
+
+
+
+Encrypt a symmetric key with D\+SA. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em in} & The symmetric key you want to encrypt \\
+\hline
+{\em inlen} & The length of the key to encrypt (octets) \\
+\hline
+{\em out} & \mbox{[}out\mbox{]} The destination for the ciphertext \\
+\hline
+{\em outlen} & \mbox{[}in/out\mbox{]} The max size and resulting size of the ciphertext \\
+\hline
+{\em prng} & An active P\+R\+NG state \\
+\hline
+{\em wprng} & The index of the P\+R\+NG you wish to use \\
+\hline
+{\em hash} & The index of the hash you want to use \\
+\hline
+{\em key} & The D\+SA key you want to encrypt to \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 30 of file dsa\+\_\+encrypt\+\_\+key.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{34 \{}
+\DoxyCodeLine{35     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *expt, *skey;}
+\DoxyCodeLine{36     \textcolor{keywordtype}{void}          *g\_pub, *g\_priv;}
+\DoxyCodeLine{37     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long}  x, y;}
+\DoxyCodeLine{38     \textcolor{keywordtype}{int}            err;}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{40     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(in      != NULL);}
+\DoxyCodeLine{41     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(out     != NULL);}
+\DoxyCodeLine{42     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(outlen  != NULL);}
+\DoxyCodeLine{43     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(key     != NULL);}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45     \textcolor{comment}{/* check that wprng/cipher/hash are not invalid */}}
+\DoxyCodeLine{46     \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__prng_8h_a7e4a212c1a29a3b8bb4f8d5a34676a1e}{prng\_is\_valid}}(wprng)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{47        \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{48     \}}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{50     \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__hash_8h_a79647f22bf48bfa7de03fe5fc958c846}{hash\_is\_valid}}(hash)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{51        \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{52     \}}
+\DoxyCodeLine{53 }
+\DoxyCodeLine{54     \textcolor{keywordflow}{if} (inlen > \mbox{\hyperlink{tomcrypt__hash_8h_ab0e4f02e30a47da79baa9240e79cde92}{hash\_descriptor}}[hash].hashsize) \{}
+\DoxyCodeLine{55        \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cae729ddc4864ea7e12e9865bf6264642d}{CRYPT\_INVALID\_HASH}};}
+\DoxyCodeLine{56     \}}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{58     \textcolor{comment}{/* make a random key and export the public copy */}}
+\DoxyCodeLine{59     \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_adb6322247b1a4f0347219acab3120bd3}{mp\_init\_multi}}(\&g\_pub, \&g\_priv, NULL)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{60        \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{61     \}}
+\DoxyCodeLine{62 }
+\DoxyCodeLine{63     expt       = \mbox{\hyperlink{tomcrypt__cfg_8h_af363355f38fbaacdefacf270436ae1c9}{XMALLOC}}(\mbox{\hyperlink{tomcrypt__private_8h_ad301148bb24f43a8c7003a6976dfaa5a}{mp\_unsigned\_bin\_size}}(key->p) + 1);}
+\DoxyCodeLine{64     skey       = \mbox{\hyperlink{tomcrypt__cfg_8h_af363355f38fbaacdefacf270436ae1c9}{XMALLOC}}(\mbox{\hyperlink{tomcrypt_8h_ab59933beebb2b857c992b93cf53f0d10}{MAXBLOCKSIZE}});}
+\DoxyCodeLine{65     \textcolor{keywordflow}{if} (expt == NULL  || skey == NULL) \{}
+\DoxyCodeLine{66        \textcolor{keywordflow}{if} (expt != NULL) \{}
+\DoxyCodeLine{67           \mbox{\hyperlink{tomcrypt__cfg_8h_a260d66fc0690e0502cf3bfe7b5244b75}{XFREE}}(expt);}
+\DoxyCodeLine{68        \}}
+\DoxyCodeLine{69        \textcolor{keywordflow}{if} (skey != NULL) \{}
+\DoxyCodeLine{70           \mbox{\hyperlink{tomcrypt__cfg_8h_a260d66fc0690e0502cf3bfe7b5244b75}{XFREE}}(skey);}
+\DoxyCodeLine{71        \}}
+\DoxyCodeLine{72        \mbox{\hyperlink{tomcrypt__private_8h_aad5c8a3112b3e4613f9efc86692c43cb}{mp\_clear\_multi}}(g\_pub, g\_priv, NULL);}
+\DoxyCodeLine{73        \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca0ce0d27adc7ea10b74b7ea904b8bfa82}{CRYPT\_MEM}};}
+\DoxyCodeLine{74     \}}
+\DoxyCodeLine{75 }
+\DoxyCodeLine{76     \textcolor{comment}{/* make a random g\_priv, g\_pub = g\string^x pair}}
+\DoxyCodeLine{77 \textcolor{comment}{       private key x should be in range: 1 <= x <= q-1 (see FIPS 186-4 B.1.2)}}
+\DoxyCodeLine{78 \textcolor{comment}{     */}}
+\DoxyCodeLine{79     \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a8050acf530841fb2da3b667204039856}{rand\_bn\_upto}}(g\_priv, key->q, prng, wprng)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{80       \textcolor{keywordflow}{goto} LBL\_ERR;}
+\DoxyCodeLine{81     \}}
+\DoxyCodeLine{82 }
+\DoxyCodeLine{83     \textcolor{comment}{/* compute y */}}
+\DoxyCodeLine{84     \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a4fb1221fbef91bf8163390e3cfb82085}{mp\_exptmod}}(key->g, g\_priv, key->p, g\_pub)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{85        \textcolor{keywordflow}{goto} LBL\_ERR;}
+\DoxyCodeLine{86     \}}
+\DoxyCodeLine{87 }
+\DoxyCodeLine{88     \textcolor{comment}{/* make random key */}}
+\DoxyCodeLine{89     x        = \mbox{\hyperlink{tomcrypt__private_8h_ad301148bb24f43a8c7003a6976dfaa5a}{mp\_unsigned\_bin\_size}}(key->p) + 1;}
+\DoxyCodeLine{90     \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{dsa__shared__secret_8c_a7fa65ac53b86490d87a71daaaaca89fe}{dsa\_shared\_secret}}(g\_priv, key->y, key, expt, \&x)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{91        \textcolor{keywordflow}{goto} LBL\_ERR;}
+\DoxyCodeLine{92     \}}
+\DoxyCodeLine{93 }
+\DoxyCodeLine{94     y = \mbox{\hyperlink{tomcrypt_8h_ab59933beebb2b857c992b93cf53f0d10}{MAXBLOCKSIZE}};}
+\DoxyCodeLine{95     \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{hash__memory_8c_a8672bf28488595ef1519a6754498869c}{hash\_memory}}(hash, expt, x, skey, \&y)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{96        \textcolor{keywordflow}{goto} LBL\_ERR;}
+\DoxyCodeLine{97     \}}
+\DoxyCodeLine{98 }
+\DoxyCodeLine{99     \textcolor{comment}{/* Encrypt key */}}
+\DoxyCodeLine{100     \textcolor{keywordflow}{for} (x = 0; x < inlen; x++) \{}
+\DoxyCodeLine{101       skey[x] \string^= in[x];}
+\DoxyCodeLine{102     \}}
+\DoxyCodeLine{103 }
+\DoxyCodeLine{104     err = \mbox{\hyperlink{der__encode__sequence__multi_8c_a1a5a69543a5c89f81560b52d6f11b8c5}{der\_encode\_sequence\_multi}}(out, outlen,}
+\DoxyCodeLine{105                                     LTC\_ASN1\_OBJECT\_IDENTIFIER,  \mbox{\hyperlink{tomcrypt__hash_8h_ab0e4f02e30a47da79baa9240e79cde92}{hash\_descriptor}}[hash].OIDlen,   \mbox{\hyperlink{tomcrypt__hash_8h_ab0e4f02e30a47da79baa9240e79cde92}{hash\_descriptor}}[hash].\mbox{\hyperlink{ecc__find__curve_8c_a3b9aae9990e63034f7d199729f025b23}{OID}},}
+\DoxyCodeLine{106                                     LTC\_ASN1\_INTEGER,            1UL,                            g\_pub,}
+\DoxyCodeLine{107                                     LTC\_ASN1\_OCTET\_STRING,       inlen,                          skey,}
+\DoxyCodeLine{108                                     LTC\_ASN1\_EOL,                0UL,                            NULL);}
+\DoxyCodeLine{109 }
+\DoxyCodeLine{110 LBL\_ERR:}
+\DoxyCodeLine{111 \textcolor{preprocessor}{\#ifdef LTC\_CLEAN\_STACK}}
+\DoxyCodeLine{112     \textcolor{comment}{/* clean up */}}
+\DoxyCodeLine{113     \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(expt,   \mbox{\hyperlink{tomcrypt__private_8h_ad301148bb24f43a8c7003a6976dfaa5a}{mp\_unsigned\_bin\_size}}(key->p) + 1);}
+\DoxyCodeLine{114     \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(skey,   \mbox{\hyperlink{tomcrypt_8h_ab59933beebb2b857c992b93cf53f0d10}{MAXBLOCKSIZE}});}
+\DoxyCodeLine{115 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{116 }
+\DoxyCodeLine{117     \mbox{\hyperlink{tomcrypt__cfg_8h_a260d66fc0690e0502cf3bfe7b5244b75}{XFREE}}(skey);}
+\DoxyCodeLine{118     \mbox{\hyperlink{tomcrypt__cfg_8h_a260d66fc0690e0502cf3bfe7b5244b75}{XFREE}}(expt);}
+\DoxyCodeLine{119 }
+\DoxyCodeLine{120     \mbox{\hyperlink{tomcrypt__private_8h_aad5c8a3112b3e4613f9efc86692c43cb}{mp\_clear\_multi}}(g\_pub, g\_priv, NULL);}
+\DoxyCodeLine{121     \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{122 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+H\+A\+SH, C\+R\+Y\+P\+T\+\_\+\+M\+EM, C\+R\+Y\+P\+T\+\_\+\+OK, der\+\_\+encode\+\_\+sequence\+\_\+multi(), dsa\+\_\+shared\+\_\+secret(), hash\+\_\+descriptor, hash\+\_\+is\+\_\+valid(), hash\+\_\+memory(), L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, M\+A\+X\+B\+L\+O\+C\+K\+S\+I\+ZE, mp\+\_\+clear\+\_\+multi, mp\+\_\+exptmod, mp\+\_\+init\+\_\+multi, mp\+\_\+unsigned\+\_\+bin\+\_\+size, O\+ID, prng\+\_\+is\+\_\+valid(), rand\+\_\+bn\+\_\+upto(), X\+F\+R\+E\+E(), X\+M\+A\+L\+L\+O\+C(), and zeromem().
+
+Here is the call graph for this function\+:
+% FIG 1

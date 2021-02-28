@@ -1,0 +1,329 @@
+\hypertarget{pelican_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/mac/pelican/pelican.c File Reference}
+\label{pelican_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/mac/pelican/pelican.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/mac/pelican/pelican.c}}
+
+
+Pelican M\+AC, initialize state, by Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../../ciphers/aes/aes\+\_\+tab.\+c\char`\"{}}\newline
+Include dependency graph for pelican.\+c\+:
+% FIG 0
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{pelican_8c_a141b1bf0857ad7426c2c40b11c23c46f}{\+\_\+\+\_\+\+L\+T\+C\+\_\+\+A\+E\+S\+\_\+\+T\+A\+B\+\_\+\+C\+\_\+\+\_\+}}
+\item 
+\#define \mbox{\hyperlink{pelican_8c_a3c1af6a9be8fc47ad580f5c1156b716f}{E\+N\+C\+R\+Y\+P\+T\+\_\+\+O\+N\+LY}}
+\item 
+\#define \mbox{\hyperlink{pelican_8c_a0354960ce45ee4a6c42566df5ef4a624}{P\+E\+L\+I\+\_\+\+T\+AB}}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{pelican_8c_a0e62b20609006626506ac50406906920}{pelican\+\_\+init}} (pelican\+\_\+state $\ast$pelmac, const unsigned char $\ast$key, unsigned long keylen)
+\begin{DoxyCompactList}\small\item\em Initialize a Pelican state. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{pelican_8c_a295658c56a732ddef9c71036e54aa0e2}{\+\_\+four\+\_\+rounds}} (pelican\+\_\+state $\ast$pelmac)
+\item 
+int \mbox{\hyperlink{pelican_8c_aef428c8672b216a7d31256baee8c1a95}{pelican\+\_\+process}} (pelican\+\_\+state $\ast$pelmac, const unsigned char $\ast$in, unsigned long inlen)
+\begin{DoxyCompactList}\small\item\em Process a block of text through Pelican. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{pelican_8c_a70b6868acfc0b1287d358a8e890e648a}{pelican\+\_\+done}} (pelican\+\_\+state $\ast$pelmac, unsigned char $\ast$out)
+\begin{DoxyCompactList}\small\item\em Terminate Pelican M\+AC. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Pelican M\+AC, initialize state, by Tom St Denis. 
+
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{pelican_8c_a141b1bf0857ad7426c2c40b11c23c46f}\label{pelican_8c_a141b1bf0857ad7426c2c40b11c23c46f}} 
+\index{pelican.c@{pelican.c}!\_\_LTC\_AES\_TAB\_C\_\_@{\_\_LTC\_AES\_TAB\_C\_\_}}
+\index{\_\_LTC\_AES\_TAB\_C\_\_@{\_\_LTC\_AES\_TAB\_C\_\_}!pelican.c@{pelican.c}}
+\subsubsection{\texorpdfstring{\_\_LTC\_AES\_TAB\_C\_\_}{\_\_LTC\_AES\_TAB\_C\_\_}}
+{\footnotesize\ttfamily \#define \+\_\+\+\_\+\+L\+T\+C\+\_\+\+A\+E\+S\+\_\+\+T\+A\+B\+\_\+\+C\+\_\+\+\_\+}
+
+
+
+Definition at line 18 of file pelican.\+c.
+
+\mbox{\Hypertarget{pelican_8c_a3c1af6a9be8fc47ad580f5c1156b716f}\label{pelican_8c_a3c1af6a9be8fc47ad580f5c1156b716f}} 
+\index{pelican.c@{pelican.c}!ENCRYPT\_ONLY@{ENCRYPT\_ONLY}}
+\index{ENCRYPT\_ONLY@{ENCRYPT\_ONLY}!pelican.c@{pelican.c}}
+\subsubsection{\texorpdfstring{ENCRYPT\_ONLY}{ENCRYPT\_ONLY}}
+{\footnotesize\ttfamily \#define E\+N\+C\+R\+Y\+P\+T\+\_\+\+O\+N\+LY}
+
+
+
+Definition at line 19 of file pelican.\+c.
+
+\mbox{\Hypertarget{pelican_8c_a0354960ce45ee4a6c42566df5ef4a624}\label{pelican_8c_a0354960ce45ee4a6c42566df5ef4a624}} 
+\index{pelican.c@{pelican.c}!PELI\_TAB@{PELI\_TAB}}
+\index{PELI\_TAB@{PELI\_TAB}!pelican.c@{pelican.c}}
+\subsubsection{\texorpdfstring{PELI\_TAB}{PELI\_TAB}}
+{\footnotesize\ttfamily \#define P\+E\+L\+I\+\_\+\+T\+AB}
+
+
+
+Definition at line 20 of file pelican.\+c.
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{pelican_8c_a295658c56a732ddef9c71036e54aa0e2}\label{pelican_8c_a295658c56a732ddef9c71036e54aa0e2}} 
+\index{pelican.c@{pelican.c}!\_four\_rounds@{\_four\_rounds}}
+\index{\_four\_rounds@{\_four\_rounds}!pelican.c@{pelican.c}}
+\subsubsection{\texorpdfstring{\_four\_rounds()}{\_four\_rounds()}}
+{\footnotesize\ttfamily static void \+\_\+four\+\_\+rounds (\begin{DoxyParamCaption}\item[{pelican\+\_\+state $\ast$}]{pelmac }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 54 of file pelican.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{55 \{}
+\DoxyCodeLine{56     \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} s0, s1, s2, s3, t0, \mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}}, \mbox{\hyperlink{tiger_8c_aa4652e2d6053d420dcbea07a113db5fe}{t2}}, \mbox{\hyperlink{tiger_8c_a71a491fa5f35065b954a3001ebed0f28}{t3}};}
+\DoxyCodeLine{57     \textcolor{keywordtype}{int} r;}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{59     LOAD32H(s0, pelmac->state      );}
+\DoxyCodeLine{60     LOAD32H(s1, pelmac->state  +  4);}
+\DoxyCodeLine{61     LOAD32H(s2, pelmac->state  +  8);}
+\DoxyCodeLine{62     LOAD32H(s3, pelmac->state  + 12);}
+\DoxyCodeLine{63     \textcolor{keywordflow}{for} (r = 0; r < 4; r++) \{}
+\DoxyCodeLine{64         t0 =}
+\DoxyCodeLine{65             Te0(\mbox{\hyperlink{tomcrypt__private_8h_a319cb143574102827d3b0055ded27533}{LTC\_BYTE}}(s0, 3)) \string^}
+\DoxyCodeLine{66             Te1(\mbox{\hyperlink{tomcrypt__private_8h_a319cb143574102827d3b0055ded27533}{LTC\_BYTE}}(s1, 2)) \string^}
+\DoxyCodeLine{67             Te2(\mbox{\hyperlink{tomcrypt__private_8h_a319cb143574102827d3b0055ded27533}{LTC\_BYTE}}(s2, 1)) \string^}
+\DoxyCodeLine{68             Te3(\mbox{\hyperlink{tomcrypt__private_8h_a319cb143574102827d3b0055ded27533}{LTC\_BYTE}}(s3, 0));}
+\DoxyCodeLine{69         \mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}} =}
+\DoxyCodeLine{70             Te0(\mbox{\hyperlink{tomcrypt__private_8h_a319cb143574102827d3b0055ded27533}{LTC\_BYTE}}(s1, 3)) \string^}
+\DoxyCodeLine{71             Te1(\mbox{\hyperlink{tomcrypt__private_8h_a319cb143574102827d3b0055ded27533}{LTC\_BYTE}}(s2, 2)) \string^}
+\DoxyCodeLine{72             Te2(\mbox{\hyperlink{tomcrypt__private_8h_a319cb143574102827d3b0055ded27533}{LTC\_BYTE}}(s3, 1)) \string^}
+\DoxyCodeLine{73             Te3(\mbox{\hyperlink{tomcrypt__private_8h_a319cb143574102827d3b0055ded27533}{LTC\_BYTE}}(s0, 0));}
+\DoxyCodeLine{74         \mbox{\hyperlink{tiger_8c_aa4652e2d6053d420dcbea07a113db5fe}{t2}} =}
+\DoxyCodeLine{75             Te0(\mbox{\hyperlink{tomcrypt__private_8h_a319cb143574102827d3b0055ded27533}{LTC\_BYTE}}(s2, 3)) \string^}
+\DoxyCodeLine{76             Te1(\mbox{\hyperlink{tomcrypt__private_8h_a319cb143574102827d3b0055ded27533}{LTC\_BYTE}}(s3, 2)) \string^}
+\DoxyCodeLine{77             Te2(\mbox{\hyperlink{tomcrypt__private_8h_a319cb143574102827d3b0055ded27533}{LTC\_BYTE}}(s0, 1)) \string^}
+\DoxyCodeLine{78             Te3(\mbox{\hyperlink{tomcrypt__private_8h_a319cb143574102827d3b0055ded27533}{LTC\_BYTE}}(s1, 0));}
+\DoxyCodeLine{79         \mbox{\hyperlink{tiger_8c_a71a491fa5f35065b954a3001ebed0f28}{t3}} =}
+\DoxyCodeLine{80             Te0(\mbox{\hyperlink{tomcrypt__private_8h_a319cb143574102827d3b0055ded27533}{LTC\_BYTE}}(s3, 3)) \string^}
+\DoxyCodeLine{81             Te1(\mbox{\hyperlink{tomcrypt__private_8h_a319cb143574102827d3b0055ded27533}{LTC\_BYTE}}(s0, 2)) \string^}
+\DoxyCodeLine{82             Te2(\mbox{\hyperlink{tomcrypt__private_8h_a319cb143574102827d3b0055ded27533}{LTC\_BYTE}}(s1, 1)) \string^}
+\DoxyCodeLine{83             Te3(\mbox{\hyperlink{tomcrypt__private_8h_a319cb143574102827d3b0055ded27533}{LTC\_BYTE}}(s2, 0));}
+\DoxyCodeLine{84         s0 = t0; s1 = \mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}}; s2 = \mbox{\hyperlink{tiger_8c_aa4652e2d6053d420dcbea07a113db5fe}{t2}}; s3 = \mbox{\hyperlink{tiger_8c_a71a491fa5f35065b954a3001ebed0f28}{t3}};}
+\DoxyCodeLine{85     \}}
+\DoxyCodeLine{86     STORE32H(s0, pelmac->state      );}
+\DoxyCodeLine{87     STORE32H(s1, pelmac->state  +  4);}
+\DoxyCodeLine{88     STORE32H(s2, pelmac->state  +  8);}
+\DoxyCodeLine{89     STORE32H(s3, pelmac->state  + 12);}
+\DoxyCodeLine{90 \}}
+
+\end{DoxyCode}
+
+
+References L\+T\+C\+\_\+\+B\+Y\+TE, t1, t2, and t3.
+
+
+
+Referenced by pelican\+\_\+done(), and pelican\+\_\+process().
+
+Here is the caller graph for this function\+:
+% FIG 1
+\mbox{\Hypertarget{pelican_8c_a70b6868acfc0b1287d358a8e890e648a}\label{pelican_8c_a70b6868acfc0b1287d358a8e890e648a}} 
+\index{pelican.c@{pelican.c}!pelican\_done@{pelican\_done}}
+\index{pelican\_done@{pelican\_done}!pelican.c@{pelican.c}}
+\subsubsection{\texorpdfstring{pelican\_done()}{pelican\_done()}}
+{\footnotesize\ttfamily int pelican\+\_\+done (\begin{DoxyParamCaption}\item[{pelican\+\_\+state $\ast$}]{pelmac,  }\item[{unsigned char $\ast$}]{out }\end{DoxyParamCaption})}
+
+
+
+Terminate Pelican M\+AC. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pelmac} & The Pelican M\+AC state \\
+\hline
+{\em out} & \mbox{[}out\mbox{]} The T\+AG \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK on sucess 
+\end{DoxyReturn}
+
+
+Definition at line 140 of file pelican.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{141 \{}
+\DoxyCodeLine{142    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(pelmac  != NULL);}
+\DoxyCodeLine{143    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(out     != NULL);}
+\DoxyCodeLine{144 }
+\DoxyCodeLine{145    \textcolor{comment}{/* check range */}}
+\DoxyCodeLine{146    \textcolor{keywordflow}{if} (pelmac->buflen < 0 || pelmac->buflen > 16) \{}
+\DoxyCodeLine{147       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{148    \}}
+\DoxyCodeLine{149 }
+\DoxyCodeLine{150    \textcolor{keywordflow}{if}  (pelmac->buflen == 16) \{}
+\DoxyCodeLine{151        \mbox{\hyperlink{pelican_8c_a295658c56a732ddef9c71036e54aa0e2}{\_four\_rounds}}(pelmac);}
+\DoxyCodeLine{152        pelmac->buflen = 0;}
+\DoxyCodeLine{153    \}}
+\DoxyCodeLine{154    pelmac->state[pelmac->buflen++] \string^= 0x80;}
+\DoxyCodeLine{155    aes\_ecb\_encrypt(pelmac->state, out, \&pelmac->K);}
+\DoxyCodeLine{156    aes\_done(\&pelmac->K);}
+\DoxyCodeLine{157    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{158 \}}
+
+\end{DoxyCode}
+
+
+References \+\_\+four\+\_\+rounds(), C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+A\+RG, C\+R\+Y\+P\+T\+\_\+\+OK, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+
+
+Referenced by pelican\+\_\+memory(), and pelican\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 2
+Here is the caller graph for this function\+:
+% FIG 3
+\mbox{\Hypertarget{pelican_8c_a0e62b20609006626506ac50406906920}\label{pelican_8c_a0e62b20609006626506ac50406906920}} 
+\index{pelican.c@{pelican.c}!pelican\_init@{pelican\_init}}
+\index{pelican\_init@{pelican\_init}!pelican.c@{pelican.c}}
+\subsubsection{\texorpdfstring{pelican\_init()}{pelican\_init()}}
+{\footnotesize\ttfamily int pelican\+\_\+init (\begin{DoxyParamCaption}\item[{pelican\+\_\+state $\ast$}]{pelmac,  }\item[{const unsigned char $\ast$}]{key,  }\item[{unsigned long}]{keylen }\end{DoxyParamCaption})}
+
+
+
+Initialize a Pelican state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pelmac} & The Pelican state to initialize \\
+\hline
+{\em key} & The secret key \\
+\hline
+{\em keylen} & The length of the secret key (octets) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 30 of file pelican.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{31 \{}
+\DoxyCodeLine{32     \textcolor{keywordtype}{int} err;}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(pelmac != NULL);}
+\DoxyCodeLine{35     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(key    != NULL);}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37 \textcolor{preprocessor}{\#ifdef LTC\_FAST}}
+\DoxyCodeLine{38     \textcolor{keywordflow}{if} (16 \% \textcolor{keyword}{sizeof}(LTC\_FAST\_TYPE)) \{}
+\DoxyCodeLine{39         \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{40     \}}
+\DoxyCodeLine{41 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{43     \textcolor{keywordflow}{if} ((err = aes\_setup(key, keylen, 0, \&pelmac->K)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{44        \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{45     \}}
+\DoxyCodeLine{46 }
+\DoxyCodeLine{47     \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(pelmac->state, 16);}
+\DoxyCodeLine{48     aes\_ecb\_encrypt(pelmac->state, pelmac->state, \&pelmac->K);}
+\DoxyCodeLine{49     pelmac->buflen = 0;}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{51     \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{52 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+A\+RG, C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, and zeromem().
+
+
+
+Referenced by pelican\+\_\+memory(), and pelican\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 4
+Here is the caller graph for this function\+:
+% FIG 5
+\mbox{\Hypertarget{pelican_8c_aef428c8672b216a7d31256baee8c1a95}\label{pelican_8c_aef428c8672b216a7d31256baee8c1a95}} 
+\index{pelican.c@{pelican.c}!pelican\_process@{pelican\_process}}
+\index{pelican\_process@{pelican\_process}!pelican.c@{pelican.c}}
+\subsubsection{\texorpdfstring{pelican\_process()}{pelican\_process()}}
+{\footnotesize\ttfamily int pelican\+\_\+process (\begin{DoxyParamCaption}\item[{pelican\+\_\+state $\ast$}]{pelmac,  }\item[{const unsigned char $\ast$}]{in,  }\item[{unsigned long}]{inlen }\end{DoxyParamCaption})}
+
+
+
+Process a block of text through Pelican. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pelmac} & The Pelican M\+AC state \\
+\hline
+{\em in} & The input \\
+\hline
+{\em inlen} & The length input (octets) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK on success 
+\end{DoxyReturn}
+
+
+Definition at line 99 of file pelican.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{100 \{}
+\DoxyCodeLine{101 }
+\DoxyCodeLine{102    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(pelmac != NULL);}
+\DoxyCodeLine{103    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(in     != NULL);}
+\DoxyCodeLine{104 }
+\DoxyCodeLine{105    \textcolor{comment}{/* check range */}}
+\DoxyCodeLine{106    \textcolor{keywordflow}{if} (pelmac->buflen < 0 || pelmac->buflen > 15) \{}
+\DoxyCodeLine{107       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{108    \}}
+\DoxyCodeLine{109 }
+\DoxyCodeLine{110 \textcolor{preprocessor}{\#ifdef LTC\_FAST}}
+\DoxyCodeLine{111    \textcolor{keywordflow}{if} (pelmac->buflen == 0) \{}
+\DoxyCodeLine{112       \textcolor{keywordflow}{while} (inlen \& ~15) \{}
+\DoxyCodeLine{113          \textcolor{keywordtype}{int} x;}
+\DoxyCodeLine{114          \textcolor{keywordflow}{for} (x = 0; x < 16; x += \textcolor{keyword}{sizeof}(LTC\_FAST\_TYPE)) \{}
+\DoxyCodeLine{115             *(LTC\_FAST\_TYPE\_PTR\_CAST((\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *)pelmac->state + x)) \string^= *(LTC\_FAST\_TYPE\_PTR\_CAST((\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *)in + x));}
+\DoxyCodeLine{116          \}}
+\DoxyCodeLine{117          \mbox{\hyperlink{pelican_8c_a295658c56a732ddef9c71036e54aa0e2}{\_four\_rounds}}(pelmac);}
+\DoxyCodeLine{118          in    += 16;}
+\DoxyCodeLine{119          inlen -= 16;}
+\DoxyCodeLine{120       \}}
+\DoxyCodeLine{121    \}}
+\DoxyCodeLine{122 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{123 }
+\DoxyCodeLine{124    \textcolor{keywordflow}{while} (inlen--) \{}
+\DoxyCodeLine{125        pelmac->state[pelmac->buflen++] \string^= *in++;}
+\DoxyCodeLine{126        \textcolor{keywordflow}{if} (pelmac->buflen == 16) \{}
+\DoxyCodeLine{127           \mbox{\hyperlink{pelican_8c_a295658c56a732ddef9c71036e54aa0e2}{\_four\_rounds}}(pelmac);}
+\DoxyCodeLine{128           pelmac->buflen = 0;}
+\DoxyCodeLine{129        \}}
+\DoxyCodeLine{130    \}}
+\DoxyCodeLine{131    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{132 \}}
+
+\end{DoxyCode}
+
+
+References \+\_\+four\+\_\+rounds(), C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+A\+RG, C\+R\+Y\+P\+T\+\_\+\+OK, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+
+
+Referenced by pelican\+\_\+memory(), and pelican\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 6
+Here is the caller graph for this function\+:
+% FIG 7

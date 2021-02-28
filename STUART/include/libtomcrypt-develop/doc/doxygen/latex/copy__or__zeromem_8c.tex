@@ -1,0 +1,96 @@
+\hypertarget{copy__or__zeromem_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/misc/copy\+\_\+or\+\_\+zeromem.c File Reference}
+\label{copy__or__zeromem_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/misc/copy\_or\_zeromem.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/misc/copy\_or\_zeromem.c}}
+
+
+Either copy or zero a block of memory in constant time, Steffen Jaeckel.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for copy\+\_\+or\+\_\+zeromem.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{copy__or__zeromem_8c_a669fada75ab21a80b652dfbc2b54e346}{copy\+\_\+or\+\_\+zeromem}} (const unsigned char $\ast$src, unsigned char $\ast$dest, unsigned long \mbox{\hyperlink{pmac__init_8c_afed088663f8704004425cdae2120b9b3}{len}}, int coz)
+\begin{DoxyCompactList}\small\item\em Either copy or zero a block of memory in constant time. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Either copy or zero a block of memory in constant time, Steffen Jaeckel. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{copy__or__zeromem_8c_a669fada75ab21a80b652dfbc2b54e346}\label{copy__or__zeromem_8c_a669fada75ab21a80b652dfbc2b54e346}} 
+\index{copy\_or\_zeromem.c@{copy\_or\_zeromem.c}!copy\_or\_zeromem@{copy\_or\_zeromem}}
+\index{copy\_or\_zeromem@{copy\_or\_zeromem}!copy\_or\_zeromem.c@{copy\_or\_zeromem.c}}
+\subsubsection{\texorpdfstring{copy\_or\_zeromem()}{copy\_or\_zeromem()}}
+{\footnotesize\ttfamily void copy\+\_\+or\+\_\+zeromem (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{src,  }\item[{unsigned char $\ast$}]{dest,  }\item[{unsigned long}]{len,  }\item[{int}]{coz }\end{DoxyParamCaption})}
+
+
+
+Either copy or zero a block of memory in constant time. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em src} & The source where to read from \\
+\hline
+{\em dest} & The destination where to write to \\
+\hline
+{\em len} & The length of the area to process (octets) \\
+\hline
+{\em coz} & Copy (on 0) Or Zero ($>$ 0) \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 23 of file copy\+\_\+or\+\_\+zeromem.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{24 \{}
+\DoxyCodeLine{25    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} y;}
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#ifdef LTC\_FAST}}
+\DoxyCodeLine{27    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} z;}
+\DoxyCodeLine{28    LTC\_FAST\_TYPE fastMask = ~(LTC\_FAST\_TYPE)0; \textcolor{comment}{/* initialize fastMask at all ones */}}
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{30    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} \mbox{\hyperlink{gcm__gf__mult_8c_a3a2325b458f400e186d773b14e6c1ed9}{mask}} = 0xff; \textcolor{comment}{/* initialize mask at all ones */}}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32    \mbox{\hyperlink{tomcrypt__argchk_8h_a67a6e5d66d0c7d80ddf5c583054608bd}{LTC\_ARGCHKVD}}(src  != NULL);}
+\DoxyCodeLine{33    \mbox{\hyperlink{tomcrypt__argchk_8h_a67a6e5d66d0c7d80ddf5c583054608bd}{LTC\_ARGCHKVD}}(dest != NULL);}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35    \textcolor{keywordflow}{if} (coz != 0) coz = 1;}
+\DoxyCodeLine{36    y = 0;}
+\DoxyCodeLine{37    \mbox{\hyperlink{gcm__gf__mult_8c_a3a2325b458f400e186d773b14e6c1ed9}{mask}} *= 1 - coz; \textcolor{comment}{/* mask = ( coz ? 0 : 0xff ) */}}
+\DoxyCodeLine{38 \textcolor{preprocessor}{\#ifdef LTC\_FAST}}
+\DoxyCodeLine{39    fastMask *= 1 - coz;}
+\DoxyCodeLine{40    \textcolor{keywordflow}{if} (\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}} \& ~15) \{}
+\DoxyCodeLine{41       \textcolor{keywordflow}{for} (; y < (\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}} \& ~15); y += 16) \{}
+\DoxyCodeLine{42         \textcolor{keywordflow}{for} (z = 0; z < 16; z += \textcolor{keyword}{sizeof}(LTC\_FAST\_TYPE)) \{}
+\DoxyCodeLine{43           *(LTC\_FAST\_TYPE\_PTR\_CAST(\&dest[y+z])) = *(LTC\_FAST\_TYPE\_PTR\_CAST(\&src[y+z])) \& fastMask;}
+\DoxyCodeLine{44         \}}
+\DoxyCodeLine{45       \}}
+\DoxyCodeLine{46    \}}
+\DoxyCodeLine{47 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{48    \textcolor{keywordflow}{for} (; y < \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}; y++) \{}
+\DoxyCodeLine{49       dest[y] = src[y] \& \mbox{\hyperlink{gcm__gf__mult_8c_a3a2325b458f400e186d773b14e6c1ed9}{mask}};}
+\DoxyCodeLine{50    \}}
+\DoxyCodeLine{51 \textcolor{preprocessor}{\#ifdef LTC\_CLEAN\_STACK}}
+\DoxyCodeLine{52 \textcolor{preprocessor}{\#ifdef LTC\_FAST}}
+\DoxyCodeLine{53    fastMask = 0;}
+\DoxyCodeLine{54 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{55    \mbox{\hyperlink{gcm__gf__mult_8c_a3a2325b458f400e186d773b14e6c1ed9}{mask}} = 0;}
+\DoxyCodeLine{56 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{57 \}}
+
+\end{DoxyCode}
+
+
+References len, L\+T\+C\+\_\+\+A\+R\+G\+C\+H\+K\+VD, and mask.
+
+
+
+Referenced by ccm\+\_\+memory().
+
+Here is the caller graph for this function\+:
+% FIG 1

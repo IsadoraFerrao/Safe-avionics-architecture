@@ -1,0 +1,73 @@
+\hypertarget{blake2smac__memory_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/mac/blake2/blake2smac\+\_\+memory.c File Reference}
+\label{blake2smac__memory_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/mac/blake2/blake2smac\_memory.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/mac/blake2/blake2smac\_memory.c}}
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for blake2smac\+\_\+memory.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{blake2smac__memory_8c_aea1e8633862804ea1944985b7c5f17d8}{blake2smac\+\_\+memory}} (const unsigned char $\ast$key, unsigned long keylen, const unsigned char $\ast$in, unsigned long inlen, unsigned char $\ast$mac, unsigned long $\ast$maclen)
+\begin{DoxyCompactList}\small\item\em B\+L\+A\+K\+E2S M\+AC a block of memory to produce the authentication tag. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{blake2smac__memory_8c_aea1e8633862804ea1944985b7c5f17d8}\label{blake2smac__memory_8c_aea1e8633862804ea1944985b7c5f17d8}} 
+\index{blake2smac\_memory.c@{blake2smac\_memory.c}!blake2smac\_memory@{blake2smac\_memory}}
+\index{blake2smac\_memory@{blake2smac\_memory}!blake2smac\_memory.c@{blake2smac\_memory.c}}
+\subsubsection{\texorpdfstring{blake2smac\_memory()}{blake2smac\_memory()}}
+{\footnotesize\ttfamily int blake2smac\+\_\+memory (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{key,  }\item[{unsigned long}]{keylen,  }\item[{const unsigned char $\ast$}]{in,  }\item[{unsigned long}]{inlen,  }\item[{unsigned char $\ast$}]{mac,  }\item[{unsigned long $\ast$}]{maclen }\end{DoxyParamCaption})}
+
+
+
+B\+L\+A\+K\+E2S M\+AC a block of memory to produce the authentication tag. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The secret key \\
+\hline
+{\em keylen} & The length of the secret key (octets) \\
+\hline
+{\em in} & The data to B\+L\+A\+K\+E2S M\+AC \\
+\hline
+{\em inlen} & The length of the data to B\+L\+A\+K\+E2S M\+AC (octets) \\
+\hline
+{\em mac} & \mbox{[}out\mbox{]} Destination of the authentication tag \\
+\hline
+{\em maclen} & \mbox{[}in/out\mbox{]} Max size and resulting size of authentication tag \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 24 of file blake2smac\+\_\+memory.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{25 \{}
+\DoxyCodeLine{26    blake2smac\_state st;}
+\DoxyCodeLine{27    \textcolor{keywordtype}{int} err;}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(key    != NULL);}
+\DoxyCodeLine{30    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(in     != NULL);}
+\DoxyCodeLine{31    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(mac    != NULL);}
+\DoxyCodeLine{32    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(maclen != NULL);}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{blake2smac_8c_ac5b0577823c5740bc16b658ba4dbfd02}{blake2smac\_init}}(\&st, *maclen, key, keylen))  != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{ \textcolor{keywordflow}{goto} LBL\_ERR; \}}
+\DoxyCodeLine{35    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{blake2smac_8c_a6d340d92c2d47da70bb0d1cbf471869c}{blake2smac\_process}}(\&st, in, inlen)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{ \textcolor{keywordflow}{goto} LBL\_ERR; \}}
+\DoxyCodeLine{36    err = \mbox{\hyperlink{blake2smac_8c_af268b3c5222438337934ed26be851579}{blake2smac\_done}}(\&st, mac, maclen);}
+\DoxyCodeLine{37 LBL\_ERR:}
+\DoxyCodeLine{38 \textcolor{preprocessor}{\#ifdef LTC\_CLEAN\_STACK}}
+\DoxyCodeLine{39    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(\&st, \textcolor{keyword}{sizeof}(blake2smac\_state));}
+\DoxyCodeLine{40 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{41    \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{42 \}}
+
+\end{DoxyCode}
+
+
+References blake2smac\+\_\+done(), blake2smac\+\_\+init(), blake2smac\+\_\+process(), C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, and zeromem().
+
+Here is the call graph for this function\+:
+% FIG 1

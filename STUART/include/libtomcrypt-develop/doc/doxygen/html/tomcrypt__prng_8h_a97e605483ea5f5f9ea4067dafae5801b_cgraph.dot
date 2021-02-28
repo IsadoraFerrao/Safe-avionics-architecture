@@ -1,0 +1,24 @@
+digraph "rng_make_prng"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node45 [label="rng_make_prng",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Create a PRNG from a RNG."];
+  Node45 -> Node46 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node46 [label="prng_is_valid",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__prng_8h.html#a7e4a212c1a29a3b8bb4f8d5a34676a1e",tooltip=" "];
+  Node45 -> Node47 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node47 [label="rng_get_bytes",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__prng_8h.html#ace80a0f11a76e7ebd59c2188b2ec2520",tooltip="Read the system RNG."];
+  Node47 -> Node48 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node48 [label="_rng_ansic",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rng__get__bytes_8c.html#af779fc65e3d8cffba45aa4ca3e6e1ace",tooltip=" "];
+  Node48 -> Node49 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node49 [label="XCLOCK",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cfg_8h.html#a87093d90435a60f5cbb14bcca6191c76",tooltip=" "];
+  Node47 -> Node50 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node50 [label="_rng_nix",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rng__get__bytes_8c.html#a1384ad1a46527e2b6f22c85bdcc7f2fa",tooltip=" "];
+  Node45 -> Node51 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node51 [label="XFREE",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cfg_8h.html#a260d66fc0690e0502cf3bfe7b5244b75",tooltip=" "];
+  Node45 -> Node52 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node52 [label="XMALLOC",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cfg_8h.html#af363355f38fbaacdefacf270436ae1c9",tooltip=" "];
+  Node45 -> Node53 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node53 [label="zeromem",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__misc_8h.html#a63b6e188713790263bfd3612fe8b398f",tooltip="Zero a block of memory."];
+}

@@ -1,0 +1,1374 @@
+\hypertarget{blake2b_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/hashes/blake2b.c File Reference}
+\label{blake2b_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/hashes/blake2b.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/hashes/blake2b.c}}
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for blake2b.\+c\+:
+% FIG 0
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{blake2b_8c_a4fbc796e307d9128c5de14d17c3de42a}{G}}(r,  i,  a,  b,  \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},  d)
+\item 
+\#define \mbox{\hyperlink{blake2b_8c_ab35e822e8226ebfbc2122810b5ac5827}{R\+O\+U\+ND}}(r)
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{blake2b_8c_a55df020abc59e40eb12965cf08eca1b5}{blake2b\+\_\+constant}} \{ \newline
+\mbox{\hyperlink{blake2b_8c_a55df020abc59e40eb12965cf08eca1b5aea9f79a4ec90a788ea0590ae5dfda693}{B\+L\+A\+K\+E2\+B\+\_\+\+B\+L\+O\+C\+K\+B\+Y\+T\+ES}} = 128, 
+\newline
+\mbox{\hyperlink{blake2b_8c_a55df020abc59e40eb12965cf08eca1b5ac4536ddb2539173d703b1bc458cce33b}{B\+L\+A\+K\+E2\+B\+\_\+\+O\+U\+T\+B\+Y\+T\+ES}} = 64, 
+\newline
+\mbox{\hyperlink{blake2b_8c_a55df020abc59e40eb12965cf08eca1b5a8dfea1685718cfdbbfc48b85cec868e4}{B\+L\+A\+K\+E2\+B\+\_\+\+K\+E\+Y\+B\+Y\+T\+ES}} = 64, 
+\newline
+\mbox{\hyperlink{blake2b_8c_a55df020abc59e40eb12965cf08eca1b5ac6bdac02af2cbdd70f76ae63c1d3fa1e}{B\+L\+A\+K\+E2\+B\+\_\+\+S\+A\+L\+T\+B\+Y\+T\+ES}} = 16, 
+\newline
+\mbox{\hyperlink{blake2b_8c_a55df020abc59e40eb12965cf08eca1b5a83ed255c34f4b1603226f7e3854d57d6}{B\+L\+A\+K\+E2\+B\+\_\+\+P\+E\+R\+S\+O\+N\+A\+L\+B\+Y\+T\+ES}} = 16, 
+\newline
+\mbox{\hyperlink{blake2b_8c_a55df020abc59e40eb12965cf08eca1b5a835b377f9cf534090c32677d2694ffd2}{B\+L\+A\+K\+E2\+B\+\_\+\+P\+A\+R\+A\+M\+\_\+\+S\+I\+ZE}} = 64
+ \}
+\item 
+enum \{ \newline
+\mbox{\hyperlink{blake2b_8c_a99fb83031ce9923c84392b4e92f956b5ac55e8eafc668c1bc7863703b33ced068}{O\+\_\+\+D\+I\+G\+E\+S\+T\+\_\+\+L\+E\+N\+G\+TH}} = 0, 
+\newline
+\mbox{\hyperlink{blake2b_8c_a99fb83031ce9923c84392b4e92f956b5a1d061f4b2149eb842123fe899aad9fde}{O\+\_\+\+K\+E\+Y\+\_\+\+L\+E\+N\+G\+TH}} = 1, 
+\newline
+\mbox{\hyperlink{blake2b_8c_a99fb83031ce9923c84392b4e92f956b5a72383d443e58e4da14575b3de68b9542}{O\+\_\+\+F\+A\+N\+O\+UT}} = 2, 
+\newline
+\mbox{\hyperlink{blake2b_8c_a99fb83031ce9923c84392b4e92f956b5aa9f1fc12780d8bca0aed3d8e03ef2197}{O\+\_\+\+D\+E\+P\+TH}} = 3, 
+\newline
+\mbox{\hyperlink{blake2b_8c_a99fb83031ce9923c84392b4e92f956b5a6c3cc8e8267d2ddbb49005907ec11146}{O\+\_\+\+L\+E\+A\+F\+\_\+\+L\+E\+N\+G\+TH}} = 4, 
+\newline
+\mbox{\hyperlink{blake2b_8c_a99fb83031ce9923c84392b4e92f956b5a35b9b294b5c007308696974ee8c7c9a0}{O\+\_\+\+N\+O\+D\+E\+\_\+\+O\+F\+F\+S\+ET}} = 8, 
+\newline
+\mbox{\hyperlink{blake2b_8c_a99fb83031ce9923c84392b4e92f956b5a74b9dfa3a4e6d30238f555c5b569e951}{O\+\_\+\+X\+O\+F\+\_\+\+L\+E\+N\+G\+TH}} = 12, 
+\newline
+\mbox{\hyperlink{blake2b_8c_a99fb83031ce9923c84392b4e92f956b5a7bf51cfbb70b68bfea8512110a66e362}{O\+\_\+\+N\+O\+D\+E\+\_\+\+D\+E\+P\+TH}} = 16, 
+\newline
+\mbox{\hyperlink{blake2b_8c_a99fb83031ce9923c84392b4e92f956b5a32e7a54b063a1f9a851792b574c9ddf1}{O\+\_\+\+I\+N\+N\+E\+R\+\_\+\+L\+E\+N\+G\+TH}} = 17, 
+\newline
+\mbox{\hyperlink{blake2b_8c_a99fb83031ce9923c84392b4e92f956b5a130c5d2aef4a46470c4e2fa064f5ca52}{O\+\_\+\+R\+E\+S\+E\+R\+V\+ED}} = 18, 
+\newline
+\mbox{\hyperlink{blake2b_8c_a99fb83031ce9923c84392b4e92f956b5a4fdb890c22da07f8b1df26c9b85404c7}{O\+\_\+\+S\+A\+LT}} = 32, 
+\newline
+\mbox{\hyperlink{blake2b_8c_a99fb83031ce9923c84392b4e92f956b5a324684193b491838ed928e9dad195c53}{O\+\_\+\+P\+E\+R\+S\+O\+N\+AL}} = 48
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{blake2b_8c_a32ba77762f4bbc20bd05491e14bf7dc3}{blake2b\+\_\+set\+\_\+lastnode}} (\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$md)
+\item 
+static int \mbox{\hyperlink{blake2b_8c_a91439516618cfb2e295b99ba65b0bf84}{blake2b\+\_\+is\+\_\+lastblock}} (const \mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$md)
+\item 
+static void \mbox{\hyperlink{blake2b_8c_a708b739af8a84facdea8e166a98d4dd4}{blake2b\+\_\+set\+\_\+lastblock}} (\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$md)
+\item 
+static void \mbox{\hyperlink{blake2b_8c_a01eb5e19a85d78ffe547b9a828fa8c6f}{blake2b\+\_\+increment\+\_\+counter}} (\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$md, \mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}} inc)
+\item 
+static void \mbox{\hyperlink{blake2b_8c_aea54854ea5c46155d7aac4d3e8688a7d}{blake2b\+\_\+init0}} (\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$md)
+\item 
+static int \mbox{\hyperlink{blake2b_8c_a64470e489de75554d8cc26b523992cc7}{blake2b\+\_\+init\+\_\+param}} (\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$md, const unsigned char $\ast$P)
+\item 
+int \mbox{\hyperlink{blake2b_8c_a1f07c7dccb6eb40dfd3c86314c103174}{blake2b\+\_\+init}} (\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$md, unsigned long outlen, const unsigned char $\ast$key, unsigned long keylen)
+\begin{DoxyCompactList}\small\item\em Initialize the hash/\+M\+AC state. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{blake2b_8c_a052af9541a8f79e9217d996de94b1b8a}{blake2b\+\_\+160\+\_\+init}} (\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$md)
+\begin{DoxyCompactList}\small\item\em Initialize the hash state. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{blake2b_8c_ae4b7d7f4c73a528fc5a3ebcec766025b}{blake2b\+\_\+256\+\_\+init}} (\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$md)
+\begin{DoxyCompactList}\small\item\em Initialize the hash state. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{blake2b_8c_a95985494dcd2c6b0106b3f15499ccf42}{blake2b\+\_\+384\+\_\+init}} (\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$md)
+\begin{DoxyCompactList}\small\item\em Initialize the hash state. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{blake2b_8c_adb0897fdd5dee9830adcb23b19ebe0f1}{blake2b\+\_\+512\+\_\+init}} (\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$md)
+\begin{DoxyCompactList}\small\item\em Initialize the hash state. \end{DoxyCompactList}\item 
+static int \mbox{\hyperlink{blake2b_8c_aa9f990b9af0db6ace2de60269129214e}{blake2b\+\_\+compress}} (\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$md, const unsigned char $\ast$buf)
+\item 
+int \mbox{\hyperlink{blake2b_8c_abba3140d3bca5aaf1130479604e26580}{blake2b\+\_\+process}} (\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$md, const unsigned char $\ast$in, unsigned long inlen)
+\begin{DoxyCompactList}\small\item\em Process a block of memory through the hash. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{blake2b_8c_a0f0734cf05cdaa86e4658738c06653c2}{blake2b\+\_\+done}} (\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$md, unsigned char $\ast$out)
+\begin{DoxyCompactList}\small\item\em Terminate the hash to get the digest. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{blake2b_8c_ad2bd405cb693aaaef5ea8811859eddd0}{blake2b\+\_\+512\+\_\+test}} (void)
+\begin{DoxyCompactList}\small\item\em Self-\/test the hash. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{blake2b_8c_a7e9931db13f3096dc2521ecc353539c4}{blake2b\+\_\+384\+\_\+test}} (void)
+\begin{DoxyCompactList}\small\item\em Self-\/test the hash. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{blake2b_8c_a53be5fcfcd1910bf5aae5013563e396b}{blake2b\+\_\+256\+\_\+test}} (void)
+\begin{DoxyCompactList}\small\item\em Self-\/test the hash. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{blake2b_8c_ada54df5eb119d8d34e55c004c98fa1c5}{blake2b\+\_\+160\+\_\+test}} (void)
+\begin{DoxyCompactList}\small\item\em Self-\/test the hash. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const struct \mbox{\hyperlink{structltc__hash__descriptor}{ltc\+\_\+hash\+\_\+descriptor}} \mbox{\hyperlink{blake2b_8c_a54be2063051609d32d710aab7aa25471}{blake2b\+\_\+160\+\_\+desc}}
+\item 
+const struct \mbox{\hyperlink{structltc__hash__descriptor}{ltc\+\_\+hash\+\_\+descriptor}} \mbox{\hyperlink{blake2b_8c_ad13b82df8fd7d7954cabed6b9ce595e1}{blake2b\+\_\+256\+\_\+desc}}
+\item 
+const struct \mbox{\hyperlink{structltc__hash__descriptor}{ltc\+\_\+hash\+\_\+descriptor}} \mbox{\hyperlink{blake2b_8c_aad9be3dd5ddf14e4ba80cd6715fd44fc}{blake2b\+\_\+384\+\_\+desc}}
+\item 
+const struct \mbox{\hyperlink{structltc__hash__descriptor}{ltc\+\_\+hash\+\_\+descriptor}} \mbox{\hyperlink{blake2b_8c_a8ef4d43fecbd25e592d1a3062a81f2ea}{blake2b\+\_\+512\+\_\+desc}}
+\item 
+static const \mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}} \mbox{\hyperlink{blake2b_8c_a29482311366a2253ccea391e751b32fc}{blake2b\+\_\+\+IV}} \mbox{[}8\mbox{]}
+\item 
+static const unsigned char \mbox{\hyperlink{blake2b_8c_abd26c6a35b593773d3f3c75df945f62f}{blake2b\+\_\+sigma}} \mbox{[}12\mbox{]}\mbox{[}16\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{blake2b_8c_a4fbc796e307d9128c5de14d17c3de42a}\label{blake2b_8c_a4fbc796e307d9128c5de14d17c3de42a}} 
+\index{blake2b.c@{blake2b.c}!G@{G}}
+\index{G@{G}!blake2b.c@{blake2b.c}}
+\subsubsection{\texorpdfstring{G}{G}}
+{\footnotesize\ttfamily \#define G(\begin{DoxyParamCaption}\item[{}]{r,  }\item[{}]{i,  }\item[{}]{a,  }\item[{}]{b,  }\item[{}]{\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},  }\item[{}]{d }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{                                                                                                                \(\backslash\)}
+\DoxyCodeLine{      a = a + b + m[\mbox{\hyperlink{blake2b_8c_abd26c6a35b593773d3f3c75df945f62f}{blake2b\_sigma}}[r][2 * i + 0]];                                                                      \(\backslash\)}
+\DoxyCodeLine{      d = \mbox{\hyperlink{tomcrypt__macros_8h_a54395352f505e61474b01f454393167a}{ROR64}}(d \string^ a, 32);                                                                                            \(\backslash\)}
+\DoxyCodeLine{      c = \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} + d;                                                                                                       \(\backslash\)}
+\DoxyCodeLine{      b = \mbox{\hyperlink{tomcrypt__macros_8h_a54395352f505e61474b01f454393167a}{ROR64}}(b \string^ \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, 24);                                                                                            \(\backslash\)}
+\DoxyCodeLine{      a = a + b + m[\mbox{\hyperlink{blake2b_8c_abd26c6a35b593773d3f3c75df945f62f}{blake2b\_sigma}}[r][2 * i + 1]];                                                                      \(\backslash\)}
+\DoxyCodeLine{      d = \mbox{\hyperlink{tomcrypt__macros_8h_a54395352f505e61474b01f454393167a}{ROR64}}(d \string^ a, 16);                                                                                            \(\backslash\)}
+\DoxyCodeLine{      c = \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} + d;                                                                                                       \(\backslash\)}
+\DoxyCodeLine{      b = \mbox{\hyperlink{tomcrypt__macros_8h_a54395352f505e61474b01f454393167a}{ROR64}}(b \string^ \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, 63);                                                                                            \(\backslash\)}
+\DoxyCodeLine{   \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+
+
+Definition at line 283 of file blake2b.\+c.
+
+\mbox{\Hypertarget{blake2b_8c_ab35e822e8226ebfbc2122810b5ac5827}\label{blake2b_8c_ab35e822e8226ebfbc2122810b5ac5827}} 
+\index{blake2b.c@{blake2b.c}!ROUND@{ROUND}}
+\index{ROUND@{ROUND}!blake2b.c@{blake2b.c}}
+\subsubsection{\texorpdfstring{ROUND}{ROUND}}
+{\footnotesize\ttfamily \#define R\+O\+U\+ND(\begin{DoxyParamCaption}\item[{}]{r }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{                                                                                                                \(\backslash\)}
+\DoxyCodeLine{      G(r, 0, v[0], v[4], v[8], v[12]);                                                                                \(\backslash\)}
+\DoxyCodeLine{      G(r, 1, v[1], v[5], v[9], v[13]);                                                                                \(\backslash\)}
+\DoxyCodeLine{      G(r, 2, v[2], v[6], v[10], v[14]);                                                                               \(\backslash\)}
+\DoxyCodeLine{      G(r, 3, v[3], v[7], v[11], v[15]);                                                                               \(\backslash\)}
+\DoxyCodeLine{      G(r, 4, v[0], v[5], v[10], v[15]);                                                                               \(\backslash\)}
+\DoxyCodeLine{      G(r, 5, v[1], v[6], v[11], v[12]);                                                                               \(\backslash\)}
+\DoxyCodeLine{      G(r, 6, v[2], v[7], v[8], v[13]);                                                                                \(\backslash\)}
+\DoxyCodeLine{      G(r, 7, v[3], v[4], v[9], v[14]);                                                                                \(\backslash\)}
+\DoxyCodeLine{   \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+
+
+Definition at line 295 of file blake2b.\+c.
+
+
+
+\subsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{blake2b_8c_a99fb83031ce9923c84392b4e92f956b5}\label{blake2b_8c_a99fb83031ce9923c84392b4e92f956b5}} 
+\subsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
+{\footnotesize\ttfamily anonymous enum}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{O\_DIGEST\_LENGTH@{O\_DIGEST\_LENGTH}!blake2b.c@{blake2b.c}}\index{blake2b.c@{blake2b.c}!O\_DIGEST\_LENGTH@{O\_DIGEST\_LENGTH}}}\mbox{\Hypertarget{blake2b_8c_a99fb83031ce9923c84392b4e92f956b5ac55e8eafc668c1bc7863703b33ced068}\label{blake2b_8c_a99fb83031ce9923c84392b4e92f956b5ac55e8eafc668c1bc7863703b33ced068}} 
+O\+\_\+\+D\+I\+G\+E\+S\+T\+\_\+\+L\+E\+N\+G\+TH&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{O\_KEY\_LENGTH@{O\_KEY\_LENGTH}!blake2b.c@{blake2b.c}}\index{blake2b.c@{blake2b.c}!O\_KEY\_LENGTH@{O\_KEY\_LENGTH}}}\mbox{\Hypertarget{blake2b_8c_a99fb83031ce9923c84392b4e92f956b5a1d061f4b2149eb842123fe899aad9fde}\label{blake2b_8c_a99fb83031ce9923c84392b4e92f956b5a1d061f4b2149eb842123fe899aad9fde}} 
+O\+\_\+\+K\+E\+Y\+\_\+\+L\+E\+N\+G\+TH&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{O\_FANOUT@{O\_FANOUT}!blake2b.c@{blake2b.c}}\index{blake2b.c@{blake2b.c}!O\_FANOUT@{O\_FANOUT}}}\mbox{\Hypertarget{blake2b_8c_a99fb83031ce9923c84392b4e92f956b5a72383d443e58e4da14575b3de68b9542}\label{blake2b_8c_a99fb83031ce9923c84392b4e92f956b5a72383d443e58e4da14575b3de68b9542}} 
+O\+\_\+\+F\+A\+N\+O\+UT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{O\_DEPTH@{O\_DEPTH}!blake2b.c@{blake2b.c}}\index{blake2b.c@{blake2b.c}!O\_DEPTH@{O\_DEPTH}}}\mbox{\Hypertarget{blake2b_8c_a99fb83031ce9923c84392b4e92f956b5aa9f1fc12780d8bca0aed3d8e03ef2197}\label{blake2b_8c_a99fb83031ce9923c84392b4e92f956b5aa9f1fc12780d8bca0aed3d8e03ef2197}} 
+O\+\_\+\+D\+E\+P\+TH&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{O\_LEAF\_LENGTH@{O\_LEAF\_LENGTH}!blake2b.c@{blake2b.c}}\index{blake2b.c@{blake2b.c}!O\_LEAF\_LENGTH@{O\_LEAF\_LENGTH}}}\mbox{\Hypertarget{blake2b_8c_a99fb83031ce9923c84392b4e92f956b5a6c3cc8e8267d2ddbb49005907ec11146}\label{blake2b_8c_a99fb83031ce9923c84392b4e92f956b5a6c3cc8e8267d2ddbb49005907ec11146}} 
+O\+\_\+\+L\+E\+A\+F\+\_\+\+L\+E\+N\+G\+TH&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{O\_NODE\_OFFSET@{O\_NODE\_OFFSET}!blake2b.c@{blake2b.c}}\index{blake2b.c@{blake2b.c}!O\_NODE\_OFFSET@{O\_NODE\_OFFSET}}}\mbox{\Hypertarget{blake2b_8c_a99fb83031ce9923c84392b4e92f956b5a35b9b294b5c007308696974ee8c7c9a0}\label{blake2b_8c_a99fb83031ce9923c84392b4e92f956b5a35b9b294b5c007308696974ee8c7c9a0}} 
+O\+\_\+\+N\+O\+D\+E\+\_\+\+O\+F\+F\+S\+ET&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{O\_XOF\_LENGTH@{O\_XOF\_LENGTH}!blake2b.c@{blake2b.c}}\index{blake2b.c@{blake2b.c}!O\_XOF\_LENGTH@{O\_XOF\_LENGTH}}}\mbox{\Hypertarget{blake2b_8c_a99fb83031ce9923c84392b4e92f956b5a74b9dfa3a4e6d30238f555c5b569e951}\label{blake2b_8c_a99fb83031ce9923c84392b4e92f956b5a74b9dfa3a4e6d30238f555c5b569e951}} 
+O\+\_\+\+X\+O\+F\+\_\+\+L\+E\+N\+G\+TH&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{O\_NODE\_DEPTH@{O\_NODE\_DEPTH}!blake2b.c@{blake2b.c}}\index{blake2b.c@{blake2b.c}!O\_NODE\_DEPTH@{O\_NODE\_DEPTH}}}\mbox{\Hypertarget{blake2b_8c_a99fb83031ce9923c84392b4e92f956b5a7bf51cfbb70b68bfea8512110a66e362}\label{blake2b_8c_a99fb83031ce9923c84392b4e92f956b5a7bf51cfbb70b68bfea8512110a66e362}} 
+O\+\_\+\+N\+O\+D\+E\+\_\+\+D\+E\+P\+TH&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{O\_INNER\_LENGTH@{O\_INNER\_LENGTH}!blake2b.c@{blake2b.c}}\index{blake2b.c@{blake2b.c}!O\_INNER\_LENGTH@{O\_INNER\_LENGTH}}}\mbox{\Hypertarget{blake2b_8c_a99fb83031ce9923c84392b4e92f956b5a32e7a54b063a1f9a851792b574c9ddf1}\label{blake2b_8c_a99fb83031ce9923c84392b4e92f956b5a32e7a54b063a1f9a851792b574c9ddf1}} 
+O\+\_\+\+I\+N\+N\+E\+R\+\_\+\+L\+E\+N\+G\+TH&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{O\_RESERVED@{O\_RESERVED}!blake2b.c@{blake2b.c}}\index{blake2b.c@{blake2b.c}!O\_RESERVED@{O\_RESERVED}}}\mbox{\Hypertarget{blake2b_8c_a99fb83031ce9923c84392b4e92f956b5a130c5d2aef4a46470c4e2fa064f5ca52}\label{blake2b_8c_a99fb83031ce9923c84392b4e92f956b5a130c5d2aef4a46470c4e2fa064f5ca52}} 
+O\+\_\+\+R\+E\+S\+E\+R\+V\+ED&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{O\_SALT@{O\_SALT}!blake2b.c@{blake2b.c}}\index{blake2b.c@{blake2b.c}!O\_SALT@{O\_SALT}}}\mbox{\Hypertarget{blake2b_8c_a99fb83031ce9923c84392b4e92f956b5a4fdb890c22da07f8b1df26c9b85404c7}\label{blake2b_8c_a99fb83031ce9923c84392b4e92f956b5a4fdb890c22da07f8b1df26c9b85404c7}} 
+O\+\_\+\+S\+A\+LT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{O\_PERSONAL@{O\_PERSONAL}!blake2b.c@{blake2b.c}}\index{blake2b.c@{blake2b.c}!O\_PERSONAL@{O\_PERSONAL}}}\mbox{\Hypertarget{blake2b_8c_a99fb83031ce9923c84392b4e92f956b5a324684193b491838ed928e9dad195c53}\label{blake2b_8c_a99fb83031ce9923c84392b4e92f956b5a324684193b491838ed928e9dad195c53}} 
+O\+\_\+\+P\+E\+R\+S\+O\+N\+AL&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line 40 of file blake2b.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{40      \{}
+\DoxyCodeLine{41    \mbox{\hyperlink{blake2b_8c_a99fb83031ce9923c84392b4e92f956b5ac55e8eafc668c1bc7863703b33ced068}{O\_DIGEST\_LENGTH}} = 0,}
+\DoxyCodeLine{42    \mbox{\hyperlink{blake2b_8c_a99fb83031ce9923c84392b4e92f956b5a1d061f4b2149eb842123fe899aad9fde}{O\_KEY\_LENGTH}} = 1,}
+\DoxyCodeLine{43    \mbox{\hyperlink{blake2b_8c_a99fb83031ce9923c84392b4e92f956b5a72383d443e58e4da14575b3de68b9542}{O\_FANOUT}} = 2,}
+\DoxyCodeLine{44    \mbox{\hyperlink{blake2b_8c_a99fb83031ce9923c84392b4e92f956b5aa9f1fc12780d8bca0aed3d8e03ef2197}{O\_DEPTH}} = 3,}
+\DoxyCodeLine{45    \mbox{\hyperlink{blake2b_8c_a99fb83031ce9923c84392b4e92f956b5a6c3cc8e8267d2ddbb49005907ec11146}{O\_LEAF\_LENGTH}} = 4,}
+\DoxyCodeLine{46    \mbox{\hyperlink{blake2b_8c_a99fb83031ce9923c84392b4e92f956b5a35b9b294b5c007308696974ee8c7c9a0}{O\_NODE\_OFFSET}} = 8,}
+\DoxyCodeLine{47    \mbox{\hyperlink{blake2b_8c_a99fb83031ce9923c84392b4e92f956b5a74b9dfa3a4e6d30238f555c5b569e951}{O\_XOF\_LENGTH}} = 12,}
+\DoxyCodeLine{48    \mbox{\hyperlink{blake2b_8c_a99fb83031ce9923c84392b4e92f956b5a7bf51cfbb70b68bfea8512110a66e362}{O\_NODE\_DEPTH}} = 16,}
+\DoxyCodeLine{49    \mbox{\hyperlink{blake2b_8c_a99fb83031ce9923c84392b4e92f956b5a32e7a54b063a1f9a851792b574c9ddf1}{O\_INNER\_LENGTH}} = 17,}
+\DoxyCodeLine{50    \mbox{\hyperlink{blake2b_8c_a99fb83031ce9923c84392b4e92f956b5a130c5d2aef4a46470c4e2fa064f5ca52}{O\_RESERVED}} = 18,}
+\DoxyCodeLine{51    \mbox{\hyperlink{blake2b_8c_a99fb83031ce9923c84392b4e92f956b5a4fdb890c22da07f8b1df26c9b85404c7}{O\_SALT}} = 32,}
+\DoxyCodeLine{52    \mbox{\hyperlink{blake2b_8c_a99fb83031ce9923c84392b4e92f956b5a324684193b491838ed928e9dad195c53}{O\_PERSONAL}} = 48}
+\DoxyCodeLine{53 \};}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{blake2b_8c_a55df020abc59e40eb12965cf08eca1b5}\label{blake2b_8c_a55df020abc59e40eb12965cf08eca1b5}} 
+\index{blake2b.c@{blake2b.c}!blake2b\_constant@{blake2b\_constant}}
+\index{blake2b\_constant@{blake2b\_constant}!blake2b.c@{blake2b.c}}
+\subsubsection{\texorpdfstring{blake2b\_constant}{blake2b\_constant}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{blake2b_8c_a55df020abc59e40eb12965cf08eca1b5}{blake2b\+\_\+constant}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BLAKE2B\_BLOCKBYTES@{BLAKE2B\_BLOCKBYTES}!blake2b.c@{blake2b.c}}\index{blake2b.c@{blake2b.c}!BLAKE2B\_BLOCKBYTES@{BLAKE2B\_BLOCKBYTES}}}\mbox{\Hypertarget{blake2b_8c_a55df020abc59e40eb12965cf08eca1b5aea9f79a4ec90a788ea0590ae5dfda693}\label{blake2b_8c_a55df020abc59e40eb12965cf08eca1b5aea9f79a4ec90a788ea0590ae5dfda693}} 
+B\+L\+A\+K\+E2\+B\+\_\+\+B\+L\+O\+C\+K\+B\+Y\+T\+ES&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BLAKE2B\_OUTBYTES@{BLAKE2B\_OUTBYTES}!blake2b.c@{blake2b.c}}\index{blake2b.c@{blake2b.c}!BLAKE2B\_OUTBYTES@{BLAKE2B\_OUTBYTES}}}\mbox{\Hypertarget{blake2b_8c_a55df020abc59e40eb12965cf08eca1b5ac4536ddb2539173d703b1bc458cce33b}\label{blake2b_8c_a55df020abc59e40eb12965cf08eca1b5ac4536ddb2539173d703b1bc458cce33b}} 
+B\+L\+A\+K\+E2\+B\+\_\+\+O\+U\+T\+B\+Y\+T\+ES&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BLAKE2B\_KEYBYTES@{BLAKE2B\_KEYBYTES}!blake2b.c@{blake2b.c}}\index{blake2b.c@{blake2b.c}!BLAKE2B\_KEYBYTES@{BLAKE2B\_KEYBYTES}}}\mbox{\Hypertarget{blake2b_8c_a55df020abc59e40eb12965cf08eca1b5a8dfea1685718cfdbbfc48b85cec868e4}\label{blake2b_8c_a55df020abc59e40eb12965cf08eca1b5a8dfea1685718cfdbbfc48b85cec868e4}} 
+B\+L\+A\+K\+E2\+B\+\_\+\+K\+E\+Y\+B\+Y\+T\+ES&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BLAKE2B\_SALTBYTES@{BLAKE2B\_SALTBYTES}!blake2b.c@{blake2b.c}}\index{blake2b.c@{blake2b.c}!BLAKE2B\_SALTBYTES@{BLAKE2B\_SALTBYTES}}}\mbox{\Hypertarget{blake2b_8c_a55df020abc59e40eb12965cf08eca1b5ac6bdac02af2cbdd70f76ae63c1d3fa1e}\label{blake2b_8c_a55df020abc59e40eb12965cf08eca1b5ac6bdac02af2cbdd70f76ae63c1d3fa1e}} 
+B\+L\+A\+K\+E2\+B\+\_\+\+S\+A\+L\+T\+B\+Y\+T\+ES&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BLAKE2B\_PERSONALBYTES@{BLAKE2B\_PERSONALBYTES}!blake2b.c@{blake2b.c}}\index{blake2b.c@{blake2b.c}!BLAKE2B\_PERSONALBYTES@{BLAKE2B\_PERSONALBYTES}}}\mbox{\Hypertarget{blake2b_8c_a55df020abc59e40eb12965cf08eca1b5a83ed255c34f4b1603226f7e3854d57d6}\label{blake2b_8c_a55df020abc59e40eb12965cf08eca1b5a83ed255c34f4b1603226f7e3854d57d6}} 
+B\+L\+A\+K\+E2\+B\+\_\+\+P\+E\+R\+S\+O\+N\+A\+L\+B\+Y\+T\+ES&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BLAKE2B\_PARAM\_SIZE@{BLAKE2B\_PARAM\_SIZE}!blake2b.c@{blake2b.c}}\index{blake2b.c@{blake2b.c}!BLAKE2B\_PARAM\_SIZE@{BLAKE2B\_PARAM\_SIZE}}}\mbox{\Hypertarget{blake2b_8c_a55df020abc59e40eb12965cf08eca1b5a835b377f9cf534090c32677d2694ffd2}\label{blake2b_8c_a55df020abc59e40eb12965cf08eca1b5a835b377f9cf534090c32677d2694ffd2}} 
+B\+L\+A\+K\+E2\+B\+\_\+\+P\+A\+R\+A\+M\+\_\+\+S\+I\+ZE&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line 30 of file blake2b.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{30                       \{}
+\DoxyCodeLine{31    \mbox{\hyperlink{blake2b_8c_a55df020abc59e40eb12965cf08eca1b5aea9f79a4ec90a788ea0590ae5dfda693}{BLAKE2B\_BLOCKBYTES}} = 128,}
+\DoxyCodeLine{32    \mbox{\hyperlink{blake2b_8c_a55df020abc59e40eb12965cf08eca1b5ac4536ddb2539173d703b1bc458cce33b}{BLAKE2B\_OUTBYTES}} = 64,}
+\DoxyCodeLine{33    \mbox{\hyperlink{blake2b_8c_a55df020abc59e40eb12965cf08eca1b5a8dfea1685718cfdbbfc48b85cec868e4}{BLAKE2B\_KEYBYTES}} = 64,}
+\DoxyCodeLine{34    \mbox{\hyperlink{blake2b_8c_a55df020abc59e40eb12965cf08eca1b5ac6bdac02af2cbdd70f76ae63c1d3fa1e}{BLAKE2B\_SALTBYTES}} = 16,}
+\DoxyCodeLine{35    \mbox{\hyperlink{blake2b_8c_a55df020abc59e40eb12965cf08eca1b5a83ed255c34f4b1603226f7e3854d57d6}{BLAKE2B\_PERSONALBYTES}} = 16,}
+\DoxyCodeLine{36    \mbox{\hyperlink{blake2b_8c_a55df020abc59e40eb12965cf08eca1b5a835b377f9cf534090c32677d2694ffd2}{BLAKE2B\_PARAM\_SIZE}} = 64}
+\DoxyCodeLine{37 \};}
+
+\end{DoxyCode}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{blake2b_8c_a052af9541a8f79e9217d996de94b1b8a}\label{blake2b_8c_a052af9541a8f79e9217d996de94b1b8a}} 
+\index{blake2b.c@{blake2b.c}!blake2b\_160\_init@{blake2b\_160\_init}}
+\index{blake2b\_160\_init@{blake2b\_160\_init}!blake2b.c@{blake2b.c}}
+\subsubsection{\texorpdfstring{blake2b\_160\_init()}{blake2b\_160\_init()}}
+{\footnotesize\ttfamily int blake2b\+\_\+160\+\_\+init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$}]{md }\end{DoxyParamCaption})}
+
+
+
+Initialize the hash state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em md} & The hash state you wish to initialize \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 260 of file blake2b.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{260 \{ \textcolor{keywordflow}{return} \mbox{\hyperlink{blake2b_8c_a1f07c7dccb6eb40dfd3c86314c103174}{blake2b\_init}}(md, 20, NULL, 0); \}}
+
+\end{DoxyCode}
+
+
+References blake2b\+\_\+init().
+
+
+
+Referenced by blake2b\+\_\+160\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2
+\mbox{\Hypertarget{blake2b_8c_ada54df5eb119d8d34e55c004c98fa1c5}\label{blake2b_8c_ada54df5eb119d8d34e55c004c98fa1c5}} 
+\index{blake2b.c@{blake2b.c}!blake2b\_160\_test@{blake2b\_160\_test}}
+\index{blake2b\_160\_test@{blake2b\_160\_test}!blake2b.c@{blake2b.c}}
+\subsubsection{\texorpdfstring{blake2b\_160\_test()}{blake2b\_160\_test()}}
+{\footnotesize\ttfamily int blake2b\+\_\+160\+\_\+test (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Self-\/test the hash. 
+
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful, C\+R\+Y\+P\+T\+\_\+\+N\+OP if self-\/tests have been disabled 
+\end{DoxyReturn}
+
+
+Definition at line 597 of file blake2b.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{598 \{}
+\DoxyCodeLine{599 \textcolor{preprocessor}{\#ifndef LTC\_TEST}}
+\DoxyCodeLine{600    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cac43a7799c7fd5f515172da6cfc0f9cf5}{CRYPT\_NOP}};}
+\DoxyCodeLine{601 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{602    \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{603       \textcolor{keyword}{const} \textcolor{keywordtype}{char} *msg;}
+\DoxyCodeLine{604       \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} hash[20];}
+\DoxyCodeLine{605   \} tests[] = \{}
+\DoxyCodeLine{606     \{ \textcolor{stringliteral}{""},}
+\DoxyCodeLine{607       \{ 0x33, 0x45, 0x52, 0x4a, 0xbf, 0x6b, 0xbe, 0x18,}
+\DoxyCodeLine{608         0x09, 0x44, 0x92, 0x24, 0xb5, 0x97, 0x2c, 0x41,}
+\DoxyCodeLine{609         0x79, 0x0b, 0x6c, 0xf2 \} \},}
+\DoxyCodeLine{610     \{ \textcolor{stringliteral}{"abc"},}
+\DoxyCodeLine{611       \{ 0x38, 0x42, 0x64, 0xf6, 0x76, 0xf3, 0x95, 0x36,}
+\DoxyCodeLine{612         0x84, 0x05, 0x23, 0xf2, 0x84, 0x92, 0x1c, 0xdc,}
+\DoxyCodeLine{613         0x68, 0xb6, 0x84, 0x6b \} \},}
+\DoxyCodeLine{614 }
+\DoxyCodeLine{615     \{ NULL, \{ 0 \} \}}
+\DoxyCodeLine{616   \};}
+\DoxyCodeLine{617 }
+\DoxyCodeLine{618    \textcolor{keywordtype}{int} i;}
+\DoxyCodeLine{619    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} tmp[20];}
+\DoxyCodeLine{620    \mbox{\hyperlink{unionHash__state}{hash\_state}} md;}
+\DoxyCodeLine{621 }
+\DoxyCodeLine{622    \textcolor{keywordflow}{for} (i = 0; tests[i].msg != NULL; i++) \{}
+\DoxyCodeLine{623       \mbox{\hyperlink{blake2b_8c_a052af9541a8f79e9217d996de94b1b8a}{blake2b\_160\_init}}(\&md);}
+\DoxyCodeLine{624       \mbox{\hyperlink{blake2b_8c_abba3140d3bca5aaf1130479604e26580}{blake2b\_process}}(\&md, (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *)tests[i].msg, (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long})strlen(tests[i].msg));}
+\DoxyCodeLine{625       \mbox{\hyperlink{blake2b_8c_a0f0734cf05cdaa86e4658738c06653c2}{blake2b\_done}}(\&md, tmp);}
+\DoxyCodeLine{626       \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(tmp, \textcolor{keyword}{sizeof}(tmp), tests[i].hash, \textcolor{keyword}{sizeof}(tests[i].hash), \textcolor{stringliteral}{"BLAKE2B\_160"}, i)) \{}
+\DoxyCodeLine{627          \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{628       \}}
+\DoxyCodeLine{629    \}}
+\DoxyCodeLine{630    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{631 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{632 \}}
+
+\end{DoxyCode}
+
+
+References blake2b\+\_\+160\+\_\+init(), blake2b\+\_\+done(), blake2b\+\_\+process(), compare\+\_\+testvector(), C\+R\+Y\+P\+T\+\_\+\+F\+A\+I\+L\+\_\+\+T\+E\+S\+T\+V\+E\+C\+T\+OR, C\+R\+Y\+P\+T\+\_\+\+N\+OP, and C\+R\+Y\+P\+T\+\_\+\+OK.
+
+Here is the call graph for this function\+:
+% FIG 3
+\mbox{\Hypertarget{blake2b_8c_ae4b7d7f4c73a528fc5a3ebcec766025b}\label{blake2b_8c_ae4b7d7f4c73a528fc5a3ebcec766025b}} 
+\index{blake2b.c@{blake2b.c}!blake2b\_256\_init@{blake2b\_256\_init}}
+\index{blake2b\_256\_init@{blake2b\_256\_init}!blake2b.c@{blake2b.c}}
+\subsubsection{\texorpdfstring{blake2b\_256\_init()}{blake2b\_256\_init()}}
+{\footnotesize\ttfamily int blake2b\+\_\+256\+\_\+init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$}]{md }\end{DoxyParamCaption})}
+
+
+
+Initialize the hash state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em md} & The hash state you wish to initialize \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 267 of file blake2b.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{267 \{ \textcolor{keywordflow}{return} \mbox{\hyperlink{blake2b_8c_a1f07c7dccb6eb40dfd3c86314c103174}{blake2b\_init}}(md, 32, NULL, 0); \}}
+
+\end{DoxyCode}
+
+
+References blake2b\+\_\+init().
+
+
+
+Referenced by blake2b\+\_\+256\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 4
+Here is the caller graph for this function\+:
+% FIG 5
+\mbox{\Hypertarget{blake2b_8c_a53be5fcfcd1910bf5aae5013563e396b}\label{blake2b_8c_a53be5fcfcd1910bf5aae5013563e396b}} 
+\index{blake2b.c@{blake2b.c}!blake2b\_256\_test@{blake2b\_256\_test}}
+\index{blake2b\_256\_test@{blake2b\_256\_test}!blake2b.c@{blake2b.c}}
+\subsubsection{\texorpdfstring{blake2b\_256\_test()}{blake2b\_256\_test()}}
+{\footnotesize\ttfamily int blake2b\+\_\+256\+\_\+test (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Self-\/test the hash. 
+
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful, C\+R\+Y\+P\+T\+\_\+\+N\+OP if self-\/tests have been disabled 
+\end{DoxyReturn}
+
+
+Definition at line 544 of file blake2b.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{545 \{}
+\DoxyCodeLine{546 \textcolor{preprocessor}{\#ifndef LTC\_TEST}}
+\DoxyCodeLine{547    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cac43a7799c7fd5f515172da6cfc0f9cf5}{CRYPT\_NOP}};}
+\DoxyCodeLine{548 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{549    \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{550       \textcolor{keyword}{const} \textcolor{keywordtype}{char} *msg;}
+\DoxyCodeLine{551       \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} hash[32];}
+\DoxyCodeLine{552   \} tests[] = \{}
+\DoxyCodeLine{553     \{ \textcolor{stringliteral}{""},}
+\DoxyCodeLine{554       \{ 0x0e, 0x57, 0x51, 0xc0, 0x26, 0xe5, 0x43, 0xb2,}
+\DoxyCodeLine{555         0xe8, 0xab, 0x2e, 0xb0, 0x60, 0x99, 0xda, 0xa1,}
+\DoxyCodeLine{556         0xd1, 0xe5, 0xdf, 0x47, 0x77, 0x8f, 0x77, 0x87,}
+\DoxyCodeLine{557         0xfa, 0xab, 0x45, 0xcd, 0xf1, 0x2f, 0xe3, 0xa8 \} \},}
+\DoxyCodeLine{558     \{ \textcolor{stringliteral}{"abc"},}
+\DoxyCodeLine{559       \{ 0xbd, 0xdd, 0x81, 0x3c, 0x63, 0x42, 0x39, 0x72,}
+\DoxyCodeLine{560         0x31, 0x71, 0xef, 0x3f, 0xee, 0x98, 0x57, 0x9b,}
+\DoxyCodeLine{561         0x94, 0x96, 0x4e, 0x3b, 0xb1, 0xcb, 0x3e, 0x42,}
+\DoxyCodeLine{562         0x72, 0x62, 0xc8, 0xc0, 0x68, 0xd5, 0x23, 0x19 \} \},}
+\DoxyCodeLine{563     \{ \textcolor{stringliteral}{"12345678901234567890123456789012345678901234567890"}}
+\DoxyCodeLine{564       \textcolor{stringliteral}{"12345678901234567890123456789012345678901234567890"}}
+\DoxyCodeLine{565       \textcolor{stringliteral}{"12345678901234567890123456789012345678901234567890"}}
+\DoxyCodeLine{566       \textcolor{stringliteral}{"12345678901234567890123456789012345678901234567890"}}
+\DoxyCodeLine{567       \textcolor{stringliteral}{"12345678901234567890123456789012345678901234567890"}}
+\DoxyCodeLine{568       \textcolor{stringliteral}{"12345678901234567890123456789012345678901234567890"},}
+\DoxyCodeLine{569       \{ 0x0f, 0x6e, 0x01, 0x8d, 0x38, 0xd6, 0x3f, 0x08,}
+\DoxyCodeLine{570         0x4d, 0x58, 0xe3, 0x0c, 0x90, 0xfb, 0xa2, 0x41,}
+\DoxyCodeLine{571         0x5f, 0xca, 0x17, 0xfa, 0x66, 0x26, 0x49, 0xf3,}
+\DoxyCodeLine{572         0x8a, 0x30, 0x41, 0x7c, 0x57, 0xcd, 0xa8, 0x14 \} \},}
+\DoxyCodeLine{573 }
+\DoxyCodeLine{574     \{ NULL, \{ 0 \} \}}
+\DoxyCodeLine{575   \};}
+\DoxyCodeLine{576 }
+\DoxyCodeLine{577    \textcolor{keywordtype}{int} i;}
+\DoxyCodeLine{578    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} tmp[32];}
+\DoxyCodeLine{579    \mbox{\hyperlink{unionHash__state}{hash\_state}} md;}
+\DoxyCodeLine{580 }
+\DoxyCodeLine{581    \textcolor{keywordflow}{for} (i = 0; tests[i].msg != NULL; i++) \{}
+\DoxyCodeLine{582       \mbox{\hyperlink{blake2b_8c_ae4b7d7f4c73a528fc5a3ebcec766025b}{blake2b\_256\_init}}(\&md);}
+\DoxyCodeLine{583       \mbox{\hyperlink{blake2b_8c_abba3140d3bca5aaf1130479604e26580}{blake2b\_process}}(\&md, (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *)tests[i].msg, (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long})strlen(tests[i].msg));}
+\DoxyCodeLine{584       \mbox{\hyperlink{blake2b_8c_a0f0734cf05cdaa86e4658738c06653c2}{blake2b\_done}}(\&md, tmp);}
+\DoxyCodeLine{585       \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(tmp, \textcolor{keyword}{sizeof}(tmp), tests[i].hash, \textcolor{keyword}{sizeof}(tests[i].hash), \textcolor{stringliteral}{"BLAKE2B\_256"}, i)) \{}
+\DoxyCodeLine{586          \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{587       \}}
+\DoxyCodeLine{588    \}}
+\DoxyCodeLine{589    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{590 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{591 \}}
+
+\end{DoxyCode}
+
+
+References blake2b\+\_\+256\+\_\+init(), blake2b\+\_\+done(), blake2b\+\_\+process(), compare\+\_\+testvector(), C\+R\+Y\+P\+T\+\_\+\+F\+A\+I\+L\+\_\+\+T\+E\+S\+T\+V\+E\+C\+T\+OR, C\+R\+Y\+P\+T\+\_\+\+N\+OP, and C\+R\+Y\+P\+T\+\_\+\+OK.
+
+Here is the call graph for this function\+:
+% FIG 6
+\mbox{\Hypertarget{blake2b_8c_a95985494dcd2c6b0106b3f15499ccf42}\label{blake2b_8c_a95985494dcd2c6b0106b3f15499ccf42}} 
+\index{blake2b.c@{blake2b.c}!blake2b\_384\_init@{blake2b\_384\_init}}
+\index{blake2b\_384\_init@{blake2b\_384\_init}!blake2b.c@{blake2b.c}}
+\subsubsection{\texorpdfstring{blake2b\_384\_init()}{blake2b\_384\_init()}}
+{\footnotesize\ttfamily int blake2b\+\_\+384\+\_\+init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$}]{md }\end{DoxyParamCaption})}
+
+
+
+Initialize the hash state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em md} & The hash state you wish to initialize \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 274 of file blake2b.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{274 \{ \textcolor{keywordflow}{return} \mbox{\hyperlink{blake2b_8c_a1f07c7dccb6eb40dfd3c86314c103174}{blake2b\_init}}(md, 48, NULL, 0); \}}
+
+\end{DoxyCode}
+
+
+References blake2b\+\_\+init().
+
+
+
+Referenced by blake2b\+\_\+384\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 7
+Here is the caller graph for this function\+:
+% FIG 8
+\mbox{\Hypertarget{blake2b_8c_a7e9931db13f3096dc2521ecc353539c4}\label{blake2b_8c_a7e9931db13f3096dc2521ecc353539c4}} 
+\index{blake2b.c@{blake2b.c}!blake2b\_384\_test@{blake2b\_384\_test}}
+\index{blake2b\_384\_test@{blake2b\_384\_test}!blake2b.c@{blake2b.c}}
+\subsubsection{\texorpdfstring{blake2b\_384\_test()}{blake2b\_384\_test()}}
+{\footnotesize\ttfamily int blake2b\+\_\+384\+\_\+test (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Self-\/test the hash. 
+
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful, C\+R\+Y\+P\+T\+\_\+\+N\+OP if self-\/tests have been disabled 
+\end{DoxyReturn}
+
+
+Definition at line 497 of file blake2b.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{498 \{}
+\DoxyCodeLine{499 \textcolor{preprocessor}{\#ifndef LTC\_TEST}}
+\DoxyCodeLine{500    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cac43a7799c7fd5f515172da6cfc0f9cf5}{CRYPT\_NOP}};}
+\DoxyCodeLine{501 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{502    \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{503       \textcolor{keyword}{const} \textcolor{keywordtype}{char} *msg;}
+\DoxyCodeLine{504       \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} hash[48];}
+\DoxyCodeLine{505   \} tests[] = \{}
+\DoxyCodeLine{506     \{ \textcolor{stringliteral}{""},}
+\DoxyCodeLine{507       \{ 0xb3, 0x28, 0x11, 0x42, 0x33, 0x77, 0xf5, 0x2d,}
+\DoxyCodeLine{508         0x78, 0x62, 0x28, 0x6e, 0xe1, 0xa7, 0x2e, 0xe5,}
+\DoxyCodeLine{509         0x40, 0x52, 0x43, 0x80, 0xfd, 0xa1, 0x72, 0x4a,}
+\DoxyCodeLine{510         0x6f, 0x25, 0xd7, 0x97, 0x8c, 0x6f, 0xd3, 0x24,}
+\DoxyCodeLine{511         0x4a, 0x6c, 0xaf, 0x04, 0x98, 0x81, 0x26, 0x73,}
+\DoxyCodeLine{512         0xc5, 0xe0, 0x5e, 0xf5, 0x83, 0x82, 0x51, 0x00 \} \},}
+\DoxyCodeLine{513     \{ \textcolor{stringliteral}{"abc"},}
+\DoxyCodeLine{514       \{ 0x6f, 0x56, 0xa8, 0x2c, 0x8e, 0x7e, 0xf5, 0x26,}
+\DoxyCodeLine{515         0xdf, 0xe1, 0x82, 0xeb, 0x52, 0x12, 0xf7, 0xdb,}
+\DoxyCodeLine{516         0x9d, 0xf1, 0x31, 0x7e, 0x57, 0x81, 0x5d, 0xbd,}
+\DoxyCodeLine{517         0xa4, 0x60, 0x83, 0xfc, 0x30, 0xf5, 0x4e, 0xe6,}
+\DoxyCodeLine{518         0xc6, 0x6b, 0xa8, 0x3b, 0xe6, 0x4b, 0x30, 0x2d,}
+\DoxyCodeLine{519         0x7c, 0xba, 0x6c, 0xe1, 0x5b, 0xb5, 0x56, 0xf4 \} \},}
+\DoxyCodeLine{520 }
+\DoxyCodeLine{521     \{ NULL, \{ 0 \} \}}
+\DoxyCodeLine{522   \};}
+\DoxyCodeLine{523 }
+\DoxyCodeLine{524    \textcolor{keywordtype}{int} i;}
+\DoxyCodeLine{525    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} tmp[48];}
+\DoxyCodeLine{526    \mbox{\hyperlink{unionHash__state}{hash\_state}} md;}
+\DoxyCodeLine{527 }
+\DoxyCodeLine{528    \textcolor{keywordflow}{for} (i = 0; tests[i].msg != NULL; i++) \{}
+\DoxyCodeLine{529       \mbox{\hyperlink{blake2b_8c_a95985494dcd2c6b0106b3f15499ccf42}{blake2b\_384\_init}}(\&md);}
+\DoxyCodeLine{530       \mbox{\hyperlink{blake2b_8c_abba3140d3bca5aaf1130479604e26580}{blake2b\_process}}(\&md, (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *)tests[i].msg, (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long})strlen(tests[i].msg));}
+\DoxyCodeLine{531       \mbox{\hyperlink{blake2b_8c_a0f0734cf05cdaa86e4658738c06653c2}{blake2b\_done}}(\&md, tmp);}
+\DoxyCodeLine{532       \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(tmp, \textcolor{keyword}{sizeof}(tmp), tests[i].hash, \textcolor{keyword}{sizeof}(tests[i].hash), \textcolor{stringliteral}{"BLAKE2B\_384"}, i)) \{}
+\DoxyCodeLine{533          \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{534       \}}
+\DoxyCodeLine{535    \}}
+\DoxyCodeLine{536    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{537 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{538 \}}
+
+\end{DoxyCode}
+
+
+References blake2b\+\_\+384\+\_\+init(), blake2b\+\_\+done(), blake2b\+\_\+process(), compare\+\_\+testvector(), C\+R\+Y\+P\+T\+\_\+\+F\+A\+I\+L\+\_\+\+T\+E\+S\+T\+V\+E\+C\+T\+OR, C\+R\+Y\+P\+T\+\_\+\+N\+OP, and C\+R\+Y\+P\+T\+\_\+\+OK.
+
+Here is the call graph for this function\+:
+% FIG 9
+\mbox{\Hypertarget{blake2b_8c_adb0897fdd5dee9830adcb23b19ebe0f1}\label{blake2b_8c_adb0897fdd5dee9830adcb23b19ebe0f1}} 
+\index{blake2b.c@{blake2b.c}!blake2b\_512\_init@{blake2b\_512\_init}}
+\index{blake2b\_512\_init@{blake2b\_512\_init}!blake2b.c@{blake2b.c}}
+\subsubsection{\texorpdfstring{blake2b\_512\_init()}{blake2b\_512\_init()}}
+{\footnotesize\ttfamily int blake2b\+\_\+512\+\_\+init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$}]{md }\end{DoxyParamCaption})}
+
+
+
+Initialize the hash state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em md} & The hash state you wish to initialize \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 281 of file blake2b.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{281 \{ \textcolor{keywordflow}{return} \mbox{\hyperlink{blake2b_8c_a1f07c7dccb6eb40dfd3c86314c103174}{blake2b\_init}}(md, 64, NULL, 0); \}}
+
+\end{DoxyCode}
+
+
+References blake2b\+\_\+init().
+
+
+
+Referenced by blake2b\+\_\+512\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 10
+Here is the caller graph for this function\+:
+% FIG 11
+\mbox{\Hypertarget{blake2b_8c_ad2bd405cb693aaaef5ea8811859eddd0}\label{blake2b_8c_ad2bd405cb693aaaef5ea8811859eddd0}} 
+\index{blake2b.c@{blake2b.c}!blake2b\_512\_test@{blake2b\_512\_test}}
+\index{blake2b\_512\_test@{blake2b\_512\_test}!blake2b.c@{blake2b.c}}
+\subsubsection{\texorpdfstring{blake2b\_512\_test()}{blake2b\_512\_test()}}
+{\footnotesize\ttfamily int blake2b\+\_\+512\+\_\+test (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Self-\/test the hash. 
+
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful, C\+R\+Y\+P\+T\+\_\+\+N\+OP if self-\/tests have been disabled 
+\end{DoxyReturn}
+
+
+Definition at line 446 of file blake2b.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{447 \{}
+\DoxyCodeLine{448 \textcolor{preprocessor}{\#ifndef LTC\_TEST}}
+\DoxyCodeLine{449    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cac43a7799c7fd5f515172da6cfc0f9cf5}{CRYPT\_NOP}};}
+\DoxyCodeLine{450 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{451    \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{452       \textcolor{keyword}{const} \textcolor{keywordtype}{char} *msg;}
+\DoxyCodeLine{453       \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} hash[64];}
+\DoxyCodeLine{454   \} tests[] = \{}
+\DoxyCodeLine{455     \{ \textcolor{stringliteral}{""},}
+\DoxyCodeLine{456       \{ 0x78, 0x6a, 0x02, 0xf7, 0x42, 0x01, 0x59, 0x03,}
+\DoxyCodeLine{457         0xc6, 0xc6, 0xfd, 0x85, 0x25, 0x52, 0xd2, 0x72,}
+\DoxyCodeLine{458         0x91, 0x2f, 0x47, 0x40, 0xe1, 0x58, 0x47, 0x61,}
+\DoxyCodeLine{459         0x8a, 0x86, 0xe2, 0x17, 0xf7, 0x1f, 0x54, 0x19,}
+\DoxyCodeLine{460         0xd2, 0x5e, 0x10, 0x31, 0xaf, 0xee, 0x58, 0x53,}
+\DoxyCodeLine{461         0x13, 0x89, 0x64, 0x44, 0x93, 0x4e, 0xb0, 0x4b,}
+\DoxyCodeLine{462         0x90, 0x3a, 0x68, 0x5b, 0x14, 0x48, 0xb7, 0x55,}
+\DoxyCodeLine{463         0xd5, 0x6f, 0x70, 0x1a, 0xfe, 0x9b, 0xe2, 0xce \} \},}
+\DoxyCodeLine{464     \{ \textcolor{stringliteral}{"abc"},}
+\DoxyCodeLine{465       \{ 0xba, 0x80, 0xa5, 0x3f, 0x98, 0x1c, 0x4d, 0x0d,}
+\DoxyCodeLine{466         0x6a, 0x27, 0x97, 0xb6, 0x9f, 0x12, 0xf6, 0xe9,}
+\DoxyCodeLine{467         0x4c, 0x21, 0x2f, 0x14, 0x68, 0x5a, 0xc4, 0xb7,}
+\DoxyCodeLine{468         0x4b, 0x12, 0xbb, 0x6f, 0xdb, 0xff, 0xa2, 0xd1,}
+\DoxyCodeLine{469         0x7d, 0x87, 0xc5, 0x39, 0x2a, 0xab, 0x79, 0x2d,}
+\DoxyCodeLine{470         0xc2, 0x52, 0xd5, 0xde, 0x45, 0x33, 0xcc, 0x95,}
+\DoxyCodeLine{471         0x18, 0xd3, 0x8a, 0xa8, 0xdb, 0xf1, 0x92, 0x5a,}
+\DoxyCodeLine{472         0xb9, 0x23, 0x86, 0xed, 0xd4, 0x00, 0x99, 0x23 \} \},}
+\DoxyCodeLine{473 }
+\DoxyCodeLine{474     \{ NULL, \{ 0 \} \}}
+\DoxyCodeLine{475   \};}
+\DoxyCodeLine{476 }
+\DoxyCodeLine{477    \textcolor{keywordtype}{int} i;}
+\DoxyCodeLine{478    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} tmp[64];}
+\DoxyCodeLine{479    \mbox{\hyperlink{unionHash__state}{hash\_state}} md;}
+\DoxyCodeLine{480 }
+\DoxyCodeLine{481    \textcolor{keywordflow}{for} (i = 0; tests[i].msg != NULL; i++) \{}
+\DoxyCodeLine{482       \mbox{\hyperlink{blake2b_8c_adb0897fdd5dee9830adcb23b19ebe0f1}{blake2b\_512\_init}}(\&md);}
+\DoxyCodeLine{483       \mbox{\hyperlink{blake2b_8c_abba3140d3bca5aaf1130479604e26580}{blake2b\_process}}(\&md, (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *)tests[i].msg, (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long})strlen(tests[i].msg));}
+\DoxyCodeLine{484       \mbox{\hyperlink{blake2b_8c_a0f0734cf05cdaa86e4658738c06653c2}{blake2b\_done}}(\&md, tmp);}
+\DoxyCodeLine{485       \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(tmp, \textcolor{keyword}{sizeof}(tmp), tests[i].hash, \textcolor{keyword}{sizeof}(tests[i].hash), \textcolor{stringliteral}{"BLAKE2B\_512"}, i)) \{}
+\DoxyCodeLine{486          \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{487       \}}
+\DoxyCodeLine{488    \}}
+\DoxyCodeLine{489    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{490 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{491 \}}
+
+\end{DoxyCode}
+
+
+References blake2b\+\_\+512\+\_\+init(), blake2b\+\_\+done(), blake2b\+\_\+process(), compare\+\_\+testvector(), C\+R\+Y\+P\+T\+\_\+\+F\+A\+I\+L\+\_\+\+T\+E\+S\+T\+V\+E\+C\+T\+OR, C\+R\+Y\+P\+T\+\_\+\+N\+OP, and C\+R\+Y\+P\+T\+\_\+\+OK.
+
+Here is the call graph for this function\+:
+% FIG 12
+\mbox{\Hypertarget{blake2b_8c_aa9f990b9af0db6ace2de60269129214e}\label{blake2b_8c_aa9f990b9af0db6ace2de60269129214e}} 
+\index{blake2b.c@{blake2b.c}!blake2b\_compress@{blake2b\_compress}}
+\index{blake2b\_compress@{blake2b\_compress}!blake2b.c@{blake2b.c}}
+\subsubsection{\texorpdfstring{blake2b\_compress()}{blake2b\_compress()}}
+{\footnotesize\ttfamily static int blake2b\+\_\+compress (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$}]{md,  }\item[{const unsigned char $\ast$}]{buf }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 310 of file blake2b.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{312 \{}
+\DoxyCodeLine{313    \mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}} m[16];}
+\DoxyCodeLine{314    \mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}} v[16];}
+\DoxyCodeLine{315    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} i;}
+\DoxyCodeLine{316 }
+\DoxyCodeLine{317    \textcolor{keywordflow}{for} (i = 0; i < 16; ++i) \{}
+\DoxyCodeLine{318       LOAD64L(m[i], buf + i * \textcolor{keyword}{sizeof}(m[i]));}
+\DoxyCodeLine{319    \}}
+\DoxyCodeLine{320 }
+\DoxyCodeLine{321    \textcolor{keywordflow}{for} (i = 0; i < 8; ++i) \{}
+\DoxyCodeLine{322       v[i] = md->blake2b.h[i];}
+\DoxyCodeLine{323    \}}
+\DoxyCodeLine{324 }
+\DoxyCodeLine{325    v[8] = \mbox{\hyperlink{blake2b_8c_a29482311366a2253ccea391e751b32fc}{blake2b\_IV}}[0];}
+\DoxyCodeLine{326    v[9] = \mbox{\hyperlink{blake2b_8c_a29482311366a2253ccea391e751b32fc}{blake2b\_IV}}[1];}
+\DoxyCodeLine{327    v[10] = \mbox{\hyperlink{blake2b_8c_a29482311366a2253ccea391e751b32fc}{blake2b\_IV}}[2];}
+\DoxyCodeLine{328    v[11] = \mbox{\hyperlink{blake2b_8c_a29482311366a2253ccea391e751b32fc}{blake2b\_IV}}[3];}
+\DoxyCodeLine{329    v[12] = \mbox{\hyperlink{blake2b_8c_a29482311366a2253ccea391e751b32fc}{blake2b\_IV}}[4] \string^ md->blake2b.t[0];}
+\DoxyCodeLine{330    v[13] = \mbox{\hyperlink{blake2b_8c_a29482311366a2253ccea391e751b32fc}{blake2b\_IV}}[5] \string^ md->blake2b.t[1];}
+\DoxyCodeLine{331    v[14] = \mbox{\hyperlink{blake2b_8c_a29482311366a2253ccea391e751b32fc}{blake2b\_IV}}[6] \string^ md->blake2b.f[0];}
+\DoxyCodeLine{332    v[15] = \mbox{\hyperlink{blake2b_8c_a29482311366a2253ccea391e751b32fc}{blake2b\_IV}}[7] \string^ md->blake2b.f[1];}
+\DoxyCodeLine{333 }
+\DoxyCodeLine{334    \mbox{\hyperlink{blake2b_8c_ab35e822e8226ebfbc2122810b5ac5827}{ROUND}}(0);}
+\DoxyCodeLine{335    \mbox{\hyperlink{blake2b_8c_ab35e822e8226ebfbc2122810b5ac5827}{ROUND}}(1);}
+\DoxyCodeLine{336    \mbox{\hyperlink{blake2b_8c_ab35e822e8226ebfbc2122810b5ac5827}{ROUND}}(2);}
+\DoxyCodeLine{337    \mbox{\hyperlink{blake2b_8c_ab35e822e8226ebfbc2122810b5ac5827}{ROUND}}(3);}
+\DoxyCodeLine{338    \mbox{\hyperlink{blake2b_8c_ab35e822e8226ebfbc2122810b5ac5827}{ROUND}}(4);}
+\DoxyCodeLine{339    \mbox{\hyperlink{blake2b_8c_ab35e822e8226ebfbc2122810b5ac5827}{ROUND}}(5);}
+\DoxyCodeLine{340    \mbox{\hyperlink{blake2b_8c_ab35e822e8226ebfbc2122810b5ac5827}{ROUND}}(6);}
+\DoxyCodeLine{341    \mbox{\hyperlink{blake2b_8c_ab35e822e8226ebfbc2122810b5ac5827}{ROUND}}(7);}
+\DoxyCodeLine{342    \mbox{\hyperlink{blake2b_8c_ab35e822e8226ebfbc2122810b5ac5827}{ROUND}}(8);}
+\DoxyCodeLine{343    \mbox{\hyperlink{blake2b_8c_ab35e822e8226ebfbc2122810b5ac5827}{ROUND}}(9);}
+\DoxyCodeLine{344    \mbox{\hyperlink{blake2b_8c_ab35e822e8226ebfbc2122810b5ac5827}{ROUND}}(10);}
+\DoxyCodeLine{345    \mbox{\hyperlink{blake2b_8c_ab35e822e8226ebfbc2122810b5ac5827}{ROUND}}(11);}
+\DoxyCodeLine{346 }
+\DoxyCodeLine{347    \textcolor{keywordflow}{for} (i = 0; i < 8; ++i) \{}
+\DoxyCodeLine{348       md->blake2b.h[i] = md->blake2b.h[i] \string^ v[i] \string^ v[i + 8];}
+\DoxyCodeLine{349    \}}
+\DoxyCodeLine{350    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{351 \}}
+
+\end{DoxyCode}
+
+
+References blake2b\+\_\+\+IV, C\+R\+Y\+P\+T\+\_\+\+OK, and R\+O\+U\+ND.
+
+
+
+Referenced by blake2b\+\_\+done(), and blake2b\+\_\+process().
+
+Here is the caller graph for this function\+:
+% FIG 13
+\mbox{\Hypertarget{blake2b_8c_a0f0734cf05cdaa86e4658738c06653c2}\label{blake2b_8c_a0f0734cf05cdaa86e4658738c06653c2}} 
+\index{blake2b.c@{blake2b.c}!blake2b\_done@{blake2b\_done}}
+\index{blake2b\_done@{blake2b\_done}!blake2b.c@{blake2b.c}}
+\subsubsection{\texorpdfstring{blake2b\_done()}{blake2b\_done()}}
+{\footnotesize\ttfamily int blake2b\+\_\+done (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$}]{md,  }\item[{unsigned char $\ast$}]{out }\end{DoxyParamCaption})}
+
+
+
+Terminate the hash to get the digest. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em md} & The hash state \\
+\hline
+{\em out} & \mbox{[}out\mbox{]} The destination of the hash (size depending on the length used on init) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 411 of file blake2b.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{412 \{}
+\DoxyCodeLine{413    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} buffer[\mbox{\hyperlink{blake2b_8c_a55df020abc59e40eb12965cf08eca1b5ac4536ddb2539173d703b1bc458cce33b}{BLAKE2B\_OUTBYTES}}] = \{ 0 \};}
+\DoxyCodeLine{414    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} i;}
+\DoxyCodeLine{415 }
+\DoxyCodeLine{416    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(md != NULL);}
+\DoxyCodeLine{417    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(out != NULL);}
+\DoxyCodeLine{418 }
+\DoxyCodeLine{419    \textcolor{comment}{/* if(md->blakebs.outlen != outlen) return CRYPT\_INVALID\_ARG; */}}
+\DoxyCodeLine{420 }
+\DoxyCodeLine{421    \textcolor{keywordflow}{if} (\mbox{\hyperlink{blake2b_8c_a91439516618cfb2e295b99ba65b0bf84}{blake2b\_is\_lastblock}}(md)) \{}
+\DoxyCodeLine{422       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca03c22220d7538be04455cd2aa6ddf9da}{CRYPT\_ERROR}};}
+\DoxyCodeLine{423    \}}
+\DoxyCodeLine{424 }
+\DoxyCodeLine{425    \mbox{\hyperlink{blake2b_8c_a01eb5e19a85d78ffe547b9a828fa8c6f}{blake2b\_increment\_counter}}(md, md->blake2b.curlen);}
+\DoxyCodeLine{426    \mbox{\hyperlink{blake2b_8c_a708b739af8a84facdea8e166a98d4dd4}{blake2b\_set\_lastblock}}(md);}
+\DoxyCodeLine{427    \mbox{\hyperlink{tomcrypt__cfg_8h_aa3c34a6f6c61de7da9258b5a30e32c2f}{XMEMSET}}(md->blake2b.buf + md->blake2b.curlen, 0, \mbox{\hyperlink{blake2b_8c_a55df020abc59e40eb12965cf08eca1b5aea9f79a4ec90a788ea0590ae5dfda693}{BLAKE2B\_BLOCKBYTES}} - md->blake2b.curlen); \textcolor{comment}{/* Padding */}}
+\DoxyCodeLine{428    \mbox{\hyperlink{blake2b_8c_aa9f990b9af0db6ace2de60269129214e}{blake2b\_compress}}(md, md->blake2b.buf);}
+\DoxyCodeLine{429 }
+\DoxyCodeLine{430    \textcolor{keywordflow}{for} (i = 0; i < 8; ++i) \{ \textcolor{comment}{/* Output full hash to temp buffer */}}
+\DoxyCodeLine{431       STORE64L(md->blake2b.h[i], buffer + i * 8);}
+\DoxyCodeLine{432    \}}
+\DoxyCodeLine{433 }
+\DoxyCodeLine{434    \mbox{\hyperlink{tomcrypt__cfg_8h_a7691dd48d60d5fc6daf2fa7ec4c55e12}{XMEMCPY}}(out, buffer, md->blake2b.outlen);}
+\DoxyCodeLine{435    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(md, \textcolor{keyword}{sizeof}(\mbox{\hyperlink{unionHash__state}{hash\_state}}));}
+\DoxyCodeLine{436 \textcolor{preprocessor}{\#ifdef LTC\_CLEAN\_STACK}}
+\DoxyCodeLine{437    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(buffer, \textcolor{keyword}{sizeof}(buffer));}
+\DoxyCodeLine{438 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{439    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{440 \}}
+
+\end{DoxyCode}
+
+
+References B\+L\+A\+K\+E2\+B\+\_\+\+B\+L\+O\+C\+K\+B\+Y\+T\+ES, blake2b\+\_\+compress(), blake2b\+\_\+increment\+\_\+counter(), blake2b\+\_\+is\+\_\+lastblock(), B\+L\+A\+K\+E2\+B\+\_\+\+O\+U\+T\+B\+Y\+T\+ES, blake2b\+\_\+set\+\_\+lastblock(), C\+R\+Y\+P\+T\+\_\+\+E\+R\+R\+OR, C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, X\+M\+E\+M\+C\+P\+Y(), X\+M\+E\+M\+S\+E\+T(), and zeromem().
+
+
+
+Referenced by blake2b\+\_\+160\+\_\+test(), blake2b\+\_\+256\+\_\+test(), blake2b\+\_\+384\+\_\+test(), blake2b\+\_\+512\+\_\+test(), and blake2bmac\+\_\+done().
+
+Here is the call graph for this function\+:
+% FIG 14
+Here is the caller graph for this function\+:
+% FIG 15
+\mbox{\Hypertarget{blake2b_8c_a01eb5e19a85d78ffe547b9a828fa8c6f}\label{blake2b_8c_a01eb5e19a85d78ffe547b9a828fa8c6f}} 
+\index{blake2b.c@{blake2b.c}!blake2b\_increment\_counter@{blake2b\_increment\_counter}}
+\index{blake2b\_increment\_counter@{blake2b\_increment\_counter}!blake2b.c@{blake2b.c}}
+\subsubsection{\texorpdfstring{blake2b\_increment\_counter()}{blake2b\_increment\_counter()}}
+{\footnotesize\ttfamily static void blake2b\+\_\+increment\+\_\+counter (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$}]{md,  }\item[{\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}}}]{inc }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 169 of file blake2b.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{170 \{}
+\DoxyCodeLine{171    md->blake2b.t[0] += inc;}
+\DoxyCodeLine{172    \textcolor{keywordflow}{if} (md->blake2b.t[0] < inc) md->blake2b.t[1]++;}
+\DoxyCodeLine{173 \}}
+
+\end{DoxyCode}
+
+
+Referenced by blake2b\+\_\+done(), and blake2b\+\_\+process().
+
+Here is the caller graph for this function\+:
+% FIG 16
+\mbox{\Hypertarget{blake2b_8c_a1f07c7dccb6eb40dfd3c86314c103174}\label{blake2b_8c_a1f07c7dccb6eb40dfd3c86314c103174}} 
+\index{blake2b.c@{blake2b.c}!blake2b\_init@{blake2b\_init}}
+\index{blake2b\_init@{blake2b\_init}!blake2b.c@{blake2b.c}}
+\subsubsection{\texorpdfstring{blake2b\_init()}{blake2b\_init()}}
+{\footnotesize\ttfamily int blake2b\+\_\+init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$}]{md,  }\item[{unsigned long}]{outlen,  }\item[{const unsigned char $\ast$}]{key,  }\item[{unsigned long}]{keylen }\end{DoxyParamCaption})}
+
+
+
+Initialize the hash/\+M\+AC state. 
+
+Use this function to init for arbitrary sizes.
+
+Give a key and keylen to init for M\+AC mode.
+
+
+\begin{DoxyParams}{Parameters}
+{\em md} & The hash state you wish to initialize \\
+\hline
+{\em outlen} & The desired output-\/length \\
+\hline
+{\em key} & The key of the M\+AC \\
+\hline
+{\em keylen} & The length of the key \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 216 of file blake2b.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{217 \{}
+\DoxyCodeLine{218    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} P[\mbox{\hyperlink{blake2b_8c_a55df020abc59e40eb12965cf08eca1b5a835b377f9cf534090c32677d2694ffd2}{BLAKE2B\_PARAM\_SIZE}}];}
+\DoxyCodeLine{219    \textcolor{keywordtype}{int} err;}
+\DoxyCodeLine{220 }
+\DoxyCodeLine{221    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(md != NULL);}
+\DoxyCodeLine{222 }
+\DoxyCodeLine{223    \textcolor{keywordflow}{if} ((!outlen) || (outlen > \mbox{\hyperlink{blake2b_8c_a55df020abc59e40eb12965cf08eca1b5ac4536ddb2539173d703b1bc458cce33b}{BLAKE2B\_OUTBYTES}})) \{}
+\DoxyCodeLine{224       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{225    \}}
+\DoxyCodeLine{226    \textcolor{keywordflow}{if} ((key \&\& !keylen) || (keylen \&\& !key) || (keylen > \mbox{\hyperlink{blake2b_8c_a55df020abc59e40eb12965cf08eca1b5a8dfea1685718cfdbbfc48b85cec868e4}{BLAKE2B\_KEYBYTES}})) \{}
+\DoxyCodeLine{227       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{228    \}}
+\DoxyCodeLine{229 }
+\DoxyCodeLine{230    \mbox{\hyperlink{tomcrypt__cfg_8h_aa3c34a6f6c61de7da9258b5a30e32c2f}{XMEMSET}}(P, 0, \textcolor{keyword}{sizeof}(P));}
+\DoxyCodeLine{231 }
+\DoxyCodeLine{232    P[\mbox{\hyperlink{blake2b_8c_a99fb83031ce9923c84392b4e92f956b5ac55e8eafc668c1bc7863703b33ced068}{O\_DIGEST\_LENGTH}}] = (\textcolor{keywordtype}{unsigned} char)outlen;}
+\DoxyCodeLine{233    P[\mbox{\hyperlink{blake2b_8c_a99fb83031ce9923c84392b4e92f956b5a1d061f4b2149eb842123fe899aad9fde}{O\_KEY\_LENGTH}}] = (\textcolor{keywordtype}{unsigned} char)keylen;}
+\DoxyCodeLine{234    P[\mbox{\hyperlink{blake2b_8c_a99fb83031ce9923c84392b4e92f956b5a72383d443e58e4da14575b3de68b9542}{O\_FANOUT}}] = 1;}
+\DoxyCodeLine{235    P[\mbox{\hyperlink{blake2b_8c_a99fb83031ce9923c84392b4e92f956b5aa9f1fc12780d8bca0aed3d8e03ef2197}{O\_DEPTH}}] = 1;}
+\DoxyCodeLine{236 }
+\DoxyCodeLine{237    err = \mbox{\hyperlink{blake2b_8c_a64470e489de75554d8cc26b523992cc7}{blake2b\_init\_param}}(md, P);}
+\DoxyCodeLine{238    \textcolor{keywordflow}{if} (err != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{239 }
+\DoxyCodeLine{240    \textcolor{keywordflow}{if} (key) \{}
+\DoxyCodeLine{241       \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} block[\mbox{\hyperlink{blake2b_8c_a55df020abc59e40eb12965cf08eca1b5aea9f79a4ec90a788ea0590ae5dfda693}{BLAKE2B\_BLOCKBYTES}}];}
+\DoxyCodeLine{242 }
+\DoxyCodeLine{243       \mbox{\hyperlink{tomcrypt__cfg_8h_aa3c34a6f6c61de7da9258b5a30e32c2f}{XMEMSET}}(block, 0, \mbox{\hyperlink{blake2b_8c_a55df020abc59e40eb12965cf08eca1b5aea9f79a4ec90a788ea0590ae5dfda693}{BLAKE2B\_BLOCKBYTES}});}
+\DoxyCodeLine{244       \mbox{\hyperlink{tomcrypt__cfg_8h_a7691dd48d60d5fc6daf2fa7ec4c55e12}{XMEMCPY}}(block, key, keylen);}
+\DoxyCodeLine{245       \mbox{\hyperlink{blake2b_8c_abba3140d3bca5aaf1130479604e26580}{blake2b\_process}}(md, block, \mbox{\hyperlink{blake2b_8c_a55df020abc59e40eb12965cf08eca1b5aea9f79a4ec90a788ea0590ae5dfda693}{BLAKE2B\_BLOCKBYTES}});}
+\DoxyCodeLine{246 }
+\DoxyCodeLine{247 \textcolor{preprocessor}{\#ifdef LTC\_CLEAN\_STACK}}
+\DoxyCodeLine{248       \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(block, \textcolor{keyword}{sizeof}(block));}
+\DoxyCodeLine{249 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{250    \}}
+\DoxyCodeLine{251 }
+\DoxyCodeLine{252    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{253 \}}
+
+\end{DoxyCode}
+
+
+References B\+L\+A\+K\+E2\+B\+\_\+\+B\+L\+O\+C\+K\+B\+Y\+T\+ES, blake2b\+\_\+init\+\_\+param(), B\+L\+A\+K\+E2\+B\+\_\+\+K\+E\+Y\+B\+Y\+T\+ES, B\+L\+A\+K\+E2\+B\+\_\+\+O\+U\+T\+B\+Y\+T\+ES, B\+L\+A\+K\+E2\+B\+\_\+\+P\+A\+R\+A\+M\+\_\+\+S\+I\+ZE, blake2b\+\_\+process(), C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+A\+RG, C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, O\+\_\+\+D\+E\+P\+TH, O\+\_\+\+D\+I\+G\+E\+S\+T\+\_\+\+L\+E\+N\+G\+TH, O\+\_\+\+F\+A\+N\+O\+UT, O\+\_\+\+K\+E\+Y\+\_\+\+L\+E\+N\+G\+TH, X\+M\+E\+M\+C\+P\+Y(), X\+M\+E\+M\+S\+E\+T(), and zeromem().
+
+
+
+Referenced by blake2b\+\_\+160\+\_\+init(), blake2b\+\_\+256\+\_\+init(), blake2b\+\_\+384\+\_\+init(), blake2b\+\_\+512\+\_\+init(), and blake2bmac\+\_\+init().
+
+Here is the call graph for this function\+:
+% FIG 17
+Here is the caller graph for this function\+:
+% FIG 18
+\mbox{\Hypertarget{blake2b_8c_aea54854ea5c46155d7aac4d3e8688a7d}\label{blake2b_8c_aea54854ea5c46155d7aac4d3e8688a7d}} 
+\index{blake2b.c@{blake2b.c}!blake2b\_init0@{blake2b\_init0}}
+\index{blake2b\_init0@{blake2b\_init0}!blake2b.c@{blake2b.c}}
+\subsubsection{\texorpdfstring{blake2b\_init0()}{blake2b\_init0()}}
+{\footnotesize\ttfamily static void blake2b\+\_\+init0 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$}]{md }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 175 of file blake2b.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{176 \{}
+\DoxyCodeLine{177    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} i;}
+\DoxyCodeLine{178    \mbox{\hyperlink{tomcrypt__cfg_8h_aa3c34a6f6c61de7da9258b5a30e32c2f}{XMEMSET}}(\&md->blake2b, 0, \textcolor{keyword}{sizeof}(md->blake2b));}
+\DoxyCodeLine{179 }
+\DoxyCodeLine{180    \textcolor{keywordflow}{for} (i = 0; i < 8; ++i) \{}
+\DoxyCodeLine{181       md->blake2b.h[i] = \mbox{\hyperlink{blake2b_8c_a29482311366a2253ccea391e751b32fc}{blake2b\_IV}}[i];}
+\DoxyCodeLine{182    \}}
+\DoxyCodeLine{183 \}}
+
+\end{DoxyCode}
+
+
+References blake2b\+\_\+\+IV, and X\+M\+E\+M\+S\+E\+T().
+
+
+
+Referenced by blake2b\+\_\+init\+\_\+param().
+
+Here is the call graph for this function\+:
+% FIG 19
+Here is the caller graph for this function\+:
+% FIG 20
+\mbox{\Hypertarget{blake2b_8c_a64470e489de75554d8cc26b523992cc7}\label{blake2b_8c_a64470e489de75554d8cc26b523992cc7}} 
+\index{blake2b.c@{blake2b.c}!blake2b\_init\_param@{blake2b\_init\_param}}
+\index{blake2b\_init\_param@{blake2b\_init\_param}!blake2b.c@{blake2b.c}}
+\subsubsection{\texorpdfstring{blake2b\_init\_param()}{blake2b\_init\_param()}}
+{\footnotesize\ttfamily static int blake2b\+\_\+init\+\_\+param (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$}]{md,  }\item[{const unsigned char $\ast$}]{P }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 186 of file blake2b.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{187 \{}
+\DoxyCodeLine{188    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} i;}
+\DoxyCodeLine{189 }
+\DoxyCodeLine{190    \mbox{\hyperlink{blake2b_8c_aea54854ea5c46155d7aac4d3e8688a7d}{blake2b\_init0}}(md);}
+\DoxyCodeLine{191 }
+\DoxyCodeLine{192    \textcolor{comment}{/* IV XOR ParamBlock */}}
+\DoxyCodeLine{193    \textcolor{keywordflow}{for} (i = 0; i < 8; ++i) \{}
+\DoxyCodeLine{194       \mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}} tmp;}
+\DoxyCodeLine{195       LOAD64L(tmp, P + i * 8);}
+\DoxyCodeLine{196       md->blake2b.h[i] \string^= tmp;}
+\DoxyCodeLine{197    \}}
+\DoxyCodeLine{198 }
+\DoxyCodeLine{199    md->blake2b.outlen = P[\mbox{\hyperlink{blake2b_8c_a99fb83031ce9923c84392b4e92f956b5ac55e8eafc668c1bc7863703b33ced068}{O\_DIGEST\_LENGTH}}];}
+\DoxyCodeLine{200    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{201 \}}
+
+\end{DoxyCode}
+
+
+References blake2b\+\_\+init0(), C\+R\+Y\+P\+T\+\_\+\+OK, and O\+\_\+\+D\+I\+G\+E\+S\+T\+\_\+\+L\+E\+N\+G\+TH.
+
+
+
+Referenced by blake2b\+\_\+init().
+
+Here is the call graph for this function\+:
+% FIG 21
+Here is the caller graph for this function\+:
+% FIG 22
+\mbox{\Hypertarget{blake2b_8c_a91439516618cfb2e295b99ba65b0bf84}\label{blake2b_8c_a91439516618cfb2e295b99ba65b0bf84}} 
+\index{blake2b.c@{blake2b.c}!blake2b\_is\_lastblock@{blake2b\_is\_lastblock}}
+\index{blake2b\_is\_lastblock@{blake2b\_is\_lastblock}!blake2b.c@{blake2b.c}}
+\subsubsection{\texorpdfstring{blake2b\_is\_lastblock()}{blake2b\_is\_lastblock()}}
+{\footnotesize\ttfamily static int blake2b\+\_\+is\+\_\+lastblock (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$}]{md }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 159 of file blake2b.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{159 \{ \textcolor{keywordflow}{return} md->blake2b.f[0] != 0; \}}
+
+\end{DoxyCode}
+
+
+Referenced by blake2b\+\_\+done().
+
+Here is the caller graph for this function\+:
+% FIG 23
+\mbox{\Hypertarget{blake2b_8c_abba3140d3bca5aaf1130479604e26580}\label{blake2b_8c_abba3140d3bca5aaf1130479604e26580}} 
+\index{blake2b.c@{blake2b.c}!blake2b\_process@{blake2b\_process}}
+\index{blake2b\_process@{blake2b\_process}!blake2b.c@{blake2b.c}}
+\subsubsection{\texorpdfstring{blake2b\_process()}{blake2b\_process()}}
+{\footnotesize\ttfamily int blake2b\+\_\+process (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$}]{md,  }\item[{const unsigned char $\ast$}]{in,  }\item[{unsigned long}]{inlen }\end{DoxyParamCaption})}
+
+
+
+Process a block of memory through the hash. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em md} & The hash state \\
+\hline
+{\em in} & The data to hash \\
+\hline
+{\em inlen} & The length of the data (octets) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 373 of file blake2b.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{374 \{}
+\DoxyCodeLine{375    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(md != NULL);}
+\DoxyCodeLine{376    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(in != NULL);}
+\DoxyCodeLine{377 }
+\DoxyCodeLine{378    \textcolor{keywordflow}{if} (md->blake2b.curlen > \textcolor{keyword}{sizeof}(md->blake2b.buf)) \{}
+\DoxyCodeLine{379       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{380    \}}
+\DoxyCodeLine{381 }
+\DoxyCodeLine{382    \textcolor{keywordflow}{if} (inlen > 0) \{}
+\DoxyCodeLine{383       \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} left = md->blake2b.curlen;}
+\DoxyCodeLine{384       \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} fill = \mbox{\hyperlink{blake2b_8c_a55df020abc59e40eb12965cf08eca1b5aea9f79a4ec90a788ea0590ae5dfda693}{BLAKE2B\_BLOCKBYTES}} - left;}
+\DoxyCodeLine{385       \textcolor{keywordflow}{if} (inlen > fill) \{}
+\DoxyCodeLine{386          md->blake2b.curlen = 0;}
+\DoxyCodeLine{387          \mbox{\hyperlink{tomcrypt__cfg_8h_a7691dd48d60d5fc6daf2fa7ec4c55e12}{XMEMCPY}}(md->blake2b.buf + (left \% \textcolor{keyword}{sizeof}(md->blake2b.buf)), in, fill); \textcolor{comment}{/* Fill buffer */}}
+\DoxyCodeLine{388          \mbox{\hyperlink{blake2b_8c_a01eb5e19a85d78ffe547b9a828fa8c6f}{blake2b\_increment\_counter}}(md, \mbox{\hyperlink{blake2b_8c_a55df020abc59e40eb12965cf08eca1b5aea9f79a4ec90a788ea0590ae5dfda693}{BLAKE2B\_BLOCKBYTES}});}
+\DoxyCodeLine{389          \mbox{\hyperlink{blake2b_8c_aa9f990b9af0db6ace2de60269129214e}{blake2b\_compress}}(md, md->blake2b.buf); \textcolor{comment}{/* Compress */}}
+\DoxyCodeLine{390          in += fill;}
+\DoxyCodeLine{391          inlen -= fill;}
+\DoxyCodeLine{392          \textcolor{keywordflow}{while} (inlen > \mbox{\hyperlink{blake2b_8c_a55df020abc59e40eb12965cf08eca1b5aea9f79a4ec90a788ea0590ae5dfda693}{BLAKE2B\_BLOCKBYTES}}) \{}
+\DoxyCodeLine{393             \mbox{\hyperlink{blake2b_8c_a01eb5e19a85d78ffe547b9a828fa8c6f}{blake2b\_increment\_counter}}(md, \mbox{\hyperlink{blake2b_8c_a55df020abc59e40eb12965cf08eca1b5aea9f79a4ec90a788ea0590ae5dfda693}{BLAKE2B\_BLOCKBYTES}});}
+\DoxyCodeLine{394             \mbox{\hyperlink{blake2b_8c_aa9f990b9af0db6ace2de60269129214e}{blake2b\_compress}}(md, in);}
+\DoxyCodeLine{395             in += \mbox{\hyperlink{blake2b_8c_a55df020abc59e40eb12965cf08eca1b5aea9f79a4ec90a788ea0590ae5dfda693}{BLAKE2B\_BLOCKBYTES}};}
+\DoxyCodeLine{396             inlen -= \mbox{\hyperlink{blake2b_8c_a55df020abc59e40eb12965cf08eca1b5aea9f79a4ec90a788ea0590ae5dfda693}{BLAKE2B\_BLOCKBYTES}};}
+\DoxyCodeLine{397          \}}
+\DoxyCodeLine{398       \}}
+\DoxyCodeLine{399       \mbox{\hyperlink{tomcrypt__cfg_8h_a7691dd48d60d5fc6daf2fa7ec4c55e12}{XMEMCPY}}(md->blake2b.buf + md->blake2b.curlen, in, inlen);}
+\DoxyCodeLine{400       md->blake2b.curlen += inlen;}
+\DoxyCodeLine{401    \}}
+\DoxyCodeLine{402    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{403 \}}
+
+\end{DoxyCode}
+
+
+References B\+L\+A\+K\+E2\+B\+\_\+\+B\+L\+O\+C\+K\+B\+Y\+T\+ES, blake2b\+\_\+compress(), blake2b\+\_\+increment\+\_\+counter(), C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+A\+RG, C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, and X\+M\+E\+M\+C\+P\+Y().
+
+
+
+Referenced by blake2b\+\_\+160\+\_\+test(), blake2b\+\_\+256\+\_\+test(), blake2b\+\_\+384\+\_\+test(), blake2b\+\_\+512\+\_\+test(), blake2b\+\_\+init(), and blake2bmac\+\_\+process().
+
+Here is the call graph for this function\+:
+% FIG 24
+Here is the caller graph for this function\+:
+% FIG 25
+\mbox{\Hypertarget{blake2b_8c_a708b739af8a84facdea8e166a98d4dd4}\label{blake2b_8c_a708b739af8a84facdea8e166a98d4dd4}} 
+\index{blake2b.c@{blake2b.c}!blake2b\_set\_lastblock@{blake2b\_set\_lastblock}}
+\index{blake2b\_set\_lastblock@{blake2b\_set\_lastblock}!blake2b.c@{blake2b.c}}
+\subsubsection{\texorpdfstring{blake2b\_set\_lastblock()}{blake2b\_set\_lastblock()}}
+{\footnotesize\ttfamily static void blake2b\+\_\+set\+\_\+lastblock (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$}]{md }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 161 of file blake2b.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{162 \{}
+\DoxyCodeLine{163    \textcolor{keywordflow}{if} (md->blake2b.last\_node) \{}
+\DoxyCodeLine{164       \mbox{\hyperlink{blake2b_8c_a32ba77762f4bbc20bd05491e14bf7dc3}{blake2b\_set\_lastnode}}(md);}
+\DoxyCodeLine{165    \}}
+\DoxyCodeLine{166    md->blake2b.f[0] = \mbox{\hyperlink{tomcrypt__cfg_8h_a7d8e211582dff82d00fc171834e3dc67}{CONST64}}(0xffffffffffffffff);}
+\DoxyCodeLine{167 \}}
+
+\end{DoxyCode}
+
+
+References blake2b\+\_\+set\+\_\+lastnode(), and C\+O\+N\+S\+T64.
+
+
+
+Referenced by blake2b\+\_\+done().
+
+Here is the call graph for this function\+:
+% FIG 26
+Here is the caller graph for this function\+:
+% FIG 27
+\mbox{\Hypertarget{blake2b_8c_a32ba77762f4bbc20bd05491e14bf7dc3}\label{blake2b_8c_a32ba77762f4bbc20bd05491e14bf7dc3}} 
+\index{blake2b.c@{blake2b.c}!blake2b\_set\_lastnode@{blake2b\_set\_lastnode}}
+\index{blake2b\_set\_lastnode@{blake2b\_set\_lastnode}!blake2b.c@{blake2b.c}}
+\subsubsection{\texorpdfstring{blake2b\_set\_lastnode()}{blake2b\_set\_lastnode()}}
+{\footnotesize\ttfamily static void blake2b\+\_\+set\+\_\+lastnode (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$}]{md }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 156 of file blake2b.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{156 \{ md->blake2b.f[1] = \mbox{\hyperlink{tomcrypt__cfg_8h_a7d8e211582dff82d00fc171834e3dc67}{CONST64}}(0xffffffffffffffff); \}}
+
+\end{DoxyCode}
+
+
+References C\+O\+N\+S\+T64.
+
+
+
+Referenced by blake2b\+\_\+set\+\_\+lastblock().
+
+Here is the caller graph for this function\+:
+% FIG 28
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{blake2b_8c_a54be2063051609d32d710aab7aa25471}\label{blake2b_8c_a54be2063051609d32d710aab7aa25471}} 
+\index{blake2b.c@{blake2b.c}!blake2b\_160\_desc@{blake2b\_160\_desc}}
+\index{blake2b\_160\_desc@{blake2b\_160\_desc}!blake2b.c@{blake2b.c}}
+\subsubsection{\texorpdfstring{blake2b\_160\_desc}{blake2b\_160\_desc}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structltc__hash__descriptor}{ltc\+\_\+hash\+\_\+descriptor}} blake2b\+\_\+160\+\_\+desc}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    \textcolor{stringliteral}{"blake2b-160"},}
+\DoxyCodeLine{    25,}
+\DoxyCodeLine{    20,}
+\DoxyCodeLine{    128,}
+\DoxyCodeLine{    \{ 1, 3, 6, 1, 4, 1, 1722, 12, 2, 1, 5 \},}
+\DoxyCodeLine{    11,}
+\DoxyCodeLine{    \&\mbox{\hyperlink{blake2b_8c_a052af9541a8f79e9217d996de94b1b8a}{blake2b\_160\_init}},}
+\DoxyCodeLine{    \&\mbox{\hyperlink{blake2b_8c_abba3140d3bca5aaf1130479604e26580}{blake2b\_process}},}
+\DoxyCodeLine{    \&\mbox{\hyperlink{blake2b_8c_a0f0734cf05cdaa86e4658738c06653c2}{blake2b\_done}},}
+\DoxyCodeLine{    \&\mbox{\hyperlink{blake2b_8c_ada54df5eb119d8d34e55c004c98fa1c5}{blake2b\_160\_test}},}
+\DoxyCodeLine{    NULL}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line 72 of file blake2b.\+c.
+
+
+
+Referenced by register\+\_\+all\+\_\+hashes().
+
+\mbox{\Hypertarget{blake2b_8c_ad13b82df8fd7d7954cabed6b9ce595e1}\label{blake2b_8c_ad13b82df8fd7d7954cabed6b9ce595e1}} 
+\index{blake2b.c@{blake2b.c}!blake2b\_256\_desc@{blake2b\_256\_desc}}
+\index{blake2b\_256\_desc@{blake2b\_256\_desc}!blake2b.c@{blake2b.c}}
+\subsubsection{\texorpdfstring{blake2b\_256\_desc}{blake2b\_256\_desc}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structltc__hash__descriptor}{ltc\+\_\+hash\+\_\+descriptor}} blake2b\+\_\+256\+\_\+desc}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    \textcolor{stringliteral}{"blake2b-256"},}
+\DoxyCodeLine{    26,}
+\DoxyCodeLine{    32,}
+\DoxyCodeLine{    128,}
+\DoxyCodeLine{    \{ 1, 3, 6, 1, 4, 1, 1722, 12, 2, 1, 8 \},}
+\DoxyCodeLine{    11,}
+\DoxyCodeLine{    \&\mbox{\hyperlink{blake2b_8c_ae4b7d7f4c73a528fc5a3ebcec766025b}{blake2b\_256\_init}},}
+\DoxyCodeLine{    \&\mbox{\hyperlink{blake2b_8c_abba3140d3bca5aaf1130479604e26580}{blake2b\_process}},}
+\DoxyCodeLine{    \&\mbox{\hyperlink{blake2b_8c_a0f0734cf05cdaa86e4658738c06653c2}{blake2b\_done}},}
+\DoxyCodeLine{    \&\mbox{\hyperlink{blake2b_8c_a53be5fcfcd1910bf5aae5013563e396b}{blake2b\_256\_test}},}
+\DoxyCodeLine{    NULL}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line 87 of file blake2b.\+c.
+
+
+
+Referenced by register\+\_\+all\+\_\+hashes().
+
+\mbox{\Hypertarget{blake2b_8c_aad9be3dd5ddf14e4ba80cd6715fd44fc}\label{blake2b_8c_aad9be3dd5ddf14e4ba80cd6715fd44fc}} 
+\index{blake2b.c@{blake2b.c}!blake2b\_384\_desc@{blake2b\_384\_desc}}
+\index{blake2b\_384\_desc@{blake2b\_384\_desc}!blake2b.c@{blake2b.c}}
+\subsubsection{\texorpdfstring{blake2b\_384\_desc}{blake2b\_384\_desc}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structltc__hash__descriptor}{ltc\+\_\+hash\+\_\+descriptor}} blake2b\+\_\+384\+\_\+desc}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    \textcolor{stringliteral}{"blake2b-384"},}
+\DoxyCodeLine{    27,}
+\DoxyCodeLine{    48,}
+\DoxyCodeLine{    128,}
+\DoxyCodeLine{    \{ 1, 3, 6, 1, 4, 1, 1722, 12, 2, 1, 12 \},}
+\DoxyCodeLine{    11,}
+\DoxyCodeLine{    \&\mbox{\hyperlink{blake2b_8c_a95985494dcd2c6b0106b3f15499ccf42}{blake2b\_384\_init}},}
+\DoxyCodeLine{    \&\mbox{\hyperlink{blake2b_8c_abba3140d3bca5aaf1130479604e26580}{blake2b\_process}},}
+\DoxyCodeLine{    \&\mbox{\hyperlink{blake2b_8c_a0f0734cf05cdaa86e4658738c06653c2}{blake2b\_done}},}
+\DoxyCodeLine{    \&\mbox{\hyperlink{blake2b_8c_a7e9931db13f3096dc2521ecc353539c4}{blake2b\_384\_test}},}
+\DoxyCodeLine{    NULL}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line 102 of file blake2b.\+c.
+
+
+
+Referenced by register\+\_\+all\+\_\+hashes().
+
+\mbox{\Hypertarget{blake2b_8c_a8ef4d43fecbd25e592d1a3062a81f2ea}\label{blake2b_8c_a8ef4d43fecbd25e592d1a3062a81f2ea}} 
+\index{blake2b.c@{blake2b.c}!blake2b\_512\_desc@{blake2b\_512\_desc}}
+\index{blake2b\_512\_desc@{blake2b\_512\_desc}!blake2b.c@{blake2b.c}}
+\subsubsection{\texorpdfstring{blake2b\_512\_desc}{blake2b\_512\_desc}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structltc__hash__descriptor}{ltc\+\_\+hash\+\_\+descriptor}} blake2b\+\_\+512\+\_\+desc}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    \textcolor{stringliteral}{"blake2b-512"},}
+\DoxyCodeLine{    28,}
+\DoxyCodeLine{    64,}
+\DoxyCodeLine{    128,}
+\DoxyCodeLine{    \{ 1, 3, 6, 1, 4, 1, 1722, 12, 2, 1, 16 \},}
+\DoxyCodeLine{    11,}
+\DoxyCodeLine{    \&\mbox{\hyperlink{blake2b_8c_adb0897fdd5dee9830adcb23b19ebe0f1}{blake2b\_512\_init}},}
+\DoxyCodeLine{    \&\mbox{\hyperlink{blake2b_8c_abba3140d3bca5aaf1130479604e26580}{blake2b\_process}},}
+\DoxyCodeLine{    \&\mbox{\hyperlink{blake2b_8c_a0f0734cf05cdaa86e4658738c06653c2}{blake2b\_done}},}
+\DoxyCodeLine{    \&\mbox{\hyperlink{blake2b_8c_ad2bd405cb693aaaef5ea8811859eddd0}{blake2b\_512\_test}},}
+\DoxyCodeLine{    NULL}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line 117 of file blake2b.\+c.
+
+
+
+Referenced by register\+\_\+all\+\_\+hashes().
+
+\mbox{\Hypertarget{blake2b_8c_a29482311366a2253ccea391e751b32fc}\label{blake2b_8c_a29482311366a2253ccea391e751b32fc}} 
+\index{blake2b.c@{blake2b.c}!blake2b\_IV@{blake2b\_IV}}
+\index{blake2b\_IV@{blake2b\_IV}!blake2b.c@{blake2b.c}}
+\subsubsection{\texorpdfstring{blake2b\_IV}{blake2b\_IV}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}} blake2b\+\_\+\+IV\mbox{[}8\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{   0x6a09e667f3bcc908ULL,  0xbb67ae8584caa73bULL,}
+\DoxyCodeLine{   0x3c6ef372fe94f82bULL,  0xa54ff53a5f1d36f1ULL,}
+\DoxyCodeLine{   0x510e527fade682d1ULL,  0x9b05688c2b3e6c1fULL,}
+\DoxyCodeLine{   0x1f83d9abfb41bd6bULL,  0x5be0cd19137e2179ULL}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line 132 of file blake2b.\+c.
+
+
+
+Referenced by blake2b\+\_\+compress(), and blake2b\+\_\+init0().
+
+\mbox{\Hypertarget{blake2b_8c_abd26c6a35b593773d3f3c75df945f62f}\label{blake2b_8c_abd26c6a35b593773d3f3c75df945f62f}} 
+\index{blake2b.c@{blake2b.c}!blake2b\_sigma@{blake2b\_sigma}}
+\index{blake2b\_sigma@{blake2b\_sigma}!blake2b.c@{blake2b.c}}
+\subsubsection{\texorpdfstring{blake2b\_sigma}{blake2b\_sigma}}
+{\footnotesize\ttfamily const unsigned char blake2b\+\_\+sigma\mbox{[}12\mbox{]}\mbox{[}16\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{  \{  0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15 \} ,}
+\DoxyCodeLine{  \{ 14, 10,  4,  8,  9, 15, 13,  6,  1, 12,  0,  2, 11,  7,  5,  3 \} ,}
+\DoxyCodeLine{  \{ 11,  8, 12,  0,  5,  2, 15, 13, 10, 14,  3,  6,  7,  1,  9,  4 \} ,}
+\DoxyCodeLine{  \{  7,  9,  3,  1, 13, 12, 11, 14,  2,  6,  5, 10,  4,  0, 15,  8 \} ,}
+\DoxyCodeLine{  \{  9,  0,  5,  7,  2,  4, 10, 15, 14,  1, 11, 12,  6,  8,  3, 13 \} ,}
+\DoxyCodeLine{  \{  2, 12,  6, 10,  0, 11,  8,  3,  4, 13,  7,  5, 15, 14,  1,  9 \} ,}
+\DoxyCodeLine{  \{ 12,  5,  1, 15, 14, 13,  4, 10,  0,  7,  6,  3,  9,  2,  8, 11 \} ,}
+\DoxyCodeLine{  \{ 13, 11,  7, 14, 12,  1,  3,  9,  5,  0, 15,  4,  8,  6,  2, 10 \} ,}
+\DoxyCodeLine{  \{  6, 15, 14,  9, 11,  3,  0,  8, 12,  2, 13,  7,  1,  4, 10,  5 \} ,}
+\DoxyCodeLine{  \{ 10,  2,  8,  4,  7,  6,  1,  5, 15, 11,  9, 14,  3, 12, 13 , 0 \} ,}
+\DoxyCodeLine{  \{  0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15 \} ,}
+\DoxyCodeLine{  \{ 14, 10,  4,  8,  9, 15, 13,  6,  1, 12,  0,  2, 11,  7,  5,  3 \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line 140 of file blake2b.\+c.
+

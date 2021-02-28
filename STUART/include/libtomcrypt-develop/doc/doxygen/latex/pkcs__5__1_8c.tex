@@ -1,0 +1,289 @@
+\hypertarget{pkcs__5__1_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/misc/pkcs5/pkcs\+\_\+5\+\_\+1.c File Reference}
+\label{pkcs__5__1_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/misc/pkcs5/pkcs\_5\_1.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/misc/pkcs5/pkcs\_5\_1.c}}
+
+
+P\+K\+CS \#5, Algorithm \#1, Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for pkcs\+\_\+5\+\_\+1.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{pkcs__5__1_8c_aa4612634ecf7147a57dfe724150e059a}{\+\_\+pkcs\+\_\+5\+\_\+alg1\+\_\+common}} (const unsigned char $\ast$password, unsigned long password\+\_\+len, const unsigned char $\ast$salt, int iteration\+\_\+count, int hash\+\_\+idx, unsigned char $\ast$out, unsigned long $\ast$outlen, int openssl\+\_\+compat)
+\begin{DoxyCompactList}\small\item\em Execute P\+K\+CS \#5 v1 in strict or Open\+S\+SL E\+V\+P\+\_\+\+Bytes\+To\+Key()-\/compat mode. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{pkcs__5__1_8c_ad4834c485adb4fc776af355582a96cb6}{pkcs\+\_\+5\+\_\+alg1}} (const unsigned char $\ast$password, unsigned long password\+\_\+len, const unsigned char $\ast$salt, int iteration\+\_\+count, int hash\+\_\+idx, unsigned char $\ast$out, unsigned long $\ast$outlen)
+\begin{DoxyCompactList}\small\item\em Execute P\+K\+CS \#5 v1 -\/ Strict mode (no Open\+S\+S\+L-\/compatible extension) \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{pkcs__5__1_8c_ac6e1537b6861bbd16dff1469982277f1}{pkcs\+\_\+5\+\_\+alg1\+\_\+openssl}} (const unsigned char $\ast$password, unsigned long password\+\_\+len, const unsigned char $\ast$salt, int iteration\+\_\+count, int hash\+\_\+idx, unsigned char $\ast$out, unsigned long $\ast$outlen)
+\begin{DoxyCompactList}\small\item\em Execute P\+K\+CS \#5 v1 -\/ Open\+S\+S\+L-\/extension-\/compatible mode. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+P\+K\+CS \#5, Algorithm \#1, Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{pkcs__5__1_8c_aa4612634ecf7147a57dfe724150e059a}\label{pkcs__5__1_8c_aa4612634ecf7147a57dfe724150e059a}} 
+\index{pkcs\_5\_1.c@{pkcs\_5\_1.c}!\_pkcs\_5\_alg1\_common@{\_pkcs\_5\_alg1\_common}}
+\index{\_pkcs\_5\_alg1\_common@{\_pkcs\_5\_alg1\_common}!pkcs\_5\_1.c@{pkcs\_5\_1.c}}
+\subsubsection{\texorpdfstring{\_pkcs\_5\_alg1\_common()}{\_pkcs\_5\_alg1\_common()}}
+{\footnotesize\ttfamily static int \+\_\+pkcs\+\_\+5\+\_\+alg1\+\_\+common (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{password,  }\item[{unsigned long}]{password\+\_\+len,  }\item[{const unsigned char $\ast$}]{salt,  }\item[{int}]{iteration\+\_\+count,  }\item[{int}]{hash\+\_\+idx,  }\item[{unsigned char $\ast$}]{out,  }\item[{unsigned long $\ast$}]{outlen,  }\item[{int}]{openssl\+\_\+compat }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Execute P\+K\+CS \#5 v1 in strict or Open\+S\+SL E\+V\+P\+\_\+\+Bytes\+To\+Key()-\/compat mode. 
+
+P\+K\+CS\#5 v1 specifies that the output key length can be no larger than the hash output length. Open\+S\+SL unilaterally extended that by repeating the hash process on a block-\/by-\/block basis for as long as needed to make bigger keys. If you want to be compatible with K\+DF for e.\+g. \char`\"{}openssl enc\char`\"{}, you\textquotesingle{}ll want that.
+
+If you want strict P\+K\+CS behavior, turn openssl\+\_\+compat off. Or (more likely), use one of the convenience functions below.
+
+
+\begin{DoxyParams}{Parameters}
+{\em password} & The password (or key) \\
+\hline
+{\em password\+\_\+len} & The length of the password (octet) \\
+\hline
+{\em salt} & The salt (or nonce) which is 8 octets long \\
+\hline
+{\em iteration\+\_\+count} & The P\+K\+CS \#5 v1 iteration count \\
+\hline
+{\em hash\+\_\+idx} & The index of the hash desired \\
+\hline
+{\em out} & \mbox{[}out\mbox{]} The destination for this algorithm \\
+\hline
+{\em outlen} & \mbox{[}in/out\mbox{]} The max size and resulting size of the algorithm output \\
+\hline
+{\em openssl\+\_\+compat} & \mbox{[}in\mbox{]} Whether or not to grow the key to the buffer size ala Open\+S\+SL \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 38 of file pkcs\+\_\+5\+\_\+1.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{44 \{}
+\DoxyCodeLine{45    \textcolor{keywordtype}{int} err;}
+\DoxyCodeLine{46    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} x;}
+\DoxyCodeLine{47    \mbox{\hyperlink{unionHash__state}{hash\_state}}    *md;}
+\DoxyCodeLine{48    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *buf;}
+\DoxyCodeLine{49    \textcolor{comment}{/* Storage vars in case we need to support > hashsize (OpenSSL compat) */}}
+\DoxyCodeLine{50    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} block = 0, iter;}
+\DoxyCodeLine{51    \textcolor{comment}{/* How many bytes to put in the outbut buffer (convenience calc) */}}
+\DoxyCodeLine{52    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} outidx = 0, nb = 0;}
+\DoxyCodeLine{53 }
+\DoxyCodeLine{54    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(password != NULL);}
+\DoxyCodeLine{55    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(salt     != NULL);}
+\DoxyCodeLine{56    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(out      != NULL);}
+\DoxyCodeLine{57    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(outlen   != NULL);}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{59    \textcolor{comment}{/* test hash IDX */}}
+\DoxyCodeLine{60    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__hash_8h_a79647f22bf48bfa7de03fe5fc958c846}{hash\_is\_valid}}(hash\_idx)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{61       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{62    \}}
+\DoxyCodeLine{63 }
+\DoxyCodeLine{64    \textcolor{comment}{/* allocate memory */}}
+\DoxyCodeLine{65    md  = \mbox{\hyperlink{tomcrypt__cfg_8h_af363355f38fbaacdefacf270436ae1c9}{XMALLOC}}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{unionHash__state}{hash\_state}}));}
+\DoxyCodeLine{66    buf = \mbox{\hyperlink{tomcrypt__cfg_8h_af363355f38fbaacdefacf270436ae1c9}{XMALLOC}}(\mbox{\hyperlink{tomcrypt_8h_ab59933beebb2b857c992b93cf53f0d10}{MAXBLOCKSIZE}});}
+\DoxyCodeLine{67    \textcolor{keywordflow}{if} (md == NULL || buf == NULL) \{}
+\DoxyCodeLine{68       \textcolor{keywordflow}{if} (md != NULL) \{}
+\DoxyCodeLine{69          \mbox{\hyperlink{tomcrypt__cfg_8h_a260d66fc0690e0502cf3bfe7b5244b75}{XFREE}}(md);}
+\DoxyCodeLine{70       \}}
+\DoxyCodeLine{71       \textcolor{keywordflow}{if} (buf != NULL) \{}
+\DoxyCodeLine{72          \mbox{\hyperlink{tomcrypt__cfg_8h_a260d66fc0690e0502cf3bfe7b5244b75}{XFREE}}(buf);}
+\DoxyCodeLine{73       \}}
+\DoxyCodeLine{74       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca0ce0d27adc7ea10b74b7ea904b8bfa82}{CRYPT\_MEM}};}
+\DoxyCodeLine{75    \}}
+\DoxyCodeLine{76 }
+\DoxyCodeLine{77    \textcolor{keywordflow}{while}(block * \mbox{\hyperlink{tomcrypt__hash_8h_ab0e4f02e30a47da79baa9240e79cde92}{hash\_descriptor}}[hash\_idx].hashsize < *outlen) \{}
+\DoxyCodeLine{78 }
+\DoxyCodeLine{79       \textcolor{comment}{/* hash initial (maybe previous hash) + password + salt */}}
+\DoxyCodeLine{80       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__hash_8h_ab0e4f02e30a47da79baa9240e79cde92}{hash\_descriptor}}[hash\_idx].\mbox{\hyperlink{gmp__desc_8c_a4f8948d7c94899bf8ddee4721114d593}{init}}(md)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{81           \textcolor{keywordflow}{goto} LBL\_ERR;}
+\DoxyCodeLine{82       \}}
+\DoxyCodeLine{83       \textcolor{comment}{/* in OpenSSL mode, we first hash the previous result for blocks 2-n */}}
+\DoxyCodeLine{84       \textcolor{keywordflow}{if} (openssl\_compat \&\& block) \{}
+\DoxyCodeLine{85           \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__hash_8h_ab0e4f02e30a47da79baa9240e79cde92}{hash\_descriptor}}[hash\_idx].process(md, buf, \mbox{\hyperlink{tomcrypt__hash_8h_ab0e4f02e30a47da79baa9240e79cde92}{hash\_descriptor}}[hash\_idx].hashsize)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{86               \textcolor{keywordflow}{goto} LBL\_ERR;}
+\DoxyCodeLine{87           \}}
+\DoxyCodeLine{88       \}}
+\DoxyCodeLine{89       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__hash_8h_ab0e4f02e30a47da79baa9240e79cde92}{hash\_descriptor}}[hash\_idx].process(md, password, password\_len)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{90           \textcolor{keywordflow}{goto} LBL\_ERR;}
+\DoxyCodeLine{91       \}}
+\DoxyCodeLine{92       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__hash_8h_ab0e4f02e30a47da79baa9240e79cde92}{hash\_descriptor}}[hash\_idx].process(md, salt, 8)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{93           \textcolor{keywordflow}{goto} LBL\_ERR;}
+\DoxyCodeLine{94       \}}
+\DoxyCodeLine{95       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__hash_8h_ab0e4f02e30a47da79baa9240e79cde92}{hash\_descriptor}}[hash\_idx].done(md, buf)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{96           \textcolor{keywordflow}{goto} LBL\_ERR;}
+\DoxyCodeLine{97       \}}
+\DoxyCodeLine{98 }
+\DoxyCodeLine{99       iter = iteration\_count;}
+\DoxyCodeLine{100       \textcolor{keywordflow}{while} (--iter) \{}
+\DoxyCodeLine{101          \textcolor{comment}{/* code goes here. */}}
+\DoxyCodeLine{102          x = \mbox{\hyperlink{tomcrypt_8h_ab59933beebb2b857c992b93cf53f0d10}{MAXBLOCKSIZE}};}
+\DoxyCodeLine{103          \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{hash__memory_8c_a8672bf28488595ef1519a6754498869c}{hash\_memory}}(hash\_idx, buf, \mbox{\hyperlink{tomcrypt__hash_8h_ab0e4f02e30a47da79baa9240e79cde92}{hash\_descriptor}}[hash\_idx].hashsize, buf, \&x)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{104             \textcolor{keywordflow}{goto} LBL\_ERR;}
+\DoxyCodeLine{105          \}}
+\DoxyCodeLine{106       \}}
+\DoxyCodeLine{107 }
+\DoxyCodeLine{108       \textcolor{comment}{/* limit the size of the copy to however many bytes we have left in}}
+\DoxyCodeLine{109 \textcolor{comment}{         the output buffer (and how many bytes we have to copy) */}}
+\DoxyCodeLine{110       outidx = block*\mbox{\hyperlink{tomcrypt__hash_8h_ab0e4f02e30a47da79baa9240e79cde92}{hash\_descriptor}}[hash\_idx].\mbox{\hyperlink{structltc__hash__descriptor_a49bd027653ff21408cb2661748d719ef}{hashsize}};}
+\DoxyCodeLine{111       nb = \mbox{\hyperlink{tomcrypt__hash_8h_ab0e4f02e30a47da79baa9240e79cde92}{hash\_descriptor}}[hash\_idx].\mbox{\hyperlink{structltc__hash__descriptor_a49bd027653ff21408cb2661748d719ef}{hashsize}};}
+\DoxyCodeLine{112       \textcolor{keywordflow}{if}(outidx+nb > *outlen) \{}
+\DoxyCodeLine{113           nb = *outlen - outidx;}
+\DoxyCodeLine{114       \}}
+\DoxyCodeLine{115       \textcolor{keywordflow}{if}(nb > 0) \{}
+\DoxyCodeLine{116           \mbox{\hyperlink{tomcrypt__cfg_8h_a7691dd48d60d5fc6daf2fa7ec4c55e12}{XMEMCPY}}(out+outidx, buf, nb);}
+\DoxyCodeLine{117       \}}
+\DoxyCodeLine{118 }
+\DoxyCodeLine{119       block++;}
+\DoxyCodeLine{120       \textcolor{keywordflow}{if} (!openssl\_compat) \{}
+\DoxyCodeLine{121           \textcolor{keywordflow}{break};}
+\DoxyCodeLine{122       \}}
+\DoxyCodeLine{123    \}}
+\DoxyCodeLine{124    \textcolor{comment}{/* In strict mode, we always return the hashsize, in compat we filled it}}
+\DoxyCodeLine{125 \textcolor{comment}{      as much as was requested, so we leave it alone. */}}
+\DoxyCodeLine{126    \textcolor{keywordflow}{if}(!openssl\_compat) \{}
+\DoxyCodeLine{127       *outlen = \mbox{\hyperlink{tomcrypt__hash_8h_ab0e4f02e30a47da79baa9240e79cde92}{hash\_descriptor}}[hash\_idx].\mbox{\hyperlink{structltc__hash__descriptor_a49bd027653ff21408cb2661748d719ef}{hashsize}};}
+\DoxyCodeLine{128    \}}
+\DoxyCodeLine{129 }
+\DoxyCodeLine{130    err = \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{131 LBL\_ERR:}
+\DoxyCodeLine{132 \textcolor{preprocessor}{\#ifdef LTC\_CLEAN\_STACK}}
+\DoxyCodeLine{133    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(buf, \mbox{\hyperlink{tomcrypt_8h_ab59933beebb2b857c992b93cf53f0d10}{MAXBLOCKSIZE}});}
+\DoxyCodeLine{134    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(md, \textcolor{keyword}{sizeof}(\mbox{\hyperlink{unionHash__state}{hash\_state}}));}
+\DoxyCodeLine{135 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{136 }
+\DoxyCodeLine{137    \mbox{\hyperlink{tomcrypt__cfg_8h_a260d66fc0690e0502cf3bfe7b5244b75}{XFREE}}(buf);}
+\DoxyCodeLine{138    \mbox{\hyperlink{tomcrypt__cfg_8h_a260d66fc0690e0502cf3bfe7b5244b75}{XFREE}}(md);}
+\DoxyCodeLine{139 }
+\DoxyCodeLine{140    \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{141 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+M\+EM, C\+R\+Y\+P\+T\+\_\+\+OK, hash\+\_\+descriptor, hash\+\_\+is\+\_\+valid(), hash\+\_\+memory(), ltc\+\_\+hash\+\_\+descriptor\+::hashsize, init(), L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, M\+A\+X\+B\+L\+O\+C\+K\+S\+I\+ZE, X\+F\+R\+E\+E(), X\+M\+A\+L\+L\+O\+C(), X\+M\+E\+M\+C\+P\+Y(), and zeromem().
+
+
+
+Referenced by pkcs\+\_\+5\+\_\+alg1(), and pkcs\+\_\+5\+\_\+alg1\+\_\+openssl().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2
+\mbox{\Hypertarget{pkcs__5__1_8c_ad4834c485adb4fc776af355582a96cb6}\label{pkcs__5__1_8c_ad4834c485adb4fc776af355582a96cb6}} 
+\index{pkcs\_5\_1.c@{pkcs\_5\_1.c}!pkcs\_5\_alg1@{pkcs\_5\_alg1}}
+\index{pkcs\_5\_alg1@{pkcs\_5\_alg1}!pkcs\_5\_1.c@{pkcs\_5\_1.c}}
+\subsubsection{\texorpdfstring{pkcs\_5\_alg1()}{pkcs\_5\_alg1()}}
+{\footnotesize\ttfamily int pkcs\+\_\+5\+\_\+alg1 (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{password,  }\item[{unsigned long}]{password\+\_\+len,  }\item[{const unsigned char $\ast$}]{salt,  }\item[{int}]{iteration\+\_\+count,  }\item[{int}]{hash\+\_\+idx,  }\item[{unsigned char $\ast$}]{out,  }\item[{unsigned long $\ast$}]{outlen }\end{DoxyParamCaption})}
+
+
+
+Execute P\+K\+CS \#5 v1 -\/ Strict mode (no Open\+S\+S\+L-\/compatible extension) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em password} & The password (or key) \\
+\hline
+{\em password\+\_\+len} & The length of the password (octet) \\
+\hline
+{\em salt} & The salt (or nonce) which is 8 octets long \\
+\hline
+{\em iteration\+\_\+count} & The P\+K\+CS \#5 v1 iteration count \\
+\hline
+{\em hash\+\_\+idx} & The index of the hash desired \\
+\hline
+{\em out} & \mbox{[}out\mbox{]} The destination for this algorithm \\
+\hline
+{\em outlen} & \mbox{[}in/out\mbox{]} The max size and resulting size of the algorithm output \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 154 of file pkcs\+\_\+5\+\_\+1.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{158 \{}
+\DoxyCodeLine{159    \textcolor{keywordflow}{return} \mbox{\hyperlink{pkcs__5__1_8c_aa4612634ecf7147a57dfe724150e059a}{\_pkcs\_5\_alg1\_common}}(password, password\_len, salt, iteration\_count,}
+\DoxyCodeLine{160                              hash\_idx, out, outlen, 0);}
+\DoxyCodeLine{161 \}}
+
+\end{DoxyCode}
+
+
+References \+\_\+pkcs\+\_\+5\+\_\+alg1\+\_\+common().
+
+
+
+Referenced by \+\_\+pkcs\+\_\+5\+\_\+alg1\+\_\+wrap(), and pkcs\+\_\+5\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 3
+Here is the caller graph for this function\+:
+% FIG 4
+\mbox{\Hypertarget{pkcs__5__1_8c_ac6e1537b6861bbd16dff1469982277f1}\label{pkcs__5__1_8c_ac6e1537b6861bbd16dff1469982277f1}} 
+\index{pkcs\_5\_1.c@{pkcs\_5\_1.c}!pkcs\_5\_alg1\_openssl@{pkcs\_5\_alg1\_openssl}}
+\index{pkcs\_5\_alg1\_openssl@{pkcs\_5\_alg1\_openssl}!pkcs\_5\_1.c@{pkcs\_5\_1.c}}
+\subsubsection{\texorpdfstring{pkcs\_5\_alg1\_openssl()}{pkcs\_5\_alg1\_openssl()}}
+{\footnotesize\ttfamily int pkcs\+\_\+5\+\_\+alg1\+\_\+openssl (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{password,  }\item[{unsigned long}]{password\+\_\+len,  }\item[{const unsigned char $\ast$}]{salt,  }\item[{int}]{iteration\+\_\+count,  }\item[{int}]{hash\+\_\+idx,  }\item[{unsigned char $\ast$}]{out,  }\item[{unsigned long $\ast$}]{outlen }\end{DoxyParamCaption})}
+
+
+
+Execute P\+K\+CS \#5 v1 -\/ Open\+S\+S\+L-\/extension-\/compatible mode. 
+
+Use this one if you need to derive keys as \char`\"{}openssl enc\char`\"{} does by default. Open\+S\+SL (for better or worse), uses M\+D5 as the hash and iteration\+\_\+count=1. 
+\begin{DoxyParams}{Parameters}
+{\em password} & The password (or key) \\
+\hline
+{\em password\+\_\+len} & The length of the password (octet) \\
+\hline
+{\em salt} & The salt (or nonce) which is 8 octets long \\
+\hline
+{\em iteration\+\_\+count} & The P\+K\+CS \#5 v1 iteration count \\
+\hline
+{\em hash\+\_\+idx} & The index of the hash desired \\
+\hline
+{\em out} & \mbox{[}out\mbox{]} The destination for this algorithm \\
+\hline
+{\em outlen} & \mbox{[}in/out\mbox{]} The max size and resulting size of the algorithm output \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 177 of file pkcs\+\_\+5\+\_\+1.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{182 \{}
+\DoxyCodeLine{183    \textcolor{keywordflow}{return} \mbox{\hyperlink{pkcs__5__1_8c_aa4612634ecf7147a57dfe724150e059a}{\_pkcs\_5\_alg1\_common}}(password, password\_len, salt, iteration\_count,}
+\DoxyCodeLine{184                              hash\_idx, out, outlen, 1);}
+\DoxyCodeLine{185 \}}
+
+\end{DoxyCode}
+
+
+References \+\_\+pkcs\+\_\+5\+\_\+alg1\+\_\+common().
+
+
+
+Referenced by pkcs\+\_\+5\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 5
+Here is the caller graph for this function\+:
+% FIG 6

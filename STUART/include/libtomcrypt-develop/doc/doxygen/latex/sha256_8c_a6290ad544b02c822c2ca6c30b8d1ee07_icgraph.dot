@@ -1,0 +1,29 @@
+digraph "sha256_init"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node34 [label="sha256_init",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Initialize the hash state."];
+  Node34 -> Node35 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node35 [label="_fortuna_reseed",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$fortuna_8c.html#aad833baa2e75f93d847e5a7ac30ea4d2",tooltip=" "];
+  Node35 -> Node36 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node36 [label="fortuna_ready",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$fortuna_8c.html#a635d034d99b51a38b4a71fae3880b48f",tooltip="Make the PRNG ready to read from."];
+  Node35 -> Node37 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node37 [label="fortuna_read",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$fortuna_8c.html#a19149fcfc926ab81d4acebfcf39b78f7",tooltip="Read from the PRNG."];
+  Node34 -> Node38 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node38 [label="_sha256",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$xsalsa20__test_8c.html#a7fcfbd99a01c14c1da60a10132de39a1",tooltip=" "];
+  Node38 -> Node39 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node39 [label="xsalsa20_test",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$xsalsa20__test_8c.html#a3a6ef542e6adb8439f75d3ac042ac0e5",tooltip=" "];
+  Node34 -> Node40 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node40 [label="fortuna_start",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$fortuna_8c.html#a54822f5e172e6f2a025448f6e9430e22",tooltip="Start the PRNG."];
+  Node40 -> Node41 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node41 [label="fortuna_import",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$fortuna_8c.html#ad9f529aaecf6646cac5e5eaa2d1f418d",tooltip="Import a PRNG state."];
+  Node34 -> Node42 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node42 [label="fortuna_update_seed",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$fortuna_8c.html#a8a0df3516c28ad940932db01cfa194f9",tooltip="\"Update Seed File\"-compliant update of K"];
+  Node42 -> Node41 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node34 -> Node43 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node43 [label="sha256_test",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sha256_8c.html#a3a9304ee8cdb3aaa8fc90f0b70592e7b",tooltip="Self-test the hash."];
+  Node43 -> Node44 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node44 [label="fortuna_test",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$fortuna_8c.html#a02a8621eda36a40059ce155007b6f6c3",tooltip="PRNG self-test."];
+}

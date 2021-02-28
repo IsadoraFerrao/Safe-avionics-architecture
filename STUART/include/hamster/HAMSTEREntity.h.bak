@@ -1,0 +1,100 @@
+/*
+ * Copyright (C) 2017     Critical Embedded System Laboratory (LSEC)
+ * 
+ * This program is free software; you can redistribute it and/or modify it 
+ * under the terms of the GNU Lesser General Public License as published by the
+ * Free Software Foundation; either version 2 of the License, or (at your 
+ * option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful, but WITHOUT 
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or 
+ * FITNESS FOR A PARTICULAR PURPOSE.
+ * 
+ * See the GNU Lesser General Public License for more details.
+ * <http://www.gnu.org/licenses/>
+ */
+
+/*! 
+ * \anchor HAMSTEREntity
+ * \class hamster::HAMSTEREntity HAMSTEREntity.h
+ * \brief Class that represents any HAMSTER-enabled vehicle or control station. 
+ * \details A HAMSTER Entity represents an unmanned vehicle or control station 
+ * in a HAMSTER-enabled system.
+ * 
+ * The class can be specialized to different types of vehicles (aerial, ground
+ * or water vehicles) in order to attend specific demands of each segment.
+ * 
+ * Each HAMSTER Entity can be composed of HAMSTER objects, which represent the 
+ * internal components of each vehicle/station.
+ * 
+ * \author    Mariana Rodrigues    rodrigues.mariana@gmail.com
+ * \copyright GNU Lesser General Public License.
+ *
+ */
+
+#ifndef HAMSTERENTITY_H
+#define HAMSTERENTITY_H
+
+#include "HAMSTERUnit.h"
+#include "HAMSTERObject.h"
+#include "CentralSPHERE.h"
+#include "HAMSTERPeer.h"
+
+//class hamster::HAMSTERObject;
+
+namespace hamster {
+
+class HAMSTEREntity : public HAMSTERUnit{
+public:
+//-----------------------------------------------------------------------------
+// Constructor / Destructor
+//-----------------------------------------------------------------------------
+    HAMSTEREntity(char * config_file_name);
+    virtual ~HAMSTEREntity();
+    
+//-----------------------------------------------------------------------------
+// User methods to be overloaded by application
+//-----------------------------------------------------------------------------
+    virtual void customInitialization(void) = 0;
+    virtual void customExecution(void) = 0;
+    virtual void customTermination(void) = 0;
+    
+    void loadEntity(){
+        this->initialize();
+        this->execute();
+        this->nodeTermination();        
+    }
+    
+protected:
+    comm::HAMSTERPeer * getCentralUnit(){
+        return this->getCommunicationInfo()->getCentralUnit();
+    }
+
+
+//-----------------------------------------------------------------------------
+// HAMSTERNode methods
+//-----------------------------------------------------------------------------
+    virtual void initialize(void);
+    virtual void execute(void);
+    virtual void nodeTermination(void);
+
+private:    
+//-----------------------------------------------------------------------------
+// HAMSTER Node methods
+//-----------------------------------------------------------------------------
+    std::ostream& printNode(std::ostream& stream) const;
+
+//-----------------------------------------------------------------------------
+// HAMSTER Communication
+//-----------------------------------------------------------------------------
+    /*!< \brief Units the entity has established a connection. */
+//    std::map<utils::Uuid,comm::HAMSTERPeer * > entity_peers;
+
+    // Modules and Clusters within the vehicles
+//    hamster::HAMSTERObject * my_modules;
+};
+    
+} /* namespace hamster */
+
+#endif /* HAMSTERENTITY_H */
+

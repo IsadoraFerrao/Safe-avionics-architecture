@@ -1,0 +1,17 @@
+digraph "rc4_stream_done"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node12 [label="rc4_stream_done",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Terminate and clear RC4 state."];
+  Node12 -> Node13 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node13 [label="rc4_done",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rc4_8c.html#a952a774c3bf86fc6b351bfd1fcfa7558",tooltip="Terminate the PRNG."];
+  Node13 -> Node14 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node14 [label="rc4_test",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rc4_8c.html#ad8af7083fd45b4c39ec2720455518560",tooltip="PRNG self-test."];
+  Node12 -> Node15 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node15 [label="rc4_stream_memory",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rc4__stream__memory_8c.html#a3d744655eede094f61a105587ddf5fba",tooltip="Encrypt (or decrypt) bytes of ciphertext (or plaintext) with RC4."];
+  Node15 -> Node16 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node16 [label="rc4_stream_test",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rc4__test_8c.html#a3ac84750a90eadf1320f534b3c8a7e3a",tooltip=" "];
+  Node12 -> Node16 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+}

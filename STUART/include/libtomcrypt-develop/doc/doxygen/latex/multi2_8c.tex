@@ -1,0 +1,681 @@
+\hypertarget{multi2_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/ciphers/multi2.c File Reference}
+\label{multi2_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/ciphers/multi2.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/ciphers/multi2.c}}
+
+
+Multi-\/2 implementation (not public domain, hence the default disable)  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for multi2.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{multi2_8c_aa6e28a79517b509154714e51c2c1dc3b}{pi1}} (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} $\ast$p)
+\item 
+static void \mbox{\hyperlink{multi2_8c_a37c4b6b09dd5493456b3c765914b1481}{pi2}} (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} $\ast$p, const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} $\ast$k)
+\item 
+static void \mbox{\hyperlink{multi2_8c_a3e3c386a25d0f6950651f1fa5277c147}{pi3}} (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} $\ast$p, const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} $\ast$k)
+\item 
+static void \mbox{\hyperlink{multi2_8c_ad94b543f7f2133e851ecb20bd9324e12}{pi4}} (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} $\ast$p, const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} $\ast$k)
+\item 
+static void \mbox{\hyperlink{multi2_8c_ad0625943f7d847668b869ed827c51d47}{setup}} (const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} $\ast$dk, const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} $\ast$k, \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} $\ast$uk)
+\item 
+static void \mbox{\hyperlink{multi2_8c_a1880f806f5190f632ae5d05760c16dd4}{encrypt}} (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} $\ast$p, int \mbox{\hyperlink{sober128__stream_8c_a0240ac851181b84ac374872dc5434ee4}{N}}, const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} $\ast$uk)
+\item 
+static void \mbox{\hyperlink{multi2_8c_a940720511cfb9050452b9ff6fce87f6d}{decrypt}} (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} $\ast$p, int \mbox{\hyperlink{sober128__stream_8c_a0240ac851181b84ac374872dc5434ee4}{N}}, const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} $\ast$uk)
+\item 
+int \mbox{\hyperlink{multi2_8c_a81011180b7f45ba07b0f1b7f759e6d02}{multi2\+\_\+setup}} (const unsigned char $\ast$key, int keylen, int num\+\_\+rounds, \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)
+\item 
+int \mbox{\hyperlink{multi2_8c_a4d5e7e3e85d11d58746cef6b7d73d5a9}{multi2\+\_\+ecb\+\_\+encrypt}} (const unsigned char $\ast$pt, unsigned char $\ast$ct, const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)
+\begin{DoxyCompactList}\small\item\em Encrypts a block of text with multi2. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{multi2_8c_ad6e67f569cb1b1f464c023cadb21fd9d}{multi2\+\_\+ecb\+\_\+decrypt}} (const unsigned char $\ast$ct, unsigned char $\ast$pt, const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)
+\begin{DoxyCompactList}\small\item\em Decrypts a block of text with multi2. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{multi2_8c_aab1e868d611655e77b28eabddabb84f1}{multi2\+\_\+test}} (void)
+\begin{DoxyCompactList}\small\item\em Performs a self-\/test of the multi2 block cipher. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{multi2_8c_a13bfc67c218f47f64885027d580b66f9}{multi2\+\_\+done}} (\mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)
+\begin{DoxyCompactList}\small\item\em Terminate the context. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{multi2_8c_a10349c48f412804baaf1d52647283875}{multi2\+\_\+keysize}} (int $\ast$keysize)
+\begin{DoxyCompactList}\small\item\em Gets suitable key size. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const struct \mbox{\hyperlink{structltc__cipher__descriptor}{ltc\+\_\+cipher\+\_\+descriptor}} \mbox{\hyperlink{multi2_8c_aebf3a1b41bc8763287eecb37dc846bca}{multi2\+\_\+desc}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Multi-\/2 implementation (not public domain, hence the default disable) 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{multi2_8c_a940720511cfb9050452b9ff6fce87f6d}\label{multi2_8c_a940720511cfb9050452b9ff6fce87f6d}} 
+\index{multi2.c@{multi2.c}!decrypt@{decrypt}}
+\index{decrypt@{decrypt}!multi2.c@{multi2.c}}
+\subsubsection{\texorpdfstring{decrypt()}{decrypt()}}
+{\footnotesize\ttfamily static void decrypt (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} $\ast$}]{p,  }\item[{int}]{N,  }\item[{const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} $\ast$}]{uk }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 92 of file multi2.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{93 \{}
+\DoxyCodeLine{94    \textcolor{keywordtype}{int} n, t;}
+\DoxyCodeLine{95    \textcolor{keywordflow}{for} (t = 4*(((\mbox{\hyperlink{sober128__stream_8c_a0240ac851181b84ac374872dc5434ee4}{N}}-1)>>2)\&1), n = \mbox{\hyperlink{sober128__stream_8c_a0240ac851181b84ac374872dc5434ee4}{N}}; ;  ) \{}
+\DoxyCodeLine{96       \textcolor{keywordflow}{switch} (n<=4 ? n : ((n-1)\%4)+1) \{}
+\DoxyCodeLine{97          \textcolor{keywordflow}{case} 4: \mbox{\hyperlink{multi2_8c_ad94b543f7f2133e851ecb20bd9324e12}{pi4}}(p, uk+t); --n; \textcolor{comment}{/* FALLTHROUGH */}}
+\DoxyCodeLine{98          \textcolor{keywordflow}{case} 3: \mbox{\hyperlink{multi2_8c_a3e3c386a25d0f6950651f1fa5277c147}{pi3}}(p, uk+t); --n; \textcolor{comment}{/* FALLTHROUGH */}}
+\DoxyCodeLine{99          \textcolor{keywordflow}{case} 2: \mbox{\hyperlink{multi2_8c_a37c4b6b09dd5493456b3c765914b1481}{pi2}}(p, uk+t); --n; \textcolor{comment}{/* FALLTHROUGH */}}
+\DoxyCodeLine{100          \textcolor{keywordflow}{case} 1: \mbox{\hyperlink{multi2_8c_aa6e28a79517b509154714e51c2c1dc3b}{pi1}}(p); --n; \textcolor{keywordflow}{break};}
+\DoxyCodeLine{101          \textcolor{keywordflow}{case} 0: \textcolor{keywordflow}{return};}
+\DoxyCodeLine{102       \}}
+\DoxyCodeLine{103       t \string^= 4;}
+\DoxyCodeLine{104    \}}
+\DoxyCodeLine{105 \}}
+
+\end{DoxyCode}
+
+
+References N, pi1(), pi2(), pi3(), and pi4().
+
+
+
+Referenced by multi2\+\_\+ecb\+\_\+decrypt().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2
+\mbox{\Hypertarget{multi2_8c_a1880f806f5190f632ae5d05760c16dd4}\label{multi2_8c_a1880f806f5190f632ae5d05760c16dd4}} 
+\index{multi2.c@{multi2.c}!encrypt@{encrypt}}
+\index{encrypt@{encrypt}!multi2.c@{multi2.c}}
+\subsubsection{\texorpdfstring{encrypt()}{encrypt()}}
+{\footnotesize\ttfamily static void encrypt (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} $\ast$}]{p,  }\item[{int}]{N,  }\item[{const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} $\ast$}]{uk }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 80 of file multi2.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{81 \{}
+\DoxyCodeLine{82    \textcolor{keywordtype}{int} n, t;}
+\DoxyCodeLine{83    \textcolor{keywordflow}{for} (t = n = 0; ; ) \{}
+\DoxyCodeLine{84       \mbox{\hyperlink{multi2_8c_aa6e28a79517b509154714e51c2c1dc3b}{pi1}}(p); \textcolor{keywordflow}{if} (++n == \mbox{\hyperlink{sober128__stream_8c_a0240ac851181b84ac374872dc5434ee4}{N}}) \textcolor{keywordflow}{break};}
+\DoxyCodeLine{85       \mbox{\hyperlink{multi2_8c_a37c4b6b09dd5493456b3c765914b1481}{pi2}}(p, uk+t); \textcolor{keywordflow}{if} (++n == \mbox{\hyperlink{sober128__stream_8c_a0240ac851181b84ac374872dc5434ee4}{N}}) \textcolor{keywordflow}{break};}
+\DoxyCodeLine{86       \mbox{\hyperlink{multi2_8c_a3e3c386a25d0f6950651f1fa5277c147}{pi3}}(p, uk+t); \textcolor{keywordflow}{if} (++n == \mbox{\hyperlink{sober128__stream_8c_a0240ac851181b84ac374872dc5434ee4}{N}}) \textcolor{keywordflow}{break};}
+\DoxyCodeLine{87       \mbox{\hyperlink{multi2_8c_ad94b543f7f2133e851ecb20bd9324e12}{pi4}}(p, uk+t); \textcolor{keywordflow}{if} (++n == \mbox{\hyperlink{sober128__stream_8c_a0240ac851181b84ac374872dc5434ee4}{N}}) \textcolor{keywordflow}{break};}
+\DoxyCodeLine{88       t \string^= 4;}
+\DoxyCodeLine{89    \}}
+\DoxyCodeLine{90 \}}
+
+\end{DoxyCode}
+
+
+References N, pi1(), pi2(), pi3(), and pi4().
+
+
+
+Referenced by multi2\+\_\+ecb\+\_\+encrypt().
+
+Here is the call graph for this function\+:
+% FIG 3
+Here is the caller graph for this function\+:
+% FIG 4
+\mbox{\Hypertarget{multi2_8c_a13bfc67c218f47f64885027d580b66f9}\label{multi2_8c_a13bfc67c218f47f64885027d580b66f9}} 
+\index{multi2.c@{multi2.c}!multi2\_done@{multi2\_done}}
+\index{multi2\_done@{multi2\_done}!multi2.c@{multi2.c}}
+\subsubsection{\texorpdfstring{multi2\_done()}{multi2\_done()}}
+{\footnotesize\ttfamily void multi2\+\_\+done (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$}]{skey }\end{DoxyParamCaption})}
+
+
+
+Terminate the context. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em skey} & The scheduled key \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 294 of file multi2.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{295 \{}
+\DoxyCodeLine{296   \mbox{\hyperlink{tomcrypt__macros_8h_accde4b007facd646a8327f8e64b2d1e0}{LTC\_UNUSED\_PARAM}}(skey);}
+\DoxyCodeLine{297 \}}
+
+\end{DoxyCode}
+
+
+References L\+T\+C\+\_\+\+U\+N\+U\+S\+E\+D\+\_\+\+P\+A\+R\+AM.
+
+\mbox{\Hypertarget{multi2_8c_ad6e67f569cb1b1f464c023cadb21fd9d}\label{multi2_8c_ad6e67f569cb1b1f464c023cadb21fd9d}} 
+\index{multi2.c@{multi2.c}!multi2\_ecb\_decrypt@{multi2\_ecb\_decrypt}}
+\index{multi2\_ecb\_decrypt@{multi2\_ecb\_decrypt}!multi2.c@{multi2.c}}
+\subsubsection{\texorpdfstring{multi2\_ecb\_decrypt()}{multi2\_ecb\_decrypt()}}
+{\footnotesize\ttfamily int multi2\+\_\+ecb\+\_\+decrypt (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{ct,  }\item[{unsigned char $\ast$}]{pt,  }\item[{const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$}]{skey }\end{DoxyParamCaption})}
+
+
+
+Decrypts a block of text with multi2. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ct} & The input ciphertext (8 bytes) \\
+\hline
+{\em pt} & The output plaintext (8 bytes) \\
+\hline
+{\em skey} & The key as scheduled \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 172 of file multi2.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{173 \{}
+\DoxyCodeLine{174    \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} p[2];}
+\DoxyCodeLine{175    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(pt   != NULL);}
+\DoxyCodeLine{176    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(ct   != NULL);}
+\DoxyCodeLine{177    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(skey != NULL);}
+\DoxyCodeLine{178    LOAD32H(p[0], ct);}
+\DoxyCodeLine{179    LOAD32H(p[1], ct+4);}
+\DoxyCodeLine{180    \mbox{\hyperlink{multi2_8c_a940720511cfb9050452b9ff6fce87f6d}{decrypt}}(p, skey->multi2.N, skey->multi2.uk);}
+\DoxyCodeLine{181    STORE32H(p[0], pt);}
+\DoxyCodeLine{182    STORE32H(p[1], pt+4);}
+\DoxyCodeLine{183    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{184 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, decrypt(), and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+
+
+Referenced by multi2\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 5
+Here is the caller graph for this function\+:
+% FIG 6
+\mbox{\Hypertarget{multi2_8c_a4d5e7e3e85d11d58746cef6b7d73d5a9}\label{multi2_8c_a4d5e7e3e85d11d58746cef6b7d73d5a9}} 
+\index{multi2.c@{multi2.c}!multi2\_ecb\_encrypt@{multi2\_ecb\_encrypt}}
+\index{multi2\_ecb\_encrypt@{multi2\_ecb\_encrypt}!multi2.c@{multi2.c}}
+\subsubsection{\texorpdfstring{multi2\_ecb\_encrypt()}{multi2\_ecb\_encrypt()}}
+{\footnotesize\ttfamily int multi2\+\_\+ecb\+\_\+encrypt (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{pt,  }\item[{unsigned char $\ast$}]{ct,  }\item[{const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$}]{skey }\end{DoxyParamCaption})}
+
+
+
+Encrypts a block of text with multi2. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pt} & The input plaintext (8 bytes) \\
+\hline
+{\em ct} & The output ciphertext (8 bytes) \\
+\hline
+{\em skey} & The key as scheduled \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 151 of file multi2.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{152 \{}
+\DoxyCodeLine{153    \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} p[2];}
+\DoxyCodeLine{154    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(pt   != NULL);}
+\DoxyCodeLine{155    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(ct   != NULL);}
+\DoxyCodeLine{156    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(skey != NULL);}
+\DoxyCodeLine{157    LOAD32H(p[0], pt);}
+\DoxyCodeLine{158    LOAD32H(p[1], pt+4);}
+\DoxyCodeLine{159    \mbox{\hyperlink{multi2_8c_a1880f806f5190f632ae5d05760c16dd4}{encrypt}}(p, skey->multi2.N, skey->multi2.uk);}
+\DoxyCodeLine{160    STORE32H(p[0], ct);}
+\DoxyCodeLine{161    STORE32H(p[1], ct+4);}
+\DoxyCodeLine{162    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{163 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, encrypt(), and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+
+
+Referenced by multi2\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 7
+Here is the caller graph for this function\+:
+% FIG 8
+\mbox{\Hypertarget{multi2_8c_a10349c48f412804baaf1d52647283875}\label{multi2_8c_a10349c48f412804baaf1d52647283875}} 
+\index{multi2.c@{multi2.c}!multi2\_keysize@{multi2\_keysize}}
+\index{multi2\_keysize@{multi2\_keysize}!multi2.c@{multi2.c}}
+\subsubsection{\texorpdfstring{multi2\_keysize()}{multi2\_keysize()}}
+{\footnotesize\ttfamily int multi2\+\_\+keysize (\begin{DoxyParamCaption}\item[{int $\ast$}]{keysize }\end{DoxyParamCaption})}
+
+
+
+Gets suitable key size. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em keysize} & \mbox{[}in/out\mbox{]} The length of the recommended key (in bytes). This function will store the suitable size back in this variable. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if the input key size is acceptable. 
+\end{DoxyReturn}
+
+
+Definition at line 304 of file multi2.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{305 \{}
+\DoxyCodeLine{306    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(keysize != NULL);}
+\DoxyCodeLine{307    \textcolor{keywordflow}{if} (*keysize >= 40) \{}
+\DoxyCodeLine{308       *keysize = 40;}
+\DoxyCodeLine{309    \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{310       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caafed43f3b625e72191e08e65b4bb5e02}{CRYPT\_INVALID\_KEYSIZE}};}
+\DoxyCodeLine{311    \}}
+\DoxyCodeLine{312    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{313 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+K\+E\+Y\+S\+I\+ZE, C\+R\+Y\+P\+T\+\_\+\+OK, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+\mbox{\Hypertarget{multi2_8c_a81011180b7f45ba07b0f1b7f759e6d02}\label{multi2_8c_a81011180b7f45ba07b0f1b7f759e6d02}} 
+\index{multi2.c@{multi2.c}!multi2\_setup@{multi2\_setup}}
+\index{multi2\_setup@{multi2\_setup}!multi2.c@{multi2.c}}
+\subsubsection{\texorpdfstring{multi2\_setup()}{multi2\_setup()}}
+{\footnotesize\ttfamily int multi2\+\_\+setup (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{key,  }\item[{int}]{keylen,  }\item[{int}]{num\+\_\+rounds,  }\item[{\mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$}]{skey }\end{DoxyParamCaption})}
+
+
+
+Definition at line 120 of file multi2.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{121 \{}
+\DoxyCodeLine{122    \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} sk[8], dk[2];}
+\DoxyCodeLine{123    \textcolor{keywordtype}{int}      x;}
+\DoxyCodeLine{124 }
+\DoxyCodeLine{125    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(key  != NULL);}
+\DoxyCodeLine{126    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(skey != NULL);}
+\DoxyCodeLine{127 }
+\DoxyCodeLine{128    \textcolor{keywordflow}{if} (keylen != 40) \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caafed43f3b625e72191e08e65b4bb5e02}{CRYPT\_INVALID\_KEYSIZE}};}
+\DoxyCodeLine{129    \textcolor{keywordflow}{if} (num\_rounds == 0) num\_rounds = 128;}
+\DoxyCodeLine{130 }
+\DoxyCodeLine{131    skey->multi2.N = num\_rounds;}
+\DoxyCodeLine{132    \textcolor{keywordflow}{for} (x = 0; x < 8; x++) \{}
+\DoxyCodeLine{133        LOAD32H(sk[x], key + x*4);}
+\DoxyCodeLine{134    \}}
+\DoxyCodeLine{135    LOAD32H(dk[0], key + 32);}
+\DoxyCodeLine{136    LOAD32H(dk[1], key + 36);}
+\DoxyCodeLine{137    \mbox{\hyperlink{multi2_8c_ad0625943f7d847668b869ed827c51d47}{setup}}(dk, sk, skey->multi2.uk);}
+\DoxyCodeLine{138 }
+\DoxyCodeLine{139    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(sk, \textcolor{keyword}{sizeof}(sk));}
+\DoxyCodeLine{140    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(dk, \textcolor{keyword}{sizeof}(dk));}
+\DoxyCodeLine{141    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{142 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+K\+E\+Y\+S\+I\+ZE, C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, setup(), and zeromem().
+
+
+
+Referenced by multi2\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 9
+Here is the caller graph for this function\+:
+% FIG 10
+\mbox{\Hypertarget{multi2_8c_aab1e868d611655e77b28eabddabb84f1}\label{multi2_8c_aab1e868d611655e77b28eabddabb84f1}} 
+\index{multi2.c@{multi2.c}!multi2\_test@{multi2\_test}}
+\index{multi2\_test@{multi2\_test}!multi2.c@{multi2.c}}
+\subsubsection{\texorpdfstring{multi2\_test()}{multi2\_test()}}
+{\footnotesize\ttfamily int multi2\+\_\+test (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Performs a self-\/test of the multi2 block cipher. 
+
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if functional, C\+R\+Y\+P\+T\+\_\+\+N\+OP if self-\/test has been disabled 
+\end{DoxyReturn}
+
+
+Definition at line 190 of file multi2.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{191 \{}
+\DoxyCodeLine{192    \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{193       \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} key[40];}
+\DoxyCodeLine{194       \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} pt[8], ct[8];}
+\DoxyCodeLine{195       \textcolor{keywordtype}{int}           \mbox{\hyperlink{kseed_8c_a51da46362a22c8107683876e9c12ec82}{rounds}};}
+\DoxyCodeLine{196    \} tests[] = \{}
+\DoxyCodeLine{197 \{}
+\DoxyCodeLine{198    \{}
+\DoxyCodeLine{199       0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{200       0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{201       0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{202       0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{203 }
+\DoxyCodeLine{204       0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{205       0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{206       0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{207       0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{208 }
+\DoxyCodeLine{209       0x01, 0x23, 0x45, 0x67,}
+\DoxyCodeLine{210       0x89, 0xAB, 0xCD, 0xEF}
+\DoxyCodeLine{211    \},}
+\DoxyCodeLine{212    \{}
+\DoxyCodeLine{213       0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{214       0x00, 0x00, 0x00, 0x01,}
+\DoxyCodeLine{215    \},}
+\DoxyCodeLine{216    \{}
+\DoxyCodeLine{217       0xf8, 0x94, 0x40, 0x84,}
+\DoxyCodeLine{218       0x5e, 0x11, 0xcf, 0x89}
+\DoxyCodeLine{219    \},}
+\DoxyCodeLine{220    128,}
+\DoxyCodeLine{221 \},}
+\DoxyCodeLine{222 \{}
+\DoxyCodeLine{223    \{}
+\DoxyCodeLine{224       0x35, 0x91, 0x9d, 0x96,}
+\DoxyCodeLine{225       0x07, 0x02, 0xe2, 0xce,}
+\DoxyCodeLine{226       0x8d, 0x0b, 0x58, 0x3c,}
+\DoxyCodeLine{227       0xc9, 0xc8, 0x9d, 0x59,}
+\DoxyCodeLine{228       0xa2, 0xae, 0x96, 0x4e,}
+\DoxyCodeLine{229       0x87, 0x82, 0x45, 0xed,}
+\DoxyCodeLine{230       0x3f, 0x2e, 0x62, 0xd6,}
+\DoxyCodeLine{231       0x36, 0x35, 0xd0, 0x67,}
+\DoxyCodeLine{232 }
+\DoxyCodeLine{233       0xb1, 0x27, 0xb9, 0x06,}
+\DoxyCodeLine{234       0xe7, 0x56, 0x22, 0x38,}
+\DoxyCodeLine{235    \},}
+\DoxyCodeLine{236    \{}
+\DoxyCodeLine{237       0x1f, 0xb4, 0x60, 0x60,}
+\DoxyCodeLine{238       0xd0, 0xb3, 0x4f, 0xa5}
+\DoxyCodeLine{239    \},}
+\DoxyCodeLine{240    \{}
+\DoxyCodeLine{241       0xca, 0x84, 0xa9, 0x34,}
+\DoxyCodeLine{242       0x75, 0xc8, 0x60, 0xe5}
+\DoxyCodeLine{243    \},}
+\DoxyCodeLine{244    216,}
+\DoxyCodeLine{245 \}}
+\DoxyCodeLine{246 \};}
+\DoxyCodeLine{247    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} buf[8];}
+\DoxyCodeLine{248    \mbox{\hyperlink{unionSymmetric__key}{symmetric\_key}} skey;}
+\DoxyCodeLine{249    \textcolor{keywordtype}{int} err, x;}
+\DoxyCodeLine{250 }
+\DoxyCodeLine{251    \textcolor{keywordflow}{for} (x = 1; x < (int)(\textcolor{keyword}{sizeof}(tests)/\textcolor{keyword}{sizeof}(tests[0])); x++) \{}
+\DoxyCodeLine{252       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{multi2_8c_a81011180b7f45ba07b0f1b7f759e6d02}{multi2\_setup}}(tests[x].key, 40, tests[x].\mbox{\hyperlink{kseed_8c_a51da46362a22c8107683876e9c12ec82}{rounds}}, \&skey)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{253          \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{254       \}}
+\DoxyCodeLine{255       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{multi2_8c_a4d5e7e3e85d11d58746cef6b7d73d5a9}{multi2\_ecb\_encrypt}}(tests[x].pt, buf, \&skey)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{256          \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{257       \}}
+\DoxyCodeLine{258 }
+\DoxyCodeLine{259       \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(buf, 8, tests[x].ct, 8, \textcolor{stringliteral}{"Multi2 Encrypt"}, x)) \{}
+\DoxyCodeLine{260          \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{261       \}}
+\DoxyCodeLine{262 }
+\DoxyCodeLine{263       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{multi2_8c_ad6e67f569cb1b1f464c023cadb21fd9d}{multi2\_ecb\_decrypt}}(buf, buf, \&skey)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{264          \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{265       \}}
+\DoxyCodeLine{266       \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(buf, 8, tests[x].pt, 8, \textcolor{stringliteral}{"Multi2 Decrypt"}, x)) \{}
+\DoxyCodeLine{267          \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{268       \}}
+\DoxyCodeLine{269    \}}
+\DoxyCodeLine{270 }
+\DoxyCodeLine{271    \textcolor{keywordflow}{for} (x = 128; x < 256; ++x) \{}
+\DoxyCodeLine{272         \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} ct[8];}
+\DoxyCodeLine{273 }
+\DoxyCodeLine{274         \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{multi2_8c_a81011180b7f45ba07b0f1b7f759e6d02}{multi2\_setup}}(tests[0].key, 40, x, \&skey)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{275                 \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{276         \}}
+\DoxyCodeLine{277         \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{multi2_8c_a4d5e7e3e85d11d58746cef6b7d73d5a9}{multi2\_ecb\_encrypt}}(tests[0].pt, ct, \&skey)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{278                 \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{279         \}}
+\DoxyCodeLine{280         \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{multi2_8c_ad6e67f569cb1b1f464c023cadb21fd9d}{multi2\_ecb\_decrypt}}(ct, buf, \&skey)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{281                 \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{282         \}}
+\DoxyCodeLine{283         \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(buf, 8, tests[0].pt, 8, \textcolor{stringliteral}{"Multi2 Rounds"}, x)) \{}
+\DoxyCodeLine{284                 \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{285         \}}
+\DoxyCodeLine{286    \}}
+\DoxyCodeLine{287 }
+\DoxyCodeLine{288    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{289 \}}
+
+\end{DoxyCode}
+
+
+References compare\+\_\+testvector(), C\+R\+Y\+P\+T\+\_\+\+F\+A\+I\+L\+\_\+\+T\+E\+S\+T\+V\+E\+C\+T\+OR, C\+R\+Y\+P\+T\+\_\+\+OK, multi2\+\_\+ecb\+\_\+decrypt(), multi2\+\_\+ecb\+\_\+encrypt(), multi2\+\_\+setup(), and rounds().
+
+Here is the call graph for this function\+:
+% FIG 11
+\mbox{\Hypertarget{multi2_8c_aa6e28a79517b509154714e51c2c1dc3b}\label{multi2_8c_aa6e28a79517b509154714e51c2c1dc3b}} 
+\index{multi2.c@{multi2.c}!pi1@{pi1}}
+\index{pi1@{pi1}!multi2.c@{multi2.c}}
+\subsubsection{\texorpdfstring{pi1()}{pi1()}}
+{\footnotesize\ttfamily static void pi1 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} $\ast$}]{p }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 18 of file multi2.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{19 \{}
+\DoxyCodeLine{20    p[1] \string^= p[0];}
+\DoxyCodeLine{21 \}}
+
+\end{DoxyCode}
+
+
+Referenced by decrypt(), encrypt(), and setup().
+
+Here is the caller graph for this function\+:
+% FIG 12
+\mbox{\Hypertarget{multi2_8c_a37c4b6b09dd5493456b3c765914b1481}\label{multi2_8c_a37c4b6b09dd5493456b3c765914b1481}} 
+\index{multi2.c@{multi2.c}!pi2@{pi2}}
+\index{pi2@{pi2}!multi2.c@{multi2.c}}
+\subsubsection{\texorpdfstring{pi2()}{pi2()}}
+{\footnotesize\ttfamily static void pi2 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} $\ast$}]{p,  }\item[{const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} $\ast$}]{k }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 23 of file multi2.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{24 \{}
+\DoxyCodeLine{25    \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} t;}
+\DoxyCodeLine{26    t = (p[1] + k[0]) \& 0xFFFFFFFFUL;}
+\DoxyCodeLine{27    t = (\mbox{\hyperlink{tomcrypt__macros_8h_a2e1da5c8810967170c889976d1fe9fa1}{ROL}}(t, 1) + t - 1)  \& 0xFFFFFFFFUL;}
+\DoxyCodeLine{28    t = (\mbox{\hyperlink{tomcrypt__macros_8h_a2e1da5c8810967170c889976d1fe9fa1}{ROL}}(t, 4) \string^ t)  \& 0xFFFFFFFFUL;}
+\DoxyCodeLine{29    p[0] \string^= t;}
+\DoxyCodeLine{30 \}}
+
+\end{DoxyCode}
+
+
+References R\+OL.
+
+
+
+Referenced by decrypt(), encrypt(), and setup().
+
+Here is the caller graph for this function\+:
+% FIG 13
+\mbox{\Hypertarget{multi2_8c_a3e3c386a25d0f6950651f1fa5277c147}\label{multi2_8c_a3e3c386a25d0f6950651f1fa5277c147}} 
+\index{multi2.c@{multi2.c}!pi3@{pi3}}
+\index{pi3@{pi3}!multi2.c@{multi2.c}}
+\subsubsection{\texorpdfstring{pi3()}{pi3()}}
+{\footnotesize\ttfamily static void pi3 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} $\ast$}]{p,  }\item[{const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} $\ast$}]{k }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 32 of file multi2.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{33 \{}
+\DoxyCodeLine{34    \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} t;}
+\DoxyCodeLine{35    t = p[0] + k[1];}
+\DoxyCodeLine{36    t = (\mbox{\hyperlink{tomcrypt__macros_8h_a2e1da5c8810967170c889976d1fe9fa1}{ROL}}(t, 2) + t + 1)  \& 0xFFFFFFFFUL;}
+\DoxyCodeLine{37    t = (\mbox{\hyperlink{tomcrypt__macros_8h_a2e1da5c8810967170c889976d1fe9fa1}{ROL}}(t, 8) \string^ t)  \& 0xFFFFFFFFUL;}
+\DoxyCodeLine{38    t = (t + k[2])  \& 0xFFFFFFFFUL;}
+\DoxyCodeLine{39    t = (\mbox{\hyperlink{tomcrypt__macros_8h_a2e1da5c8810967170c889976d1fe9fa1}{ROL}}(t, 1) - t)  \& 0xFFFFFFFFUL;}
+\DoxyCodeLine{40    t = \mbox{\hyperlink{tomcrypt__macros_8h_a2e1da5c8810967170c889976d1fe9fa1}{ROL}}(t, 16) \string^ (p[0] | t);}
+\DoxyCodeLine{41    p[1] \string^= t;}
+\DoxyCodeLine{42 \}}
+
+\end{DoxyCode}
+
+
+References R\+OL.
+
+
+
+Referenced by decrypt(), encrypt(), and setup().
+
+Here is the caller graph for this function\+:
+% FIG 14
+\mbox{\Hypertarget{multi2_8c_ad94b543f7f2133e851ecb20bd9324e12}\label{multi2_8c_ad94b543f7f2133e851ecb20bd9324e12}} 
+\index{multi2.c@{multi2.c}!pi4@{pi4}}
+\index{pi4@{pi4}!multi2.c@{multi2.c}}
+\subsubsection{\texorpdfstring{pi4()}{pi4()}}
+{\footnotesize\ttfamily static void pi4 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} $\ast$}]{p,  }\item[{const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} $\ast$}]{k }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 44 of file multi2.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{45 \{}
+\DoxyCodeLine{46    \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} t;}
+\DoxyCodeLine{47    t = (p[1] + k[3])  \& 0xFFFFFFFFUL;}
+\DoxyCodeLine{48    t = (\mbox{\hyperlink{tomcrypt__macros_8h_a2e1da5c8810967170c889976d1fe9fa1}{ROL}}(t, 2) + t + 1)  \& 0xFFFFFFFFUL;}
+\DoxyCodeLine{49    p[0] \string^= t;}
+\DoxyCodeLine{50 \}}
+
+\end{DoxyCode}
+
+
+References R\+OL.
+
+
+
+Referenced by decrypt(), encrypt(), and setup().
+
+Here is the caller graph for this function\+:
+% FIG 15
+\mbox{\Hypertarget{multi2_8c_ad0625943f7d847668b869ed827c51d47}\label{multi2_8c_ad0625943f7d847668b869ed827c51d47}} 
+\index{multi2.c@{multi2.c}!setup@{setup}}
+\index{setup@{setup}!multi2.c@{multi2.c}}
+\subsubsection{\texorpdfstring{setup()}{setup()}}
+{\footnotesize\ttfamily static void setup (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} $\ast$}]{dk,  }\item[{const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} $\ast$}]{k,  }\item[{\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} $\ast$}]{uk }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 52 of file multi2.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{53 \{}
+\DoxyCodeLine{54    \textcolor{keywordtype}{int} n, t;}
+\DoxyCodeLine{55    \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} p[2];}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{57    p[0] = dk[0]; p[1] = dk[1];}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{59    t = 4;}
+\DoxyCodeLine{60    n = 0;}
+\DoxyCodeLine{61       \mbox{\hyperlink{multi2_8c_aa6e28a79517b509154714e51c2c1dc3b}{pi1}}(p);}
+\DoxyCodeLine{62       \mbox{\hyperlink{multi2_8c_a37c4b6b09dd5493456b3c765914b1481}{pi2}}(p, k);}
+\DoxyCodeLine{63       uk[n++] = p[0];}
+\DoxyCodeLine{64       \mbox{\hyperlink{multi2_8c_a3e3c386a25d0f6950651f1fa5277c147}{pi3}}(p, k);}
+\DoxyCodeLine{65       uk[n++] = p[1];}
+\DoxyCodeLine{66       \mbox{\hyperlink{multi2_8c_ad94b543f7f2133e851ecb20bd9324e12}{pi4}}(p, k);}
+\DoxyCodeLine{67       uk[n++] = p[0];}
+\DoxyCodeLine{68       \mbox{\hyperlink{multi2_8c_aa6e28a79517b509154714e51c2c1dc3b}{pi1}}(p);}
+\DoxyCodeLine{69       uk[n++] = p[1];}
+\DoxyCodeLine{70       \mbox{\hyperlink{multi2_8c_a37c4b6b09dd5493456b3c765914b1481}{pi2}}(p, k+t);}
+\DoxyCodeLine{71       uk[n++] = p[0];}
+\DoxyCodeLine{72       \mbox{\hyperlink{multi2_8c_a3e3c386a25d0f6950651f1fa5277c147}{pi3}}(p, k+t);}
+\DoxyCodeLine{73       uk[n++] = p[1];}
+\DoxyCodeLine{74       \mbox{\hyperlink{multi2_8c_ad94b543f7f2133e851ecb20bd9324e12}{pi4}}(p, k+t);}
+\DoxyCodeLine{75       uk[n++] = p[0];}
+\DoxyCodeLine{76       \mbox{\hyperlink{multi2_8c_aa6e28a79517b509154714e51c2c1dc3b}{pi1}}(p);}
+\DoxyCodeLine{77       uk[n++] = p[1];}
+\DoxyCodeLine{78 \}}
+
+\end{DoxyCode}
+
+
+References pi1(), pi2(), pi3(), and pi4().
+
+
+
+Referenced by cbc\+\_\+start(), ccm\+\_\+init(), ccm\+\_\+memory(), ccm\+\_\+test(), cfb\+\_\+start(), chc\+\_\+compress(), chc\+\_\+init(), ctr\+\_\+start(), f8\+\_\+start(), f9\+\_\+init(), gcm\+\_\+init(), lrw\+\_\+start(), multi2\+\_\+setup(), ocb3\+\_\+init(), ocb\+\_\+init(), omac\+\_\+init(), pmac\+\_\+init(), xcbc\+\_\+init(), and xts\+\_\+start().
+
+Here is the call graph for this function\+:
+% FIG 16
+Here is the caller graph for this function\+:
+% FIG 17
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{multi2_8c_aebf3a1b41bc8763287eecb37dc846bca}\label{multi2_8c_aebf3a1b41bc8763287eecb37dc846bca}} 
+\index{multi2.c@{multi2.c}!multi2\_desc@{multi2\_desc}}
+\index{multi2\_desc@{multi2\_desc}!multi2.c@{multi2.c}}
+\subsubsection{\texorpdfstring{multi2\_desc}{multi2\_desc}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structltc__cipher__descriptor}{ltc\+\_\+cipher\+\_\+descriptor}} multi2\+\_\+desc}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{   \textcolor{stringliteral}{"multi2"},}
+\DoxyCodeLine{   22,}
+\DoxyCodeLine{   40, 40, 8, 128,}
+\DoxyCodeLine{   \&\mbox{\hyperlink{multi2_8c_a81011180b7f45ba07b0f1b7f759e6d02}{multi2\_setup}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{multi2_8c_a4d5e7e3e85d11d58746cef6b7d73d5a9}{multi2\_ecb\_encrypt}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{multi2_8c_ad6e67f569cb1b1f464c023cadb21fd9d}{multi2\_ecb\_decrypt}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{multi2_8c_aab1e868d611655e77b28eabddabb84f1}{multi2\_test}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{multi2_8c_a13bfc67c218f47f64885027d580b66f9}{multi2\_done}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{multi2_8c_a10349c48f412804baaf1d52647283875}{multi2\_keysize}},}
+\DoxyCodeLine{   NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line 107 of file multi2.\+c.
+
+
+
+Referenced by register\+\_\+all\+\_\+ciphers().
+

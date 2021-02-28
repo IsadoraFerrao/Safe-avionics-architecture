@@ -1,0 +1,616 @@
+\hypertarget{noekeon_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/ciphers/noekeon.c File Reference}
+\label{noekeon_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/ciphers/noekeon.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/ciphers/noekeon.c}}
+
+
+Implementation of the Noekeon block cipher by Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for noekeon.\+c\+:
+% FIG 0
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{noekeon_8c_a58a80b0e0396d6b6caa731598bf6bd11}{k\+T\+H\+E\+TA}}(a,  b,  \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},  d)
+\item 
+\#define \mbox{\hyperlink{noekeon_8c_a361a20a8ad36f7e5514cb3d3620466f8}{T\+H\+E\+TA}}(k,  a,  b,  \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},  d)
+\item 
+\#define \mbox{\hyperlink{noekeon_8c_ad3929f50a315ba2b445caba5072c908a}{G\+A\+M\+MA}}(a,  b,  \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},  d)
+\item 
+\#define \mbox{\hyperlink{noekeon_8c_a756c044dd9c0db51acc7f6caa224fe47}{P\+I1}}(a,  b,  \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},  d)~b = \mbox{\hyperlink{tomcrypt__macros_8h_a39d625dc0b148466a72c13737e063d86}{R\+O\+Lc}}(b, 1); \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} = \mbox{\hyperlink{tomcrypt__macros_8h_a39d625dc0b148466a72c13737e063d86}{R\+O\+Lc}}(\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, 5); d = \mbox{\hyperlink{tomcrypt__macros_8h_a39d625dc0b148466a72c13737e063d86}{R\+O\+Lc}}(d, 2);
+\item 
+\#define \mbox{\hyperlink{noekeon_8c_ac7c23c000e9220b98ae786c80595db1c}{P\+I2}}(a,  b,  \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},  d)~b = \mbox{\hyperlink{tomcrypt__macros_8h_adb04fb3f7c1736d29125ad0f179b1068}{R\+O\+Rc}}(b, 1); \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} = \mbox{\hyperlink{tomcrypt__macros_8h_adb04fb3f7c1736d29125ad0f179b1068}{R\+O\+Rc}}(\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, 5); d = \mbox{\hyperlink{tomcrypt__macros_8h_adb04fb3f7c1736d29125ad0f179b1068}{R\+O\+Rc}}(d, 2);
+\item 
+\#define \mbox{\hyperlink{noekeon_8c_a04ce02591bed8d5f7ccdd222845df9d2}{R\+O\+U\+ND}}(i)
+\item 
+\#define \mbox{\hyperlink{noekeon_8c_a04ce02591bed8d5f7ccdd222845df9d2}{R\+O\+U\+ND}}(i)
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{noekeon_8c_afe985f0a3a367198acb827bd63adeac5}{noekeon\+\_\+setup}} (const unsigned char $\ast$key, int keylen, int num\+\_\+rounds, \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)
+\begin{DoxyCompactList}\small\item\em Initialize the Noekeon block cipher. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{noekeon_8c_aa2ff20edac9835064f3e0c1ea3aca89e}{noekeon\+\_\+ecb\+\_\+encrypt}} (const unsigned char $\ast$pt, unsigned char $\ast$ct, const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)
+\begin{DoxyCompactList}\small\item\em Encrypts a block of text with Noekeon. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{noekeon_8c_ae48d3c2c34e2738e5cb415e742f9ba05}{noekeon\+\_\+ecb\+\_\+decrypt}} (const unsigned char $\ast$ct, unsigned char $\ast$pt, const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)
+\begin{DoxyCompactList}\small\item\em Decrypts a block of text with Noekeon. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{noekeon_8c_a977265eaaa063768bc843deceaf9e3c9}{noekeon\+\_\+test}} (void)
+\begin{DoxyCompactList}\small\item\em Performs a self-\/test of the Noekeon block cipher. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{noekeon_8c_af10a7ca483e238cea42d945c87e3ed4a}{noekeon\+\_\+done}} (\mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)
+\begin{DoxyCompactList}\small\item\em Terminate the context. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{noekeon_8c_ad07ae1f13361b892600ae7dba32b4cdc}{noekeon\+\_\+keysize}} (int $\ast$keysize)
+\begin{DoxyCompactList}\small\item\em Gets suitable key size. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const struct \mbox{\hyperlink{structltc__cipher__descriptor}{ltc\+\_\+cipher\+\_\+descriptor}} \mbox{\hyperlink{noekeon_8c_a9d3c31904b318246bbc99df8bf5f74b3}{noekeon\+\_\+desc}}
+\item 
+static const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} \mbox{\hyperlink{noekeon_8c_a2be89f5b0cd87dd3ebe0c396728f10ae}{RC}} \mbox{[}$\,$\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Implementation of the Noekeon block cipher by Tom St Denis. 
+
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{noekeon_8c_ad3929f50a315ba2b445caba5072c908a}\label{noekeon_8c_ad3929f50a315ba2b445caba5072c908a}} 
+\index{noekeon.c@{noekeon.c}!GAMMA@{GAMMA}}
+\index{GAMMA@{GAMMA}!noekeon.c@{noekeon.c}}
+\subsubsection{\texorpdfstring{GAMMA}{GAMMA}}
+{\footnotesize\ttfamily \#define G\+A\+M\+MA(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{b,  }\item[{}]{\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},  }\item[{}]{d }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{b \string^= ~(d|\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}});              \(\backslash\)}
+\DoxyCodeLine{    a \string^= \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}\&b;                 \(\backslash\)}
+\DoxyCodeLine{    temp = d; d = a; a = temp;\(\backslash\)}
+\DoxyCodeLine{    c \string^= a \string^ b \string^ d;           \(\backslash\)}
+\DoxyCodeLine{    b \string^= ~(d|\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}});              \(\backslash\)}
+\DoxyCodeLine{    a \string^= \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}\&b;}
+
+\end{DoxyCode}
+
+
+Definition at line 51 of file noekeon.\+c.
+
+\mbox{\Hypertarget{noekeon_8c_a58a80b0e0396d6b6caa731598bf6bd11}\label{noekeon_8c_a58a80b0e0396d6b6caa731598bf6bd11}} 
+\index{noekeon.c@{noekeon.c}!kTHETA@{kTHETA}}
+\index{kTHETA@{kTHETA}!noekeon.c@{noekeon.c}}
+\subsubsection{\texorpdfstring{kTHETA}{kTHETA}}
+{\footnotesize\ttfamily \#define k\+T\+H\+E\+TA(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{b,  }\item[{}]{\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},  }\item[{}]{d }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{temp = a\string^\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}; temp = temp \string^ \mbox{\hyperlink{tomcrypt__macros_8h_a39d625dc0b148466a72c13737e063d86}{ROLc}}(temp, 8) \string^ \mbox{\hyperlink{tomcrypt__macros_8h_adb04fb3f7c1736d29125ad0f179b1068}{RORc}}(temp, 8); \(\backslash\)}
+\DoxyCodeLine{    b \string^= temp; d \string^= temp;                                  \(\backslash\)}
+\DoxyCodeLine{    temp = b\string^d; temp = temp \string^ \mbox{\hyperlink{tomcrypt__macros_8h_a39d625dc0b148466a72c13737e063d86}{ROLc}}(temp, 8) \string^ \mbox{\hyperlink{tomcrypt__macros_8h_adb04fb3f7c1736d29125ad0f179b1068}{RORc}}(temp, 8); \(\backslash\)}
+\DoxyCodeLine{    a \string^= temp; \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} \string^= temp;}
+
+\end{DoxyCode}
+
+
+Definition at line 39 of file noekeon.\+c.
+
+\mbox{\Hypertarget{noekeon_8c_a756c044dd9c0db51acc7f6caa224fe47}\label{noekeon_8c_a756c044dd9c0db51acc7f6caa224fe47}} 
+\index{noekeon.c@{noekeon.c}!PI1@{PI1}}
+\index{PI1@{PI1}!noekeon.c@{noekeon.c}}
+\subsubsection{\texorpdfstring{PI1}{PI1}}
+{\footnotesize\ttfamily \#define P\+I1(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{b,  }\item[{}]{\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},  }\item[{}]{d }\end{DoxyParamCaption})~b = \mbox{\hyperlink{tomcrypt__macros_8h_a39d625dc0b148466a72c13737e063d86}{R\+O\+Lc}}(b, 1); \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} = \mbox{\hyperlink{tomcrypt__macros_8h_a39d625dc0b148466a72c13737e063d86}{R\+O\+Lc}}(\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, 5); d = \mbox{\hyperlink{tomcrypt__macros_8h_a39d625dc0b148466a72c13737e063d86}{R\+O\+Lc}}(d, 2);}
+
+
+
+Definition at line 59 of file noekeon.\+c.
+
+\mbox{\Hypertarget{noekeon_8c_ac7c23c000e9220b98ae786c80595db1c}\label{noekeon_8c_ac7c23c000e9220b98ae786c80595db1c}} 
+\index{noekeon.c@{noekeon.c}!PI2@{PI2}}
+\index{PI2@{PI2}!noekeon.c@{noekeon.c}}
+\subsubsection{\texorpdfstring{PI2}{PI2}}
+{\footnotesize\ttfamily \#define P\+I2(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{b,  }\item[{}]{\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},  }\item[{}]{d }\end{DoxyParamCaption})~b = \mbox{\hyperlink{tomcrypt__macros_8h_adb04fb3f7c1736d29125ad0f179b1068}{R\+O\+Rc}}(b, 1); \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} = \mbox{\hyperlink{tomcrypt__macros_8h_adb04fb3f7c1736d29125ad0f179b1068}{R\+O\+Rc}}(\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, 5); d = \mbox{\hyperlink{tomcrypt__macros_8h_adb04fb3f7c1736d29125ad0f179b1068}{R\+O\+Rc}}(d, 2);}
+
+
+
+Definition at line 62 of file noekeon.\+c.
+
+\mbox{\Hypertarget{noekeon_8c_a04ce02591bed8d5f7ccdd222845df9d2}\label{noekeon_8c_a04ce02591bed8d5f7ccdd222845df9d2}} 
+\index{noekeon.c@{noekeon.c}!ROUND@{ROUND}}
+\index{ROUND@{ROUND}!noekeon.c@{noekeon.c}}
+\subsubsection{\texorpdfstring{ROUND}{ROUND}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \#define R\+O\+U\+ND(\begin{DoxyParamCaption}\item[{}]{i }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{a \string^= \mbox{\hyperlink{noekeon_8c_a2be89f5b0cd87dd3ebe0c396728f10ae}{RC}}[i]; \(\backslash\)}
+\DoxyCodeLine{       THETA(skey->noekeon.K, a,b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d); \(\backslash\)}
+\DoxyCodeLine{       PI1(a,b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d); \(\backslash\)}
+\DoxyCodeLine{       GAMMA(a,b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d); \(\backslash\)}
+\DoxyCodeLine{       PI2(a,b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d);}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{noekeon_8c_a04ce02591bed8d5f7ccdd222845df9d2}\label{noekeon_8c_a04ce02591bed8d5f7ccdd222845df9d2}} 
+\index{noekeon.c@{noekeon.c}!ROUND@{ROUND}}
+\index{ROUND@{ROUND}!noekeon.c@{noekeon.c}}
+\subsubsection{\texorpdfstring{ROUND}{ROUND}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \#define R\+O\+U\+ND(\begin{DoxyParamCaption}\item[{}]{i }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{noekeon_8c_a361a20a8ad36f7e5514cb3d3620466f8}{THETA}}(skey->noekeon.dK, a,b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d); \(\backslash\)}
+\DoxyCodeLine{       a \string^= \mbox{\hyperlink{noekeon_8c_a2be89f5b0cd87dd3ebe0c396728f10ae}{RC}}[i]; \(\backslash\)}
+\DoxyCodeLine{       PI1(a,b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d); \(\backslash\)}
+\DoxyCodeLine{       GAMMA(a,b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d); \(\backslash\)}
+\DoxyCodeLine{       PI2(a,b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d);}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{noekeon_8c_a361a20a8ad36f7e5514cb3d3620466f8}\label{noekeon_8c_a361a20a8ad36f7e5514cb3d3620466f8}} 
+\index{noekeon.c@{noekeon.c}!THETA@{THETA}}
+\index{THETA@{THETA}!noekeon.c@{noekeon.c}}
+\subsubsection{\texorpdfstring{THETA}{THETA}}
+{\footnotesize\ttfamily \#define T\+H\+E\+TA(\begin{DoxyParamCaption}\item[{}]{k,  }\item[{}]{a,  }\item[{}]{b,  }\item[{}]{\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},  }\item[{}]{d }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{temp = a\string^\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}; temp = temp \string^ \mbox{\hyperlink{tomcrypt__macros_8h_a39d625dc0b148466a72c13737e063d86}{ROLc}}(temp, 8) \string^ \mbox{\hyperlink{tomcrypt__macros_8h_adb04fb3f7c1736d29125ad0f179b1068}{RORc}}(temp, 8); \(\backslash\)}
+\DoxyCodeLine{    b \string^= temp \string^ k[1]; d \string^= temp \string^ k[3];                    \(\backslash\)}
+\DoxyCodeLine{    temp = b\string^d; temp = temp \string^ \mbox{\hyperlink{tomcrypt__macros_8h_a39d625dc0b148466a72c13737e063d86}{ROLc}}(temp, 8) \string^ \mbox{\hyperlink{tomcrypt__macros_8h_adb04fb3f7c1736d29125ad0f179b1068}{RORc}}(temp, 8); \(\backslash\)}
+\DoxyCodeLine{    a \string^= temp \string^ k[0]; \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} \string^= temp \string^ k[2];}
+
+\end{DoxyCode}
+
+
+Definition at line 45 of file noekeon.\+c.
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{noekeon_8c_af10a7ca483e238cea42d945c87e3ed4a}\label{noekeon_8c_af10a7ca483e238cea42d945c87e3ed4a}} 
+\index{noekeon.c@{noekeon.c}!noekeon\_done@{noekeon\_done}}
+\index{noekeon\_done@{noekeon\_done}!noekeon.c@{noekeon.c}}
+\subsubsection{\texorpdfstring{noekeon\_done()}{noekeon\_done()}}
+{\footnotesize\ttfamily void noekeon\+\_\+done (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$}]{skey }\end{DoxyParamCaption})}
+
+
+
+Terminate the context. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em skey} & The scheduled key \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 302 of file noekeon.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{303 \{}
+\DoxyCodeLine{304   \mbox{\hyperlink{tomcrypt__macros_8h_accde4b007facd646a8327f8e64b2d1e0}{LTC\_UNUSED\_PARAM}}(skey);}
+\DoxyCodeLine{305 \}}
+
+\end{DoxyCode}
+
+
+References L\+T\+C\+\_\+\+U\+N\+U\+S\+E\+D\+\_\+\+P\+A\+R\+AM.
+
+\mbox{\Hypertarget{noekeon_8c_ae48d3c2c34e2738e5cb415e742f9ba05}\label{noekeon_8c_ae48d3c2c34e2738e5cb415e742f9ba05}} 
+\index{noekeon.c@{noekeon.c}!noekeon\_ecb\_decrypt@{noekeon\_ecb\_decrypt}}
+\index{noekeon\_ecb\_decrypt@{noekeon\_ecb\_decrypt}!noekeon.c@{noekeon.c}}
+\subsubsection{\texorpdfstring{noekeon\_ecb\_decrypt()}{noekeon\_ecb\_decrypt()}}
+{\footnotesize\ttfamily int noekeon\+\_\+ecb\+\_\+decrypt (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{ct,  }\item[{unsigned char $\ast$}]{pt,  }\item[{const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$}]{skey }\end{DoxyParamCaption})}
+
+
+
+Decrypts a block of text with Noekeon. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ct} & The input ciphertext (16 bytes) \\
+\hline
+{\em pt} & The output plaintext (16 bytes) \\
+\hline
+{\em skey} & The key as scheduled \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 167 of file noekeon.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{169 \{}
+\DoxyCodeLine{170    \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} a,b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d, temp;}
+\DoxyCodeLine{171    \textcolor{keywordtype}{int} r;}
+\DoxyCodeLine{172 }
+\DoxyCodeLine{173    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(skey != NULL);}
+\DoxyCodeLine{174    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(pt   != NULL);}
+\DoxyCodeLine{175    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(ct   != NULL);}
+\DoxyCodeLine{176 }
+\DoxyCodeLine{177    LOAD32H(a,\&ct[0]); LOAD32H(b,\&ct[4]);}
+\DoxyCodeLine{178    LOAD32H(\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},\&ct[8]); LOAD32H(d,\&ct[12]);}
+\DoxyCodeLine{179 }
+\DoxyCodeLine{180 }
+\DoxyCodeLine{181 \textcolor{preprocessor}{\#define ROUND(i) \(\backslash\)}}
+\DoxyCodeLine{182 \textcolor{preprocessor}{       THETA(skey->noekeon.dK, a,b,c,d); \(\backslash\)}}
+\DoxyCodeLine{183 \textcolor{preprocessor}{       a \string^= RC[i]; \(\backslash\)}}
+\DoxyCodeLine{184 \textcolor{preprocessor}{       PI1(a,b,c,d); \(\backslash\)}}
+\DoxyCodeLine{185 \textcolor{preprocessor}{       GAMMA(a,b,c,d); \(\backslash\)}}
+\DoxyCodeLine{186 \textcolor{preprocessor}{       PI2(a,b,c,d);}}
+\DoxyCodeLine{187 }
+\DoxyCodeLine{188    \textcolor{keywordflow}{for} (r = 16; r > 0; --r) \{}
+\DoxyCodeLine{189        \mbox{\hyperlink{noekeon_8c_a04ce02591bed8d5f7ccdd222845df9d2}{ROUND}}(r);}
+\DoxyCodeLine{190    \}}
+\DoxyCodeLine{191 }
+\DoxyCodeLine{192 \textcolor{preprocessor}{\#undef ROUND}}
+\DoxyCodeLine{193 }
+\DoxyCodeLine{194    \mbox{\hyperlink{noekeon_8c_a361a20a8ad36f7e5514cb3d3620466f8}{THETA}}(skey->noekeon.dK, a,b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d);}
+\DoxyCodeLine{195    a \string^= \mbox{\hyperlink{noekeon_8c_a2be89f5b0cd87dd3ebe0c396728f10ae}{RC}}[0];}
+\DoxyCodeLine{196    STORE32H(a,\&pt[0]); STORE32H(b, \&pt[4]);}
+\DoxyCodeLine{197    STORE32H(\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},\&pt[8]); STORE32H(d, \&pt[12]);}
+\DoxyCodeLine{198    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{199 \}}
+
+\end{DoxyCode}
+
+
+References c, C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, RC, R\+O\+U\+ND, and T\+H\+E\+TA.
+
+
+
+Referenced by noekeon\+\_\+test().
+
+Here is the caller graph for this function\+:
+% FIG 1
+\mbox{\Hypertarget{noekeon_8c_aa2ff20edac9835064f3e0c1ea3aca89e}\label{noekeon_8c_aa2ff20edac9835064f3e0c1ea3aca89e}} 
+\index{noekeon.c@{noekeon.c}!noekeon\_ecb\_encrypt@{noekeon\_ecb\_encrypt}}
+\index{noekeon\_ecb\_encrypt@{noekeon\_ecb\_encrypt}!noekeon.c@{noekeon.c}}
+\subsubsection{\texorpdfstring{noekeon\_ecb\_encrypt()}{noekeon\_ecb\_encrypt()}}
+{\footnotesize\ttfamily int noekeon\+\_\+ecb\+\_\+encrypt (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{pt,  }\item[{unsigned char $\ast$}]{ct,  }\item[{const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$}]{skey }\end{DoxyParamCaption})}
+
+
+
+Encrypts a block of text with Noekeon. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pt} & The input plaintext (16 bytes) \\
+\hline
+{\em ct} & The output ciphertext (16 bytes) \\
+\hline
+{\em skey} & The key as scheduled \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 113 of file noekeon.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{115 \{}
+\DoxyCodeLine{116    \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} a,b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d,temp;}
+\DoxyCodeLine{117    \textcolor{keywordtype}{int} r;}
+\DoxyCodeLine{118 }
+\DoxyCodeLine{119    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(skey != NULL);}
+\DoxyCodeLine{120    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(pt   != NULL);}
+\DoxyCodeLine{121    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(ct   != NULL);}
+\DoxyCodeLine{122 }
+\DoxyCodeLine{123    LOAD32H(a,\&pt[0]); LOAD32H(b,\&pt[4]);}
+\DoxyCodeLine{124    LOAD32H(\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},\&pt[8]); LOAD32H(d,\&pt[12]);}
+\DoxyCodeLine{125 }
+\DoxyCodeLine{126 \textcolor{preprocessor}{\#define ROUND(i) \(\backslash\)}}
+\DoxyCodeLine{127 \textcolor{preprocessor}{       a \string^= RC[i]; \(\backslash\)}}
+\DoxyCodeLine{128 \textcolor{preprocessor}{       THETA(skey->noekeon.K, a,b,c,d); \(\backslash\)}}
+\DoxyCodeLine{129 \textcolor{preprocessor}{       PI1(a,b,c,d); \(\backslash\)}}
+\DoxyCodeLine{130 \textcolor{preprocessor}{       GAMMA(a,b,c,d); \(\backslash\)}}
+\DoxyCodeLine{131 \textcolor{preprocessor}{       PI2(a,b,c,d);}}
+\DoxyCodeLine{132 }
+\DoxyCodeLine{133    \textcolor{keywordflow}{for} (r = 0; r < 16; ++r) \{}
+\DoxyCodeLine{134        \mbox{\hyperlink{noekeon_8c_a04ce02591bed8d5f7ccdd222845df9d2}{ROUND}}(r);}
+\DoxyCodeLine{135    \}}
+\DoxyCodeLine{136 }
+\DoxyCodeLine{137 \textcolor{preprocessor}{\#undef ROUND}}
+\DoxyCodeLine{138 }
+\DoxyCodeLine{139    a \string^= \mbox{\hyperlink{noekeon_8c_a2be89f5b0cd87dd3ebe0c396728f10ae}{RC}}[16];}
+\DoxyCodeLine{140    \mbox{\hyperlink{noekeon_8c_a361a20a8ad36f7e5514cb3d3620466f8}{THETA}}(skey->noekeon.K, a, b, \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, d);}
+\DoxyCodeLine{141 }
+\DoxyCodeLine{142    STORE32H(a,\&ct[0]); STORE32H(b,\&ct[4]);}
+\DoxyCodeLine{143    STORE32H(\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},\&ct[8]); STORE32H(d,\&ct[12]);}
+\DoxyCodeLine{144 }
+\DoxyCodeLine{145    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{146 \}}
+
+\end{DoxyCode}
+
+
+References c, C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, RC, R\+O\+U\+ND, and T\+H\+E\+TA.
+
+
+
+Referenced by noekeon\+\_\+test().
+
+Here is the caller graph for this function\+:
+% FIG 2
+\mbox{\Hypertarget{noekeon_8c_ad07ae1f13361b892600ae7dba32b4cdc}\label{noekeon_8c_ad07ae1f13361b892600ae7dba32b4cdc}} 
+\index{noekeon.c@{noekeon.c}!noekeon\_keysize@{noekeon\_keysize}}
+\index{noekeon\_keysize@{noekeon\_keysize}!noekeon.c@{noekeon.c}}
+\subsubsection{\texorpdfstring{noekeon\_keysize()}{noekeon\_keysize()}}
+{\footnotesize\ttfamily int noekeon\+\_\+keysize (\begin{DoxyParamCaption}\item[{int $\ast$}]{keysize }\end{DoxyParamCaption})}
+
+
+
+Gets suitable key size. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em keysize} & \mbox{[}in/out\mbox{]} The length of the recommended key (in bytes). This function will store the suitable size back in this variable. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if the input key size is acceptable. 
+\end{DoxyReturn}
+
+
+Definition at line 312 of file noekeon.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{313 \{}
+\DoxyCodeLine{314    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(keysize != NULL);}
+\DoxyCodeLine{315    \textcolor{keywordflow}{if} (*keysize < 16) \{}
+\DoxyCodeLine{316       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caafed43f3b625e72191e08e65b4bb5e02}{CRYPT\_INVALID\_KEYSIZE}};}
+\DoxyCodeLine{317    \}}
+\DoxyCodeLine{318    *keysize = 16;}
+\DoxyCodeLine{319    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{320 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+K\+E\+Y\+S\+I\+ZE, C\+R\+Y\+P\+T\+\_\+\+OK, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+\mbox{\Hypertarget{noekeon_8c_afe985f0a3a367198acb827bd63adeac5}\label{noekeon_8c_afe985f0a3a367198acb827bd63adeac5}} 
+\index{noekeon.c@{noekeon.c}!noekeon\_setup@{noekeon\_setup}}
+\index{noekeon\_setup@{noekeon\_setup}!noekeon.c@{noekeon.c}}
+\subsubsection{\texorpdfstring{noekeon\_setup()}{noekeon\_setup()}}
+{\footnotesize\ttfamily int noekeon\+\_\+setup (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{key,  }\item[{int}]{keylen,  }\item[{int}]{num\+\_\+rounds,  }\item[{\mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$}]{skey }\end{DoxyParamCaption})}
+
+
+
+Initialize the Noekeon block cipher. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The symmetric key you wish to pass \\
+\hline
+{\em keylen} & The key length in bytes \\
+\hline
+{\em num\+\_\+rounds} & The number of rounds desired (0 for default) \\
+\hline
+{\em skey} & The key in as scheduled by this function. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 73 of file noekeon.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{74 \{}
+\DoxyCodeLine{75    \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} temp;}
+\DoxyCodeLine{76 }
+\DoxyCodeLine{77    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(key != NULL);}
+\DoxyCodeLine{78    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(skey != NULL);}
+\DoxyCodeLine{79 }
+\DoxyCodeLine{80    \textcolor{keywordflow}{if} (keylen != 16) \{}
+\DoxyCodeLine{81       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caafed43f3b625e72191e08e65b4bb5e02}{CRYPT\_INVALID\_KEYSIZE}};}
+\DoxyCodeLine{82    \}}
+\DoxyCodeLine{83 }
+\DoxyCodeLine{84    \textcolor{keywordflow}{if} (num\_rounds != 16 \&\& num\_rounds != 0) \{}
+\DoxyCodeLine{85       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca69aff0280b5845d03130f8700009caf5}{CRYPT\_INVALID\_ROUNDS}};}
+\DoxyCodeLine{86    \}}
+\DoxyCodeLine{87 }
+\DoxyCodeLine{88    LOAD32H(skey->noekeon.K[0],\&key[0]);}
+\DoxyCodeLine{89    LOAD32H(skey->noekeon.K[1],\&key[4]);}
+\DoxyCodeLine{90    LOAD32H(skey->noekeon.K[2],\&key[8]);}
+\DoxyCodeLine{91    LOAD32H(skey->noekeon.K[3],\&key[12]);}
+\DoxyCodeLine{92 }
+\DoxyCodeLine{93    LOAD32H(skey->noekeon.dK[0],\&key[0]);}
+\DoxyCodeLine{94    LOAD32H(skey->noekeon.dK[1],\&key[4]);}
+\DoxyCodeLine{95    LOAD32H(skey->noekeon.dK[2],\&key[8]);}
+\DoxyCodeLine{96    LOAD32H(skey->noekeon.dK[3],\&key[12]);}
+\DoxyCodeLine{97 }
+\DoxyCodeLine{98    \mbox{\hyperlink{noekeon_8c_a58a80b0e0396d6b6caa731598bf6bd11}{kTHETA}}(skey->noekeon.dK[0], skey->noekeon.dK[1], skey->noekeon.dK[2], skey->noekeon.dK[3]);}
+\DoxyCodeLine{99 }
+\DoxyCodeLine{100    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{101 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+K\+E\+Y\+S\+I\+ZE, C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+R\+O\+U\+N\+DS, C\+R\+Y\+P\+T\+\_\+\+OK, k\+T\+H\+E\+TA, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+
+
+Referenced by noekeon\+\_\+test().
+
+Here is the caller graph for this function\+:
+% FIG 3
+\mbox{\Hypertarget{noekeon_8c_a977265eaaa063768bc843deceaf9e3c9}\label{noekeon_8c_a977265eaaa063768bc843deceaf9e3c9}} 
+\index{noekeon.c@{noekeon.c}!noekeon\_test@{noekeon\_test}}
+\index{noekeon\_test@{noekeon\_test}!noekeon.c@{noekeon.c}}
+\subsubsection{\texorpdfstring{noekeon\_test()}{noekeon\_test()}}
+{\footnotesize\ttfamily int noekeon\+\_\+test (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Performs a self-\/test of the Noekeon block cipher. 
+
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if functional, C\+R\+Y\+P\+T\+\_\+\+N\+OP if self-\/test has been disabled 
+\end{DoxyReturn}
+
+
+Definition at line 214 of file noekeon.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{215 \{}
+\DoxyCodeLine{216 \textcolor{preprocessor}{ \#ifndef LTC\_TEST}}
+\DoxyCodeLine{217     \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cac43a7799c7fd5f515172da6cfc0f9cf5}{CRYPT\_NOP}};}
+\DoxyCodeLine{218 \textcolor{preprocessor}{ \#else}}
+\DoxyCodeLine{219  \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{220      \textcolor{keywordtype}{int} keylen;}
+\DoxyCodeLine{221      \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} key[16], pt[16], ct[16];}
+\DoxyCodeLine{222  \} tests[] = \{}
+\DoxyCodeLine{223    \{}
+\DoxyCodeLine{224       16,}
+\DoxyCodeLine{225       \{ 0xAA, 0x3C, 0x8C, 0x86, 0xD9, 0x8B, 0xF8, 0xBE, 0x21, 0xE0, 0x36, 0x09, 0x78, 0xFB, 0xE4, 0x90 \},}
+\DoxyCodeLine{226       \{ 0xE4, 0x96, 0x6C, 0xD3, 0x13, 0xA0, 0x6C, 0xAF, 0xD0, 0x23, 0xC9, 0xFD, 0x45, 0x32, 0x23, 0x16 \},}
+\DoxyCodeLine{227       \{ 0xA6, 0xEC, 0xB8, 0xA8, 0x61, 0xFD, 0x62, 0xD9, 0x13, 0x02, 0xFE, 0x9E, 0x47, 0x01, 0x3F, 0xC3 \}}
+\DoxyCodeLine{228    \},}
+\DoxyCodeLine{229    \{}
+\DoxyCodeLine{230       16,}
+\DoxyCodeLine{231       \{ 0xED, 0x43, 0xD1, 0x87, 0x21, 0x7E, 0xE0, 0x97, 0x3D, 0x76, 0xC3, 0x37, 0x2E, 0x7D, 0xAE, 0xD3 \},}
+\DoxyCodeLine{232       \{ 0xE3, 0x38, 0x32, 0xCC, 0xF2, 0x2F, 0x2F, 0x0A, 0x4A, 0x8B, 0x8F, 0x18, 0x12, 0x20, 0x17, 0xD3 \},}
+\DoxyCodeLine{233       \{ 0x94, 0xA5, 0xDF, 0xF5, 0xAE, 0x1C, 0xBB, 0x22, 0xAD, 0xEB, 0xA7, 0x0D, 0xB7, 0x82, 0x90, 0xA0 \}}
+\DoxyCodeLine{234    \},}
+\DoxyCodeLine{235    \{}
+\DoxyCodeLine{236       16,}
+\DoxyCodeLine{237       \{ 0x6F, 0xDC, 0x23, 0x38, 0xF2, 0x10, 0xFB, 0xD3, 0xC1, 0x8C, 0x02, 0xF6, 0xB4, 0x6A, 0xD5, 0xA8 \},}
+\DoxyCodeLine{238       \{ 0xDB, 0x29, 0xED, 0xB5, 0x5F, 0xB3, 0x60, 0x3A, 0x92, 0xA8, 0xEB, 0x9C, 0x6D, 0x9D, 0x3E, 0x8F \},}
+\DoxyCodeLine{239       \{ 0x78, 0xF3, 0x6F, 0xF8, 0x9E, 0xBB, 0x8C, 0x6A, 0xE8, 0x10, 0xF7, 0x00, 0x22, 0x15, 0x30, 0x3D \}}
+\DoxyCodeLine{240    \},}
+\DoxyCodeLine{241    \{}
+\DoxyCodeLine{242       16,}
+\DoxyCodeLine{243       \{ 0x2C, 0x0C, 0x02, 0xEF, 0x6B, 0xC4, 0xF2, 0x0B, 0x2E, 0xB9, 0xE0, 0xBF, 0xD9, 0x36, 0xC2, 0x4E \},}
+\DoxyCodeLine{244       \{ 0x84, 0xE2, 0xFE, 0x64, 0xB1, 0xB9, 0xFE, 0x76, 0xA8, 0x3F, 0x45, 0xC7, 0x40, 0x7A, 0xAF, 0xEE \},}
+\DoxyCodeLine{245       \{ 0x2A, 0x08, 0xD6, 0xA2, 0x1C, 0x63, 0x08, 0xB0, 0xF8, 0xBC, 0xB3, 0xA1, 0x66, 0xF7, 0xAE, 0xCF \}}
+\DoxyCodeLine{246    \},}
+\DoxyCodeLine{247    \{}
+\DoxyCodeLine{248       16,}
+\DoxyCodeLine{249       \{ 0x6F, 0x30, 0xF8, 0x9F, 0xDA, 0x6E, 0xA0, 0x91, 0x04, 0x0F, 0x6C, 0x8B, 0x7D, 0xF7, 0x2A, 0x4B \},}
+\DoxyCodeLine{250       \{ 0x65, 0xB6, 0xA6, 0xD0, 0x42, 0x14, 0x08, 0x60, 0x34, 0x8D, 0x37, 0x2F, 0x01, 0xF0, 0x46, 0xBE \},}
+\DoxyCodeLine{251       \{ 0x66, 0xAC, 0x0B, 0x62, 0x1D, 0x68, 0x11, 0xF5, 0x27, 0xB1, 0x13, 0x5D, 0xF3, 0x2A, 0xE9, 0x18 \}}
+\DoxyCodeLine{252    \},}
+\DoxyCodeLine{253    \{}
+\DoxyCodeLine{254       16,}
+\DoxyCodeLine{255       \{ 0xCA, 0xA4, 0x16, 0xB7, 0x1C, 0x92, 0x2E, 0xAD, 0xEB, 0xA7, 0xDB, 0x69, 0x92, 0xCB, 0x35, 0xEF \},}
+\DoxyCodeLine{256       \{ 0x81, 0x6F, 0x8E, 0x4D, 0x96, 0xC6, 0xB3, 0x67, 0x83, 0xF5, 0x63, 0xC7, 0x20, 0x6D, 0x40, 0x23 \},}
+\DoxyCodeLine{257       \{ 0x44, 0xF7, 0x63, 0x62, 0xF0, 0x43, 0xBB, 0x67, 0x4A, 0x75, 0x12, 0x42, 0x46, 0x29, 0x28, 0x19 \}}
+\DoxyCodeLine{258    \},}
+\DoxyCodeLine{259    \{}
+\DoxyCodeLine{260       16,}
+\DoxyCodeLine{261       \{ 0x6B, 0xCF, 0x22, 0x2F, 0xE0, 0x1B, 0xB0, 0xAA, 0xD8, 0x3C, 0x91, 0x99, 0x18, 0xB2, 0x28, 0xE8 \},}
+\DoxyCodeLine{262       \{ 0x7C, 0x37, 0xC7, 0xD0, 0xAC, 0x92, 0x29, 0xF1, 0x60, 0x82, 0x93, 0x89, 0xAA, 0x61, 0xAA, 0xA9 \},}
+\DoxyCodeLine{263       \{ 0xE5, 0x89, 0x1B, 0xB3, 0xFE, 0x8B, 0x0C, 0xA1, 0xA6, 0xC7, 0xBE, 0x12, 0x73, 0x0F, 0xC1, 0x19 \}}
+\DoxyCodeLine{264    \},}
+\DoxyCodeLine{265    \{}
+\DoxyCodeLine{266       16,}
+\DoxyCodeLine{267       \{ 0xE6, 0xD0, 0xF1, 0x03, 0x2E, 0xDE, 0x70, 0x8D, 0xD8, 0x9E, 0x36, 0x5C, 0x05, 0x52, 0xE7, 0x0D \},}
+\DoxyCodeLine{268       \{ 0xE2, 0x42, 0xE7, 0x92, 0x0E, 0xF7, 0x82, 0xA2, 0xB8, 0x21, 0x8D, 0x26, 0xBA, 0x2D, 0xE6, 0x32 \},}
+\DoxyCodeLine{269       \{ 0x1E, 0xDD, 0x75, 0x22, 0xB9, 0x36, 0x8A, 0x0F, 0x32, 0xFD, 0xD4, 0x48, 0x65, 0x12, 0x5A, 0x2F \}}
+\DoxyCodeLine{270    \}}
+\DoxyCodeLine{271  \};}
+\DoxyCodeLine{272  \mbox{\hyperlink{unionSymmetric__key}{symmetric\_key}} key;}
+\DoxyCodeLine{273  \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} tmp[2][16];}
+\DoxyCodeLine{274  \textcolor{keywordtype}{int} err, i, y;}
+\DoxyCodeLine{275 }
+\DoxyCodeLine{276  \textcolor{keywordflow}{for} (i = 0; i < (int)(\textcolor{keyword}{sizeof}(tests)/\textcolor{keyword}{sizeof}(tests[0])); i++) \{}
+\DoxyCodeLine{277     \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(\&key, \textcolor{keyword}{sizeof}(key));}
+\DoxyCodeLine{278     \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{noekeon_8c_afe985f0a3a367198acb827bd63adeac5}{noekeon\_setup}}(tests[i].key, tests[i].keylen, 0, \&key)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{279        \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{280     \}}
+\DoxyCodeLine{281 }
+\DoxyCodeLine{282     \mbox{\hyperlink{noekeon_8c_aa2ff20edac9835064f3e0c1ea3aca89e}{noekeon\_ecb\_encrypt}}(tests[i].pt, tmp[0], \&key);}
+\DoxyCodeLine{283     \mbox{\hyperlink{noekeon_8c_ae48d3c2c34e2738e5cb415e742f9ba05}{noekeon\_ecb\_decrypt}}(tmp[0], tmp[1], \&key);}
+\DoxyCodeLine{284     \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(tmp[0], 16, tests[i].ct, 16, \textcolor{stringliteral}{"Noekeon Encrypt"}, i) ||}
+\DoxyCodeLine{285           \mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(tmp[1], 16, tests[i].pt, 16, \textcolor{stringliteral}{"Noekeon Decrypt"}, i)) \{}
+\DoxyCodeLine{286         \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{287     \}}
+\DoxyCodeLine{288 }
+\DoxyCodeLine{289     \textcolor{comment}{/* now see if we can encrypt all zero bytes 1000 times, decrypt and come back where we started */}}
+\DoxyCodeLine{290     \textcolor{keywordflow}{for} (y = 0; y < 16; y++) tmp[0][y] = 0;}
+\DoxyCodeLine{291     \textcolor{keywordflow}{for} (y = 0; y < 1000; y++) \mbox{\hyperlink{noekeon_8c_aa2ff20edac9835064f3e0c1ea3aca89e}{noekeon\_ecb\_encrypt}}(tmp[0], tmp[0], \&key);}
+\DoxyCodeLine{292     \textcolor{keywordflow}{for} (y = 0; y < 1000; y++) \mbox{\hyperlink{noekeon_8c_ae48d3c2c34e2738e5cb415e742f9ba05}{noekeon\_ecb\_decrypt}}(tmp[0], tmp[0], \&key);}
+\DoxyCodeLine{293     \textcolor{keywordflow}{for} (y = 0; y < 16; y++) \textcolor{keywordflow}{if} (tmp[0][y] != 0) \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{294  \}}
+\DoxyCodeLine{295  \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{296 \textcolor{preprocessor}{ \#endif}}
+\DoxyCodeLine{297 \}}
+
+\end{DoxyCode}
+
+
+References compare\+\_\+testvector(), C\+R\+Y\+P\+T\+\_\+\+F\+A\+I\+L\+\_\+\+T\+E\+S\+T\+V\+E\+C\+T\+OR, C\+R\+Y\+P\+T\+\_\+\+N\+OP, C\+R\+Y\+P\+T\+\_\+\+OK, noekeon\+\_\+ecb\+\_\+decrypt(), noekeon\+\_\+ecb\+\_\+encrypt(), noekeon\+\_\+setup(), and zeromem().
+
+Here is the call graph for this function\+:
+% FIG 4
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{noekeon_8c_a9d3c31904b318246bbc99df8bf5f74b3}\label{noekeon_8c_a9d3c31904b318246bbc99df8bf5f74b3}} 
+\index{noekeon.c@{noekeon.c}!noekeon\_desc@{noekeon\_desc}}
+\index{noekeon\_desc@{noekeon\_desc}!noekeon.c@{noekeon.c}}
+\subsubsection{\texorpdfstring{noekeon\_desc}{noekeon\_desc}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structltc__cipher__descriptor}{ltc\+\_\+cipher\+\_\+descriptor}} noekeon\+\_\+desc}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    \textcolor{stringliteral}{"noekeon"},}
+\DoxyCodeLine{    16,}
+\DoxyCodeLine{    16, 16, 16, 16,}
+\DoxyCodeLine{    \&\mbox{\hyperlink{noekeon_8c_afe985f0a3a367198acb827bd63adeac5}{noekeon\_setup}},}
+\DoxyCodeLine{    \&\mbox{\hyperlink{noekeon_8c_aa2ff20edac9835064f3e0c1ea3aca89e}{noekeon\_ecb\_encrypt}},}
+\DoxyCodeLine{    \&\mbox{\hyperlink{noekeon_8c_ae48d3c2c34e2738e5cb415e742f9ba05}{noekeon\_ecb\_decrypt}},}
+\DoxyCodeLine{    \&\mbox{\hyperlink{noekeon_8c_a977265eaaa063768bc843deceaf9e3c9}{noekeon\_test}},}
+\DoxyCodeLine{    \&\mbox{\hyperlink{noekeon_8c_af10a7ca483e238cea42d945c87e3ed4a}{noekeon\_done}},}
+\DoxyCodeLine{    \&\mbox{\hyperlink{noekeon_8c_ad07ae1f13361b892600ae7dba32b4cdc}{noekeon\_keysize}},}
+\DoxyCodeLine{    NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line 17 of file noekeon.\+c.
+
+
+
+Referenced by register\+\_\+all\+\_\+ciphers(), and yarrow\+\_\+start().
+
+\mbox{\Hypertarget{noekeon_8c_a2be89f5b0cd87dd3ebe0c396728f10ae}\label{noekeon_8c_a2be89f5b0cd87dd3ebe0c396728f10ae}} 
+\index{noekeon.c@{noekeon.c}!RC@{RC}}
+\index{RC@{RC}!noekeon.c@{noekeon.c}}
+\subsubsection{\texorpdfstring{RC}{RC}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} RC\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{   0x00000080UL, 0x0000001bUL, 0x00000036UL, 0x0000006cUL,}
+\DoxyCodeLine{   0x000000d8UL, 0x000000abUL, 0x0000004dUL, 0x0000009aUL,}
+\DoxyCodeLine{   0x0000002fUL, 0x0000005eUL, 0x000000bcUL, 0x00000063UL,}
+\DoxyCodeLine{   0x000000c6UL, 0x00000097UL, 0x00000035UL, 0x0000006aUL,}
+\DoxyCodeLine{   0x000000d4UL}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line 31 of file noekeon.\+c.
+
+
+
+Referenced by noekeon\+\_\+ecb\+\_\+decrypt(), and noekeon\+\_\+ecb\+\_\+encrypt().
+

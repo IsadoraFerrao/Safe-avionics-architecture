@@ -1,0 +1,50 @@
+\hypertarget{dh__free_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/pk/dh/dh\+\_\+free.c File Reference}
+\label{dh__free_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/dh/dh\_free.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/dh/dh\_free.c}}
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for dh\+\_\+free.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{dh__free_8c_ac6413849059daca7d0482fa400db5d82}{dh\+\_\+free}} (dh\+\_\+key $\ast$key)
+\begin{DoxyCompactList}\small\item\em Free the allocated ram for a DH key. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{dh__free_8c_ac6413849059daca7d0482fa400db5d82}\label{dh__free_8c_ac6413849059daca7d0482fa400db5d82}} 
+\index{dh\_free.c@{dh\_free.c}!dh\_free@{dh\_free}}
+\index{dh\_free@{dh\_free}!dh\_free.c@{dh\_free.c}}
+\subsubsection{\texorpdfstring{dh\_free()}{dh\_free()}}
+{\footnotesize\ttfamily void dh\+\_\+free (\begin{DoxyParamCaption}\item[{dh\+\_\+key $\ast$}]{key }\end{DoxyParamCaption})}
+
+
+
+Free the allocated ram for a DH key. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The key which you wish to free \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 18 of file dh\+\_\+free.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{19 \{}
+\DoxyCodeLine{20    \mbox{\hyperlink{tomcrypt__argchk_8h_a67a6e5d66d0c7d80ddf5c583054608bd}{LTC\_ARGCHKVD}}(key != NULL);}
+\DoxyCodeLine{21    \mbox{\hyperlink{tomcrypt__private_8h_ad0d492c0676e4944383a7ae9e9ebd63b}{mp\_cleanup\_multi}}(\&key->prime, \&key->base, \&key->y, \&key->x, NULL);}
+\DoxyCodeLine{22 \}}
+
+\end{DoxyCode}
+
+
+References L\+T\+C\+\_\+\+A\+R\+G\+C\+H\+K\+VD, and mp\+\_\+cleanup\+\_\+multi.
+
+
+
+Referenced by dh\+\_\+generate\+\_\+key(), dh\+\_\+import(), dh\+\_\+set\+\_\+key(), dh\+\_\+set\+\_\+pg(), dh\+\_\+set\+\_\+pg\+\_\+dhparam(), and dh\+\_\+set\+\_\+pg\+\_\+groupsize().
+
+Here is the caller graph for this function\+:
+% FIG 1

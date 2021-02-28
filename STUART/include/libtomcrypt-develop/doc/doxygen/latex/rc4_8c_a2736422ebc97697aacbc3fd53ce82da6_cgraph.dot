@@ -1,0 +1,18 @@
+digraph "rc4_ready"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node33 [label="rc4_ready",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Make the PRNG ready to read from."];
+  Node33 -> Node34 [color="midnightblue",fontsize="10",style="solid"];
+  Node34 [label="rc4_stream_keystream",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rc4__stream_8c.html#a51958ea4c995703c6f9596af8507c136",tooltip="Generate a stream of random bytes via RC4."];
+  Node34 -> Node35 [color="midnightblue",fontsize="10",style="solid"];
+  Node35 [label="XMEMSET",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cfg_8h.html#aa3c34a6f6c61de7da9258b5a30e32c2f",tooltip=" "];
+  Node34 -> Node36 [color="midnightblue",fontsize="10",style="solid"];
+  Node36 [label="rc4_stream_crypt",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rc4__stream_8c.html#a0a9515051ae76dc9e68c8eb2c31537d7",tooltip="Encrypt (or decrypt) bytes of ciphertext (or plaintext) with RC4."];
+  Node33 -> Node37 [color="midnightblue",fontsize="10",style="solid"];
+  Node37 [label="rc4_stream_setup",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rc4__stream_8c.html#a4f9ba9106b0ee28cffced552636662a2",tooltip="Initialize an RC4 context (only the key)"];
+  Node33 -> Node38 [color="midnightblue",fontsize="10",style="solid"];
+  Node38 [label="XMEMCPY",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cfg_8h.html#a7691dd48d60d5fc6daf2fa7ec4c55e12",tooltip=" "];
+}

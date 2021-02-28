@@ -1,0 +1,377 @@
+\hypertarget{tomcrypt__math_8h}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/headers/tomcrypt\+\_\+math.h File Reference}
+\label{tomcrypt__math_8h}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/headers/tomcrypt\_math.h@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/headers/tomcrypt\_math.h}}
+This graph shows which files directly or indirectly include this file\+:
+% FIG 0
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structltc__math__descriptor}{ltc\+\_\+math\+\_\+descriptor}}
+\begin{DoxyCompactList}\small\item\em math descriptor \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__math_8h_a42d0c7d4c09793df79660774d3436db2}{L\+T\+C\+\_\+\+M\+P\+\_\+\+LT}}~-\/1
+\begin{DoxyCompactList}\small\item\em math functions \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{tomcrypt__math_8h_a035a31bde4f31419eb259e36e5776607}{L\+T\+C\+\_\+\+M\+P\+\_\+\+EQ}}~0
+\item 
+\#define \mbox{\hyperlink{tomcrypt__math_8h_adff156a960d44f0f5b67b75ef1f1c29b}{L\+T\+C\+\_\+\+M\+P\+\_\+\+GT}}~1
+\item 
+\#define \mbox{\hyperlink{tomcrypt__math_8h_a40f1119339954fb273ecb35e48c1d569}{L\+T\+C\+\_\+\+M\+P\+\_\+\+NO}}~0
+\item 
+\#define \mbox{\hyperlink{tomcrypt__math_8h_acc2da047f8fb30a3e2b2403aac617fe0}{L\+T\+C\+\_\+\+M\+P\+\_\+\+Y\+ES}}~1
+\item 
+\#define \mbox{\hyperlink{tomcrypt__math_8h_a65401cc14826c74ce923beb65bde5bf3}{L\+T\+C\+\_\+\+M\+I\+L\+L\+E\+R\+\_\+\+R\+A\+B\+I\+N\+\_\+\+R\+E\+PS}}~40
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef void \mbox{\hyperlink{tomcrypt__math_8h_a2a6efaeaa795aa54274d7c4fd66b018a}{ecc\+\_\+point}}
+\item 
+typedef void \mbox{\hyperlink{tomcrypt__math_8h_a99eca413acdcc914993162bd18cba437}{rsa\+\_\+key}}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{tomcrypt__math_8h_a36cbaa55bb3ce4caebc01e8179b32cda}{radix\+\_\+to\+\_\+bin}} (const void $\ast$in, int radix, void $\ast$out, unsigned long $\ast$\mbox{\hyperlink{pmac__init_8c_afed088663f8704004425cdae2120b9b3}{len}})
+\begin{DoxyCompactList}\small\item\em Convert data from a specific radix to binary. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{tomcrypt__math_8h_a327161b10428b234d74713b8a08acb2a}{ltc\+\_\+init\+\_\+multi}} (void $\ast$$\ast$a,...)
+\item 
+void \mbox{\hyperlink{tomcrypt__math_8h_abcb92ed327d5fcf9bf9bcff2a6a3107a}{ltc\+\_\+deinit\+\_\+multi}} (void $\ast$a,...)
+\item 
+void \mbox{\hyperlink{tomcrypt__math_8h_a53eb69feb3f6ec63778a845a07771762}{ltc\+\_\+cleanup\+\_\+multi}} (void $\ast$$\ast$a,...)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structltc__math__descriptor}{ltc\+\_\+math\+\_\+descriptor}} \mbox{\hyperlink{tomcrypt__math_8h_a3d38c44518c63b7a8abd0938f3d41c65}{ltc\+\_\+mp}}
+\item 
+const \mbox{\hyperlink{structltc__math__descriptor}{ltc\+\_\+math\+\_\+descriptor}} \mbox{\hyperlink{tomcrypt__math_8h_afe891d73619b608bf983d9079e410c9d}{ltm\+\_\+desc}}
+\item 
+const \mbox{\hyperlink{structltc__math__descriptor}{ltc\+\_\+math\+\_\+descriptor}} \mbox{\hyperlink{tomcrypt__math_8h_a131e0ca0f71f66455b888ee883b062a2}{tfm\+\_\+desc}}
+\item 
+const \mbox{\hyperlink{structltc__math__descriptor}{ltc\+\_\+math\+\_\+descriptor}} \mbox{\hyperlink{tomcrypt__math_8h_a923f2740bf923975ee49f7b150304f9b}{gmp\+\_\+desc}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{tomcrypt__math_8h_a65401cc14826c74ce923beb65bde5bf3}\label{tomcrypt__math_8h_a65401cc14826c74ce923beb65bde5bf3}} 
+\index{tomcrypt\_math.h@{tomcrypt\_math.h}!LTC\_MILLER\_RABIN\_REPS@{LTC\_MILLER\_RABIN\_REPS}}
+\index{LTC\_MILLER\_RABIN\_REPS@{LTC\_MILLER\_RABIN\_REPS}!tomcrypt\_math.h@{tomcrypt\_math.h}}
+\subsubsection{\texorpdfstring{LTC\_MILLER\_RABIN\_REPS}{LTC\_MILLER\_RABIN\_REPS}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+M\+I\+L\+L\+E\+R\+\_\+\+R\+A\+B\+I\+N\+\_\+\+R\+E\+PS~40}
+
+
+
+Definition at line 31 of file tomcrypt\+\_\+math.\+h.
+
+\mbox{\Hypertarget{tomcrypt__math_8h_a035a31bde4f31419eb259e36e5776607}\label{tomcrypt__math_8h_a035a31bde4f31419eb259e36e5776607}} 
+\index{tomcrypt\_math.h@{tomcrypt\_math.h}!LTC\_MP\_EQ@{LTC\_MP\_EQ}}
+\index{LTC\_MP\_EQ@{LTC\_MP\_EQ}!tomcrypt\_math.h@{tomcrypt\_math.h}}
+\subsubsection{\texorpdfstring{LTC\_MP\_EQ}{LTC\_MP\_EQ}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+M\+P\+\_\+\+EQ~0}
+
+
+
+Definition at line 13 of file tomcrypt\+\_\+math.\+h.
+
+\mbox{\Hypertarget{tomcrypt__math_8h_adff156a960d44f0f5b67b75ef1f1c29b}\label{tomcrypt__math_8h_adff156a960d44f0f5b67b75ef1f1c29b}} 
+\index{tomcrypt\_math.h@{tomcrypt\_math.h}!LTC\_MP\_GT@{LTC\_MP\_GT}}
+\index{LTC\_MP\_GT@{LTC\_MP\_GT}!tomcrypt\_math.h@{tomcrypt\_math.h}}
+\subsubsection{\texorpdfstring{LTC\_MP\_GT}{LTC\_MP\_GT}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+M\+P\+\_\+\+GT~1}
+
+
+
+Definition at line 14 of file tomcrypt\+\_\+math.\+h.
+
+\mbox{\Hypertarget{tomcrypt__math_8h_a42d0c7d4c09793df79660774d3436db2}\label{tomcrypt__math_8h_a42d0c7d4c09793df79660774d3436db2}} 
+\index{tomcrypt\_math.h@{tomcrypt\_math.h}!LTC\_MP\_LT@{LTC\_MP\_LT}}
+\index{LTC\_MP\_LT@{LTC\_MP\_LT}!tomcrypt\_math.h@{tomcrypt\_math.h}}
+\subsubsection{\texorpdfstring{LTC\_MP\_LT}{LTC\_MP\_LT}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+M\+P\+\_\+\+LT~-\/1}
+
+
+
+math functions 
+
+
+
+Definition at line 12 of file tomcrypt\+\_\+math.\+h.
+
+\mbox{\Hypertarget{tomcrypt__math_8h_a40f1119339954fb273ecb35e48c1d569}\label{tomcrypt__math_8h_a40f1119339954fb273ecb35e48c1d569}} 
+\index{tomcrypt\_math.h@{tomcrypt\_math.h}!LTC\_MP\_NO@{LTC\_MP\_NO}}
+\index{LTC\_MP\_NO@{LTC\_MP\_NO}!tomcrypt\_math.h@{tomcrypt\_math.h}}
+\subsubsection{\texorpdfstring{LTC\_MP\_NO}{LTC\_MP\_NO}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+M\+P\+\_\+\+NO~0}
+
+
+
+Definition at line 16 of file tomcrypt\+\_\+math.\+h.
+
+\mbox{\Hypertarget{tomcrypt__math_8h_acc2da047f8fb30a3e2b2403aac617fe0}\label{tomcrypt__math_8h_acc2da047f8fb30a3e2b2403aac617fe0}} 
+\index{tomcrypt\_math.h@{tomcrypt\_math.h}!LTC\_MP\_YES@{LTC\_MP\_YES}}
+\index{LTC\_MP\_YES@{LTC\_MP\_YES}!tomcrypt\_math.h@{tomcrypt\_math.h}}
+\subsubsection{\texorpdfstring{LTC\_MP\_YES}{LTC\_MP\_YES}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+M\+P\+\_\+\+Y\+ES~1}
+
+
+
+Definition at line 17 of file tomcrypt\+\_\+math.\+h.
+
+
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{tomcrypt__math_8h_a2a6efaeaa795aa54274d7c4fd66b018a}\label{tomcrypt__math_8h_a2a6efaeaa795aa54274d7c4fd66b018a}} 
+\index{tomcrypt\_math.h@{tomcrypt\_math.h}!ecc\_point@{ecc\_point}}
+\index{ecc\_point@{ecc\_point}!tomcrypt\_math.h@{tomcrypt\_math.h}}
+\subsubsection{\texorpdfstring{ecc\_point}{ecc\_point}}
+{\footnotesize\ttfamily typedef void \mbox{\hyperlink{tomcrypt__math_8h_a2a6efaeaa795aa54274d7c4fd66b018a}{ecc\+\_\+point}}}
+
+
+
+Definition at line 20 of file tomcrypt\+\_\+math.\+h.
+
+\mbox{\Hypertarget{tomcrypt__math_8h_a99eca413acdcc914993162bd18cba437}\label{tomcrypt__math_8h_a99eca413acdcc914993162bd18cba437}} 
+\index{tomcrypt\_math.h@{tomcrypt\_math.h}!rsa\_key@{rsa\_key}}
+\index{rsa\_key@{rsa\_key}!tomcrypt\_math.h@{tomcrypt\_math.h}}
+\subsubsection{\texorpdfstring{rsa\_key}{rsa\_key}}
+{\footnotesize\ttfamily typedef void \mbox{\hyperlink{tomcrypt__math_8h_a99eca413acdcc914993162bd18cba437}{rsa\+\_\+key}}}
+
+
+
+Definition at line 24 of file tomcrypt\+\_\+math.\+h.
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{tomcrypt__math_8h_a53eb69feb3f6ec63778a845a07771762}\label{tomcrypt__math_8h_a53eb69feb3f6ec63778a845a07771762}} 
+\index{tomcrypt\_math.h@{tomcrypt\_math.h}!ltc\_cleanup\_multi@{ltc\_cleanup\_multi}}
+\index{ltc\_cleanup\_multi@{ltc\_cleanup\_multi}!tomcrypt\_math.h@{tomcrypt\_math.h}}
+\subsubsection{\texorpdfstring{ltc\_cleanup\_multi()}{ltc\_cleanup\_multi()}}
+{\footnotesize\ttfamily void ltc\+\_\+cleanup\+\_\+multi (\begin{DoxyParamCaption}\item[{void $\ast$$\ast$}]{a,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+
+
+Definition at line 56 of file multi.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{57 \{}
+\DoxyCodeLine{58    \textcolor{keywordtype}{void} **cur = a;}
+\DoxyCodeLine{59    va\_list args;}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{61    va\_start(args, a);}
+\DoxyCodeLine{62    \textcolor{keywordflow}{while} (cur != NULL) \{}
+\DoxyCodeLine{63       \textcolor{keywordflow}{if} (*cur != NULL) \{}
+\DoxyCodeLine{64          \mbox{\hyperlink{tomcrypt__private_8h_ab05b6b59fa182b81f5f990d5621229f6}{mp\_clear}}(*cur);}
+\DoxyCodeLine{65          *cur = NULL;}
+\DoxyCodeLine{66       \}}
+\DoxyCodeLine{67       cur = va\_arg(args, \textcolor{keywordtype}{void}**);}
+\DoxyCodeLine{68    \}}
+\DoxyCodeLine{69    va\_end(args);}
+\DoxyCodeLine{70 \}}
+
+\end{DoxyCode}
+
+
+References mp\+\_\+clear.
+
+\mbox{\Hypertarget{tomcrypt__math_8h_abcb92ed327d5fcf9bf9bcff2a6a3107a}\label{tomcrypt__math_8h_abcb92ed327d5fcf9bf9bcff2a6a3107a}} 
+\index{tomcrypt\_math.h@{tomcrypt\_math.h}!ltc\_deinit\_multi@{ltc\_deinit\_multi}}
+\index{ltc\_deinit\_multi@{ltc\_deinit\_multi}!tomcrypt\_math.h@{tomcrypt\_math.h}}
+\subsubsection{\texorpdfstring{ltc\_deinit\_multi()}{ltc\_deinit\_multi()}}
+{\footnotesize\ttfamily void ltc\+\_\+deinit\+\_\+multi (\begin{DoxyParamCaption}\item[{void $\ast$}]{a,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+
+
+Definition at line 43 of file multi.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{44 \{}
+\DoxyCodeLine{45    \textcolor{keywordtype}{void}     *cur = a;}
+\DoxyCodeLine{46    va\_list   args;}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48    va\_start(args, a);}
+\DoxyCodeLine{49    \textcolor{keywordflow}{while} (cur != NULL) \{}
+\DoxyCodeLine{50        \mbox{\hyperlink{tomcrypt__private_8h_ab05b6b59fa182b81f5f990d5621229f6}{mp\_clear}}(cur);}
+\DoxyCodeLine{51        cur = va\_arg(args, \textcolor{keywordtype}{void} *);}
+\DoxyCodeLine{52    \}}
+\DoxyCodeLine{53    va\_end(args);}
+\DoxyCodeLine{54 \}}
+
+\end{DoxyCode}
+
+
+References mp\+\_\+clear.
+
+\mbox{\Hypertarget{tomcrypt__math_8h_a327161b10428b234d74713b8a08acb2a}\label{tomcrypt__math_8h_a327161b10428b234d74713b8a08acb2a}} 
+\index{tomcrypt\_math.h@{tomcrypt\_math.h}!ltc\_init\_multi@{ltc\_init\_multi}}
+\index{ltc\_init\_multi@{ltc\_init\_multi}!tomcrypt\_math.h@{tomcrypt\_math.h}}
+\subsubsection{\texorpdfstring{ltc\_init\_multi()}{ltc\_init\_multi()}}
+{\footnotesize\ttfamily int ltc\+\_\+init\+\_\+multi (\begin{DoxyParamCaption}\item[{void $\ast$$\ast$}]{a,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+
+
+Definition at line 14 of file multi.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{15 \{}
+\DoxyCodeLine{16    \textcolor{keywordtype}{void}    **cur = a;}
+\DoxyCodeLine{17    \textcolor{keywordtype}{int}       np  = 0;}
+\DoxyCodeLine{18    va\_list   args;}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{20    va\_start(args, a);}
+\DoxyCodeLine{21    \textcolor{keywordflow}{while} (cur != NULL) \{}
+\DoxyCodeLine{22        \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__private_8h_aff03c4f22c68d651747055048c509cf3}{mp\_init}}(cur) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{23           \textcolor{comment}{/* failed */}}
+\DoxyCodeLine{24           va\_list clean\_list;}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26           va\_start(clean\_list, a);}
+\DoxyCodeLine{27           cur = a;}
+\DoxyCodeLine{28           \textcolor{keywordflow}{while} (np--) \{}
+\DoxyCodeLine{29               \mbox{\hyperlink{tomcrypt__private_8h_ab05b6b59fa182b81f5f990d5621229f6}{mp\_clear}}(*cur);}
+\DoxyCodeLine{30               cur = va\_arg(clean\_list, \textcolor{keywordtype}{void}**);}
+\DoxyCodeLine{31           \}}
+\DoxyCodeLine{32           va\_end(clean\_list);}
+\DoxyCodeLine{33           va\_end(args);}
+\DoxyCodeLine{34           \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca0ce0d27adc7ea10b74b7ea904b8bfa82}{CRYPT\_MEM}};}
+\DoxyCodeLine{35        \}}
+\DoxyCodeLine{36        ++np;}
+\DoxyCodeLine{37        cur = va\_arg(args, \textcolor{keywordtype}{void}**);}
+\DoxyCodeLine{38    \}}
+\DoxyCodeLine{39    va\_end(args);}
+\DoxyCodeLine{40    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{41 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+M\+EM, C\+R\+Y\+P\+T\+\_\+\+OK, mp\+\_\+clear, and mp\+\_\+init.
+
+\mbox{\Hypertarget{tomcrypt__math_8h_a36cbaa55bb3ce4caebc01e8179b32cda}\label{tomcrypt__math_8h_a36cbaa55bb3ce4caebc01e8179b32cda}} 
+\index{tomcrypt\_math.h@{tomcrypt\_math.h}!radix\_to\_bin@{radix\_to\_bin}}
+\index{radix\_to\_bin@{radix\_to\_bin}!tomcrypt\_math.h@{tomcrypt\_math.h}}
+\subsubsection{\texorpdfstring{radix\_to\_bin()}{radix\_to\_bin()}}
+{\footnotesize\ttfamily int radix\+\_\+to\+\_\+bin (\begin{DoxyParamCaption}\item[{const void $\ast$}]{in,  }\item[{int}]{radix,  }\item[{void $\ast$}]{out,  }\item[{unsigned long $\ast$}]{len }\end{DoxyParamCaption})}
+
+
+
+Convert data from a specific radix to binary. 
+
+The default M\+PI descriptors \mbox{\hyperlink{ltm__desc_8c_afe891d73619b608bf983d9079e410c9d}{ltm\+\_\+desc}}, \mbox{\hyperlink{tfm__desc_8c_a131e0ca0f71f66455b888ee883b062a2}{tfm\+\_\+desc}} and \mbox{\hyperlink{gmp__desc_8c_a923f2740bf923975ee49f7b150304f9b}{gmp\+\_\+desc}} have the following restrictions on parameters\+:
+
+{\ttfamily in} -\/ N\+U\+L-\/terminated char buffer
+
+{\ttfamily radix} -\/ 2..64
+
+
+\begin{DoxyParams}{Parameters}
+{\em in} & The input \\
+\hline
+{\em radix} & The radix of the input \\
+\hline
+{\em out} & The output buffer \\
+\hline
+{\em len} & \mbox{[}in/out\mbox{]} The length of the output buffer\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK on success. 
+\end{DoxyReturn}
+
+
+Definition at line 34 of file radix\+\_\+to\+\_\+bin.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{35 \{}
+\DoxyCodeLine{36    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} l;}
+\DoxyCodeLine{37    \textcolor{keywordtype}{void}* mpi;}
+\DoxyCodeLine{38    \textcolor{keywordtype}{int} err;}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{40    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(in  != NULL);}
+\DoxyCodeLine{41    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}} != NULL);}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{43    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_aff03c4f22c68d651747055048c509cf3}{mp\_init}}(\&mpi)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{44    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a12263d4d7da068c2a630d2ffc0c8bc1b}{mp\_read\_radix}}(mpi, in, radix)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \textcolor{keywordflow}{goto} LBL\_ERR;}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46    \textcolor{keywordflow}{if} ((l = \mbox{\hyperlink{tomcrypt__private_8h_ad301148bb24f43a8c7003a6976dfaa5a}{mp\_unsigned\_bin\_size}}(mpi)) > *\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}) \{}
+\DoxyCodeLine{47       *\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}} = l;}
+\DoxyCodeLine{48       err = \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caccd878f5599f3036ffe759dbe1a1ac16}{CRYPT\_BUFFER\_OVERFLOW}};}
+\DoxyCodeLine{49       \textcolor{keywordflow}{goto} LBL\_ERR;}
+\DoxyCodeLine{50    \}}
+\DoxyCodeLine{51    *\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}} = l;}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{53    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a376a4d31dcfeb65c069db0485b9602f8}{mp\_to\_unsigned\_bin}}(mpi, out)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \textcolor{keywordflow}{goto} LBL\_ERR;}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55 LBL\_ERR:}
+\DoxyCodeLine{56    \mbox{\hyperlink{tomcrypt__private_8h_ab05b6b59fa182b81f5f990d5621229f6}{mp\_clear}}(mpi);}
+\DoxyCodeLine{57    \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{58 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+O\+V\+E\+R\+F\+L\+OW, C\+R\+Y\+P\+T\+\_\+\+OK, len, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, mp\+\_\+clear, mp\+\_\+init, mp\+\_\+read\+\_\+radix, mp\+\_\+to\+\_\+unsigned\+\_\+bin, and mp\+\_\+unsigned\+\_\+bin\+\_\+size.
+
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{tomcrypt__math_8h_a923f2740bf923975ee49f7b150304f9b}\label{tomcrypt__math_8h_a923f2740bf923975ee49f7b150304f9b}} 
+\index{tomcrypt\_math.h@{tomcrypt\_math.h}!gmp\_desc@{gmp\_desc}}
+\index{gmp\_desc@{gmp\_desc}!tomcrypt\_math.h@{tomcrypt\_math.h}}
+\subsubsection{\texorpdfstring{gmp\_desc}{gmp\_desc}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{structltc__math__descriptor}{ltc\+\_\+math\+\_\+descriptor}} gmp\+\_\+desc}
+
+
+
+Definition at line 575 of file gmp\+\_\+desc.\+c.
+
+
+
+Referenced by crypt\+\_\+mp\+\_\+init(), and init\+\_\+\+G\+M\+P().
+
+\mbox{\Hypertarget{tomcrypt__math_8h_a3d38c44518c63b7a8abd0938f3d41c65}\label{tomcrypt__math_8h_a3d38c44518c63b7a8abd0938f3d41c65}} 
+\index{tomcrypt\_math.h@{tomcrypt\_math.h}!ltc\_mp@{ltc\_mp}}
+\index{ltc\_mp@{ltc\_mp}!tomcrypt\_math.h@{tomcrypt\_math.h}}
+\subsubsection{\texorpdfstring{ltc\_mp}{ltc\_mp}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structltc__math__descriptor}{ltc\+\_\+math\+\_\+descriptor}} ltc\+\_\+mp}
+
+
+
+Definition at line 12 of file crypt\+\_\+ltc\+\_\+mp\+\_\+descriptor.\+c.
+
+
+
+Referenced by crypt\+\_\+fsa(), crypt\+\_\+mp\+\_\+init(), dh\+\_\+generate\+\_\+key(), dh\+\_\+set\+\_\+key(), dh\+\_\+set\+\_\+pg(), dh\+\_\+set\+\_\+pg\+\_\+dhparam(), dh\+\_\+set\+\_\+pg\+\_\+groupsize(), dsa\+\_\+generate\+\_\+key(), dsa\+\_\+generate\+\_\+pqg(), dsa\+\_\+import(), dsa\+\_\+set\+\_\+key(), dsa\+\_\+set\+\_\+pqg(), dsa\+\_\+set\+\_\+pqg\+\_\+dsaparam(), ecc\+\_\+encrypt\+\_\+key(), ecc\+\_\+generate\+\_\+key(), ecc\+\_\+import\+\_\+ex(), ecc\+\_\+import\+\_\+pkcs8(), ecc\+\_\+recover\+\_\+key(), ecc\+\_\+set\+\_\+key(), ecc\+\_\+shared\+\_\+secret(), ecc\+\_\+verify\+\_\+hash\+\_\+ex(), init\+\_\+\+G\+M\+P(), init\+\_\+\+L\+T\+M(), init\+\_\+\+T\+F\+M(), ltc\+\_\+ecc\+\_\+copy\+\_\+point(), ltc\+\_\+ecc\+\_\+import\+\_\+point(), ltc\+\_\+ecc\+\_\+mul2add(), ltc\+\_\+ecc\+\_\+mulmod(), ltc\+\_\+ecc\+\_\+set\+\_\+point\+\_\+xyz(), ltc\+\_\+ecc\+\_\+verify\+\_\+key(), rsa\+\_\+decrypt\+\_\+key\+\_\+ex(), rsa\+\_\+encrypt\+\_\+key\+\_\+ex(), rsa\+\_\+import(), rsa\+\_\+import\+\_\+pkcs8(), rsa\+\_\+import\+\_\+x509(), rsa\+\_\+make\+\_\+key(), rsa\+\_\+set\+\_\+crt\+\_\+params(), rsa\+\_\+set\+\_\+factors(), rsa\+\_\+set\+\_\+key(), rsa\+\_\+sign\+\_\+hash\+\_\+ex(), rsa\+\_\+verify\+\_\+hash\+\_\+ex(), tfm\+\_\+ecc\+\_\+projective\+\_\+add\+\_\+point(), and tfm\+\_\+ecc\+\_\+projective\+\_\+dbl\+\_\+point().
+
+\mbox{\Hypertarget{tomcrypt__math_8h_afe891d73619b608bf983d9079e410c9d}\label{tomcrypt__math_8h_afe891d73619b608bf983d9079e410c9d}} 
+\index{tomcrypt\_math.h@{tomcrypt\_math.h}!ltm\_desc@{ltm\_desc}}
+\index{ltm\_desc@{ltm\_desc}!tomcrypt\_math.h@{tomcrypt\_math.h}}
+\subsubsection{\texorpdfstring{ltm\_desc}{ltm\_desc}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{structltc__math__descriptor}{ltc\+\_\+math\+\_\+descriptor}} ltm\+\_\+desc}
+
+
+
+Definition at line 427 of file ltm\+\_\+desc.\+c.
+
+
+
+Referenced by crypt\+\_\+mp\+\_\+init(), and init\+\_\+\+L\+T\+M().
+
+\mbox{\Hypertarget{tomcrypt__math_8h_a131e0ca0f71f66455b888ee883b062a2}\label{tomcrypt__math_8h_a131e0ca0f71f66455b888ee883b062a2}} 
+\index{tomcrypt\_math.h@{tomcrypt\_math.h}!tfm\_desc@{tfm\_desc}}
+\index{tfm\_desc@{tfm\_desc}!tomcrypt\_math.h@{tomcrypt\_math.h}}
+\subsubsection{\texorpdfstring{tfm\_desc}{tfm\_desc}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{structltc__math__descriptor}{ltc\+\_\+math\+\_\+descriptor}} tfm\+\_\+desc}
+
+
+
+Definition at line 768 of file tfm\+\_\+desc.\+c.
+
+
+
+Referenced by crypt\+\_\+mp\+\_\+init(), and init\+\_\+\+T\+F\+M().
+

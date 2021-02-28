@@ -1,0 +1,492 @@
+\hypertarget{whirl_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/hashes/whirl/whirl.c File Reference}
+\label{whirl_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/hashes/whirl/whirl.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/hashes/whirl/whirl.c}}
+
+
+L\+T\+C\+\_\+\+W\+H\+I\+R\+L\+P\+O\+OL (using their new sbox) hash function by Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}whirltab.\+c\char`\"{}}\newline
+Include dependency graph for whirl.\+c\+:
+% FIG 0
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{whirl_8c_ae330daba733f79d48353bbe62834d2a5}{\+\_\+\+\_\+\+L\+T\+C\+\_\+\+W\+H\+I\+R\+L\+T\+A\+B\+\_\+\+C\+\_\+\+\_\+}}
+\item 
+\#define \mbox{\hyperlink{whirl_8c_a277f3c57f01da42b33172a9449803aca}{GB}}(a,  i,  j)~((a\mbox{[}(i) \& 7\mbox{]} $>$$>$ (8 $\ast$ (j))) \& 255)
+\item 
+\#define \mbox{\hyperlink{whirl_8c_a4043f55f102f6dd70f377da5f2e60037}{theta\+\_\+pi\+\_\+gamma}}(a,  i)
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{whirl_8c_aab89b6b818b850f76b3f61f368d2b48d}{whirlpool\+\_\+compress}} (\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$md, const unsigned char $\ast$buf)
+\item 
+int \mbox{\hyperlink{whirl_8c_aa97be69799fe7c84d07a95320c677fbe}{whirlpool\+\_\+init}} (\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$md)
+\begin{DoxyCompactList}\small\item\em Initialize the hash state. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{whirl_8c_a2bfcaff63f1b0092a2759eae755f91c2}{whirlpool\+\_\+process}} (\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$md, const unsigned char $\ast$in, unsigned long inlen)
+\begin{DoxyCompactList}\small\item\em Process a block of memory though the hash. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{whirl_8c_a4da4cb07ed14ccdaa27c3296ad18360a}{whirlpool\+\_\+done}} (\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$md, unsigned char $\ast$out)
+\begin{DoxyCompactList}\small\item\em Terminate the hash to get the digest. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{whirl_8c_ad8036fccf9883ace4c94c9ff33d7d853}{whirlpool\+\_\+test}} (void)
+\begin{DoxyCompactList}\small\item\em Self-\/test the hash. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const struct \mbox{\hyperlink{structltc__hash__descriptor}{ltc\+\_\+hash\+\_\+descriptor}} \mbox{\hyperlink{whirl_8c_a411c753dea7cc362d85b6032e7cafbf3}{whirlpool\+\_\+desc}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+L\+T\+C\+\_\+\+W\+H\+I\+R\+L\+P\+O\+OL (using their new sbox) hash function by Tom St Denis. 
+
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{whirl_8c_ae330daba733f79d48353bbe62834d2a5}\label{whirl_8c_ae330daba733f79d48353bbe62834d2a5}} 
+\index{whirl.c@{whirl.c}!\_\_LTC\_WHIRLTAB\_C\_\_@{\_\_LTC\_WHIRLTAB\_C\_\_}}
+\index{\_\_LTC\_WHIRLTAB\_C\_\_@{\_\_LTC\_WHIRLTAB\_C\_\_}!whirl.c@{whirl.c}}
+\subsubsection{\texorpdfstring{\_\_LTC\_WHIRLTAB\_C\_\_}{\_\_LTC\_WHIRLTAB\_C\_\_}}
+{\footnotesize\ttfamily \#define \+\_\+\+\_\+\+L\+T\+C\+\_\+\+W\+H\+I\+R\+L\+T\+A\+B\+\_\+\+C\+\_\+\+\_\+}
+
+
+
+Definition at line 38 of file whirl.\+c.
+
+\mbox{\Hypertarget{whirl_8c_a277f3c57f01da42b33172a9449803aca}\label{whirl_8c_a277f3c57f01da42b33172a9449803aca}} 
+\index{whirl.c@{whirl.c}!GB@{GB}}
+\index{GB@{GB}!whirl.c@{whirl.c}}
+\subsubsection{\texorpdfstring{GB}{GB}}
+{\footnotesize\ttfamily \#define GB(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{i,  }\item[{}]{j }\end{DoxyParamCaption})~((a\mbox{[}(i) \& 7\mbox{]} $>$$>$ (8 $\ast$ (j))) \& 255)}
+
+
+
+Definition at line 42 of file whirl.\+c.
+
+\mbox{\Hypertarget{whirl_8c_a4043f55f102f6dd70f377da5f2e60037}\label{whirl_8c_a4043f55f102f6dd70f377da5f2e60037}} 
+\index{whirl.c@{whirl.c}!theta\_pi\_gamma@{theta\_pi\_gamma}}
+\index{theta\_pi\_gamma@{theta\_pi\_gamma}!whirl.c@{whirl.c}}
+\subsubsection{\texorpdfstring{theta\_pi\_gamma}{theta\_pi\_gamma}}
+{\footnotesize\ttfamily \#define theta\+\_\+pi\+\_\+gamma(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{i }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(SB0(\mbox{\hyperlink{whirl_8c_a277f3c57f01da42b33172a9449803aca}{GB}}(a, i-0, 7)) \string^                 \(\backslash\)}
+\DoxyCodeLine{    SB1(\mbox{\hyperlink{whirl_8c_a277f3c57f01da42b33172a9449803aca}{GB}}(a, i-1, 6)) \string^                 \(\backslash\)}
+\DoxyCodeLine{    SB2(\mbox{\hyperlink{whirl_8c_a277f3c57f01da42b33172a9449803aca}{GB}}(a, i-2, 5)) \string^                 \(\backslash\)}
+\DoxyCodeLine{    SB3(\mbox{\hyperlink{whirl_8c_a277f3c57f01da42b33172a9449803aca}{GB}}(a, i-3, 4)) \string^                 \(\backslash\)}
+\DoxyCodeLine{    SB4(\mbox{\hyperlink{whirl_8c_a277f3c57f01da42b33172a9449803aca}{GB}}(a, i-4, 3)) \string^                 \(\backslash\)}
+\DoxyCodeLine{    SB5(\mbox{\hyperlink{whirl_8c_a277f3c57f01da42b33172a9449803aca}{GB}}(a, i-5, 2)) \string^                 \(\backslash\)}
+\DoxyCodeLine{    SB6(\mbox{\hyperlink{whirl_8c_a277f3c57f01da42b33172a9449803aca}{GB}}(a, i-6, 1)) \string^                 \(\backslash\)}
+\DoxyCodeLine{    SB7(\mbox{\hyperlink{whirl_8c_a277f3c57f01da42b33172a9449803aca}{GB}}(a, i-7, 0)))}
+
+\end{DoxyCode}
+
+
+Definition at line 45 of file whirl.\+c.
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{whirl_8c_aab89b6b818b850f76b3f61f368d2b48d}\label{whirl_8c_aab89b6b818b850f76b3f61f368d2b48d}} 
+\index{whirl.c@{whirl.c}!whirlpool\_compress@{whirlpool\_compress}}
+\index{whirlpool\_compress@{whirlpool\_compress}!whirl.c@{whirl.c}}
+\subsubsection{\texorpdfstring{whirlpool\_compress()}{whirlpool\_compress()}}
+{\footnotesize\ttfamily static int whirlpool\+\_\+compress (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$}]{md,  }\item[{const unsigned char $\ast$}]{buf }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 58 of file whirl.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{60 \{}
+\DoxyCodeLine{61    \mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}} \mbox{\hyperlink{sha512_8c_a2d167a3caf30de6442abc69780199a52}{K}}[2][8], T[3][8];}
+\DoxyCodeLine{62    \textcolor{keywordtype}{int} x, y;}
+\DoxyCodeLine{63 }
+\DoxyCodeLine{64    \textcolor{comment}{/* load the block/state */}}
+\DoxyCodeLine{65    \textcolor{keywordflow}{for} (x = 0; x < 8; x++) \{}
+\DoxyCodeLine{66       \mbox{\hyperlink{sha512_8c_a2d167a3caf30de6442abc69780199a52}{K}}[0][x] = md->whirlpool.state[x];}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{68       LOAD64H(T[0][x], buf + (8 * x));}
+\DoxyCodeLine{69       T[2][x]  = T[0][x];}
+\DoxyCodeLine{70       T[0][x] \string^= \mbox{\hyperlink{sha512_8c_a2d167a3caf30de6442abc69780199a52}{K}}[0][x];}
+\DoxyCodeLine{71    \}}
+\DoxyCodeLine{72 }
+\DoxyCodeLine{73    \textcolor{comment}{/* do rounds 1..10 */}}
+\DoxyCodeLine{74    \textcolor{keywordflow}{for} (x = 0; x < 10; x += 2) \{}
+\DoxyCodeLine{75        \textcolor{comment}{/* odd round */}}
+\DoxyCodeLine{76        \textcolor{comment}{/* apply main transform to K[0] into K[1] */}}
+\DoxyCodeLine{77        \textcolor{keywordflow}{for} (y = 0; y < 8; y++) \{}
+\DoxyCodeLine{78            \mbox{\hyperlink{sha512_8c_a2d167a3caf30de6442abc69780199a52}{K}}[1][y] = \mbox{\hyperlink{whirl_8c_a4043f55f102f6dd70f377da5f2e60037}{theta\_pi\_gamma}}(\mbox{\hyperlink{sha512_8c_a2d167a3caf30de6442abc69780199a52}{K}}[0], y);}
+\DoxyCodeLine{79        \}}
+\DoxyCodeLine{80        \textcolor{comment}{/* xor the constant */}}
+\DoxyCodeLine{81        \mbox{\hyperlink{sha512_8c_a2d167a3caf30de6442abc69780199a52}{K}}[1][0] \string^= cont[x];}
+\DoxyCodeLine{82 }
+\DoxyCodeLine{83        \textcolor{comment}{/* apply main transform to T[0] into T[1] */}}
+\DoxyCodeLine{84        \textcolor{keywordflow}{for} (y = 0; y < 8; y++) \{}
+\DoxyCodeLine{85            T[1][y] = \mbox{\hyperlink{whirl_8c_a4043f55f102f6dd70f377da5f2e60037}{theta\_pi\_gamma}}(T[0], y) \string^ \mbox{\hyperlink{sha512_8c_a2d167a3caf30de6442abc69780199a52}{K}}[1][y];}
+\DoxyCodeLine{86        \}}
+\DoxyCodeLine{87 }
+\DoxyCodeLine{88        \textcolor{comment}{/* even round */}}
+\DoxyCodeLine{89        \textcolor{comment}{/* apply main transform to K[1] into K[0] */}}
+\DoxyCodeLine{90        \textcolor{keywordflow}{for} (y = 0; y < 8; y++) \{}
+\DoxyCodeLine{91            \mbox{\hyperlink{sha512_8c_a2d167a3caf30de6442abc69780199a52}{K}}[0][y] = \mbox{\hyperlink{whirl_8c_a4043f55f102f6dd70f377da5f2e60037}{theta\_pi\_gamma}}(\mbox{\hyperlink{sha512_8c_a2d167a3caf30de6442abc69780199a52}{K}}[1], y);}
+\DoxyCodeLine{92        \}}
+\DoxyCodeLine{93        \textcolor{comment}{/* xor the constant */}}
+\DoxyCodeLine{94        \mbox{\hyperlink{sha512_8c_a2d167a3caf30de6442abc69780199a52}{K}}[0][0] \string^= cont[x+1];}
+\DoxyCodeLine{95 }
+\DoxyCodeLine{96        \textcolor{comment}{/* apply main transform to T[1] into T[0] */}}
+\DoxyCodeLine{97        \textcolor{keywordflow}{for} (y = 0; y < 8; y++) \{}
+\DoxyCodeLine{98            T[0][y] = \mbox{\hyperlink{whirl_8c_a4043f55f102f6dd70f377da5f2e60037}{theta\_pi\_gamma}}(T[1], y) \string^ \mbox{\hyperlink{sha512_8c_a2d167a3caf30de6442abc69780199a52}{K}}[0][y];}
+\DoxyCodeLine{99        \}}
+\DoxyCodeLine{100    \}}
+\DoxyCodeLine{101 }
+\DoxyCodeLine{102    \textcolor{comment}{/* store state */}}
+\DoxyCodeLine{103    \textcolor{keywordflow}{for} (x = 0; x < 8; x++) \{}
+\DoxyCodeLine{104       md->whirlpool.state[x] \string^= T[0][x] \string^ T[2][x];}
+\DoxyCodeLine{105    \}}
+\DoxyCodeLine{106 }
+\DoxyCodeLine{107    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{108 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, K, and theta\+\_\+pi\+\_\+gamma.
+
+
+
+Referenced by whirlpool\+\_\+done().
+
+Here is the caller graph for this function\+:
+% FIG 1
+\mbox{\Hypertarget{whirl_8c_a4da4cb07ed14ccdaa27c3296ad18360a}\label{whirl_8c_a4da4cb07ed14ccdaa27c3296ad18360a}} 
+\index{whirl.c@{whirl.c}!whirlpool\_done@{whirlpool\_done}}
+\index{whirlpool\_done@{whirlpool\_done}!whirl.c@{whirl.c}}
+\subsubsection{\texorpdfstring{whirlpool\_done()}{whirlpool\_done()}}
+{\footnotesize\ttfamily int whirlpool\+\_\+done (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$}]{md,  }\item[{unsigned char $\ast$}]{out }\end{DoxyParamCaption})}
+
+
+
+Terminate the hash to get the digest. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em md} & The hash state \\
+\hline
+{\em out} & \mbox{[}out\mbox{]} The destination of the hash (64 bytes) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 149 of file whirl.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{150 \{}
+\DoxyCodeLine{151     \textcolor{keywordtype}{int} i;}
+\DoxyCodeLine{152 }
+\DoxyCodeLine{153     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(md  != NULL);}
+\DoxyCodeLine{154     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(out != NULL);}
+\DoxyCodeLine{155 }
+\DoxyCodeLine{156     \textcolor{keywordflow}{if} (md->whirlpool.curlen >= \textcolor{keyword}{sizeof}(md->whirlpool.buf)) \{}
+\DoxyCodeLine{157        \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{158     \}}
+\DoxyCodeLine{159 }
+\DoxyCodeLine{160     \textcolor{comment}{/* increase the length of the message */}}
+\DoxyCodeLine{161     md->whirlpool.length += md->whirlpool.curlen * 8;}
+\DoxyCodeLine{162 }
+\DoxyCodeLine{163     \textcolor{comment}{/* append the '1' bit */}}
+\DoxyCodeLine{164     md->whirlpool.buf[md->whirlpool.curlen++] = (\textcolor{keywordtype}{unsigned} char)0x80;}
+\DoxyCodeLine{165 }
+\DoxyCodeLine{166     \textcolor{comment}{/* if the length is currently above 32 bytes we append zeros}}
+\DoxyCodeLine{167 \textcolor{comment}{     * then compress.  Then we can fall back to padding zeros and length}}
+\DoxyCodeLine{168 \textcolor{comment}{     * encoding like normal.}}
+\DoxyCodeLine{169 \textcolor{comment}{     */}}
+\DoxyCodeLine{170     \textcolor{keywordflow}{if} (md->whirlpool.curlen > 32) \{}
+\DoxyCodeLine{171         \textcolor{keywordflow}{while} (md->whirlpool.curlen < 64) \{}
+\DoxyCodeLine{172             md->whirlpool.buf[md->whirlpool.curlen++] = (\textcolor{keywordtype}{unsigned} char)0;}
+\DoxyCodeLine{173         \}}
+\DoxyCodeLine{174         \mbox{\hyperlink{whirl_8c_aab89b6b818b850f76b3f61f368d2b48d}{whirlpool\_compress}}(md, md->whirlpool.buf);}
+\DoxyCodeLine{175         md->whirlpool.curlen = 0;}
+\DoxyCodeLine{176     \}}
+\DoxyCodeLine{177 }
+\DoxyCodeLine{178     \textcolor{comment}{/* pad upto 56 bytes of zeroes (should be 32 but we only support 64-bit lengths)  */}}
+\DoxyCodeLine{179     \textcolor{keywordflow}{while} (md->whirlpool.curlen < 56) \{}
+\DoxyCodeLine{180         md->whirlpool.buf[md->whirlpool.curlen++] = (\textcolor{keywordtype}{unsigned} char)0;}
+\DoxyCodeLine{181     \}}
+\DoxyCodeLine{182 }
+\DoxyCodeLine{183     \textcolor{comment}{/* store length */}}
+\DoxyCodeLine{184     STORE64H(md->whirlpool.length, md->whirlpool.buf+56);}
+\DoxyCodeLine{185     \mbox{\hyperlink{whirl_8c_aab89b6b818b850f76b3f61f368d2b48d}{whirlpool\_compress}}(md, md->whirlpool.buf);}
+\DoxyCodeLine{186 }
+\DoxyCodeLine{187     \textcolor{comment}{/* copy output */}}
+\DoxyCodeLine{188     \textcolor{keywordflow}{for} (i = 0; i < 8; i++) \{}
+\DoxyCodeLine{189         STORE64H(md->whirlpool.state[i], out+(8*i));}
+\DoxyCodeLine{190     \}}
+\DoxyCodeLine{191 \textcolor{preprocessor}{\#ifdef LTC\_CLEAN\_STACK}}
+\DoxyCodeLine{192     \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(md, \textcolor{keyword}{sizeof}(*md));}
+\DoxyCodeLine{193 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{194     \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{195 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+A\+RG, C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, whirlpool\+\_\+compress(), and zeromem().
+
+
+
+Referenced by whirlpool\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 2
+Here is the caller graph for this function\+:
+% FIG 3
+\mbox{\Hypertarget{whirl_8c_aa97be69799fe7c84d07a95320c677fbe}\label{whirl_8c_aa97be69799fe7c84d07a95320c677fbe}} 
+\index{whirl.c@{whirl.c}!whirlpool\_init@{whirlpool\_init}}
+\index{whirlpool\_init@{whirlpool\_init}!whirl.c@{whirl.c}}
+\subsubsection{\texorpdfstring{whirlpool\_init()}{whirlpool\_init()}}
+{\footnotesize\ttfamily int whirlpool\+\_\+init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$}]{md }\end{DoxyParamCaption})}
+
+
+
+Initialize the hash state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em md} & The hash state you wish to initialize \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 127 of file whirl.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{128 \{}
+\DoxyCodeLine{129    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(md != NULL);}
+\DoxyCodeLine{130    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(\&md->whirlpool, \textcolor{keyword}{sizeof}(md->whirlpool));}
+\DoxyCodeLine{131    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{132 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, and zeromem().
+
+
+
+Referenced by whirlpool\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 4
+Here is the caller graph for this function\+:
+% FIG 5
+\mbox{\Hypertarget{whirl_8c_a2bfcaff63f1b0092a2759eae755f91c2}\label{whirl_8c_a2bfcaff63f1b0092a2759eae755f91c2}} 
+\index{whirl.c@{whirl.c}!whirlpool\_process@{whirlpool\_process}}
+\index{whirlpool\_process@{whirlpool\_process}!whirl.c@{whirl.c}}
+\subsubsection{\texorpdfstring{whirlpool\_process()}{whirlpool\_process()}}
+{\footnotesize\ttfamily int whirlpool\+\_\+process (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$}]{md,  }\item[{const unsigned char $\ast$}]{in,  }\item[{unsigned long}]{inlen }\end{DoxyParamCaption})}
+
+
+
+Process a block of memory though the hash. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em md} & The hash state \\
+\hline
+{\em in} & The data to hash \\
+\hline
+{\em inlen} & The length of the data (octets) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 141 of file whirl.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{150 \{}
+
+\end{DoxyCode}
+
+
+Referenced by whirlpool\+\_\+test().
+
+Here is the caller graph for this function\+:
+% FIG 6
+\mbox{\Hypertarget{whirl_8c_ad8036fccf9883ace4c94c9ff33d7d853}\label{whirl_8c_ad8036fccf9883ace4c94c9ff33d7d853}} 
+\index{whirl.c@{whirl.c}!whirlpool\_test@{whirlpool\_test}}
+\index{whirlpool\_test@{whirlpool\_test}!whirl.c@{whirl.c}}
+\subsubsection{\texorpdfstring{whirlpool\_test()}{whirlpool\_test()}}
+{\footnotesize\ttfamily int whirlpool\+\_\+test (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Self-\/test the hash. 
+
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful, C\+R\+Y\+P\+T\+\_\+\+N\+OP if self-\/tests have been disabled 
+\end{DoxyReturn}
+
+
+Definition at line 201 of file whirl.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{202 \{}
+\DoxyCodeLine{203 \textcolor{preprocessor}{ \#ifndef LTC\_TEST}}
+\DoxyCodeLine{204     \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cac43a7799c7fd5f515172da6cfc0f9cf5}{CRYPT\_NOP}};}
+\DoxyCodeLine{205 \textcolor{preprocessor}{ \#else}}
+\DoxyCodeLine{206   \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{207       \textcolor{keywordtype}{int} \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}};}
+\DoxyCodeLine{208       \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} msg[128], hash[64];}
+\DoxyCodeLine{209   \} tests[] = \{}
+\DoxyCodeLine{210 }
+\DoxyCodeLine{211   \textcolor{comment}{/* NULL Message */}}
+\DoxyCodeLine{212 \{}
+\DoxyCodeLine{213   0,}
+\DoxyCodeLine{214   \{ 0x00 \},}
+\DoxyCodeLine{215   \{ 0x19, 0xFA, 0x61, 0xD7, 0x55, 0x22, 0xA4, 0x66, 0x9B, 0x44, 0xE3, 0x9C, 0x1D, 0x2E, 0x17, 0x26,}
+\DoxyCodeLine{216     0xC5, 0x30, 0x23, 0x21, 0x30, 0xD4, 0x07, 0xF8, 0x9A, 0xFE, 0xE0, 0x96, 0x49, 0x97, 0xF7, 0xA7,}
+\DoxyCodeLine{217     0x3E, 0x83, 0xBE, 0x69, 0x8B, 0x28, 0x8F, 0xEB, 0xCF, 0x88, 0xE3, 0xE0, 0x3C, 0x4F, 0x07, 0x57,}
+\DoxyCodeLine{218     0xEA, 0x89, 0x64, 0xE5, 0x9B, 0x63, 0xD9, 0x37, 0x08, 0xB1, 0x38, 0xCC, 0x42, 0xA6, 0x6E, 0xB3 \}}
+\DoxyCodeLine{219 \},}
+\DoxyCodeLine{220 }
+\DoxyCodeLine{221 }
+\DoxyCodeLine{222    \textcolor{comment}{/* 448-bits of 0 bits */}}
+\DoxyCodeLine{223 \{}
+\DoxyCodeLine{224 }
+\DoxyCodeLine{225   56,}
+\DoxyCodeLine{226   \{ 0x00 \},}
+\DoxyCodeLine{227   \{ 0x0B, 0x3F, 0x53, 0x78, 0xEB, 0xED, 0x2B, 0xF4, 0xD7, 0xBE, 0x3C, 0xFD, 0x81, 0x8C, 0x1B, 0x03,}
+\DoxyCodeLine{228     0xB6, 0xBB, 0x03, 0xD3, 0x46, 0x94, 0x8B, 0x04, 0xF4, 0xF4, 0x0C, 0x72, 0x6F, 0x07, 0x58, 0x70,}
+\DoxyCodeLine{229     0x2A, 0x0F, 0x1E, 0x22, 0x58, 0x80, 0xE3, 0x8D, 0xD5, 0xF6, 0xED, 0x6D, 0xE9, 0xB1, 0xE9, 0x61,}
+\DoxyCodeLine{230     0xE4, 0x9F, 0xC1, 0x31, 0x8D, 0x7C, 0xB7, 0x48, 0x22, 0xF3, 0xD0, 0xE2, 0xE9, 0xA7, 0xE7, 0xB0 \}}
+\DoxyCodeLine{231 \},}
+\DoxyCodeLine{232 }
+\DoxyCodeLine{233    \textcolor{comment}{/* 520-bits of 0 bits */}}
+\DoxyCodeLine{234 \{}
+\DoxyCodeLine{235   65,}
+\DoxyCodeLine{236   \{ 0x00 \},}
+\DoxyCodeLine{237   \{ 0x85, 0xE1, 0x24, 0xC4, 0x41, 0x5B, 0xCF, 0x43, 0x19, 0x54, 0x3E, 0x3A, 0x63, 0xFF, 0x57, 0x1D,}
+\DoxyCodeLine{238     0x09, 0x35, 0x4C, 0xEE, 0xBE, 0xE1, 0xE3, 0x25, 0x30, 0x8C, 0x90, 0x69, 0xF4, 0x3E, 0x2A, 0xE4,}
+\DoxyCodeLine{239     0xD0, 0xE5, 0x1D, 0x4E, 0xB1, 0xE8, 0x64, 0x28, 0x70, 0x19, 0x4E, 0x95, 0x30, 0xD8, 0xD8, 0xAF,}
+\DoxyCodeLine{240     0x65, 0x89, 0xD1, 0xBF, 0x69, 0x49, 0xDD, 0xF9, 0x0A, 0x7F, 0x12, 0x08, 0x62, 0x37, 0x95, 0xB9 \}}
+\DoxyCodeLine{241 \},}
+\DoxyCodeLine{242 }
+\DoxyCodeLine{243    \textcolor{comment}{/* 512-bits, leading set */}}
+\DoxyCodeLine{244 \{}
+\DoxyCodeLine{245   64,}
+\DoxyCodeLine{246   \{ 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{247     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{248     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{249     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{250   \{ 0x10, 0x3E, 0x00, 0x55, 0xA9, 0xB0, 0x90, 0xE1, 0x1C, 0x8F, 0xDD, 0xEB, 0xBA, 0x06, 0xC0, 0x5A,}
+\DoxyCodeLine{251     0xCE, 0x8B, 0x64, 0xB8, 0x96, 0x12, 0x8F, 0x6E, 0xED, 0x30, 0x71, 0xFC, 0xF3, 0xDC, 0x16, 0x94,}
+\DoxyCodeLine{252     0x67, 0x78, 0xE0, 0x72, 0x23, 0x23, 0x3F, 0xD1, 0x80, 0xFC, 0x40, 0xCC, 0xDB, 0x84, 0x30, 0xA6,}
+\DoxyCodeLine{253     0x40, 0xE3, 0x76, 0x34, 0x27, 0x1E, 0x65, 0x5C, 0xA1, 0x67, 0x4E, 0xBF, 0xF5, 0x07, 0xF8, 0xCB \}}
+\DoxyCodeLine{254 \},}
+\DoxyCodeLine{255 }
+\DoxyCodeLine{256    \textcolor{comment}{/* 512-bits, leading set of second byte */}}
+\DoxyCodeLine{257 \{}
+\DoxyCodeLine{258   64,}
+\DoxyCodeLine{259   \{ 0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{260     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{261     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{262     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{263   \{ 0x35, 0x7B, 0x42, 0xEA, 0x79, 0xBC, 0x97, 0x86, 0x97, 0x5A, 0x3C, 0x44, 0x70, 0xAA, 0xB2, 0x3E,}
+\DoxyCodeLine{264     0x62, 0x29, 0x79, 0x7B, 0xAD, 0xBD, 0x54, 0x36, 0x5B, 0x54, 0x96, 0xE5, 0x5D, 0x9D, 0xD7, 0x9F,}
+\DoxyCodeLine{265     0xE9, 0x62, 0x4F, 0xB4, 0x22, 0x66, 0x93, 0x0A, 0x62, 0x8E, 0xD4, 0xDB, 0x08, 0xF9, 0xDD, 0x35,}
+\DoxyCodeLine{266     0xEF, 0x1B, 0xE1, 0x04, 0x53, 0xFC, 0x18, 0xF4, 0x2C, 0x7F, 0x5E, 0x1F, 0x9B, 0xAE, 0x55, 0xE0 \}}
+\DoxyCodeLine{267 \},}
+\DoxyCodeLine{268 }
+\DoxyCodeLine{269    \textcolor{comment}{/* 512-bits, leading set of last byte */}}
+\DoxyCodeLine{270 \{}
+\DoxyCodeLine{271   64,}
+\DoxyCodeLine{272   \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{273     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{274     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{275     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x80 \},}
+\DoxyCodeLine{276   \{ 0x8B, 0x39, 0x04, 0xDD, 0x19, 0x81, 0x41, 0x26, 0xFD, 0x02, 0x74, 0xAB, 0x49, 0xC5, 0x97, 0xF6,}
+\DoxyCodeLine{277     0xD7, 0x75, 0x33, 0x52, 0xA2, 0xDD, 0x91, 0xFD, 0x8F, 0x9F, 0x54, 0x05, 0x4C, 0x54, 0xBF, 0x0F,}
+\DoxyCodeLine{278     0x06, 0xDB, 0x4F, 0xF7, 0x08, 0xA3, 0xA2, 0x8B, 0xC3, 0x7A, 0x92, 0x1E, 0xEE, 0x11, 0xED, 0x7B,}
+\DoxyCodeLine{279     0x6A, 0x53, 0x79, 0x32, 0xCC, 0x5E, 0x94, 0xEE, 0x1E, 0xA6, 0x57, 0x60, 0x7E, 0x36, 0xC9, 0xF7 \}}
+\DoxyCodeLine{280 \},}
+\DoxyCodeLine{281 }
+\DoxyCodeLine{282 \};}
+\DoxyCodeLine{283 }
+\DoxyCodeLine{284   \textcolor{keywordtype}{int} i;}
+\DoxyCodeLine{285   \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} tmp[64];}
+\DoxyCodeLine{286   \mbox{\hyperlink{unionHash__state}{hash\_state}} md;}
+\DoxyCodeLine{287 }
+\DoxyCodeLine{288   \textcolor{keywordflow}{for} (i = 0; i < (int)(\textcolor{keyword}{sizeof}(tests)/\textcolor{keyword}{sizeof}(tests[0])); i++) \{}
+\DoxyCodeLine{289       \mbox{\hyperlink{whirl_8c_aa97be69799fe7c84d07a95320c677fbe}{whirlpool\_init}}(\&md);}
+\DoxyCodeLine{290       \mbox{\hyperlink{whirl_8c_a2bfcaff63f1b0092a2759eae755f91c2}{whirlpool\_process}}(\&md, (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *)tests[i].msg, tests[i].\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}});}
+\DoxyCodeLine{291       \mbox{\hyperlink{whirl_8c_a4da4cb07ed14ccdaa27c3296ad18360a}{whirlpool\_done}}(\&md, tmp);}
+\DoxyCodeLine{292       \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(tmp, \textcolor{keyword}{sizeof}(tmp), tests[i].hash, \textcolor{keyword}{sizeof}(tests[i].hash), \textcolor{stringliteral}{"WHIRLPOOL"}, i)) \{}
+\DoxyCodeLine{293          \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{294       \}}
+\DoxyCodeLine{295   \}}
+\DoxyCodeLine{296   \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{297 \textcolor{preprocessor}{ \#endif}}
+\DoxyCodeLine{298 \}}
+
+\end{DoxyCode}
+
+
+References compare\+\_\+testvector(), C\+R\+Y\+P\+T\+\_\+\+F\+A\+I\+L\+\_\+\+T\+E\+S\+T\+V\+E\+C\+T\+OR, C\+R\+Y\+P\+T\+\_\+\+N\+OP, C\+R\+Y\+P\+T\+\_\+\+OK, len, whirlpool\+\_\+done(), whirlpool\+\_\+init(), and whirlpool\+\_\+process().
+
+Here is the call graph for this function\+:
+% FIG 7
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{whirl_8c_a411c753dea7cc362d85b6032e7cafbf3}\label{whirl_8c_a411c753dea7cc362d85b6032e7cafbf3}} 
+\index{whirl.c@{whirl.c}!whirlpool\_desc@{whirlpool\_desc}}
+\index{whirlpool\_desc@{whirlpool\_desc}!whirl.c@{whirl.c}}
+\subsubsection{\texorpdfstring{whirlpool\_desc}{whirlpool\_desc}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structltc__hash__descriptor}{ltc\+\_\+hash\+\_\+descriptor}} whirlpool\+\_\+desc}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    \textcolor{stringliteral}{"whirlpool"},}
+\DoxyCodeLine{    11,}
+\DoxyCodeLine{    64,}
+\DoxyCodeLine{    64,}
+\DoxyCodeLine{}
+\DoxyCodeLine{   }
+\DoxyCodeLine{   \{ 1, 0, 10118, 3, 0, 55 \},}
+\DoxyCodeLine{   6,}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \&\mbox{\hyperlink{whirl_8c_aa97be69799fe7c84d07a95320c677fbe}{whirlpool\_init}},}
+\DoxyCodeLine{    \&\mbox{\hyperlink{whirl_8c_a2bfcaff63f1b0092a2759eae755f91c2}{whirlpool\_process}},}
+\DoxyCodeLine{    \&\mbox{\hyperlink{whirl_8c_a4da4cb07ed14ccdaa27c3296ad18360a}{whirlpool\_done}},}
+\DoxyCodeLine{    \&\mbox{\hyperlink{whirl_8c_ad8036fccf9883ace4c94c9ff33d7d853}{whirlpool\_test}},}
+\DoxyCodeLine{    NULL}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line 19 of file whirl.\+c.
+
+
+
+Referenced by register\+\_\+all\+\_\+hashes(), and yarrow\+\_\+start().
+

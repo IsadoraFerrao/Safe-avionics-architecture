@@ -1,0 +1,89 @@
+\hypertarget{ccm__add__aad_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/encauth/ccm/ccm\+\_\+add\+\_\+aad.c File Reference}
+\label{ccm__add__aad_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/encauth/ccm/ccm\_add\_aad.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/encauth/ccm/ccm\_add\_aad.c}}
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for ccm\+\_\+add\+\_\+aad.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{ccm__add__aad_8c_aab3b1397422d9da974a6276a0ae9e09f}{ccm\+\_\+add\+\_\+aad}} (ccm\+\_\+state $\ast$ccm, const unsigned char $\ast$adata, unsigned long adatalen)
+\begin{DoxyCompactList}\small\item\em Add A\+AD to the C\+CM state. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{ccm__add__aad_8c_aab3b1397422d9da974a6276a0ae9e09f}\label{ccm__add__aad_8c_aab3b1397422d9da974a6276a0ae9e09f}} 
+\index{ccm\_add\_aad.c@{ccm\_add\_aad.c}!ccm\_add\_aad@{ccm\_add\_aad}}
+\index{ccm\_add\_aad@{ccm\_add\_aad}!ccm\_add\_aad.c@{ccm\_add\_aad.c}}
+\subsubsection{\texorpdfstring{ccm\_add\_aad()}{ccm\_add\_aad()}}
+{\footnotesize\ttfamily int ccm\+\_\+add\+\_\+aad (\begin{DoxyParamCaption}\item[{ccm\+\_\+state $\ast$}]{ccm,  }\item[{const unsigned char $\ast$}]{adata,  }\item[{unsigned long}]{adatalen }\end{DoxyParamCaption})}
+
+
+
+Add A\+AD to the C\+CM state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ccm} & The C\+CM state \\
+\hline
+{\em adata} & The additional authentication data to add to the C\+CM state \\
+\hline
+{\em adatalen} & The length of the A\+AD data. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK on success 
+\end{DoxyReturn}
+
+
+Definition at line 20 of file ccm\+\_\+add\+\_\+aad.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{22 \{}
+\DoxyCodeLine{23    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} y;}
+\DoxyCodeLine{24    \textcolor{keywordtype}{int}            err;}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(ccm   != NULL);}
+\DoxyCodeLine{27    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(adata != NULL);}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29    \textcolor{keywordflow}{if} (ccm->aadlen < ccm->current\_aadlen + adatalen) \{}
+\DoxyCodeLine{30       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{31    \}}
+\DoxyCodeLine{32    ccm->current\_aadlen += adatalen;}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34    \textcolor{comment}{/* now add the data */}}
+\DoxyCodeLine{35    \textcolor{keywordflow}{for} (y = 0; y < adatalen; y++) \{}
+\DoxyCodeLine{36       \textcolor{keywordflow}{if} (ccm->x == 16) \{}
+\DoxyCodeLine{37          \textcolor{comment}{/* full block so let's encrypt it */}}
+\DoxyCodeLine{38          \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[ccm->cipher].\mbox{\hyperlink{structltc__cipher__descriptor_a46141d86abe22a7c8d382c62a894dd63}{ecb\_encrypt}}(ccm->PAD, ccm->PAD, \&ccm->K)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{39             \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{40          \}}
+\DoxyCodeLine{41          ccm->x = 0;}
+\DoxyCodeLine{42       \}}
+\DoxyCodeLine{43       ccm->PAD[ccm->x++] \string^= adata[y];}
+\DoxyCodeLine{44    \}}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46    \textcolor{comment}{/* remainder? */}}
+\DoxyCodeLine{47    \textcolor{keywordflow}{if} (ccm->aadlen == ccm->current\_aadlen) \{}
+\DoxyCodeLine{48       \textcolor{keywordflow}{if} (ccm->x != 0) \{}
+\DoxyCodeLine{49          \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[ccm->cipher].\mbox{\hyperlink{structltc__cipher__descriptor_a46141d86abe22a7c8d382c62a894dd63}{ecb\_encrypt}}(ccm->PAD, ccm->PAD, \&ccm->K)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{50             \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{51          \}}
+\DoxyCodeLine{52       \}}
+\DoxyCodeLine{53       ccm->x = 0;}
+\DoxyCodeLine{54    \}}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{56    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{57 \}}
+
+\end{DoxyCode}
+
+
+References cipher\+\_\+descriptor, C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+A\+RG, C\+R\+Y\+P\+T\+\_\+\+OK, ltc\+\_\+cipher\+\_\+descriptor\+::ecb\+\_\+encrypt, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+
+
+Referenced by ccm\+\_\+test().
+
+Here is the caller graph for this function\+:
+% FIG 1

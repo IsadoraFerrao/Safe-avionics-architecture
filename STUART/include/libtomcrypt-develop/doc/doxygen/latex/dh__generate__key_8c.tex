@@ -1,0 +1,133 @@
+\hypertarget{dh__generate__key_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/pk/dh/dh\+\_\+generate\+\_\+key.c File Reference}
+\label{dh__generate__key_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/dh/dh\_generate\_key.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/dh/dh\_generate\_key.c}}
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for dh\+\_\+generate\+\_\+key.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{dh__generate__key_8c_af55bde15f8dcfaa0e7129b599d7cab62}{\+\_\+dh\+\_\+groupsize\+\_\+to\+\_\+keysize}} (int groupsize)
+\item 
+int \mbox{\hyperlink{dh__generate__key_8c_ab1d01a4bd250336b21aff7a863d785de}{dh\+\_\+generate\+\_\+key}} (\mbox{\hyperlink{structprng__state}{prng\+\_\+state}} $\ast$prng, int wprng, dh\+\_\+key $\ast$key)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{dh__generate__key_8c_af55bde15f8dcfaa0e7129b599d7cab62}\label{dh__generate__key_8c_af55bde15f8dcfaa0e7129b599d7cab62}} 
+\index{dh\_generate\_key.c@{dh\_generate\_key.c}!\_dh\_groupsize\_to\_keysize@{\_dh\_groupsize\_to\_keysize}}
+\index{\_dh\_groupsize\_to\_keysize@{\_dh\_groupsize\_to\_keysize}!dh\_generate\_key.c@{dh\_generate\_key.c}}
+\subsubsection{\texorpdfstring{\_dh\_groupsize\_to\_keysize()}{\_dh\_groupsize\_to\_keysize()}}
+{\footnotesize\ttfamily static int \+\_\+dh\+\_\+groupsize\+\_\+to\+\_\+keysize (\begin{DoxyParamCaption}\item[{int}]{groupsize }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 14 of file dh\+\_\+generate\+\_\+key.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{15 \{}
+\DoxyCodeLine{16    \textcolor{comment}{/* The strength estimates from https://tools.ietf.org/html/rfc3526\#section-8}}
+\DoxyCodeLine{17 \textcolor{comment}{    * We use "Estimate 2" to get an appropriate private key (exponent) size.}}
+\DoxyCodeLine{18 \textcolor{comment}{    */}}
+\DoxyCodeLine{19    \textcolor{keywordflow}{if} (groupsize <= 0) \{}
+\DoxyCodeLine{20       \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{21    \}}
+\DoxyCodeLine{22    \textcolor{keywordflow}{if} (groupsize <= 192) \{}
+\DoxyCodeLine{23       \textcolor{keywordflow}{return} 30;     \textcolor{comment}{/* 1536-bit => key size 240-bit */}}
+\DoxyCodeLine{24    \}}
+\DoxyCodeLine{25    \textcolor{keywordflow}{if} (groupsize <= 256) \{}
+\DoxyCodeLine{26       \textcolor{keywordflow}{return} 40;     \textcolor{comment}{/* 2048-bit => key size 320-bit */}}
+\DoxyCodeLine{27    \}}
+\DoxyCodeLine{28    \textcolor{keywordflow}{if} (groupsize <= 384) \{}
+\DoxyCodeLine{29       \textcolor{keywordflow}{return} 52;     \textcolor{comment}{/* 3072-bit => key size 416-bit */}}
+\DoxyCodeLine{30    \}}
+\DoxyCodeLine{31    \textcolor{keywordflow}{if} (groupsize <= 512) \{}
+\DoxyCodeLine{32       \textcolor{keywordflow}{return} 60;     \textcolor{comment}{/* 4096-bit => key size 480-bit */}}
+\DoxyCodeLine{33    \}}
+\DoxyCodeLine{34    \textcolor{keywordflow}{if} (groupsize <= 768) \{}
+\DoxyCodeLine{35       \textcolor{keywordflow}{return} 67;     \textcolor{comment}{/* 6144-bit => key size 536-bit */}}
+\DoxyCodeLine{36    \}}
+\DoxyCodeLine{37    \textcolor{keywordflow}{if} (groupsize <= 1024) \{}
+\DoxyCodeLine{38       \textcolor{keywordflow}{return} 77;     \textcolor{comment}{/* 8192-bit => key size 616-bit */}}
+\DoxyCodeLine{39    \}}
+\DoxyCodeLine{40    \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{41 \}}
+
+\end{DoxyCode}
+
+
+Referenced by dh\+\_\+generate\+\_\+key().
+
+Here is the caller graph for this function\+:
+% FIG 1
+\mbox{\Hypertarget{dh__generate__key_8c_ab1d01a4bd250336b21aff7a863d785de}\label{dh__generate__key_8c_ab1d01a4bd250336b21aff7a863d785de}} 
+\index{dh\_generate\_key.c@{dh\_generate\_key.c}!dh\_generate\_key@{dh\_generate\_key}}
+\index{dh\_generate\_key@{dh\_generate\_key}!dh\_generate\_key.c@{dh\_generate\_key.c}}
+\subsubsection{\texorpdfstring{dh\_generate\_key()}{dh\_generate\_key()}}
+{\footnotesize\ttfamily int dh\+\_\+generate\+\_\+key (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structprng__state}{prng\+\_\+state}} $\ast$}]{prng,  }\item[{int}]{wprng,  }\item[{dh\+\_\+key $\ast$}]{key }\end{DoxyParamCaption})}
+
+
+
+Definition at line 43 of file dh\+\_\+generate\+\_\+key.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{44 \{}
+\DoxyCodeLine{45    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *buf;}
+\DoxyCodeLine{46    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} keysize;}
+\DoxyCodeLine{47    \textcolor{keywordtype}{int} err, max\_iterations = \mbox{\hyperlink{tomcrypt__custom_8h_a62913bd9180a860012d74795f29f9f42}{LTC\_PK\_MAX\_RETRIES}};}
+\DoxyCodeLine{48 }
+\DoxyCodeLine{49    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(key         != NULL);}
+\DoxyCodeLine{50    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(\mbox{\hyperlink{tomcrypt__math_8h_a3d38c44518c63b7a8abd0938f3d41c65}{ltc\_mp}}.\mbox{\hyperlink{structltc__math__descriptor_a8838126de4a27e382f91096e369a2728}{name}} != NULL);}
+\DoxyCodeLine{51 }
+\DoxyCodeLine{52    \textcolor{comment}{/* good prng? */}}
+\DoxyCodeLine{53    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__prng_8h_a7e4a212c1a29a3b8bb4f8d5a34676a1e}{prng\_is\_valid}}(wprng)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{54       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{55    \}}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{57    keysize = \mbox{\hyperlink{dh__generate__key_8c_af55bde15f8dcfaa0e7129b599d7cab62}{\_dh\_groupsize\_to\_keysize}}(\mbox{\hyperlink{tomcrypt__private_8h_ad301148bb24f43a8c7003a6976dfaa5a}{mp\_unsigned\_bin\_size}}(key->prime));}
+\DoxyCodeLine{58    \textcolor{keywordflow}{if} (keysize == 0) \{}
+\DoxyCodeLine{59       err = \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caafed43f3b625e72191e08e65b4bb5e02}{CRYPT\_INVALID\_KEYSIZE}};}
+\DoxyCodeLine{60       \textcolor{keywordflow}{goto} freemp;}
+\DoxyCodeLine{61    \}}
+\DoxyCodeLine{62 }
+\DoxyCodeLine{63    \textcolor{comment}{/* allocate buffer */}}
+\DoxyCodeLine{64    buf = \mbox{\hyperlink{tomcrypt__cfg_8h_af363355f38fbaacdefacf270436ae1c9}{XMALLOC}}(keysize);}
+\DoxyCodeLine{65    \textcolor{keywordflow}{if} (buf == NULL) \{}
+\DoxyCodeLine{66       err = \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca0ce0d27adc7ea10b74b7ea904b8bfa82}{CRYPT\_MEM}};}
+\DoxyCodeLine{67       \textcolor{keywordflow}{goto} freemp;}
+\DoxyCodeLine{68    \}}
+\DoxyCodeLine{69 }
+\DoxyCodeLine{70    key->type = \mbox{\hyperlink{tomcrypt__pk_8h_afb69d121a43f5ae8b47e6b83611d9272a7295b3dea2c5277912c6e040e1c96649}{PK\_PRIVATE}};}
+\DoxyCodeLine{71    \textcolor{keywordflow}{do} \{}
+\DoxyCodeLine{72       \textcolor{comment}{/* make up random buf */}}
+\DoxyCodeLine{73       \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__prng_8h_ac03ee9f603bf966f3afb3f6be156239b}{prng\_descriptor}}[wprng].read(buf, keysize, prng) != keysize) \{}
+\DoxyCodeLine{74          err = \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca68eea82b3b71f23031cd94b10c920bf3}{CRYPT\_ERROR\_READPRNG}};}
+\DoxyCodeLine{75          \textcolor{keywordflow}{goto} freebuf;}
+\DoxyCodeLine{76       \}}
+\DoxyCodeLine{77       \textcolor{comment}{/* load the x value - private key */}}
+\DoxyCodeLine{78       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a9e20e2044bb5a279e27512d1e1b65754}{mp\_read\_unsigned\_bin}}(key->x, buf, keysize)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{79          \textcolor{keywordflow}{goto} freebuf;}
+\DoxyCodeLine{80       \}}
+\DoxyCodeLine{81       \textcolor{comment}{/* compute the y value - public key */}}
+\DoxyCodeLine{82       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a4fb1221fbef91bf8163390e3cfb82085}{mp\_exptmod}}(key->base, key->x, key->prime, key->y)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{83          \textcolor{keywordflow}{goto} freebuf;}
+\DoxyCodeLine{84       \}}
+\DoxyCodeLine{85       err = \mbox{\hyperlink{tomcrypt__private_8h_a88fc16c33e95216e30eae5beb8e92da1}{dh\_check\_pubkey}}(key);}
+\DoxyCodeLine{86    \} \textcolor{keywordflow}{while} (err != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}} \&\& max\_iterations-- > 0);}
+\DoxyCodeLine{87 }
+\DoxyCodeLine{88 freebuf:}
+\DoxyCodeLine{89    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(buf, keysize);}
+\DoxyCodeLine{90    \mbox{\hyperlink{tomcrypt__cfg_8h_a260d66fc0690e0502cf3bfe7b5244b75}{XFREE}}(buf);}
+\DoxyCodeLine{91 freemp:}
+\DoxyCodeLine{92    \textcolor{keywordflow}{if} (err != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \mbox{\hyperlink{dh__free_8c_ac6413849059daca7d0482fa400db5d82}{dh\_free}}(key);}
+\DoxyCodeLine{93    \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{94 \}}
+
+\end{DoxyCode}
+
+
+References \+\_\+dh\+\_\+groupsize\+\_\+to\+\_\+keysize(), C\+R\+Y\+P\+T\+\_\+\+E\+R\+R\+O\+R\+\_\+\+R\+E\+A\+D\+P\+R\+NG, C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+K\+E\+Y\+S\+I\+ZE, C\+R\+Y\+P\+T\+\_\+\+M\+EM, C\+R\+Y\+P\+T\+\_\+\+OK, dh\+\_\+check\+\_\+pubkey(), dh\+\_\+free(), L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, ltc\+\_\+mp, L\+T\+C\+\_\+\+P\+K\+\_\+\+M\+A\+X\+\_\+\+R\+E\+T\+R\+I\+ES, mp\+\_\+exptmod, mp\+\_\+read\+\_\+unsigned\+\_\+bin, mp\+\_\+unsigned\+\_\+bin\+\_\+size, ltc\+\_\+math\+\_\+descriptor\+::name, P\+K\+\_\+\+P\+R\+I\+V\+A\+TE, prng\+\_\+descriptor, prng\+\_\+is\+\_\+valid(), X\+F\+R\+E\+E(), X\+M\+A\+L\+L\+O\+C(), and zeromem().
+
+Here is the call graph for this function\+:
+% FIG 2

@@ -1,0 +1,187 @@
+\hypertarget{der__length__utf8__string_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/pk/asn1/der/utf8/der\+\_\+length\+\_\+utf8\+\_\+string.c File Reference}
+\label{der__length__utf8__string_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/asn1/der/utf8/der\_length\_utf8\_string.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/asn1/der/utf8/der\_length\_utf8\_string.c}}
+
+
+A\+S\+N.\+1 D\+ER, get length of U\+T\+F8 S\+T\+R\+I\+NG, Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for der\+\_\+length\+\_\+utf8\+\_\+string.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+unsigned long \mbox{\hyperlink{der__length__utf8__string_8c_acc54e796874f1b01e2f9dd101da4c2a9}{der\+\_\+utf8\+\_\+charsize}} (const wchar\+\_\+t \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}})
+\begin{DoxyCompactList}\small\item\em Return the size in bytes of a U\+T\+F-\/8 character. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{der__length__utf8__string_8c_a400ea59efe4834eac94e65230dd59822}{der\+\_\+utf8\+\_\+valid\+\_\+char}} (const wchar\+\_\+t \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}})
+\begin{DoxyCompactList}\small\item\em Test whether the given code point is valid character. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{der__length__utf8__string_8c_aa8b54979c2261c4d703c9464e0bb14c1}{der\+\_\+length\+\_\+utf8\+\_\+string}} (const wchar\+\_\+t $\ast$in, unsigned long noctets, unsigned long $\ast$outlen)
+\begin{DoxyCompactList}\small\item\em Gets length of D\+ER encoding of U\+T\+F8 S\+T\+R\+I\+NG. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A\+S\+N.\+1 D\+ER, get length of U\+T\+F8 S\+T\+R\+I\+NG, Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{der__length__utf8__string_8c_aa8b54979c2261c4d703c9464e0bb14c1}\label{der__length__utf8__string_8c_aa8b54979c2261c4d703c9464e0bb14c1}} 
+\index{der\_length\_utf8\_string.c@{der\_length\_utf8\_string.c}!der\_length\_utf8\_string@{der\_length\_utf8\_string}}
+\index{der\_length\_utf8\_string@{der\_length\_utf8\_string}!der\_length\_utf8\_string.c@{der\_length\_utf8\_string.c}}
+\subsubsection{\texorpdfstring{der\_length\_utf8\_string()}{der\_length\_utf8\_string()}}
+{\footnotesize\ttfamily int der\+\_\+length\+\_\+utf8\+\_\+string (\begin{DoxyParamCaption}\item[{const wchar\+\_\+t $\ast$}]{in,  }\item[{unsigned long}]{noctets,  }\item[{unsigned long $\ast$}]{outlen }\end{DoxyParamCaption})}
+
+
+
+Gets length of D\+ER encoding of U\+T\+F8 S\+T\+R\+I\+NG. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em in} & The characters to measure the length of \\
+\hline
+{\em noctets} & The number of octets in the string to encode \\
+\hline
+{\em outlen} & \mbox{[}out\mbox{]} The length of the D\+ER encoding for the given string \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 64 of file der\+\_\+length\+\_\+utf8\+\_\+string.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{65 \{}
+\DoxyCodeLine{66    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} x, \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}};}
+\DoxyCodeLine{67    \textcolor{keywordtype}{int} err;}
+\DoxyCodeLine{68 }
+\DoxyCodeLine{69    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(in     != NULL);}
+\DoxyCodeLine{70    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(outlen != NULL);}
+\DoxyCodeLine{71 }
+\DoxyCodeLine{72    \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}} = 0;}
+\DoxyCodeLine{73    \textcolor{keywordflow}{for} (x = 0; x < noctets; x++) \{}
+\DoxyCodeLine{74       \textcolor{keywordflow}{if} (!\mbox{\hyperlink{der__length__utf8__string_8c_a400ea59efe4834eac94e65230dd59822}{der\_utf8\_valid\_char}}(in[x])) \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{75       \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}} += \mbox{\hyperlink{der__length__utf8__string_8c_acc54e796874f1b01e2f9dd101da4c2a9}{der\_utf8\_charsize}}(in[x]);}
+\DoxyCodeLine{76    \}}
+\DoxyCodeLine{77 }
+\DoxyCodeLine{78    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a8999e23c66cda0d777570e54f3a5c795}{der\_length\_asn1\_length}}(\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}, \&x)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{79       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{80    \}}
+\DoxyCodeLine{81    *outlen = 1 + x + \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}};}
+\DoxyCodeLine{82 }
+\DoxyCodeLine{83    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{84 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+A\+RG, C\+R\+Y\+P\+T\+\_\+\+OK, der\+\_\+length\+\_\+asn1\+\_\+length(), der\+\_\+utf8\+\_\+charsize(), der\+\_\+utf8\+\_\+valid\+\_\+char(), len, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+
+
+Referenced by der\+\_\+decode\+\_\+choice(), der\+\_\+decode\+\_\+custom\+\_\+type\+\_\+ex(), der\+\_\+decode\+\_\+sequence\+\_\+flexi(), der\+\_\+length\+\_\+custom\+\_\+type(), and der\+\_\+length\+\_\+sequence\+\_\+ex().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2
+\mbox{\Hypertarget{der__length__utf8__string_8c_acc54e796874f1b01e2f9dd101da4c2a9}\label{der__length__utf8__string_8c_acc54e796874f1b01e2f9dd101da4c2a9}} 
+\index{der\_length\_utf8\_string.c@{der\_length\_utf8\_string.c}!der\_utf8\_charsize@{der\_utf8\_charsize}}
+\index{der\_utf8\_charsize@{der\_utf8\_charsize}!der\_length\_utf8\_string.c@{der\_length\_utf8\_string.c}}
+\subsubsection{\texorpdfstring{der\_utf8\_charsize()}{der\_utf8\_charsize()}}
+{\footnotesize\ttfamily unsigned long der\+\_\+utf8\+\_\+charsize (\begin{DoxyParamCaption}\item[{const wchar\+\_\+t}]{c }\end{DoxyParamCaption})}
+
+
+
+Return the size in bytes of a U\+T\+F-\/8 character. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em c} & The U\+T\+F-\/8 character to measure \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The size in bytes 
+\end{DoxyReturn}
+
+
+Definition at line 22 of file der\+\_\+length\+\_\+utf8\+\_\+string.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{23 \{}
+\DoxyCodeLine{24    \textcolor{keywordflow}{if} (\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} <= 0x7F) \{}
+\DoxyCodeLine{25       \textcolor{keywordflow}{return} 1;}
+\DoxyCodeLine{26    \}}
+\DoxyCodeLine{27    \textcolor{keywordflow}{if} (\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} <= 0x7FF) \{}
+\DoxyCodeLine{28       \textcolor{keywordflow}{return} 2;}
+\DoxyCodeLine{29    \}}
+\DoxyCodeLine{30 \textcolor{preprocessor}{\#if LTC\_WCHAR\_MAX == 0xFFFF}}
+\DoxyCodeLine{31    \textcolor{keywordflow}{return} 3;}
+\DoxyCodeLine{32 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{33    \textcolor{keywordflow}{if} (\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} <= 0xFFFF) \{}
+\DoxyCodeLine{34       \textcolor{keywordflow}{return} 3;}
+\DoxyCodeLine{35    \}}
+\DoxyCodeLine{36    \textcolor{keywordflow}{return} 4;}
+\DoxyCodeLine{37 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{38 \}}
+
+\end{DoxyCode}
+
+
+References c.
+
+
+
+Referenced by der\+\_\+encode\+\_\+utf8\+\_\+string(), and der\+\_\+length\+\_\+utf8\+\_\+string().
+
+Here is the caller graph for this function\+:
+% FIG 3
+\mbox{\Hypertarget{der__length__utf8__string_8c_a400ea59efe4834eac94e65230dd59822}\label{der__length__utf8__string_8c_a400ea59efe4834eac94e65230dd59822}} 
+\index{der\_length\_utf8\_string.c@{der\_length\_utf8\_string.c}!der\_utf8\_valid\_char@{der\_utf8\_valid\_char}}
+\index{der\_utf8\_valid\_char@{der\_utf8\_valid\_char}!der\_length\_utf8\_string.c@{der\_length\_utf8\_string.c}}
+\subsubsection{\texorpdfstring{der\_utf8\_valid\_char()}{der\_utf8\_valid\_char()}}
+{\footnotesize\ttfamily int der\+\_\+utf8\+\_\+valid\+\_\+char (\begin{DoxyParamCaption}\item[{const wchar\+\_\+t}]{c }\end{DoxyParamCaption})}
+
+
+
+Test whether the given code point is valid character. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em c} & The U\+T\+F-\/8 character to test \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 -\/ valid, 0 -\/ invalid 
+\end{DoxyReturn}
+
+
+Definition at line 45 of file der\+\_\+length\+\_\+utf8\+\_\+string.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{46 \{}
+\DoxyCodeLine{47    \mbox{\hyperlink{tomcrypt__macros_8h_accde4b007facd646a8327f8e64b2d1e0}{LTC\_UNUSED\_PARAM}}(\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}});}
+\DoxyCodeLine{48 \textcolor{preprocessor}{\#if !defined(LTC\_WCHAR\_MAX) || LTC\_WCHAR\_MAX > 0xFFFF}}
+\DoxyCodeLine{49    \textcolor{keywordflow}{if} (\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} > 0x10FFFF) \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{50 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{51 \textcolor{preprocessor}{\#if LTC\_WCHAR\_MAX != 0xFFFF \&\& LTC\_WCHAR\_MAX != 0xFFFFFFFF}}
+\DoxyCodeLine{52    \textcolor{keywordflow}{if} (\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} < 0) \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{53 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{54    \textcolor{keywordflow}{return} 1;}
+\DoxyCodeLine{55 \}}
+
+\end{DoxyCode}
+
+
+References c, and L\+T\+C\+\_\+\+U\+N\+U\+S\+E\+D\+\_\+\+P\+A\+R\+AM.
+
+
+
+Referenced by der\+\_\+encode\+\_\+utf8\+\_\+string(), and der\+\_\+length\+\_\+utf8\+\_\+string().
+
+Here is the caller graph for this function\+:
+% FIG 4

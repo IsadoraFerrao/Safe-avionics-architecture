@@ -1,0 +1,69 @@
+\hypertarget{ocb3__int__ntz_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/encauth/ocb3/ocb3\+\_\+int\+\_\+ntz.c File Reference}
+\label{ocb3__int__ntz_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/encauth/ocb3/ocb3\_int\_ntz.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/encauth/ocb3/ocb3\_int\_ntz.c}}
+
+
+O\+CB implementation, I\+N\+T\+E\+R\+N\+AL O\+N\+LY helper, by Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for ocb3\+\_\+int\+\_\+ntz.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{ocb3__int__ntz_8c_ac4af92f890be670e795a758ec452b402}{ocb3\+\_\+int\+\_\+ntz}} (unsigned long x)
+\begin{DoxyCompactList}\small\item\em Returns the number of leading zero bits \mbox{[}from lsb up\mbox{]} (internal function) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+O\+CB implementation, I\+N\+T\+E\+R\+N\+AL O\+N\+LY helper, by Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{ocb3__int__ntz_8c_ac4af92f890be670e795a758ec452b402}\label{ocb3__int__ntz_8c_ac4af92f890be670e795a758ec452b402}} 
+\index{ocb3\_int\_ntz.c@{ocb3\_int\_ntz.c}!ocb3\_int\_ntz@{ocb3\_int\_ntz}}
+\index{ocb3\_int\_ntz@{ocb3\_int\_ntz}!ocb3\_int\_ntz.c@{ocb3\_int\_ntz.c}}
+\subsubsection{\texorpdfstring{ocb3\_int\_ntz()}{ocb3\_int\_ntz()}}
+{\footnotesize\ttfamily int ocb3\+\_\+int\+\_\+ntz (\begin{DoxyParamCaption}\item[{unsigned long}]{x }\end{DoxyParamCaption})}
+
+
+
+Returns the number of leading zero bits \mbox{[}from lsb up\mbox{]} (internal function) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & The 32-\/bit value to observe \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The number of bits \mbox{[}from the lsb up\mbox{]} that are zero 
+\end{DoxyReturn}
+
+
+Definition at line 23 of file ocb3\+\_\+int\+\_\+ntz.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{24 \{}
+\DoxyCodeLine{25    \textcolor{keywordtype}{int} \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}};}
+\DoxyCodeLine{26    x \&= 0xFFFFFFFFUL;}
+\DoxyCodeLine{27    \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} = 0;}
+\DoxyCodeLine{28    \textcolor{keywordflow}{while} ((x \& 1) == 0) \{}
+\DoxyCodeLine{29       ++\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}};}
+\DoxyCodeLine{30       x >>= 1;}
+\DoxyCodeLine{31    \}}
+\DoxyCodeLine{32    \textcolor{keywordflow}{return} \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}};}
+\DoxyCodeLine{33 \}}
+
+\end{DoxyCode}
+
+
+References c.
+
+
+
+Referenced by \+\_\+ocb3\+\_\+int\+\_\+aad\+\_\+add\+\_\+block(), ocb3\+\_\+decrypt(), and ocb3\+\_\+encrypt().
+
+Here is the caller graph for this function\+:
+% FIG 1

@@ -1,0 +1,77 @@
+\hypertarget{chacha20poly1305__decrypt_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/encauth/chachapoly/chacha20poly1305\+\_\+decrypt.c File Reference}
+\label{chacha20poly1305__decrypt_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/encauth/chachapoly/chacha20poly1305\_decrypt.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/encauth/chachapoly/chacha20poly1305\_decrypt.c}}
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for chacha20poly1305\+\_\+decrypt.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{chacha20poly1305__decrypt_8c_a720b42faa2bcb456a96865c180a1556d}{chacha20poly1305\+\_\+decrypt}} (chacha20poly1305\+\_\+state $\ast$st, const unsigned char $\ast$in, unsigned long inlen, unsigned char $\ast$out)
+\begin{DoxyCompactList}\small\item\em Decrypt bytes of ciphertext with Cha\+Cha20\+Poly1305. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{chacha20poly1305__decrypt_8c_a720b42faa2bcb456a96865c180a1556d}\label{chacha20poly1305__decrypt_8c_a720b42faa2bcb456a96865c180a1556d}} 
+\index{chacha20poly1305\_decrypt.c@{chacha20poly1305\_decrypt.c}!chacha20poly1305\_decrypt@{chacha20poly1305\_decrypt}}
+\index{chacha20poly1305\_decrypt@{chacha20poly1305\_decrypt}!chacha20poly1305\_decrypt.c@{chacha20poly1305\_decrypt.c}}
+\subsubsection{\texorpdfstring{chacha20poly1305\_decrypt()}{chacha20poly1305\_decrypt()}}
+{\footnotesize\ttfamily int chacha20poly1305\+\_\+decrypt (\begin{DoxyParamCaption}\item[{chacha20poly1305\+\_\+state $\ast$}]{st,  }\item[{const unsigned char $\ast$}]{in,  }\item[{unsigned long}]{inlen,  }\item[{unsigned char $\ast$}]{out }\end{DoxyParamCaption})}
+
+
+
+Decrypt bytes of ciphertext with Cha\+Cha20\+Poly1305. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em st} & The Cha\+Cha20\+Poly1305 state \\
+\hline
+{\em in} & The ciphertext \\
+\hline
+{\em inlen} & The length of the input (octets) \\
+\hline
+{\em out} & \mbox{[}out\mbox{]} The plaintext (length inlen) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 22 of file chacha20poly1305\+\_\+decrypt.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{23 \{}
+\DoxyCodeLine{24    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} padzero[16] = \{ 0 \};}
+\DoxyCodeLine{25    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} padlen;}
+\DoxyCodeLine{26    \textcolor{keywordtype}{int} err;}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(st != NULL);}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30    \textcolor{keywordflow}{if} (st->aadflg) \{}
+\DoxyCodeLine{31       padlen = 16 - (\textcolor{keywordtype}{unsigned} long)(st->aadlen \% 16);}
+\DoxyCodeLine{32       \textcolor{keywordflow}{if} (padlen < 16) \{}
+\DoxyCodeLine{33         \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{poly1305_8c_a44ef0e35cc1f514f942c015c105b9f01}{poly1305\_process}}(\&st->poly, padzero, padlen)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{34       \}}
+\DoxyCodeLine{35       st->aadflg = 0; \textcolor{comment}{/* no more AAD */}}
+\DoxyCodeLine{36    \}}
+\DoxyCodeLine{37    \textcolor{keywordflow}{if} (st->aadflg) st->aadflg = 0; \textcolor{comment}{/* no more AAD */}}
+\DoxyCodeLine{38    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{poly1305_8c_a44ef0e35cc1f514f942c015c105b9f01}{poly1305\_process}}(\&st->poly, in, inlen)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})         \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{39    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{chacha__crypt_8c_a1b1272fcac65a1e6a1ee555891b7c95e}{chacha\_crypt}}(\&st->chacha, in, inlen, out)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})      \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{40    st->ctlen += (\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}})inlen;}
+\DoxyCodeLine{41    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{42 \}}
+
+\end{DoxyCode}
+
+
+References chacha\+\_\+crypt(), C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, and poly1305\+\_\+process().
+
+
+
+Referenced by chacha20poly1305\+\_\+memory(), and chacha20poly1305\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2

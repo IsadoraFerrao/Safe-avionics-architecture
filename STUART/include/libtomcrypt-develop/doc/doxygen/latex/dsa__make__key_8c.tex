@@ -1,0 +1,71 @@
+\hypertarget{dsa__make__key_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/pk/dsa/dsa\+\_\+make\+\_\+key.c File Reference}
+\label{dsa__make__key_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/dsa/dsa\_make\_key.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/dsa/dsa\_make\_key.c}}
+
+
+D\+SA implementation, generate a D\+SA key.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for dsa\+\_\+make\+\_\+key.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{dsa__make__key_8c_a9b48ea999f1e23e839ae5b62aab985c6}{dsa\+\_\+make\+\_\+key}} (\mbox{\hyperlink{structprng__state}{prng\+\_\+state}} $\ast$prng, int wprng, int group\+\_\+size, int modulus\+\_\+size, dsa\+\_\+key $\ast$key)
+\begin{DoxyCompactList}\small\item\em Old-\/style creation of a D\+SA key. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+D\+SA implementation, generate a D\+SA key. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{dsa__make__key_8c_a9b48ea999f1e23e839ae5b62aab985c6}\label{dsa__make__key_8c_a9b48ea999f1e23e839ae5b62aab985c6}} 
+\index{dsa\_make\_key.c@{dsa\_make\_key.c}!dsa\_make\_key@{dsa\_make\_key}}
+\index{dsa\_make\_key@{dsa\_make\_key}!dsa\_make\_key.c@{dsa\_make\_key.c}}
+\subsubsection{\texorpdfstring{dsa\_make\_key()}{dsa\_make\_key()}}
+{\footnotesize\ttfamily int dsa\+\_\+make\+\_\+key (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structprng__state}{prng\+\_\+state}} $\ast$}]{prng,  }\item[{int}]{wprng,  }\item[{int}]{group\+\_\+size,  }\item[{int}]{modulus\+\_\+size,  }\item[{dsa\+\_\+key $\ast$}]{key }\end{DoxyParamCaption})}
+
+
+
+Old-\/style creation of a D\+SA key. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em prng} & An active P\+R\+NG state \\
+\hline
+{\em wprng} & The index of the P\+R\+NG desired \\
+\hline
+{\em group\+\_\+size} & Size of the multiplicative group (octets) \\
+\hline
+{\em modulus\+\_\+size} & Size of the modulus (octets) \\
+\hline
+{\em key} & \mbox{[}out\mbox{]} Where to store the created key \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful. 
+\end{DoxyReturn}
+
+
+Definition at line 27 of file dsa\+\_\+make\+\_\+key.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{28 \{}
+\DoxyCodeLine{29   \textcolor{keywordtype}{int} err;}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31   \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{dsa__generate__pqg_8c_aa25c2f74420daea058431d3ad4b2340d}{dsa\_generate\_pqg}}(prng, wprng, group\_size, modulus\_size, key)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{ \textcolor{keywordflow}{return} err; \}}
+\DoxyCodeLine{32   \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{dsa__generate__key_8c_a97b1aaf6fd598e3ea9d82523614158c9}{dsa\_generate\_key}}(prng, wprng, key)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{ \textcolor{keywordflow}{return} err; \}}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34   \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{35 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, dsa\+\_\+generate\+\_\+key(), and dsa\+\_\+generate\+\_\+pqg().
+
+Here is the call graph for this function\+:
+% FIG 1

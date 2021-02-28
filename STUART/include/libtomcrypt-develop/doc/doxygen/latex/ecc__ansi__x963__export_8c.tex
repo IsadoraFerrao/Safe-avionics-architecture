@@ -1,0 +1,59 @@
+\hypertarget{ecc__ansi__x963__export_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/pk/ecc/ecc\+\_\+ansi\+\_\+x963\+\_\+export.c File Reference}
+\label{ecc__ansi__x963__export_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/ecc/ecc\_ansi\_x963\_export.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/ecc/ecc\_ansi\_x963\_export.c}}
+
+
+E\+CC Crypto, Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for ecc\+\_\+ansi\+\_\+x963\+\_\+export.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{ecc__ansi__x963__export_8c_a75a6a5511113a7f4c77b7d5462806c3d}{ecc\+\_\+ansi\+\_\+x963\+\_\+export}} (const ecc\+\_\+key $\ast$key, unsigned char $\ast$out, unsigned long $\ast$outlen)
+\begin{DoxyCompactList}\small\item\em E\+CC X9.\+63 (Sec. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+E\+CC Crypto, Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{ecc__ansi__x963__export_8c_a75a6a5511113a7f4c77b7d5462806c3d}\label{ecc__ansi__x963__export_8c_a75a6a5511113a7f4c77b7d5462806c3d}} 
+\index{ecc\_ansi\_x963\_export.c@{ecc\_ansi\_x963\_export.c}!ecc\_ansi\_x963\_export@{ecc\_ansi\_x963\_export}}
+\index{ecc\_ansi\_x963\_export@{ecc\_ansi\_x963\_export}!ecc\_ansi\_x963\_export.c@{ecc\_ansi\_x963\_export.c}}
+\subsubsection{\texorpdfstring{ecc\_ansi\_x963\_export()}{ecc\_ansi\_x963\_export()}}
+{\footnotesize\ttfamily int ecc\+\_\+ansi\+\_\+x963\+\_\+export (\begin{DoxyParamCaption}\item[{const ecc\+\_\+key $\ast$}]{key,  }\item[{unsigned char $\ast$}]{out,  }\item[{unsigned long $\ast$}]{outlen }\end{DoxyParamCaption})}
+
+
+
+E\+CC X9.\+63 (Sec. 
+
+4.\+3.\+6) uncompressed export 
+\begin{DoxyParams}{Parameters}
+{\em key} & Key to export \\
+\hline
+{\em out} & \mbox{[}out\mbox{]} destination of export \\
+\hline
+{\em outlen} & \mbox{[}in/out\mbox{]} Length of destination and final output size Return C\+R\+Y\+P\+T\+\_\+\+OK on success \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 25 of file ecc\+\_\+ansi\+\_\+x963\+\_\+export.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{26 \{}
+\DoxyCodeLine{27    \textcolor{keywordflow}{return} \mbox{\hyperlink{ecc__get__key_8c_a0e02195ff24ed2e20bac2f2aa97ba487}{ecc\_get\_key}}(out, outlen, \mbox{\hyperlink{tomcrypt__pk_8h_afb69d121a43f5ae8b47e6b83611d9272a77f8a3a3339971a6b937140f6333d465}{PK\_PUBLIC}}, key);}
+\DoxyCodeLine{28 \}}
+
+\end{DoxyCode}
+
+
+References ecc\+\_\+get\+\_\+key(), and P\+K\+\_\+\+P\+U\+B\+L\+IC.
+
+Here is the call graph for this function\+:
+% FIG 1

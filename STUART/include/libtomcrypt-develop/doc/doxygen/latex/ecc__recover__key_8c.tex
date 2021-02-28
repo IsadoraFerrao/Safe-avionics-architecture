@@ -1,0 +1,295 @@
+\hypertarget{ecc__recover__key_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/pk/ecc/ecc\+\_\+recover\+\_\+key.c File Reference}
+\label{ecc__recover__key_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/ecc/ecc\_recover\_key.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/ecc/ecc\_recover\_key.c}}
+
+
+E\+CC Crypto, Russ Williams.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for ecc\+\_\+recover\+\_\+key.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{ecc__recover__key_8c_a42d1c0f03dd10a8ea98836bab2c1e6c6}{ecc\+\_\+recover\+\_\+key}} (const unsigned char $\ast$sig, unsigned long siglen, const unsigned char $\ast$hash, unsigned long hashlen, int recid, ecc\+\_\+signature\+\_\+type sigformat, ecc\+\_\+key $\ast$key)
+\begin{DoxyCompactList}\small\item\em Recover E\+CC public key from signature and hash. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+E\+CC Crypto, Russ Williams. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{ecc__recover__key_8c_a42d1c0f03dd10a8ea98836bab2c1e6c6}\label{ecc__recover__key_8c_a42d1c0f03dd10a8ea98836bab2c1e6c6}} 
+\index{ecc\_recover\_key.c@{ecc\_recover\_key.c}!ecc\_recover\_key@{ecc\_recover\_key}}
+\index{ecc\_recover\_key@{ecc\_recover\_key}!ecc\_recover\_key.c@{ecc\_recover\_key.c}}
+\subsubsection{\texorpdfstring{ecc\_recover\_key()}{ecc\_recover\_key()}}
+{\footnotesize\ttfamily int ecc\+\_\+recover\+\_\+key (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{sig,  }\item[{unsigned long}]{siglen,  }\item[{const unsigned char $\ast$}]{hash,  }\item[{unsigned long}]{hashlen,  }\item[{int}]{recid,  }\item[{ecc\+\_\+signature\+\_\+type}]{sigformat,  }\item[{ecc\+\_\+key $\ast$}]{key }\end{DoxyParamCaption})}
+
+
+
+Recover E\+CC public key from signature and hash. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sig} & The signature to verify \\
+\hline
+{\em siglen} & The length of the signature (octets) \\
+\hline
+{\em hash} & The hash (message digest) that was signed \\
+\hline
+{\em hashlen} & The length of the hash (octets) \\
+\hline
+{\em recid} & The recovery ID (\char`\"{}v\char`\"{}), can be -\/1 if signature contains it \\
+\hline
+{\em sigformat} & The format of the signature (ecc\+\_\+signature\+\_\+type) \\
+\hline
+{\em key} & The recovered public E\+CC key \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful (even if the signature is not valid) 
+\end{DoxyReturn}
+
+
+Definition at line 32 of file ecc\+\_\+recover\+\_\+key.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{35 \{}
+\DoxyCodeLine{36    \mbox{\hyperlink{tomcrypt__math_8h_a2a6efaeaa795aa54274d7c4fd66b018a}{ecc\_point}}     *mG = NULL, *mQ = NULL, *mR = NULL;}
+\DoxyCodeLine{37    \textcolor{keywordtype}{void}          *p, *m, *a, *b;}
+\DoxyCodeLine{38    \textcolor{keywordtype}{void}          *r, *s, *v, *w, *\mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}}, *\mbox{\hyperlink{tiger_8c_aa4652e2d6053d420dcbea07a113db5fe}{t2}}, *u1, *u2, *v1, *v2, *e, *x, *y, *a\_plus3;}
+\DoxyCodeLine{39    \textcolor{keywordtype}{void}          *mu = NULL, *ma = NULL;}
+\DoxyCodeLine{40    \textcolor{keywordtype}{void}          *mp = NULL;}
+\DoxyCodeLine{41    \textcolor{keywordtype}{int}           err;}
+\DoxyCodeLine{42    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} pbits, pbytes, i, shift\_right;}
+\DoxyCodeLine{43    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} ch, buf[\mbox{\hyperlink{tomcrypt_8h_ab59933beebb2b857c992b93cf53f0d10}{MAXBLOCKSIZE}}];}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(sig  != NULL);}
+\DoxyCodeLine{46    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(hash != NULL);}
+\DoxyCodeLine{47    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(key  != NULL);}
+\DoxyCodeLine{48 }
+\DoxyCodeLine{49    \textcolor{comment}{/* BEWARE: requires sqrtmod\_prime */}}
+\DoxyCodeLine{50    \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__math_8h_a3d38c44518c63b7a8abd0938f3d41c65}{ltc\_mp}}.\mbox{\hyperlink{structltc__math__descriptor_ae588937a77f227870ff809f5f8f0deb8}{sqrtmod\_prime}} == NULL) \{}
+\DoxyCodeLine{51       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca03c22220d7538be04455cd2aa6ddf9da}{CRYPT\_ERROR}};}
+\DoxyCodeLine{52    \}}
+\DoxyCodeLine{53 }
+\DoxyCodeLine{54    \textcolor{comment}{/* allocate ints */}}
+\DoxyCodeLine{55    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_adb6322247b1a4f0347219acab3120bd3}{mp\_init\_multi}}(\&r, \&s, \&v, \&w, \&\mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}}, \&\mbox{\hyperlink{tiger_8c_aa4652e2d6053d420dcbea07a113db5fe}{t2}}, \&u1, \&u2, \&v1, \&v2, \&e, \&x, \&y, \&a\_plus3, NULL)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{56       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{57    \}}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{59    p = key->dp.order;}
+\DoxyCodeLine{60    m = key->dp.prime;}
+\DoxyCodeLine{61    a = key->dp.A;}
+\DoxyCodeLine{62    b = key->dp.B;}
+\DoxyCodeLine{63    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a69f09e7351d696b635ffbc9912684ab4}{mp\_add\_d}}(a, 3, a\_plus3)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{64       \textcolor{keywordflow}{goto} error;}
+\DoxyCodeLine{65    \}}
+\DoxyCodeLine{66 }
+\DoxyCodeLine{67    \textcolor{comment}{/* allocate points */}}
+\DoxyCodeLine{68    mG = \mbox{\hyperlink{tomcrypt__private_8h_a532af6ef2d0f6d1d8cd79e5f81e87cf8}{ltc\_ecc\_new\_point}}();}
+\DoxyCodeLine{69    mQ = \mbox{\hyperlink{tomcrypt__private_8h_a532af6ef2d0f6d1d8cd79e5f81e87cf8}{ltc\_ecc\_new\_point}}();}
+\DoxyCodeLine{70    mR = \mbox{\hyperlink{tomcrypt__private_8h_a532af6ef2d0f6d1d8cd79e5f81e87cf8}{ltc\_ecc\_new\_point}}();}
+\DoxyCodeLine{71    \textcolor{keywordflow}{if} (mR == NULL || mQ  == NULL || mG == NULL) \{}
+\DoxyCodeLine{72       err = \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca0ce0d27adc7ea10b74b7ea904b8bfa82}{CRYPT\_MEM}};}
+\DoxyCodeLine{73       \textcolor{keywordflow}{goto} error;}
+\DoxyCodeLine{74    \}}
+\DoxyCodeLine{75 }
+\DoxyCodeLine{76    \textcolor{keywordflow}{if} (sigformat == LTC\_ECCSIG\_ANSIX962) \{}
+\DoxyCodeLine{77       \textcolor{comment}{/* ANSI X9.62 format - ASN.1 encoded SEQUENCE\{ INTEGER(r), INTEGER(s) \}  */}}
+\DoxyCodeLine{78       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_ab5141cf36663054d9ec6e46ed6909fce}{der\_decode\_sequence\_multi\_ex}}(sig, siglen, LTC\_DER\_SEQ\_SEQUENCE | LTC\_DER\_SEQ\_STRICT,}
+\DoxyCodeLine{79                                      LTC\_ASN1\_INTEGER, 1UL, r,}
+\DoxyCodeLine{80                                      LTC\_ASN1\_INTEGER, 1UL, s,}
+\DoxyCodeLine{81                                      LTC\_ASN1\_EOL, 0UL, NULL)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                             \{ \textcolor{keywordflow}{goto} error; \}}
+\DoxyCodeLine{82    \}}
+\DoxyCodeLine{83    \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (sigformat == LTC\_ECCSIG\_RFC7518) \{}
+\DoxyCodeLine{84       \textcolor{comment}{/* RFC7518 format - raw (r,s) */}}
+\DoxyCodeLine{85       i = \mbox{\hyperlink{tomcrypt__private_8h_ad301148bb24f43a8c7003a6976dfaa5a}{mp\_unsigned\_bin\_size}}(key->dp.order);}
+\DoxyCodeLine{86       \textcolor{keywordflow}{if} (siglen != (2*i)) \{}
+\DoxyCodeLine{87          err = \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca980088f10ffe9009aec286038a9e79da}{CRYPT\_INVALID\_PACKET}};}
+\DoxyCodeLine{88          \textcolor{keywordflow}{goto} error;}
+\DoxyCodeLine{89       \}}
+\DoxyCodeLine{90       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a9e20e2044bb5a279e27512d1e1b65754}{mp\_read\_unsigned\_bin}}(r, (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *)sig,   i)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                       \{ \textcolor{keywordflow}{goto} error; \}}
+\DoxyCodeLine{91       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a9e20e2044bb5a279e27512d1e1b65754}{mp\_read\_unsigned\_bin}}(s, (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *)sig+i, i)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                       \{ \textcolor{keywordflow}{goto} error; \}}
+\DoxyCodeLine{92    \}}
+\DoxyCodeLine{93    \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (sigformat == LTC\_ECCSIG\_ETH27) \{}
+\DoxyCodeLine{94       \textcolor{comment}{/* Ethereum (v,r,s) format */}}
+\DoxyCodeLine{95       \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__private_8h_a4283c0cfa77d37ab8add0b7c531d3d6f}{pk\_oid\_cmp\_with\_ulong}}(\textcolor{stringliteral}{"1.3.132.0.10"}, key->dp.oid, key->dp.oidlen) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{96          \textcolor{comment}{/* Only valid for secp256k1 - OID 1.3.132.0.10 */}}
+\DoxyCodeLine{97          err = \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca03c22220d7538be04455cd2aa6ddf9da}{CRYPT\_ERROR}}; \textcolor{keywordflow}{goto} error;}
+\DoxyCodeLine{98       \}}
+\DoxyCodeLine{99       \textcolor{keywordflow}{if} (siglen != 65) \{ \textcolor{comment}{/* Only secp256k1 curves use this format, so must be 65 bytes long */}}
+\DoxyCodeLine{100          err = \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca980088f10ffe9009aec286038a9e79da}{CRYPT\_INVALID\_PACKET}};}
+\DoxyCodeLine{101          \textcolor{keywordflow}{goto} error;}
+\DoxyCodeLine{102       \}}
+\DoxyCodeLine{103       i = (\textcolor{keywordtype}{unsigned} long)sig[64];}
+\DoxyCodeLine{104       \textcolor{keywordflow}{if} ((i>=27) \&\& (i<31)) i -= 27; \textcolor{comment}{/* Ethereum adds 27 to recovery ID */}}
+\DoxyCodeLine{105       \textcolor{keywordflow}{if} (recid >= 0 \&\& ((\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long})recid != i)) \{}
+\DoxyCodeLine{106          \textcolor{comment}{/* Recovery ID specified, but doesn't match signature */}}
+\DoxyCodeLine{107          err = \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca980088f10ffe9009aec286038a9e79da}{CRYPT\_INVALID\_PACKET}};}
+\DoxyCodeLine{108          \textcolor{keywordflow}{goto} error;}
+\DoxyCodeLine{109       \}}
+\DoxyCodeLine{110       recid = i;}
+\DoxyCodeLine{111       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a9e20e2044bb5a279e27512d1e1b65754}{mp\_read\_unsigned\_bin}}(r, (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *)sig,  32)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                       \{ \textcolor{keywordflow}{goto} error; \}}
+\DoxyCodeLine{112       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a9e20e2044bb5a279e27512d1e1b65754}{mp\_read\_unsigned\_bin}}(s, (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *)sig+32, 32)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                     \{ \textcolor{keywordflow}{goto} error; \}}
+\DoxyCodeLine{113    \}}
+\DoxyCodeLine{114 \textcolor{preprocessor}{\#ifdef LTC\_SSH}}
+\DoxyCodeLine{115    \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (sigformat == LTC\_ECCSIG\_RFC5656) \{}
+\DoxyCodeLine{116       \textcolor{keywordtype}{char} name[64], name2[64];}
+\DoxyCodeLine{117       \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} namelen = \textcolor{keyword}{sizeof}(name2);}
+\DoxyCodeLine{118 }
+\DoxyCodeLine{119       \textcolor{comment}{/* Decode as SSH data sequence, per RFC4251 */}}
+\DoxyCodeLine{120       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{ssh__decode__sequence__multi_8c_af3e101ad7cf25697613007095a858f7b}{ssh\_decode\_sequence\_multi}}(sig, siglen,}
+\DoxyCodeLine{121                                            LTC\_SSHDATA\_STRING, name, 64,}
+\DoxyCodeLine{122                                            LTC\_SSHDATA\_MPINT,  r,}
+\DoxyCodeLine{123                                            LTC\_SSHDATA\_MPINT,  s,}
+\DoxyCodeLine{124                                            LTC\_SSHDATA\_EOL,    NULL)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                      \{ \textcolor{keywordflow}{goto} error; \}}
+\DoxyCodeLine{125 }
+\DoxyCodeLine{126 }
+\DoxyCodeLine{127       \textcolor{comment}{/* Check curve matches identifier string */}}
+\DoxyCodeLine{128       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a5921e9a5a19d09bc948281baf09ea128}{ecc\_ssh\_ecdsa\_encode\_name}}(name2, \&namelen, key)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                                \{ \textcolor{keywordflow}{goto} error; \}}
+\DoxyCodeLine{129       \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__cfg_8h_a5d6e3d69e1d3f54de008b963bba3c6b3}{XSTRCMP}}(name,name2) != 0) \{}
+\DoxyCodeLine{130          err = \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{131          \textcolor{keywordflow}{goto} error;}
+\DoxyCodeLine{132       \}}
+\DoxyCodeLine{133    \}}
+\DoxyCodeLine{134 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{135    \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{136       \textcolor{comment}{/* Unknown signature format */}}
+\DoxyCodeLine{137       err = \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca03c22220d7538be04455cd2aa6ddf9da}{CRYPT\_ERROR}};}
+\DoxyCodeLine{138       \textcolor{keywordflow}{goto} error;}
+\DoxyCodeLine{139    \}}
+\DoxyCodeLine{140 }
+\DoxyCodeLine{141    \textcolor{keywordflow}{if} (recid < 0 || (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long})recid >= 2*(key->dp.cofactor+1)) \{}
+\DoxyCodeLine{142       \textcolor{comment}{/* Recovery ID is out of range, reject it */}}
+\DoxyCodeLine{143       err = \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{144       \textcolor{keywordflow}{goto} error;}
+\DoxyCodeLine{145    \}}
+\DoxyCodeLine{146 }
+\DoxyCodeLine{147    \textcolor{comment}{/* check for zero */}}
+\DoxyCodeLine{148    \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__private_8h_a6ce44f2e6f872565a468b67d9a93dc28}{mp\_cmp\_d}}(r, 0) != \mbox{\hyperlink{tomcrypt__math_8h_adff156a960d44f0f5b67b75ef1f1c29b}{LTC\_MP\_GT}} || \mbox{\hyperlink{tomcrypt__private_8h_a6ce44f2e6f872565a468b67d9a93dc28}{mp\_cmp\_d}}(s, 0) != \mbox{\hyperlink{tomcrypt__math_8h_adff156a960d44f0f5b67b75ef1f1c29b}{LTC\_MP\_GT}} ||}
+\DoxyCodeLine{149        \mbox{\hyperlink{tomcrypt__private_8h_a62ea02fbe7dd2d456e49520264d775ee}{mp\_cmp}}(r, p) != \mbox{\hyperlink{tomcrypt__math_8h_a42d0c7d4c09793df79660774d3436db2}{LTC\_MP\_LT}} || \mbox{\hyperlink{tomcrypt__private_8h_a62ea02fbe7dd2d456e49520264d775ee}{mp\_cmp}}(s, p) != \mbox{\hyperlink{tomcrypt__math_8h_a42d0c7d4c09793df79660774d3436db2}{LTC\_MP\_LT}}) \{}
+\DoxyCodeLine{150       err = \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca980088f10ffe9009aec286038a9e79da}{CRYPT\_INVALID\_PACKET}};}
+\DoxyCodeLine{151       \textcolor{keywordflow}{goto} error;}
+\DoxyCodeLine{152    \}}
+\DoxyCodeLine{153 }
+\DoxyCodeLine{154    \textcolor{comment}{/* read hash - truncate if needed */}}
+\DoxyCodeLine{155    pbits = \mbox{\hyperlink{tomcrypt__private_8h_afa1671e20e699f66319ed2e8d9119e7e}{mp\_count\_bits}}(p);}
+\DoxyCodeLine{156    pbytes = (pbits+7) >> 3;}
+\DoxyCodeLine{157    \textcolor{keywordflow}{if} (pbits > hashlen*8) \{}
+\DoxyCodeLine{158       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a9e20e2044bb5a279e27512d1e1b65754}{mp\_read\_unsigned\_bin}}(e, (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *)hash, hashlen)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                  \{ \textcolor{keywordflow}{goto} error; \}}
+\DoxyCodeLine{159    \}}
+\DoxyCodeLine{160    \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (pbits \% 8 == 0) \{}
+\DoxyCodeLine{161       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a9e20e2044bb5a279e27512d1e1b65754}{mp\_read\_unsigned\_bin}}(e, (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *)hash, pbytes)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                   \{ \textcolor{keywordflow}{goto} error; \}}
+\DoxyCodeLine{162    \}}
+\DoxyCodeLine{163    \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{164       shift\_right = 8 - pbits \% 8;}
+\DoxyCodeLine{165       \textcolor{keywordflow}{for} (i=0, ch=0; i<pbytes; i++) \{}
+\DoxyCodeLine{166         buf[i] = ch;}
+\DoxyCodeLine{167         ch = (hash[i] << (8-shift\_right));}
+\DoxyCodeLine{168         buf[i] = buf[i] \string^ (hash[i] >> shift\_right);}
+\DoxyCodeLine{169       \}}
+\DoxyCodeLine{170       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a9e20e2044bb5a279e27512d1e1b65754}{mp\_read\_unsigned\_bin}}(e, (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *)buf, pbytes)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                    \{ \textcolor{keywordflow}{goto} error; \}}
+\DoxyCodeLine{171    \}}
+\DoxyCodeLine{172 }
+\DoxyCodeLine{173    \textcolor{comment}{/* decompress point from r=(x mod p) - BEWARE: requires sqrtmod\_prime */}}
+\DoxyCodeLine{174    \textcolor{comment}{/* x = r + p*(recid/2) */}}
+\DoxyCodeLine{175    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a000b0542ef4ecf639ff69895490fdb8f}{mp\_set}}(x, recid/2)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                                                          \{ \textcolor{keywordflow}{goto} error; \}}
+\DoxyCodeLine{176    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a0c32b20b84951870c7b09f5b6f2679c9}{mp\_mulmod}}(p, x, m, x)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                                                       \{ \textcolor{keywordflow}{goto} error; \}}
+\DoxyCodeLine{177    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a175d04f8aeaa1c3895fe14de6cc0d2db}{mp\_add}}(x, r, x)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                                                             \{ \textcolor{keywordflow}{goto} error; \}}
+\DoxyCodeLine{178    \textcolor{comment}{/* compute x\string^3 */}}
+\DoxyCodeLine{179    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_aea81d79b5462e99068908d80edb8bd1a}{mp\_sqr}}(x, \mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}})) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                                                               \{ \textcolor{keywordflow}{goto} error; \}}
+\DoxyCodeLine{180    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a0c32b20b84951870c7b09f5b6f2679c9}{mp\_mulmod}}(\mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}}, x, m, \mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}})) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                                                     \{ \textcolor{keywordflow}{goto} error; \}}
+\DoxyCodeLine{181    \textcolor{comment}{/* compute x\string^3 + a*x */}}
+\DoxyCodeLine{182    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a0c32b20b84951870c7b09f5b6f2679c9}{mp\_mulmod}}(a, x, m, \mbox{\hyperlink{tiger_8c_aa4652e2d6053d420dcbea07a113db5fe}{t2}})) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                                                      \{ \textcolor{keywordflow}{goto} error; \}}
+\DoxyCodeLine{183    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a175d04f8aeaa1c3895fe14de6cc0d2db}{mp\_add}}(\mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}}, \mbox{\hyperlink{tiger_8c_aa4652e2d6053d420dcbea07a113db5fe}{t2}}, \mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}})) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                                                          \{ \textcolor{keywordflow}{goto} error; \}}
+\DoxyCodeLine{184    \textcolor{comment}{/* compute x\string^3 + a*x + b */}}
+\DoxyCodeLine{185    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a175d04f8aeaa1c3895fe14de6cc0d2db}{mp\_add}}(\mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}}, b, \mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}})) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                                                           \{ \textcolor{keywordflow}{goto} error; \}}
+\DoxyCodeLine{186    \textcolor{comment}{/* compute sqrt(x\string^3 + a*x + b) */}}
+\DoxyCodeLine{187    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_af1a090c9979e328596fa37512f519a09}{mp\_sqrtmod\_prime}}(\mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}}, m, \mbox{\hyperlink{tiger_8c_aa4652e2d6053d420dcbea07a113db5fe}{t2}})) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                                                 \{ \textcolor{keywordflow}{goto} error; \}}
+\DoxyCodeLine{188 }
+\DoxyCodeLine{189    \textcolor{comment}{/* fill in mR */}}
+\DoxyCodeLine{190    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_afbb35bc8f920448d169ddc83a4308840}{mp\_copy}}(x, mR->x)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                                                           \{ \textcolor{keywordflow}{goto} error; \}}
+\DoxyCodeLine{191    \textcolor{keywordflow}{if} ((\mbox{\hyperlink{tomcrypt__private_8h_a93ed39c257831509afc74f2b6da66ae7}{mp\_isodd}}(\mbox{\hyperlink{tiger_8c_aa4652e2d6053d420dcbea07a113db5fe}{t2}}) \&\& (recid\%2)) || (!\mbox{\hyperlink{tomcrypt__private_8h_a93ed39c257831509afc74f2b6da66ae7}{mp\_isodd}}(\mbox{\hyperlink{tiger_8c_aa4652e2d6053d420dcbea07a113db5fe}{t2}}) \&\& !(recid\%2))) \{}
+\DoxyCodeLine{192       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_ac7deed6f00e289706070b16f98c430fe}{mp\_mod}}(\mbox{\hyperlink{tiger_8c_aa4652e2d6053d420dcbea07a113db5fe}{t2}}, m, mR->y)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                                                     \{ \textcolor{keywordflow}{goto} error; \}}
+\DoxyCodeLine{193    \}}
+\DoxyCodeLine{194    \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{195       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a15e2f6c11b3fcebe885ecc14d759ac01}{mp\_submod}}(m, \mbox{\hyperlink{tiger_8c_aa4652e2d6053d420dcbea07a113db5fe}{t2}}, m, mR->y)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                                               \{ \textcolor{keywordflow}{goto} error; \}}
+\DoxyCodeLine{196    \}}
+\DoxyCodeLine{197    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a000b0542ef4ecf639ff69895490fdb8f}{mp\_set}}(mR->z, 1)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                                                            \{ \textcolor{keywordflow}{goto} error; \}}
+\DoxyCodeLine{198 }
+\DoxyCodeLine{199    \textcolor{comment}{/*  w  = r\string^-1 mod n */}}
+\DoxyCodeLine{200    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a8be707236375351ab194f908c8ba9233}{mp\_invmod}}(r, p, w)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                                                          \{ \textcolor{keywordflow}{goto} error; \}}
+\DoxyCodeLine{201    \textcolor{comment}{/* v1 = sw */}}
+\DoxyCodeLine{202    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a0c32b20b84951870c7b09f5b6f2679c9}{mp\_mulmod}}(s, w, p, v1)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                                                      \{ \textcolor{keywordflow}{goto} error; \}}
+\DoxyCodeLine{203    \textcolor{comment}{/* v2 = -ew */}}
+\DoxyCodeLine{204    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a0c32b20b84951870c7b09f5b6f2679c9}{mp\_mulmod}}(e, w, p, v2)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                                                      \{ \textcolor{keywordflow}{goto} error; \}}
+\DoxyCodeLine{205    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a15e2f6c11b3fcebe885ecc14d759ac01}{mp\_submod}}(p, v2, p, v2)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                                                     \{ \textcolor{keywordflow}{goto} error; \}}
+\DoxyCodeLine{206 }
+\DoxyCodeLine{207    \textcolor{comment}{/*  w  = s\string^-1 mod n */}}
+\DoxyCodeLine{208    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a8be707236375351ab194f908c8ba9233}{mp\_invmod}}(s, p, w)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                                                          \{ \textcolor{keywordflow}{goto} error; \}}
+\DoxyCodeLine{209    \textcolor{comment}{/* u1 = ew */}}
+\DoxyCodeLine{210    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a0c32b20b84951870c7b09f5b6f2679c9}{mp\_mulmod}}(e, w, p, u1)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                                                      \{ \textcolor{keywordflow}{goto} error; \}}
+\DoxyCodeLine{211    \textcolor{comment}{/* u2 = rw */}}
+\DoxyCodeLine{212    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a0c32b20b84951870c7b09f5b6f2679c9}{mp\_mulmod}}(r, w, p, u2)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                                                      \{ \textcolor{keywordflow}{goto} error; \}}
+\DoxyCodeLine{213 }
+\DoxyCodeLine{214    \textcolor{comment}{/* find mG */}}
+\DoxyCodeLine{215    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a4b36b54e30a0a87aff57a936b386df7f}{ltc\_ecc\_copy\_point}}(\&key->dp.base, mG)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                                       \{ \textcolor{keywordflow}{goto} error; \}}
+\DoxyCodeLine{216 }
+\DoxyCodeLine{217    \textcolor{comment}{/* find the montgomery mp */}}
+\DoxyCodeLine{218    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a42560b136f9c3cf1411a82a8cae6d954}{mp\_montgomery\_setup}}(m, \&mp)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                                                 \{ \textcolor{keywordflow}{goto} error; \}}
+\DoxyCodeLine{219 }
+\DoxyCodeLine{220    \textcolor{comment}{/* for curves with a == -3 keep ma == NULL */}}
+\DoxyCodeLine{221    \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__private_8h_a62ea02fbe7dd2d456e49520264d775ee}{mp\_cmp}}(a\_plus3, m) != \mbox{\hyperlink{tomcrypt__math_8h_a035a31bde4f31419eb259e36e5776607}{LTC\_MP\_EQ}}) \{}
+\DoxyCodeLine{222       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_adb6322247b1a4f0347219acab3120bd3}{mp\_init\_multi}}(\&mu, \&ma, NULL)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                                            \{ \textcolor{keywordflow}{goto} error; \}}
+\DoxyCodeLine{223       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a8e30da64ace4410ca56cb110a6fedd19}{mp\_montgomery\_normalization}}(mu, m)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                                       \{ \textcolor{keywordflow}{goto} error; \}}
+\DoxyCodeLine{224       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a0c32b20b84951870c7b09f5b6f2679c9}{mp\_mulmod}}(a, mu, m, ma)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                                                  \{ \textcolor{keywordflow}{goto} error; \}}
+\DoxyCodeLine{225    \}}
+\DoxyCodeLine{226 }
+\DoxyCodeLine{227    \textcolor{comment}{/* recover mQ from mR */}}
+\DoxyCodeLine{228    \textcolor{comment}{/* compute v1*mR + v2*mG = mQ using Shamir's trick */}}
+\DoxyCodeLine{229    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__math_8h_a3d38c44518c63b7a8abd0938f3d41c65}{ltc\_mp}}.\mbox{\hyperlink{structltc__math__descriptor_adf813ecf9a43ff1d83012f5168a2110c}{ecc\_mul2add}}(mR, v1, mG, v2, mQ, ma, m)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                               \{ \textcolor{keywordflow}{goto} error; \}}
+\DoxyCodeLine{230 }
+\DoxyCodeLine{231    \textcolor{comment}{/* compute u1*mG + u2*mQ = mG using Shamir's trick */}}
+\DoxyCodeLine{232    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__math_8h_a3d38c44518c63b7a8abd0938f3d41c65}{ltc\_mp}}.\mbox{\hyperlink{structltc__math__descriptor_adf813ecf9a43ff1d83012f5168a2110c}{ecc\_mul2add}}(mG, u1, mQ, u2, mG, ma, m)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                               \{ \textcolor{keywordflow}{goto} error; \}}
+\DoxyCodeLine{233 }
+\DoxyCodeLine{234    \textcolor{comment}{/* v = X\_x1 mod n */}}
+\DoxyCodeLine{235    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_ac7deed6f00e289706070b16f98c430fe}{mp\_mod}}(mG->x, p, v)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                                                         \{ \textcolor{keywordflow}{goto} error; \}}
+\DoxyCodeLine{236 }
+\DoxyCodeLine{237    \textcolor{comment}{/* does v == r */}}
+\DoxyCodeLine{238    \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__private_8h_a62ea02fbe7dd2d456e49520264d775ee}{mp\_cmp}}(v, r) == \mbox{\hyperlink{tomcrypt__math_8h_a035a31bde4f31419eb259e36e5776607}{LTC\_MP\_EQ}}) \{}
+\DoxyCodeLine{239       \textcolor{comment}{/* found public key which verifies signature */}}
+\DoxyCodeLine{240       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a4b36b54e30a0a87aff57a936b386df7f}{ltc\_ecc\_copy\_point}}(mQ, \&key->pubkey)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                                     \{ \textcolor{keywordflow}{goto} error; \}}
+\DoxyCodeLine{241       \textcolor{comment}{/* point on the curve + other checks */}}
+\DoxyCodeLine{242       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_ac0dfaf009d9b0101291727341a20bb40}{ltc\_ecc\_verify\_key}}(key)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                                                  \{ \textcolor{keywordflow}{goto} error; \}}
+\DoxyCodeLine{243 }
+\DoxyCodeLine{244       key->type = \mbox{\hyperlink{tomcrypt__pk_8h_afb69d121a43f5ae8b47e6b83611d9272a77f8a3a3339971a6b937140f6333d465}{PK\_PUBLIC}};}
+\DoxyCodeLine{245 }
+\DoxyCodeLine{246       err = \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{247    \}}
+\DoxyCodeLine{248    \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{249       \textcolor{comment}{/* not found - recid is wrong or we're unable to calculate public key for some other reason */}}
+\DoxyCodeLine{250       err = \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{251    \}}
+\DoxyCodeLine{252 }
+\DoxyCodeLine{253 error:}
+\DoxyCodeLine{254    \textcolor{keywordflow}{if} (ma != NULL) \mbox{\hyperlink{tomcrypt__private_8h_ab05b6b59fa182b81f5f990d5621229f6}{mp\_clear}}(ma);}
+\DoxyCodeLine{255    \textcolor{keywordflow}{if} (mu != NULL) \mbox{\hyperlink{tomcrypt__private_8h_ab05b6b59fa182b81f5f990d5621229f6}{mp\_clear}}(mu);}
+\DoxyCodeLine{256    \textcolor{keywordflow}{if} (mp != NULL) \mbox{\hyperlink{tomcrypt__private_8h_ac1935719c005c8bffb7590628e84c024}{mp\_montgomery\_free}}(mp);}
+\DoxyCodeLine{257    \textcolor{keywordflow}{if} (mR != NULL) \mbox{\hyperlink{tomcrypt__private_8h_a4cef83a7c070c94ff78d4df10a7b624f}{ltc\_ecc\_del\_point}}(mR);}
+\DoxyCodeLine{258    \textcolor{keywordflow}{if} (mQ != NULL) \mbox{\hyperlink{tomcrypt__private_8h_a4cef83a7c070c94ff78d4df10a7b624f}{ltc\_ecc\_del\_point}}(mQ);}
+\DoxyCodeLine{259    \textcolor{keywordflow}{if} (mG != NULL) \mbox{\hyperlink{tomcrypt__private_8h_a4cef83a7c070c94ff78d4df10a7b624f}{ltc\_ecc\_del\_point}}(mG);}
+\DoxyCodeLine{260    \mbox{\hyperlink{tomcrypt__private_8h_aad5c8a3112b3e4613f9efc86692c43cb}{mp\_clear\_multi}}(a\_plus3, y, x, e, v2, v1, u2, u1, \mbox{\hyperlink{tiger_8c_aa4652e2d6053d420dcbea07a113db5fe}{t2}}, \mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}}, w, v, s, r, NULL);}
+\DoxyCodeLine{261    \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{262 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+E\+R\+R\+OR, C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+A\+RG, C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+P\+A\+C\+K\+ET, C\+R\+Y\+P\+T\+\_\+\+M\+EM, C\+R\+Y\+P\+T\+\_\+\+OK, der\+\_\+decode\+\_\+sequence\+\_\+multi\+\_\+ex(), ltc\+\_\+math\+\_\+descriptor\+::ecc\+\_\+mul2add, ecc\+\_\+ssh\+\_\+ecdsa\+\_\+encode\+\_\+name(), L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, ltc\+\_\+ecc\+\_\+copy\+\_\+point(), ltc\+\_\+ecc\+\_\+del\+\_\+point(), ltc\+\_\+ecc\+\_\+new\+\_\+point(), ltc\+\_\+ecc\+\_\+verify\+\_\+key(), ltc\+\_\+mp, L\+T\+C\+\_\+\+M\+P\+\_\+\+EQ, L\+T\+C\+\_\+\+M\+P\+\_\+\+GT, L\+T\+C\+\_\+\+M\+P\+\_\+\+LT, M\+A\+X\+B\+L\+O\+C\+K\+S\+I\+ZE, mp\+\_\+add, mp\+\_\+add\+\_\+d, mp\+\_\+clear, mp\+\_\+clear\+\_\+multi, mp\+\_\+cmp, mp\+\_\+cmp\+\_\+d, mp\+\_\+copy, mp\+\_\+count\+\_\+bits, mp\+\_\+init\+\_\+multi, mp\+\_\+invmod, mp\+\_\+isodd, mp\+\_\+mod, mp\+\_\+montgomery\+\_\+free, mp\+\_\+montgomery\+\_\+normalization, mp\+\_\+montgomery\+\_\+setup, mp\+\_\+mulmod, mp\+\_\+read\+\_\+unsigned\+\_\+bin, mp\+\_\+set, mp\+\_\+sqr, mp\+\_\+sqrtmod\+\_\+prime, mp\+\_\+submod, mp\+\_\+unsigned\+\_\+bin\+\_\+size, pk\+\_\+oid\+\_\+cmp\+\_\+with\+\_\+ulong(), P\+K\+\_\+\+P\+U\+B\+L\+IC, ltc\+\_\+math\+\_\+descriptor\+::sqrtmod\+\_\+prime, ssh\+\_\+decode\+\_\+sequence\+\_\+multi(), t1, t2, and X\+S\+T\+R\+C\+M\+P().
+
+Here is the call graph for this function\+:
+% FIG 1

@@ -1,0 +1,20 @@
+digraph "rc6_test"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node14 [label="rc6_test",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Performs a self-test of the LTC_RC6 block cipher."];
+  Node14 -> Node15 [color="midnightblue",fontsize="10",style="solid"];
+  Node15 [label="compare_testvector",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__misc_8h.html#a7764a7f27897c6182335752df00b5f8e",tooltip="Compare two test-vectors."];
+  Node15 -> Node16 [color="midnightblue",fontsize="10",style="solid"];
+  Node16 [label="XMEMCMP",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cfg_8h.html#a372b974ec0ac07abcd55297554fe540f",tooltip=" "];
+  Node14 -> Node17 [color="midnightblue",fontsize="10",style="solid"];
+  Node17 [label="rc6_ecb_decrypt",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rc6_8c.html#aa1608489f3584c6dda2949fc690f0fdb",tooltip="Decrypts a block of text with LTC_RC6."];
+  Node14 -> Node18 [color="midnightblue",fontsize="10",style="solid"];
+  Node18 [label="rc6_ecb_encrypt",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rc6_8c.html#a4961e725b2bd7e51aaa539d6953a9176",tooltip="Encrypts a block of text with LTC_RC6."];
+  Node14 -> Node19 [color="midnightblue",fontsize="10",style="solid"];
+  Node19 [label="rc6_setup",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rc6_8c.html#ae3407a2f4bd6e5c21d6f5974127bf2ab",tooltip="Initialize the LTC_RC6 block cipher."];
+  Node19 -> Node20 [color="midnightblue",fontsize="10",style="solid"];
+  Node20 [label="XMEMCPY",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cfg_8h.html#a7691dd48d60d5fc6daf2fa7ec4c55e12",tooltip=" "];
+}

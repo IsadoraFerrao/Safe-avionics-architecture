@@ -1,0 +1,843 @@
+\hypertarget{safer_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/ciphers/safer/safer.c File Reference}
+\label{safer_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/ciphers/safer/safer.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/ciphers/safer/safer.c}}
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}safer\+\_\+tab.\+c\char`\"{}}\newline
+Include dependency graph for safer.\+c\+:
+% FIG 0
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{safer_8c_a298b95f35e1bcdd80f7b2ce6c328dcd9}{\+\_\+\+\_\+\+L\+T\+C\+\_\+\+S\+A\+F\+E\+R\+\_\+\+T\+A\+B\+\_\+\+C\+\_\+\+\_\+}}
+\item 
+\#define \mbox{\hyperlink{safer_8c_a9ad7d23069041aba515bf50f1e9acf00}{R\+O\+L8}}(x,  n)
+\item 
+\#define \mbox{\hyperlink{safer_8c_a179978530f93b1e13bc48dc40dc1960e}{E\+XP}}(x)~safer\+\_\+ebox\mbox{[}(x) \& 0x\+F\+F\mbox{]}
+\item 
+\#define \mbox{\hyperlink{safer_8c_af855c94dc540e943632089ce7496faac}{L\+OG}}(x)~safer\+\_\+lbox\mbox{[}(x) \& 0x\+F\+F\mbox{]}
+\item 
+\#define \mbox{\hyperlink{safer_8c_abcc29f4a1da26093f02d5ef2d8fe0247}{P\+HT}}(x,  y)~\{ y += x; x += y; \}
+\item 
+\#define \mbox{\hyperlink{safer_8c_a8eda6bd30ef65f221dc8105fff5712db}{I\+P\+HT}}(x,  y)~\{ x -\/= y; y -\/= x; \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{safer_8c_a098e5a50fc26c3eec876458f84eeca97}{Safer\+\_\+\+Expand\+\_\+\+Userkey}} (const unsigned char $\ast$userkey\+\_\+1, const unsigned char $\ast$userkey\+\_\+2, unsigned int nof\+\_\+rounds, int strengthened, safer\+\_\+key\+\_\+t key)
+\item 
+int \mbox{\hyperlink{safer_8c_a61b8f198fe22bd907529f06d9d05d61e}{safer\+\_\+k64\+\_\+setup}} (const unsigned char $\ast$key, int keylen, int num\+\_\+rounds, \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)
+\item 
+int \mbox{\hyperlink{safer_8c_a4de4e3591e15db0254e9957e939a77dc}{safer\+\_\+sk64\+\_\+setup}} (const unsigned char $\ast$key, int keylen, int num\+\_\+rounds, \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)
+\item 
+int \mbox{\hyperlink{safer_8c_a8f7502a1821ef98fb2f9e471ea52dbec}{safer\+\_\+k128\+\_\+setup}} (const unsigned char $\ast$key, int keylen, int num\+\_\+rounds, \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)
+\item 
+int \mbox{\hyperlink{safer_8c_a0ff0e9ec8b8e5d1725d1e1178d340ce6}{safer\+\_\+sk128\+\_\+setup}} (const unsigned char $\ast$key, int keylen, int num\+\_\+rounds, \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)
+\item 
+int \mbox{\hyperlink{safer_8c_ad9c37edc3b75ec76494ae72f0f46d1ca}{safer\+\_\+ecb\+\_\+encrypt}} (const unsigned char $\ast$pt, unsigned char $\ast$ct, const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)
+\item 
+int \mbox{\hyperlink{safer_8c_adf7a5075158f65bdd0fea61c67ded1d7}{safer\+\_\+ecb\+\_\+decrypt}} (const unsigned char $\ast$ct, unsigned char $\ast$pt, const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)
+\item 
+int \mbox{\hyperlink{safer_8c_af113a439a99bdbf7441a6f6914be7ac2}{safer\+\_\+64\+\_\+keysize}} (int $\ast$keysize)
+\item 
+int \mbox{\hyperlink{safer_8c_a07251130cfaec6c20008b01cf0b72376}{safer\+\_\+128\+\_\+keysize}} (int $\ast$keysize)
+\item 
+int \mbox{\hyperlink{safer_8c_a10abcebaccdee9d23379b01fbd4f1bce}{safer\+\_\+k64\+\_\+test}} (void)
+\item 
+int \mbox{\hyperlink{safer_8c_a3819b57b564e07b5ade18ec49464b40a}{safer\+\_\+sk64\+\_\+test}} (void)
+\item 
+void \mbox{\hyperlink{safer_8c_a35d61a75128ab0009377f9070413a217}{safer\+\_\+done}} (\mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)
+\begin{DoxyCompactList}\small\item\em Terminate the context. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{safer_8c_a75642318b67f93148bdc8d1766626da2}{safer\+\_\+sk128\+\_\+test}} (void)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const struct \mbox{\hyperlink{structltc__cipher__descriptor}{ltc\+\_\+cipher\+\_\+descriptor}} \mbox{\hyperlink{safer_8c_a93709ca54132dfbb88c8929f195044a7}{safer\+\_\+k64\+\_\+desc}}
+\item 
+const struct \mbox{\hyperlink{structltc__cipher__descriptor}{ltc\+\_\+cipher\+\_\+descriptor}} \mbox{\hyperlink{safer_8c_aa1e344aed15e529eb252da3506cfbc27}{safer\+\_\+sk64\+\_\+desc}}
+\item 
+const struct \mbox{\hyperlink{structltc__cipher__descriptor}{ltc\+\_\+cipher\+\_\+descriptor}} \mbox{\hyperlink{safer_8c_a915866930788beb465e50a0e0d762a20}{safer\+\_\+k128\+\_\+desc}}
+\item 
+const struct \mbox{\hyperlink{structltc__cipher__descriptor}{ltc\+\_\+cipher\+\_\+descriptor}} \mbox{\hyperlink{safer_8c_ad84579c3b6c86e51d479d189502e1827}{safer\+\_\+sk128\+\_\+desc}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{safer_8c_a298b95f35e1bcdd80f7b2ce6c328dcd9}\label{safer_8c_a298b95f35e1bcdd80f7b2ce6c328dcd9}} 
+\index{safer.c@{safer.c}!\_\_LTC\_SAFER\_TAB\_C\_\_@{\_\_LTC\_SAFER\_TAB\_C\_\_}}
+\index{\_\_LTC\_SAFER\_TAB\_C\_\_@{\_\_LTC\_SAFER\_TAB\_C\_\_}!safer.c@{safer.c}}
+\subsubsection{\texorpdfstring{\_\_LTC\_SAFER\_TAB\_C\_\_}{\_\_LTC\_SAFER\_TAB\_C\_\_}}
+{\footnotesize\ttfamily \#define \+\_\+\+\_\+\+L\+T\+C\+\_\+\+S\+A\+F\+E\+R\+\_\+\+T\+A\+B\+\_\+\+C\+\_\+\+\_\+}
+
+
+
+Definition at line 33 of file safer.\+c.
+
+\mbox{\Hypertarget{safer_8c_a179978530f93b1e13bc48dc40dc1960e}\label{safer_8c_a179978530f93b1e13bc48dc40dc1960e}} 
+\index{safer.c@{safer.c}!EXP@{EXP}}
+\index{EXP@{EXP}!safer.c@{safer.c}}
+\subsubsection{\texorpdfstring{EXP}{EXP}}
+{\footnotesize\ttfamily \#define E\+XP(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~safer\+\_\+ebox\mbox{[}(x) \& 0x\+F\+F\mbox{]}}
+
+
+
+Definition at line 92 of file safer.\+c.
+
+\mbox{\Hypertarget{safer_8c_a8eda6bd30ef65f221dc8105fff5712db}\label{safer_8c_a8eda6bd30ef65f221dc8105fff5712db}} 
+\index{safer.c@{safer.c}!IPHT@{IPHT}}
+\index{IPHT@{IPHT}!safer.c@{safer.c}}
+\subsubsection{\texorpdfstring{IPHT}{IPHT}}
+{\footnotesize\ttfamily \#define I\+P\+HT(\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{y }\end{DoxyParamCaption})~\{ x -\/= y; y -\/= x; \}}
+
+
+
+Definition at line 95 of file safer.\+c.
+
+\mbox{\Hypertarget{safer_8c_af855c94dc540e943632089ce7496faac}\label{safer_8c_af855c94dc540e943632089ce7496faac}} 
+\index{safer.c@{safer.c}!LOG@{LOG}}
+\index{LOG@{LOG}!safer.c@{safer.c}}
+\subsubsection{\texorpdfstring{LOG}{LOG}}
+{\footnotesize\ttfamily \#define L\+OG(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~safer\+\_\+lbox\mbox{[}(x) \& 0x\+F\+F\mbox{]}}
+
+
+
+Definition at line 93 of file safer.\+c.
+
+\mbox{\Hypertarget{safer_8c_abcc29f4a1da26093f02d5ef2d8fe0247}\label{safer_8c_abcc29f4a1da26093f02d5ef2d8fe0247}} 
+\index{safer.c@{safer.c}!PHT@{PHT}}
+\index{PHT@{PHT}!safer.c@{safer.c}}
+\subsubsection{\texorpdfstring{PHT}{PHT}}
+{\footnotesize\ttfamily \#define P\+HT(\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{y }\end{DoxyParamCaption})~\{ y += x; x += y; \}}
+
+
+
+Definition at line 94 of file safer.\+c.
+
+\mbox{\Hypertarget{safer_8c_a9ad7d23069041aba515bf50f1e9acf00}\label{safer_8c_a9ad7d23069041aba515bf50f1e9acf00}} 
+\index{safer.c@{safer.c}!ROL8@{ROL8}}
+\index{ROL8@{ROL8}!safer.c@{safer.c}}
+\subsubsection{\texorpdfstring{ROL8}{ROL8}}
+{\footnotesize\ttfamily \#define R\+O\+L8(\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{n }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{((\textcolor{keywordtype}{unsigned} char)((\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int})(x) << (n)\(\backslash\)}
+\DoxyCodeLine{                                     |(\textcolor{keywordtype}{unsigned} int)((x) \& 0xFF) >> (8 - (n))))}
+
+\end{DoxyCode}
+
+
+Definition at line 90 of file safer.\+c.
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{safer_8c_a07251130cfaec6c20008b01cf0b72376}\label{safer_8c_a07251130cfaec6c20008b01cf0b72376}} 
+\index{safer.c@{safer.c}!safer\_128\_keysize@{safer\_128\_keysize}}
+\index{safer\_128\_keysize@{safer\_128\_keysize}!safer.c@{safer.c}}
+\subsubsection{\texorpdfstring{safer\_128\_keysize()}{safer\_128\_keysize()}}
+{\footnotesize\ttfamily int safer\+\_\+128\+\_\+keysize (\begin{DoxyParamCaption}\item[{int $\ast$}]{keysize }\end{DoxyParamCaption})}
+
+
+
+Definition at line 367 of file safer.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{368 \{}
+\DoxyCodeLine{369    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(keysize != NULL);}
+\DoxyCodeLine{370    \textcolor{keywordflow}{if} (*keysize < 16) \{}
+\DoxyCodeLine{371       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caafed43f3b625e72191e08e65b4bb5e02}{CRYPT\_INVALID\_KEYSIZE}};}
+\DoxyCodeLine{372    \}}
+\DoxyCodeLine{373    *keysize = 16;}
+\DoxyCodeLine{374    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{375 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+K\+E\+Y\+S\+I\+ZE, C\+R\+Y\+P\+T\+\_\+\+OK, ltc\+\_\+cipher\+\_\+descriptor\+::keysize, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+\mbox{\Hypertarget{safer_8c_af113a439a99bdbf7441a6f6914be7ac2}\label{safer_8c_af113a439a99bdbf7441a6f6914be7ac2}} 
+\index{safer.c@{safer.c}!safer\_64\_keysize@{safer\_64\_keysize}}
+\index{safer\_64\_keysize@{safer\_64\_keysize}!safer.c@{safer.c}}
+\subsubsection{\texorpdfstring{safer\_64\_keysize()}{safer\_64\_keysize()}}
+{\footnotesize\ttfamily int safer\+\_\+64\+\_\+keysize (\begin{DoxyParamCaption}\item[{int $\ast$}]{keysize }\end{DoxyParamCaption})}
+
+
+
+Definition at line 357 of file safer.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{358 \{}
+\DoxyCodeLine{359    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(keysize != NULL);}
+\DoxyCodeLine{360    \textcolor{keywordflow}{if} (*keysize < 8) \{}
+\DoxyCodeLine{361       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caafed43f3b625e72191e08e65b4bb5e02}{CRYPT\_INVALID\_KEYSIZE}};}
+\DoxyCodeLine{362    \}}
+\DoxyCodeLine{363    *keysize = 8;}
+\DoxyCodeLine{364    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{365 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+K\+E\+Y\+S\+I\+ZE, C\+R\+Y\+P\+T\+\_\+\+OK, ltc\+\_\+cipher\+\_\+descriptor\+::keysize, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+\mbox{\Hypertarget{safer_8c_a35d61a75128ab0009377f9070413a217}\label{safer_8c_a35d61a75128ab0009377f9070413a217}} 
+\index{safer.c@{safer.c}!safer\_done@{safer\_done}}
+\index{safer\_done@{safer\_done}!safer.c@{safer.c}}
+\subsubsection{\texorpdfstring{safer\_done()}{safer\_done()}}
+{\footnotesize\ttfamily void safer\+\_\+done (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$}]{skey }\end{DoxyParamCaption})}
+
+
+
+Terminate the context. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em skey} & The scheduled key \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 446 of file safer.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{447 \{}
+\DoxyCodeLine{448   \mbox{\hyperlink{tomcrypt__macros_8h_accde4b007facd646a8327f8e64b2d1e0}{LTC\_UNUSED\_PARAM}}(skey);}
+\DoxyCodeLine{449 \}}
+
+\end{DoxyCode}
+
+
+References L\+T\+C\+\_\+\+U\+N\+U\+S\+E\+D\+\_\+\+P\+A\+R\+AM.
+
+\mbox{\Hypertarget{safer_8c_adf7a5075158f65bdd0fea61c67ded1d7}\label{safer_8c_adf7a5075158f65bdd0fea61c67ded1d7}} 
+\index{safer.c@{safer.c}!safer\_ecb\_decrypt@{safer\_ecb\_decrypt}}
+\index{safer\_ecb\_decrypt@{safer\_ecb\_decrypt}!safer.c@{safer.c}}
+\subsubsection{\texorpdfstring{safer\_ecb\_decrypt()}{safer\_ecb\_decrypt()}}
+{\footnotesize\ttfamily int safer\+\_\+ecb\+\_\+decrypt (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{ct,  }\item[{unsigned char $\ast$}]{pt,  }\item[{const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$}]{skey }\end{DoxyParamCaption})}
+
+
+
+Definition at line 307 of file safer.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{311 \{   \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} a, b, \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, d, e, f, g, h, t;}
+\DoxyCodeLine{312     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} round;}
+\DoxyCodeLine{313     \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *key;}
+\DoxyCodeLine{314 }
+\DoxyCodeLine{315     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(ct != NULL);}
+\DoxyCodeLine{316     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(pt != NULL);}
+\DoxyCodeLine{317     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(skey != NULL);}
+\DoxyCodeLine{318 }
+\DoxyCodeLine{319     key = skey->safer.key;}
+\DoxyCodeLine{320     a = ct[0]; b = ct[1]; \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} = ct[2]; d = ct[3];}
+\DoxyCodeLine{321     e = ct[4]; f = ct[5]; g = ct[6]; h = ct[7];}
+\DoxyCodeLine{322     \textcolor{keywordflow}{if} (LTC\_SAFER\_MAX\_NOF\_ROUNDS < (round = *key)) round = LTC\_SAFER\_MAX\_NOF\_ROUNDS;}
+\DoxyCodeLine{323     key += LTC\_SAFER\_BLOCK\_LEN * (1 + 2 * round);}
+\DoxyCodeLine{324     h \string^= *key; g -= *--key; f -= *--key; e \string^= *--key;}
+\DoxyCodeLine{325     d \string^= *--key; \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} -= *--key; b -= *--key; a \string^= *--key;}
+\DoxyCodeLine{326     \textcolor{keywordflow}{while} (round--)}
+\DoxyCodeLine{327     \{}
+\DoxyCodeLine{328         t = e; e = b; b = \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}; \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} = t; t = f; f = d; d = g; g = t;}
+\DoxyCodeLine{329         \mbox{\hyperlink{safer_8c_a8eda6bd30ef65f221dc8105fff5712db}{IPHT}}(a, e); \mbox{\hyperlink{safer_8c_a8eda6bd30ef65f221dc8105fff5712db}{IPHT}}(b, f); \mbox{\hyperlink{safer_8c_a8eda6bd30ef65f221dc8105fff5712db}{IPHT}}(\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, g); \mbox{\hyperlink{safer_8c_a8eda6bd30ef65f221dc8105fff5712db}{IPHT}}(d, h);}
+\DoxyCodeLine{330         \mbox{\hyperlink{safer_8c_a8eda6bd30ef65f221dc8105fff5712db}{IPHT}}(a, \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}); \mbox{\hyperlink{safer_8c_a8eda6bd30ef65f221dc8105fff5712db}{IPHT}}(e, g); \mbox{\hyperlink{safer_8c_a8eda6bd30ef65f221dc8105fff5712db}{IPHT}}(b, d); \mbox{\hyperlink{safer_8c_a8eda6bd30ef65f221dc8105fff5712db}{IPHT}}(f, h);}
+\DoxyCodeLine{331         \mbox{\hyperlink{safer_8c_a8eda6bd30ef65f221dc8105fff5712db}{IPHT}}(a, b); \mbox{\hyperlink{safer_8c_a8eda6bd30ef65f221dc8105fff5712db}{IPHT}}(\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, d); \mbox{\hyperlink{safer_8c_a8eda6bd30ef65f221dc8105fff5712db}{IPHT}}(e, f); \mbox{\hyperlink{safer_8c_a8eda6bd30ef65f221dc8105fff5712db}{IPHT}}(g, h);}
+\DoxyCodeLine{332         h -= *--key; g \string^= *--key; f \string^= *--key; e -= *--key;}
+\DoxyCodeLine{333         d -= *--key; \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} \string^= *--key; b \string^= *--key; a -= *--key;}
+\DoxyCodeLine{334         h = \mbox{\hyperlink{safer_8c_af855c94dc540e943632089ce7496faac}{LOG}}(h) \string^ *--key; g = \mbox{\hyperlink{safer_8c_a179978530f93b1e13bc48dc40dc1960e}{EXP}}(g) - *--key;}
+\DoxyCodeLine{335         f = \mbox{\hyperlink{safer_8c_a179978530f93b1e13bc48dc40dc1960e}{EXP}}(f) - *--key; e = \mbox{\hyperlink{safer_8c_af855c94dc540e943632089ce7496faac}{LOG}}(e) \string^ *--key;}
+\DoxyCodeLine{336         d = \mbox{\hyperlink{safer_8c_af855c94dc540e943632089ce7496faac}{LOG}}(d) \string^ *--key; \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} = \mbox{\hyperlink{safer_8c_a179978530f93b1e13bc48dc40dc1960e}{EXP}}(\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}) - *--key;}
+\DoxyCodeLine{337         b = \mbox{\hyperlink{safer_8c_a179978530f93b1e13bc48dc40dc1960e}{EXP}}(b) - *--key; a = \mbox{\hyperlink{safer_8c_af855c94dc540e943632089ce7496faac}{LOG}}(a) \string^ *--key;}
+\DoxyCodeLine{338     \}}
+\DoxyCodeLine{339     pt[0] = a \& 0xFF; pt[1] = b \& 0xFF;}
+\DoxyCodeLine{340     pt[2] = \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} \& 0xFF; pt[3] = d \& 0xFF;}
+\DoxyCodeLine{341     pt[4] = e \& 0xFF; pt[5] = f \& 0xFF;}
+\DoxyCodeLine{342     pt[6] = g \& 0xFF; pt[7] = h \& 0xFF;}
+\DoxyCodeLine{343     \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{344 \}}
+
+\end{DoxyCode}
+
+
+References c, C\+R\+Y\+P\+T\+\_\+\+OK, E\+XP, I\+P\+HT, L\+OG, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+
+
+Referenced by safer\+\_\+k64\+\_\+test(), safer\+\_\+sk128\+\_\+test(), and safer\+\_\+sk64\+\_\+test().
+
+Here is the caller graph for this function\+:
+% FIG 1
+\mbox{\Hypertarget{safer_8c_ad9c37edc3b75ec76494ae72f0f46d1ca}\label{safer_8c_ad9c37edc3b75ec76494ae72f0f46d1ca}} 
+\index{safer.c@{safer.c}!safer\_ecb\_encrypt@{safer\_ecb\_encrypt}}
+\index{safer\_ecb\_encrypt@{safer\_ecb\_encrypt}!safer.c@{safer.c}}
+\subsubsection{\texorpdfstring{safer\_ecb\_encrypt()}{safer\_ecb\_encrypt()}}
+{\footnotesize\ttfamily int safer\+\_\+ecb\+\_\+encrypt (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{pt,  }\item[{unsigned char $\ast$}]{ct,  }\item[{const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$}]{skey }\end{DoxyParamCaption})}
+
+
+
+Definition at line 253 of file safer.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{257 \{   \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} a, b, \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, d, e, f, g, h, t;}
+\DoxyCodeLine{258     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} round;}
+\DoxyCodeLine{259     \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *key;}
+\DoxyCodeLine{260 }
+\DoxyCodeLine{261     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(pt != NULL);}
+\DoxyCodeLine{262     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(ct != NULL);}
+\DoxyCodeLine{263     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(skey != NULL);}
+\DoxyCodeLine{264 }
+\DoxyCodeLine{265     key = skey->safer.key;}
+\DoxyCodeLine{266     a = pt[0]; b = pt[1]; \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} = pt[2]; d = pt[3];}
+\DoxyCodeLine{267     e = pt[4]; f = pt[5]; g = pt[6]; h = pt[7];}
+\DoxyCodeLine{268     \textcolor{keywordflow}{if} (LTC\_SAFER\_MAX\_NOF\_ROUNDS < (round = *key)) round = LTC\_SAFER\_MAX\_NOF\_ROUNDS;}
+\DoxyCodeLine{269     \textcolor{keywordflow}{while}(round-- > 0)}
+\DoxyCodeLine{270     \{}
+\DoxyCodeLine{271         a \string^= *++key; b += *++key; \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} += *++key; d \string^= *++key;}
+\DoxyCodeLine{272         e \string^= *++key; f += *++key; g += *++key; h \string^= *++key;}
+\DoxyCodeLine{273         a = \mbox{\hyperlink{safer_8c_a179978530f93b1e13bc48dc40dc1960e}{EXP}}(a) + *++key; b = \mbox{\hyperlink{safer_8c_af855c94dc540e943632089ce7496faac}{LOG}}(b) \string^ *++key;}
+\DoxyCodeLine{274         \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} = \mbox{\hyperlink{safer_8c_af855c94dc540e943632089ce7496faac}{LOG}}(\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}) \string^ *++key; d = \mbox{\hyperlink{safer_8c_a179978530f93b1e13bc48dc40dc1960e}{EXP}}(d) + *++key;}
+\DoxyCodeLine{275         e = \mbox{\hyperlink{safer_8c_a179978530f93b1e13bc48dc40dc1960e}{EXP}}(e) + *++key; f = \mbox{\hyperlink{safer_8c_af855c94dc540e943632089ce7496faac}{LOG}}(f) \string^ *++key;}
+\DoxyCodeLine{276         g = \mbox{\hyperlink{safer_8c_af855c94dc540e943632089ce7496faac}{LOG}}(g) \string^ *++key; h = \mbox{\hyperlink{safer_8c_a179978530f93b1e13bc48dc40dc1960e}{EXP}}(h) + *++key;}
+\DoxyCodeLine{277         \mbox{\hyperlink{safer_8c_abcc29f4a1da26093f02d5ef2d8fe0247}{PHT}}(a, b); \mbox{\hyperlink{safer_8c_abcc29f4a1da26093f02d5ef2d8fe0247}{PHT}}(\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, d); \mbox{\hyperlink{safer_8c_abcc29f4a1da26093f02d5ef2d8fe0247}{PHT}}(e, f); \mbox{\hyperlink{safer_8c_abcc29f4a1da26093f02d5ef2d8fe0247}{PHT}}(g, h);}
+\DoxyCodeLine{278         \mbox{\hyperlink{safer_8c_abcc29f4a1da26093f02d5ef2d8fe0247}{PHT}}(a, \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}); \mbox{\hyperlink{safer_8c_abcc29f4a1da26093f02d5ef2d8fe0247}{PHT}}(e, g); \mbox{\hyperlink{safer_8c_abcc29f4a1da26093f02d5ef2d8fe0247}{PHT}}(b, d); \mbox{\hyperlink{safer_8c_abcc29f4a1da26093f02d5ef2d8fe0247}{PHT}}(f, h);}
+\DoxyCodeLine{279         \mbox{\hyperlink{safer_8c_abcc29f4a1da26093f02d5ef2d8fe0247}{PHT}}(a, e); \mbox{\hyperlink{safer_8c_abcc29f4a1da26093f02d5ef2d8fe0247}{PHT}}(b, f); \mbox{\hyperlink{safer_8c_abcc29f4a1da26093f02d5ef2d8fe0247}{PHT}}(\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, g); \mbox{\hyperlink{safer_8c_abcc29f4a1da26093f02d5ef2d8fe0247}{PHT}}(d, h);}
+\DoxyCodeLine{280         t = b; b = e; e = \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}; \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} = t; t = d; d = f; f = g; g = t;}
+\DoxyCodeLine{281     \}}
+\DoxyCodeLine{282     a \string^= *++key; b += *++key; \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} += *++key; d \string^= *++key;}
+\DoxyCodeLine{283     e \string^= *++key; f += *++key; g += *++key; h \string^= *++key;}
+\DoxyCodeLine{284     ct[0] = a \& 0xFF; ct[1] = b \& 0xFF;}
+\DoxyCodeLine{285     ct[2] = \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} \& 0xFF; ct[3] = d \& 0xFF;}
+\DoxyCodeLine{286     ct[4] = e \& 0xFF; ct[5] = f \& 0xFF;}
+\DoxyCodeLine{287     ct[6] = g \& 0xFF; ct[7] = h \& 0xFF;}
+\DoxyCodeLine{288     \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{289 \}}
+
+\end{DoxyCode}
+
+
+References c, C\+R\+Y\+P\+T\+\_\+\+OK, E\+XP, L\+OG, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, and P\+HT.
+
+
+
+Referenced by safer\+\_\+k64\+\_\+test(), safer\+\_\+sk128\+\_\+test(), and safer\+\_\+sk64\+\_\+test().
+
+Here is the caller graph for this function\+:
+% FIG 2
+\mbox{\Hypertarget{safer_8c_a098e5a50fc26c3eec876458f84eeca97}\label{safer_8c_a098e5a50fc26c3eec876458f84eeca97}} 
+\index{safer.c@{safer.c}!Safer\_Expand\_Userkey@{Safer\_Expand\_Userkey}}
+\index{Safer\_Expand\_Userkey@{Safer\_Expand\_Userkey}!safer.c@{safer.c}}
+\subsubsection{\texorpdfstring{Safer\_Expand\_Userkey()}{Safer\_Expand\_Userkey()}}
+{\footnotesize\ttfamily static void Safer\+\_\+\+Expand\+\_\+\+Userkey (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{userkey\+\_\+1,  }\item[{const unsigned char $\ast$}]{userkey\+\_\+2,  }\item[{unsigned int}]{nof\+\_\+rounds,  }\item[{int}]{strengthened,  }\item[{safer\+\_\+key\+\_\+t}]{key }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 106 of file safer.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{112 \{   \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} i, j, k;}
+\DoxyCodeLine{113     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} ka[LTC\_SAFER\_BLOCK\_LEN + 1];}
+\DoxyCodeLine{114     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} kb[LTC\_SAFER\_BLOCK\_LEN + 1];}
+\DoxyCodeLine{115 }
+\DoxyCodeLine{116     \textcolor{keywordflow}{if} (LTC\_SAFER\_MAX\_NOF\_ROUNDS < nof\_rounds) \{}
+\DoxyCodeLine{117         nof\_rounds = LTC\_SAFER\_MAX\_NOF\_ROUNDS;}
+\DoxyCodeLine{118     \}}
+\DoxyCodeLine{119     *key++ = (\textcolor{keywordtype}{unsigned} char)nof\_rounds;}
+\DoxyCodeLine{120     ka[LTC\_SAFER\_BLOCK\_LEN] = (\textcolor{keywordtype}{unsigned} char)0;}
+\DoxyCodeLine{121     kb[LTC\_SAFER\_BLOCK\_LEN] = (\textcolor{keywordtype}{unsigned} char)0;}
+\DoxyCodeLine{122     k = 0;}
+\DoxyCodeLine{123     \textcolor{keywordflow}{for} (j = 0; j < LTC\_SAFER\_BLOCK\_LEN; j++) \{}
+\DoxyCodeLine{124         ka[j] = \mbox{\hyperlink{safer_8c_a9ad7d23069041aba515bf50f1e9acf00}{ROL8}}(userkey\_1[j], 5);}
+\DoxyCodeLine{125         ka[LTC\_SAFER\_BLOCK\_LEN] \string^= ka[j];}
+\DoxyCodeLine{126         kb[j] = *key++ = userkey\_2[j];}
+\DoxyCodeLine{127         kb[LTC\_SAFER\_BLOCK\_LEN] \string^= kb[j];}
+\DoxyCodeLine{128     \}}
+\DoxyCodeLine{129     \textcolor{keywordflow}{for} (i = 1; i <= nof\_rounds; i++) \{}
+\DoxyCodeLine{130         \textcolor{keywordflow}{for} (j = 0; j < LTC\_SAFER\_BLOCK\_LEN + 1; j++) \{}
+\DoxyCodeLine{131             ka[j] = \mbox{\hyperlink{safer_8c_a9ad7d23069041aba515bf50f1e9acf00}{ROL8}}(ka[j], 6);}
+\DoxyCodeLine{132             kb[j] = \mbox{\hyperlink{safer_8c_a9ad7d23069041aba515bf50f1e9acf00}{ROL8}}(kb[j], 6);}
+\DoxyCodeLine{133         \}}
+\DoxyCodeLine{134         \textcolor{keywordflow}{if} (strengthened) \{}
+\DoxyCodeLine{135            k = 2 * i - 1;}
+\DoxyCodeLine{136            \textcolor{keywordflow}{while} (k >= (LTC\_SAFER\_BLOCK\_LEN + 1)) \{ k -= LTC\_SAFER\_BLOCK\_LEN + 1; \}}
+\DoxyCodeLine{137         \}}
+\DoxyCodeLine{138         \textcolor{keywordflow}{for} (j = 0; j < LTC\_SAFER\_BLOCK\_LEN; j++) \{}
+\DoxyCodeLine{139             \textcolor{keywordflow}{if} (strengthened) \{}
+\DoxyCodeLine{140                 *key++ = (ka[k]}
+\DoxyCodeLine{141                                 + safer\_ebox[(int)safer\_ebox[(\textcolor{keywordtype}{int})((18 * i + j + 1)\&0xFF)]]) \& 0xFF;}
+\DoxyCodeLine{142                 \textcolor{keywordflow}{if} (++k == (LTC\_SAFER\_BLOCK\_LEN + 1)) \{ k = 0; \}}
+\DoxyCodeLine{143             \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{144                 *key++ = (ka[j] + safer\_ebox[(int)safer\_ebox[(\textcolor{keywordtype}{int})((18 * i + j + 1)\&0xFF)]]) \& 0xFF;}
+\DoxyCodeLine{145             \}}
+\DoxyCodeLine{146         \}}
+\DoxyCodeLine{147         \textcolor{keywordflow}{if} (strengthened) \{}
+\DoxyCodeLine{148            k = 2 * i;}
+\DoxyCodeLine{149            \textcolor{keywordflow}{while} (k >= (LTC\_SAFER\_BLOCK\_LEN + 1)) \{ k -= LTC\_SAFER\_BLOCK\_LEN + 1; \}}
+\DoxyCodeLine{150         \}}
+\DoxyCodeLine{151         \textcolor{keywordflow}{for} (j = 0; j < LTC\_SAFER\_BLOCK\_LEN; j++) \{}
+\DoxyCodeLine{152             \textcolor{keywordflow}{if} (strengthened) \{}
+\DoxyCodeLine{153                 *key++ = (kb[k]}
+\DoxyCodeLine{154                                 + safer\_ebox[(int)safer\_ebox[(\textcolor{keywordtype}{int})((18 * i + j + 10)\&0xFF)]]) \& 0xFF;}
+\DoxyCodeLine{155                 \textcolor{keywordflow}{if} (++k == (LTC\_SAFER\_BLOCK\_LEN + 1)) \{ k = 0; \}}
+\DoxyCodeLine{156             \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{157                 *key++ = (kb[j] + safer\_ebox[(int)safer\_ebox[(\textcolor{keywordtype}{int})((18 * i + j + 10)\&0xFF)]]) \& 0xFF;}
+\DoxyCodeLine{158             \}}
+\DoxyCodeLine{159         \}}
+\DoxyCodeLine{160     \}}
+\DoxyCodeLine{161 }
+\DoxyCodeLine{162 \textcolor{preprocessor}{\#ifdef LTC\_CLEAN\_STACK}}
+\DoxyCodeLine{163     \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(ka, \textcolor{keyword}{sizeof}(ka));}
+\DoxyCodeLine{164     \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(kb, \textcolor{keyword}{sizeof}(kb));}
+\DoxyCodeLine{165 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{166 \}}
+
+\end{DoxyCode}
+
+
+References R\+O\+L8, and zeromem().
+
+
+
+Referenced by safer\+\_\+k128\+\_\+setup(), safer\+\_\+k64\+\_\+setup(), safer\+\_\+sk128\+\_\+setup(), and safer\+\_\+sk64\+\_\+setup().
+
+Here is the call graph for this function\+:
+% FIG 3
+Here is the caller graph for this function\+:
+% FIG 4
+\mbox{\Hypertarget{safer_8c_a8f7502a1821ef98fb2f9e471ea52dbec}\label{safer_8c_a8f7502a1821ef98fb2f9e471ea52dbec}} 
+\index{safer.c@{safer.c}!safer\_k128\_setup@{safer\_k128\_setup}}
+\index{safer\_k128\_setup@{safer\_k128\_setup}!safer.c@{safer.c}}
+\subsubsection{\texorpdfstring{safer\_k128\_setup()}{safer\_k128\_setup()}}
+{\footnotesize\ttfamily int safer\+\_\+k128\+\_\+setup (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{key,  }\item[{int}]{keylen,  }\item[{int}]{num\+\_\+rounds,  }\item[{\mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$}]{skey }\end{DoxyParamCaption})}
+
+
+
+Definition at line 214 of file safer.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{215 \{}
+\DoxyCodeLine{216    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(key != NULL);}
+\DoxyCodeLine{217    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(skey != NULL);}
+\DoxyCodeLine{218 }
+\DoxyCodeLine{219    \textcolor{keywordflow}{if} (num\_rounds != 0 \&\& (num\_rounds < 6 || num\_rounds > LTC\_SAFER\_MAX\_NOF\_ROUNDS)) \{}
+\DoxyCodeLine{220       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca69aff0280b5845d03130f8700009caf5}{CRYPT\_INVALID\_ROUNDS}};}
+\DoxyCodeLine{221    \}}
+\DoxyCodeLine{222 }
+\DoxyCodeLine{223    \textcolor{keywordflow}{if} (keylen != 16) \{}
+\DoxyCodeLine{224       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caafed43f3b625e72191e08e65b4bb5e02}{CRYPT\_INVALID\_KEYSIZE}};}
+\DoxyCodeLine{225    \}}
+\DoxyCodeLine{226 }
+\DoxyCodeLine{227    \mbox{\hyperlink{safer_8c_a098e5a50fc26c3eec876458f84eeca97}{Safer\_Expand\_Userkey}}(key, key+8, (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int})(num\_rounds != 0 ?num\_rounds:LTC\_SAFER\_K128\_DEFAULT\_NOF\_ROUNDS), 0, skey->safer.key);}
+\DoxyCodeLine{228    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{229 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+K\+E\+Y\+S\+I\+ZE, C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+R\+O\+U\+N\+DS, C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, and Safer\+\_\+\+Expand\+\_\+\+Userkey().
+
+Here is the call graph for this function\+:
+% FIG 5
+\mbox{\Hypertarget{safer_8c_a61b8f198fe22bd907529f06d9d05d61e}\label{safer_8c_a61b8f198fe22bd907529f06d9d05d61e}} 
+\index{safer.c@{safer.c}!safer\_k64\_setup@{safer\_k64\_setup}}
+\index{safer\_k64\_setup@{safer\_k64\_setup}!safer.c@{safer.c}}
+\subsubsection{\texorpdfstring{safer\_k64\_setup()}{safer\_k64\_setup()}}
+{\footnotesize\ttfamily int safer\+\_\+k64\+\_\+setup (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{key,  }\item[{int}]{keylen,  }\item[{int}]{num\+\_\+rounds,  }\item[{\mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$}]{skey }\end{DoxyParamCaption})}
+
+
+
+Definition at line 180 of file safer.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{181 \{}
+\DoxyCodeLine{182    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(key != NULL);}
+\DoxyCodeLine{183    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(skey != NULL);}
+\DoxyCodeLine{184 }
+\DoxyCodeLine{185    \textcolor{keywordflow}{if} (num\_rounds != 0 \&\& (num\_rounds < 6 || num\_rounds > LTC\_SAFER\_MAX\_NOF\_ROUNDS)) \{}
+\DoxyCodeLine{186       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca69aff0280b5845d03130f8700009caf5}{CRYPT\_INVALID\_ROUNDS}};}
+\DoxyCodeLine{187    \}}
+\DoxyCodeLine{188 }
+\DoxyCodeLine{189    \textcolor{keywordflow}{if} (keylen != 8) \{}
+\DoxyCodeLine{190       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caafed43f3b625e72191e08e65b4bb5e02}{CRYPT\_INVALID\_KEYSIZE}};}
+\DoxyCodeLine{191    \}}
+\DoxyCodeLine{192 }
+\DoxyCodeLine{193    \mbox{\hyperlink{safer_8c_a098e5a50fc26c3eec876458f84eeca97}{Safer\_Expand\_Userkey}}(key, key, (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int})(num\_rounds != 0 ?num\_rounds:LTC\_SAFER\_K64\_DEFAULT\_NOF\_ROUNDS), 0, skey->safer.key);}
+\DoxyCodeLine{194    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{195 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+K\+E\+Y\+S\+I\+ZE, C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+R\+O\+U\+N\+DS, C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, and Safer\+\_\+\+Expand\+\_\+\+Userkey().
+
+
+
+Referenced by safer\+\_\+k64\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 6
+Here is the caller graph for this function\+:
+% FIG 7
+\mbox{\Hypertarget{safer_8c_a10abcebaccdee9d23379b01fbd4f1bce}\label{safer_8c_a10abcebaccdee9d23379b01fbd4f1bce}} 
+\index{safer.c@{safer.c}!safer\_k64\_test@{safer\_k64\_test}}
+\index{safer\_k64\_test@{safer\_k64\_test}!safer.c@{safer.c}}
+\subsubsection{\texorpdfstring{safer\_k64\_test()}{safer\_k64\_test()}}
+{\footnotesize\ttfamily int safer\+\_\+k64\+\_\+test (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 377 of file safer.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{378 \{}
+\DoxyCodeLine{379 \textcolor{preprocessor}{ \#ifndef LTC\_TEST}}
+\DoxyCodeLine{380     \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cac43a7799c7fd5f515172da6cfc0f9cf5}{CRYPT\_NOP}};}
+\DoxyCodeLine{381 \textcolor{preprocessor}{ \#else}}
+\DoxyCodeLine{382    \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} k64\_pt[]  = \{ 1, 2, 3, 4, 5, 6, 7, 8 \},}
+\DoxyCodeLine{383                               k64\_key[] = \{ 8, 7, 6, 5, 4, 3, 2, 1 \},}
+\DoxyCodeLine{384                               k64\_ct[]  = \{ 200, 242, 156, 221, 135, 120, 62, 217 \};}
+\DoxyCodeLine{385 }
+\DoxyCodeLine{386    \mbox{\hyperlink{unionSymmetric__key}{symmetric\_key}} skey;}
+\DoxyCodeLine{387    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} buf[2][8];}
+\DoxyCodeLine{388    \textcolor{keywordtype}{int} err;}
+\DoxyCodeLine{389 }
+\DoxyCodeLine{390    \textcolor{comment}{/* test K64 */}}
+\DoxyCodeLine{391    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{safer_8c_a61b8f198fe22bd907529f06d9d05d61e}{safer\_k64\_setup}}(k64\_key, 8, 6, \&skey)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{392       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{393    \}}
+\DoxyCodeLine{394    \mbox{\hyperlink{safer_8c_ad9c37edc3b75ec76494ae72f0f46d1ca}{safer\_ecb\_encrypt}}(k64\_pt, buf[0], \&skey);}
+\DoxyCodeLine{395    \mbox{\hyperlink{safer_8c_adf7a5075158f65bdd0fea61c67ded1d7}{safer\_ecb\_decrypt}}(buf[0], buf[1], \&skey);}
+\DoxyCodeLine{396 }
+\DoxyCodeLine{397    \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(buf[0], 8, k64\_ct, 8, \textcolor{stringliteral}{"Safer K64 Encrypt"}, 0) != 0 ||}
+\DoxyCodeLine{398          \mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(buf[1], 8, k64\_pt, 8, \textcolor{stringliteral}{"Safer K64 Decrypt"}, 0) != 0) \{}
+\DoxyCodeLine{399       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{400    \}}
+\DoxyCodeLine{401 }
+\DoxyCodeLine{402    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{403 \textcolor{preprocessor}{ \#endif}}
+\DoxyCodeLine{404 \}}
+
+\end{DoxyCode}
+
+
+References compare\+\_\+testvector(), C\+R\+Y\+P\+T\+\_\+\+F\+A\+I\+L\+\_\+\+T\+E\+S\+T\+V\+E\+C\+T\+OR, C\+R\+Y\+P\+T\+\_\+\+N\+OP, C\+R\+Y\+P\+T\+\_\+\+OK, safer\+\_\+ecb\+\_\+decrypt(), safer\+\_\+ecb\+\_\+encrypt(), and safer\+\_\+k64\+\_\+setup().
+
+Here is the call graph for this function\+:
+% FIG 8
+\mbox{\Hypertarget{safer_8c_a0ff0e9ec8b8e5d1725d1e1178d340ce6}\label{safer_8c_a0ff0e9ec8b8e5d1725d1e1178d340ce6}} 
+\index{safer.c@{safer.c}!safer\_sk128\_setup@{safer\_sk128\_setup}}
+\index{safer\_sk128\_setup@{safer\_sk128\_setup}!safer.c@{safer.c}}
+\subsubsection{\texorpdfstring{safer\_sk128\_setup()}{safer\_sk128\_setup()}}
+{\footnotesize\ttfamily int safer\+\_\+sk128\+\_\+setup (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{key,  }\item[{int}]{keylen,  }\item[{int}]{num\+\_\+rounds,  }\item[{\mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$}]{skey }\end{DoxyParamCaption})}
+
+
+
+Definition at line 231 of file safer.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{232 \{}
+\DoxyCodeLine{233    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(key != NULL);}
+\DoxyCodeLine{234    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(skey != NULL);}
+\DoxyCodeLine{235 }
+\DoxyCodeLine{236    \textcolor{keywordflow}{if} (num\_rounds != 0 \&\& (num\_rounds < 6 || num\_rounds > LTC\_SAFER\_MAX\_NOF\_ROUNDS)) \{}
+\DoxyCodeLine{237       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca69aff0280b5845d03130f8700009caf5}{CRYPT\_INVALID\_ROUNDS}};}
+\DoxyCodeLine{238    \}}
+\DoxyCodeLine{239 }
+\DoxyCodeLine{240    \textcolor{keywordflow}{if} (keylen != 16) \{}
+\DoxyCodeLine{241       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caafed43f3b625e72191e08e65b4bb5e02}{CRYPT\_INVALID\_KEYSIZE}};}
+\DoxyCodeLine{242    \}}
+\DoxyCodeLine{243 }
+\DoxyCodeLine{244    \mbox{\hyperlink{safer_8c_a098e5a50fc26c3eec876458f84eeca97}{Safer\_Expand\_Userkey}}(key, key+8, (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int})(num\_rounds != 0?num\_rounds:LTC\_SAFER\_SK128\_DEFAULT\_NOF\_ROUNDS), 1, skey->safer.key);}
+\DoxyCodeLine{245    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{246 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+K\+E\+Y\+S\+I\+ZE, C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+R\+O\+U\+N\+DS, C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, and Safer\+\_\+\+Expand\+\_\+\+Userkey().
+
+
+
+Referenced by safer\+\_\+sk128\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 9
+Here is the caller graph for this function\+:
+% FIG 10
+\mbox{\Hypertarget{safer_8c_a75642318b67f93148bdc8d1766626da2}\label{safer_8c_a75642318b67f93148bdc8d1766626da2}} 
+\index{safer.c@{safer.c}!safer\_sk128\_test@{safer\_sk128\_test}}
+\index{safer\_sk128\_test@{safer\_sk128\_test}!safer.c@{safer.c}}
+\subsubsection{\texorpdfstring{safer\_sk128\_test()}{safer\_sk128\_test()}}
+{\footnotesize\ttfamily int safer\+\_\+sk128\+\_\+test (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 451 of file safer.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{452 \{}
+\DoxyCodeLine{453 \textcolor{preprocessor}{ \#ifndef LTC\_TEST}}
+\DoxyCodeLine{454     \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cac43a7799c7fd5f515172da6cfc0f9cf5}{CRYPT\_NOP}};}
+\DoxyCodeLine{455 \textcolor{preprocessor}{ \#else}}
+\DoxyCodeLine{456    \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} sk128\_pt[]  = \{ 1, 2, 3, 4, 5, 6, 7, 8 \},}
+\DoxyCodeLine{457                               sk128\_key[] = \{ 1, 2, 3, 4, 5, 6, 7, 8,}
+\DoxyCodeLine{458                                               0, 0, 0, 0, 0, 0, 0, 0 \},}
+\DoxyCodeLine{459                               sk128\_ct[]  = \{ 255, 120, 17, 228, 179, 167, 46, 113 \};}
+\DoxyCodeLine{460 }
+\DoxyCodeLine{461    \mbox{\hyperlink{unionSymmetric__key}{symmetric\_key}} skey;}
+\DoxyCodeLine{462    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} buf[2][8];}
+\DoxyCodeLine{463    \textcolor{keywordtype}{int} err, y;}
+\DoxyCodeLine{464 }
+\DoxyCodeLine{465    \textcolor{comment}{/* test SK128 */}}
+\DoxyCodeLine{466    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{safer_8c_a0ff0e9ec8b8e5d1725d1e1178d340ce6}{safer\_sk128\_setup}}(sk128\_key, 16, 0, \&skey)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{467       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{468    \}}
+\DoxyCodeLine{469    \mbox{\hyperlink{safer_8c_ad9c37edc3b75ec76494ae72f0f46d1ca}{safer\_ecb\_encrypt}}(sk128\_pt, buf[0], \&skey);}
+\DoxyCodeLine{470    \mbox{\hyperlink{safer_8c_adf7a5075158f65bdd0fea61c67ded1d7}{safer\_ecb\_decrypt}}(buf[0], buf[1], \&skey);}
+\DoxyCodeLine{471 }
+\DoxyCodeLine{472    \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(buf[0], 8, sk128\_ct, 8, \textcolor{stringliteral}{"Safer SK128 Encrypt"}, 0) != 0 ||}
+\DoxyCodeLine{473          \mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(buf[1], 8, sk128\_pt, 8, \textcolor{stringliteral}{"Safer SK128 Decrypt"}, 0) != 0) \{}
+\DoxyCodeLine{474       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{475    \}}
+\DoxyCodeLine{476 }
+\DoxyCodeLine{477    \textcolor{comment}{/* now see if we can encrypt all zero bytes 1000 times, decrypt and come back where we started */}}
+\DoxyCodeLine{478    \textcolor{keywordflow}{for} (y = 0; y < 8; y++) buf[0][y] = 0;}
+\DoxyCodeLine{479    \textcolor{keywordflow}{for} (y = 0; y < 1000; y++) \mbox{\hyperlink{safer_8c_ad9c37edc3b75ec76494ae72f0f46d1ca}{safer\_ecb\_encrypt}}(buf[0], buf[0], \&skey);}
+\DoxyCodeLine{480    \textcolor{keywordflow}{for} (y = 0; y < 1000; y++) \mbox{\hyperlink{safer_8c_adf7a5075158f65bdd0fea61c67ded1d7}{safer\_ecb\_decrypt}}(buf[0], buf[0], \&skey);}
+\DoxyCodeLine{481    \textcolor{keywordflow}{for} (y = 0; y < 8; y++) \textcolor{keywordflow}{if} (buf[0][y] != 0) \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{482 }
+\DoxyCodeLine{483    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{484 \textcolor{preprocessor}{ \#endif}}
+\DoxyCodeLine{485 \}}
+
+\end{DoxyCode}
+
+
+References compare\+\_\+testvector(), C\+R\+Y\+P\+T\+\_\+\+F\+A\+I\+L\+\_\+\+T\+E\+S\+T\+V\+E\+C\+T\+OR, C\+R\+Y\+P\+T\+\_\+\+N\+OP, C\+R\+Y\+P\+T\+\_\+\+OK, safer\+\_\+ecb\+\_\+decrypt(), safer\+\_\+ecb\+\_\+encrypt(), and safer\+\_\+sk128\+\_\+setup().
+
+Here is the call graph for this function\+:
+% FIG 11
+\mbox{\Hypertarget{safer_8c_a4de4e3591e15db0254e9957e939a77dc}\label{safer_8c_a4de4e3591e15db0254e9957e939a77dc}} 
+\index{safer.c@{safer.c}!safer\_sk64\_setup@{safer\_sk64\_setup}}
+\index{safer\_sk64\_setup@{safer\_sk64\_setup}!safer.c@{safer.c}}
+\subsubsection{\texorpdfstring{safer\_sk64\_setup()}{safer\_sk64\_setup()}}
+{\footnotesize\ttfamily int safer\+\_\+sk64\+\_\+setup (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{key,  }\item[{int}]{keylen,  }\item[{int}]{num\+\_\+rounds,  }\item[{\mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$}]{skey }\end{DoxyParamCaption})}
+
+
+
+Definition at line 197 of file safer.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{198 \{}
+\DoxyCodeLine{199    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(key != NULL);}
+\DoxyCodeLine{200    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(skey != NULL);}
+\DoxyCodeLine{201 }
+\DoxyCodeLine{202    \textcolor{keywordflow}{if} (num\_rounds != 0 \&\& (num\_rounds < 6 || num\_rounds > LTC\_SAFER\_MAX\_NOF\_ROUNDS)) \{}
+\DoxyCodeLine{203       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca69aff0280b5845d03130f8700009caf5}{CRYPT\_INVALID\_ROUNDS}};}
+\DoxyCodeLine{204    \}}
+\DoxyCodeLine{205 }
+\DoxyCodeLine{206    \textcolor{keywordflow}{if} (keylen != 8) \{}
+\DoxyCodeLine{207       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caafed43f3b625e72191e08e65b4bb5e02}{CRYPT\_INVALID\_KEYSIZE}};}
+\DoxyCodeLine{208    \}}
+\DoxyCodeLine{209 }
+\DoxyCodeLine{210    \mbox{\hyperlink{safer_8c_a098e5a50fc26c3eec876458f84eeca97}{Safer\_Expand\_Userkey}}(key, key, (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int})(num\_rounds != 0 ?num\_rounds:LTC\_SAFER\_SK64\_DEFAULT\_NOF\_ROUNDS), 1, skey->safer.key);}
+\DoxyCodeLine{211    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{212 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+K\+E\+Y\+S\+I\+ZE, C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+R\+O\+U\+N\+DS, C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, and Safer\+\_\+\+Expand\+\_\+\+Userkey().
+
+
+
+Referenced by safer\+\_\+sk64\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 12
+Here is the caller graph for this function\+:
+% FIG 13
+\mbox{\Hypertarget{safer_8c_a3819b57b564e07b5ade18ec49464b40a}\label{safer_8c_a3819b57b564e07b5ade18ec49464b40a}} 
+\index{safer.c@{safer.c}!safer\_sk64\_test@{safer\_sk64\_test}}
+\index{safer\_sk64\_test@{safer\_sk64\_test}!safer.c@{safer.c}}
+\subsubsection{\texorpdfstring{safer\_sk64\_test()}{safer\_sk64\_test()}}
+{\footnotesize\ttfamily int safer\+\_\+sk64\+\_\+test (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 407 of file safer.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{408 \{}
+\DoxyCodeLine{409 \textcolor{preprocessor}{ \#ifndef LTC\_TEST}}
+\DoxyCodeLine{410     \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cac43a7799c7fd5f515172da6cfc0f9cf5}{CRYPT\_NOP}};}
+\DoxyCodeLine{411 \textcolor{preprocessor}{ \#else}}
+\DoxyCodeLine{412    \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} sk64\_pt[]  = \{ 1, 2, 3, 4, 5, 6, 7, 8 \},}
+\DoxyCodeLine{413                               sk64\_key[] = \{ 1, 2, 3, 4, 5, 6, 7, 8 \},}
+\DoxyCodeLine{414                               sk64\_ct[]  = \{ 95, 206, 155, 162, 5, 132, 56, 199 \};}
+\DoxyCodeLine{415 }
+\DoxyCodeLine{416    \mbox{\hyperlink{unionSymmetric__key}{symmetric\_key}} skey;}
+\DoxyCodeLine{417    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} buf[2][8];}
+\DoxyCodeLine{418    \textcolor{keywordtype}{int} err, y;}
+\DoxyCodeLine{419 }
+\DoxyCodeLine{420    \textcolor{comment}{/* test SK64 */}}
+\DoxyCodeLine{421    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{safer_8c_a4de4e3591e15db0254e9957e939a77dc}{safer\_sk64\_setup}}(sk64\_key, 8, 6, \&skey)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{422       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{423    \}}
+\DoxyCodeLine{424 }
+\DoxyCodeLine{425    \mbox{\hyperlink{safer_8c_ad9c37edc3b75ec76494ae72f0f46d1ca}{safer\_ecb\_encrypt}}(sk64\_pt, buf[0], \&skey);}
+\DoxyCodeLine{426    \mbox{\hyperlink{safer_8c_adf7a5075158f65bdd0fea61c67ded1d7}{safer\_ecb\_decrypt}}(buf[0], buf[1], \&skey);}
+\DoxyCodeLine{427 }
+\DoxyCodeLine{428    \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(buf[0], 8, sk64\_ct, 8, \textcolor{stringliteral}{"Safer SK64 Encrypt"}, 0) != 0 ||}
+\DoxyCodeLine{429          \mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(buf[1], 8, sk64\_pt, 8, \textcolor{stringliteral}{"Safer SK64 Decrypt"}, 0) != 0) \{}
+\DoxyCodeLine{430       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{431    \}}
+\DoxyCodeLine{432 }
+\DoxyCodeLine{433    \textcolor{comment}{/* now see if we can encrypt all zero bytes 1000 times, decrypt and come back where we started */}}
+\DoxyCodeLine{434    \textcolor{keywordflow}{for} (y = 0; y < 8; y++) buf[0][y] = 0;}
+\DoxyCodeLine{435    \textcolor{keywordflow}{for} (y = 0; y < 1000; y++) \mbox{\hyperlink{safer_8c_ad9c37edc3b75ec76494ae72f0f46d1ca}{safer\_ecb\_encrypt}}(buf[0], buf[0], \&skey);}
+\DoxyCodeLine{436    \textcolor{keywordflow}{for} (y = 0; y < 1000; y++) \mbox{\hyperlink{safer_8c_adf7a5075158f65bdd0fea61c67ded1d7}{safer\_ecb\_decrypt}}(buf[0], buf[0], \&skey);}
+\DoxyCodeLine{437    \textcolor{keywordflow}{for} (y = 0; y < 8; y++) \textcolor{keywordflow}{if} (buf[0][y] != 0) \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{438 }
+\DoxyCodeLine{439    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{440 \textcolor{preprocessor}{  \#endif}}
+\DoxyCodeLine{441 \}}
+
+\end{DoxyCode}
+
+
+References compare\+\_\+testvector(), C\+R\+Y\+P\+T\+\_\+\+F\+A\+I\+L\+\_\+\+T\+E\+S\+T\+V\+E\+C\+T\+OR, C\+R\+Y\+P\+T\+\_\+\+N\+OP, C\+R\+Y\+P\+T\+\_\+\+OK, safer\+\_\+ecb\+\_\+decrypt(), safer\+\_\+ecb\+\_\+encrypt(), and safer\+\_\+sk64\+\_\+setup().
+
+Here is the call graph for this function\+:
+% FIG 14
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{safer_8c_a915866930788beb465e50a0e0d762a20}\label{safer_8c_a915866930788beb465e50a0e0d762a20}} 
+\index{safer.c@{safer.c}!safer\_k128\_desc@{safer\_k128\_desc}}
+\index{safer\_k128\_desc@{safer\_k128\_desc}!safer.c@{safer.c}}
+\subsubsection{\texorpdfstring{safer\_k128\_desc}{safer\_k128\_desc}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structltc__cipher__descriptor}{ltc\+\_\+cipher\+\_\+descriptor}} safer\+\_\+k128\+\_\+desc}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{   \textcolor{stringliteral}{"safer-k128"},}
+\DoxyCodeLine{   10, 16, 16, 8,  10 ,}
+\DoxyCodeLine{   \&\mbox{\hyperlink{safer_8c_a8f7502a1821ef98fb2f9e471ea52dbec}{safer\_k128\_setup}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{safer_8c_ad9c37edc3b75ec76494ae72f0f46d1ca}{safer\_ecb\_encrypt}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{safer_8c_adf7a5075158f65bdd0fea61c67ded1d7}{safer\_ecb\_decrypt}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{safer_8c_a75642318b67f93148bdc8d1766626da2}{safer\_sk128\_test}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{safer_8c_a35d61a75128ab0009377f9070413a217}{safer\_done}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{safer_8c_a07251130cfaec6c20008b01cf0b72376}{safer\_128\_keysize}},}
+\DoxyCodeLine{   NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL}
+\DoxyCodeLine{   \}}
+
+\end{DoxyCode}
+
+
+Definition at line 60 of file safer.\+c.
+
+
+
+Referenced by register\+\_\+all\+\_\+ciphers().
+
+\mbox{\Hypertarget{safer_8c_a93709ca54132dfbb88c8929f195044a7}\label{safer_8c_a93709ca54132dfbb88c8929f195044a7}} 
+\index{safer.c@{safer.c}!safer\_k64\_desc@{safer\_k64\_desc}}
+\index{safer\_k64\_desc@{safer\_k64\_desc}!safer.c@{safer.c}}
+\subsubsection{\texorpdfstring{safer\_k64\_desc}{safer\_k64\_desc}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structltc__cipher__descriptor}{ltc\+\_\+cipher\+\_\+descriptor}} safer\+\_\+k64\+\_\+desc}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{   \textcolor{stringliteral}{"safer-k64"},}
+\DoxyCodeLine{   8, 8, 8, 8,  6 ,}
+\DoxyCodeLine{   \&\mbox{\hyperlink{safer_8c_a61b8f198fe22bd907529f06d9d05d61e}{safer\_k64\_setup}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{safer_8c_ad9c37edc3b75ec76494ae72f0f46d1ca}{safer\_ecb\_encrypt}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{safer_8c_adf7a5075158f65bdd0fea61c67ded1d7}{safer\_ecb\_decrypt}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{safer_8c_a10abcebaccdee9d23379b01fbd4f1bce}{safer\_k64\_test}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{safer_8c_a35d61a75128ab0009377f9070413a217}{safer\_done}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{safer_8c_af113a439a99bdbf7441a6f6914be7ac2}{safer\_64\_keysize}},}
+\DoxyCodeLine{   NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL}
+\DoxyCodeLine{   \}}
+
+\end{DoxyCode}
+
+
+Definition at line 36 of file safer.\+c.
+
+
+
+Referenced by register\+\_\+all\+\_\+ciphers().
+
+\mbox{\Hypertarget{safer_8c_ad84579c3b6c86e51d479d189502e1827}\label{safer_8c_ad84579c3b6c86e51d479d189502e1827}} 
+\index{safer.c@{safer.c}!safer\_sk128\_desc@{safer\_sk128\_desc}}
+\index{safer\_sk128\_desc@{safer\_sk128\_desc}!safer.c@{safer.c}}
+\subsubsection{\texorpdfstring{safer\_sk128\_desc}{safer\_sk128\_desc}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structltc__cipher__descriptor}{ltc\+\_\+cipher\+\_\+descriptor}} safer\+\_\+sk128\+\_\+desc}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{   \textcolor{stringliteral}{"safer-sk128"},}
+\DoxyCodeLine{   11, 16, 16, 8,  10 ,}
+\DoxyCodeLine{   \&\mbox{\hyperlink{safer_8c_a0ff0e9ec8b8e5d1725d1e1178d340ce6}{safer\_sk128\_setup}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{safer_8c_ad9c37edc3b75ec76494ae72f0f46d1ca}{safer\_ecb\_encrypt}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{safer_8c_adf7a5075158f65bdd0fea61c67ded1d7}{safer\_ecb\_decrypt}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{safer_8c_a75642318b67f93148bdc8d1766626da2}{safer\_sk128\_test}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{safer_8c_a35d61a75128ab0009377f9070413a217}{safer\_done}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{safer_8c_a07251130cfaec6c20008b01cf0b72376}{safer\_128\_keysize}},}
+\DoxyCodeLine{   NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL}
+\DoxyCodeLine{   \}}
+
+\end{DoxyCode}
+
+
+Definition at line 72 of file safer.\+c.
+
+
+
+Referenced by register\+\_\+all\+\_\+ciphers(), and yarrow\+\_\+start().
+
+\mbox{\Hypertarget{safer_8c_aa1e344aed15e529eb252da3506cfbc27}\label{safer_8c_aa1e344aed15e529eb252da3506cfbc27}} 
+\index{safer.c@{safer.c}!safer\_sk64\_desc@{safer\_sk64\_desc}}
+\index{safer\_sk64\_desc@{safer\_sk64\_desc}!safer.c@{safer.c}}
+\subsubsection{\texorpdfstring{safer\_sk64\_desc}{safer\_sk64\_desc}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structltc__cipher__descriptor}{ltc\+\_\+cipher\+\_\+descriptor}} safer\+\_\+sk64\+\_\+desc}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{   \textcolor{stringliteral}{"safer-sk64"},}
+\DoxyCodeLine{   9, 8, 8, 8,  8 ,}
+\DoxyCodeLine{   \&\mbox{\hyperlink{safer_8c_a4de4e3591e15db0254e9957e939a77dc}{safer\_sk64\_setup}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{safer_8c_ad9c37edc3b75ec76494ae72f0f46d1ca}{safer\_ecb\_encrypt}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{safer_8c_adf7a5075158f65bdd0fea61c67ded1d7}{safer\_ecb\_decrypt}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{safer_8c_a3819b57b564e07b5ade18ec49464b40a}{safer\_sk64\_test}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{safer_8c_a35d61a75128ab0009377f9070413a217}{safer\_done}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{safer_8c_af113a439a99bdbf7441a6f6914be7ac2}{safer\_64\_keysize}},}
+\DoxyCodeLine{   NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL}
+\DoxyCodeLine{   \}}
+
+\end{DoxyCode}
+
+
+Definition at line 48 of file safer.\+c.
+
+
+
+Referenced by register\+\_\+all\+\_\+ciphers().
+

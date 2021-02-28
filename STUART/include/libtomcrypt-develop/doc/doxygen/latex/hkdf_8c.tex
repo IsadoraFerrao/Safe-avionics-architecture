@@ -1,0 +1,204 @@
+\hypertarget{hkdf_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/misc/hkdf/hkdf.c File Reference}
+\label{hkdf_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/misc/hkdf/hkdf.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/misc/hkdf/hkdf.c}}
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for hkdf.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{hkdf_8c_a6af77e2823d3b6e691098963b07ea26a}{hkdf\+\_\+extract}} (int hash\+\_\+idx, const unsigned char $\ast$salt, unsigned long saltlen, const unsigned char $\ast$in, unsigned long inlen, unsigned char $\ast$out, unsigned long $\ast$outlen)
+\item 
+int \mbox{\hyperlink{hkdf_8c_a1fa3c2a1e44fc629a059ae5c61cc0197}{hkdf\+\_\+expand}} (int hash\+\_\+idx, const unsigned char $\ast$info, unsigned long infolen, const unsigned char $\ast$in, unsigned long inlen, unsigned char $\ast$out, unsigned long outlen)
+\item 
+int \mbox{\hyperlink{hkdf_8c_ac79c8ae04bc15c69e9704277e38d22be}{hkdf}} (int hash\+\_\+idx, const unsigned char $\ast$salt, unsigned long saltlen, const unsigned char $\ast$info, unsigned long infolen, const unsigned char $\ast$in, unsigned long inlen, unsigned char $\ast$out, unsigned long outlen)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{hkdf_8c_ac79c8ae04bc15c69e9704277e38d22be}\label{hkdf_8c_ac79c8ae04bc15c69e9704277e38d22be}} 
+\index{hkdf.c@{hkdf.c}!hkdf@{hkdf}}
+\index{hkdf@{hkdf}!hkdf.c@{hkdf.c}}
+\subsubsection{\texorpdfstring{hkdf()}{hkdf()}}
+{\footnotesize\ttfamily int hkdf (\begin{DoxyParamCaption}\item[{int}]{hash\+\_\+idx,  }\item[{const unsigned char $\ast$}]{salt,  }\item[{unsigned long}]{saltlen,  }\item[{const unsigned char $\ast$}]{info,  }\item[{unsigned long}]{infolen,  }\item[{const unsigned char $\ast$}]{in,  }\item[{unsigned long}]{inlen,  }\item[{unsigned char $\ast$}]{out,  }\item[{unsigned long}]{outlen }\end{DoxyParamCaption})}
+
+
+
+Definition at line 108 of file hkdf.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{112 \{}
+\DoxyCodeLine{113    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} hashsize;}
+\DoxyCodeLine{114    \textcolor{keywordtype}{int} err;}
+\DoxyCodeLine{115    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *extracted;}
+\DoxyCodeLine{116 }
+\DoxyCodeLine{117    \textcolor{comment}{/* make sure hash descriptor is valid */}}
+\DoxyCodeLine{118    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__hash_8h_a79647f22bf48bfa7de03fe5fc958c846}{hash\_is\_valid}}(hash\_idx)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{119       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{120    \}}
+\DoxyCodeLine{121 }
+\DoxyCodeLine{122    hashsize = \mbox{\hyperlink{tomcrypt__hash_8h_ab0e4f02e30a47da79baa9240e79cde92}{hash\_descriptor}}[hash\_idx].\mbox{\hyperlink{structltc__hash__descriptor_a49bd027653ff21408cb2661748d719ef}{hashsize}};}
+\DoxyCodeLine{123 }
+\DoxyCodeLine{124    extracted = \mbox{\hyperlink{tomcrypt__cfg_8h_af363355f38fbaacdefacf270436ae1c9}{XMALLOC}}(hashsize); \textcolor{comment}{/* replace with static buffer? */}}
+\DoxyCodeLine{125    \textcolor{keywordflow}{if} (extracted == NULL) \{}
+\DoxyCodeLine{126       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca0ce0d27adc7ea10b74b7ea904b8bfa82}{CRYPT\_MEM}};}
+\DoxyCodeLine{127    \}}
+\DoxyCodeLine{128    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{hkdf_8c_a6af77e2823d3b6e691098963b07ea26a}{hkdf\_extract}}(hash\_idx, salt, saltlen, in, inlen, extracted, \&hashsize)) != 0) \{}
+\DoxyCodeLine{129       \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(extracted, hashsize);}
+\DoxyCodeLine{130       \mbox{\hyperlink{tomcrypt__cfg_8h_a260d66fc0690e0502cf3bfe7b5244b75}{XFREE}}(extracted);}
+\DoxyCodeLine{131       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{132    \}}
+\DoxyCodeLine{133    err = \mbox{\hyperlink{hkdf_8c_a1fa3c2a1e44fc629a059ae5c61cc0197}{hkdf\_expand}}(hash\_idx, info, infolen, extracted, hashsize, out, outlen);}
+\DoxyCodeLine{134    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(extracted, hashsize);}
+\DoxyCodeLine{135    \mbox{\hyperlink{tomcrypt__cfg_8h_a260d66fc0690e0502cf3bfe7b5244b75}{XFREE}}(extracted);}
+\DoxyCodeLine{136    \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{137 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+M\+EM, C\+R\+Y\+P\+T\+\_\+\+OK, hash\+\_\+descriptor, hash\+\_\+is\+\_\+valid(), ltc\+\_\+hash\+\_\+descriptor\+::hashsize, hkdf\+\_\+expand(), hkdf\+\_\+extract(), X\+F\+R\+E\+E(), X\+M\+A\+L\+L\+O\+C(), and zeromem().
+
+
+
+Referenced by hkdf\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2
+\mbox{\Hypertarget{hkdf_8c_a1fa3c2a1e44fc629a059ae5c61cc0197}\label{hkdf_8c_a1fa3c2a1e44fc629a059ae5c61cc0197}} 
+\index{hkdf.c@{hkdf.c}!hkdf\_expand@{hkdf\_expand}}
+\index{hkdf\_expand@{hkdf\_expand}!hkdf.c@{hkdf.c}}
+\subsubsection{\texorpdfstring{hkdf\_expand()}{hkdf\_expand()}}
+{\footnotesize\ttfamily int hkdf\+\_\+expand (\begin{DoxyParamCaption}\item[{int}]{hash\+\_\+idx,  }\item[{const unsigned char $\ast$}]{info,  }\item[{unsigned long}]{infolen,  }\item[{const unsigned char $\ast$}]{in,  }\item[{unsigned long}]{inlen,  }\item[{unsigned char $\ast$}]{out,  }\item[{unsigned long}]{outlen }\end{DoxyParamCaption})}
+
+
+
+Definition at line 37 of file hkdf.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{40 \{}
+\DoxyCodeLine{41    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} hashsize;}
+\DoxyCodeLine{42    \textcolor{keywordtype}{int} err;}
+\DoxyCodeLine{43    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} \mbox{\hyperlink{sober128__stream_8c_a0240ac851181b84ac374872dc5434ee4}{N}};}
+\DoxyCodeLine{44    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} Noutlen, outoff;}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *T,  *dat;}
+\DoxyCodeLine{47    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} Tlen, datlen;}
+\DoxyCodeLine{48 }
+\DoxyCodeLine{49    \textcolor{comment}{/* make sure hash descriptor is valid */}}
+\DoxyCodeLine{50    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__hash_8h_a79647f22bf48bfa7de03fe5fc958c846}{hash\_is\_valid}}(hash\_idx)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{51       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{52    \}}
+\DoxyCodeLine{53 }
+\DoxyCodeLine{54    hashsize = \mbox{\hyperlink{tomcrypt__hash_8h_ab0e4f02e30a47da79baa9240e79cde92}{hash\_descriptor}}[hash\_idx].\mbox{\hyperlink{structltc__hash__descriptor_a49bd027653ff21408cb2661748d719ef}{hashsize}};}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{56    \textcolor{comment}{/* RFC5869 parameter restrictions */}}
+\DoxyCodeLine{57    \textcolor{keywordflow}{if} (inlen < hashsize || outlen > hashsize * 255) \{}
+\DoxyCodeLine{58       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{59    \}}
+\DoxyCodeLine{60    \textcolor{keywordflow}{if} (info == NULL \&\& infolen != 0) \{}
+\DoxyCodeLine{61       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{62    \}}
+\DoxyCodeLine{63    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(out != NULL);}
+\DoxyCodeLine{64 }
+\DoxyCodeLine{65    Tlen = hashsize + infolen + 1;}
+\DoxyCodeLine{66    T = \mbox{\hyperlink{tomcrypt__cfg_8h_af363355f38fbaacdefacf270436ae1c9}{XMALLOC}}(Tlen); \textcolor{comment}{/* Replace with static buffer? */}}
+\DoxyCodeLine{67    \textcolor{keywordflow}{if} (T == NULL) \{}
+\DoxyCodeLine{68       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca0ce0d27adc7ea10b74b7ea904b8bfa82}{CRYPT\_MEM}};}
+\DoxyCodeLine{69    \}}
+\DoxyCodeLine{70    \textcolor{keywordflow}{if} (info != NULL) \{}
+\DoxyCodeLine{71       \mbox{\hyperlink{tomcrypt__cfg_8h_a7691dd48d60d5fc6daf2fa7ec4c55e12}{XMEMCPY}}(T + hashsize, info, infolen);}
+\DoxyCodeLine{72    \}}
+\DoxyCodeLine{73 }
+\DoxyCodeLine{74    \textcolor{comment}{/* HMAC data T(1) doesn't include a previous hash value */}}
+\DoxyCodeLine{75    dat    = T    + hashsize;}
+\DoxyCodeLine{76    datlen = Tlen - hashsize;}
+\DoxyCodeLine{77 }
+\DoxyCodeLine{78    \mbox{\hyperlink{sober128__stream_8c_a0240ac851181b84ac374872dc5434ee4}{N}} = 0;}
+\DoxyCodeLine{79    outoff = 0; \textcolor{comment}{/* offset in out to write to */}}
+\DoxyCodeLine{80    \textcolor{keywordflow}{while} (1) \{ \textcolor{comment}{/* an exit condition breaks mid-loop */}}
+\DoxyCodeLine{81       Noutlen = \mbox{\hyperlink{tomcrypt__macros_8h_a74e75242132eaabbc1c512488a135926}{MIN}}(hashsize, outlen - outoff);}
+\DoxyCodeLine{82       T[Tlen - 1] = ++\mbox{\hyperlink{sober128__stream_8c_a0240ac851181b84ac374872dc5434ee4}{N}};}
+\DoxyCodeLine{83       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{hmac__memory_8c_a6bf2dff4537e6332dec46266a9db7580}{hmac\_memory}}(hash\_idx, in, inlen, dat, datlen,}
+\DoxyCodeLine{84                              out + outoff, \&Noutlen)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{85          \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(T, Tlen);}
+\DoxyCodeLine{86          \mbox{\hyperlink{tomcrypt__cfg_8h_a260d66fc0690e0502cf3bfe7b5244b75}{XFREE}}(T);}
+\DoxyCodeLine{87          \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{88       \}}
+\DoxyCodeLine{89       outoff += Noutlen;}
+\DoxyCodeLine{90 }
+\DoxyCodeLine{91       \textcolor{keywordflow}{if} (outoff >= outlen) \{ \textcolor{comment}{/* loop exit condition */}}
+\DoxyCodeLine{92          \textcolor{keywordflow}{break};}
+\DoxyCodeLine{93       \}}
+\DoxyCodeLine{94 }
+\DoxyCodeLine{95       \textcolor{comment}{/* All subsequent HMAC data T(N) DOES include the previous hash value */}}
+\DoxyCodeLine{96       \mbox{\hyperlink{tomcrypt__cfg_8h_a7691dd48d60d5fc6daf2fa7ec4c55e12}{XMEMCPY}}(T, out + hashsize * (\mbox{\hyperlink{sober128__stream_8c_a0240ac851181b84ac374872dc5434ee4}{N}}-1), hashsize);}
+\DoxyCodeLine{97       \textcolor{keywordflow}{if} (\mbox{\hyperlink{sober128__stream_8c_a0240ac851181b84ac374872dc5434ee4}{N}} == 1) \{}
+\DoxyCodeLine{98          dat = T;}
+\DoxyCodeLine{99          datlen = Tlen;}
+\DoxyCodeLine{100       \}}
+\DoxyCodeLine{101    \}}
+\DoxyCodeLine{102    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(T, Tlen);}
+\DoxyCodeLine{103    \mbox{\hyperlink{tomcrypt__cfg_8h_a260d66fc0690e0502cf3bfe7b5244b75}{XFREE}}(T);}
+\DoxyCodeLine{104    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{105 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+A\+RG, C\+R\+Y\+P\+T\+\_\+\+M\+EM, C\+R\+Y\+P\+T\+\_\+\+OK, hash\+\_\+descriptor, hash\+\_\+is\+\_\+valid(), ltc\+\_\+hash\+\_\+descriptor\+::hashsize, hmac\+\_\+memory(), L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, M\+IN, N, X\+F\+R\+E\+E(), X\+M\+A\+L\+L\+O\+C(), X\+M\+E\+M\+C\+P\+Y(), and zeromem().
+
+
+
+Referenced by hkdf().
+
+Here is the call graph for this function\+:
+% FIG 3
+Here is the caller graph for this function\+:
+% FIG 4
+\mbox{\Hypertarget{hkdf_8c_a6af77e2823d3b6e691098963b07ea26a}\label{hkdf_8c_a6af77e2823d3b6e691098963b07ea26a}} 
+\index{hkdf.c@{hkdf.c}!hkdf\_extract@{hkdf\_extract}}
+\index{hkdf\_extract@{hkdf\_extract}!hkdf.c@{hkdf.c}}
+\subsubsection{\texorpdfstring{hkdf\_extract()}{hkdf\_extract()}}
+{\footnotesize\ttfamily int hkdf\+\_\+extract (\begin{DoxyParamCaption}\item[{int}]{hash\+\_\+idx,  }\item[{const unsigned char $\ast$}]{salt,  }\item[{unsigned long}]{saltlen,  }\item[{const unsigned char $\ast$}]{in,  }\item[{unsigned long}]{inlen,  }\item[{unsigned char $\ast$}]{out,  }\item[{unsigned long $\ast$}]{outlen }\end{DoxyParamCaption})}
+
+
+
+Definition at line 19 of file hkdf.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{22 \{}
+\DoxyCodeLine{23    \textcolor{comment}{/* libtomcrypt chokes on a zero length HMAC key, so we need to check for}}
+\DoxyCodeLine{24 \textcolor{comment}{      that.  HMAC specifies that keys shorter than the hash's blocksize are}}
+\DoxyCodeLine{25 \textcolor{comment}{      0 padded to the block size.  HKDF specifies that a NULL salt is to be}}
+\DoxyCodeLine{26 \textcolor{comment}{      substituted with a salt comprised of hashLen 0 bytes.  HMAC's padding}}
+\DoxyCodeLine{27 \textcolor{comment}{      means that in either case the HMAC is actually using a blocksize long}}
+\DoxyCodeLine{28 \textcolor{comment}{      zero filled key.  Unless blocksize < hashLen (which wouldn't make any}}
+\DoxyCodeLine{29 \textcolor{comment}{      sense), we can use a single 0 byte as the HMAC key and still generate}}
+\DoxyCodeLine{30 \textcolor{comment}{      valid results for HKDF. */}}
+\DoxyCodeLine{31    \textcolor{keywordflow}{if} (salt == NULL || saltlen == 0) \{}
+\DoxyCodeLine{32       \textcolor{keywordflow}{return} \mbox{\hyperlink{hmac__memory_8c_a6bf2dff4537e6332dec46266a9db7580}{hmac\_memory}}(hash\_idx, (\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *)\textcolor{stringliteral}{""},   1,       in, inlen, out, outlen);}
+\DoxyCodeLine{33    \}}
+\DoxyCodeLine{34    \textcolor{keywordflow}{return} \mbox{\hyperlink{hmac__memory_8c_a6bf2dff4537e6332dec46266a9db7580}{hmac\_memory}}(hash\_idx, salt, saltlen, in, inlen, out, outlen);}
+\DoxyCodeLine{35 \}}
+
+\end{DoxyCode}
+
+
+References hmac\+\_\+memory().
+
+
+
+Referenced by hkdf().
+
+Here is the call graph for this function\+:
+% FIG 5
+Here is the caller graph for this function\+:
+% FIG 6

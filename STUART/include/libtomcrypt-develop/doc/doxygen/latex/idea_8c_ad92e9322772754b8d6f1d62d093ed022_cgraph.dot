@@ -1,0 +1,32 @@
+digraph "idea_test"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node43 [label="idea_test",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node43 -> Node44 [color="midnightblue",fontsize="10",style="solid"];
+  Node44 [label="compare_testvector",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__misc_8h.html#a7764a7f27897c6182335752df00b5f8e",tooltip="Compare two test-vectors."];
+  Node44 -> Node45 [color="midnightblue",fontsize="10",style="solid"];
+  Node45 [label="XMEMCMP",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cfg_8h.html#a372b974ec0ac07abcd55297554fe540f",tooltip=" "];
+  Node43 -> Node46 [color="midnightblue",fontsize="10",style="solid"];
+  Node46 [label="idea_ecb_decrypt",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$idea_8c.html#add641467cf266ad9baf4869eb2c9aa5c",tooltip=" "];
+  Node46 -> Node47 [color="midnightblue",fontsize="10",style="solid"];
+  Node47 [label="_process_block",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$idea_8c.html#a2bb6c83939cff2c1fd802a5d2f5c1d97",tooltip=" "];
+  Node46 -> Node48 [color="midnightblue",fontsize="10",style="solid"];
+  Node48 [label="burn_stack",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__misc_8h.html#aea4187c8bba7b6cd9a358041089680ac",tooltip="Burn some stack memory."];
+  Node48 -> Node49 [color="midnightblue",fontsize="10",style="solid"];
+  Node49 [label="zeromem",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__misc_8h.html#a63b6e188713790263bfd3612fe8b398f",tooltip="Zero a block of memory."];
+  Node43 -> Node50 [color="midnightblue",fontsize="10",style="solid"];
+  Node50 [label="idea_ecb_encrypt",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$idea_8c.html#aa107ed890451e182e4b97a8316227f03",tooltip=" "];
+  Node50 -> Node47 [color="midnightblue",fontsize="10",style="solid"];
+  Node50 -> Node48 [color="midnightblue",fontsize="10",style="solid"];
+  Node43 -> Node51 [color="midnightblue",fontsize="10",style="solid"];
+  Node51 [label="idea_setup",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$idea_8c.html#a86bb338185b8878c1d1d9981d0673cd2",tooltip=" "];
+  Node51 -> Node52 [color="midnightblue",fontsize="10",style="solid"];
+  Node52 [label="_setup_key",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$idea_8c.html#a774d69e04dcfc0def5903f910e74433e",tooltip=" "];
+  Node52 -> Node53 [color="midnightblue",fontsize="10",style="solid"];
+  Node53 [label="_add_inv",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$idea_8c.html#a2283ef6e27b0fb7d3263facf2a19e450",tooltip=" "];
+  Node52 -> Node54 [color="midnightblue",fontsize="10",style="solid"];
+  Node54 [label="_mul_inv",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$idea_8c.html#a8a41a9e690afb81c7e094ceb74f29c89",tooltip=" "];
+}

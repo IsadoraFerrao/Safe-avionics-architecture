@@ -1,0 +1,75 @@
+\hypertarget{der__length__utctime_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/pk/asn1/der/utctime/der\+\_\+length\+\_\+utctime.c File Reference}
+\label{der__length__utctime_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/asn1/der/utctime/der\_length\_utctime.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/asn1/der/utctime/der\_length\_utctime.c}}
+
+
+A\+S\+N.\+1 D\+ER, get length of Generalized\+Time, Steffen Jaeckel Based on der\+\_\+length\+\_\+utctime.\+c.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for der\+\_\+length\+\_\+utctime.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{der__length__utctime_8c_a666e7656df6985a9eb25794b878ec4e7}{der\+\_\+length\+\_\+utctime}} (const ltc\+\_\+utctime $\ast$utctime, unsigned long $\ast$outlen)
+\begin{DoxyCompactList}\small\item\em Gets length of D\+ER encoding of U\+T\+C\+T\+I\+ME. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A\+S\+N.\+1 D\+ER, get length of Generalized\+Time, Steffen Jaeckel Based on der\+\_\+length\+\_\+utctime.\+c. 
+
+A\+S\+N.\+1 D\+ER, get length of U\+T\+C\+T\+I\+ME, Tom St Denis.
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{der__length__utctime_8c_a666e7656df6985a9eb25794b878ec4e7}\label{der__length__utctime_8c_a666e7656df6985a9eb25794b878ec4e7}} 
+\index{der\_length\_utctime.c@{der\_length\_utctime.c}!der\_length\_utctime@{der\_length\_utctime}}
+\index{der\_length\_utctime@{der\_length\_utctime}!der\_length\_utctime.c@{der\_length\_utctime.c}}
+\subsubsection{\texorpdfstring{der\_length\_utctime()}{der\_length\_utctime()}}
+{\footnotesize\ttfamily int der\+\_\+length\+\_\+utctime (\begin{DoxyParamCaption}\item[{const ltc\+\_\+utctime $\ast$}]{utctime,  }\item[{unsigned long $\ast$}]{outlen }\end{DoxyParamCaption})}
+
+
+
+Gets length of D\+ER encoding of U\+T\+C\+T\+I\+ME. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em utctime} & The U\+TC time structure to get the size of \\
+\hline
+{\em outlen} & \mbox{[}out\mbox{]} The length of the D\+ER encoding \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 24 of file der\+\_\+length\+\_\+utctime.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{25 \{}
+\DoxyCodeLine{26    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(outlen  != NULL);}
+\DoxyCodeLine{27    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(utctime != NULL);}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29    \textcolor{keywordflow}{if} (utctime->off\_hh == 0 \&\& utctime->off\_mm == 0) \{}
+\DoxyCodeLine{30       \textcolor{comment}{/* we encode as YYMMDDhhmmssZ */}}
+\DoxyCodeLine{31       *outlen = 2 + 13;}
+\DoxyCodeLine{32    \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{33       \textcolor{comment}{/* we encode as YYMMDDhhmmss\{+|-\}hh'mm' */}}
+\DoxyCodeLine{34       *outlen = 2 + 17;}
+\DoxyCodeLine{35    \}}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{38 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+
+
+Referenced by der\+\_\+decode\+\_\+sequence\+\_\+flexi(), der\+\_\+encode\+\_\+utctime(), der\+\_\+length\+\_\+custom\+\_\+type(), and der\+\_\+length\+\_\+sequence\+\_\+ex().
+
+Here is the caller graph for this function\+:
+% FIG 1

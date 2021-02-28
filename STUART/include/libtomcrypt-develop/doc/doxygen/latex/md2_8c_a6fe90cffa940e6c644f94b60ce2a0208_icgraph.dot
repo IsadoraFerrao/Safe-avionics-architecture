@@ -1,0 +1,10 @@
+digraph "md2_init"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node14 [label="md2_init",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Initialize the hash state."];
+  Node14 -> Node15 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node15 [label="md2_test",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$md2_8c.html#a19f63336fd915d311a395eec0426a46b",tooltip="Self-test the hash."];
+}

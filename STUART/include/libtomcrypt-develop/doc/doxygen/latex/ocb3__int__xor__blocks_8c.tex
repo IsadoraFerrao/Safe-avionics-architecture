@@ -1,0 +1,67 @@
+\hypertarget{ocb3__int__xor__blocks_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/encauth/ocb3/ocb3\+\_\+int\+\_\+xor\+\_\+blocks.c File Reference}
+\label{ocb3__int__xor__blocks_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/encauth/ocb3/ocb3\_int\_xor\_blocks.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/encauth/ocb3/ocb3\_int\_xor\_blocks.c}}
+
+
+O\+CB implementation, I\+N\+T\+E\+R\+N\+AL O\+N\+LY helper, by Karel Miko.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for ocb3\+\_\+int\+\_\+xor\+\_\+blocks.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{ocb3__int__xor__blocks_8c_a5bf6caa4615657cdfd8f8941620a987c}{ocb3\+\_\+int\+\_\+xor\+\_\+blocks}} (unsigned char $\ast$out, const unsigned char $\ast$block\+\_\+a, const unsigned char $\ast$block\+\_\+b, unsigned long block\+\_\+len)
+\begin{DoxyCompactList}\small\item\em Compute xor for two blocks of bytes \textquotesingle{}out = block\+\_\+a X\+OR block\+\_\+b\textquotesingle{} (internal function) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+O\+CB implementation, I\+N\+T\+E\+R\+N\+AL O\+N\+LY helper, by Karel Miko. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{ocb3__int__xor__blocks_8c_a5bf6caa4615657cdfd8f8941620a987c}\label{ocb3__int__xor__blocks_8c_a5bf6caa4615657cdfd8f8941620a987c}} 
+\index{ocb3\_int\_xor\_blocks.c@{ocb3\_int\_xor\_blocks.c}!ocb3\_int\_xor\_blocks@{ocb3\_int\_xor\_blocks}}
+\index{ocb3\_int\_xor\_blocks@{ocb3\_int\_xor\_blocks}!ocb3\_int\_xor\_blocks.c@{ocb3\_int\_xor\_blocks.c}}
+\subsubsection{\texorpdfstring{ocb3\_int\_xor\_blocks()}{ocb3\_int\_xor\_blocks()}}
+{\footnotesize\ttfamily void ocb3\+\_\+int\+\_\+xor\+\_\+blocks (\begin{DoxyParamCaption}\item[{unsigned char $\ast$}]{out,  }\item[{const unsigned char $\ast$}]{block\+\_\+a,  }\item[{const unsigned char $\ast$}]{block\+\_\+b,  }\item[{unsigned long}]{block\+\_\+len }\end{DoxyParamCaption})}
+
+
+
+Compute xor for two blocks of bytes \textquotesingle{}out = block\+\_\+a X\+OR block\+\_\+b\textquotesingle{} (internal function) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em out} & The block of bytes (output) \\
+\hline
+{\em block\+\_\+a} & The block of bytes (input) \\
+\hline
+{\em block\+\_\+b} & The block of bytes (input) \\
+\hline
+{\em block\+\_\+len} & The size of block\+\_\+a, block\+\_\+b, out \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 25 of file ocb3\+\_\+int\+\_\+xor\+\_\+blocks.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{26 \{}
+\DoxyCodeLine{27    \textcolor{keywordtype}{int} x;}
+\DoxyCodeLine{28    \textcolor{keywordflow}{if} (out == block\_a) \{}
+\DoxyCodeLine{29      \textcolor{keywordflow}{for} (x = 0; x < (int)block\_len; x++) out[x] \string^= block\_b[x];}
+\DoxyCodeLine{30    \}}
+\DoxyCodeLine{31    \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{32      \textcolor{keywordflow}{for} (x = 0; x < (int)block\_len; x++) out[x] = block\_a[x] \string^ block\_b[x];}
+\DoxyCodeLine{33    \}}
+\DoxyCodeLine{34 \}}
+
+\end{DoxyCode}
+
+
+Referenced by \+\_\+ocb3\+\_\+int\+\_\+aad\+\_\+add\+\_\+block(), ocb3\+\_\+decrypt(), ocb3\+\_\+decrypt\+\_\+last(), ocb3\+\_\+done(), ocb3\+\_\+encrypt(), ocb3\+\_\+encrypt\+\_\+last(), and ocb3\+\_\+init().
+
+Here is the caller graph for this function\+:
+% FIG 1

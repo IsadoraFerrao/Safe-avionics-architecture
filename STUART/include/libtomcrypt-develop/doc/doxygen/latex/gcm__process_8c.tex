@@ -1,0 +1,193 @@
+\hypertarget{gcm__process_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/encauth/gcm/gcm\+\_\+process.c File Reference}
+\label{gcm__process_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/encauth/gcm/gcm\_process.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/encauth/gcm/gcm\_process.c}}
+
+
+G\+CM implementation, process message data, by Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for gcm\+\_\+process.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{gcm__process_8c_a9de6ff96ed00a8296355d52b9a2e1ba0}{gcm\+\_\+process}} (gcm\+\_\+state $\ast$gcm, unsigned char $\ast$pt, unsigned long ptlen, unsigned char $\ast$ct, int direction)
+\begin{DoxyCompactList}\small\item\em Process plaintext/ciphertext through G\+CM. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+G\+CM implementation, process message data, by Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{gcm__process_8c_a9de6ff96ed00a8296355d52b9a2e1ba0}\label{gcm__process_8c_a9de6ff96ed00a8296355d52b9a2e1ba0}} 
+\index{gcm\_process.c@{gcm\_process.c}!gcm\_process@{gcm\_process}}
+\index{gcm\_process@{gcm\_process}!gcm\_process.c@{gcm\_process.c}}
+\subsubsection{\texorpdfstring{gcm\_process()}{gcm\_process()}}
+{\footnotesize\ttfamily int gcm\+\_\+process (\begin{DoxyParamCaption}\item[{gcm\+\_\+state $\ast$}]{gcm,  }\item[{unsigned char $\ast$}]{pt,  }\item[{unsigned long}]{ptlen,  }\item[{unsigned char $\ast$}]{ct,  }\item[{int}]{direction }\end{DoxyParamCaption})}
+
+
+
+Process plaintext/ciphertext through G\+CM. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gcm} & The G\+CM state \\
+\hline
+{\em pt} & The plaintext \\
+\hline
+{\em ptlen} & The plaintext length (ciphertext length is the same) \\
+\hline
+{\em ct} & The ciphertext \\
+\hline
+{\em direction} & Encrypt or Decrypt mode (G\+C\+M\+\_\+\+E\+N\+C\+R\+Y\+PT or G\+C\+M\+\_\+\+D\+E\+C\+R\+Y\+PT) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK on success 
+\end{DoxyReturn}
+
+
+Definition at line 27 of file gcm\+\_\+process.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{31 \{}
+\DoxyCodeLine{32    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} x;}
+\DoxyCodeLine{33    \textcolor{keywordtype}{int}           y, err;}
+\DoxyCodeLine{34    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} b;}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(gcm != NULL);}
+\DoxyCodeLine{37    \textcolor{keywordflow}{if} (ptlen > 0) \{}
+\DoxyCodeLine{38       \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(pt  != NULL);}
+\DoxyCodeLine{39       \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(ct  != NULL);}
+\DoxyCodeLine{40    \}}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{42    \textcolor{keywordflow}{if} (gcm->buflen > 16 || gcm->buflen < 0) \{}
+\DoxyCodeLine{43       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{44    \}}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_ac30eb68934c4ca07205344dc9d159221}{cipher\_is\_valid}}(gcm->cipher)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{47       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{48    \}}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{50    \textcolor{comment}{/* 0xFFFFFFFE0 = ((2\string^39)-256)/8 */}}
+\DoxyCodeLine{51    \textcolor{keywordflow}{if} (gcm->pttotlen / 8 + (\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}})gcm->buflen + (\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}})ptlen >= \mbox{\hyperlink{tomcrypt__cfg_8h_a7d8e211582dff82d00fc171834e3dc67}{CONST64}}(0xFFFFFFFE0)) \{}
+\DoxyCodeLine{52       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{53    \}}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55    \textcolor{keywordflow}{if} (gcm->mode == LTC\_GCM\_MODE\_IV) \{}
+\DoxyCodeLine{56       \textcolor{comment}{/* let's process the IV */}}
+\DoxyCodeLine{57       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{gcm__add__aad_8c_ab9e6297b575f465e9fac3846f22a2bbd}{gcm\_add\_aad}}(gcm, NULL, 0)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{58    \}}
+\DoxyCodeLine{59 }
+\DoxyCodeLine{60    \textcolor{comment}{/* in AAD mode? */}}
+\DoxyCodeLine{61    \textcolor{keywordflow}{if} (gcm->mode == LTC\_GCM\_MODE\_AAD) \{}
+\DoxyCodeLine{62       \textcolor{comment}{/* let's process the AAD */}}
+\DoxyCodeLine{63       \textcolor{keywordflow}{if} (gcm->buflen) \{}
+\DoxyCodeLine{64          gcm->totlen += gcm->buflen * \mbox{\hyperlink{tomcrypt__cfg_8h_a7d8e211582dff82d00fc171834e3dc67}{CONST64}}(8);}
+\DoxyCodeLine{65          \mbox{\hyperlink{gcm__mult__h_8c_a198e51a3d6b56455cc781d140ebd6f6d}{gcm\_mult\_h}}(gcm, gcm->X);}
+\DoxyCodeLine{66       \}}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{68       \textcolor{comment}{/* increment counter */}}
+\DoxyCodeLine{69       \textcolor{keywordflow}{for} (y = 15; y >= 12; y--) \{}
+\DoxyCodeLine{70           \textcolor{keywordflow}{if} (++gcm->Y[y] \& 255) \{ \textcolor{keywordflow}{break}; \}}
+\DoxyCodeLine{71       \}}
+\DoxyCodeLine{72       \textcolor{comment}{/* encrypt the counter */}}
+\DoxyCodeLine{73       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[gcm->cipher].\mbox{\hyperlink{structltc__cipher__descriptor_a46141d86abe22a7c8d382c62a894dd63}{ecb\_encrypt}}(gcm->Y, gcm->buf, \&gcm->K)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{74          \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{75       \}}
+\DoxyCodeLine{76 }
+\DoxyCodeLine{77       gcm->buflen = 0;}
+\DoxyCodeLine{78       gcm->mode   = LTC\_GCM\_MODE\_TEXT;}
+\DoxyCodeLine{79    \}}
+\DoxyCodeLine{80 }
+\DoxyCodeLine{81    \textcolor{keywordflow}{if} (gcm->mode != LTC\_GCM\_MODE\_TEXT) \{}
+\DoxyCodeLine{82       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{83    \}}
+\DoxyCodeLine{84 }
+\DoxyCodeLine{85    x = 0;}
+\DoxyCodeLine{86 \textcolor{preprocessor}{\#ifdef LTC\_FAST}}
+\DoxyCodeLine{87    \textcolor{keywordflow}{if} (gcm->buflen == 0) \{}
+\DoxyCodeLine{88       \textcolor{keywordflow}{if} (direction == GCM\_ENCRYPT) \{}
+\DoxyCodeLine{89          \textcolor{keywordflow}{for} (x = 0; x < (ptlen \& ~15); x += 16) \{}
+\DoxyCodeLine{90              \textcolor{comment}{/* ctr encrypt */}}
+\DoxyCodeLine{91              \textcolor{keywordflow}{for} (y = 0; y < 16; y += \textcolor{keyword}{sizeof}(LTC\_FAST\_TYPE)) \{}
+\DoxyCodeLine{92                  *(LTC\_FAST\_TYPE\_PTR\_CAST(\&ct[x + y])) = *(LTC\_FAST\_TYPE\_PTR\_CAST(\&pt[x+y])) \string^ *(LTC\_FAST\_TYPE\_PTR\_CAST(\&gcm->buf[y]));}
+\DoxyCodeLine{93                  *(LTC\_FAST\_TYPE\_PTR\_CAST(\&gcm->X[y])) \string^= *(LTC\_FAST\_TYPE\_PTR\_CAST(\&ct[x+y]));}
+\DoxyCodeLine{94              \}}
+\DoxyCodeLine{95              \textcolor{comment}{/* GMAC it */}}
+\DoxyCodeLine{96              gcm->pttotlen += 128;}
+\DoxyCodeLine{97              \mbox{\hyperlink{gcm__mult__h_8c_a198e51a3d6b56455cc781d140ebd6f6d}{gcm\_mult\_h}}(gcm, gcm->X);}
+\DoxyCodeLine{98              \textcolor{comment}{/* increment counter */}}
+\DoxyCodeLine{99              \textcolor{keywordflow}{for} (y = 15; y >= 12; y--) \{}
+\DoxyCodeLine{100                  \textcolor{keywordflow}{if} (++gcm->Y[y] \& 255) \{ \textcolor{keywordflow}{break}; \}}
+\DoxyCodeLine{101              \}}
+\DoxyCodeLine{102              \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[gcm->cipher].\mbox{\hyperlink{structltc__cipher__descriptor_a46141d86abe22a7c8d382c62a894dd63}{ecb\_encrypt}}(gcm->Y, gcm->buf, \&gcm->K)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{103                 \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{104              \}}
+\DoxyCodeLine{105          \}}
+\DoxyCodeLine{106       \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{107          \textcolor{keywordflow}{for} (x = 0; x < (ptlen \& ~15); x += 16) \{}
+\DoxyCodeLine{108              \textcolor{comment}{/* ctr encrypt */}}
+\DoxyCodeLine{109              \textcolor{keywordflow}{for} (y = 0; y < 16; y += \textcolor{keyword}{sizeof}(LTC\_FAST\_TYPE)) \{}
+\DoxyCodeLine{110                  *(LTC\_FAST\_TYPE\_PTR\_CAST(\&gcm->X[y])) \string^= *(LTC\_FAST\_TYPE\_PTR\_CAST(\&ct[x+y]));}
+\DoxyCodeLine{111                  *(LTC\_FAST\_TYPE\_PTR\_CAST(\&pt[x + y])) = *(LTC\_FAST\_TYPE\_PTR\_CAST(\&ct[x+y])) \string^ *(LTC\_FAST\_TYPE\_PTR\_CAST(\&gcm->buf[y]));}
+\DoxyCodeLine{112              \}}
+\DoxyCodeLine{113              \textcolor{comment}{/* GMAC it */}}
+\DoxyCodeLine{114              gcm->pttotlen += 128;}
+\DoxyCodeLine{115              \mbox{\hyperlink{gcm__mult__h_8c_a198e51a3d6b56455cc781d140ebd6f6d}{gcm\_mult\_h}}(gcm, gcm->X);}
+\DoxyCodeLine{116              \textcolor{comment}{/* increment counter */}}
+\DoxyCodeLine{117              \textcolor{keywordflow}{for} (y = 15; y >= 12; y--) \{}
+\DoxyCodeLine{118                  \textcolor{keywordflow}{if} (++gcm->Y[y] \& 255) \{ \textcolor{keywordflow}{break}; \}}
+\DoxyCodeLine{119              \}}
+\DoxyCodeLine{120              \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[gcm->cipher].\mbox{\hyperlink{structltc__cipher__descriptor_a46141d86abe22a7c8d382c62a894dd63}{ecb\_encrypt}}(gcm->Y, gcm->buf, \&gcm->K)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{121                 \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{122              \}}
+\DoxyCodeLine{123          \}}
+\DoxyCodeLine{124       \}}
+\DoxyCodeLine{125    \}}
+\DoxyCodeLine{126 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{127 }
+\DoxyCodeLine{128    \textcolor{comment}{/* process text */}}
+\DoxyCodeLine{129    \textcolor{keywordflow}{for} (; x < ptlen; x++) \{}
+\DoxyCodeLine{130        \textcolor{keywordflow}{if} (gcm->buflen == 16) \{}
+\DoxyCodeLine{131           gcm->pttotlen += 128;}
+\DoxyCodeLine{132           \mbox{\hyperlink{gcm__mult__h_8c_a198e51a3d6b56455cc781d140ebd6f6d}{gcm\_mult\_h}}(gcm, gcm->X);}
+\DoxyCodeLine{133 }
+\DoxyCodeLine{134           \textcolor{comment}{/* increment counter */}}
+\DoxyCodeLine{135           \textcolor{keywordflow}{for} (y = 15; y >= 12; y--) \{}
+\DoxyCodeLine{136               \textcolor{keywordflow}{if} (++gcm->Y[y] \& 255) \{ \textcolor{keywordflow}{break}; \}}
+\DoxyCodeLine{137           \}}
+\DoxyCodeLine{138           \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[gcm->cipher].\mbox{\hyperlink{structltc__cipher__descriptor_a46141d86abe22a7c8d382c62a894dd63}{ecb\_encrypt}}(gcm->Y, gcm->buf, \&gcm->K)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{139              \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{140           \}}
+\DoxyCodeLine{141           gcm->buflen = 0;}
+\DoxyCodeLine{142        \}}
+\DoxyCodeLine{143 }
+\DoxyCodeLine{144        \textcolor{keywordflow}{if} (direction == GCM\_ENCRYPT) \{}
+\DoxyCodeLine{145           b = ct[x] = pt[x] \string^ gcm->buf[gcm->buflen];}
+\DoxyCodeLine{146        \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{147           b = ct[x];}
+\DoxyCodeLine{148           pt[x] = ct[x] \string^ gcm->buf[gcm->buflen];}
+\DoxyCodeLine{149        \}}
+\DoxyCodeLine{150        gcm->X[gcm->buflen++] \string^= b;}
+\DoxyCodeLine{151    \}}
+\DoxyCodeLine{152 }
+\DoxyCodeLine{153    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{154 \}}
+
+\end{DoxyCode}
+
+
+References cipher\+\_\+descriptor, cipher\+\_\+is\+\_\+valid(), C\+O\+N\+S\+T64, C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+A\+RG, C\+R\+Y\+P\+T\+\_\+\+OK, ltc\+\_\+cipher\+\_\+descriptor\+::ecb\+\_\+encrypt, gcm\+\_\+add\+\_\+aad(), gcm\+\_\+mult\+\_\+h(), and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+
+
+Referenced by gcm\+\_\+done(), and gcm\+\_\+memory().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2

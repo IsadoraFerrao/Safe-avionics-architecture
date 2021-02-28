@@ -1,0 +1,184 @@
+\hypertarget{tomcrypt__macros_8h}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/headers/tomcrypt\+\_\+macros.h File Reference}
+\label{tomcrypt__macros_8h}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/headers/tomcrypt\_macros.h@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/headers/tomcrypt\_macros.h}}
+This graph shows which files directly or indirectly include this file\+:
+% FIG 0
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__macros_8h_ab858b2bac3f44e89df0d7fb290f32b65}{B\+S\+W\+AP}}(x)
+\item 
+\#define \mbox{\hyperlink{tomcrypt__macros_8h_a2e1da5c8810967170c889976d1fe9fa1}{R\+OL}}(x,  y)~( (((\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})(x)$<$$<$(\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})((y)\&31)) $\vert$ (((\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})(x)\&0x\+F\+F\+F\+F\+F\+F\+F\+F\+U\+L)$>$$>$(ulong32)((32-\/((y)\&31))\&31))) \& 0x\+F\+F\+F\+F\+F\+F\+F\+F\+U\+L)
+\item 
+\#define \mbox{\hyperlink{tomcrypt__macros_8h_a77e6e81d8ff86d6c17b9bd73658fb393}{R\+OR}}(x,  y)~( ((((\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})(x)\&0x\+F\+F\+F\+F\+F\+F\+F\+F\+U\+L)$>$$>$(ulong32)((y)\&31)) $\vert$ ((ulong32)(x)$<$$<$(ulong32)((32-\/((y)\&31))\&31))) \& 0x\+F\+F\+F\+F\+F\+F\+F\+F\+U\+L)
+\item 
+\#define \mbox{\hyperlink{tomcrypt__macros_8h_a39d625dc0b148466a72c13737e063d86}{R\+O\+Lc}}(x,  y)~( (((\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})(x)$<$$<$(\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})((y)\&31)) $\vert$ (((\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})(x)\&0x\+F\+F\+F\+F\+F\+F\+F\+F\+U\+L)$>$$>$(ulong32)((32-\/((y)\&31))\&31))) \& 0x\+F\+F\+F\+F\+F\+F\+F\+F\+U\+L)
+\item 
+\#define \mbox{\hyperlink{tomcrypt__macros_8h_adb04fb3f7c1736d29125ad0f179b1068}{R\+O\+Rc}}(x,  y)~( ((((\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})(x)\&0x\+F\+F\+F\+F\+F\+F\+F\+F\+U\+L)$>$$>$(ulong32)((y)\&31)) $\vert$ ((ulong32)(x)$<$$<$(ulong32)((32-\/((y)\&31))\&31))) \& 0x\+F\+F\+F\+F\+F\+F\+F\+F\+U\+L)
+\item 
+\#define \mbox{\hyperlink{tomcrypt__macros_8h_a11721d8ea2f76401b4a51abc07c09eae}{R\+O\+L64}}(x,  y)
+\item 
+\#define \mbox{\hyperlink{tomcrypt__macros_8h_a54395352f505e61474b01f454393167a}{R\+O\+R64}}(x,  y)
+\item 
+\#define \mbox{\hyperlink{tomcrypt__macros_8h_a1c394d78d382cd32f945dc552a986fba}{R\+O\+L64c}}(x,  y)
+\item 
+\#define \mbox{\hyperlink{tomcrypt__macros_8h_a140a16d966f0c47c50c62c96f44879e7}{R\+O\+R64c}}(x,  y)
+\item 
+\#define \mbox{\hyperlink{tomcrypt__macros_8h_aacc3ee1a7f283f8ef65cea31f4436a95}{M\+AX}}(x,  y)~( ((x)$>$(y))?(x)\+:(y) )
+\item 
+\#define \mbox{\hyperlink{tomcrypt__macros_8h_a74e75242132eaabbc1c512488a135926}{M\+IN}}(x,  y)~( ((x)$<$(y))?(x)\+:(y) )
+\item 
+\#define \mbox{\hyperlink{tomcrypt__macros_8h_accde4b007facd646a8327f8e64b2d1e0}{L\+T\+C\+\_\+\+U\+N\+U\+S\+E\+D\+\_\+\+P\+A\+R\+AM}}(x)~(void)(x)
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{tomcrypt__macros_8h_ab858b2bac3f44e89df0d7fb290f32b65}\label{tomcrypt__macros_8h_ab858b2bac3f44e89df0d7fb290f32b65}} 
+\index{tomcrypt\_macros.h@{tomcrypt\_macros.h}!BSWAP@{BSWAP}}
+\index{BSWAP@{BSWAP}!tomcrypt\_macros.h@{tomcrypt\_macros.h}}
+\subsubsection{\texorpdfstring{BSWAP}{BSWAP}}
+{\footnotesize\ttfamily \#define B\+S\+W\+AP(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{( ((x>>24)\&0x000000FFUL) | ((x<<24)\&0xFF000000UL)  | \(\backslash\)}
+\DoxyCodeLine{                    ((x>>8)\&0x0000FF00UL)  | ((x<<8)\&0x00FF0000UL) )}
+
+\end{DoxyCode}
+
+
+Definition at line 238 of file tomcrypt\+\_\+macros.\+h.
+
+\mbox{\Hypertarget{tomcrypt__macros_8h_accde4b007facd646a8327f8e64b2d1e0}\label{tomcrypt__macros_8h_accde4b007facd646a8327f8e64b2d1e0}} 
+\index{tomcrypt\_macros.h@{tomcrypt\_macros.h}!LTC\_UNUSED\_PARAM@{LTC\_UNUSED\_PARAM}}
+\index{LTC\_UNUSED\_PARAM@{LTC\_UNUSED\_PARAM}!tomcrypt\_macros.h@{tomcrypt\_macros.h}}
+\subsubsection{\texorpdfstring{LTC\_UNUSED\_PARAM}{LTC\_UNUSED\_PARAM}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+U\+N\+U\+S\+E\+D\+\_\+\+P\+A\+R\+AM(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~(void)(x)}
+
+
+
+Definition at line 429 of file tomcrypt\+\_\+macros.\+h.
+
+\mbox{\Hypertarget{tomcrypt__macros_8h_aacc3ee1a7f283f8ef65cea31f4436a95}\label{tomcrypt__macros_8h_aacc3ee1a7f283f8ef65cea31f4436a95}} 
+\index{tomcrypt\_macros.h@{tomcrypt\_macros.h}!MAX@{MAX}}
+\index{MAX@{MAX}!tomcrypt\_macros.h@{tomcrypt\_macros.h}}
+\subsubsection{\texorpdfstring{MAX}{MAX}}
+{\footnotesize\ttfamily \#define M\+AX(\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{y }\end{DoxyParamCaption})~( ((x)$>$(y))?(x)\+:(y) )}
+
+
+
+Definition at line 421 of file tomcrypt\+\_\+macros.\+h.
+
+\mbox{\Hypertarget{tomcrypt__macros_8h_a74e75242132eaabbc1c512488a135926}\label{tomcrypt__macros_8h_a74e75242132eaabbc1c512488a135926}} 
+\index{tomcrypt\_macros.h@{tomcrypt\_macros.h}!MIN@{MIN}}
+\index{MIN@{MIN}!tomcrypt\_macros.h@{tomcrypt\_macros.h}}
+\subsubsection{\texorpdfstring{MIN}{MIN}}
+{\footnotesize\ttfamily \#define M\+IN(\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{y }\end{DoxyParamCaption})~( ((x)$<$(y))?(x)\+:(y) )}
+
+
+
+Definition at line 425 of file tomcrypt\+\_\+macros.\+h.
+
+\mbox{\Hypertarget{tomcrypt__macros_8h_a2e1da5c8810967170c889976d1fe9fa1}\label{tomcrypt__macros_8h_a2e1da5c8810967170c889976d1fe9fa1}} 
+\index{tomcrypt\_macros.h@{tomcrypt\_macros.h}!ROL@{ROL}}
+\index{ROL@{ROL}!tomcrypt\_macros.h@{tomcrypt\_macros.h}}
+\subsubsection{\texorpdfstring{ROL}{ROL}}
+{\footnotesize\ttfamily \#define R\+OL(\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{y }\end{DoxyParamCaption})~( (((\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})(x)$<$$<$(\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})((y)\&31)) $\vert$ (((\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})(x)\&0x\+F\+F\+F\+F\+F\+F\+F\+F\+U\+L)$>$$>$(ulong32)((32-\/((y)\&31))\&31))) \& 0x\+F\+F\+F\+F\+F\+F\+F\+F\+U\+L)}
+
+
+
+Definition at line 347 of file tomcrypt\+\_\+macros.\+h.
+
+\mbox{\Hypertarget{tomcrypt__macros_8h_a11721d8ea2f76401b4a51abc07c09eae}\label{tomcrypt__macros_8h_a11721d8ea2f76401b4a51abc07c09eae}} 
+\index{tomcrypt\_macros.h@{tomcrypt\_macros.h}!ROL64@{ROL64}}
+\index{ROL64@{ROL64}!tomcrypt\_macros.h@{tomcrypt\_macros.h}}
+\subsubsection{\texorpdfstring{ROL64}{ROL64}}
+{\footnotesize\ttfamily \#define R\+O\+L64(\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{y }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{( (((x)<<((\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}})(y)\&63)) | \(\backslash\)}
+\DoxyCodeLine{      (((x)\&\mbox{\hyperlink{tomcrypt__cfg_8h_a7d8e211582dff82d00fc171834e3dc67}{CONST64}}(0xFFFFFFFFFFFFFFFF))>>(((\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}})64-((y)\&63))\&63))) \& \mbox{\hyperlink{tomcrypt__cfg_8h_a7d8e211582dff82d00fc171834e3dc67}{CONST64}}(0xFFFFFFFFFFFFFFFF))}
+
+\end{DoxyCode}
+
+
+Definition at line 402 of file tomcrypt\+\_\+macros.\+h.
+
+\mbox{\Hypertarget{tomcrypt__macros_8h_a1c394d78d382cd32f945dc552a986fba}\label{tomcrypt__macros_8h_a1c394d78d382cd32f945dc552a986fba}} 
+\index{tomcrypt\_macros.h@{tomcrypt\_macros.h}!ROL64c@{ROL64c}}
+\index{ROL64c@{ROL64c}!tomcrypt\_macros.h@{tomcrypt\_macros.h}}
+\subsubsection{\texorpdfstring{ROL64c}{ROL64c}}
+{\footnotesize\ttfamily \#define R\+O\+L64c(\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{y }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{( (((x)<<((\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}})(y)\&63)) | \(\backslash\)}
+\DoxyCodeLine{      (((x)\&\mbox{\hyperlink{tomcrypt__cfg_8h_a7d8e211582dff82d00fc171834e3dc67}{CONST64}}(0xFFFFFFFFFFFFFFFF))>>(((\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}})64-((y)\&63))\&63))) \& \mbox{\hyperlink{tomcrypt__cfg_8h_a7d8e211582dff82d00fc171834e3dc67}{CONST64}}(0xFFFFFFFFFFFFFFFF))}
+
+\end{DoxyCode}
+
+
+Definition at line 410 of file tomcrypt\+\_\+macros.\+h.
+
+\mbox{\Hypertarget{tomcrypt__macros_8h_a39d625dc0b148466a72c13737e063d86}\label{tomcrypt__macros_8h_a39d625dc0b148466a72c13737e063d86}} 
+\index{tomcrypt\_macros.h@{tomcrypt\_macros.h}!ROLc@{ROLc}}
+\index{ROLc@{ROLc}!tomcrypt\_macros.h@{tomcrypt\_macros.h}}
+\subsubsection{\texorpdfstring{ROLc}{ROLc}}
+{\footnotesize\ttfamily \#define R\+O\+Lc(\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{y }\end{DoxyParamCaption})~( (((\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})(x)$<$$<$(\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})((y)\&31)) $\vert$ (((\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})(x)\&0x\+F\+F\+F\+F\+F\+F\+F\+F\+U\+L)$>$$>$(ulong32)((32-\/((y)\&31))\&31))) \& 0x\+F\+F\+F\+F\+F\+F\+F\+F\+U\+L)}
+
+
+
+Definition at line 349 of file tomcrypt\+\_\+macros.\+h.
+
+\mbox{\Hypertarget{tomcrypt__macros_8h_a77e6e81d8ff86d6c17b9bd73658fb393}\label{tomcrypt__macros_8h_a77e6e81d8ff86d6c17b9bd73658fb393}} 
+\index{tomcrypt\_macros.h@{tomcrypt\_macros.h}!ROR@{ROR}}
+\index{ROR@{ROR}!tomcrypt\_macros.h@{tomcrypt\_macros.h}}
+\subsubsection{\texorpdfstring{ROR}{ROR}}
+{\footnotesize\ttfamily \#define R\+OR(\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{y }\end{DoxyParamCaption})~( ((((\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})(x)\&0x\+F\+F\+F\+F\+F\+F\+F\+F\+U\+L)$>$$>$(ulong32)((y)\&31)) $\vert$ ((ulong32)(x)$<$$<$(ulong32)((32-\/((y)\&31))\&31))) \& 0x\+F\+F\+F\+F\+F\+F\+F\+F\+U\+L)}
+
+
+
+Definition at line 348 of file tomcrypt\+\_\+macros.\+h.
+
+\mbox{\Hypertarget{tomcrypt__macros_8h_a54395352f505e61474b01f454393167a}\label{tomcrypt__macros_8h_a54395352f505e61474b01f454393167a}} 
+\index{tomcrypt\_macros.h@{tomcrypt\_macros.h}!ROR64@{ROR64}}
+\index{ROR64@{ROR64}!tomcrypt\_macros.h@{tomcrypt\_macros.h}}
+\subsubsection{\texorpdfstring{ROR64}{ROR64}}
+{\footnotesize\ttfamily \#define R\+O\+R64(\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{y }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{( ((((x)\&\mbox{\hyperlink{tomcrypt__cfg_8h_a7d8e211582dff82d00fc171834e3dc67}{CONST64}}(0xFFFFFFFFFFFFFFFF))>>((\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}})(y)\&\mbox{\hyperlink{tomcrypt__cfg_8h_a7d8e211582dff82d00fc171834e3dc67}{CONST64}}(63))) | \(\backslash\)}
+\DoxyCodeLine{      ((x)<<(((\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}})64-((y)\&63))\&63))) \& \mbox{\hyperlink{tomcrypt__cfg_8h_a7d8e211582dff82d00fc171834e3dc67}{CONST64}}(0xFFFFFFFFFFFFFFFF))}
+
+\end{DoxyCode}
+
+
+Definition at line 406 of file tomcrypt\+\_\+macros.\+h.
+
+\mbox{\Hypertarget{tomcrypt__macros_8h_a140a16d966f0c47c50c62c96f44879e7}\label{tomcrypt__macros_8h_a140a16d966f0c47c50c62c96f44879e7}} 
+\index{tomcrypt\_macros.h@{tomcrypt\_macros.h}!ROR64c@{ROR64c}}
+\index{ROR64c@{ROR64c}!tomcrypt\_macros.h@{tomcrypt\_macros.h}}
+\subsubsection{\texorpdfstring{ROR64c}{ROR64c}}
+{\footnotesize\ttfamily \#define R\+O\+R64c(\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{y }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{( ((((x)\&\mbox{\hyperlink{tomcrypt__cfg_8h_a7d8e211582dff82d00fc171834e3dc67}{CONST64}}(0xFFFFFFFFFFFFFFFF))>>((\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}})(y)\&\mbox{\hyperlink{tomcrypt__cfg_8h_a7d8e211582dff82d00fc171834e3dc67}{CONST64}}(63))) | \(\backslash\)}
+\DoxyCodeLine{      ((x)<<(((\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}})64-((y)\&63))\&63))) \& \mbox{\hyperlink{tomcrypt__cfg_8h_a7d8e211582dff82d00fc171834e3dc67}{CONST64}}(0xFFFFFFFFFFFFFFFF))}
+
+\end{DoxyCode}
+
+
+Definition at line 414 of file tomcrypt\+\_\+macros.\+h.
+
+\mbox{\Hypertarget{tomcrypt__macros_8h_adb04fb3f7c1736d29125ad0f179b1068}\label{tomcrypt__macros_8h_adb04fb3f7c1736d29125ad0f179b1068}} 
+\index{tomcrypt\_macros.h@{tomcrypt\_macros.h}!RORc@{RORc}}
+\index{RORc@{RORc}!tomcrypt\_macros.h@{tomcrypt\_macros.h}}
+\subsubsection{\texorpdfstring{RORc}{RORc}}
+{\footnotesize\ttfamily \#define R\+O\+Rc(\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{y }\end{DoxyParamCaption})~( ((((\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})(x)\&0x\+F\+F\+F\+F\+F\+F\+F\+F\+U\+L)$>$$>$(ulong32)((y)\&31)) $\vert$ ((ulong32)(x)$<$$<$(ulong32)((32-\/((y)\&31))\&31))) \& 0x\+F\+F\+F\+F\+F\+F\+F\+F\+U\+L)}
+
+
+
+Definition at line 350 of file tomcrypt\+\_\+macros.\+h.
+

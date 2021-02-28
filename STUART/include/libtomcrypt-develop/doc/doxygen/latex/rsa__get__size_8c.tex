@@ -1,0 +1,70 @@
+\hypertarget{rsa__get__size_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/pk/rsa/rsa\+\_\+get\+\_\+size.c File Reference}
+\label{rsa__get__size_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/rsa/rsa\_get\_size.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/rsa/rsa\_get\_size.c}}
+
+
+Retrieve the size of an R\+SA key, Steffen Jaeckel.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for rsa\+\_\+get\+\_\+size.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{rsa__get__size_8c_ad7ad738cc78bfcec9377fd3373bd4c13}{rsa\+\_\+get\+\_\+size}} (const \mbox{\hyperlink{tomcrypt__math_8h_a99eca413acdcc914993162bd18cba437}{rsa\+\_\+key}} $\ast$key)
+\begin{DoxyCompactList}\small\item\em Retrieve the size in bytes of an R\+SA key. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Retrieve the size of an R\+SA key, Steffen Jaeckel. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{rsa__get__size_8c_ad7ad738cc78bfcec9377fd3373bd4c13}\label{rsa__get__size_8c_ad7ad738cc78bfcec9377fd3373bd4c13}} 
+\index{rsa\_get\_size.c@{rsa\_get\_size.c}!rsa\_get\_size@{rsa\_get\_size}}
+\index{rsa\_get\_size@{rsa\_get\_size}!rsa\_get\_size.c@{rsa\_get\_size.c}}
+\subsubsection{\texorpdfstring{rsa\_get\_size()}{rsa\_get\_size()}}
+{\footnotesize\ttfamily int rsa\+\_\+get\+\_\+size (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{tomcrypt__math_8h_a99eca413acdcc914993162bd18cba437}{rsa\+\_\+key}} $\ast$}]{key }\end{DoxyParamCaption})}
+
+
+
+Retrieve the size in bytes of an R\+SA key. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The R\+SA key \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The size in bytes of the R\+SA key or I\+N\+T\+\_\+\+M\+AX on error. 
+\end{DoxyReturn}
+
+
+Definition at line 23 of file rsa\+\_\+get\+\_\+size.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{24 \{}
+\DoxyCodeLine{25   \textcolor{keywordtype}{int} ret = INT\_MAX;}
+\DoxyCodeLine{26   \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(key != NULL);}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28   \textcolor{keywordflow}{if} (key)}
+\DoxyCodeLine{29   \{}
+\DoxyCodeLine{30     ret = \mbox{\hyperlink{tomcrypt__private_8h_ad301148bb24f43a8c7003a6976dfaa5a}{mp\_unsigned\_bin\_size}}(key->N);}
+\DoxyCodeLine{31   \} \textcolor{comment}{/* if */}}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33   \textcolor{keywordflow}{return} ret;}
+\DoxyCodeLine{34 \}}
+
+\end{DoxyCode}
+
+
+References L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, and mp\+\_\+unsigned\+\_\+bin\+\_\+size.
+
+
+
+Referenced by rsa\+\_\+sign\+\_\+saltlen\+\_\+get\+\_\+max\+\_\+ex().
+
+Here is the caller graph for this function\+:
+% FIG 1

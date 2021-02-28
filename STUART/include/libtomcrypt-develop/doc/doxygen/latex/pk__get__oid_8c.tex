@@ -1,0 +1,85 @@
+\hypertarget{pk__get__oid_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/pk/asn1/oid/pk\+\_\+get\+\_\+oid.c File Reference}
+\label{pk__get__oid_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/asn1/oid/pk\_get\_oid.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/asn1/oid/pk\_get\_oid.c}}
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for pk\+\_\+get\+\_\+oid.\+c\+:
+% FIG 0
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structoid__table__entry}{oid\+\_\+table\+\_\+entry}}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{pk__get__oid_8c_acff5b3d0c6e1145e07d1a3ff53fadce5}{pk\+\_\+get\+\_\+oid}} (enum \mbox{\hyperlink{tomcrypt__private_8h_a981c610adcaa77d61adb80dde41a044b}{ltc\+\_\+oid\+\_\+id}} id, const char $\ast$$\ast$st)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static const \mbox{\hyperlink{structoid__table__entry}{oid\+\_\+table\+\_\+entry}} \mbox{\hyperlink{pk__get__oid_8c_aa1b71c293ec0a64799ecb075399a82bd}{pka\+\_\+oids}} \mbox{[}$\,$\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{pk__get__oid_8c_acff5b3d0c6e1145e07d1a3ff53fadce5}\label{pk__get__oid_8c_acff5b3d0c6e1145e07d1a3ff53fadce5}} 
+\index{pk\_get\_oid.c@{pk\_get\_oid.c}!pk\_get\_oid@{pk\_get\_oid}}
+\index{pk\_get\_oid@{pk\_get\_oid}!pk\_get\_oid.c@{pk\_get\_oid.c}}
+\subsubsection{\texorpdfstring{pk\_get\_oid()}{pk\_get\_oid()}}
+{\footnotesize\ttfamily int pk\+\_\+get\+\_\+oid (\begin{DoxyParamCaption}\item[{enum \mbox{\hyperlink{tomcrypt__private_8h_a981c610adcaa77d61adb80dde41a044b}{ltc\+\_\+oid\+\_\+id}}}]{id,  }\item[{const char $\ast$$\ast$}]{st }\end{DoxyParamCaption})}
+
+
+
+Definition at line 29 of file pk\+\_\+get\+\_\+oid.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{30 \{}
+\DoxyCodeLine{31    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} i;}
+\DoxyCodeLine{32    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(st != NULL);}
+\DoxyCodeLine{33    \textcolor{keywordflow}{for} (i = 0; i < \textcolor{keyword}{sizeof}(\mbox{\hyperlink{pk__get__oid_8c_aa1b71c293ec0a64799ecb075399a82bd}{pka\_oids}})/\textcolor{keyword}{sizeof}(\mbox{\hyperlink{pk__get__oid_8c_aa1b71c293ec0a64799ecb075399a82bd}{pka\_oids}}[0]); ++i) \{}
+\DoxyCodeLine{34       \textcolor{keywordflow}{if} (\mbox{\hyperlink{pk__get__oid_8c_aa1b71c293ec0a64799ecb075399a82bd}{pka\_oids}}[i].\textcolor{keywordtype}{id} == \textcolor{keywordtype}{id}) \{}
+\DoxyCodeLine{35          *st = \mbox{\hyperlink{pk__get__oid_8c_aa1b71c293ec0a64799ecb075399a82bd}{pka\_oids}}[i].\mbox{\hyperlink{structoid__table__entry_ae3be974f1f46a4a102d3bab52ef0cf36}{oid}};}
+\DoxyCodeLine{36          \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{37       \}}
+\DoxyCodeLine{38    \}}
+\DoxyCodeLine{39    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{40 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+A\+RG, C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, oid\+\_\+table\+\_\+entry\+::oid, and pka\+\_\+oids.
+
+
+
+Referenced by ecc\+\_\+export\+\_\+openssl(), ecc\+\_\+import\+\_\+pkcs8(), rsa\+\_\+import\+\_\+pkcs8(), x509\+\_\+decode\+\_\+subject\+\_\+public\+\_\+key\+\_\+info(), and x509\+\_\+encode\+\_\+subject\+\_\+public\+\_\+key\+\_\+info().
+
+Here is the caller graph for this function\+:
+% FIG 1
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{pk__get__oid_8c_aa1b71c293ec0a64799ecb075399a82bd}\label{pk__get__oid_8c_aa1b71c293ec0a64799ecb075399a82bd}} 
+\index{pk\_get\_oid.c@{pk\_get\_oid.c}!pka\_oids@{pka\_oids}}
+\index{pka\_oids@{pka\_oids}!pk\_get\_oid.c@{pk\_get\_oid.c}}
+\subsubsection{\texorpdfstring{pka\_oids}{pka\_oids}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{structoid__table__entry}{oid\+\_\+table\+\_\+entry}} pka\+\_\+oids\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{                                              \{ \mbox{\hyperlink{tomcrypt__private_8h_a981c610adcaa77d61adb80dde41a044ba40273a1f176419e8c4638e0efb15854f}{PKA\_RSA}},       \textcolor{stringliteral}{"1.2.840.113549.1.1.1"} \},}
+\DoxyCodeLine{                                              \{ \mbox{\hyperlink{tomcrypt__private_8h_a981c610adcaa77d61adb80dde41a044babe5d329be6c70ca6a43ba1099a69386d}{PKA\_DSA}},       \textcolor{stringliteral}{"1.2.840.10040.4.1"} \},}
+\DoxyCodeLine{                                              \{ \mbox{\hyperlink{tomcrypt__private_8h_a981c610adcaa77d61adb80dde41a044bafe7642b8f160f5b4e79903c13bf39a4e}{PKA\_EC}},        \textcolor{stringliteral}{"1.2.840.10045.2.1"} \},}
+\DoxyCodeLine{                                              \{ \mbox{\hyperlink{tomcrypt__private_8h_a981c610adcaa77d61adb80dde41a044bad815f93f03c91dcfaa47330dcf8a397a}{PKA\_EC\_PRIMEF}}, \textcolor{stringliteral}{"1.2.840.10045.1.1"} \},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line 18 of file pk\+\_\+get\+\_\+oid.\+c.
+
+
+
+Referenced by pk\+\_\+get\+\_\+oid().
+

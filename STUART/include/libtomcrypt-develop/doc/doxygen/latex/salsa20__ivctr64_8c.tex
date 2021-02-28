@@ -1,0 +1,69 @@
+\hypertarget{salsa20__ivctr64_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/stream/salsa20/salsa20\+\_\+ivctr64.c File Reference}
+\label{salsa20__ivctr64_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/stream/salsa20/salsa20\_ivctr64.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/stream/salsa20/salsa20\_ivctr64.c}}
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for salsa20\+\_\+ivctr64.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{salsa20__ivctr64_8c_a883b02e52a18d08c077bcdde612def0a}{salsa20\+\_\+ivctr64}} (salsa20\+\_\+state $\ast$st, const unsigned char $\ast$iv, unsigned long ivlen, \mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}} counter)
+\begin{DoxyCompactList}\small\item\em Set IV + counter data to the Salsa20 state. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{salsa20__ivctr64_8c_a883b02e52a18d08c077bcdde612def0a}\label{salsa20__ivctr64_8c_a883b02e52a18d08c077bcdde612def0a}} 
+\index{salsa20\_ivctr64.c@{salsa20\_ivctr64.c}!salsa20\_ivctr64@{salsa20\_ivctr64}}
+\index{salsa20\_ivctr64@{salsa20\_ivctr64}!salsa20\_ivctr64.c@{salsa20\_ivctr64.c}}
+\subsubsection{\texorpdfstring{salsa20\_ivctr64()}{salsa20\_ivctr64()}}
+{\footnotesize\ttfamily int salsa20\+\_\+ivctr64 (\begin{DoxyParamCaption}\item[{salsa20\+\_\+state $\ast$}]{st,  }\item[{const unsigned char $\ast$}]{iv,  }\item[{unsigned long}]{ivlen,  }\item[{\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}}}]{counter }\end{DoxyParamCaption})}
+
+
+
+Set IV + counter data to the Salsa20 state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em st} & The Salsa20 state \\
+\hline
+{\em iv} & The IV data to add \\
+\hline
+{\em ivlen} & The length of the IV (must be 8) \\
+\hline
+{\em counter} & 64bit (unsigned) initial counter value \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK on success 
+\end{DoxyReturn}
+
+
+Definition at line 28 of file salsa20\+\_\+ivctr64.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{29 \{}
+\DoxyCodeLine{30    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(st != NULL);}
+\DoxyCodeLine{31    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(iv != NULL);}
+\DoxyCodeLine{32    \textcolor{comment}{/* Salsa20: 64-bit IV (nonce) + 64-bit counter */}}
+\DoxyCodeLine{33    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(ivlen == 8);}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35    LOAD32L(st->input[6], iv + 0);}
+\DoxyCodeLine{36    LOAD32L(st->input[7], iv + 4);}
+\DoxyCodeLine{37    st->input[8] = (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})(counter \& 0xFFFFFFFF);}
+\DoxyCodeLine{38    st->input[9] = (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})(counter >> 32);}
+\DoxyCodeLine{39    st->ksleft = 0;}
+\DoxyCodeLine{40    st->ivlen = ivlen;}
+\DoxyCodeLine{41    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{42 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+
+
+Referenced by salsa20\+\_\+memory(), and salsa20\+\_\+test().
+
+Here is the caller graph for this function\+:
+% FIG 1

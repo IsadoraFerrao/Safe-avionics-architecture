@@ -1,0 +1,553 @@
+\hypertarget{blowfish_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/ciphers/blowfish.c File Reference}
+\label{blowfish_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/ciphers/blowfish.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/ciphers/blowfish.c}}
+
+
+Implementation of the Blowfish block cipher, Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for blowfish.\+c\+:
+% FIG 0
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{blowfish_8c_a203d5b93e4077aa273c7013964a31f9e}{F}}(x)~((\mbox{\hyperlink{cast5_8c_ac5ae33c73384e98f5e5d584fc265113b}{S1}}\mbox{[}\mbox{\hyperlink{tomcrypt__private_8h_a319cb143574102827d3b0055ded27533}{L\+T\+C\+\_\+\+B\+Y\+TE}}(x,3)\mbox{]} + \mbox{\hyperlink{cast5_8c_a0dbb0f93665db2dab6bd396393a28e89}{S2}}\mbox{[}\mbox{\hyperlink{tomcrypt__private_8h_a319cb143574102827d3b0055ded27533}{L\+T\+C\+\_\+\+B\+Y\+TE}}(x,2)\mbox{]}) $^\wedge$ \mbox{\hyperlink{cast5_8c_a998f1fda39497e5dd85c5317a757fd68}{S3}}\mbox{[}\mbox{\hyperlink{tomcrypt__private_8h_a319cb143574102827d3b0055ded27533}{L\+T\+C\+\_\+\+B\+Y\+TE}}(x,1)\mbox{]}) + \mbox{\hyperlink{cast5_8c_a8957c7e73629e51b04170d187cdfe2b5}{S4}}\mbox{[}\mbox{\hyperlink{tomcrypt__private_8h_a319cb143574102827d3b0055ded27533}{L\+T\+C\+\_\+\+B\+Y\+TE}}(x,0)\mbox{]}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{blowfish_8c_ac8a23f85314c81754968f73579542d8b}{blowfish\+\_\+setup}} (const unsigned char $\ast$key, int keylen, int num\+\_\+rounds, \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)
+\begin{DoxyCompactList}\small\item\em Initialize the Blowfish block cipher. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{blowfish_8c_adfbe225306866d479c2e0e3fcdfb3187}{blowfish\+\_\+ecb\+\_\+encrypt}} (const unsigned char $\ast$pt, unsigned char $\ast$ct, const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)
+\begin{DoxyCompactList}\small\item\em Encrypts a block of text with Blowfish. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{blowfish_8c_a77422e5dd87dcdc979cecf00b0107cf3}{blowfish\+\_\+ecb\+\_\+decrypt}} (const unsigned char $\ast$ct, unsigned char $\ast$pt, const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)
+\begin{DoxyCompactList}\small\item\em Decrypts a block of text with Blowfish. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{blowfish_8c_a7e2b92d43b125cabdf319becaf99f201}{blowfish\+\_\+test}} (void)
+\begin{DoxyCompactList}\small\item\em Performs a self-\/test of the Blowfish block cipher. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{blowfish_8c_acefaed4a59d687e1891eebcd5a36be28}{blowfish\+\_\+done}} (\mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)
+\begin{DoxyCompactList}\small\item\em Terminate the context. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{blowfish_8c_a9aafcef46e1f9d354590c892e4000bf7}{blowfish\+\_\+keysize}} (int $\ast$keysize)
+\begin{DoxyCompactList}\small\item\em Gets suitable key size. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const struct \mbox{\hyperlink{structltc__cipher__descriptor}{ltc\+\_\+cipher\+\_\+descriptor}} \mbox{\hyperlink{blowfish_8c_aa69cbd19d84b49f3863a4443e51433ba}{blowfish\+\_\+desc}}
+\item 
+static const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} \mbox{\hyperlink{blowfish_8c_a3738f38fe29c94cf3c9ba15e0f5d505d}{O\+R\+I\+G\+\_\+P}} \mbox{[}16+2\mbox{]}
+\item 
+static const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} \mbox{\hyperlink{blowfish_8c_aa6ad28afb86442a8a2f29bbc3e2e37de}{O\+R\+I\+G\+\_\+S}} \mbox{[}4\mbox{]}\mbox{[}256\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Implementation of the Blowfish block cipher, Tom St Denis. 
+
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{blowfish_8c_a203d5b93e4077aa273c7013964a31f9e}\label{blowfish_8c_a203d5b93e4077aa273c7013964a31f9e}} 
+\index{blowfish.c@{blowfish.c}!F@{F}}
+\index{F@{F}!blowfish.c@{blowfish.c}}
+\subsubsection{\texorpdfstring{F}{F}}
+{\footnotesize\ttfamily \#define F(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~((\mbox{\hyperlink{cast5_8c_ac5ae33c73384e98f5e5d584fc265113b}{S1}}\mbox{[}\mbox{\hyperlink{tomcrypt__private_8h_a319cb143574102827d3b0055ded27533}{L\+T\+C\+\_\+\+B\+Y\+TE}}(x,3)\mbox{]} + \mbox{\hyperlink{cast5_8c_a0dbb0f93665db2dab6bd396393a28e89}{S2}}\mbox{[}\mbox{\hyperlink{tomcrypt__private_8h_a319cb143574102827d3b0055ded27533}{L\+T\+C\+\_\+\+B\+Y\+TE}}(x,2)\mbox{]}) $^\wedge$ \mbox{\hyperlink{cast5_8c_a998f1fda39497e5dd85c5317a757fd68}{S3}}\mbox{[}\mbox{\hyperlink{tomcrypt__private_8h_a319cb143574102827d3b0055ded27533}{L\+T\+C\+\_\+\+B\+Y\+TE}}(x,1)\mbox{]}) + \mbox{\hyperlink{cast5_8c_a8957c7e73629e51b04170d187cdfe2b5}{S4}}\mbox{[}\mbox{\hyperlink{tomcrypt__private_8h_a319cb143574102827d3b0055ded27533}{L\+T\+C\+\_\+\+B\+Y\+TE}}(x,0)\mbox{]}}
+
+
+
+Definition at line 376 of file blowfish.\+c.
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{blowfish_8c_acefaed4a59d687e1891eebcd5a36be28}\label{blowfish_8c_acefaed4a59d687e1891eebcd5a36be28}} 
+\index{blowfish.c@{blowfish.c}!blowfish\_done@{blowfish\_done}}
+\index{blowfish\_done@{blowfish\_done}!blowfish.c@{blowfish.c}}
+\subsubsection{\texorpdfstring{blowfish\_done()}{blowfish\_done()}}
+{\footnotesize\ttfamily void blowfish\+\_\+done (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$}]{skey }\end{DoxyParamCaption})}
+
+
+
+Terminate the context. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em skey} & The scheduled key \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 567 of file blowfish.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{568 \{}
+\DoxyCodeLine{569   \mbox{\hyperlink{tomcrypt__macros_8h_accde4b007facd646a8327f8e64b2d1e0}{LTC\_UNUSED\_PARAM}}(skey);}
+\DoxyCodeLine{570 \}}
+
+\end{DoxyCode}
+
+
+References L\+T\+C\+\_\+\+U\+N\+U\+S\+E\+D\+\_\+\+P\+A\+R\+AM.
+
+\mbox{\Hypertarget{blowfish_8c_a77422e5dd87dcdc979cecf00b0107cf3}\label{blowfish_8c_a77422e5dd87dcdc979cecf00b0107cf3}} 
+\index{blowfish.c@{blowfish.c}!blowfish\_ecb\_decrypt@{blowfish\_ecb\_decrypt}}
+\index{blowfish\_ecb\_decrypt@{blowfish\_ecb\_decrypt}!blowfish.c@{blowfish.c}}
+\subsubsection{\texorpdfstring{blowfish\_ecb\_decrypt()}{blowfish\_ecb\_decrypt()}}
+{\footnotesize\ttfamily int blowfish\+\_\+ecb\+\_\+decrypt (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{ct,  }\item[{unsigned char $\ast$}]{pt,  }\item[{const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$}]{skey }\end{DoxyParamCaption})}
+
+
+
+Decrypts a block of text with Blowfish. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ct} & The input ciphertext (8 bytes) \\
+\hline
+{\em pt} & The output plaintext (8 bytes) \\
+\hline
+{\em skey} & The key as scheduled \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 453 of file blowfish.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{455 \{}
+\DoxyCodeLine{456    \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} L, \mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}};}
+\DoxyCodeLine{457    \textcolor{keywordtype}{int} r;}
+\DoxyCodeLine{458 \textcolor{preprocessor}{\#ifndef \_\_GNUC\_\_}}
+\DoxyCodeLine{459    \textcolor{keyword}{const} \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} *\mbox{\hyperlink{sosemanuk_8c_ab9578ef02669318f0403f120bc0280d7}{S1}}, *\mbox{\hyperlink{sosemanuk_8c_a6bedac3e63cf44ab1b3091a78d21e297}{S2}}, *\mbox{\hyperlink{sosemanuk_8c_a6d22d6fb54f8c3cb615bf66829a94a13}{S3}}, *\mbox{\hyperlink{sosemanuk_8c_a57b2a1dee95346d5a213ec826d787186}{S4}};}
+\DoxyCodeLine{460 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{461 }
+\DoxyCodeLine{462     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(pt   != NULL);}
+\DoxyCodeLine{463     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(ct   != NULL);}
+\DoxyCodeLine{464     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(skey != NULL);}
+\DoxyCodeLine{465 }
+\DoxyCodeLine{466 \textcolor{preprocessor}{\#ifndef \_\_GNUC\_\_}}
+\DoxyCodeLine{467     \mbox{\hyperlink{sosemanuk_8c_ab9578ef02669318f0403f120bc0280d7}{S1}} = skey->blowfish.S[0];}
+\DoxyCodeLine{468     \mbox{\hyperlink{sosemanuk_8c_a6bedac3e63cf44ab1b3091a78d21e297}{S2}} = skey->blowfish.S[1];}
+\DoxyCodeLine{469     \mbox{\hyperlink{sosemanuk_8c_a6d22d6fb54f8c3cb615bf66829a94a13}{S3}} = skey->blowfish.S[2];}
+\DoxyCodeLine{470     \mbox{\hyperlink{sosemanuk_8c_a57b2a1dee95346d5a213ec826d787186}{S4}} = skey->blowfish.S[3];}
+\DoxyCodeLine{471 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{472 }
+\DoxyCodeLine{473    \textcolor{comment}{/* load it */}}
+\DoxyCodeLine{474    LOAD32H(\mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}}, \&ct[0]);}
+\DoxyCodeLine{475    LOAD32H(L, \&ct[4]);}
+\DoxyCodeLine{476 }
+\DoxyCodeLine{477    \textcolor{comment}{/* undo last keying */}}
+\DoxyCodeLine{478    \mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}} \string^= skey->blowfish.K[17];}
+\DoxyCodeLine{479    L \string^= skey->blowfish.K[16];}
+\DoxyCodeLine{480 }
+\DoxyCodeLine{481    \textcolor{comment}{/* do 16 rounds */}}
+\DoxyCodeLine{482    \textcolor{keywordflow}{for} (r = 15; r > 0; ) \{}
+\DoxyCodeLine{483       L \string^= \mbox{\hyperlink{blowfish_8c_a203d5b93e4077aa273c7013964a31f9e}{F}}(\mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}}); \mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}} \string^= skey->blowfish.K[r--];}
+\DoxyCodeLine{484       \mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}} \string^= \mbox{\hyperlink{blowfish_8c_a203d5b93e4077aa273c7013964a31f9e}{F}}(L); L \string^= skey->blowfish.K[r--];}
+\DoxyCodeLine{485       L \string^= \mbox{\hyperlink{blowfish_8c_a203d5b93e4077aa273c7013964a31f9e}{F}}(\mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}}); \mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}} \string^= skey->blowfish.K[r--];}
+\DoxyCodeLine{486       \mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}} \string^= \mbox{\hyperlink{blowfish_8c_a203d5b93e4077aa273c7013964a31f9e}{F}}(L); L \string^= skey->blowfish.K[r--];}
+\DoxyCodeLine{487    \}}
+\DoxyCodeLine{488 }
+\DoxyCodeLine{489    \textcolor{comment}{/* store */}}
+\DoxyCodeLine{490    STORE32H(L, \&pt[0]);}
+\DoxyCodeLine{491    STORE32H(\mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}}, \&pt[4]);}
+\DoxyCodeLine{492    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{493 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, F, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, R, S1, S2, S3, and S4.
+
+
+
+Referenced by blowfish\+\_\+test().
+
+Here is the caller graph for this function\+:
+% FIG 1
+\mbox{\Hypertarget{blowfish_8c_adfbe225306866d479c2e0e3fcdfb3187}\label{blowfish_8c_adfbe225306866d479c2e0e3fcdfb3187}} 
+\index{blowfish.c@{blowfish.c}!blowfish\_ecb\_encrypt@{blowfish\_ecb\_encrypt}}
+\index{blowfish\_ecb\_encrypt@{blowfish\_ecb\_encrypt}!blowfish.c@{blowfish.c}}
+\subsubsection{\texorpdfstring{blowfish\_ecb\_encrypt()}{blowfish\_ecb\_encrypt()}}
+{\footnotesize\ttfamily int blowfish\+\_\+ecb\+\_\+encrypt (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{pt,  }\item[{unsigned char $\ast$}]{ct,  }\item[{const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$}]{skey }\end{DoxyParamCaption})}
+
+
+
+Encrypts a block of text with Blowfish. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pt} & The input plaintext (8 bytes) \\
+\hline
+{\em ct} & The output ciphertext (8 bytes) \\
+\hline
+{\em skey} & The key as scheduled \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 391 of file blowfish.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{393 \{}
+\DoxyCodeLine{394    \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} L, \mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}};}
+\DoxyCodeLine{395    \textcolor{keywordtype}{int} r;}
+\DoxyCodeLine{396 \textcolor{preprocessor}{\#ifndef \_\_GNUC\_\_}}
+\DoxyCodeLine{397    \textcolor{keyword}{const} \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} *\mbox{\hyperlink{sosemanuk_8c_ab9578ef02669318f0403f120bc0280d7}{S1}}, *\mbox{\hyperlink{sosemanuk_8c_a6bedac3e63cf44ab1b3091a78d21e297}{S2}}, *\mbox{\hyperlink{sosemanuk_8c_a6d22d6fb54f8c3cb615bf66829a94a13}{S3}}, *\mbox{\hyperlink{sosemanuk_8c_a57b2a1dee95346d5a213ec826d787186}{S4}};}
+\DoxyCodeLine{398 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{399 }
+\DoxyCodeLine{400     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(pt   != NULL);}
+\DoxyCodeLine{401     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(ct   != NULL);}
+\DoxyCodeLine{402     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(skey != NULL);}
+\DoxyCodeLine{403 }
+\DoxyCodeLine{404 \textcolor{preprocessor}{\#ifndef \_\_GNUC\_\_}}
+\DoxyCodeLine{405     \mbox{\hyperlink{sosemanuk_8c_ab9578ef02669318f0403f120bc0280d7}{S1}} = skey->blowfish.S[0];}
+\DoxyCodeLine{406     \mbox{\hyperlink{sosemanuk_8c_a6bedac3e63cf44ab1b3091a78d21e297}{S2}} = skey->blowfish.S[1];}
+\DoxyCodeLine{407     \mbox{\hyperlink{sosemanuk_8c_a6d22d6fb54f8c3cb615bf66829a94a13}{S3}} = skey->blowfish.S[2];}
+\DoxyCodeLine{408     \mbox{\hyperlink{sosemanuk_8c_a57b2a1dee95346d5a213ec826d787186}{S4}} = skey->blowfish.S[3];}
+\DoxyCodeLine{409 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{410 }
+\DoxyCodeLine{411    \textcolor{comment}{/* load it */}}
+\DoxyCodeLine{412    LOAD32H(L, \&pt[0]);}
+\DoxyCodeLine{413    LOAD32H(\mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}}, \&pt[4]);}
+\DoxyCodeLine{414 }
+\DoxyCodeLine{415    \textcolor{comment}{/* do 16 rounds */}}
+\DoxyCodeLine{416    \textcolor{keywordflow}{for} (r = 0; r < 16; ) \{}
+\DoxyCodeLine{417       L \string^= skey->blowfish.K[r++];  \mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}} \string^= \mbox{\hyperlink{blowfish_8c_a203d5b93e4077aa273c7013964a31f9e}{F}}(L);}
+\DoxyCodeLine{418       \mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}} \string^= skey->blowfish.K[r++];  L \string^= \mbox{\hyperlink{blowfish_8c_a203d5b93e4077aa273c7013964a31f9e}{F}}(\mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}});}
+\DoxyCodeLine{419       L \string^= skey->blowfish.K[r++];  \mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}} \string^= \mbox{\hyperlink{blowfish_8c_a203d5b93e4077aa273c7013964a31f9e}{F}}(L);}
+\DoxyCodeLine{420       \mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}} \string^= skey->blowfish.K[r++];  L \string^= \mbox{\hyperlink{blowfish_8c_a203d5b93e4077aa273c7013964a31f9e}{F}}(\mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}});}
+\DoxyCodeLine{421    \}}
+\DoxyCodeLine{422 }
+\DoxyCodeLine{423    \textcolor{comment}{/* last keying */}}
+\DoxyCodeLine{424    \mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}} \string^= skey->blowfish.K[17];}
+\DoxyCodeLine{425    L \string^= skey->blowfish.K[16];}
+\DoxyCodeLine{426 }
+\DoxyCodeLine{427    \textcolor{comment}{/* store */}}
+\DoxyCodeLine{428    STORE32H(\mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}}, \&ct[0]);}
+\DoxyCodeLine{429    STORE32H(L, \&ct[4]);}
+\DoxyCodeLine{430 }
+\DoxyCodeLine{431    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{432 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, F, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, R, S1, S2, S3, and S4.
+
+
+
+Referenced by blowfish\+\_\+setup(), and blowfish\+\_\+test().
+
+Here is the caller graph for this function\+:
+% FIG 2
+\mbox{\Hypertarget{blowfish_8c_a9aafcef46e1f9d354590c892e4000bf7}\label{blowfish_8c_a9aafcef46e1f9d354590c892e4000bf7}} 
+\index{blowfish.c@{blowfish.c}!blowfish\_keysize@{blowfish\_keysize}}
+\index{blowfish\_keysize@{blowfish\_keysize}!blowfish.c@{blowfish.c}}
+\subsubsection{\texorpdfstring{blowfish\_keysize()}{blowfish\_keysize()}}
+{\footnotesize\ttfamily int blowfish\+\_\+keysize (\begin{DoxyParamCaption}\item[{int $\ast$}]{keysize }\end{DoxyParamCaption})}
+
+
+
+Gets suitable key size. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em keysize} & \mbox{[}in/out\mbox{]} The length of the recommended key (in bytes). This function will store the suitable size back in this variable. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if the input key size is acceptable. 
+\end{DoxyReturn}
+
+
+Definition at line 577 of file blowfish.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{578 \{}
+\DoxyCodeLine{579    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(keysize != NULL);}
+\DoxyCodeLine{580 }
+\DoxyCodeLine{581    \textcolor{keywordflow}{if} (*keysize < 8) \{}
+\DoxyCodeLine{582       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caafed43f3b625e72191e08e65b4bb5e02}{CRYPT\_INVALID\_KEYSIZE}};}
+\DoxyCodeLine{583    \}}
+\DoxyCodeLine{584    \textcolor{keywordflow}{if} (*keysize > 56) \{}
+\DoxyCodeLine{585       *keysize = 56;}
+\DoxyCodeLine{586    \}}
+\DoxyCodeLine{587    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{588 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+K\+E\+Y\+S\+I\+ZE, C\+R\+Y\+P\+T\+\_\+\+OK, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+\mbox{\Hypertarget{blowfish_8c_ac8a23f85314c81754968f73579542d8b}\label{blowfish_8c_ac8a23f85314c81754968f73579542d8b}} 
+\index{blowfish.c@{blowfish.c}!blowfish\_setup@{blowfish\_setup}}
+\index{blowfish\_setup@{blowfish\_setup}!blowfish.c@{blowfish.c}}
+\subsubsection{\texorpdfstring{blowfish\_setup()}{blowfish\_setup()}}
+{\footnotesize\ttfamily int blowfish\+\_\+setup (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{key,  }\item[{int}]{keylen,  }\item[{int}]{num\+\_\+rounds,  }\item[{\mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$}]{skey }\end{DoxyParamCaption})}
+
+
+
+Initialize the Blowfish block cipher. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The symmetric key you wish to pass \\
+\hline
+{\em keylen} & The key length in bytes \\
+\hline
+{\em num\+\_\+rounds} & The number of rounds desired (0 for default) \\
+\hline
+{\em skey} & The key in as scheduled by this function. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 306 of file blowfish.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{308 \{}
+\DoxyCodeLine{309    \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} x, y, z, A;}
+\DoxyCodeLine{310    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} B[8];}
+\DoxyCodeLine{311 }
+\DoxyCodeLine{312    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(key != NULL);}
+\DoxyCodeLine{313    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(skey != NULL);}
+\DoxyCodeLine{314 }
+\DoxyCodeLine{315    \textcolor{comment}{/* check key length */}}
+\DoxyCodeLine{316    \textcolor{keywordflow}{if} (keylen < 8 || keylen > 56) \{}
+\DoxyCodeLine{317       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caafed43f3b625e72191e08e65b4bb5e02}{CRYPT\_INVALID\_KEYSIZE}};}
+\DoxyCodeLine{318    \}}
+\DoxyCodeLine{319 }
+\DoxyCodeLine{320    \textcolor{comment}{/* check rounds */}}
+\DoxyCodeLine{321    \textcolor{keywordflow}{if} (num\_rounds != 0 \&\& num\_rounds != 16) \{}
+\DoxyCodeLine{322       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca69aff0280b5845d03130f8700009caf5}{CRYPT\_INVALID\_ROUNDS}};}
+\DoxyCodeLine{323    \}}
+\DoxyCodeLine{324 }
+\DoxyCodeLine{325    \textcolor{comment}{/* load in key bytes (Supplied by David Hopwood) */}}
+\DoxyCodeLine{326    \textcolor{keywordflow}{for} (x = y = 0; x < 18; x++) \{}
+\DoxyCodeLine{327        A = 0;}
+\DoxyCodeLine{328        \textcolor{keywordflow}{for} (z = 0; z < 4; z++) \{}
+\DoxyCodeLine{329            A = (A << 8) | ((\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})key[y++] \& 255);}
+\DoxyCodeLine{330            \textcolor{keywordflow}{if} (y == (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})keylen) \{}
+\DoxyCodeLine{331               y = 0;}
+\DoxyCodeLine{332            \}}
+\DoxyCodeLine{333        \}}
+\DoxyCodeLine{334        skey->blowfish.K[x] = \mbox{\hyperlink{blowfish_8c_a3738f38fe29c94cf3c9ba15e0f5d505d}{ORIG\_P}}[x] \string^ A;}
+\DoxyCodeLine{335    \}}
+\DoxyCodeLine{336 }
+\DoxyCodeLine{337    \textcolor{comment}{/* copy sboxes */}}
+\DoxyCodeLine{338    \textcolor{keywordflow}{for} (x = 0; x < 4; x++) \{}
+\DoxyCodeLine{339        \textcolor{keywordflow}{for} (y = 0; y < 256; y++) \{}
+\DoxyCodeLine{340            skey->blowfish.S[x][y] = \mbox{\hyperlink{blowfish_8c_aa6ad28afb86442a8a2f29bbc3e2e37de}{ORIG\_S}}[x][y];}
+\DoxyCodeLine{341        \}}
+\DoxyCodeLine{342    \}}
+\DoxyCodeLine{343 }
+\DoxyCodeLine{344    \textcolor{comment}{/* encrypt K array */}}
+\DoxyCodeLine{345    \textcolor{keywordflow}{for} (x = 0; x < 8; x++) \{}
+\DoxyCodeLine{346        B[x] = 0;}
+\DoxyCodeLine{347    \}}
+\DoxyCodeLine{348 }
+\DoxyCodeLine{349    \textcolor{keywordflow}{for} (x = 0; x < 18; x += 2) \{}
+\DoxyCodeLine{350        \textcolor{comment}{/* encrypt it */}}
+\DoxyCodeLine{351        \mbox{\hyperlink{blowfish_8c_adfbe225306866d479c2e0e3fcdfb3187}{blowfish\_ecb\_encrypt}}(B, B, skey);}
+\DoxyCodeLine{352        \textcolor{comment}{/* copy it */}}
+\DoxyCodeLine{353        LOAD32H(skey->blowfish.K[x], \&B[0]);}
+\DoxyCodeLine{354        LOAD32H(skey->blowfish.K[x+1], \&B[4]);}
+\DoxyCodeLine{355    \}}
+\DoxyCodeLine{356 }
+\DoxyCodeLine{357    \textcolor{comment}{/* encrypt S array */}}
+\DoxyCodeLine{358    \textcolor{keywordflow}{for} (x = 0; x < 4; x++) \{}
+\DoxyCodeLine{359        \textcolor{keywordflow}{for} (y = 0; y < 256; y += 2) \{}
+\DoxyCodeLine{360           \textcolor{comment}{/* encrypt it */}}
+\DoxyCodeLine{361           \mbox{\hyperlink{blowfish_8c_adfbe225306866d479c2e0e3fcdfb3187}{blowfish\_ecb\_encrypt}}(B, B, skey);}
+\DoxyCodeLine{362           \textcolor{comment}{/* copy it */}}
+\DoxyCodeLine{363           LOAD32H(skey->blowfish.S[x][y], \&B[0]);}
+\DoxyCodeLine{364           LOAD32H(skey->blowfish.S[x][y+1], \&B[4]);}
+\DoxyCodeLine{365        \}}
+\DoxyCodeLine{366    \}}
+\DoxyCodeLine{367 }
+\DoxyCodeLine{368 \textcolor{preprocessor}{\#ifdef LTC\_CLEAN\_STACK}}
+\DoxyCodeLine{369    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(B, \textcolor{keyword}{sizeof}(B));}
+\DoxyCodeLine{370 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{371 }
+\DoxyCodeLine{372    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{373 \}}
+
+\end{DoxyCode}
+
+
+References blowfish\+\_\+ecb\+\_\+encrypt(), C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+K\+E\+Y\+S\+I\+ZE, C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+R\+O\+U\+N\+DS, C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, O\+R\+I\+G\+\_\+P, O\+R\+I\+G\+\_\+S, and zeromem().
+
+
+
+Referenced by blowfish\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 3
+Here is the caller graph for this function\+:
+% FIG 4
+\mbox{\Hypertarget{blowfish_8c_a7e2b92d43b125cabdf319becaf99f201}\label{blowfish_8c_a7e2b92d43b125cabdf319becaf99f201}} 
+\index{blowfish.c@{blowfish.c}!blowfish\_test@{blowfish\_test}}
+\index{blowfish\_test@{blowfish\_test}!blowfish.c@{blowfish.c}}
+\subsubsection{\texorpdfstring{blowfish\_test()}{blowfish\_test()}}
+{\footnotesize\ttfamily int blowfish\+\_\+test (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Performs a self-\/test of the Blowfish block cipher. 
+
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if functional, C\+R\+Y\+P\+T\+\_\+\+N\+OP if self-\/test has been disabled 
+\end{DoxyReturn}
+
+
+Definition at line 509 of file blowfish.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{510 \{}
+\DoxyCodeLine{511 \textcolor{preprocessor}{ \#ifndef LTC\_TEST}}
+\DoxyCodeLine{512     \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cac43a7799c7fd5f515172da6cfc0f9cf5}{CRYPT\_NOP}};}
+\DoxyCodeLine{513 \textcolor{preprocessor}{ \#else}}
+\DoxyCodeLine{514    \textcolor{keywordtype}{int} err;}
+\DoxyCodeLine{515    \mbox{\hyperlink{unionSymmetric__key}{symmetric\_key}} key;}
+\DoxyCodeLine{516    \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{517           \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} key[8], pt[8], ct[8];}
+\DoxyCodeLine{518    \} tests[] = \{}
+\DoxyCodeLine{519        \{}
+\DoxyCodeLine{520            \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00\},}
+\DoxyCodeLine{521            \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00\},}
+\DoxyCodeLine{522            \{ 0x4E, 0xF9, 0x97, 0x45, 0x61, 0x98, 0xDD, 0x78\}}
+\DoxyCodeLine{523        \},}
+\DoxyCodeLine{524        \{}
+\DoxyCodeLine{525            \{ 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF\},}
+\DoxyCodeLine{526            \{ 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF\},}
+\DoxyCodeLine{527            \{ 0x51, 0x86, 0x6F, 0xD5, 0xB8, 0x5E, 0xCB, 0x8A\}}
+\DoxyCodeLine{528        \},}
+\DoxyCodeLine{529        \{}
+\DoxyCodeLine{530            \{ 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00\},}
+\DoxyCodeLine{531            \{ 0x10, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01\},}
+\DoxyCodeLine{532            \{ 0x7D, 0x85, 0x6F, 0x9A, 0x61, 0x30, 0x63, 0xF2\}}
+\DoxyCodeLine{533        \}}
+\DoxyCodeLine{534    \};}
+\DoxyCodeLine{535    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} tmp[2][8];}
+\DoxyCodeLine{536    \textcolor{keywordtype}{int} x, y;}
+\DoxyCodeLine{537 }
+\DoxyCodeLine{538    \textcolor{keywordflow}{for} (x = 0; x < (int)(\textcolor{keyword}{sizeof}(tests) / \textcolor{keyword}{sizeof}(tests[0])); x++) \{}
+\DoxyCodeLine{539       \textcolor{comment}{/* setup key */}}
+\DoxyCodeLine{540       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{blowfish_8c_ac8a23f85314c81754968f73579542d8b}{blowfish\_setup}}(tests[x].key, 8, 16, \&key)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{541          \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{542       \}}
+\DoxyCodeLine{543 }
+\DoxyCodeLine{544       \textcolor{comment}{/* encrypt and decrypt */}}
+\DoxyCodeLine{545       \mbox{\hyperlink{blowfish_8c_adfbe225306866d479c2e0e3fcdfb3187}{blowfish\_ecb\_encrypt}}(tests[x].pt, tmp[0], \&key);}
+\DoxyCodeLine{546       \mbox{\hyperlink{blowfish_8c_a77422e5dd87dcdc979cecf00b0107cf3}{blowfish\_ecb\_decrypt}}(tmp[0], tmp[1], \&key);}
+\DoxyCodeLine{547 }
+\DoxyCodeLine{548       \textcolor{comment}{/* compare */}}
+\DoxyCodeLine{549       \textcolor{keywordflow}{if} ((\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(tmp[0], 8, tests[x].ct, 8, \textcolor{stringliteral}{"Blowfish Encrypt"}, x) != 0) ||}
+\DoxyCodeLine{550             (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(tmp[1], 8, tests[x].pt, 8, \textcolor{stringliteral}{"Blowfish Decrypt"}, x) != 0)) \{}
+\DoxyCodeLine{551          \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{552       \}}
+\DoxyCodeLine{553 }
+\DoxyCodeLine{554       \textcolor{comment}{/* now see if we can encrypt all zero bytes 1000 times, decrypt and come back where we started */}}
+\DoxyCodeLine{555       \textcolor{keywordflow}{for} (y = 0; y < 8; y++) tmp[0][y] = 0;}
+\DoxyCodeLine{556       \textcolor{keywordflow}{for} (y = 0; y < 1000; y++) \mbox{\hyperlink{blowfish_8c_adfbe225306866d479c2e0e3fcdfb3187}{blowfish\_ecb\_encrypt}}(tmp[0], tmp[0], \&key);}
+\DoxyCodeLine{557       \textcolor{keywordflow}{for} (y = 0; y < 1000; y++) \mbox{\hyperlink{blowfish_8c_a77422e5dd87dcdc979cecf00b0107cf3}{blowfish\_ecb\_decrypt}}(tmp[0], tmp[0], \&key);}
+\DoxyCodeLine{558       \textcolor{keywordflow}{for} (y = 0; y < 8; y++) \textcolor{keywordflow}{if} (tmp[0][y] != 0) \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{559    \}}
+\DoxyCodeLine{560    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{561 \textcolor{preprocessor}{ \#endif}}
+\DoxyCodeLine{562 \}}
+
+\end{DoxyCode}
+
+
+References blowfish\+\_\+ecb\+\_\+decrypt(), blowfish\+\_\+ecb\+\_\+encrypt(), blowfish\+\_\+setup(), compare\+\_\+testvector(), C\+R\+Y\+P\+T\+\_\+\+F\+A\+I\+L\+\_\+\+T\+E\+S\+T\+V\+E\+C\+T\+OR, C\+R\+Y\+P\+T\+\_\+\+N\+OP, and C\+R\+Y\+P\+T\+\_\+\+OK.
+
+Here is the call graph for this function\+:
+% FIG 5
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{blowfish_8c_aa69cbd19d84b49f3863a4443e51433ba}\label{blowfish_8c_aa69cbd19d84b49f3863a4443e51433ba}} 
+\index{blowfish.c@{blowfish.c}!blowfish\_desc@{blowfish\_desc}}
+\index{blowfish\_desc@{blowfish\_desc}!blowfish.c@{blowfish.c}}
+\subsubsection{\texorpdfstring{blowfish\_desc}{blowfish\_desc}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structltc__cipher__descriptor}{ltc\+\_\+cipher\+\_\+descriptor}} blowfish\+\_\+desc}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    \textcolor{stringliteral}{"blowfish"},}
+\DoxyCodeLine{    0,}
+\DoxyCodeLine{    8, 56, 8, 16,}
+\DoxyCodeLine{    \&\mbox{\hyperlink{blowfish_8c_ac8a23f85314c81754968f73579542d8b}{blowfish\_setup}},}
+\DoxyCodeLine{    \&\mbox{\hyperlink{blowfish_8c_adfbe225306866d479c2e0e3fcdfb3187}{blowfish\_ecb\_encrypt}},}
+\DoxyCodeLine{    \&\mbox{\hyperlink{blowfish_8c_a77422e5dd87dcdc979cecf00b0107cf3}{blowfish\_ecb\_decrypt}},}
+\DoxyCodeLine{    \&\mbox{\hyperlink{blowfish_8c_a7e2b92d43b125cabdf319becaf99f201}{blowfish\_test}},}
+\DoxyCodeLine{    \&\mbox{\hyperlink{blowfish_8c_acefaed4a59d687e1891eebcd5a36be28}{blowfish\_done}},}
+\DoxyCodeLine{    \&\mbox{\hyperlink{blowfish_8c_a9aafcef46e1f9d354590c892e4000bf7}{blowfish\_keysize}},}
+\DoxyCodeLine{    NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line 17 of file blowfish.\+c.
+
+
+
+Referenced by register\+\_\+all\+\_\+ciphers(), and yarrow\+\_\+start().
+
+\mbox{\Hypertarget{blowfish_8c_a3738f38fe29c94cf3c9ba15e0f5d505d}\label{blowfish_8c_a3738f38fe29c94cf3c9ba15e0f5d505d}} 
+\index{blowfish.c@{blowfish.c}!ORIG\_P@{ORIG\_P}}
+\index{ORIG\_P@{ORIG\_P}!blowfish.c@{blowfish.c}}
+\subsubsection{\texorpdfstring{ORIG\_P}{ORIG\_P}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} O\+R\+I\+G\+\_\+P\mbox{[}16+2\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{        0x243F6A88UL, 0x85A308D3UL, 0x13198A2EUL, 0x03707344UL,}
+\DoxyCodeLine{        0xA4093822UL, 0x299F31D0UL, 0x082EFA98UL, 0xEC4E6C89UL,}
+\DoxyCodeLine{        0x452821E6UL, 0x38D01377UL, 0xBE5466CFUL, 0x34E90C6CUL,}
+\DoxyCodeLine{        0xC0AC29B7UL, 0xC97C50DDUL, 0x3F84D5B5UL, 0xB5470917UL,}
+\DoxyCodeLine{        0x9216D5D9UL, 0x8979FB1BUL}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line 31 of file blowfish.\+c.
+
+
+
+Referenced by blowfish\+\_\+setup().
+
+\mbox{\Hypertarget{blowfish_8c_aa6ad28afb86442a8a2f29bbc3e2e37de}\label{blowfish_8c_aa6ad28afb86442a8a2f29bbc3e2e37de}} 
+\index{blowfish.c@{blowfish.c}!ORIG\_S@{ORIG\_S}}
+\index{ORIG\_S@{ORIG\_S}!blowfish.c@{blowfish.c}}
+\subsubsection{\texorpdfstring{ORIG\_S}{ORIG\_S}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} O\+R\+I\+G\+\_\+S\mbox{[}4\mbox{]}\mbox{[}256\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 39 of file blowfish.\+c.
+
+
+
+Referenced by blowfish\+\_\+setup().
+

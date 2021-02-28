@@ -1,0 +1,20 @@
+digraph "_base64_decode_internal"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node1 [label="_base64_decode_internal",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node2 [label="base64_decode",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$base64__decode_8c.html#a1aaa93cd268481f14400025783c6310d",tooltip="Dangerously relaxed base64 decode a block of memory."];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node3 [label="base64_sane_decode",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$base64__decode_8c.html#a79296c3c2b6c620d49d33a8cbe0cbd52",tooltip="Sane base64 decode a block of memory."];
+  Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node4 [label="base64_strict_decode",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$base64__decode_8c.html#a5f0563143957758b8006a114ce9dd42a",tooltip="Strict base64 decode a block of memory."];
+  Node1 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node5 [label="base64url_decode",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$base64__decode_8c.html#a0587cf0c0d077c1c15600de55a4d4e94",tooltip="Dangerously relaxed base64 (URL Safe, RFC 4648 section 5) decode a block of memory."];
+  Node1 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node6 [label="base64url_sane_decode",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$base64__decode_8c.html#a56ec236663a4c5dc4eb0af5cc29964cf",tooltip="Sane base64 (URL Safe, RFC 4648 section 5) decode a block of memory."];
+  Node1 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node7 [label="base64url_strict_decode",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$base64__decode_8c.html#a8039c14bf30b693d5ccdf834759d0799",tooltip="Strict base64 (URL Safe, RFC 4648 section 5) decode a block of memory."];
+}

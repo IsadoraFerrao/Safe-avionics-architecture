@@ -1,0 +1,34 @@
+digraph "sober128_ready"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node54 [label="sober128_ready",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Make the PRNG ready to read from."];
+  Node54 -> Node55 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node55 [label="sober128_stream_setiv",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sober128__stream_8c.html#aad93d7243d0b6e8bb46f8637c1dab891",tooltip="Set IV to the Sober128 state."];
+  Node55 -> Node56 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node56 [label="s128_reloadstate",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sober128__stream_8c.html#a658f8c5cee73aa58ecf24133861c084d",tooltip=" "];
+  Node55 -> Node57 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node57 [label="BYTE2WORD",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sober128__stream_8c.html#ae7acc8746ffb536a618b77f0e2042807",tooltip=" "];
+  Node55 -> Node58 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node58 [label="cycle",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sober128__stream_8c.html#a5ee309e1f2da8afec6f25f826763f55d",tooltip=" "];
+  Node55 -> Node59 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node59 [label="nltap",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sober128__stream_8c.html#aa40918d0bb77cd616f54d859fe3ceb34",tooltip=" "];
+  Node55 -> Node60 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node60 [label="s128_diffuse",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sober128__stream_8c.html#a90d35fdc987c8472cc4390a3dc4c7777",tooltip=" "];
+  Node54 -> Node61 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node61 [label="sober128_stream_setup",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sober128__stream_8c.html#a0a1e7b2ff7cfbba83eee53e875ef8d6e",tooltip="Initialize an Sober128 context (only the key)"];
+  Node61 -> Node57 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node61 -> Node58 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node61 -> Node59 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node61 -> Node60 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node61 -> Node62 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node62 [label="s128_genkonst",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sober128__stream_8c.html#afeb3cc1b4facd7436b991dc552ffb038",tooltip=" "];
+  Node62 -> Node58 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node62 -> Node59 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node61 -> Node63 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node63 [label="s128_savestate",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sober128__stream_8c.html#a884ca93789ee73dea18768f55567bc67",tooltip=" "];
+  Node54 -> Node64 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node64 [label="XMEMSET",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cfg_8h.html#aa3c34a6f6c61de7da9258b5a30e32c2f",tooltip=" "];
+}

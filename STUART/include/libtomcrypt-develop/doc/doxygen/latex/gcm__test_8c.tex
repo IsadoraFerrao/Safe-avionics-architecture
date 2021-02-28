@@ -1,0 +1,438 @@
+\hypertarget{gcm__test_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/encauth/gcm/gcm\+\_\+test.c File Reference}
+\label{gcm__test_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/encauth/gcm/gcm\_test.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/encauth/gcm/gcm\_test.c}}
+
+
+G\+CM implementation, testing, by Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for gcm\+\_\+test.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{gcm__test_8c_ae36c8eb6c2964df7e386f5f73bded5e7}{gcm\+\_\+test}} (void)
+\begin{DoxyCompactList}\small\item\em Test the G\+CM code. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+G\+CM implementation, testing, by Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{gcm__test_8c_ae36c8eb6c2964df7e386f5f73bded5e7}\label{gcm__test_8c_ae36c8eb6c2964df7e386f5f73bded5e7}} 
+\index{gcm\_test.c@{gcm\_test.c}!gcm\_test@{gcm\_test}}
+\index{gcm\_test@{gcm\_test}!gcm\_test.c@{gcm\_test.c}}
+\subsubsection{\texorpdfstring{gcm\_test()}{gcm\_test()}}
+{\footnotesize\ttfamily int gcm\+\_\+test (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Test the G\+CM code. 
+
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK on success 
+\end{DoxyReturn}
+
+
+Definition at line 22 of file gcm\+\_\+test.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{23 \{}
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#ifndef LTC\_TEST}}
+\DoxyCodeLine{25    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cac43a7799c7fd5f515172da6cfc0f9cf5}{CRYPT\_NOP}};}
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{27    \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{28        \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} \mbox{\hyperlink{sha512_8c_a2d167a3caf30de6442abc69780199a52}{K}}[32];}
+\DoxyCodeLine{29        \textcolor{keywordtype}{int}           keylen;}
+\DoxyCodeLine{30        \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} P[128];}
+\DoxyCodeLine{31        \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} ptlen;}
+\DoxyCodeLine{32        \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} A[128];}
+\DoxyCodeLine{33        \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} alen;}
+\DoxyCodeLine{34        \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} IV[128];}
+\DoxyCodeLine{35        \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} IVlen;}
+\DoxyCodeLine{36        \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} C[128];}
+\DoxyCodeLine{37        \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} T[16];}
+\DoxyCodeLine{38    \} tests[] = \{}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{40 \textcolor{comment}{/* test case \#1 */}}
+\DoxyCodeLine{41 \{}
+\DoxyCodeLine{42   \textcolor{comment}{/* key */}}
+\DoxyCodeLine{43   \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{44     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{45   16,}
+\DoxyCodeLine{46 }
+\DoxyCodeLine{47   \textcolor{comment}{/* plaintext */}}
+\DoxyCodeLine{48   \{ 0 \},}
+\DoxyCodeLine{49   0,}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{51   \textcolor{comment}{/* AAD data */}}
+\DoxyCodeLine{52   \{ 0 \},}
+\DoxyCodeLine{53   0,}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55   \textcolor{comment}{/* IV */}}
+\DoxyCodeLine{56   \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{57     0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{58   12,}
+\DoxyCodeLine{59 }
+\DoxyCodeLine{60   \textcolor{comment}{/* ciphertext  */}}
+\DoxyCodeLine{61   \{ 0 \},}
+\DoxyCodeLine{62 }
+\DoxyCodeLine{63   \textcolor{comment}{/* tag */}}
+\DoxyCodeLine{64   \{ 0x58, 0xe2, 0xfc, 0xce, 0xfa, 0x7e, 0x30, 0x61,}
+\DoxyCodeLine{65     0x36, 0x7f, 0x1d, 0x57, 0xa4, 0xe7, 0x45, 0x5a \}}
+\DoxyCodeLine{66 \},}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{68 \textcolor{comment}{/* test case \#2 */}}
+\DoxyCodeLine{69 \{}
+\DoxyCodeLine{70   \textcolor{comment}{/* key */}}
+\DoxyCodeLine{71   \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{72     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{73   16,}
+\DoxyCodeLine{74 }
+\DoxyCodeLine{75   \textcolor{comment}{/* PT */}}
+\DoxyCodeLine{76   \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{77     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{78   16,}
+\DoxyCodeLine{79 }
+\DoxyCodeLine{80   \textcolor{comment}{/* ADATA */}}
+\DoxyCodeLine{81   \{ 0 \},}
+\DoxyCodeLine{82   0,}
+\DoxyCodeLine{83 }
+\DoxyCodeLine{84   \textcolor{comment}{/* IV */}}
+\DoxyCodeLine{85   \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{86     0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{87   12,}
+\DoxyCodeLine{88 }
+\DoxyCodeLine{89   \textcolor{comment}{/* CT */}}
+\DoxyCodeLine{90   \{ 0x03, 0x88, 0xda, 0xce, 0x60, 0xb6, 0xa3, 0x92,}
+\DoxyCodeLine{91     0xf3, 0x28, 0xc2, 0xb9, 0x71, 0xb2, 0xfe, 0x78 \},}
+\DoxyCodeLine{92 }
+\DoxyCodeLine{93   \textcolor{comment}{/* TAG */}}
+\DoxyCodeLine{94   \{ 0xab, 0x6e, 0x47, 0xd4, 0x2c, 0xec, 0x13, 0xbd,}
+\DoxyCodeLine{95     0xf5, 0x3a, 0x67, 0xb2, 0x12, 0x57, 0xbd, 0xdf \}}
+\DoxyCodeLine{96 \},}
+\DoxyCodeLine{97 }
+\DoxyCodeLine{98 \textcolor{comment}{/* test case \#3 */}}
+\DoxyCodeLine{99 \{}
+\DoxyCodeLine{100    \textcolor{comment}{/* key */}}
+\DoxyCodeLine{101    \{ 0xfe, 0xff, 0xe9, 0x92, 0x86, 0x65, 0x73, 0x1c,}
+\DoxyCodeLine{102      0x6d, 0x6a, 0x8f, 0x94, 0x67, 0x30, 0x83, 0x08, \},}
+\DoxyCodeLine{103    16,}
+\DoxyCodeLine{104 }
+\DoxyCodeLine{105    \textcolor{comment}{/* PT */}}
+\DoxyCodeLine{106    \{ 0xd9, 0x31, 0x32, 0x25, 0xf8, 0x84, 0x06, 0xe5,}
+\DoxyCodeLine{107      0xa5, 0x59, 0x09, 0xc5, 0xaf, 0xf5, 0x26, 0x9a,}
+\DoxyCodeLine{108      0x86, 0xa7, 0xa9, 0x53, 0x15, 0x34, 0xf7, 0xda,}
+\DoxyCodeLine{109      0x2e, 0x4c, 0x30, 0x3d, 0x8a, 0x31, 0x8a, 0x72,}
+\DoxyCodeLine{110      0x1c, 0x3c, 0x0c, 0x95, 0x95, 0x68, 0x09, 0x53,}
+\DoxyCodeLine{111      0x2f, 0xcf, 0x0e, 0x24, 0x49, 0xa6, 0xb5, 0x25,}
+\DoxyCodeLine{112      0xb1, 0x6a, 0xed, 0xf5, 0xaa, 0x0d, 0xe6, 0x57,}
+\DoxyCodeLine{113      0xba, 0x63, 0x7b, 0x39, 0x1a, 0xaf, 0xd2, 0x55, \},}
+\DoxyCodeLine{114   64,}
+\DoxyCodeLine{115 }
+\DoxyCodeLine{116   \textcolor{comment}{/* ADATA */}}
+\DoxyCodeLine{117   \{ 0 \},}
+\DoxyCodeLine{118   0,}
+\DoxyCodeLine{119 }
+\DoxyCodeLine{120   \textcolor{comment}{/* IV */}}
+\DoxyCodeLine{121   \{ 0xca, 0xfe, 0xba, 0xbe, 0xfa, 0xce, 0xdb, 0xad,}
+\DoxyCodeLine{122     0xde, 0xca, 0xf8, 0x88,  \},}
+\DoxyCodeLine{123   12,}
+\DoxyCodeLine{124 }
+\DoxyCodeLine{125   \textcolor{comment}{/* CT */}}
+\DoxyCodeLine{126   \{ 0x42, 0x83, 0x1e, 0xc2, 0x21, 0x77, 0x74, 0x24,}
+\DoxyCodeLine{127     0x4b, 0x72, 0x21, 0xb7, 0x84, 0xd0, 0xd4, 0x9c,}
+\DoxyCodeLine{128     0xe3, 0xaa, 0x21, 0x2f, 0x2c, 0x02, 0xa4, 0xe0,}
+\DoxyCodeLine{129     0x35, 0xc1, 0x7e, 0x23, 0x29, 0xac, 0xa1, 0x2e,}
+\DoxyCodeLine{130     0x21, 0xd5, 0x14, 0xb2, 0x54, 0x66, 0x93, 0x1c,}
+\DoxyCodeLine{131     0x7d, 0x8f, 0x6a, 0x5a, 0xac, 0x84, 0xaa, 0x05,}
+\DoxyCodeLine{132     0x1b, 0xa3, 0x0b, 0x39, 0x6a, 0x0a, 0xac, 0x97,}
+\DoxyCodeLine{133     0x3d, 0x58, 0xe0, 0x91, 0x47, 0x3f, 0x59, 0x85, \},}
+\DoxyCodeLine{134 }
+\DoxyCodeLine{135   \textcolor{comment}{/* TAG */}}
+\DoxyCodeLine{136   \{ 0x4d, 0x5c, 0x2a, 0xf3, 0x27, 0xcd, 0x64, 0xa6,}
+\DoxyCodeLine{137     0x2c, 0xf3, 0x5a, 0xbd, 0x2b, 0xa6, 0xfa, 0xb4, \}}
+\DoxyCodeLine{138 \},}
+\DoxyCodeLine{139 }
+\DoxyCodeLine{140 \textcolor{comment}{/* test case \#4 */}}
+\DoxyCodeLine{141 \{}
+\DoxyCodeLine{142    \textcolor{comment}{/* key */}}
+\DoxyCodeLine{143    \{ 0xfe, 0xff, 0xe9, 0x92, 0x86, 0x65, 0x73, 0x1c,}
+\DoxyCodeLine{144      0x6d, 0x6a, 0x8f, 0x94, 0x67, 0x30, 0x83, 0x08, \},}
+\DoxyCodeLine{145    16,}
+\DoxyCodeLine{146 }
+\DoxyCodeLine{147    \textcolor{comment}{/* PT */}}
+\DoxyCodeLine{148    \{ 0xd9, 0x31, 0x32, 0x25, 0xf8, 0x84, 0x06, 0xe5,}
+\DoxyCodeLine{149      0xa5, 0x59, 0x09, 0xc5, 0xaf, 0xf5, 0x26, 0x9a,}
+\DoxyCodeLine{150      0x86, 0xa7, 0xa9, 0x53, 0x15, 0x34, 0xf7, 0xda,}
+\DoxyCodeLine{151      0x2e, 0x4c, 0x30, 0x3d, 0x8a, 0x31, 0x8a, 0x72,}
+\DoxyCodeLine{152      0x1c, 0x3c, 0x0c, 0x95, 0x95, 0x68, 0x09, 0x53,}
+\DoxyCodeLine{153      0x2f, 0xcf, 0x0e, 0x24, 0x49, 0xa6, 0xb5, 0x25,}
+\DoxyCodeLine{154      0xb1, 0x6a, 0xed, 0xf5, 0xaa, 0x0d, 0xe6, 0x57,}
+\DoxyCodeLine{155      0xba, 0x63, 0x7b, 0x39,  \},}
+\DoxyCodeLine{156    60,}
+\DoxyCodeLine{157 }
+\DoxyCodeLine{158    \textcolor{comment}{/* ADATA */}}
+\DoxyCodeLine{159    \{ 0xfe, 0xed, 0xfa, 0xce, 0xde, 0xad, 0xbe, 0xef,}
+\DoxyCodeLine{160      0xfe, 0xed, 0xfa, 0xce, 0xde, 0xad, 0xbe, 0xef,}
+\DoxyCodeLine{161      0xab, 0xad, 0xda, 0xd2,  \},}
+\DoxyCodeLine{162    20,}
+\DoxyCodeLine{163 }
+\DoxyCodeLine{164    \textcolor{comment}{/* IV */}}
+\DoxyCodeLine{165    \{ 0xca, 0xfe, 0xba, 0xbe, 0xfa, 0xce, 0xdb, 0xad,}
+\DoxyCodeLine{166      0xde, 0xca, 0xf8, 0x88,  \},}
+\DoxyCodeLine{167    12,}
+\DoxyCodeLine{168 }
+\DoxyCodeLine{169    \textcolor{comment}{/* CT */}}
+\DoxyCodeLine{170    \{ 0x42, 0x83, 0x1e, 0xc2, 0x21, 0x77, 0x74, 0x24,}
+\DoxyCodeLine{171      0x4b, 0x72, 0x21, 0xb7, 0x84, 0xd0, 0xd4, 0x9c,}
+\DoxyCodeLine{172      0xe3, 0xaa, 0x21, 0x2f, 0x2c, 0x02, 0xa4, 0xe0,}
+\DoxyCodeLine{173      0x35, 0xc1, 0x7e, 0x23, 0x29, 0xac, 0xa1, 0x2e,}
+\DoxyCodeLine{174      0x21, 0xd5, 0x14, 0xb2, 0x54, 0x66, 0x93, 0x1c,}
+\DoxyCodeLine{175      0x7d, 0x8f, 0x6a, 0x5a, 0xac, 0x84, 0xaa, 0x05,}
+\DoxyCodeLine{176      0x1b, 0xa3, 0x0b, 0x39, 0x6a, 0x0a, 0xac, 0x97,}
+\DoxyCodeLine{177      0x3d, 0x58, 0xe0, 0x91,  \},}
+\DoxyCodeLine{178 }
+\DoxyCodeLine{179    \textcolor{comment}{/* TAG */}}
+\DoxyCodeLine{180    \{ 0x5b, 0xc9, 0x4f, 0xbc, 0x32, 0x21, 0xa5, 0xdb,}
+\DoxyCodeLine{181      0x94, 0xfa, 0xe9, 0x5a, 0xe7, 0x12, 0x1a, 0x47, \}}
+\DoxyCodeLine{182 }
+\DoxyCodeLine{183 \},}
+\DoxyCodeLine{184 }
+\DoxyCodeLine{185 \textcolor{comment}{/* test case \#5 */}}
+\DoxyCodeLine{186 \{}
+\DoxyCodeLine{187    \textcolor{comment}{/* key */}}
+\DoxyCodeLine{188    \{ 0xfe, 0xff, 0xe9, 0x92, 0x86, 0x65, 0x73, 0x1c,}
+\DoxyCodeLine{189      0x6d, 0x6a, 0x8f, 0x94, 0x67, 0x30, 0x83, 0x08, \},}
+\DoxyCodeLine{190    16,}
+\DoxyCodeLine{191 }
+\DoxyCodeLine{192    \textcolor{comment}{/* PT */}}
+\DoxyCodeLine{193    \{ 0xd9, 0x31, 0x32, 0x25, 0xf8, 0x84, 0x06, 0xe5,}
+\DoxyCodeLine{194      0xa5, 0x59, 0x09, 0xc5, 0xaf, 0xf5, 0x26, 0x9a,}
+\DoxyCodeLine{195      0x86, 0xa7, 0xa9, 0x53, 0x15, 0x34, 0xf7, 0xda,}
+\DoxyCodeLine{196      0x2e, 0x4c, 0x30, 0x3d, 0x8a, 0x31, 0x8a, 0x72,}
+\DoxyCodeLine{197      0x1c, 0x3c, 0x0c, 0x95, 0x95, 0x68, 0x09, 0x53,}
+\DoxyCodeLine{198      0x2f, 0xcf, 0x0e, 0x24, 0x49, 0xa6, 0xb5, 0x25,}
+\DoxyCodeLine{199      0xb1, 0x6a, 0xed, 0xf5, 0xaa, 0x0d, 0xe6, 0x57,}
+\DoxyCodeLine{200      0xba, 0x63, 0x7b, 0x39,  \},}
+\DoxyCodeLine{201    60,}
+\DoxyCodeLine{202 }
+\DoxyCodeLine{203    \textcolor{comment}{/* ADATA */}}
+\DoxyCodeLine{204    \{ 0xfe, 0xed, 0xfa, 0xce, 0xde, 0xad, 0xbe, 0xef,}
+\DoxyCodeLine{205      0xfe, 0xed, 0xfa, 0xce, 0xde, 0xad, 0xbe, 0xef,}
+\DoxyCodeLine{206      0xab, 0xad, 0xda, 0xd2,  \},}
+\DoxyCodeLine{207    20,}
+\DoxyCodeLine{208 }
+\DoxyCodeLine{209    \textcolor{comment}{/* IV */}}
+\DoxyCodeLine{210    \{ 0xca, 0xfe, 0xba, 0xbe, 0xfa, 0xce, 0xdb, 0xad, \},}
+\DoxyCodeLine{211    8,}
+\DoxyCodeLine{212 }
+\DoxyCodeLine{213    \textcolor{comment}{/* CT */}}
+\DoxyCodeLine{214    \{ 0x61, 0x35, 0x3b, 0x4c, 0x28, 0x06, 0x93, 0x4a,}
+\DoxyCodeLine{215      0x77, 0x7f, 0xf5, 0x1f, 0xa2, 0x2a, 0x47, 0x55,}
+\DoxyCodeLine{216      0x69, 0x9b, 0x2a, 0x71, 0x4f, 0xcd, 0xc6, 0xf8,}
+\DoxyCodeLine{217      0x37, 0x66, 0xe5, 0xf9, 0x7b, 0x6c, 0x74, 0x23,}
+\DoxyCodeLine{218      0x73, 0x80, 0x69, 0x00, 0xe4, 0x9f, 0x24, 0xb2,}
+\DoxyCodeLine{219      0x2b, 0x09, 0x75, 0x44, 0xd4, 0x89, 0x6b, 0x42,}
+\DoxyCodeLine{220      0x49, 0x89, 0xb5, 0xe1, 0xeb, 0xac, 0x0f, 0x07,}
+\DoxyCodeLine{221      0xc2, 0x3f, 0x45, 0x98,  \},}
+\DoxyCodeLine{222 }
+\DoxyCodeLine{223    \textcolor{comment}{/* TAG */}}
+\DoxyCodeLine{224    \{ 0x36, 0x12, 0xd2, 0xe7, 0x9e, 0x3b, 0x07, 0x85,}
+\DoxyCodeLine{225      0x56, 0x1b, 0xe1, 0x4a, 0xac, 0xa2, 0xfc, 0xcb, \}}
+\DoxyCodeLine{226 \},}
+\DoxyCodeLine{227 }
+\DoxyCodeLine{228 \textcolor{comment}{/* test case \#6 */}}
+\DoxyCodeLine{229 \{}
+\DoxyCodeLine{230    \textcolor{comment}{/* key */}}
+\DoxyCodeLine{231    \{ 0xfe, 0xff, 0xe9, 0x92, 0x86, 0x65, 0x73, 0x1c,}
+\DoxyCodeLine{232      0x6d, 0x6a, 0x8f, 0x94, 0x67, 0x30, 0x83, 0x08, \},}
+\DoxyCodeLine{233    16,}
+\DoxyCodeLine{234 }
+\DoxyCodeLine{235    \textcolor{comment}{/* PT */}}
+\DoxyCodeLine{236    \{ 0xd9, 0x31, 0x32, 0x25, 0xf8, 0x84, 0x06, 0xe5,}
+\DoxyCodeLine{237      0xa5, 0x59, 0x09, 0xc5, 0xaf, 0xf5, 0x26, 0x9a,}
+\DoxyCodeLine{238      0x86, 0xa7, 0xa9, 0x53, 0x15, 0x34, 0xf7, 0xda,}
+\DoxyCodeLine{239      0x2e, 0x4c, 0x30, 0x3d, 0x8a, 0x31, 0x8a, 0x72,}
+\DoxyCodeLine{240      0x1c, 0x3c, 0x0c, 0x95, 0x95, 0x68, 0x09, 0x53,}
+\DoxyCodeLine{241      0x2f, 0xcf, 0x0e, 0x24, 0x49, 0xa6, 0xb5, 0x25,}
+\DoxyCodeLine{242      0xb1, 0x6a, 0xed, 0xf5, 0xaa, 0x0d, 0xe6, 0x57,}
+\DoxyCodeLine{243      0xba, 0x63, 0x7b, 0x39,  \},}
+\DoxyCodeLine{244    60,}
+\DoxyCodeLine{245 }
+\DoxyCodeLine{246    \textcolor{comment}{/* ADATA */}}
+\DoxyCodeLine{247    \{ 0xfe, 0xed, 0xfa, 0xce, 0xde, 0xad, 0xbe, 0xef,}
+\DoxyCodeLine{248      0xfe, 0xed, 0xfa, 0xce, 0xde, 0xad, 0xbe, 0xef,}
+\DoxyCodeLine{249      0xab, 0xad, 0xda, 0xd2,  \},}
+\DoxyCodeLine{250    20,}
+\DoxyCodeLine{251 }
+\DoxyCodeLine{252    \textcolor{comment}{/* IV */}}
+\DoxyCodeLine{253    \{ 0x93, 0x13, 0x22, 0x5d, 0xf8, 0x84, 0x06, 0xe5,}
+\DoxyCodeLine{254      0x55, 0x90, 0x9c, 0x5a, 0xff, 0x52, 0x69, 0xaa,}
+\DoxyCodeLine{255      0x6a, 0x7a, 0x95, 0x38, 0x53, 0x4f, 0x7d, 0xa1,}
+\DoxyCodeLine{256      0xe4, 0xc3, 0x03, 0xd2, 0xa3, 0x18, 0xa7, 0x28,}
+\DoxyCodeLine{257      0xc3, 0xc0, 0xc9, 0x51, 0x56, 0x80, 0x95, 0x39,}
+\DoxyCodeLine{258      0xfc, 0xf0, 0xe2, 0x42, 0x9a, 0x6b, 0x52, 0x54,}
+\DoxyCodeLine{259      0x16, 0xae, 0xdb, 0xf5, 0xa0, 0xde, 0x6a, 0x57,}
+\DoxyCodeLine{260      0xa6, 0x37, 0xb3, 0x9b,  \},}
+\DoxyCodeLine{261    60,}
+\DoxyCodeLine{262 }
+\DoxyCodeLine{263    \textcolor{comment}{/* CT */}}
+\DoxyCodeLine{264    \{ 0x8c, 0xe2, 0x49, 0x98, 0x62, 0x56, 0x15, 0xb6,}
+\DoxyCodeLine{265      0x03, 0xa0, 0x33, 0xac, 0xa1, 0x3f, 0xb8, 0x94,}
+\DoxyCodeLine{266      0xbe, 0x91, 0x12, 0xa5, 0xc3, 0xa2, 0x11, 0xa8,}
+\DoxyCodeLine{267      0xba, 0x26, 0x2a, 0x3c, 0xca, 0x7e, 0x2c, 0xa7,}
+\DoxyCodeLine{268      0x01, 0xe4, 0xa9, 0xa4, 0xfb, 0xa4, 0x3c, 0x90,}
+\DoxyCodeLine{269      0xcc, 0xdc, 0xb2, 0x81, 0xd4, 0x8c, 0x7c, 0x6f,}
+\DoxyCodeLine{270      0xd6, 0x28, 0x75, 0xd2, 0xac, 0xa4, 0x17, 0x03,}
+\DoxyCodeLine{271      0x4c, 0x34, 0xae, 0xe5,  \},}
+\DoxyCodeLine{272 }
+\DoxyCodeLine{273    \textcolor{comment}{/* TAG */}}
+\DoxyCodeLine{274    \{ 0x61, 0x9c, 0xc5, 0xae, 0xff, 0xfe, 0x0b, 0xfa,}
+\DoxyCodeLine{275      0x46, 0x2a, 0xf4, 0x3c, 0x16, 0x99, 0xd0, 0x50, \}}
+\DoxyCodeLine{276 \},}
+\DoxyCodeLine{277 }
+\DoxyCodeLine{278 \textcolor{comment}{/* test case \#46 from BG (catches the LTC bug of v1.15) */}}
+\DoxyCodeLine{279 \{}
+\DoxyCodeLine{280    \textcolor{comment}{/* key */}}
+\DoxyCodeLine{281    \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{282      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{283    16,}
+\DoxyCodeLine{284 }
+\DoxyCodeLine{285    \textcolor{comment}{/* PT */}}
+\DoxyCodeLine{286    \{ 0xa2, 0xaa, 0xb3, 0xad, 0x8b, 0x17, 0xac, 0xdd,}
+\DoxyCodeLine{287      0xa2, 0x88, 0x42, 0x6c, 0xd7, 0xc4, 0x29, 0xb7,}
+\DoxyCodeLine{288      0xca, 0x86, 0xb7, 0xac, 0xa0, 0x58, 0x09, 0xc7,}
+\DoxyCodeLine{289      0x0c, 0xe8, 0x2d, 0xb2, 0x57, 0x11, 0xcb, 0x53,}
+\DoxyCodeLine{290      0x02, 0xeb, 0x27, 0x43, 0xb0, 0x36, 0xf3, 0xd7,}
+\DoxyCodeLine{291      0x50, 0xd6, 0xcf, 0x0d, 0xc0, 0xac, 0xb9, 0x29,}
+\DoxyCodeLine{292      0x50, 0xd5, 0x46, 0xdb, 0x30, 0x8f, 0x93, 0xb4,}
+\DoxyCodeLine{293      0xff, 0x24, 0x4a, 0xfa, 0x9d, 0xc7, 0x2b, 0xcd,}
+\DoxyCodeLine{294      0x75, 0x8d, 0x2c \},}
+\DoxyCodeLine{295    67,}
+\DoxyCodeLine{296 }
+\DoxyCodeLine{297    \textcolor{comment}{/* ADATA */}}
+\DoxyCodeLine{298    \{ 0x68, 0x8e, 0x1a, 0xa9, 0x84, 0xde, 0x92, 0x6d,}
+\DoxyCodeLine{299      0xc7, 0xb4, 0xc4, 0x7f, 0x44 \},}
+\DoxyCodeLine{300    13,}
+\DoxyCodeLine{301 }
+\DoxyCodeLine{302    \textcolor{comment}{/* IV */}}
+\DoxyCodeLine{303    \{ 0xb7, 0x21, 0x38, 0xb5, 0xa0, 0x5f, 0xf5, 0x07,}
+\DoxyCodeLine{304      0x0e, 0x8c, 0xd9, 0x41, 0x83, 0xf7, 0x61, 0xd8 \},}
+\DoxyCodeLine{305    16,}
+\DoxyCodeLine{306 }
+\DoxyCodeLine{307    \textcolor{comment}{/* CT */}}
+\DoxyCodeLine{308    \{ 0xcb, 0xc8, 0xd2, 0xf1, 0x54, 0x81, 0xa4, 0xcc,}
+\DoxyCodeLine{309      0x7d, 0xd1, 0xe1, 0x9a, 0xaa, 0x83, 0xde, 0x56,}
+\DoxyCodeLine{310      0x78, 0x48, 0x3e, 0xc3, 0x59, 0xae, 0x7d, 0xec,}
+\DoxyCodeLine{311      0x2a, 0xb8, 0xd5, 0x34, 0xe0, 0x90, 0x6f, 0x4b,}
+\DoxyCodeLine{312      0x46, 0x63, 0xfa, 0xff, 0x58, 0xa8, 0xb2, 0xd7,}
+\DoxyCodeLine{313      0x33, 0xb8, 0x45, 0xee, 0xf7, 0xc9, 0xb3, 0x31,}
+\DoxyCodeLine{314      0xe9, 0xe1, 0x0e, 0xb2, 0x61, 0x2c, 0x99, 0x5f,}
+\DoxyCodeLine{315      0xeb, 0x1a, 0xc1, 0x5a, 0x62, 0x86, 0xcc, 0xe8,}
+\DoxyCodeLine{316      0xb2, 0x97, 0xa8 \},}
+\DoxyCodeLine{317 }
+\DoxyCodeLine{318    \textcolor{comment}{/* TAG */}}
+\DoxyCodeLine{319    \{ 0x8d, 0x2d, 0x2a, 0x93, 0x72, 0x62, 0x6f, 0x6b,}
+\DoxyCodeLine{320      0xee, 0x85, 0x80, 0x27, 0x6a, 0x63, 0x66, 0xbf \}}
+\DoxyCodeLine{321 \}}
+\DoxyCodeLine{322 }
+\DoxyCodeLine{323 \textcolor{comment}{/* rest of test cases are the same except AES key size changes... ignored... */}}
+\DoxyCodeLine{324 \};}
+\DoxyCodeLine{325    \textcolor{keywordtype}{int}           idx, err;}
+\DoxyCodeLine{326    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} x, y;}
+\DoxyCodeLine{327    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} out[2][128], T[2][16];}
+\DoxyCodeLine{328    gcm\_state gcm;}
+\DoxyCodeLine{329 }
+\DoxyCodeLine{330    \textcolor{comment}{/* find aes */}}
+\DoxyCodeLine{331    idx = \mbox{\hyperlink{tomcrypt__cipher_8h_af5c3882342fd65a17239cd04bfdf44e2}{find\_cipher}}(\textcolor{stringliteral}{"aes"});}
+\DoxyCodeLine{332    \textcolor{keywordflow}{if} (idx == -1) \{}
+\DoxyCodeLine{333       idx = \mbox{\hyperlink{tomcrypt__cipher_8h_af5c3882342fd65a17239cd04bfdf44e2}{find\_cipher}}(\textcolor{stringliteral}{"rijndael"});}
+\DoxyCodeLine{334       \textcolor{keywordflow}{if} (idx == -1) \{}
+\DoxyCodeLine{335          \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cac43a7799c7fd5f515172da6cfc0f9cf5}{CRYPT\_NOP}};}
+\DoxyCodeLine{336       \}}
+\DoxyCodeLine{337    \}}
+\DoxyCodeLine{338 }
+\DoxyCodeLine{339    \textcolor{comment}{/* Special test case for empty AAD + empty PT */}}
+\DoxyCodeLine{340    y = \textcolor{keyword}{sizeof}(T[0]);}
+\DoxyCodeLine{341    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{gcm__init_8c_aa8fa50bfa0ec8b07b363dbe7cbab7339}{gcm\_init}}(\&gcm, idx, tests[0].\mbox{\hyperlink{sha512_8c_a2d167a3caf30de6442abc69780199a52}{K}}, tests[0].keylen)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{342    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{gcm__add__iv_8c_a05c018a26305857461c773ce2e458fc5}{gcm\_add\_iv}}(\&gcm, tests[0].IV, tests[0].IVlen)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})    \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{343    \textcolor{comment}{/* intentionally skip gcm\_add\_aad + gcm\_process */}}
+\DoxyCodeLine{344    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{gcm__done_8c_a802604cf97f0f3103881fc43bdc060f3}{gcm\_done}}(\&gcm, T[0], \&y)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                         \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{345    \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(T[0], y, tests[0].T, 16, \textcolor{stringliteral}{"GCM Encrypt Tag-special"}, 0))      \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{346 }
+\DoxyCodeLine{347    \textcolor{keywordflow}{for} (x = 0; x < (int)(\textcolor{keyword}{sizeof}(tests)/\textcolor{keyword}{sizeof}(tests[0])); x++) \{}
+\DoxyCodeLine{348        y = \textcolor{keyword}{sizeof}(T[0]);}
+\DoxyCodeLine{349        \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{gcm__memory_8c_a43d9862e1013606d01bab2c57fef74f5}{gcm\_memory}}(idx, tests[x].\mbox{\hyperlink{sha512_8c_a2d167a3caf30de6442abc69780199a52}{K}}, tests[x].keylen,}
+\DoxyCodeLine{350                              tests[x].IV, tests[x].IVlen,}
+\DoxyCodeLine{351                              tests[x].A, tests[x].alen,}
+\DoxyCodeLine{352                              (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}*)tests[x].P, tests[x].ptlen,}
+\DoxyCodeLine{353                              out[0], T[0], \&y, GCM\_ENCRYPT)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{354           \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{355        \}}
+\DoxyCodeLine{356 }
+\DoxyCodeLine{357        \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(out[0], tests[x].ptlen, tests[x].C, tests[x].ptlen, \textcolor{stringliteral}{"GCM CT"}, x)) \{}
+\DoxyCodeLine{358           \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{359        \}}
+\DoxyCodeLine{360 }
+\DoxyCodeLine{361        \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(T[0], y, tests[x].T, 16, \textcolor{stringliteral}{"GCM Encrypt Tag"}, x)) \{}
+\DoxyCodeLine{362           \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{363        \}}
+\DoxyCodeLine{364 }
+\DoxyCodeLine{365        y = \textcolor{keyword}{sizeof}(T[1]);}
+\DoxyCodeLine{366        \mbox{\hyperlink{tomcrypt__cfg_8h_a7691dd48d60d5fc6daf2fa7ec4c55e12}{XMEMCPY}}(T[1], tests[x].T, 16);}
+\DoxyCodeLine{367        \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{gcm__memory_8c_a43d9862e1013606d01bab2c57fef74f5}{gcm\_memory}}(idx, tests[x].\mbox{\hyperlink{sha512_8c_a2d167a3caf30de6442abc69780199a52}{K}}, tests[x].keylen,}
+\DoxyCodeLine{368                              tests[x].IV, tests[x].IVlen,}
+\DoxyCodeLine{369                              tests[x].A, tests[x].alen,}
+\DoxyCodeLine{370                              out[1], tests[x].ptlen,}
+\DoxyCodeLine{371                              out[0], T[1], \&y, GCM\_DECRYPT)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{372           \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{373        \}}
+\DoxyCodeLine{374 }
+\DoxyCodeLine{375        \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(out[1], tests[x].ptlen, tests[x].P, tests[x].ptlen, \textcolor{stringliteral}{"GCM PT"}, x)) \{}
+\DoxyCodeLine{376           \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{377        \}}
+\DoxyCodeLine{378    \}}
+\DoxyCodeLine{379 }
+\DoxyCodeLine{380    \textcolor{comment}{/* wycheproof failing test - https://github.com/libtom/libtomcrypt/pull/451 */}}
+\DoxyCodeLine{381    \{}
+\DoxyCodeLine{382       \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} key[] = \{ 0x00,0x01,0x02,0x03,0x04,0x05,0x06,0x07,0x08,0x09,0x0a,0x0b,0x0c,0x0d,0x0e,0x0f \};}
+\DoxyCodeLine{383       \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} iv[]  = \{ 0x50,0x51,0x52,0x53,0x54,0x55,0x56,0x57,0x58,0x59,0x5a,0x5b \};}
+\DoxyCodeLine{384       \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} valid\_tag[]   = \{ 0xd8,0x84,0x7d,0xbc,0x32,0x6a,0x06,0xe9,0x88,0xc7,0x7a,0xd3,0x86,0x3e,0x60,0x83 \};}
+\DoxyCodeLine{385       \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} invalid\_tag[] = \{ 0xd9,0x84,0x7d,0xbc,0x32,0x6a,0x06,0xe9,0x88,0xc7,0x7a,0xd3,0x86,0x3e,0x60,0x83 \};}
+\DoxyCodeLine{386       \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} msg[] = \{ 0x20,0x21,0x22,0x23,0x24,0x25,0x26,0x27,0x28,0x29,0x2a,0x2b,0x2c,0x2d,0x2e,0x2f \};}
+\DoxyCodeLine{387       \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} ct[]  = \{ 0xeb,0x15,0x6d,0x08,0x1e,0xd6,0xb6,0xb5,0x5f,0x46,0x12,0xf0,0x21,0xd8,0x7b,0x39 \};}
+\DoxyCodeLine{388       \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} pt[20] = \{ 0 \};}
+\DoxyCodeLine{389       \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} taglen;}
+\DoxyCodeLine{390 }
+\DoxyCodeLine{391       \textcolor{comment}{/* VALID tag */}}
+\DoxyCodeLine{392       taglen = \textcolor{keyword}{sizeof}(valid\_tag);}
+\DoxyCodeLine{393       err = \mbox{\hyperlink{gcm__memory_8c_a43d9862e1013606d01bab2c57fef74f5}{gcm\_memory}}(idx, key, \textcolor{keyword}{sizeof}(key), iv, \textcolor{keyword}{sizeof}(iv), NULL, 0,}
+\DoxyCodeLine{394                        pt, \textcolor{keyword}{sizeof}(ct), ct, valid\_tag, \&taglen, GCM\_DECRYPT);}
+\DoxyCodeLine{395       \textcolor{keywordflow}{if} ((err != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) || (\mbox{\hyperlink{tomcrypt__cfg_8h_a372b974ec0ac07abcd55297554fe540f}{XMEMCMP}}(msg, pt, \textcolor{keyword}{sizeof}(msg)) != 0)) \{}
+\DoxyCodeLine{396          \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{397       \}}
+\DoxyCodeLine{398 }
+\DoxyCodeLine{399       \textcolor{comment}{/* INVALID tag */}}
+\DoxyCodeLine{400       taglen = \textcolor{keyword}{sizeof}(invalid\_tag);}
+\DoxyCodeLine{401       err = \mbox{\hyperlink{gcm__memory_8c_a43d9862e1013606d01bab2c57fef74f5}{gcm\_memory}}(idx, key, \textcolor{keyword}{sizeof}(key), iv, \textcolor{keyword}{sizeof}(iv), NULL, 0,}
+\DoxyCodeLine{402                        pt, \textcolor{keyword}{sizeof}(ct), ct, invalid\_tag, \&taglen, GCM\_DECRYPT);}
+\DoxyCodeLine{403       \textcolor{keywordflow}{if} (err == \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{404          \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}}; \textcolor{comment}{/* should fail */}}
+\DoxyCodeLine{405       \}}
+\DoxyCodeLine{406    \}}
+\DoxyCodeLine{407 }
+\DoxyCodeLine{408    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{409 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{410 \}}
+
+\end{DoxyCode}
+
+
+References compare\+\_\+testvector(), C\+R\+Y\+P\+T\+\_\+\+F\+A\+I\+L\+\_\+\+T\+E\+S\+T\+V\+E\+C\+T\+OR, C\+R\+Y\+P\+T\+\_\+\+N\+OP, C\+R\+Y\+P\+T\+\_\+\+OK, find\+\_\+cipher(), gcm\+\_\+add\+\_\+iv(), gcm\+\_\+done(), gcm\+\_\+init(), gcm\+\_\+memory(), K, X\+M\+E\+M\+C\+M\+P(), and X\+M\+E\+M\+C\+P\+Y().
+
+Here is the call graph for this function\+:
+% FIG 1

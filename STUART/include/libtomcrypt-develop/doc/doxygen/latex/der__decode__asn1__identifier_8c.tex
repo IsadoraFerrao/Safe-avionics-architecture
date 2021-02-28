@@ -1,0 +1,163 @@
+\hypertarget{der__decode__asn1__identifier_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/pk/asn1/der/general/der\+\_\+decode\+\_\+asn1\+\_\+identifier.c File Reference}
+\label{der__decode__asn1__identifier_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/asn1/der/general/der\_decode\_asn1\_identifier.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/asn1/der/general/der\_decode\_asn1\_identifier.c}}
+
+
+A\+S\+N.\+1 D\+ER, decode the A\+S\+N.\+1 Identifier, Steffen Jaeckel.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for der\+\_\+decode\+\_\+asn1\+\_\+identifier.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{der__decode__asn1__identifier_8c_a651ad7c1f5a930476bb10b9d61555346}{der\+\_\+decode\+\_\+asn1\+\_\+identifier}} (const unsigned char $\ast$in, unsigned long $\ast$inlen, ltc\+\_\+asn1\+\_\+list $\ast$id)
+\begin{DoxyCompactList}\small\item\em Decode the A\+S\+N.\+1 Identifier. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static const unsigned char \mbox{\hyperlink{der__decode__asn1__identifier_8c_af435b696867260086b90e7ca08dc8b20}{tag\+\_\+constructed\+\_\+map}} \mbox{[}$\,$\mbox{]}
+\item 
+static const unsigned long \mbox{\hyperlink{der__decode__asn1__identifier_8c_ae0c8f7d434b413a2ff67589df588cdeb}{tag\+\_\+constructed\+\_\+map\+\_\+sz}} = sizeof(\mbox{\hyperlink{der__decode__asn1__identifier_8c_af435b696867260086b90e7ca08dc8b20}{tag\+\_\+constructed\+\_\+map}})/sizeof(\mbox{\hyperlink{der__decode__asn1__identifier_8c_af435b696867260086b90e7ca08dc8b20}{tag\+\_\+constructed\+\_\+map}}\mbox{[}0\mbox{]})
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A\+S\+N.\+1 D\+ER, decode the A\+S\+N.\+1 Identifier, Steffen Jaeckel. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{der__decode__asn1__identifier_8c_a651ad7c1f5a930476bb10b9d61555346}\label{der__decode__asn1__identifier_8c_a651ad7c1f5a930476bb10b9d61555346}} 
+\index{der\_decode\_asn1\_identifier.c@{der\_decode\_asn1\_identifier.c}!der\_decode\_asn1\_identifier@{der\_decode\_asn1\_identifier}}
+\index{der\_decode\_asn1\_identifier@{der\_decode\_asn1\_identifier}!der\_decode\_asn1\_identifier.c@{der\_decode\_asn1\_identifier.c}}
+\subsubsection{\texorpdfstring{der\_decode\_asn1\_identifier()}{der\_decode\_asn1\_identifier()}}
+{\footnotesize\ttfamily int der\+\_\+decode\+\_\+asn1\+\_\+identifier (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{in,  }\item[{unsigned long $\ast$}]{inlen,  }\item[{ltc\+\_\+asn1\+\_\+list $\ast$}]{id }\end{DoxyParamCaption})}
+
+
+
+Decode the A\+S\+N.\+1 Identifier. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & Where to store the decoded Identifier \\
+\hline
+{\em in} & Where to read the Identifier from \\
+\hline
+{\em inlen} & \mbox{[}in/out\mbox{]} The size of in available/read \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 65 of file der\+\_\+decode\+\_\+asn1\+\_\+identifier.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{66 \{}
+\DoxyCodeLine{67    \mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}} tmp;}
+\DoxyCodeLine{68    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} tag\_len;}
+\DoxyCodeLine{69    \textcolor{keywordtype}{int} err;}
+\DoxyCodeLine{70 }
+\DoxyCodeLine{71    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(\textcolor{keywordtype}{id}    != NULL);}
+\DoxyCodeLine{72    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(in    != NULL);}
+\DoxyCodeLine{73    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(inlen != NULL);}
+\DoxyCodeLine{74 }
+\DoxyCodeLine{75    \textcolor{keywordflow}{if} (*inlen == 0) \{}
+\DoxyCodeLine{76       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caccd878f5599f3036ffe759dbe1a1ac16}{CRYPT\_BUFFER\_OVERFLOW}};}
+\DoxyCodeLine{77    \}}
+\DoxyCodeLine{78 }
+\DoxyCodeLine{79    tag\_len = 1;}
+\DoxyCodeLine{80    \textcolor{keywordtype}{id}->klass = (in[0] >> 6) \& 0x3;}
+\DoxyCodeLine{81    \textcolor{keywordtype}{id}->pc = (in[0] >> 5) \& 0x1;}
+\DoxyCodeLine{82    \textcolor{keywordtype}{id}->tag = in[0] \& 0x1f;}
+\DoxyCodeLine{83 }
+\DoxyCodeLine{84    err = \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{85    \textcolor{keywordflow}{if} (id->tag == 0x1f) \{}
+\DoxyCodeLine{86       \textcolor{keywordtype}{id}->tag = 0;}
+\DoxyCodeLine{87       \textcolor{keywordflow}{do} \{}
+\DoxyCodeLine{88          \textcolor{keywordflow}{if} (*inlen < tag\_len) \{}
+\DoxyCodeLine{89             \textcolor{comment}{/* break the loop and trigger the BOF error-code */}}
+\DoxyCodeLine{90             tmp = 0xff;}
+\DoxyCodeLine{91             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{92          \}}
+\DoxyCodeLine{93          \textcolor{keywordtype}{id}->tag <<= 7;}
+\DoxyCodeLine{94          \textcolor{keywordtype}{id}->tag |= in[tag\_len] \& 0x7f;}
+\DoxyCodeLine{95          tmp = in[tag\_len] \& 0x80;}
+\DoxyCodeLine{96          tag\_len++;}
+\DoxyCodeLine{97       \} \textcolor{keywordflow}{while} ((tmp != 0) \&\& (tag\_len < 10));}
+\DoxyCodeLine{98 }
+\DoxyCodeLine{99       \textcolor{keywordflow}{if} (tmp != 0) \{}
+\DoxyCodeLine{100          err = \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caccd878f5599f3036ffe759dbe1a1ac16}{CRYPT\_BUFFER\_OVERFLOW}};}
+\DoxyCodeLine{101       \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (id->tag < 0x1f) \{}
+\DoxyCodeLine{102          err = \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca001cb5383cce7c4581790abe472e816f}{CRYPT\_PK\_ASN1\_ERROR}};}
+\DoxyCodeLine{103       \}}
+\DoxyCodeLine{104    \}}
+\DoxyCodeLine{105 }
+\DoxyCodeLine{106    \textcolor{keywordflow}{if} (err != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{107       \textcolor{keywordtype}{id}->pc = 0;}
+\DoxyCodeLine{108       \textcolor{keywordtype}{id}->klass = 0;}
+\DoxyCodeLine{109       \textcolor{keywordtype}{id}->tag = 0;}
+\DoxyCodeLine{110    \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{111       *inlen = tag\_len;}
+\DoxyCodeLine{112       \textcolor{keywordflow}{if} ((id->klass == LTC\_ASN1\_CL\_UNIVERSAL) \&\&}
+\DoxyCodeLine{113             (\textcolor{keywordtype}{id}->tag < \mbox{\hyperlink{tomcrypt__private_8h_a6ad32891f744af2b205041ad6dc5bce0}{der\_asn1\_tag\_to\_type\_map\_sz}}) \&\&}
+\DoxyCodeLine{114             (id->tag < \mbox{\hyperlink{der__decode__asn1__identifier_8c_ae0c8f7d434b413a2ff67589df588cdeb}{tag\_constructed\_map\_sz}}) \&\&}
+\DoxyCodeLine{115             (\textcolor{keywordtype}{id}->pc == \mbox{\hyperlink{der__decode__asn1__identifier_8c_af435b696867260086b90e7ca08dc8b20}{tag\_constructed\_map}}[\textcolor{keywordtype}{id}->tag])) \{}
+\DoxyCodeLine{116          \textcolor{keywordtype}{id}->type = \mbox{\hyperlink{tomcrypt__private_8h_a411f77ba949e37dca9c1ef1e43127cb1}{der\_asn1\_tag\_to\_type\_map}}[\textcolor{keywordtype}{id}->tag];}
+\DoxyCodeLine{117       \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{118          \textcolor{keywordflow}{if} ((id->klass == LTC\_ASN1\_CL\_UNIVERSAL) \&\& (\textcolor{keywordtype}{id}->tag == 0)) \{}
+\DoxyCodeLine{119             \textcolor{keywordtype}{id}->type = LTC\_ASN1\_EOL;}
+\DoxyCodeLine{120          \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{121             \textcolor{keywordtype}{id}->type = LTC\_ASN1\_CUSTOM\_TYPE;}
+\DoxyCodeLine{122          \}}
+\DoxyCodeLine{123       \}}
+\DoxyCodeLine{124    \}}
+\DoxyCodeLine{125 }
+\DoxyCodeLine{126    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{127 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+O\+V\+E\+R\+F\+L\+OW, C\+R\+Y\+P\+T\+\_\+\+OK, C\+R\+Y\+P\+T\+\_\+\+P\+K\+\_\+\+A\+S\+N1\+\_\+\+E\+R\+R\+OR, der\+\_\+asn1\+\_\+tag\+\_\+to\+\_\+type\+\_\+map, der\+\_\+asn1\+\_\+tag\+\_\+to\+\_\+type\+\_\+map\+\_\+sz, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, tag\+\_\+constructed\+\_\+map, and tag\+\_\+constructed\+\_\+map\+\_\+sz.
+
+
+
+Referenced by der\+\_\+decode\+\_\+custom\+\_\+type\+\_\+ex(), and der\+\_\+decode\+\_\+sequence\+\_\+flexi().
+
+Here is the caller graph for this function\+:
+% FIG 1
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{der__decode__asn1__identifier_8c_af435b696867260086b90e7ca08dc8b20}\label{der__decode__asn1__identifier_8c_af435b696867260086b90e7ca08dc8b20}} 
+\index{der\_decode\_asn1\_identifier.c@{der\_decode\_asn1\_identifier.c}!tag\_constructed\_map@{tag\_constructed\_map}}
+\index{tag\_constructed\_map@{tag\_constructed\_map}!der\_decode\_asn1\_identifier.c@{der\_decode\_asn1\_identifier.c}}
+\subsubsection{\texorpdfstring{tag\_constructed\_map}{tag\_constructed\_map}}
+{\footnotesize\ttfamily const unsigned char tag\+\_\+constructed\+\_\+map\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 18 of file der\+\_\+decode\+\_\+asn1\+\_\+identifier.\+c.
+
+
+
+Referenced by der\+\_\+decode\+\_\+asn1\+\_\+identifier().
+
+\mbox{\Hypertarget{der__decode__asn1__identifier_8c_ae0c8f7d434b413a2ff67589df588cdeb}\label{der__decode__asn1__identifier_8c_ae0c8f7d434b413a2ff67589df588cdeb}} 
+\index{der\_decode\_asn1\_identifier.c@{der\_decode\_asn1\_identifier.c}!tag\_constructed\_map\_sz@{tag\_constructed\_map\_sz}}
+\index{tag\_constructed\_map\_sz@{tag\_constructed\_map\_sz}!der\_decode\_asn1\_identifier.c@{der\_decode\_asn1\_identifier.c}}
+\subsubsection{\texorpdfstring{tag\_constructed\_map\_sz}{tag\_constructed\_map\_sz}}
+{\footnotesize\ttfamily const unsigned long tag\+\_\+constructed\+\_\+map\+\_\+sz = sizeof(\mbox{\hyperlink{der__decode__asn1__identifier_8c_af435b696867260086b90e7ca08dc8b20}{tag\+\_\+constructed\+\_\+map}})/sizeof(\mbox{\hyperlink{der__decode__asn1__identifier_8c_af435b696867260086b90e7ca08dc8b20}{tag\+\_\+constructed\+\_\+map}}\mbox{[}0\mbox{]})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 56 of file der\+\_\+decode\+\_\+asn1\+\_\+identifier.\+c.
+
+
+
+Referenced by der\+\_\+decode\+\_\+asn1\+\_\+identifier().
+

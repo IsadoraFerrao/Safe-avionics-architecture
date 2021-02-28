@@ -1,0 +1,22 @@
+digraph "sha512_test"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node27 [label="sha512_test",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Self-test the hash."];
+  Node27 -> Node28 [color="midnightblue",fontsize="10",style="solid"];
+  Node28 [label="compare_testvector",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__misc_8h.html#a7764a7f27897c6182335752df00b5f8e",tooltip="Compare two test-vectors."];
+  Node28 -> Node29 [color="midnightblue",fontsize="10",style="solid"];
+  Node29 [label="XMEMCMP",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cfg_8h.html#a372b974ec0ac07abcd55297554fe540f",tooltip=" "];
+  Node27 -> Node30 [color="midnightblue",fontsize="10",style="solid"];
+  Node30 [label="sha512_done",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sha512_8c.html#a9c65441270276d7372c48211f89fc9c3",tooltip="Terminate the hash to get the digest."];
+  Node30 -> Node31 [color="midnightblue",fontsize="10",style="solid"];
+  Node31 [label="sha512_compress",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sha512_8c.html#af6716c85706fc6b66672562b4e1a53e3",tooltip=" "];
+  Node30 -> Node32 [color="midnightblue",fontsize="10",style="solid"];
+  Node32 [label="zeromem",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__misc_8h.html#a63b6e188713790263bfd3612fe8b398f",tooltip="Zero a block of memory."];
+  Node27 -> Node33 [color="midnightblue",fontsize="10",style="solid"];
+  Node33 [label="sha512_init",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sha512_8c.html#a197de2c978ff230f8138395f1143869e",tooltip="Initialize the hash state."];
+  Node27 -> Node34 [color="midnightblue",fontsize="10",style="solid"];
+  Node34 [label="sha512_process",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sha512_8c.html#af3bcc9bee16c5fe0c0e02a3b71bdac00",tooltip="Process a block of memory though the hash."];
+}

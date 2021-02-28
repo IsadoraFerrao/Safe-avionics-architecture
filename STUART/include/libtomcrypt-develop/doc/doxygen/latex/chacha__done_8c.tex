@@ -1,0 +1,56 @@
+\hypertarget{chacha__done_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/stream/chacha/chacha\+\_\+done.c File Reference}
+\label{chacha__done_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/stream/chacha/chacha\_done.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/stream/chacha/chacha\_done.c}}
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for chacha\+\_\+done.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{chacha__done_8c_a4936c207e7ef938d31047954fae30e39}{chacha\+\_\+done}} (chacha\+\_\+state $\ast$st)
+\begin{DoxyCompactList}\small\item\em Terminate and clear Cha\+Cha state. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{chacha__done_8c_a4936c207e7ef938d31047954fae30e39}\label{chacha__done_8c_a4936c207e7ef938d31047954fae30e39}} 
+\index{chacha\_done.c@{chacha\_done.c}!chacha\_done@{chacha\_done}}
+\index{chacha\_done@{chacha\_done}!chacha\_done.c@{chacha\_done.c}}
+\subsubsection{\texorpdfstring{chacha\_done()}{chacha\_done()}}
+{\footnotesize\ttfamily int chacha\+\_\+done (\begin{DoxyParamCaption}\item[{chacha\+\_\+state $\ast$}]{st }\end{DoxyParamCaption})}
+
+
+
+Terminate and clear Cha\+Cha state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em st} & The Cha\+Cha state \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK on success 
+\end{DoxyReturn}
+
+
+Definition at line 19 of file chacha\+\_\+done.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{20 \{}
+\DoxyCodeLine{21    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(st != NULL);}
+\DoxyCodeLine{22    \mbox{\hyperlink{tomcrypt__cfg_8h_aa3c34a6f6c61de7da9258b5a30e32c2f}{XMEMSET}}(st, 0, \textcolor{keyword}{sizeof}(chacha\_state));}
+\DoxyCodeLine{23    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{24 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, and X\+M\+E\+M\+S\+E\+T().
+
+
+
+Referenced by chacha20\+\_\+prng\+\_\+done(), chacha20poly1305\+\_\+done(), and chacha\+\_\+memory().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2

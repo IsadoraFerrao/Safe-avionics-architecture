@@ -1,0 +1,156 @@
+\hypertarget{crypt__constants_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/misc/crypt/crypt\+\_\+constants.c File Reference}
+\label{crypt__constants_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/misc/crypt/crypt\_constants.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/misc/crypt/crypt\_constants.c}}
+
+
+Make various constants available to dynamic languages like Python -\/ Larry Bugbee, February 2013.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for crypt\+\_\+constants.\+c\+:
+% FIG 0
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structcrypt__constant}{crypt\+\_\+constant}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{crypt__constants_8c_a21628747b152640f0d9613f6598ec8d1}{\+\_\+\+C\+\_\+\+S\+T\+R\+I\+N\+G\+I\+FY}}(s)~\{ \#s, s \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{crypt__constants_8c_a5e438cfa6bc585b574711796ef54b583}{crypt\+\_\+get\+\_\+constant}} (const char $\ast$namein, int $\ast$valueout)
+\item 
+int \mbox{\hyperlink{crypt__constants_8c_a3c009179fb5a1c2c177e1aef6367e44b}{crypt\+\_\+list\+\_\+all\+\_\+constants}} (char $\ast$names\+\_\+list, unsigned int $\ast$names\+\_\+list\+\_\+size)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static const \mbox{\hyperlink{structcrypt__constant}{crypt\+\_\+constant}} \mbox{\hyperlink{crypt__constants_8c_a7bb1bde4aeec5aa4bd2a506c7c0a61fc}{\+\_\+crypt\+\_\+constants}} \mbox{[}$\,$\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Make various constants available to dynamic languages like Python -\/ Larry Bugbee, February 2013. 
+
+LB -\/ Dec 2013 -\/ revised to include compiler define options LB -\/ Mar 2014 -\/ added endianness and word size 
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{crypt__constants_8c_a21628747b152640f0d9613f6598ec8d1}\label{crypt__constants_8c_a21628747b152640f0d9613f6598ec8d1}} 
+\index{crypt\_constants.c@{crypt\_constants.c}!\_C\_STRINGIFY@{\_C\_STRINGIFY}}
+\index{\_C\_STRINGIFY@{\_C\_STRINGIFY}!crypt\_constants.c@{crypt\_constants.c}}
+\subsubsection{\texorpdfstring{\_C\_STRINGIFY}{\_C\_STRINGIFY}}
+{\footnotesize\ttfamily \#define \+\_\+\+C\+\_\+\+S\+T\+R\+I\+N\+G\+I\+FY(\begin{DoxyParamCaption}\item[{}]{s }\end{DoxyParamCaption})~\{ \#s, s \}}
+
+
+
+Definition at line 26 of file crypt\+\_\+constants.\+c.
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{crypt__constants_8c_a5e438cfa6bc585b574711796ef54b583}\label{crypt__constants_8c_a5e438cfa6bc585b574711796ef54b583}} 
+\index{crypt\_constants.c@{crypt\_constants.c}!crypt\_get\_constant@{crypt\_get\_constant}}
+\index{crypt\_get\_constant@{crypt\_get\_constant}!crypt\_constants.c@{crypt\_constants.c}}
+\subsubsection{\texorpdfstring{crypt\_get\_constant()}{crypt\_get\_constant()}}
+{\footnotesize\ttfamily int crypt\+\_\+get\+\_\+constant (\begin{DoxyParamCaption}\item[{const char $\ast$}]{namein,  }\item[{int $\ast$}]{valueout }\end{DoxyParamCaption})}
+
+
+
+Definition at line 236 of file crypt\+\_\+constants.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{236                                                           \{}
+\DoxyCodeLine{237     \textcolor{keywordtype}{int} i;}
+\DoxyCodeLine{238     \textcolor{keywordtype}{int} \_crypt\_constants\_len = \textcolor{keyword}{sizeof}(\mbox{\hyperlink{crypt__constants_8c_a7bb1bde4aeec5aa4bd2a506c7c0a61fc}{\_crypt\_constants}}) / \textcolor{keyword}{sizeof}(\mbox{\hyperlink{crypt__constants_8c_a7bb1bde4aeec5aa4bd2a506c7c0a61fc}{\_crypt\_constants}}[0]);}
+\DoxyCodeLine{239     \textcolor{keywordflow}{for} (i=0; i<\_crypt\_constants\_len; i++) \{}
+\DoxyCodeLine{240         \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__cfg_8h_a5d6e3d69e1d3f54de008b963bba3c6b3}{XSTRCMP}}(\mbox{\hyperlink{crypt__constants_8c_a7bb1bde4aeec5aa4bd2a506c7c0a61fc}{\_crypt\_constants}}[i].name, namein) == 0) \{}
+\DoxyCodeLine{241             *valueout = \mbox{\hyperlink{crypt__constants_8c_a7bb1bde4aeec5aa4bd2a506c7c0a61fc}{\_crypt\_constants}}[i].\mbox{\hyperlink{structcrypt__constant_ab8039d42f9c5a5623cace3a353139993}{value}};}
+\DoxyCodeLine{242             \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{243         \}}
+\DoxyCodeLine{244     \}}
+\DoxyCodeLine{245     \textcolor{keywordflow}{return} 1;}
+\DoxyCodeLine{246 \}}
+
+\end{DoxyCode}
+
+
+References \+\_\+crypt\+\_\+constants, crypt\+\_\+constant\+::value, and X\+S\+T\+R\+C\+M\+P().
+
+Here is the call graph for this function\+:
+% FIG 1
+\mbox{\Hypertarget{crypt__constants_8c_a3c009179fb5a1c2c177e1aef6367e44b}\label{crypt__constants_8c_a3c009179fb5a1c2c177e1aef6367e44b}} 
+\index{crypt\_constants.c@{crypt\_constants.c}!crypt\_list\_all\_constants@{crypt\_list\_all\_constants}}
+\index{crypt\_list\_all\_constants@{crypt\_list\_all\_constants}!crypt\_constants.c@{crypt\_constants.c}}
+\subsubsection{\texorpdfstring{crypt\_list\_all\_constants()}{crypt\_list\_all\_constants()}}
+{\footnotesize\ttfamily int crypt\+\_\+list\+\_\+all\+\_\+constants (\begin{DoxyParamCaption}\item[{char $\ast$}]{names\+\_\+list,  }\item[{unsigned int $\ast$}]{names\+\_\+list\+\_\+size }\end{DoxyParamCaption})}
+
+
+
+Definition at line 258 of file crypt\+\_\+constants.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{258                                                                               \{}
+\DoxyCodeLine{259     \textcolor{keywordtype}{int} i;}
+\DoxyCodeLine{260     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} total\_len = 0;}
+\DoxyCodeLine{261     \textcolor{keywordtype}{char} *ptr;}
+\DoxyCodeLine{262     \textcolor{keywordtype}{int} number\_len;}
+\DoxyCodeLine{263     \textcolor{keywordtype}{int} count = \textcolor{keyword}{sizeof}(\mbox{\hyperlink{crypt__constants_8c_a7bb1bde4aeec5aa4bd2a506c7c0a61fc}{\_crypt\_constants}}) / \textcolor{keyword}{sizeof}(\mbox{\hyperlink{crypt__constants_8c_a7bb1bde4aeec5aa4bd2a506c7c0a61fc}{\_crypt\_constants}}[0]);}
+\DoxyCodeLine{264 }
+\DoxyCodeLine{265     \textcolor{comment}{/* calculate amount of memory required for the list */}}
+\DoxyCodeLine{266     \textcolor{keywordflow}{for} (i=0; i<count; i++) \{}
+\DoxyCodeLine{267         number\_len = snprintf(NULL, 0, \textcolor{stringliteral}{"\%s,\%d\(\backslash\)n"}, \mbox{\hyperlink{crypt__constants_8c_a7bb1bde4aeec5aa4bd2a506c7c0a61fc}{\_crypt\_constants}}[i].name, \mbox{\hyperlink{crypt__constants_8c_a7bb1bde4aeec5aa4bd2a506c7c0a61fc}{\_crypt\_constants}}[i].\mbox{\hyperlink{der__length__ia5__string_8c_ac4f474c82e82cbb89ca7c36dd52be0ed}{value}});}
+\DoxyCodeLine{268         \textcolor{keywordflow}{if} (number\_len < 0) \{}
+\DoxyCodeLine{269           \textcolor{keywordflow}{return} -1;}
+\DoxyCodeLine{270         \}}
+\DoxyCodeLine{271         total\_len += number\_len;}
+\DoxyCodeLine{272     \}}
+\DoxyCodeLine{273 }
+\DoxyCodeLine{274     \textcolor{keywordflow}{if} (names\_list == NULL) \{}
+\DoxyCodeLine{275         *names\_list\_size = total\_len;}
+\DoxyCodeLine{276     \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{277         \textcolor{keywordflow}{if} (total\_len > *names\_list\_size) \{}
+\DoxyCodeLine{278             \textcolor{keywordflow}{return} -1;}
+\DoxyCodeLine{279         \}}
+\DoxyCodeLine{280         \textcolor{comment}{/* build the names list */}}
+\DoxyCodeLine{281         ptr = names\_list;}
+\DoxyCodeLine{282         \textcolor{keywordflow}{for} (i=0; i<count; i++) \{}
+\DoxyCodeLine{283             number\_len = snprintf(ptr, total\_len, \textcolor{stringliteral}{"\%s,\%d\(\backslash\)n"}, \mbox{\hyperlink{crypt__constants_8c_a7bb1bde4aeec5aa4bd2a506c7c0a61fc}{\_crypt\_constants}}[i].name, \mbox{\hyperlink{crypt__constants_8c_a7bb1bde4aeec5aa4bd2a506c7c0a61fc}{\_crypt\_constants}}[i].\mbox{\hyperlink{der__length__ia5__string_8c_ac4f474c82e82cbb89ca7c36dd52be0ed}{value}});}
+\DoxyCodeLine{284             \textcolor{keywordflow}{if} (number\_len < 0) \textcolor{keywordflow}{return} -1;}
+\DoxyCodeLine{285             \textcolor{keywordflow}{if} ((\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int})number\_len > total\_len) \textcolor{keywordflow}{return} -1;}
+\DoxyCodeLine{286             total\_len -= number\_len;}
+\DoxyCodeLine{287             ptr += number\_len;}
+\DoxyCodeLine{288         \}}
+\DoxyCodeLine{289         \textcolor{comment}{/* to remove the trailing new-line */}}
+\DoxyCodeLine{290         ptr -= 1;}
+\DoxyCodeLine{291         *ptr = 0;}
+\DoxyCodeLine{292     \}}
+\DoxyCodeLine{293     \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{294 \}}
+
+\end{DoxyCode}
+
+
+References \+\_\+crypt\+\_\+constants, and value.
+
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{crypt__constants_8c_a7bb1bde4aeec5aa4bd2a506c7c0a61fc}\label{crypt__constants_8c_a7bb1bde4aeec5aa4bd2a506c7c0a61fc}} 
+\index{crypt\_constants.c@{crypt\_constants.c}!\_crypt\_constants@{\_crypt\_constants}}
+\index{\_crypt\_constants@{\_crypt\_constants}!crypt\_constants.c@{crypt\_constants.c}}
+\subsubsection{\texorpdfstring{\_crypt\_constants}{\_crypt\_constants}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{structcrypt__constant}{crypt\+\_\+constant}} \+\_\+crypt\+\_\+constants\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 28 of file crypt\+\_\+constants.\+c.
+
+
+
+Referenced by crypt\+\_\+get\+\_\+constant(), and crypt\+\_\+list\+\_\+all\+\_\+constants().
+

@@ -1,0 +1,136 @@
+\hypertarget{f8__encrypt_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/modes/f8/f8\+\_\+encrypt.c File Reference}
+\label{f8__encrypt_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/modes/f8/f8\_encrypt.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/modes/f8/f8\_encrypt.c}}
+
+
+F8 implementation, encrypt data, Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for f8\+\_\+encrypt.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{f8__encrypt_8c_ab9fd6d99b51ca455636ab5c46fd057e3}{f8\+\_\+encrypt}} (const unsigned char $\ast$pt, unsigned char $\ast$ct, unsigned long \mbox{\hyperlink{pmac__init_8c_afed088663f8704004425cdae2120b9b3}{len}}, symmetric\+\_\+\+F8 $\ast$f8)
+\begin{DoxyCompactList}\small\item\em F8 encrypt. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+F8 implementation, encrypt data, Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{f8__encrypt_8c_ab9fd6d99b51ca455636ab5c46fd057e3}\label{f8__encrypt_8c_ab9fd6d99b51ca455636ab5c46fd057e3}} 
+\index{f8\_encrypt.c@{f8\_encrypt.c}!f8\_encrypt@{f8\_encrypt}}
+\index{f8\_encrypt@{f8\_encrypt}!f8\_encrypt.c@{f8\_encrypt.c}}
+\subsubsection{\texorpdfstring{f8\_encrypt()}{f8\_encrypt()}}
+{\footnotesize\ttfamily int f8\+\_\+encrypt (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{pt,  }\item[{unsigned char $\ast$}]{ct,  }\item[{unsigned long}]{len,  }\item[{symmetric\+\_\+\+F8 $\ast$}]{f8 }\end{DoxyParamCaption})}
+
+
+
+F8 encrypt. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pt} & Plaintext \\
+\hline
+{\em ct} & \mbox{[}out\mbox{]} Ciphertext \\
+\hline
+{\em len} & Length of plaintext (octets) \\
+\hline
+{\em f8} & F8 state \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 26 of file f8\+\_\+encrypt.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{27 \{}
+\DoxyCodeLine{28    \textcolor{keywordtype}{int}           err, x;}
+\DoxyCodeLine{29    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} buf[\mbox{\hyperlink{tomcrypt_8h_ab59933beebb2b857c992b93cf53f0d10}{MAXBLOCKSIZE}}];}
+\DoxyCodeLine{30    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(pt != NULL);}
+\DoxyCodeLine{31    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(ct != NULL);}
+\DoxyCodeLine{32    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(f8 != NULL);}
+\DoxyCodeLine{33    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_ac30eb68934c4ca07205344dc9d159221}{cipher\_is\_valid}}(f8->cipher)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{34        \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{35    \}}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37    \textcolor{comment}{/* is blocklen/padlen valid? */}}
+\DoxyCodeLine{38    \textcolor{keywordflow}{if} (f8->blocklen < 0 || f8->blocklen > (\textcolor{keywordtype}{int})\textcolor{keyword}{sizeof}(f8->IV) ||}
+\DoxyCodeLine{39        f8->padlen   < 0 || f8->padlen   > (\textcolor{keywordtype}{int})\textcolor{keyword}{sizeof}(f8->IV)) \{}
+\DoxyCodeLine{40       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{41    \}}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{43    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(buf, \textcolor{keyword}{sizeof}(buf));}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45    \textcolor{comment}{/* make sure the pad is empty */}}
+\DoxyCodeLine{46    \textcolor{keywordflow}{if} (f8->padlen == f8->blocklen) \{}
+\DoxyCodeLine{47       \textcolor{comment}{/* xor of IV, MIV and blockcnt == what goes into cipher */}}
+\DoxyCodeLine{48       STORE32H(f8->blockcnt, (buf+(f8->blocklen-4)));}
+\DoxyCodeLine{49       ++(f8->blockcnt);}
+\DoxyCodeLine{50       \textcolor{keywordflow}{for} (x = 0; x < f8->blocklen; x++) \{}
+\DoxyCodeLine{51           f8->IV[x] \string^= f8->MIV[x] \string^ buf[x];}
+\DoxyCodeLine{52       \}}
+\DoxyCodeLine{53       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[f8->cipher].\mbox{\hyperlink{structltc__cipher__descriptor_a46141d86abe22a7c8d382c62a894dd63}{ecb\_encrypt}}(f8->IV, f8->IV, \&f8->key)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{54          \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{55       \}}
+\DoxyCodeLine{56       f8->padlen = 0;}
+\DoxyCodeLine{57    \}}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{59 \textcolor{preprocessor}{\#ifdef LTC\_FAST}}
+\DoxyCodeLine{60    \textcolor{keywordflow}{if} (f8->padlen == 0) \{}
+\DoxyCodeLine{61       \textcolor{keywordflow}{while} (\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}} >= (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long})f8->blocklen) \{}
+\DoxyCodeLine{62          STORE32H(f8->blockcnt, (buf+(f8->blocklen-4)));}
+\DoxyCodeLine{63          ++(f8->blockcnt);}
+\DoxyCodeLine{64          \textcolor{keywordflow}{for} (x = 0; x < f8->blocklen; x += \textcolor{keyword}{sizeof}(LTC\_FAST\_TYPE)) \{}
+\DoxyCodeLine{65              *(LTC\_FAST\_TYPE\_PTR\_CAST(\&ct[x])) = *(LTC\_FAST\_TYPE\_PTR\_CAST(\&pt[x])) \string^ *(LTC\_FAST\_TYPE\_PTR\_CAST(\&f8->IV[x]));}
+\DoxyCodeLine{66              *(LTC\_FAST\_TYPE\_PTR\_CAST(\&f8->IV[x])) \string^= *(LTC\_FAST\_TYPE\_PTR\_CAST(\&f8->MIV[x])) \string^ *(LTC\_FAST\_TYPE\_PTR\_CAST(\&buf[x]));}
+\DoxyCodeLine{67          \}}
+\DoxyCodeLine{68          \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[f8->cipher].\mbox{\hyperlink{structltc__cipher__descriptor_a46141d86abe22a7c8d382c62a894dd63}{ecb\_encrypt}}(f8->IV, f8->IV, \&f8->key)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{69             \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{70          \}}
+\DoxyCodeLine{71          \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}} -= x;}
+\DoxyCodeLine{72          pt  += x;}
+\DoxyCodeLine{73          ct  += x;}
+\DoxyCodeLine{74       \}}
+\DoxyCodeLine{75    \}}
+\DoxyCodeLine{76 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{77 }
+\DoxyCodeLine{78    \textcolor{keywordflow}{while} (\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}} > 0) \{}
+\DoxyCodeLine{79        \textcolor{keywordflow}{if} (f8->padlen == f8->blocklen) \{}
+\DoxyCodeLine{80           \textcolor{comment}{/* xor of IV, MIV and blockcnt == what goes into cipher */}}
+\DoxyCodeLine{81           STORE32H(f8->blockcnt, (buf+(f8->blocklen-4)));}
+\DoxyCodeLine{82           ++(f8->blockcnt);}
+\DoxyCodeLine{83           \textcolor{keywordflow}{for} (x = 0; x < f8->blocklen; x++) \{}
+\DoxyCodeLine{84               f8->IV[x] \string^= f8->MIV[x] \string^ buf[x];}
+\DoxyCodeLine{85           \}}
+\DoxyCodeLine{86           \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[f8->cipher].\mbox{\hyperlink{structltc__cipher__descriptor_a46141d86abe22a7c8d382c62a894dd63}{ecb\_encrypt}}(f8->IV, f8->IV, \&f8->key)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{87              \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{88           \}}
+\DoxyCodeLine{89           f8->padlen = 0;}
+\DoxyCodeLine{90        \}}
+\DoxyCodeLine{91        *ct++ = *pt++ \string^ f8->IV[f8->padlen++];}
+\DoxyCodeLine{92        --\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}};}
+\DoxyCodeLine{93    \}}
+\DoxyCodeLine{94    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{95 \}}
+
+\end{DoxyCode}
+
+
+References cipher\+\_\+descriptor, cipher\+\_\+is\+\_\+valid(), C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+A\+RG, C\+R\+Y\+P\+T\+\_\+\+OK, ltc\+\_\+cipher\+\_\+descriptor\+::ecb\+\_\+encrypt, len, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, M\+A\+X\+B\+L\+O\+C\+K\+S\+I\+ZE, and zeromem().
+
+
+
+Referenced by f8\+\_\+decrypt(), and f8\+\_\+test\+\_\+mode().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2

@@ -1,0 +1,49 @@
+digraph "sober128_import"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node26 [label="sober128_import",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Import a PRNG state."];
+  Node26 -> Node27 [color="midnightblue",fontsize="10",style="solid"];
+  Node27 [label="sober128_add_entropy",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sober128_8c.html#a477d801a7eb2e66db6c4c3d7f2db3827",tooltip="Add entropy to the PRNG state."];
+  Node27 -> Node28 [color="midnightblue",fontsize="10",style="solid"];
+  Node28 [label="sober128_stream_keystream",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sober128__stream_8c.html#a8f44e316ae3d51801843156a64966a34",tooltip=" "];
+  Node28 -> Node29 [color="midnightblue",fontsize="10",style="solid"];
+  Node29 [label="XMEMSET",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cfg_8h.html#aa3c34a6f6c61de7da9258b5a30e32c2f",tooltip=" "];
+  Node28 -> Node30 [color="midnightblue",fontsize="10",style="solid"];
+  Node30 [label="sober128_stream_crypt",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sober128__stream_8c.html#ae518d65a1bd918959e0d52e3f7d963de",tooltip="Encrypt (or decrypt) bytes of ciphertext (or plaintext) with Sober128."];
+  Node30 -> Node31 [color="midnightblue",fontsize="10",style="solid"];
+  Node31 [label="cycle",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sober128__stream_8c.html#a5ee309e1f2da8afec6f25f826763f55d",tooltip=" "];
+  Node30 -> Node32 [color="midnightblue",fontsize="10",style="solid"];
+  Node32 [label="nltap",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sober128__stream_8c.html#aa40918d0bb77cd616f54d859fe3ceb34",tooltip=" "];
+  Node30 -> Node33 [color="midnightblue",fontsize="10",style="solid"];
+  Node33 [label="XORWORD",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sober128__stream_8c.html#a272d26d71ca3e6dd2b4282302c91e5bd",tooltip=" "];
+  Node27 -> Node34 [color="midnightblue",fontsize="10",style="solid"];
+  Node34 [label="sober128_stream_setiv",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sober128__stream_8c.html#aad93d7243d0b6e8bb46f8637c1dab891",tooltip="Set IV to the Sober128 state."];
+  Node34 -> Node35 [color="midnightblue",fontsize="10",style="solid"];
+  Node35 [label="s128_reloadstate",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sober128__stream_8c.html#a658f8c5cee73aa58ecf24133861c084d",tooltip=" "];
+  Node34 -> Node36 [color="midnightblue",fontsize="10",style="solid"];
+  Node36 [label="BYTE2WORD",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sober128__stream_8c.html#ae7acc8746ffb536a618b77f0e2042807",tooltip=" "];
+  Node34 -> Node31 [color="midnightblue",fontsize="10",style="solid"];
+  Node34 -> Node32 [color="midnightblue",fontsize="10",style="solid"];
+  Node34 -> Node37 [color="midnightblue",fontsize="10",style="solid"];
+  Node37 [label="s128_diffuse",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sober128__stream_8c.html#a90d35fdc987c8472cc4390a3dc4c7777",tooltip=" "];
+  Node27 -> Node38 [color="midnightblue",fontsize="10",style="solid"];
+  Node38 [label="sober128_stream_setup",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sober128__stream_8c.html#a0a1e7b2ff7cfbba83eee53e875ef8d6e",tooltip="Initialize an Sober128 context (only the key)"];
+  Node38 -> Node36 [color="midnightblue",fontsize="10",style="solid"];
+  Node38 -> Node31 [color="midnightblue",fontsize="10",style="solid"];
+  Node38 -> Node32 [color="midnightblue",fontsize="10",style="solid"];
+  Node38 -> Node37 [color="midnightblue",fontsize="10",style="solid"];
+  Node38 -> Node39 [color="midnightblue",fontsize="10",style="solid"];
+  Node39 [label="s128_genkonst",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sober128__stream_8c.html#afeb3cc1b4facd7436b991dc552ffb038",tooltip=" "];
+  Node39 -> Node31 [color="midnightblue",fontsize="10",style="solid"];
+  Node39 -> Node32 [color="midnightblue",fontsize="10",style="solid"];
+  Node38 -> Node40 [color="midnightblue",fontsize="10",style="solid"];
+  Node40 [label="s128_savestate",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sober128__stream_8c.html#a884ca93789ee73dea18768f55567bc67",tooltip=" "];
+  Node27 -> Node41 [color="midnightblue",fontsize="10",style="solid"];
+  Node41 [label="zeromem",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__misc_8h.html#a63b6e188713790263bfd3612fe8b398f",tooltip="Zero a block of memory."];
+  Node26 -> Node42 [color="midnightblue",fontsize="10",style="solid"];
+  Node42 [label="sober128_start",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sober128_8c.html#a2e4935bebf15395ce088dd74a6d03114",tooltip="Start the PRNG."];
+  Node42 -> Node29 [color="midnightblue",fontsize="10",style="solid"];
+}

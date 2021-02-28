@@ -1,0 +1,56 @@
+\hypertarget{crypt__cipher__is__valid_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/misc/crypt/crypt\+\_\+cipher\+\_\+is\+\_\+valid.c File Reference}
+\label{crypt__cipher__is__valid_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/misc/crypt/crypt\_cipher\_is\_valid.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/misc/crypt/crypt\_cipher\_is\_valid.c}}
+
+
+Determine if cipher is valid, Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for crypt\+\_\+cipher\+\_\+is\+\_\+valid.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{crypt__cipher__is__valid_8c_ac30eb68934c4ca07205344dc9d159221}{cipher\+\_\+is\+\_\+valid}} (int idx)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Determine if cipher is valid, Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{crypt__cipher__is__valid_8c_ac30eb68934c4ca07205344dc9d159221}\label{crypt__cipher__is__valid_8c_ac30eb68934c4ca07205344dc9d159221}} 
+\index{crypt\_cipher\_is\_valid.c@{crypt\_cipher\_is\_valid.c}!cipher\_is\_valid@{cipher\_is\_valid}}
+\index{cipher\_is\_valid@{cipher\_is\_valid}!crypt\_cipher\_is\_valid.c@{crypt\_cipher\_is\_valid.c}}
+\subsubsection{\texorpdfstring{cipher\_is\_valid()}{cipher\_is\_valid()}}
+{\footnotesize\ttfamily int cipher\+\_\+is\+\_\+valid (\begin{DoxyParamCaption}\item[{int}]{idx }\end{DoxyParamCaption})}
+
+
+
+Definition at line 21 of file crypt\+\_\+cipher\+\_\+is\+\_\+valid.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{22 \{}
+\DoxyCodeLine{23    \mbox{\hyperlink{tomcrypt__custom_8h_a427a107414e4d775fbf23f4a499f4a31}{LTC\_MUTEX\_LOCK}}(\&ltc\_cipher\_mutex);}
+\DoxyCodeLine{24    \textcolor{keywordflow}{if} (idx < 0 || idx >= \mbox{\hyperlink{tomcrypt_8h_a9ad1b4a1e4f7381611cfd2ae6620a727}{TAB\_SIZE}} || \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[idx].name == NULL) \{}
+\DoxyCodeLine{25       \mbox{\hyperlink{tomcrypt__custom_8h_acdf267be91b178b4fafe8f992d57a7f1}{LTC\_MUTEX\_UNLOCK}}(\&ltc\_cipher\_mutex);}
+\DoxyCodeLine{26       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca302b958f5664adeb427c22f57c9d90a4}{CRYPT\_INVALID\_CIPHER}};}
+\DoxyCodeLine{27    \}}
+\DoxyCodeLine{28    \mbox{\hyperlink{tomcrypt__custom_8h_acdf267be91b178b4fafe8f992d57a7f1}{LTC\_MUTEX\_UNLOCK}}(\&ltc\_cipher\_mutex);}
+\DoxyCodeLine{29    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{30 \}}
+
+\end{DoxyCode}
+
+
+References cipher\+\_\+descriptor, C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+C\+I\+P\+H\+ER, C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+M\+U\+T\+E\+X\+\_\+\+L\+O\+CK, L\+T\+C\+\_\+\+M\+U\+T\+E\+X\+\_\+\+U\+N\+L\+O\+CK, ltc\+\_\+cipher\+\_\+descriptor\+::name, and T\+A\+B\+\_\+\+S\+I\+ZE.
+
+
+
+Referenced by cbc\+\_\+decrypt(), cbc\+\_\+done(), cbc\+\_\+encrypt(), cbc\+\_\+start(), ccm\+\_\+init(), ccm\+\_\+memory(), cfb\+\_\+decrypt(), cfb\+\_\+done(), cfb\+\_\+encrypt(), cfb\+\_\+setiv(), cfb\+\_\+start(), chc\+\_\+done(), chc\+\_\+init(), chc\+\_\+process(), chc\+\_\+register(), ctr\+\_\+done(), ctr\+\_\+encrypt(), ctr\+\_\+setiv(), ctr\+\_\+start(), eax\+\_\+init(), ecb\+\_\+decrypt(), ecb\+\_\+done(), ecb\+\_\+encrypt(), ecb\+\_\+start(), f8\+\_\+done(), f8\+\_\+encrypt(), f8\+\_\+setiv(), f8\+\_\+start(), f9\+\_\+done(), f9\+\_\+init(), f9\+\_\+memory(), f9\+\_\+process(), gcm\+\_\+add\+\_\+aad(), gcm\+\_\+add\+\_\+iv(), gcm\+\_\+done(), gcm\+\_\+init(), gcm\+\_\+memory(), gcm\+\_\+process(), lrw\+\_\+decrypt(), lrw\+\_\+done(), lrw\+\_\+encrypt(), lrw\+\_\+setiv(), lrw\+\_\+start(), ocb3\+\_\+decrypt(), ocb3\+\_\+decrypt\+\_\+last(), ocb3\+\_\+done(), ocb3\+\_\+encrypt(), ocb3\+\_\+encrypt\+\_\+last(), ocb3\+\_\+init(), ocb\+\_\+decrypt(), ocb\+\_\+encrypt(), ocb\+\_\+init(), ofb\+\_\+done(), ofb\+\_\+encrypt(), ofb\+\_\+setiv(), ofb\+\_\+start(), omac\+\_\+done(), omac\+\_\+init(), omac\+\_\+memory(), omac\+\_\+process(), pmac\+\_\+done(), pmac\+\_\+init(), pmac\+\_\+process(), s\+\_\+ocb\+\_\+done(), xcbc\+\_\+done(), xcbc\+\_\+init(), xcbc\+\_\+memory(), xcbc\+\_\+process(), xts\+\_\+decrypt(), xts\+\_\+encrypt(), xts\+\_\+start(), yarrow\+\_\+ready(), and yarrow\+\_\+start().
+
+Here is the caller graph for this function\+:
+% FIG 1

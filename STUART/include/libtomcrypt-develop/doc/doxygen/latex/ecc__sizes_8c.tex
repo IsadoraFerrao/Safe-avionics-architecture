@@ -1,0 +1,62 @@
+\hypertarget{ecc__sizes_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/pk/ecc/ecc\+\_\+sizes.c File Reference}
+\label{ecc__sizes_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/ecc/ecc\_sizes.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/ecc/ecc\_sizes.c}}
+
+
+E\+CC Crypto, Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for ecc\+\_\+sizes.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{ecc__sizes_8c_ab9ea128ade21bb82765dec6f964465da}{ecc\+\_\+sizes}} (int $\ast$low, int $\ast$high)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+E\+CC Crypto, Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{ecc__sizes_8c_ab9ea128ade21bb82765dec6f964465da}\label{ecc__sizes_8c_ab9ea128ade21bb82765dec6f964465da}} 
+\index{ecc\_sizes.c@{ecc\_sizes.c}!ecc\_sizes@{ecc\_sizes}}
+\index{ecc\_sizes@{ecc\_sizes}!ecc\_sizes.c@{ecc\_sizes.c}}
+\subsubsection{\texorpdfstring{ecc\_sizes()}{ecc\_sizes()}}
+{\footnotesize\ttfamily void ecc\+\_\+sizes (\begin{DoxyParamCaption}\item[{int $\ast$}]{low,  }\item[{int $\ast$}]{high }\end{DoxyParamCaption})}
+
+
+
+Definition at line 19 of file ecc\+\_\+sizes.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{20 \{}
+\DoxyCodeLine{21   \textcolor{keywordtype}{int} i, \mbox{\hyperlink{structedge_a64bdc14a16193c014f1ef50be358441d}{size}};}
+\DoxyCodeLine{22   \textcolor{keywordtype}{void} *prime;}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24   \mbox{\hyperlink{tomcrypt__argchk_8h_a67a6e5d66d0c7d80ddf5c583054608bd}{LTC\_ARGCHKVD}}(low  != NULL);}
+\DoxyCodeLine{25   \mbox{\hyperlink{tomcrypt__argchk_8h_a67a6e5d66d0c7d80ddf5c583054608bd}{LTC\_ARGCHKVD}}(high != NULL);}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27   *low = INT\_MAX;}
+\DoxyCodeLine{28   *high = 0;}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30   \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__private_8h_aff03c4f22c68d651747055048c509cf3}{mp\_init}}(\&prime) == \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{31     \textcolor{keywordflow}{for} (i = 0; \mbox{\hyperlink{ecc_8c_a1cbb8387a24ed5042ad1e00db59082cb}{ltc\_ecc\_curves}}[i].prime != NULL; i++) \{}
+\DoxyCodeLine{32        \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__private_8h_a12263d4d7da068c2a630d2ffc0c8bc1b}{mp\_read\_radix}}(prime, \mbox{\hyperlink{ecc_8c_a1cbb8387a24ed5042ad1e00db59082cb}{ltc\_ecc\_curves}}[i].prime, 16) == \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{33          \mbox{\hyperlink{structedge_a64bdc14a16193c014f1ef50be358441d}{size}} = \mbox{\hyperlink{tomcrypt__private_8h_ad301148bb24f43a8c7003a6976dfaa5a}{mp\_unsigned\_bin\_size}}(prime);}
+\DoxyCodeLine{34          \textcolor{keywordflow}{if} (\mbox{\hyperlink{structedge_a64bdc14a16193c014f1ef50be358441d}{size}} < *low)  *low  = \mbox{\hyperlink{structedge_a64bdc14a16193c014f1ef50be358441d}{size}};}
+\DoxyCodeLine{35          \textcolor{keywordflow}{if} (\mbox{\hyperlink{structedge_a64bdc14a16193c014f1ef50be358441d}{size}} > *high) *high = \mbox{\hyperlink{structedge_a64bdc14a16193c014f1ef50be358441d}{size}};}
+\DoxyCodeLine{36        \}}
+\DoxyCodeLine{37     \}}
+\DoxyCodeLine{38     \mbox{\hyperlink{tomcrypt__private_8h_ab05b6b59fa182b81f5f990d5621229f6}{mp\_clear}}(prime);}
+\DoxyCodeLine{39   \}}
+\DoxyCodeLine{40 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+H\+K\+VD, ltc\+\_\+ecc\+\_\+curves, mp\+\_\+clear, mp\+\_\+init, mp\+\_\+read\+\_\+radix, and mp\+\_\+unsigned\+\_\+bin\+\_\+size.
+

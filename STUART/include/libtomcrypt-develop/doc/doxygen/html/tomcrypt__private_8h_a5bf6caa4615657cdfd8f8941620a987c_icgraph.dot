@@ -1,0 +1,46 @@
+digraph "ocb3_int_xor_blocks"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node867 [label="ocb3_int_xor_blocks",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Compute xor for two blocks of bytes 'out = block_a XOR block_b' (internal function)"];
+  Node867 -> Node868 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node868 [label="_ocb3_int_aad_add_block",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ocb3__add__aad_8c.html#ad03a0d62d1bb1257ed7b9c4f0373c028",tooltip="Add one block of AAD data (internal function)"];
+  Node868 -> Node869 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node869 [label="ocb3_add_aad",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ocb3__add__aad_8c.html#a1fbb605c3849ddbfaa2378d009f34b66",tooltip="Add AAD - additional associated data."];
+  Node869 -> Node870 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node870 [label="ocb3_decrypt_verify\l_memory",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ocb3__decrypt__verify__memory_8c.html#aaa794cde472d6ae35c5d0cf68842860d",tooltip="Decrypt and compare the tag with OCB."];
+  Node870 -> Node871 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node871 [label="ocb3_test",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ocb3__test_8c.html#afafd01785264b534d0ef8efb9fe530ef",tooltip="Test the OCB protocol."];
+  Node869 -> Node872 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node872 [label="ocb3_encrypt_authenticate\l_memory",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ocb3__encrypt__authenticate__memory_8c.html#a4f2509ac5594dc6dcead8ac840a30b91",tooltip="Encrypt and generate an authentication code for a buffer of memory."];
+  Node872 -> Node871 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node869 -> Node871 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node867 -> Node873 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node873 [label="ocb3_decrypt",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ocb3__decrypt_8c.html#a1e05e1d91257a5f3e7d94913cd5db9ab",tooltip="Decrypt blocks of ciphertext with OCB."];
+  Node873 -> Node874 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node874 [label="ocb3_decrypt_last",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ocb3__decrypt__last_8c.html#a4aa4fd093bfe61fab5f6fa87bcf98713",tooltip="Finish an OCB (decryption) stream."];
+  Node874 -> Node870 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node874 -> Node871 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node873 -> Node871 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node867 -> Node874 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node867 -> Node875 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node875 [label="ocb3_done",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ocb3__done_8c.html#aeec4c3c1decbfde2980246d568c43b1f",tooltip="Finish OCB processing and compute the tag."];
+  Node875 -> Node870 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node875 -> Node872 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node875 -> Node871 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node867 -> Node876 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node876 [label="ocb3_encrypt",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ocb3__encrypt_8c.html#a0e9e87fe853d64959bd70533d1952bfa",tooltip="Encrypt blocks of data with OCB."];
+  Node876 -> Node877 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node877 [label="ocb3_encrypt_last",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ocb3__encrypt__last_8c.html#a7059d3b0e1618f0f4dd88b6314830ba6",tooltip="Finish an OCB (encryption) stream."];
+  Node877 -> Node872 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node877 -> Node871 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node876 -> Node871 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node867 -> Node877 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node867 -> Node878 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node878 [label="ocb3_init",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ocb3__init_8c.html#aa623e20f84ca5fe394f7bd209d4da177",tooltip="Initialize an OCB context."];
+  Node878 -> Node870 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node878 -> Node872 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node878 -> Node871 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}

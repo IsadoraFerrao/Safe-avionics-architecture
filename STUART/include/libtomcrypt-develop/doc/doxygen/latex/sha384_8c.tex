@@ -1,0 +1,241 @@
+\hypertarget{sha384_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/hashes/sha2/sha384.c File Reference}
+\label{sha384_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/hashes/sha2/sha384.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/hashes/sha2/sha384.c}}
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for sha384.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{sha384_8c_a2880f3c433f1d2724591f69cd1896315}{sha384\+\_\+init}} (\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$md)
+\begin{DoxyCompactList}\small\item\em Initialize the hash state. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{sha384_8c_a2541eaa82b2f0359960099fdc33ce0da}{sha384\+\_\+done}} (\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$md, unsigned char $\ast$out)
+\begin{DoxyCompactList}\small\item\em Terminate the hash to get the digest. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{sha384_8c_a1ac8ac4cbd0dfdfc0e06569ab41ff0d1}{sha384\+\_\+test}} (void)
+\begin{DoxyCompactList}\small\item\em Self-\/test the hash. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const struct \mbox{\hyperlink{structltc__hash__descriptor}{ltc\+\_\+hash\+\_\+descriptor}} \mbox{\hyperlink{sha384_8c_a8ab593a3bcc67245157b1a2fddd6008f}{sha384\+\_\+desc}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{sha384_8c_a2541eaa82b2f0359960099fdc33ce0da}\label{sha384_8c_a2541eaa82b2f0359960099fdc33ce0da}} 
+\index{sha384.c@{sha384.c}!sha384\_done@{sha384\_done}}
+\index{sha384\_done@{sha384\_done}!sha384.c@{sha384.c}}
+\subsubsection{\texorpdfstring{sha384\_done()}{sha384\_done()}}
+{\footnotesize\ttfamily int sha384\+\_\+done (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$}]{md,  }\item[{unsigned char $\ast$}]{out }\end{DoxyParamCaption})}
+
+
+
+Terminate the hash to get the digest. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em md} & The hash state \\
+\hline
+{\em out} & \mbox{[}out\mbox{]} The destination of the hash (48 bytes) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 64 of file sha384.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{65 \{}
+\DoxyCodeLine{66    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} buf[64];}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{68    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(md  != NULL);}
+\DoxyCodeLine{69    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(out != NULL);}
+\DoxyCodeLine{70 }
+\DoxyCodeLine{71     \textcolor{keywordflow}{if} (md->sha512.curlen >= \textcolor{keyword}{sizeof}(md->sha512.buf)) \{}
+\DoxyCodeLine{72        \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{73     \}}
+\DoxyCodeLine{74 }
+\DoxyCodeLine{75    \mbox{\hyperlink{sha512_8c_a9c65441270276d7372c48211f89fc9c3}{sha512\_done}}(md, buf);}
+\DoxyCodeLine{76    \mbox{\hyperlink{tomcrypt__cfg_8h_a7691dd48d60d5fc6daf2fa7ec4c55e12}{XMEMCPY}}(out, buf, 48);}
+\DoxyCodeLine{77 \textcolor{preprocessor}{\#ifdef LTC\_CLEAN\_STACK}}
+\DoxyCodeLine{78    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(buf, \textcolor{keyword}{sizeof}(buf));}
+\DoxyCodeLine{79 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{80    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{81 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+A\+RG, C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, sha512\+\_\+done(), X\+M\+E\+M\+C\+P\+Y(), and zeromem().
+
+
+
+Referenced by sha384\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2
+\mbox{\Hypertarget{sha384_8c_a2880f3c433f1d2724591f69cd1896315}\label{sha384_8c_a2880f3c433f1d2724591f69cd1896315}} 
+\index{sha384.c@{sha384.c}!sha384\_init@{sha384\_init}}
+\index{sha384\_init@{sha384\_init}!sha384.c@{sha384.c}}
+\subsubsection{\texorpdfstring{sha384\_init()}{sha384\_init()}}
+{\footnotesize\ttfamily int sha384\+\_\+init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$}]{md }\end{DoxyParamCaption})}
+
+
+
+Initialize the hash state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em md} & The hash state you wish to initialize \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 41 of file sha384.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{42 \{}
+\DoxyCodeLine{43     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(md != NULL);}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45     md->sha512.curlen = 0;}
+\DoxyCodeLine{46     md->sha512.length = 0;}
+\DoxyCodeLine{47     md->sha512.state[0] = \mbox{\hyperlink{tomcrypt__cfg_8h_a7d8e211582dff82d00fc171834e3dc67}{CONST64}}(0xcbbb9d5dc1059ed8);}
+\DoxyCodeLine{48     md->sha512.state[1] = \mbox{\hyperlink{tomcrypt__cfg_8h_a7d8e211582dff82d00fc171834e3dc67}{CONST64}}(0x629a292a367cd507);}
+\DoxyCodeLine{49     md->sha512.state[2] = \mbox{\hyperlink{tomcrypt__cfg_8h_a7d8e211582dff82d00fc171834e3dc67}{CONST64}}(0x9159015a3070dd17);}
+\DoxyCodeLine{50     md->sha512.state[3] = \mbox{\hyperlink{tomcrypt__cfg_8h_a7d8e211582dff82d00fc171834e3dc67}{CONST64}}(0x152fecd8f70e5939);}
+\DoxyCodeLine{51     md->sha512.state[4] = \mbox{\hyperlink{tomcrypt__cfg_8h_a7d8e211582dff82d00fc171834e3dc67}{CONST64}}(0x67332667ffc00b31);}
+\DoxyCodeLine{52     md->sha512.state[5] = \mbox{\hyperlink{tomcrypt__cfg_8h_a7d8e211582dff82d00fc171834e3dc67}{CONST64}}(0x8eb44a8768581511);}
+\DoxyCodeLine{53     md->sha512.state[6] = \mbox{\hyperlink{tomcrypt__cfg_8h_a7d8e211582dff82d00fc171834e3dc67}{CONST64}}(0xdb0c2e0d64f98fa7);}
+\DoxyCodeLine{54     md->sha512.state[7] = \mbox{\hyperlink{tomcrypt__cfg_8h_a7d8e211582dff82d00fc171834e3dc67}{CONST64}}(0x47b5481dbefa4fa4);}
+\DoxyCodeLine{55     \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{56 \}}
+
+\end{DoxyCode}
+
+
+References C\+O\+N\+S\+T64, C\+R\+Y\+P\+T\+\_\+\+OK, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+
+
+Referenced by sha384\+\_\+test().
+
+Here is the caller graph for this function\+:
+% FIG 3
+\mbox{\Hypertarget{sha384_8c_a1ac8ac4cbd0dfdfc0e06569ab41ff0d1}\label{sha384_8c_a1ac8ac4cbd0dfdfc0e06569ab41ff0d1}} 
+\index{sha384.c@{sha384.c}!sha384\_test@{sha384\_test}}
+\index{sha384\_test@{sha384\_test}!sha384.c@{sha384.c}}
+\subsubsection{\texorpdfstring{sha384\_test()}{sha384\_test()}}
+{\footnotesize\ttfamily int sha384\+\_\+test (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Self-\/test the hash. 
+
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful, C\+R\+Y\+P\+T\+\_\+\+N\+OP if self-\/tests have been disabled 
+\end{DoxyReturn}
+
+
+Definition at line 87 of file sha384.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{88 \{}
+\DoxyCodeLine{89 \textcolor{preprocessor}{ \#ifndef LTC\_TEST}}
+\DoxyCodeLine{90     \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cac43a7799c7fd5f515172da6cfc0f9cf5}{CRYPT\_NOP}};}
+\DoxyCodeLine{91 \textcolor{preprocessor}{ \#else}}
+\DoxyCodeLine{92   \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{93       \textcolor{keyword}{const} \textcolor{keywordtype}{char} *msg;}
+\DoxyCodeLine{94       \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} hash[48];}
+\DoxyCodeLine{95   \} tests[] = \{}
+\DoxyCodeLine{96     \{ \textcolor{stringliteral}{"abc"},}
+\DoxyCodeLine{97       \{ 0xcb, 0x00, 0x75, 0x3f, 0x45, 0xa3, 0x5e, 0x8b,}
+\DoxyCodeLine{98         0xb5, 0xa0, 0x3d, 0x69, 0x9a, 0xc6, 0x50, 0x07,}
+\DoxyCodeLine{99         0x27, 0x2c, 0x32, 0xab, 0x0e, 0xde, 0xd1, 0x63,}
+\DoxyCodeLine{100         0x1a, 0x8b, 0x60, 0x5a, 0x43, 0xff, 0x5b, 0xed,}
+\DoxyCodeLine{101         0x80, 0x86, 0x07, 0x2b, 0xa1, 0xe7, 0xcc, 0x23,}
+\DoxyCodeLine{102         0x58, 0xba, 0xec, 0xa1, 0x34, 0xc8, 0x25, 0xa7 \}}
+\DoxyCodeLine{103     \},}
+\DoxyCodeLine{104     \{ \textcolor{stringliteral}{"abcdefghbcdefghicdefghijdefghijkefghijklfghijklmghijklmnhijklmnoijklmnopjklmnopqklmnopqrlmnopqrsmnopqrstnopqrstu"},}
+\DoxyCodeLine{105       \{ 0x09, 0x33, 0x0c, 0x33, 0xf7, 0x11, 0x47, 0xe8,}
+\DoxyCodeLine{106         0x3d, 0x19, 0x2f, 0xc7, 0x82, 0xcd, 0x1b, 0x47,}
+\DoxyCodeLine{107         0x53, 0x11, 0x1b, 0x17, 0x3b, 0x3b, 0x05, 0xd2,}
+\DoxyCodeLine{108         0x2f, 0xa0, 0x80, 0x86, 0xe3, 0xb0, 0xf7, 0x12,}
+\DoxyCodeLine{109         0xfc, 0xc7, 0xc7, 0x1a, 0x55, 0x7e, 0x2d, 0xb9,}
+\DoxyCodeLine{110         0x66, 0xc3, 0xe9, 0xfa, 0x91, 0x74, 0x60, 0x39 \}}
+\DoxyCodeLine{111     \},}
+\DoxyCodeLine{112   \};}
+\DoxyCodeLine{113 }
+\DoxyCodeLine{114   \textcolor{keywordtype}{int} i;}
+\DoxyCodeLine{115   \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} tmp[48];}
+\DoxyCodeLine{116   \mbox{\hyperlink{unionHash__state}{hash\_state}} md;}
+\DoxyCodeLine{117 }
+\DoxyCodeLine{118   \textcolor{keywordflow}{for} (i = 0; i < (int)(\textcolor{keyword}{sizeof}(tests) / \textcolor{keyword}{sizeof}(tests[0])); i++) \{}
+\DoxyCodeLine{119       \mbox{\hyperlink{sha384_8c_a2880f3c433f1d2724591f69cd1896315}{sha384\_init}}(\&md);}
+\DoxyCodeLine{120       sha384\_process(\&md, (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}*)tests[i].msg, (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long})strlen(tests[i].msg));}
+\DoxyCodeLine{121       \mbox{\hyperlink{sha384_8c_a2541eaa82b2f0359960099fdc33ce0da}{sha384\_done}}(\&md, tmp);}
+\DoxyCodeLine{122       \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(tmp, \textcolor{keyword}{sizeof}(tmp), tests[i].hash, \textcolor{keyword}{sizeof}(tests[i].hash), \textcolor{stringliteral}{"SHA384"}, i)) \{}
+\DoxyCodeLine{123          \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{124       \}}
+\DoxyCodeLine{125   \}}
+\DoxyCodeLine{126   \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{127 \textcolor{preprocessor}{ \#endif}}
+\DoxyCodeLine{128 \}}
+
+\end{DoxyCode}
+
+
+References compare\+\_\+testvector(), C\+R\+Y\+P\+T\+\_\+\+F\+A\+I\+L\+\_\+\+T\+E\+S\+T\+V\+E\+C\+T\+OR, C\+R\+Y\+P\+T\+\_\+\+N\+OP, C\+R\+Y\+P\+T\+\_\+\+OK, sha384\+\_\+done(), and sha384\+\_\+init().
+
+Here is the call graph for this function\+:
+% FIG 4
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{sha384_8c_a8ab593a3bcc67245157b1a2fddd6008f}\label{sha384_8c_a8ab593a3bcc67245157b1a2fddd6008f}} 
+\index{sha384.c@{sha384.c}!sha384\_desc@{sha384\_desc}}
+\index{sha384\_desc@{sha384\_desc}!sha384.c@{sha384.c}}
+\subsubsection{\texorpdfstring{sha384\_desc}{sha384\_desc}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structltc__hash__descriptor}{ltc\+\_\+hash\+\_\+descriptor}} sha384\+\_\+desc}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    \textcolor{stringliteral}{"sha384"},}
+\DoxyCodeLine{    4,}
+\DoxyCodeLine{    48,}
+\DoxyCodeLine{    128,}
+\DoxyCodeLine{}
+\DoxyCodeLine{    }
+\DoxyCodeLine{   \{ 2, 16, 840, 1, 101, 3, 4, 2, 2,  \},}
+\DoxyCodeLine{   9,}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \&\mbox{\hyperlink{sha384_8c_a2880f3c433f1d2724591f69cd1896315}{sha384\_init}},}
+\DoxyCodeLine{    \&\mbox{\hyperlink{sha512_8c_af3bcc9bee16c5fe0c0e02a3b71bdac00}{sha512\_process}},}
+\DoxyCodeLine{    \&\mbox{\hyperlink{sha384_8c_a2541eaa82b2f0359960099fdc33ce0da}{sha384\_done}},}
+\DoxyCodeLine{    \&\mbox{\hyperlink{sha384_8c_a1ac8ac4cbd0dfdfc0e06569ab41ff0d1}{sha384\_test}},}
+\DoxyCodeLine{    NULL}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+\begin{DoxyParams}{Parameters}
+{\em sha384.\+c} & L\+T\+C\+\_\+\+S\+H\+A384 hash included in sha512.\+c, Tom St Denis \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 18 of file sha384.\+c.
+
+
+
+Referenced by \+\_\+dsa\+\_\+make\+\_\+params(), and register\+\_\+all\+\_\+hashes().
+

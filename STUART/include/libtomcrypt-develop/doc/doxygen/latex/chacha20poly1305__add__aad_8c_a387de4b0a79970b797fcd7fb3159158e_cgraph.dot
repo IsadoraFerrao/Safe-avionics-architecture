@@ -1,0 +1,12 @@
+digraph "chacha20poly1305_add_aad"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node0 [label="chacha20poly1305_add_aad",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Add AAD to the ChaCha20Poly1305 state."];
+  Node0 -> Node1 [color="midnightblue",fontsize="10",style="solid"];
+  Node1 [label="poly1305_process",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$poly1305_8c.html#a44ef0e35cc1f514f942c015c105b9f01",tooltip="Process data through POLY1305."];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid"];
+  Node2 [label="_poly1305_block",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$poly1305_8c.html#af2b454846eb0342729e1d878e31c5cf6",tooltip=" "];
+}

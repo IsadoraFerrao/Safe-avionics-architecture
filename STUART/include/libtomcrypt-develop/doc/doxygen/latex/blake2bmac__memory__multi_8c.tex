@@ -1,0 +1,88 @@
+\hypertarget{blake2bmac__memory__multi_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/mac/blake2/blake2bmac\+\_\+memory\+\_\+multi.c File Reference}
+\label{blake2bmac__memory__multi_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/mac/blake2/blake2bmac\_memory\_multi.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/mac/blake2/blake2bmac\_memory\_multi.c}}
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdarg.\+h$>$}\newline
+Include dependency graph for blake2bmac\+\_\+memory\+\_\+multi.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{blake2bmac__memory__multi_8c_aec804c047997d283f5b0d8ec8b8c20c0}{blake2bmac\+\_\+memory\+\_\+multi}} (const unsigned char $\ast$key, unsigned long keylen, unsigned char $\ast$mac, unsigned long $\ast$maclen, const unsigned char $\ast$in, unsigned long inlen,...)
+\begin{DoxyCompactList}\small\item\em B\+L\+A\+K\+E2B M\+AC multiple blocks of memory to produce the authentication tag. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{blake2bmac__memory__multi_8c_aec804c047997d283f5b0d8ec8b8c20c0}\label{blake2bmac__memory__multi_8c_aec804c047997d283f5b0d8ec8b8c20c0}} 
+\index{blake2bmac\_memory\_multi.c@{blake2bmac\_memory\_multi.c}!blake2bmac\_memory\_multi@{blake2bmac\_memory\_multi}}
+\index{blake2bmac\_memory\_multi@{blake2bmac\_memory\_multi}!blake2bmac\_memory\_multi.c@{blake2bmac\_memory\_multi.c}}
+\subsubsection{\texorpdfstring{blake2bmac\_memory\_multi()}{blake2bmac\_memory\_multi()}}
+{\footnotesize\ttfamily int blake2bmac\+\_\+memory\+\_\+multi (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{key,  }\item[{unsigned long}]{keylen,  }\item[{unsigned char $\ast$}]{mac,  }\item[{unsigned long $\ast$}]{maclen,  }\item[{const unsigned char $\ast$}]{in,  }\item[{unsigned long}]{inlen,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+
+
+B\+L\+A\+K\+E2B M\+AC multiple blocks of memory to produce the authentication tag. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The secret key \\
+\hline
+{\em keylen} & The length of the secret key (octets) \\
+\hline
+{\em mac} & \mbox{[}out\mbox{]} Destination of the authentication tag \\
+\hline
+{\em maclen} & \mbox{[}in/out\mbox{]} Max size and resulting size of authentication tag \\
+\hline
+{\em in} & The data to B\+L\+A\+K\+E2B M\+AC \\
+\hline
+{\em inlen} & The length of the data to B\+L\+A\+K\+E2B M\+AC (octets) \\
+\hline
+{\em ...} & tuples of (data,len) pairs to B\+L\+A\+K\+E2B M\+AC, terminated with a (N\+U\+LL,x) (x=don\textquotesingle{}t care) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 26 of file blake2bmac\+\_\+memory\+\_\+multi.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{27 \{}
+\DoxyCodeLine{28    blake2bmac\_state st;}
+\DoxyCodeLine{29    \textcolor{keywordtype}{int} err;}
+\DoxyCodeLine{30    va\_list args;}
+\DoxyCodeLine{31    \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *curptr;}
+\DoxyCodeLine{32    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} curlen;}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(key    != NULL);}
+\DoxyCodeLine{35    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(in     != NULL);}
+\DoxyCodeLine{36    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(mac    != NULL);}
+\DoxyCodeLine{37    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(maclen != NULL);}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39    va\_start(args, inlen);}
+\DoxyCodeLine{40    curptr = in;}
+\DoxyCodeLine{41    curlen = inlen;}
+\DoxyCodeLine{42    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{blake2bmac_8c_af04b5fc328376e2434cdff29e2beae41}{blake2bmac\_init}}(\&st, *maclen, key, keylen)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})          \{ \textcolor{keywordflow}{goto} LBL\_ERR; \}}
+\DoxyCodeLine{43    \textcolor{keywordflow}{for} (;;) \{}
+\DoxyCodeLine{44       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{blake2bmac_8c_a66cfb7a289cebc8a67ebfd6843377d15}{blake2bmac\_process}}(\&st, curptr, curlen)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{ \textcolor{keywordflow}{goto} LBL\_ERR; \}}
+\DoxyCodeLine{45       curptr = va\_arg(args, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}*);}
+\DoxyCodeLine{46       \textcolor{keywordflow}{if} (curptr == NULL) \textcolor{keywordflow}{break};}
+\DoxyCodeLine{47       curlen = va\_arg(args, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long});}
+\DoxyCodeLine{48    \}}
+\DoxyCodeLine{49    err = \mbox{\hyperlink{blake2bmac_8c_a9e287a6617ddcbeae84b0f486990aa11}{blake2bmac\_done}}(\&st, mac, maclen);}
+\DoxyCodeLine{50 LBL\_ERR:}
+\DoxyCodeLine{51 \textcolor{preprocessor}{\#ifdef LTC\_CLEAN\_STACK}}
+\DoxyCodeLine{52    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(\&st, \textcolor{keyword}{sizeof}(blake2bmac\_state));}
+\DoxyCodeLine{53 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{54    va\_end(args);}
+\DoxyCodeLine{55    \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{56 \}}
+
+\end{DoxyCode}
+
+
+References blake2bmac\+\_\+done(), blake2bmac\+\_\+init(), blake2bmac\+\_\+process(), C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, and zeromem().
+
+Here is the call graph for this function\+:
+% FIG 1

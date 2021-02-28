@@ -1,0 +1,93 @@
+\hypertarget{der__sequence__free_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/pk/asn1/der/sequence/der\+\_\+sequence\+\_\+free.c File Reference}
+\label{der__sequence__free_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/asn1/der/sequence/der\_sequence\_free.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/asn1/der/sequence/der\_sequence\_free.c}}
+
+
+A\+S\+N.\+1 D\+ER, free\textquotesingle{}s a structure allocated by \mbox{\hyperlink{der__decode__sequence__flexi_8c_acec68888a6eae3b64f54b37cfb43d9b1}{der\+\_\+decode\+\_\+sequence\+\_\+flexi()}}, Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for der\+\_\+sequence\+\_\+free.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{der__sequence__free_8c_ad47a79b60d0b0a1f13b5529dcbd4f5fa}{der\+\_\+sequence\+\_\+free}} (ltc\+\_\+asn1\+\_\+list $\ast$in)
+\begin{DoxyCompactList}\small\item\em Free memory allocated by \mbox{\hyperlink{der__decode__sequence__flexi_8c_acec68888a6eae3b64f54b37cfb43d9b1}{der\+\_\+decode\+\_\+sequence\+\_\+flexi()}} \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A\+S\+N.\+1 D\+ER, free\textquotesingle{}s a structure allocated by \mbox{\hyperlink{der__decode__sequence__flexi_8c_acec68888a6eae3b64f54b37cfb43d9b1}{der\+\_\+decode\+\_\+sequence\+\_\+flexi()}}, Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{der__sequence__free_8c_ad47a79b60d0b0a1f13b5529dcbd4f5fa}\label{der__sequence__free_8c_ad47a79b60d0b0a1f13b5529dcbd4f5fa}} 
+\index{der\_sequence\_free.c@{der\_sequence\_free.c}!der\_sequence\_free@{der\_sequence\_free}}
+\index{der\_sequence\_free@{der\_sequence\_free}!der\_sequence\_free.c@{der\_sequence\_free.c}}
+\subsubsection{\texorpdfstring{der\_sequence\_free()}{der\_sequence\_free()}}
+{\footnotesize\ttfamily void der\+\_\+sequence\+\_\+free (\begin{DoxyParamCaption}\item[{ltc\+\_\+asn1\+\_\+list $\ast$}]{in }\end{DoxyParamCaption})}
+
+
+
+Free memory allocated by \mbox{\hyperlink{der__decode__sequence__flexi_8c_acec68888a6eae3b64f54b37cfb43d9b1}{der\+\_\+decode\+\_\+sequence\+\_\+flexi()}} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em in} & The list to free \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 22 of file der\+\_\+sequence\+\_\+free.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{23 \{}
+\DoxyCodeLine{24    ltc\_asn1\_list *l;}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26    \textcolor{keywordflow}{if} (!in) \textcolor{keywordflow}{return};}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28    \textcolor{comment}{/* walk to the start of the chain */}}
+\DoxyCodeLine{29    \textcolor{keywordflow}{while} (in->prev != NULL || in->parent != NULL) \{}
+\DoxyCodeLine{30       \textcolor{keywordflow}{if} (in->parent != NULL) \{}
+\DoxyCodeLine{31           in = in->parent;}
+\DoxyCodeLine{32       \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{33           in = in->prev;}
+\DoxyCodeLine{34       \}}
+\DoxyCodeLine{35    \}}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37    \textcolor{comment}{/* now walk the list and free stuff */}}
+\DoxyCodeLine{38    \textcolor{keywordflow}{while} (in != NULL) \{}
+\DoxyCodeLine{39       \textcolor{comment}{/* is there a child? */}}
+\DoxyCodeLine{40       \textcolor{keywordflow}{if} (in->child) \{}
+\DoxyCodeLine{41          \textcolor{comment}{/* disconnect */}}
+\DoxyCodeLine{42          in->child->parent = NULL;}
+\DoxyCodeLine{43          \mbox{\hyperlink{der__sequence__free_8c_ad47a79b60d0b0a1f13b5529dcbd4f5fa}{der\_sequence\_free}}(in->child);}
+\DoxyCodeLine{44       \}}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46       \textcolor{keywordflow}{switch} (in->type) \{}
+\DoxyCodeLine{47          \textcolor{keywordflow}{case} LTC\_ASN1\_SETOF: \textcolor{keywordflow}{break};}
+\DoxyCodeLine{48          \textcolor{keywordflow}{case} LTC\_ASN1\_INTEGER : \textcolor{keywordflow}{if} (in->data != NULL) \{ \mbox{\hyperlink{tomcrypt__private_8h_ab05b6b59fa182b81f5f990d5621229f6}{mp\_clear}}(in->data); \} \textcolor{keywordflow}{break};}
+\DoxyCodeLine{49          default               : \textcolor{keywordflow}{if} (in->data != NULL) \{ \mbox{\hyperlink{tomcrypt__cfg_8h_a260d66fc0690e0502cf3bfe7b5244b75}{XFREE}}(in->data);    \}}
+\DoxyCodeLine{50       \}}
+\DoxyCodeLine{51 }
+\DoxyCodeLine{52       \textcolor{comment}{/* move to next and free current */}}
+\DoxyCodeLine{53       l = in->next;}
+\DoxyCodeLine{54       \mbox{\hyperlink{tomcrypt__cfg_8h_a260d66fc0690e0502cf3bfe7b5244b75}{XFREE}}(in);}
+\DoxyCodeLine{55       in = l;}
+\DoxyCodeLine{56    \}}
+\DoxyCodeLine{57 \}}
+
+\end{DoxyCode}
+
+
+References mp\+\_\+clear, and X\+F\+R\+E\+E().
+
+
+
+Referenced by der\+\_\+decode\+\_\+sequence\+\_\+flexi().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2

@@ -1,0 +1,28 @@
+digraph "blake2smac_init"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node15 [label="blake2smac_init",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Initialize an BLAKE2S MAC context."];
+  Node15 -> Node16 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node16 [label="blake2s_init",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$blake2s_8c.html#a93c803f6354c661107d65ddc22cfc77f",tooltip="Initialize the hash/MAC state."];
+  Node16 -> Node17 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node17 [label="blake2s_init_param",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$blake2s_8c.html#a72a26320a7aeae66b0d4474fad4b5acb",tooltip=" "];
+  Node17 -> Node18 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node18 [label="blake2s_init0",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$blake2s_8c.html#a13c68852b36b9623a53069c5a315d0a4",tooltip=" "];
+  Node18 -> Node19 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node19 [label="XMEMSET",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cfg_8h.html#aa3c34a6f6c61de7da9258b5a30e32c2f",tooltip=" "];
+  Node16 -> Node20 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node20 [label="blake2s_process",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$blake2s_8c.html#ad8751ffefd8ef5161beb25e770f81628",tooltip="Process a block of memory through the hash."];
+  Node20 -> Node21 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node21 [label="blake2s_compress",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$blake2s_8c.html#aa02aa6685f7daef2c7066b9d5573df0b",tooltip=" "];
+  Node20 -> Node22 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node22 [label="blake2s_increment_counter",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$blake2s_8c.html#a2a1049b5acde39eb322d738181250cf9",tooltip=" "];
+  Node20 -> Node23 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node23 [label="XMEMCPY",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cfg_8h.html#a7691dd48d60d5fc6daf2fa7ec4c55e12",tooltip=" "];
+  Node16 -> Node23 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node16 -> Node19 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node16 -> Node24 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node24 [label="zeromem",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__misc_8h.html#a63b6e188713790263bfd3612fe8b398f",tooltip="Zero a block of memory."];
+}

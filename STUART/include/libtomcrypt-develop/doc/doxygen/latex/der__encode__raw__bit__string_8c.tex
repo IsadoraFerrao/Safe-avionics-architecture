@@ -1,0 +1,124 @@
+\hypertarget{der__encode__raw__bit__string_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/pk/asn1/der/bit/der\+\_\+encode\+\_\+raw\+\_\+bit\+\_\+string.c File Reference}
+\label{der__encode__raw__bit__string_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/asn1/der/bit/der\_encode\_raw\_bit\_string.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/asn1/der/bit/der\_encode\_raw\_bit\_string.c}}
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for der\+\_\+encode\+\_\+raw\+\_\+bit\+\_\+string.\+c\+:
+% FIG 0
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{der__encode__raw__bit__string_8c_af6c639f3be313b728fecaf49c192be1d}{getbit}}(n,  k)~(((n) \& ( 1 $<$$<$ (k) )) $>$$>$ (k))
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{der__encode__raw__bit__string_8c_a4553630d68159ef0dd8f05158aeae8c9}{der\+\_\+encode\+\_\+raw\+\_\+bit\+\_\+string}} (const unsigned char $\ast$in, unsigned long inlen, unsigned char $\ast$out, unsigned long $\ast$outlen)
+\begin{DoxyCompactList}\small\item\em Store a B\+IT S\+T\+R\+I\+NG. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{der__encode__raw__bit__string_8c_af6c639f3be313b728fecaf49c192be1d}\label{der__encode__raw__bit__string_8c_af6c639f3be313b728fecaf49c192be1d}} 
+\index{der\_encode\_raw\_bit\_string.c@{der\_encode\_raw\_bit\_string.c}!getbit@{getbit}}
+\index{getbit@{getbit}!der\_encode\_raw\_bit\_string.c@{der\_encode\_raw\_bit\_string.c}}
+\subsubsection{\texorpdfstring{getbit}{getbit}}
+{\footnotesize\ttfamily \#define getbit(\begin{DoxyParamCaption}\item[{}]{n,  }\item[{}]{k }\end{DoxyParamCaption})~(((n) \& ( 1 $<$$<$ (k) )) $>$$>$ (k))}
+
+
+
+Definition at line 19 of file der\+\_\+encode\+\_\+raw\+\_\+bit\+\_\+string.\+c.
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{der__encode__raw__bit__string_8c_a4553630d68159ef0dd8f05158aeae8c9}\label{der__encode__raw__bit__string_8c_a4553630d68159ef0dd8f05158aeae8c9}} 
+\index{der\_encode\_raw\_bit\_string.c@{der\_encode\_raw\_bit\_string.c}!der\_encode\_raw\_bit\_string@{der\_encode\_raw\_bit\_string}}
+\index{der\_encode\_raw\_bit\_string@{der\_encode\_raw\_bit\_string}!der\_encode\_raw\_bit\_string.c@{der\_encode\_raw\_bit\_string.c}}
+\subsubsection{\texorpdfstring{der\_encode\_raw\_bit\_string()}{der\_encode\_raw\_bit\_string()}}
+{\footnotesize\ttfamily int der\+\_\+encode\+\_\+raw\+\_\+bit\+\_\+string (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{in,  }\item[{unsigned long}]{inlen,  }\item[{unsigned char $\ast$}]{out,  }\item[{unsigned long $\ast$}]{outlen }\end{DoxyParamCaption})}
+
+
+
+Store a B\+IT S\+T\+R\+I\+NG. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em in} & The array of bits to store (8 per char) \\
+\hline
+{\em inlen} & The number of bits to store \\
+\hline
+{\em out} & \mbox{[}out\mbox{]} The destination for the D\+ER encoded B\+IT S\+T\+R\+I\+NG \\
+\hline
+{\em outlen} & \mbox{[}in/out\mbox{]} The max size and resulting size of the D\+ER B\+IT S\+T\+R\+I\+NG \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 29 of file der\+\_\+encode\+\_\+raw\+\_\+bit\+\_\+string.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{31 \{}
+\DoxyCodeLine{32    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}, x, y;}
+\DoxyCodeLine{33    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} buf;}
+\DoxyCodeLine{34    \textcolor{keywordtype}{int}           err;}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(in     != NULL);}
+\DoxyCodeLine{37    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(out    != NULL);}
+\DoxyCodeLine{38    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(outlen != NULL);}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{40    \textcolor{comment}{/* avoid overflows */}}
+\DoxyCodeLine{41    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{der__length__bit__string_8c_a73416248e2f93535d54603567acc9cfd}{der\_length\_bit\_string}}(inlen, \&\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}})) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{42       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{43    \}}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45    \textcolor{keywordflow}{if} (\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}} > *outlen) \{}
+\DoxyCodeLine{46       *outlen = \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}};}
+\DoxyCodeLine{47       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caccd878f5599f3036ffe759dbe1a1ac16}{CRYPT\_BUFFER\_OVERFLOW}};}
+\DoxyCodeLine{48    \}}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{50    \textcolor{comment}{/* store header (include bit padding count in length) */}}
+\DoxyCodeLine{51    x = 0;}
+\DoxyCodeLine{52    y = ((inlen + 7) >> 3) + 1;}
+\DoxyCodeLine{53 }
+\DoxyCodeLine{54    out[x++] = 0x03;}
+\DoxyCodeLine{55    \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}} = *outlen - x;}
+\DoxyCodeLine{56    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_ae0b6c1f1188a5aa201aa84de9a659550}{der\_encode\_asn1\_length}}(y, out + x, \&\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}})) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{57       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{58    \}}
+\DoxyCodeLine{59    x += \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}};}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{61    \textcolor{comment}{/* store number of zero padding bits */}}
+\DoxyCodeLine{62    out[x++] = (\textcolor{keywordtype}{unsigned} char)((8 - inlen) \& 7);}
+\DoxyCodeLine{63 }
+\DoxyCodeLine{64    \textcolor{comment}{/* store the bits in big endian format */}}
+\DoxyCodeLine{65    \textcolor{keywordflow}{for} (y = buf = 0; y < inlen; y++) \{}
+\DoxyCodeLine{66       buf |= (\mbox{\hyperlink{der__encode__raw__bit__string_8c_af6c639f3be313b728fecaf49c192be1d}{getbit}}(in[y/8],7-y\%8)?1:0) << (7 - (y \& 7));}
+\DoxyCodeLine{67       \textcolor{keywordflow}{if} ((y \& 7) == 7) \{}
+\DoxyCodeLine{68          out[x++] = buf;}
+\DoxyCodeLine{69          buf      = 0;}
+\DoxyCodeLine{70       \}}
+\DoxyCodeLine{71    \}}
+\DoxyCodeLine{72    \textcolor{comment}{/* store last byte */}}
+\DoxyCodeLine{73    \textcolor{keywordflow}{if} (inlen \& 7) \{}
+\DoxyCodeLine{74       out[x++] = buf;}
+\DoxyCodeLine{75    \}}
+\DoxyCodeLine{76 }
+\DoxyCodeLine{77    *outlen = x;}
+\DoxyCodeLine{78    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{79 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+O\+V\+E\+R\+F\+L\+OW, C\+R\+Y\+P\+T\+\_\+\+OK, der\+\_\+encode\+\_\+asn1\+\_\+length(), der\+\_\+length\+\_\+bit\+\_\+string(), getbit, len, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+
+
+Referenced by der\+\_\+encode\+\_\+custom\+\_\+type(), and der\+\_\+encode\+\_\+sequence\+\_\+ex().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2

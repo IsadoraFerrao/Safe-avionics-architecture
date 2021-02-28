@@ -1,0 +1,21 @@
+digraph "anubis_test"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node20 [label="anubis_test",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Performs a self-test of the Anubis block cipher."];
+  Node20 -> Node21 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node21 [label="anubis_ecb_decrypt",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$anubis_8c.html#a1122129902230375d541d8286d677771",tooltip="Decrypts a block of text with Anubis."];
+  Node21 -> Node22 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node22 [label="anubis_crypt",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$anubis_8c.html#aecd284a674c18ed49efb129855c46de4",tooltip=" "];
+  Node20 -> Node23 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node23 [label="anubis_ecb_encrypt",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$anubis_8c.html#ab361220dd90cf3f6d71aa253b33c1dbe",tooltip="Encrypts a block of text with Anubis."];
+  Node23 -> Node22 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node20 -> Node24 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node24 [label="anubis_setup",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$anubis_8c.html#a8745a39a486f64e5f6e4dd32b096bc12",tooltip="Initialize the Anubis block cipher."];
+  Node20 -> Node25 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node25 [label="compare_testvector",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__misc_8h.html#a7764a7f27897c6182335752df00b5f8e",tooltip="Compare two test-vectors."];
+  Node25 -> Node26 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node26 [label="XMEMCMP",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cfg_8h.html#a372b974ec0ac07abcd55297554fe540f",tooltip=" "];
+}

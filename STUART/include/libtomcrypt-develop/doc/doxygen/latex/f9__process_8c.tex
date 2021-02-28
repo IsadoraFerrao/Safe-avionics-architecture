@@ -1,0 +1,107 @@
+\hypertarget{f9__process_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/mac/f9/f9\+\_\+process.c File Reference}
+\label{f9__process_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/mac/f9/f9\_process.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/mac/f9/f9\_process.c}}
+
+
+f9 Support, Process a block through F9-\/\+M\+AC  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for f9\+\_\+process.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{f9__process_8c_a50ed3b7fde83fe7a2e15fdc8429d0196}{f9\+\_\+process}} (f9\+\_\+state $\ast$f9, const unsigned char $\ast$in, unsigned long inlen)
+\begin{DoxyCompactList}\small\item\em Process data through f9-\/\+M\+AC. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+f9 Support, Process a block through F9-\/\+M\+AC 
+
+f9 Support, process blocks with f9
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{f9__process_8c_a50ed3b7fde83fe7a2e15fdc8429d0196}\label{f9__process_8c_a50ed3b7fde83fe7a2e15fdc8429d0196}} 
+\index{f9\_process.c@{f9\_process.c}!f9\_process@{f9\_process}}
+\index{f9\_process@{f9\_process}!f9\_process.c@{f9\_process.c}}
+\subsubsection{\texorpdfstring{f9\_process()}{f9\_process()}}
+{\footnotesize\ttfamily int f9\+\_\+process (\begin{DoxyParamCaption}\item[{f9\+\_\+state $\ast$}]{f9,  }\item[{const unsigned char $\ast$}]{in,  }\item[{unsigned long}]{inlen }\end{DoxyParamCaption})}
+
+
+
+Process data through f9-\/\+M\+AC. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em f9} & The f9-\/\+M\+AC state \\
+\hline
+{\em in} & Input data to process \\
+\hline
+{\em inlen} & Length of input in octets Return C\+R\+Y\+P\+T\+\_\+\+OK on success \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 24 of file f9\+\_\+process.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{25 \{}
+\DoxyCodeLine{26    \textcolor{keywordtype}{int} err, x;}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(f9 != NULL);}
+\DoxyCodeLine{29    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(in   != NULL);}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31    \textcolor{comment}{/* check structure */}}
+\DoxyCodeLine{32    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_ac30eb68934c4ca07205344dc9d159221}{cipher\_is\_valid}}(f9->cipher)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{33       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{34    \}}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36    \textcolor{keywordflow}{if} ((f9->blocksize > \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[f9->cipher].\mbox{\hyperlink{structltc__cipher__descriptor_afa2af7325fd3a834910dd92e8c9acf49}{block\_length}}) || (f9->blocksize < 0) ||}
+\DoxyCodeLine{37        (f9->buflen > f9->blocksize) || (f9->buflen < 0)) \{}
+\DoxyCodeLine{38       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{39    \}}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41 \textcolor{preprocessor}{\#ifdef LTC\_FAST}}
+\DoxyCodeLine{42    \textcolor{keywordflow}{if} (f9->buflen == 0) \{}
+\DoxyCodeLine{43        \textcolor{keywordflow}{while} (inlen >= (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long})f9->blocksize) \{}
+\DoxyCodeLine{44            \textcolor{keywordflow}{for} (x = 0; x < f9->blocksize; x += \textcolor{keyword}{sizeof}(LTC\_FAST\_TYPE)) \{}
+\DoxyCodeLine{45               *(LTC\_FAST\_TYPE\_PTR\_CAST(\&(f9->IV[x]))) \string^= *(LTC\_FAST\_TYPE\_PTR\_CAST(\&(in[x])));}
+\DoxyCodeLine{46            \}}
+\DoxyCodeLine{47            \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[f9->cipher].\mbox{\hyperlink{structltc__cipher__descriptor_a46141d86abe22a7c8d382c62a894dd63}{ecb\_encrypt}}(f9->IV, f9->IV, \&f9->key);}
+\DoxyCodeLine{48            \textcolor{keywordflow}{for} (x = 0; x < f9->blocksize; x += \textcolor{keyword}{sizeof}(LTC\_FAST\_TYPE)) \{}
+\DoxyCodeLine{49               *(LTC\_FAST\_TYPE\_PTR\_CAST(\&(f9->ACC[x]))) \string^= *(LTC\_FAST\_TYPE\_PTR\_CAST(\&(f9->IV[x])));}
+\DoxyCodeLine{50            \}}
+\DoxyCodeLine{51            in    += f9->blocksize;}
+\DoxyCodeLine{52            inlen -= f9->blocksize;}
+\DoxyCodeLine{53        \}}
+\DoxyCodeLine{54    \}}
+\DoxyCodeLine{55 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{57    \textcolor{keywordflow}{while} (inlen) \{}
+\DoxyCodeLine{58       \textcolor{keywordflow}{if} (f9->buflen == f9->blocksize) \{}
+\DoxyCodeLine{59          \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[f9->cipher].\mbox{\hyperlink{structltc__cipher__descriptor_a46141d86abe22a7c8d382c62a894dd63}{ecb\_encrypt}}(f9->IV, f9->IV, \&f9->key);}
+\DoxyCodeLine{60          \textcolor{keywordflow}{for} (x = 0; x < f9->blocksize; x++) \{}
+\DoxyCodeLine{61             f9->ACC[x] \string^= f9->IV[x];}
+\DoxyCodeLine{62          \}}
+\DoxyCodeLine{63          f9->buflen = 0;}
+\DoxyCodeLine{64       \}}
+\DoxyCodeLine{65       f9->IV[f9->buflen++] \string^= *in++;}
+\DoxyCodeLine{66       --inlen;}
+\DoxyCodeLine{67    \}}
+\DoxyCodeLine{68    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{69 \}}
+
+\end{DoxyCode}
+
+
+References ltc\+\_\+cipher\+\_\+descriptor\+::block\+\_\+length, cipher\+\_\+descriptor, cipher\+\_\+is\+\_\+valid(), C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+A\+RG, C\+R\+Y\+P\+T\+\_\+\+OK, ltc\+\_\+cipher\+\_\+descriptor\+::ecb\+\_\+encrypt, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+
+
+Referenced by f9\+\_\+file(), f9\+\_\+memory(), and f9\+\_\+memory\+\_\+multi().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2

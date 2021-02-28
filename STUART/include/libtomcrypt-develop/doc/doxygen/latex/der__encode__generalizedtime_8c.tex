@@ -1,0 +1,186 @@
+\hypertarget{der__encode__generalizedtime_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/pk/asn1/der/generalizedtime/der\+\_\+encode\+\_\+generalizedtime.c File Reference}
+\label{der__encode__generalizedtime_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/asn1/der/generalizedtime/der\_encode\_generalizedtime.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/asn1/der/generalizedtime/der\_encode\_generalizedtime.c}}
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for der\+\_\+encode\+\_\+generalizedtime.\+c\+:
+% FIG 0
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{der__encode__generalizedtime_8c_a4aad6871514f60e2a7627071c7fe657e}{S\+T\+O\+R\+E\+\_\+V}}(y)
+\item 
+\#define \mbox{\hyperlink{der__encode__generalizedtime_8c_a400414c5e834e8757903a123a538188b}{S\+T\+O\+R\+E\+\_\+\+V4}}(y)
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{der__encode__generalizedtime_8c_aad5cb8eacf3ef8a1317dfff253f1a3da}{der\+\_\+encode\+\_\+generalizedtime}} (const ltc\+\_\+generalizedtime $\ast$gtime, unsigned char $\ast$out, unsigned long $\ast$outlen)
+\begin{DoxyCompactList}\small\item\em Encodes a Generalized time structure in D\+ER format. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static const char $\ast$const \mbox{\hyperlink{der__encode__generalizedtime_8c_a6b97039e2c6e820dd1bc52deb61f446a}{baseten}} = \char`\"{}0123456789\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{der__encode__generalizedtime_8c_a4aad6871514f60e2a7627071c7fe657e}\label{der__encode__generalizedtime_8c_a4aad6871514f60e2a7627071c7fe657e}} 
+\index{der\_encode\_generalizedtime.c@{der\_encode\_generalizedtime.c}!STORE\_V@{STORE\_V}}
+\index{STORE\_V@{STORE\_V}!der\_encode\_generalizedtime.c@{der\_encode\_generalizedtime.c}}
+\subsubsection{\texorpdfstring{STORE\_V}{STORE\_V}}
+{\footnotesize\ttfamily \#define S\+T\+O\+R\+E\+\_\+V(\begin{DoxyParamCaption}\item[{}]{y }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{\(\backslash\)}
+\DoxyCodeLine{    out[x++] = \mbox{\hyperlink{der__length__ia5__string_8c_aa9cad5f213317520165e72ac9420bb65}{der\_ia5\_char\_encode}}(\mbox{\hyperlink{der__encode__generalizedtime_8c_a6b97039e2c6e820dd1bc52deb61f446a}{baseten}}[(y/10) \% 10]); \(\backslash\)}
+\DoxyCodeLine{    out[x++] = \mbox{\hyperlink{der__length__ia5__string_8c_aa9cad5f213317520165e72ac9420bb65}{der\_ia5\_char\_encode}}(\mbox{\hyperlink{der__encode__generalizedtime_8c_a6b97039e2c6e820dd1bc52deb61f446a}{baseten}}[y \% 10]); \(\backslash\)}
+\DoxyCodeLine{\} \textcolor{keywordflow}{while}(0)}
+
+\end{DoxyCode}
+
+
+Definition at line 21 of file der\+\_\+encode\+\_\+generalizedtime.\+c.
+
+\mbox{\Hypertarget{der__encode__generalizedtime_8c_a400414c5e834e8757903a123a538188b}\label{der__encode__generalizedtime_8c_a400414c5e834e8757903a123a538188b}} 
+\index{der\_encode\_generalizedtime.c@{der\_encode\_generalizedtime.c}!STORE\_V4@{STORE\_V4}}
+\index{STORE\_V4@{STORE\_V4}!der\_encode\_generalizedtime.c@{der\_encode\_generalizedtime.c}}
+\subsubsection{\texorpdfstring{STORE\_V4}{STORE\_V4}}
+{\footnotesize\ttfamily \#define S\+T\+O\+R\+E\+\_\+\+V4(\begin{DoxyParamCaption}\item[{}]{y }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{\(\backslash\)}
+\DoxyCodeLine{    out[x++] = \mbox{\hyperlink{der__length__ia5__string_8c_aa9cad5f213317520165e72ac9420bb65}{der\_ia5\_char\_encode}}(\mbox{\hyperlink{der__encode__generalizedtime_8c_a6b97039e2c6e820dd1bc52deb61f446a}{baseten}}[(y/1000) \% 10]); \(\backslash\)}
+\DoxyCodeLine{    out[x++] = \mbox{\hyperlink{der__length__ia5__string_8c_aa9cad5f213317520165e72ac9420bb65}{der\_ia5\_char\_encode}}(\mbox{\hyperlink{der__encode__generalizedtime_8c_a6b97039e2c6e820dd1bc52deb61f446a}{baseten}}[(y/100) \% 10]); \(\backslash\)}
+\DoxyCodeLine{    out[x++] = \mbox{\hyperlink{der__length__ia5__string_8c_aa9cad5f213317520165e72ac9420bb65}{der\_ia5\_char\_encode}}(\mbox{\hyperlink{der__encode__generalizedtime_8c_a6b97039e2c6e820dd1bc52deb61f446a}{baseten}}[(y/10) \% 10]); \(\backslash\)}
+\DoxyCodeLine{    out[x++] = \mbox{\hyperlink{der__length__ia5__string_8c_aa9cad5f213317520165e72ac9420bb65}{der\_ia5\_char\_encode}}(\mbox{\hyperlink{der__encode__generalizedtime_8c_a6b97039e2c6e820dd1bc52deb61f446a}{baseten}}[y \% 10]); \(\backslash\)}
+\DoxyCodeLine{\} \textcolor{keywordflow}{while}(0)}
+
+\end{DoxyCode}
+
+
+Definition at line 26 of file der\+\_\+encode\+\_\+generalizedtime.\+c.
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{der__encode__generalizedtime_8c_aad5cb8eacf3ef8a1317dfff253f1a3da}\label{der__encode__generalizedtime_8c_aad5cb8eacf3ef8a1317dfff253f1a3da}} 
+\index{der\_encode\_generalizedtime.c@{der\_encode\_generalizedtime.c}!der\_encode\_generalizedtime@{der\_encode\_generalizedtime}}
+\index{der\_encode\_generalizedtime@{der\_encode\_generalizedtime}!der\_encode\_generalizedtime.c@{der\_encode\_generalizedtime.c}}
+\subsubsection{\texorpdfstring{der\_encode\_generalizedtime()}{der\_encode\_generalizedtime()}}
+{\footnotesize\ttfamily int der\+\_\+encode\+\_\+generalizedtime (\begin{DoxyParamCaption}\item[{const ltc\+\_\+generalizedtime $\ast$}]{gtime,  }\item[{unsigned char $\ast$}]{out,  }\item[{unsigned long $\ast$}]{outlen }\end{DoxyParamCaption})}
+
+
+
+Encodes a Generalized time structure in D\+ER format. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gtime} & The Generalized\+Time structure to encode \\
+\hline
+{\em out} & The destination of the D\+ER encoding of the Generalized\+Time structure \\
+\hline
+{\em outlen} & \mbox{[}in/out\mbox{]} The length of the D\+ER encoding \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 40 of file der\+\_\+encode\+\_\+generalizedtime.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{42 \{}
+\DoxyCodeLine{43     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} x, tmplen;}
+\DoxyCodeLine{44     \textcolor{keywordtype}{int}           err;}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(gtime != NULL);}
+\DoxyCodeLine{47     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(out     != NULL);}
+\DoxyCodeLine{48     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(outlen  != NULL);}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{50     \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{der__length__generalizedtime_8c_a63bd3379e9d6aa710a6ddcea3d836754}{der\_length\_generalizedtime}}(gtime, \&tmplen)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{51        \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{52     \}}
+\DoxyCodeLine{53     \textcolor{keywordflow}{if} (tmplen > *outlen) \{}
+\DoxyCodeLine{54         *outlen = tmplen;}
+\DoxyCodeLine{55         \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caccd878f5599f3036ffe759dbe1a1ac16}{CRYPT\_BUFFER\_OVERFLOW}};}
+\DoxyCodeLine{56     \}}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{58     \textcolor{comment}{/* store header */}}
+\DoxyCodeLine{59     out[0] = 0x18;}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{61     \textcolor{comment}{/* store values */}}
+\DoxyCodeLine{62     x = 2;}
+\DoxyCodeLine{63     \mbox{\hyperlink{der__encode__generalizedtime_8c_a400414c5e834e8757903a123a538188b}{STORE\_V4}}(gtime->YYYY);}
+\DoxyCodeLine{64     \mbox{\hyperlink{der__encode__generalizedtime_8c_a4aad6871514f60e2a7627071c7fe657e}{STORE\_V}}(gtime->MM);}
+\DoxyCodeLine{65     \mbox{\hyperlink{der__encode__generalizedtime_8c_a4aad6871514f60e2a7627071c7fe657e}{STORE\_V}}(gtime->DD);}
+\DoxyCodeLine{66     \mbox{\hyperlink{der__encode__generalizedtime_8c_a4aad6871514f60e2a7627071c7fe657e}{STORE\_V}}(gtime->hh);}
+\DoxyCodeLine{67     \mbox{\hyperlink{der__encode__generalizedtime_8c_a4aad6871514f60e2a7627071c7fe657e}{STORE\_V}}(gtime->mm);}
+\DoxyCodeLine{68     \mbox{\hyperlink{der__encode__generalizedtime_8c_a4aad6871514f60e2a7627071c7fe657e}{STORE\_V}}(gtime->ss);}
+\DoxyCodeLine{69 }
+\DoxyCodeLine{70     \textcolor{keywordflow}{if} (gtime->fs) \{}
+\DoxyCodeLine{71        \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} divisor;}
+\DoxyCodeLine{72        \textcolor{keywordtype}{unsigned} fs = gtime->fs;}
+\DoxyCodeLine{73        \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}} = 0;}
+\DoxyCodeLine{74        out[x++] = \mbox{\hyperlink{der__length__ia5__string_8c_aa9cad5f213317520165e72ac9420bb65}{der\_ia5\_char\_encode}}(\textcolor{charliteral}{'.'});}
+\DoxyCodeLine{75        divisor = 1;}
+\DoxyCodeLine{76        \textcolor{keywordflow}{do} \{}
+\DoxyCodeLine{77           fs /= 10;}
+\DoxyCodeLine{78           divisor *= 10;}
+\DoxyCodeLine{79           \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}++;}
+\DoxyCodeLine{80        \} \textcolor{keywordflow}{while}(fs != 0);}
+\DoxyCodeLine{81        \textcolor{keywordflow}{while} (\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}-- > 1) \{}
+\DoxyCodeLine{82           divisor /= 10;}
+\DoxyCodeLine{83           out[x++] = \mbox{\hyperlink{der__length__ia5__string_8c_aa9cad5f213317520165e72ac9420bb65}{der\_ia5\_char\_encode}}(\mbox{\hyperlink{der__encode__generalizedtime_8c_a6b97039e2c6e820dd1bc52deb61f446a}{baseten}}[(gtime->fs/divisor) \% 10]);}
+\DoxyCodeLine{84        \}}
+\DoxyCodeLine{85        out[x++] = \mbox{\hyperlink{der__length__ia5__string_8c_aa9cad5f213317520165e72ac9420bb65}{der\_ia5\_char\_encode}}(\mbox{\hyperlink{der__encode__generalizedtime_8c_a6b97039e2c6e820dd1bc52deb61f446a}{baseten}}[gtime->fs \% 10]);}
+\DoxyCodeLine{86     \}}
+\DoxyCodeLine{87 }
+\DoxyCodeLine{88     \textcolor{keywordflow}{if} (gtime->off\_mm || gtime->off\_hh) \{}
+\DoxyCodeLine{89        out[x++] = \mbox{\hyperlink{der__length__ia5__string_8c_aa9cad5f213317520165e72ac9420bb65}{der\_ia5\_char\_encode}}(gtime->off\_dir ? \textcolor{charliteral}{'-'} : \textcolor{charliteral}{'+'});}
+\DoxyCodeLine{90        \mbox{\hyperlink{der__encode__generalizedtime_8c_a4aad6871514f60e2a7627071c7fe657e}{STORE\_V}}(gtime->off\_hh);}
+\DoxyCodeLine{91        \mbox{\hyperlink{der__encode__generalizedtime_8c_a4aad6871514f60e2a7627071c7fe657e}{STORE\_V}}(gtime->off\_mm);}
+\DoxyCodeLine{92     \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{93        out[x++] = \mbox{\hyperlink{der__length__ia5__string_8c_aa9cad5f213317520165e72ac9420bb65}{der\_ia5\_char\_encode}}(\textcolor{charliteral}{'Z'});}
+\DoxyCodeLine{94     \}}
+\DoxyCodeLine{95 }
+\DoxyCodeLine{96     \textcolor{comment}{/* store length */}}
+\DoxyCodeLine{97     out[1] = (\textcolor{keywordtype}{unsigned} char)(x - 2);}
+\DoxyCodeLine{98 }
+\DoxyCodeLine{99     \textcolor{comment}{/* all good let's return */}}
+\DoxyCodeLine{100     *outlen = x;}
+\DoxyCodeLine{101     \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{102 \}}
+
+\end{DoxyCode}
+
+
+References baseten, C\+R\+Y\+P\+T\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+O\+V\+E\+R\+F\+L\+OW, C\+R\+Y\+P\+T\+\_\+\+OK, der\+\_\+ia5\+\_\+char\+\_\+encode(), der\+\_\+length\+\_\+generalizedtime(), len, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, S\+T\+O\+R\+E\+\_\+V, and S\+T\+O\+R\+E\+\_\+\+V4.
+
+
+
+Referenced by der\+\_\+encode\+\_\+custom\+\_\+type(), and der\+\_\+encode\+\_\+sequence\+\_\+ex().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{der__encode__generalizedtime_8c_a6b97039e2c6e820dd1bc52deb61f446a}\label{der__encode__generalizedtime_8c_a6b97039e2c6e820dd1bc52deb61f446a}} 
+\index{der\_encode\_generalizedtime.c@{der\_encode\_generalizedtime.c}!baseten@{baseten}}
+\index{baseten@{baseten}!der\_encode\_generalizedtime.c@{der\_encode\_generalizedtime.c}}
+\subsubsection{\texorpdfstring{baseten}{baseten}}
+{\footnotesize\ttfamily const char$\ast$ const baseten = \char`\"{}0123456789\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 19 of file der\+\_\+encode\+\_\+generalizedtime.\+c.
+
+
+
+Referenced by der\+\_\+encode\+\_\+generalizedtime().
+

@@ -1,0 +1,135 @@
+\hypertarget{pk__oid__str_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/pk/asn1/oid/pk\+\_\+oid\+\_\+str.c File Reference}
+\label{pk__oid__str_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/asn1/oid/pk\_oid\_str.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/asn1/oid/pk\_oid\_str.c}}
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for pk\+\_\+oid\+\_\+str.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{pk__oid__str_8c_ad99c87d19f50f703708d36a931fe5df6}{pk\+\_\+oid\+\_\+str\+\_\+to\+\_\+num}} (const char $\ast$\mbox{\hyperlink{ecc__find__curve_8c_a3b9aae9990e63034f7d199729f025b23}{O\+ID}}, unsigned long $\ast$oid, unsigned long $\ast$oidlen)
+\item 
+int \mbox{\hyperlink{pk__oid__str_8c_a5ead1435fcad3d1f1842a6419079f036}{pk\+\_\+oid\+\_\+num\+\_\+to\+\_\+str}} (const unsigned long $\ast$oid, unsigned long oidlen, char $\ast$\mbox{\hyperlink{ecc__find__curve_8c_a3b9aae9990e63034f7d199729f025b23}{O\+ID}}, unsigned long $\ast$outlen)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{pk__oid__str_8c_a5ead1435fcad3d1f1842a6419079f036}\label{pk__oid__str_8c_a5ead1435fcad3d1f1842a6419079f036}} 
+\index{pk\_oid\_str.c@{pk\_oid\_str.c}!pk\_oid\_num\_to\_str@{pk\_oid\_num\_to\_str}}
+\index{pk\_oid\_num\_to\_str@{pk\_oid\_num\_to\_str}!pk\_oid\_str.c@{pk\_oid\_str.c}}
+\subsubsection{\texorpdfstring{pk\_oid\_num\_to\_str()}{pk\_oid\_num\_to\_str()}}
+{\footnotesize\ttfamily int pk\+\_\+oid\+\_\+num\+\_\+to\+\_\+str (\begin{DoxyParamCaption}\item[{const unsigned long $\ast$}]{oid,  }\item[{unsigned long}]{oidlen,  }\item[{char $\ast$}]{O\+ID,  }\item[{unsigned long $\ast$}]{outlen }\end{DoxyParamCaption})}
+
+
+
+Definition at line 50 of file pk\+\_\+oid\+\_\+str.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{51 \{}
+\DoxyCodeLine{52    \textcolor{keywordtype}{int} i;}
+\DoxyCodeLine{53    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} j, k;}
+\DoxyCodeLine{54    \textcolor{keywordtype}{char} tmp[256] = \{ 0 \};}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{56    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(oid != NULL);}
+\DoxyCodeLine{57    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(\mbox{\hyperlink{ecc__find__curve_8c_a3b9aae9990e63034f7d199729f025b23}{OID}} != NULL);}
+\DoxyCodeLine{58    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(outlen != NULL);}
+\DoxyCodeLine{59 }
+\DoxyCodeLine{60    \textcolor{keywordflow}{for} (i = oidlen - 1, k = 0; i >= 0; i--) \{}
+\DoxyCodeLine{61       j = oid[i];}
+\DoxyCodeLine{62       \textcolor{keywordflow}{if} (j == 0) \{}
+\DoxyCodeLine{63          tmp[k] = \textcolor{charliteral}{'0'};}
+\DoxyCodeLine{64          \textcolor{keywordflow}{if} (++k >= \textcolor{keyword}{sizeof}(tmp)) \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca03c22220d7538be04455cd2aa6ddf9da}{CRYPT\_ERROR}};}
+\DoxyCodeLine{65       \}}
+\DoxyCodeLine{66       \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{67          \textcolor{keywordflow}{while} (j > 0) \{}
+\DoxyCodeLine{68             tmp[k] = \textcolor{charliteral}{'0'} + (j \% 10);}
+\DoxyCodeLine{69             \textcolor{keywordflow}{if} (++k >= \textcolor{keyword}{sizeof}(tmp)) \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca03c22220d7538be04455cd2aa6ddf9da}{CRYPT\_ERROR}};}
+\DoxyCodeLine{70             j /= 10;}
+\DoxyCodeLine{71          \}}
+\DoxyCodeLine{72       \}}
+\DoxyCodeLine{73       \textcolor{keywordflow}{if} (i > 0) \{}
+\DoxyCodeLine{74         tmp[k] = \textcolor{charliteral}{'.'};}
+\DoxyCodeLine{75         \textcolor{keywordflow}{if} (++k >= \textcolor{keyword}{sizeof}(tmp)) \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca03c22220d7538be04455cd2aa6ddf9da}{CRYPT\_ERROR}};}
+\DoxyCodeLine{76       \}}
+\DoxyCodeLine{77    \}}
+\DoxyCodeLine{78    \textcolor{keywordflow}{if} (*outlen < k + 1) \{}
+\DoxyCodeLine{79       *outlen = k + 1;}
+\DoxyCodeLine{80       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caccd878f5599f3036ffe759dbe1a1ac16}{CRYPT\_BUFFER\_OVERFLOW}};}
+\DoxyCodeLine{81    \}}
+\DoxyCodeLine{82    \textcolor{keywordflow}{for} (j = 0; j < k; j++) \mbox{\hyperlink{ecc__find__curve_8c_a3b9aae9990e63034f7d199729f025b23}{OID}}[j] = tmp[k - j - 1];}
+\DoxyCodeLine{83    \mbox{\hyperlink{ecc__find__curve_8c_a3b9aae9990e63034f7d199729f025b23}{OID}}[k] = \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{84    *outlen = k; \textcolor{comment}{/* the length without terminating NUL byte */}}
+\DoxyCodeLine{85    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{86 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+O\+V\+E\+R\+F\+L\+OW, C\+R\+Y\+P\+T\+\_\+\+E\+R\+R\+OR, C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, and O\+ID.
+
+
+
+Referenced by \+\_\+ecc\+\_\+import\+\_\+private\+\_\+with\+\_\+oid(), \+\_\+ecc\+\_\+import\+\_\+x509\+\_\+with\+\_\+oid(), ecc\+\_\+get\+\_\+oid\+\_\+str(), ecc\+\_\+import\+\_\+pkcs8(), and pk\+\_\+oid\+\_\+cmp\+\_\+with\+\_\+ulong().
+
+Here is the caller graph for this function\+:
+% FIG 1
+\mbox{\Hypertarget{pk__oid__str_8c_ad99c87d19f50f703708d36a931fe5df6}\label{pk__oid__str_8c_ad99c87d19f50f703708d36a931fe5df6}} 
+\index{pk\_oid\_str.c@{pk\_oid\_str.c}!pk\_oid\_str\_to\_num@{pk\_oid\_str\_to\_num}}
+\index{pk\_oid\_str\_to\_num@{pk\_oid\_str\_to\_num}!pk\_oid\_str.c@{pk\_oid\_str.c}}
+\subsubsection{\texorpdfstring{pk\_oid\_str\_to\_num()}{pk\_oid\_str\_to\_num()}}
+{\footnotesize\ttfamily int pk\+\_\+oid\+\_\+str\+\_\+to\+\_\+num (\begin{DoxyParamCaption}\item[{const char $\ast$}]{O\+ID,  }\item[{unsigned long $\ast$}]{oid,  }\item[{unsigned long $\ast$}]{oidlen }\end{DoxyParamCaption})}
+
+
+
+Definition at line 12 of file pk\+\_\+oid\+\_\+str.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{13 \{}
+\DoxyCodeLine{14    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} i, j, limit, OID\_len, oid\_j;}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(oidlen != NULL);}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18    limit = *oidlen;}
+\DoxyCodeLine{19    *oidlen = 0; \textcolor{comment}{/* make sure that we return zero oidlen on error */}}
+\DoxyCodeLine{20    \textcolor{keywordflow}{for} (i = 0; i < limit; i++) oid[i] = 0;}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22    \textcolor{keywordflow}{if} (\mbox{\hyperlink{ecc__find__curve_8c_a3b9aae9990e63034f7d199729f025b23}{OID}} == NULL) \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24    OID\_len = strlen(\mbox{\hyperlink{ecc__find__curve_8c_a3b9aae9990e63034f7d199729f025b23}{OID}});}
+\DoxyCodeLine{25    \textcolor{keywordflow}{if} (OID\_len == 0) \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27    \textcolor{keywordflow}{for} (i = 0, j = 0; i < OID\_len; i++) \{}
+\DoxyCodeLine{28       \textcolor{keywordflow}{if} (\mbox{\hyperlink{ecc__find__curve_8c_a3b9aae9990e63034f7d199729f025b23}{OID}}[i] == \textcolor{charliteral}{'.'}) \{}
+\DoxyCodeLine{29          \textcolor{keywordflow}{if} (++j >= limit) \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{30       \}}
+\DoxyCodeLine{31       \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} ((\mbox{\hyperlink{ecc__find__curve_8c_a3b9aae9990e63034f7d199729f025b23}{OID}}[i] >= \textcolor{charliteral}{'0'}) \&\& (\mbox{\hyperlink{ecc__find__curve_8c_a3b9aae9990e63034f7d199729f025b23}{OID}}[i] <= \textcolor{charliteral}{'9'})) \{}
+\DoxyCodeLine{32          \textcolor{keywordflow}{if} ((j >= limit) || (oid == NULL)) \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{33          oid\_j = oid[j];}
+\DoxyCodeLine{34          oid[j] = oid[j] * 10 + (\mbox{\hyperlink{ecc__find__curve_8c_a3b9aae9990e63034f7d199729f025b23}{OID}}[i] - \textcolor{charliteral}{'0'});}
+\DoxyCodeLine{35          \textcolor{keywordflow}{if} (oid[j] < oid\_j) \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca3a147cc0bbea3f8779364ad00c2678b4}{CRYPT\_OVERFLOW}};}
+\DoxyCodeLine{36       \}}
+\DoxyCodeLine{37       \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{38          \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca03c22220d7538be04455cd2aa6ddf9da}{CRYPT\_ERROR}};}
+\DoxyCodeLine{39       \}}
+\DoxyCodeLine{40    \}}
+\DoxyCodeLine{41    \textcolor{keywordflow}{if} (j == 0) \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca03c22220d7538be04455cd2aa6ddf9da}{CRYPT\_ERROR}};}
+\DoxyCodeLine{42    \textcolor{keywordflow}{if} (j >= limit) \{}
+\DoxyCodeLine{43       *oidlen = j;}
+\DoxyCodeLine{44       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caccd878f5599f3036ffe759dbe1a1ac16}{CRYPT\_BUFFER\_OVERFLOW}};}
+\DoxyCodeLine{45    \}}
+\DoxyCodeLine{46    *oidlen = j + 1;}
+\DoxyCodeLine{47    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{48 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+O\+V\+E\+R\+F\+L\+OW, C\+R\+Y\+P\+T\+\_\+\+E\+R\+R\+OR, C\+R\+Y\+P\+T\+\_\+\+OK, C\+R\+Y\+P\+T\+\_\+\+O\+V\+E\+R\+F\+L\+OW, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, and O\+ID.
+
+
+
+Referenced by \+\_\+ecc\+\_\+oid\+\_\+lookup(), ecc\+\_\+export\+\_\+openssl(), ecc\+\_\+set\+\_\+curve(), and x509\+\_\+encode\+\_\+subject\+\_\+public\+\_\+key\+\_\+info().
+
+Here is the caller graph for this function\+:
+% FIG 2

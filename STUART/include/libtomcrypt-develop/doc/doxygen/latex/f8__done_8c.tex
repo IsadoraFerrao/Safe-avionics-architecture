@@ -1,0 +1,71 @@
+\hypertarget{f8__done_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/modes/f8/f8\+\_\+done.c File Reference}
+\label{f8__done_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/modes/f8/f8\_done.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/modes/f8/f8\_done.c}}
+
+
+F8 implementation, finish chain, Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for f8\+\_\+done.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{f8__done_8c_a4ab071170d192fc67b5ad3bb1f81e040}{f8\+\_\+done}} (symmetric\+\_\+\+F8 $\ast$f8)
+\begin{DoxyCompactList}\small\item\em Terminate the chain. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+F8 implementation, finish chain, Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{f8__done_8c_a4ab071170d192fc67b5ad3bb1f81e040}\label{f8__done_8c_a4ab071170d192fc67b5ad3bb1f81e040}} 
+\index{f8\_done.c@{f8\_done.c}!f8\_done@{f8\_done}}
+\index{f8\_done@{f8\_done}!f8\_done.c@{f8\_done.c}}
+\subsubsection{\texorpdfstring{f8\_done()}{f8\_done()}}
+{\footnotesize\ttfamily int f8\+\_\+done (\begin{DoxyParamCaption}\item[{symmetric\+\_\+\+F8 $\ast$}]{f8 }\end{DoxyParamCaption})}
+
+
+
+Terminate the chain. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em f8} & The F8 chain to terminate \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK on success 
+\end{DoxyReturn}
+
+
+Definition at line 22 of file f8\+\_\+done.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{23 \{}
+\DoxyCodeLine{24    \textcolor{keywordtype}{int} err;}
+\DoxyCodeLine{25    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(f8 != NULL);}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_ac30eb68934c4ca07205344dc9d159221}{cipher\_is\_valid}}(f8->cipher)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{28       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{29    \}}
+\DoxyCodeLine{30    \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[f8->cipher].\mbox{\hyperlink{structltc__cipher__descriptor_a0ad1c101005c70a69e40fded0e606191}{done}}(\&f8->key);}
+\DoxyCodeLine{31    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{32 \}}
+
+\end{DoxyCode}
+
+
+References cipher\+\_\+descriptor, cipher\+\_\+is\+\_\+valid(), C\+R\+Y\+P\+T\+\_\+\+OK, ltc\+\_\+cipher\+\_\+descriptor\+::done, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+
+
+Referenced by f8\+\_\+test\+\_\+mode().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2

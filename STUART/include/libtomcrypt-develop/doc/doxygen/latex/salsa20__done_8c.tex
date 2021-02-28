@@ -1,0 +1,56 @@
+\hypertarget{salsa20__done_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/stream/salsa20/salsa20\+\_\+done.c File Reference}
+\label{salsa20__done_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/stream/salsa20/salsa20\_done.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/stream/salsa20/salsa20\_done.c}}
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for salsa20\+\_\+done.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{salsa20__done_8c_a465c34bbeed87ae78733565f8c2c698c}{salsa20\+\_\+done}} (salsa20\+\_\+state $\ast$st)
+\begin{DoxyCompactList}\small\item\em Terminate and clear Salsa20 state. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{salsa20__done_8c_a465c34bbeed87ae78733565f8c2c698c}\label{salsa20__done_8c_a465c34bbeed87ae78733565f8c2c698c}} 
+\index{salsa20\_done.c@{salsa20\_done.c}!salsa20\_done@{salsa20\_done}}
+\index{salsa20\_done@{salsa20\_done}!salsa20\_done.c@{salsa20\_done.c}}
+\subsubsection{\texorpdfstring{salsa20\_done()}{salsa20\_done()}}
+{\footnotesize\ttfamily int salsa20\+\_\+done (\begin{DoxyParamCaption}\item[{salsa20\+\_\+state $\ast$}]{st }\end{DoxyParamCaption})}
+
+
+
+Terminate and clear Salsa20 state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em st} & The Salsa20 state \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK on success 
+\end{DoxyReturn}
+
+
+Definition at line 19 of file salsa20\+\_\+done.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{20 \{}
+\DoxyCodeLine{21    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(st != NULL);}
+\DoxyCodeLine{22    \mbox{\hyperlink{tomcrypt__cfg_8h_aa3c34a6f6c61de7da9258b5a30e32c2f}{XMEMSET}}(st, 0, \textcolor{keyword}{sizeof}(salsa20\_state));}
+\DoxyCodeLine{23    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{24 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, and X\+M\+E\+M\+S\+E\+T().
+
+
+
+Referenced by salsa20\+\_\+memory(), salsa20\+\_\+test(), xsalsa20\+\_\+memory(), and xsalsa20\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2

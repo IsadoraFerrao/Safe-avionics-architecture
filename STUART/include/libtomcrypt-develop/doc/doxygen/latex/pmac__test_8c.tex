@@ -1,0 +1,172 @@
+\hypertarget{pmac__test_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/mac/pmac/pmac\+\_\+test.c File Reference}
+\label{pmac__test_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/mac/pmac/pmac\_test.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/mac/pmac/pmac\_test.c}}
+
+
+P\+M\+AC implementation, self-\/test, by Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for pmac\+\_\+test.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{pmac__test_8c_a25c3fac912755621e400e5b51f46ca23}{pmac\+\_\+test}} (void)
+\begin{DoxyCompactList}\small\item\em Test the L\+T\+C\+\_\+\+O\+M\+AC implementation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+P\+M\+AC implementation, self-\/test, by Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{pmac__test_8c_a25c3fac912755621e400e5b51f46ca23}\label{pmac__test_8c_a25c3fac912755621e400e5b51f46ca23}} 
+\index{pmac\_test.c@{pmac\_test.c}!pmac\_test@{pmac\_test}}
+\index{pmac\_test@{pmac\_test}!pmac\_test.c@{pmac\_test.c}}
+\subsubsection{\texorpdfstring{pmac\_test()}{pmac\_test()}}
+{\footnotesize\ttfamily int pmac\+\_\+test (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Test the L\+T\+C\+\_\+\+O\+M\+AC implementation. 
+
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful, C\+R\+Y\+P\+T\+\_\+\+N\+OP if testing has been disabled 
+\end{DoxyReturn}
+
+
+Definition at line 23 of file pmac\+\_\+test.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{24 \{}
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#if !defined(LTC\_TEST)}}
+\DoxyCodeLine{26     \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cac43a7799c7fd5f515172da6cfc0f9cf5}{CRYPT\_NOP}};}
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{28     \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{29         \textcolor{keywordtype}{int} msglen;}
+\DoxyCodeLine{30         \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} key[16], msg[34], tag[16];}
+\DoxyCodeLine{31     \} tests[] = \{}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33    \textcolor{comment}{/* PMAC-AES-128-0B */}}
+\DoxyCodeLine{34 \{}
+\DoxyCodeLine{35    0,}
+\DoxyCodeLine{36    \textcolor{comment}{/* key */}}
+\DoxyCodeLine{37    \{ 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07,}
+\DoxyCodeLine{38      0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f \},}
+\DoxyCodeLine{39    \textcolor{comment}{/* msg */}}
+\DoxyCodeLine{40    \{ 0x00 \},}
+\DoxyCodeLine{41    \textcolor{comment}{/* tag */}}
+\DoxyCodeLine{42    \{ 0x43, 0x99, 0x57, 0x2c, 0xd6, 0xea, 0x53, 0x41,}
+\DoxyCodeLine{43      0xb8, 0xd3, 0x58, 0x76, 0xa7, 0x09, 0x8a, 0xf7 \}}
+\DoxyCodeLine{44 \},}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46    \textcolor{comment}{/* PMAC-AES-128-3B */}}
+\DoxyCodeLine{47 \{}
+\DoxyCodeLine{48    3,}
+\DoxyCodeLine{49    \textcolor{comment}{/* key */}}
+\DoxyCodeLine{50    \{ 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07,}
+\DoxyCodeLine{51      0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f \},}
+\DoxyCodeLine{52    \textcolor{comment}{/* msg */}}
+\DoxyCodeLine{53    \{ 0x00, 0x01, 0x02 \},}
+\DoxyCodeLine{54    \textcolor{comment}{/* tag */}}
+\DoxyCodeLine{55    \{ 0x25, 0x6b, 0xa5, 0x19, 0x3c, 0x1b, 0x99, 0x1b,}
+\DoxyCodeLine{56      0x4d, 0xf0, 0xc5, 0x1f, 0x38, 0x8a, 0x9e, 0x27 \}}
+\DoxyCodeLine{57 \},}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{59    \textcolor{comment}{/* PMAC-AES-128-16B */}}
+\DoxyCodeLine{60 \{}
+\DoxyCodeLine{61    16,}
+\DoxyCodeLine{62    \textcolor{comment}{/* key */}}
+\DoxyCodeLine{63    \{ 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07,}
+\DoxyCodeLine{64      0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f \},}
+\DoxyCodeLine{65    \textcolor{comment}{/* msg */}}
+\DoxyCodeLine{66    \{ 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07,}
+\DoxyCodeLine{67      0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f \},}
+\DoxyCodeLine{68    \textcolor{comment}{/* tag */}}
+\DoxyCodeLine{69    \{ 0xeb, 0xbd, 0x82, 0x2f, 0xa4, 0x58, 0xda, 0xf6,}
+\DoxyCodeLine{70      0xdf, 0xda, 0xd7, 0xc2, 0x7d, 0xa7, 0x63, 0x38 \}}
+\DoxyCodeLine{71 \},}
+\DoxyCodeLine{72 }
+\DoxyCodeLine{73    \textcolor{comment}{/* PMAC-AES-128-20B */}}
+\DoxyCodeLine{74 \{}
+\DoxyCodeLine{75    20,}
+\DoxyCodeLine{76    \textcolor{comment}{/* key */}}
+\DoxyCodeLine{77    \{ 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07,}
+\DoxyCodeLine{78      0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f \},}
+\DoxyCodeLine{79    \textcolor{comment}{/* msg */}}
+\DoxyCodeLine{80    \{ 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07,}
+\DoxyCodeLine{81      0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f,}
+\DoxyCodeLine{82      0x10, 0x11, 0x12, 0x13 \},}
+\DoxyCodeLine{83    \textcolor{comment}{/* tag */}}
+\DoxyCodeLine{84    \{ 0x04, 0x12, 0xca, 0x15, 0x0b, 0xbf, 0x79, 0x05,}
+\DoxyCodeLine{85      0x8d, 0x8c, 0x75, 0xa5, 0x8c, 0x99, 0x3f, 0x55 \}}
+\DoxyCodeLine{86 \},}
+\DoxyCodeLine{87 }
+\DoxyCodeLine{88    \textcolor{comment}{/* PMAC-AES-128-32B */}}
+\DoxyCodeLine{89 \{}
+\DoxyCodeLine{90    32,}
+\DoxyCodeLine{91    \textcolor{comment}{/* key */}}
+\DoxyCodeLine{92    \{ 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07,}
+\DoxyCodeLine{93      0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f \},}
+\DoxyCodeLine{94    \textcolor{comment}{/* msg */}}
+\DoxyCodeLine{95    \{ 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07,}
+\DoxyCodeLine{96      0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f,}
+\DoxyCodeLine{97      0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17,}
+\DoxyCodeLine{98      0x18, 0x19, 0x1a, 0x1b, 0x1c, 0x1d, 0x1e, 0x1f \},}
+\DoxyCodeLine{99    \textcolor{comment}{/* tag */}}
+\DoxyCodeLine{100    \{ 0xe9, 0x7a, 0xc0, 0x4e, 0x9e, 0x5e, 0x33, 0x99,}
+\DoxyCodeLine{101      0xce, 0x53, 0x55, 0xcd, 0x74, 0x07, 0xbc, 0x75 \}}
+\DoxyCodeLine{102 \},}
+\DoxyCodeLine{103 }
+\DoxyCodeLine{104    \textcolor{comment}{/* PMAC-AES-128-34B */}}
+\DoxyCodeLine{105 \{}
+\DoxyCodeLine{106    34,}
+\DoxyCodeLine{107    \textcolor{comment}{/* key */}}
+\DoxyCodeLine{108    \{ 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07,}
+\DoxyCodeLine{109      0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f \},}
+\DoxyCodeLine{110    \textcolor{comment}{/* msg */}}
+\DoxyCodeLine{111    \{ 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07,}
+\DoxyCodeLine{112      0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f,}
+\DoxyCodeLine{113      0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17,}
+\DoxyCodeLine{114      0x18, 0x19, 0x1a, 0x1b, 0x1c, 0x1d, 0x1e, 0x1f,}
+\DoxyCodeLine{115      0x20, 0x21 \},}
+\DoxyCodeLine{116    \textcolor{comment}{/* tag */}}
+\DoxyCodeLine{117    \{ 0x5c, 0xba, 0x7d, 0x5e, 0xb2, 0x4f, 0x7c, 0x86,}
+\DoxyCodeLine{118      0xcc, 0xc5, 0x46, 0x04, 0xe5, 0x3d, 0x55, 0x12 \}}
+\DoxyCodeLine{119 \}}
+\DoxyCodeLine{120 }
+\DoxyCodeLine{121 \};}
+\DoxyCodeLine{122    \textcolor{keywordtype}{int} err, x, idx;}
+\DoxyCodeLine{123    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}};}
+\DoxyCodeLine{124    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} outtag[\mbox{\hyperlink{tomcrypt_8h_ab59933beebb2b857c992b93cf53f0d10}{MAXBLOCKSIZE}}];}
+\DoxyCodeLine{125 }
+\DoxyCodeLine{126     \textcolor{comment}{/* AES can be under rijndael or aes... try to find it */}}
+\DoxyCodeLine{127     \textcolor{keywordflow}{if} ((idx = \mbox{\hyperlink{tomcrypt__cipher_8h_af5c3882342fd65a17239cd04bfdf44e2}{find\_cipher}}(\textcolor{stringliteral}{"aes"})) == -1) \{}
+\DoxyCodeLine{128        \textcolor{keywordflow}{if} ((idx = \mbox{\hyperlink{tomcrypt__cipher_8h_af5c3882342fd65a17239cd04bfdf44e2}{find\_cipher}}(\textcolor{stringliteral}{"rijndael"})) == -1) \{}
+\DoxyCodeLine{129           \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cac43a7799c7fd5f515172da6cfc0f9cf5}{CRYPT\_NOP}};}
+\DoxyCodeLine{130        \}}
+\DoxyCodeLine{131     \}}
+\DoxyCodeLine{132 }
+\DoxyCodeLine{133     \textcolor{keywordflow}{for} (x = 0; x < (int)(\textcolor{keyword}{sizeof}(tests)/\textcolor{keyword}{sizeof}(tests[0])); x++) \{}
+\DoxyCodeLine{134         \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}} = \textcolor{keyword}{sizeof}(outtag);}
+\DoxyCodeLine{135         \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{pmac__memory_8c_ac738727243b64548af367c19dfee535c}{pmac\_memory}}(idx, tests[x].key, 16, tests[x].msg, tests[x].msglen, outtag, \&\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}})) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{136            \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{137         \}}
+\DoxyCodeLine{138 }
+\DoxyCodeLine{139         \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(outtag, \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}, tests[x].tag, \textcolor{keyword}{sizeof}(tests[x].tag), \textcolor{stringliteral}{"PMAC"}, x)) \{}
+\DoxyCodeLine{140            \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{141         \}}
+\DoxyCodeLine{142     \}}
+\DoxyCodeLine{143     \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{144 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* LTC\_TEST */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{145 \}}
+
+\end{DoxyCode}
+
+
+References compare\+\_\+testvector(), C\+R\+Y\+P\+T\+\_\+\+F\+A\+I\+L\+\_\+\+T\+E\+S\+T\+V\+E\+C\+T\+OR, C\+R\+Y\+P\+T\+\_\+\+N\+OP, C\+R\+Y\+P\+T\+\_\+\+OK, find\+\_\+cipher(), len, M\+A\+X\+B\+L\+O\+C\+K\+S\+I\+ZE, and pmac\+\_\+memory().
+
+Here is the call graph for this function\+:
+% FIG 1

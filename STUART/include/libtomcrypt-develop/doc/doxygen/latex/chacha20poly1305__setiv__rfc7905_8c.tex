@@ -1,0 +1,69 @@
+\hypertarget{chacha20poly1305__setiv__rfc7905_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/encauth/chachapoly/chacha20poly1305\+\_\+setiv\+\_\+rfc7905.c File Reference}
+\label{chacha20poly1305__setiv__rfc7905_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/encauth/chachapoly/chacha20poly1305\_setiv\_rfc7905.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/encauth/chachapoly/chacha20poly1305\_setiv\_rfc7905.c}}
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for chacha20poly1305\+\_\+setiv\+\_\+rfc7905.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{chacha20poly1305__setiv__rfc7905_8c_aa113643ea24d7f6a06a993ef52eef37b}{chacha20poly1305\+\_\+setiv\+\_\+rfc7905}} (chacha20poly1305\+\_\+state $\ast$st, const unsigned char $\ast$iv, unsigned long ivlen, \mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}} sequence\+\_\+number)
+\begin{DoxyCompactList}\small\item\em Set IV + counter data (with R\+F\+C7905-\/magic) to the Cha\+Cha20\+Poly1305 state and reset the context. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{chacha20poly1305__setiv__rfc7905_8c_aa113643ea24d7f6a06a993ef52eef37b}\label{chacha20poly1305__setiv__rfc7905_8c_aa113643ea24d7f6a06a993ef52eef37b}} 
+\index{chacha20poly1305\_setiv\_rfc7905.c@{chacha20poly1305\_setiv\_rfc7905.c}!chacha20poly1305\_setiv\_rfc7905@{chacha20poly1305\_setiv\_rfc7905}}
+\index{chacha20poly1305\_setiv\_rfc7905@{chacha20poly1305\_setiv\_rfc7905}!chacha20poly1305\_setiv\_rfc7905.c@{chacha20poly1305\_setiv\_rfc7905.c}}
+\subsubsection{\texorpdfstring{chacha20poly1305\_setiv\_rfc7905()}{chacha20poly1305\_setiv\_rfc7905()}}
+{\footnotesize\ttfamily int chacha20poly1305\+\_\+setiv\+\_\+rfc7905 (\begin{DoxyParamCaption}\item[{chacha20poly1305\+\_\+state $\ast$}]{st,  }\item[{const unsigned char $\ast$}]{iv,  }\item[{unsigned long}]{ivlen,  }\item[{\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}}}]{sequence\+\_\+number }\end{DoxyParamCaption})}
+
+
+
+Set IV + counter data (with R\+F\+C7905-\/magic) to the Cha\+Cha20\+Poly1305 state and reset the context. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em st} & The Cha\+Cha20\+Poly1305 state \\
+\hline
+{\em iv} & The IV data to add \\
+\hline
+{\em ivlen} & The length of the IV (must be 12 or 8) \\
+\hline
+{\em sequence\+\_\+number} & 64bit sequence number which is incorporated into IV as described in R\+F\+C7905 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK on success 
+\end{DoxyReturn}
+
+
+Definition at line 22 of file chacha20poly1305\+\_\+setiv\+\_\+rfc7905.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{23 \{}
+\DoxyCodeLine{24    \textcolor{keywordtype}{int} i;}
+\DoxyCodeLine{25    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} combined\_iv[12] = \{ 0 \};}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(st != NULL);}
+\DoxyCodeLine{28    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(iv != NULL);}
+\DoxyCodeLine{29    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(ivlen == 12);}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31    STORE64L(sequence\_number, combined\_iv + 4);}
+\DoxyCodeLine{32    \textcolor{keywordflow}{for} (i = 0; i < 12; i++) combined\_iv[i] = iv[i] \string^ combined\_iv[i];}
+\DoxyCodeLine{33    \textcolor{keywordflow}{return} \mbox{\hyperlink{chacha20poly1305__setiv_8c_aec694a7406b22a534da1706070e98907}{chacha20poly1305\_setiv}}(st, combined\_iv, 12);}
+\DoxyCodeLine{34 \}}
+
+\end{DoxyCode}
+
+
+References chacha20poly1305\+\_\+setiv(), and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+
+
+Referenced by chacha20poly1305\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2

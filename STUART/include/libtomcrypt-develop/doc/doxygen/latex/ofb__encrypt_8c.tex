@@ -1,0 +1,93 @@
+\hypertarget{ofb__encrypt_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/modes/ofb/ofb\+\_\+encrypt.c File Reference}
+\label{ofb__encrypt_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/modes/ofb/ofb\_encrypt.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/modes/ofb/ofb\_encrypt.c}}
+
+
+O\+FB implementation, encrypt data, Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for ofb\+\_\+encrypt.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{ofb__encrypt_8c_ab5455409bdb2ea8ef0ccc2c227161abc}{ofb\+\_\+encrypt}} (const unsigned char $\ast$pt, unsigned char $\ast$ct, unsigned long \mbox{\hyperlink{pmac__init_8c_afed088663f8704004425cdae2120b9b3}{len}}, symmetric\+\_\+\+O\+FB $\ast$ofb)
+\begin{DoxyCompactList}\small\item\em O\+FB encrypt. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+O\+FB implementation, encrypt data, Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{ofb__encrypt_8c_ab5455409bdb2ea8ef0ccc2c227161abc}\label{ofb__encrypt_8c_ab5455409bdb2ea8ef0ccc2c227161abc}} 
+\index{ofb\_encrypt.c@{ofb\_encrypt.c}!ofb\_encrypt@{ofb\_encrypt}}
+\index{ofb\_encrypt@{ofb\_encrypt}!ofb\_encrypt.c@{ofb\_encrypt.c}}
+\subsubsection{\texorpdfstring{ofb\_encrypt()}{ofb\_encrypt()}}
+{\footnotesize\ttfamily int ofb\+\_\+encrypt (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{pt,  }\item[{unsigned char $\ast$}]{ct,  }\item[{unsigned long}]{len,  }\item[{symmetric\+\_\+\+O\+FB $\ast$}]{ofb }\end{DoxyParamCaption})}
+
+
+
+O\+FB encrypt. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pt} & Plaintext \\
+\hline
+{\em ct} & \mbox{[}out\mbox{]} Ciphertext \\
+\hline
+{\em len} & Length of plaintext (octets) \\
+\hline
+{\em ofb} & O\+FB state \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 26 of file ofb\+\_\+encrypt.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{27 \{}
+\DoxyCodeLine{28    \textcolor{keywordtype}{int} err;}
+\DoxyCodeLine{29    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(pt != NULL);}
+\DoxyCodeLine{30    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(ct != NULL);}
+\DoxyCodeLine{31    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(ofb != NULL);}
+\DoxyCodeLine{32    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_ac30eb68934c4ca07205344dc9d159221}{cipher\_is\_valid}}(ofb->cipher)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{33        \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{34    \}}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36    \textcolor{comment}{/* is blocklen/padlen valid? */}}
+\DoxyCodeLine{37    \textcolor{keywordflow}{if} (ofb->blocklen < 0 || ofb->blocklen > (\textcolor{keywordtype}{int})\textcolor{keyword}{sizeof}(ofb->IV) ||}
+\DoxyCodeLine{38        ofb->padlen   < 0 || ofb->padlen   > (\textcolor{keywordtype}{int})\textcolor{keyword}{sizeof}(ofb->IV)) \{}
+\DoxyCodeLine{39       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{40    \}}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{42    \textcolor{keywordflow}{while} (\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}-- > 0) \{}
+\DoxyCodeLine{43        \textcolor{keywordflow}{if} (ofb->padlen == ofb->blocklen) \{}
+\DoxyCodeLine{44           \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[ofb->cipher].\mbox{\hyperlink{structltc__cipher__descriptor_a46141d86abe22a7c8d382c62a894dd63}{ecb\_encrypt}}(ofb->IV, ofb->IV, \&ofb->key)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{45              \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{46           \}}
+\DoxyCodeLine{47           ofb->padlen = 0;}
+\DoxyCodeLine{48        \}}
+\DoxyCodeLine{49        *ct++ = *pt++ \string^ ofb->IV[(ofb->padlen)++];}
+\DoxyCodeLine{50    \}}
+\DoxyCodeLine{51    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{52 \}}
+
+\end{DoxyCode}
+
+
+References cipher\+\_\+descriptor, cipher\+\_\+is\+\_\+valid(), C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+A\+RG, C\+R\+Y\+P\+T\+\_\+\+OK, ltc\+\_\+cipher\+\_\+descriptor\+::ecb\+\_\+encrypt, len, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+
+
+Referenced by ofb\+\_\+decrypt().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2

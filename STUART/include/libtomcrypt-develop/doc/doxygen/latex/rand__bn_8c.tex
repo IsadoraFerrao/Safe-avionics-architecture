@@ -1,0 +1,124 @@
+\hypertarget{rand__bn_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/math/rand\+\_\+bn.c File Reference}
+\label{rand__bn_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/math/rand\_bn.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/math/rand\_bn.c}}
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for rand\+\_\+bn.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{rand__bn_8c_a5a58a92a44e093e5b35960f7b92a6eb9}{rand\+\_\+bn\+\_\+bits}} (void $\ast$\mbox{\hyperlink{sober128__stream_8c_a0240ac851181b84ac374872dc5434ee4}{N}}, int bits, \mbox{\hyperlink{structprng__state}{prng\+\_\+state}} $\ast$prng, int wprng)
+\begin{DoxyCompactList}\small\item\em Generate a random number N with given bitlength (note\+: M\+SB can be 0) \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{rand__bn_8c_a8050acf530841fb2da3b667204039856}{rand\+\_\+bn\+\_\+upto}} (void $\ast$\mbox{\hyperlink{sober128__stream_8c_a0240ac851181b84ac374872dc5434ee4}{N}}, void $\ast$limit, \mbox{\hyperlink{structprng__state}{prng\+\_\+state}} $\ast$prng, int wprng)
+\begin{DoxyCompactList}\small\item\em Generate a random number N in a range\+: 1 $<$= N $<$ limit. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{rand__bn_8c_a5a58a92a44e093e5b35960f7b92a6eb9}\label{rand__bn_8c_a5a58a92a44e093e5b35960f7b92a6eb9}} 
+\index{rand\_bn.c@{rand\_bn.c}!rand\_bn\_bits@{rand\_bn\_bits}}
+\index{rand\_bn\_bits@{rand\_bn\_bits}!rand\_bn.c@{rand\_bn.c}}
+\subsubsection{\texorpdfstring{rand\_bn\_bits()}{rand\_bn\_bits()}}
+{\footnotesize\ttfamily int rand\+\_\+bn\+\_\+bits (\begin{DoxyParamCaption}\item[{void $\ast$}]{N,  }\item[{int}]{bits,  }\item[{\mbox{\hyperlink{structprng__state}{prng\+\_\+state}} $\ast$}]{prng,  }\item[{int}]{wprng }\end{DoxyParamCaption})}
+
+
+
+Generate a random number N with given bitlength (note\+: M\+SB can be 0) 
+
+
+
+Definition at line 16 of file rand\+\_\+bn.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{17 \{}
+\DoxyCodeLine{18    \textcolor{keywordtype}{int} res, bytes;}
+\DoxyCodeLine{19    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *buf, \mbox{\hyperlink{gcm__gf__mult_8c_a3a2325b458f400e186d773b14e6c1ed9}{mask}};}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(\mbox{\hyperlink{sober128__stream_8c_a0240ac851181b84ac374872dc5434ee4}{N}} != NULL);}
+\DoxyCodeLine{22    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(bits > 1);}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24    \textcolor{comment}{/* check PRNG */}}
+\DoxyCodeLine{25    \textcolor{keywordflow}{if} ((res = \mbox{\hyperlink{tomcrypt__prng_8h_a7e4a212c1a29a3b8bb4f8d5a34676a1e}{prng\_is\_valid}}(wprng)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \textcolor{keywordflow}{return} res;}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27    bytes = (bits+7) >> 3;}
+\DoxyCodeLine{28    \mbox{\hyperlink{gcm__gf__mult_8c_a3a2325b458f400e186d773b14e6c1ed9}{mask}} = 0xff << (8 - bits \% 8);}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30    \textcolor{comment}{/* allocate buffer */}}
+\DoxyCodeLine{31    \textcolor{keywordflow}{if} ((buf = \mbox{\hyperlink{tomcrypt__cfg_8h_a151dda14cd7acae31eaf1102b0cc0685}{XCALLOC}}(1, bytes)) == NULL) \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca0ce0d27adc7ea10b74b7ea904b8bfa82}{CRYPT\_MEM}};}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33    \textcolor{comment}{/* generate random bytes */}}
+\DoxyCodeLine{34    \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__prng_8h_ac03ee9f603bf966f3afb3f6be156239b}{prng\_descriptor}}[wprng].read(buf, bytes, prng) != (\textcolor{keywordtype}{unsigned} long)bytes) \{}
+\DoxyCodeLine{35       res = \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca68eea82b3b71f23031cd94b10c920bf3}{CRYPT\_ERROR\_READPRNG}};}
+\DoxyCodeLine{36       \textcolor{keywordflow}{goto} cleanup;}
+\DoxyCodeLine{37    \}}
+\DoxyCodeLine{38    \textcolor{comment}{/* mask bits */}}
+\DoxyCodeLine{39    buf[0] \&= ~\mbox{\hyperlink{gcm__gf__mult_8c_a3a2325b458f400e186d773b14e6c1ed9}{mask}};}
+\DoxyCodeLine{40    \textcolor{comment}{/* load value */}}
+\DoxyCodeLine{41    \textcolor{keywordflow}{if} ((res = \mbox{\hyperlink{tomcrypt__private_8h_a9e20e2044bb5a279e27512d1e1b65754}{mp\_read\_unsigned\_bin}}(\mbox{\hyperlink{sober128__stream_8c_a0240ac851181b84ac374872dc5434ee4}{N}}, buf, bytes)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \textcolor{keywordflow}{goto} cleanup;}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{43    res = \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45 cleanup:}
+\DoxyCodeLine{46 \textcolor{preprocessor}{\#ifdef LTC\_CLEAN\_STACK}}
+\DoxyCodeLine{47    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(buf, bytes);}
+\DoxyCodeLine{48 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{49    \mbox{\hyperlink{tomcrypt__cfg_8h_a260d66fc0690e0502cf3bfe7b5244b75}{XFREE}}(buf);}
+\DoxyCodeLine{50    \textcolor{keywordflow}{return} res;}
+\DoxyCodeLine{51 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+E\+R\+R\+O\+R\+\_\+\+R\+E\+A\+D\+P\+R\+NG, C\+R\+Y\+P\+T\+\_\+\+M\+EM, C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, mask, mp\+\_\+read\+\_\+unsigned\+\_\+bin, N, prng\+\_\+descriptor, prng\+\_\+is\+\_\+valid(), X\+C\+A\+L\+L\+O\+C(), X\+F\+R\+E\+E(), and zeromem().
+
+
+
+Referenced by \+\_\+dsa\+\_\+make\+\_\+params(), dsa\+\_\+sign\+\_\+hash\+\_\+raw(), and rand\+\_\+bn\+\_\+upto().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2
+\mbox{\Hypertarget{rand__bn_8c_a8050acf530841fb2da3b667204039856}\label{rand__bn_8c_a8050acf530841fb2da3b667204039856}} 
+\index{rand\_bn.c@{rand\_bn.c}!rand\_bn\_upto@{rand\_bn\_upto}}
+\index{rand\_bn\_upto@{rand\_bn\_upto}!rand\_bn.c@{rand\_bn.c}}
+\subsubsection{\texorpdfstring{rand\_bn\_upto()}{rand\_bn\_upto()}}
+{\footnotesize\ttfamily int rand\+\_\+bn\+\_\+upto (\begin{DoxyParamCaption}\item[{void $\ast$}]{N,  }\item[{void $\ast$}]{limit,  }\item[{\mbox{\hyperlink{structprng__state}{prng\+\_\+state}} $\ast$}]{prng,  }\item[{int}]{wprng }\end{DoxyParamCaption})}
+
+
+
+Generate a random number N in a range\+: 1 $<$= N $<$ limit. 
+
+
+
+Definition at line 56 of file rand\+\_\+bn.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{57 \{}
+\DoxyCodeLine{58    \textcolor{keywordtype}{int} res, bits;}
+\DoxyCodeLine{59 }
+\DoxyCodeLine{60    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(\mbox{\hyperlink{sober128__stream_8c_a0240ac851181b84ac374872dc5434ee4}{N}} != NULL);}
+\DoxyCodeLine{61    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(limit != NULL);}
+\DoxyCodeLine{62 }
+\DoxyCodeLine{63    bits = \mbox{\hyperlink{tomcrypt__private_8h_afa1671e20e699f66319ed2e8d9119e7e}{mp\_count\_bits}}(limit);}
+\DoxyCodeLine{64    \textcolor{keywordflow}{do} \{}
+\DoxyCodeLine{65      res = \mbox{\hyperlink{rand__bn_8c_a5a58a92a44e093e5b35960f7b92a6eb9}{rand\_bn\_bits}}(\mbox{\hyperlink{sober128__stream_8c_a0240ac851181b84ac374872dc5434ee4}{N}}, bits, prng, wprng);}
+\DoxyCodeLine{66      \textcolor{keywordflow}{if} (res != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \textcolor{keywordflow}{return} res;}
+\DoxyCodeLine{67    \} \textcolor{keywordflow}{while} (\mbox{\hyperlink{tomcrypt__private_8h_a6ce44f2e6f872565a468b67d9a93dc28}{mp\_cmp\_d}}(\mbox{\hyperlink{sober128__stream_8c_a0240ac851181b84ac374872dc5434ee4}{N}}, 0) != \mbox{\hyperlink{tomcrypt__math_8h_adff156a960d44f0f5b67b75ef1f1c29b}{LTC\_MP\_GT}} || \mbox{\hyperlink{tomcrypt__private_8h_a62ea02fbe7dd2d456e49520264d775ee}{mp\_cmp}}(\mbox{\hyperlink{sober128__stream_8c_a0240ac851181b84ac374872dc5434ee4}{N}}, limit) != \mbox{\hyperlink{tomcrypt__math_8h_a42d0c7d4c09793df79660774d3436db2}{LTC\_MP\_LT}});}
+\DoxyCodeLine{68 }
+\DoxyCodeLine{69    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{70 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, L\+T\+C\+\_\+\+M\+P\+\_\+\+GT, L\+T\+C\+\_\+\+M\+P\+\_\+\+LT, mp\+\_\+cmp, mp\+\_\+cmp\+\_\+d, mp\+\_\+count\+\_\+bits, N, and rand\+\_\+bn\+\_\+bits().
+
+
+
+Referenced by dsa\+\_\+encrypt\+\_\+key(), dsa\+\_\+generate\+\_\+key(), ecc\+\_\+generate\+\_\+key(), and ecc\+\_\+sign\+\_\+hash\+\_\+ex().
+
+Here is the call graph for this function\+:
+% FIG 3
+Here is the caller graph for this function\+:
+% FIG 4

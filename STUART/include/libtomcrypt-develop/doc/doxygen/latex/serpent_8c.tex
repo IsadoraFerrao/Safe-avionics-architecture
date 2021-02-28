@@ -1,0 +1,1453 @@
+\hypertarget{serpent_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/ciphers/serpent.c File Reference}
+\label{serpent_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/ciphers/serpent.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/ciphers/serpent.c}}
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for serpent.\+c\+:
+% FIG 0
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{serpent_8c_ab141499f8b1ea75575206716a268b883}{\+\_\+\+LT}}(i,  a,  b,  \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},  d,  e)
+\item 
+\#define \mbox{\hyperlink{serpent_8c_a7e9ea65935f5e171634f7da272fe7628}{\+\_\+\+I\+LT}}(i,  a,  b,  \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},  d,  e)
+\item 
+\#define \mbox{\hyperlink{serpent_8c_ab8835333b3d794f427c5e05e07aa58d4}{\+\_\+before\+S0}}(f)~f(0,a,b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d,e)
+\item 
+\#define \mbox{\hyperlink{serpent_8c_a78d41d8fd1db5fe343a0c4760afcd686}{\+\_\+after\+S0}}(f)~f(1,b,e,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},a,d)
+\item 
+\#define \mbox{\hyperlink{serpent_8c_a058832dc28a4f64e50fb733d5cbbf388}{\+\_\+after\+S1}}(f)~f(2,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},b,a,e,d)
+\item 
+\#define \mbox{\hyperlink{serpent_8c_a3b06b9c3e2b54949568d7f47e2662507}{\+\_\+after\+S2}}(f)~f(3,a,e,b,d,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}})
+\item 
+\#define \mbox{\hyperlink{serpent_8c_aa55e98f82297a1b6db41351f37da477c}{\+\_\+after\+S3}}(f)~f(4,e,b,d,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},a)
+\item 
+\#define \mbox{\hyperlink{serpent_8c_aa4027f772617cc1de1e807165b48c4fc}{\+\_\+after\+S4}}(f)~f(5,b,a,e,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d)
+\item 
+\#define \mbox{\hyperlink{serpent_8c_a9fb1352f175d9586eaf9f6528ee43306}{\+\_\+after\+S5}}(f)~f(6,a,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},b,e,d)
+\item 
+\#define \mbox{\hyperlink{serpent_8c_af1f423f21a5192b13ad78c2295e9b7ff}{\+\_\+after\+S6}}(f)~f(7,a,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d,b,e)
+\item 
+\#define \mbox{\hyperlink{serpent_8c_a6a1bce41d763280627ef550decfb1802}{\+\_\+after\+S7}}(f)~f(8,d,e,b,a,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}})
+\item 
+\#define \mbox{\hyperlink{serpent_8c_abce815ef71193a0686bccf51fe4a0160}{\+\_\+before\+I7}}(f)~f(8,a,b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d,e)
+\item 
+\#define \mbox{\hyperlink{serpent_8c_ae6eaa866c6c94307523cd29e188a6367}{\+\_\+after\+I7}}(f)~f(7,d,a,b,e,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}})
+\item 
+\#define \mbox{\hyperlink{serpent_8c_a3fd470cae206426057db98050d9f4865}{\+\_\+after\+I6}}(f)~f(6,a,b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},e,d)
+\item 
+\#define \mbox{\hyperlink{serpent_8c_a03a356752547223b56ae9d1d939a2488}{\+\_\+after\+I5}}(f)~f(5,b,d,e,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},a)
+\item 
+\#define \mbox{\hyperlink{serpent_8c_afd68ebed0e3b210b6321d807c0b70693}{\+\_\+after\+I4}}(f)~f(4,b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},e,a,d)
+\item 
+\#define \mbox{\hyperlink{serpent_8c_aa963c67f726012f77487f6a237fe79c8}{\+\_\+after\+I3}}(f)~f(3,a,b,e,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d)
+\item 
+\#define \mbox{\hyperlink{serpent_8c_aeaecc2dd5fd885a909010994c4c3b9ef}{\+\_\+after\+I2}}(f)~f(2,b,d,e,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},a)
+\item 
+\#define \mbox{\hyperlink{serpent_8c_a510b5d2f87942d32d5f9bf6845555fbd}{\+\_\+after\+I1}}(f)~f(1,a,b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},e,d)
+\item 
+\#define \mbox{\hyperlink{serpent_8c_a2bc6361678c97eea72338c99444519e9}{\+\_\+after\+I0}}(f)~f(0,a,d,b,e,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}})
+\item 
+\#define \mbox{\hyperlink{serpent_8c_a046d214669094f1aa47d5c3159433e1d}{\+\_\+\+S0}}(i,  r0,  r1,  r2,  r3,  r4)
+\item 
+\#define \mbox{\hyperlink{serpent_8c_ad353fff6f31c5a730005b0228aaca6ce}{\+\_\+\+I0}}(i,  r0,  r1,  r2,  r3,  r4)
+\item 
+\#define \mbox{\hyperlink{serpent_8c_a25b3d304e6136e4d806c53a490156fc3}{\+\_\+\+S1}}(i,  r0,  r1,  r2,  r3,  r4)
+\item 
+\#define \mbox{\hyperlink{serpent_8c_a45e10296c9524991c27a4cb798610197}{\+\_\+\+I1}}(i,  r0,  r1,  r2,  r3,  r4)
+\item 
+\#define \mbox{\hyperlink{serpent_8c_aefd58e5795a2f4629f57ee21f3f74b6e}{\+\_\+\+S2}}(i,  r0,  r1,  r2,  r3,  r4)
+\item 
+\#define \mbox{\hyperlink{serpent_8c_a234edc4b7ae2ac31a6b419683cd5bd96}{\+\_\+\+I2}}(i,  r0,  r1,  r2,  r3,  r4)
+\item 
+\#define \mbox{\hyperlink{serpent_8c_ad9bc0952856adc30f84754dbad72b9f1}{\+\_\+\+S3}}(i,  r0,  r1,  r2,  r3,  r4)
+\item 
+\#define \mbox{\hyperlink{serpent_8c_ab4736eec1a6fd3c1c829b2891cfa5577}{\+\_\+\+I3}}(i,  r0,  r1,  r2,  r3,  r4)
+\item 
+\#define \mbox{\hyperlink{serpent_8c_abe9f01f793a3f6d7dc687c8183612802}{\+\_\+\+S4}}(i,  r0,  r1,  r2,  r3,  r4)
+\item 
+\#define \mbox{\hyperlink{serpent_8c_ac014326e84ae5a88166f31e6011fb8c2}{\+\_\+\+I4}}(i,  r0,  r1,  r2,  r3,  r4)
+\item 
+\#define \mbox{\hyperlink{serpent_8c_ac6a80fbf024aba1ad4515310577ac127}{\+\_\+\+S5}}(i,  r0,  r1,  r2,  r3,  r4)
+\item 
+\#define \mbox{\hyperlink{serpent_8c_aee88146ad98d8303063d028a13f46020}{\+\_\+\+I5}}(i,  r0,  r1,  r2,  r3,  r4)
+\item 
+\#define \mbox{\hyperlink{serpent_8c_a3fadb74bcfb707a11f358b8fbf97b268}{\+\_\+\+S6}}(i,  r0,  r1,  r2,  r3,  r4)
+\item 
+\#define \mbox{\hyperlink{serpent_8c_abc07baa481e0a78410bb8492a3994f83}{\+\_\+\+I6}}(i,  r0,  r1,  r2,  r3,  r4)
+\item 
+\#define \mbox{\hyperlink{serpent_8c_a617aa5fbe12527ae4af517003a2b6928}{\+\_\+\+S7}}(i,  r0,  r1,  r2,  r3,  r4)
+\item 
+\#define \mbox{\hyperlink{serpent_8c_a9cf2d4bd46cb074d6825db8130f15ec4}{\+\_\+\+I7}}(i,  r0,  r1,  r2,  r3,  r4)
+\item 
+\#define \mbox{\hyperlink{serpent_8c_a7ace1b1bbb6c03f023e24836d726213f}{\+\_\+\+KX}}(r,  a,  b,  \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},  d,  e)
+\item 
+\#define \mbox{\hyperlink{serpent_8c_a2a0d4b7aab3fd4401bcdeb62c50409a6}{\+\_\+\+LK}}(r,  a,  b,  \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},  d,  e)
+\item 
+\#define \mbox{\hyperlink{serpent_8c_a9a756998a2b75d3af47eef07b36e81f0}{\+\_\+\+SK}}(r,  a,  b,  \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},  d,  e)
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{serpent_8c_a99215b029ae4d768772f33a10887e9d1}{\+\_\+setup\+\_\+key}} (const unsigned char $\ast$key, int keylen, int \mbox{\hyperlink{kseed_8c_a51da46362a22c8107683876e9c12ec82}{rounds}}, \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} $\ast$k)
+\item 
+static int \mbox{\hyperlink{serpent_8c_a02dcf84f5a34c8c7c25ea6867b97c69d}{\+\_\+enc\+\_\+block}} (const unsigned char $\ast$in, unsigned char $\ast$out, const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} $\ast$k)
+\item 
+static int \mbox{\hyperlink{serpent_8c_a4c10773b4ec04ccb45a5e11610bc2dca}{\+\_\+dec\+\_\+block}} (const unsigned char $\ast$in, unsigned char $\ast$out, const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} $\ast$k)
+\item 
+int \mbox{\hyperlink{serpent_8c_a760fbf5d7d4d33e3f3510e372b1d8630}{serpent\+\_\+setup}} (const unsigned char $\ast$key, int keylen, int num\+\_\+rounds, \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)
+\item 
+int \mbox{\hyperlink{serpent_8c_ab8c192997dc75850afe136b72d39a0f2}{serpent\+\_\+ecb\+\_\+encrypt}} (const unsigned char $\ast$pt, unsigned char $\ast$ct, const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)
+\item 
+int \mbox{\hyperlink{serpent_8c_a46de2073180230ec624b901f27572557}{serpent\+\_\+ecb\+\_\+decrypt}} (const unsigned char $\ast$ct, unsigned char $\ast$pt, const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)
+\item 
+void \mbox{\hyperlink{serpent_8c_a6aa1cc1fd1b300492349bc2788370d9a}{serpent\+\_\+done}} (\mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)
+\item 
+int \mbox{\hyperlink{serpent_8c_ab14995e537ba9561c52131e630538f2f}{serpent\+\_\+keysize}} (int $\ast$keysize)
+\item 
+int \mbox{\hyperlink{serpent_8c_ace09100764d8412de97886d82f794e03}{serpent\+\_\+test}} (void)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const struct \mbox{\hyperlink{structltc__cipher__descriptor}{ltc\+\_\+cipher\+\_\+descriptor}} \mbox{\hyperlink{serpent_8c_a84d78de33832ca89c1ddfb9f164246b1}{serpent\+\_\+desc}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{serpent_8c_a2bc6361678c97eea72338c99444519e9}\label{serpent_8c_a2bc6361678c97eea72338c99444519e9}} 
+\index{serpent.c@{serpent.c}!\_afterI0@{\_afterI0}}
+\index{\_afterI0@{\_afterI0}!serpent.c@{serpent.c}}
+\subsubsection{\texorpdfstring{\_afterI0}{\_afterI0}}
+{\footnotesize\ttfamily \#define \+\_\+after\+I0(\begin{DoxyParamCaption}\item[{}]{f }\end{DoxyParamCaption})~f(0,a,d,b,e,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}})}
+
+
+
+Definition at line 78 of file serpent.\+c.
+
+\mbox{\Hypertarget{serpent_8c_a510b5d2f87942d32d5f9bf6845555fbd}\label{serpent_8c_a510b5d2f87942d32d5f9bf6845555fbd}} 
+\index{serpent.c@{serpent.c}!\_afterI1@{\_afterI1}}
+\index{\_afterI1@{\_afterI1}!serpent.c@{serpent.c}}
+\subsubsection{\texorpdfstring{\_afterI1}{\_afterI1}}
+{\footnotesize\ttfamily \#define \+\_\+after\+I1(\begin{DoxyParamCaption}\item[{}]{f }\end{DoxyParamCaption})~f(1,a,b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},e,d)}
+
+
+
+Definition at line 77 of file serpent.\+c.
+
+\mbox{\Hypertarget{serpent_8c_aeaecc2dd5fd885a909010994c4c3b9ef}\label{serpent_8c_aeaecc2dd5fd885a909010994c4c3b9ef}} 
+\index{serpent.c@{serpent.c}!\_afterI2@{\_afterI2}}
+\index{\_afterI2@{\_afterI2}!serpent.c@{serpent.c}}
+\subsubsection{\texorpdfstring{\_afterI2}{\_afterI2}}
+{\footnotesize\ttfamily \#define \+\_\+after\+I2(\begin{DoxyParamCaption}\item[{}]{f }\end{DoxyParamCaption})~f(2,b,d,e,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},a)}
+
+
+
+Definition at line 76 of file serpent.\+c.
+
+\mbox{\Hypertarget{serpent_8c_aa963c67f726012f77487f6a237fe79c8}\label{serpent_8c_aa963c67f726012f77487f6a237fe79c8}} 
+\index{serpent.c@{serpent.c}!\_afterI3@{\_afterI3}}
+\index{\_afterI3@{\_afterI3}!serpent.c@{serpent.c}}
+\subsubsection{\texorpdfstring{\_afterI3}{\_afterI3}}
+{\footnotesize\ttfamily \#define \+\_\+after\+I3(\begin{DoxyParamCaption}\item[{}]{f }\end{DoxyParamCaption})~f(3,a,b,e,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d)}
+
+
+
+Definition at line 75 of file serpent.\+c.
+
+\mbox{\Hypertarget{serpent_8c_afd68ebed0e3b210b6321d807c0b70693}\label{serpent_8c_afd68ebed0e3b210b6321d807c0b70693}} 
+\index{serpent.c@{serpent.c}!\_afterI4@{\_afterI4}}
+\index{\_afterI4@{\_afterI4}!serpent.c@{serpent.c}}
+\subsubsection{\texorpdfstring{\_afterI4}{\_afterI4}}
+{\footnotesize\ttfamily \#define \+\_\+after\+I4(\begin{DoxyParamCaption}\item[{}]{f }\end{DoxyParamCaption})~f(4,b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},e,a,d)}
+
+
+
+Definition at line 74 of file serpent.\+c.
+
+\mbox{\Hypertarget{serpent_8c_a03a356752547223b56ae9d1d939a2488}\label{serpent_8c_a03a356752547223b56ae9d1d939a2488}} 
+\index{serpent.c@{serpent.c}!\_afterI5@{\_afterI5}}
+\index{\_afterI5@{\_afterI5}!serpent.c@{serpent.c}}
+\subsubsection{\texorpdfstring{\_afterI5}{\_afterI5}}
+{\footnotesize\ttfamily \#define \+\_\+after\+I5(\begin{DoxyParamCaption}\item[{}]{f }\end{DoxyParamCaption})~f(5,b,d,e,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},a)}
+
+
+
+Definition at line 73 of file serpent.\+c.
+
+\mbox{\Hypertarget{serpent_8c_a3fd470cae206426057db98050d9f4865}\label{serpent_8c_a3fd470cae206426057db98050d9f4865}} 
+\index{serpent.c@{serpent.c}!\_afterI6@{\_afterI6}}
+\index{\_afterI6@{\_afterI6}!serpent.c@{serpent.c}}
+\subsubsection{\texorpdfstring{\_afterI6}{\_afterI6}}
+{\footnotesize\ttfamily \#define \+\_\+after\+I6(\begin{DoxyParamCaption}\item[{}]{f }\end{DoxyParamCaption})~f(6,a,b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},e,d)}
+
+
+
+Definition at line 72 of file serpent.\+c.
+
+\mbox{\Hypertarget{serpent_8c_ae6eaa866c6c94307523cd29e188a6367}\label{serpent_8c_ae6eaa866c6c94307523cd29e188a6367}} 
+\index{serpent.c@{serpent.c}!\_afterI7@{\_afterI7}}
+\index{\_afterI7@{\_afterI7}!serpent.c@{serpent.c}}
+\subsubsection{\texorpdfstring{\_afterI7}{\_afterI7}}
+{\footnotesize\ttfamily \#define \+\_\+after\+I7(\begin{DoxyParamCaption}\item[{}]{f }\end{DoxyParamCaption})~f(7,d,a,b,e,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}})}
+
+
+
+Definition at line 71 of file serpent.\+c.
+
+\mbox{\Hypertarget{serpent_8c_a78d41d8fd1db5fe343a0c4760afcd686}\label{serpent_8c_a78d41d8fd1db5fe343a0c4760afcd686}} 
+\index{serpent.c@{serpent.c}!\_afterS0@{\_afterS0}}
+\index{\_afterS0@{\_afterS0}!serpent.c@{serpent.c}}
+\subsubsection{\texorpdfstring{\_afterS0}{\_afterS0}}
+{\footnotesize\ttfamily \#define \+\_\+after\+S0(\begin{DoxyParamCaption}\item[{}]{f }\end{DoxyParamCaption})~f(1,b,e,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},a,d)}
+
+
+
+Definition at line 60 of file serpent.\+c.
+
+\mbox{\Hypertarget{serpent_8c_a058832dc28a4f64e50fb733d5cbbf388}\label{serpent_8c_a058832dc28a4f64e50fb733d5cbbf388}} 
+\index{serpent.c@{serpent.c}!\_afterS1@{\_afterS1}}
+\index{\_afterS1@{\_afterS1}!serpent.c@{serpent.c}}
+\subsubsection{\texorpdfstring{\_afterS1}{\_afterS1}}
+{\footnotesize\ttfamily \#define \+\_\+after\+S1(\begin{DoxyParamCaption}\item[{}]{f }\end{DoxyParamCaption})~f(2,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},b,a,e,d)}
+
+
+
+Definition at line 61 of file serpent.\+c.
+
+\mbox{\Hypertarget{serpent_8c_a3b06b9c3e2b54949568d7f47e2662507}\label{serpent_8c_a3b06b9c3e2b54949568d7f47e2662507}} 
+\index{serpent.c@{serpent.c}!\_afterS2@{\_afterS2}}
+\index{\_afterS2@{\_afterS2}!serpent.c@{serpent.c}}
+\subsubsection{\texorpdfstring{\_afterS2}{\_afterS2}}
+{\footnotesize\ttfamily \#define \+\_\+after\+S2(\begin{DoxyParamCaption}\item[{}]{f }\end{DoxyParamCaption})~f(3,a,e,b,d,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}})}
+
+
+
+Definition at line 62 of file serpent.\+c.
+
+\mbox{\Hypertarget{serpent_8c_aa55e98f82297a1b6db41351f37da477c}\label{serpent_8c_aa55e98f82297a1b6db41351f37da477c}} 
+\index{serpent.c@{serpent.c}!\_afterS3@{\_afterS3}}
+\index{\_afterS3@{\_afterS3}!serpent.c@{serpent.c}}
+\subsubsection{\texorpdfstring{\_afterS3}{\_afterS3}}
+{\footnotesize\ttfamily \#define \+\_\+after\+S3(\begin{DoxyParamCaption}\item[{}]{f }\end{DoxyParamCaption})~f(4,e,b,d,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},a)}
+
+
+
+Definition at line 63 of file serpent.\+c.
+
+\mbox{\Hypertarget{serpent_8c_aa4027f772617cc1de1e807165b48c4fc}\label{serpent_8c_aa4027f772617cc1de1e807165b48c4fc}} 
+\index{serpent.c@{serpent.c}!\_afterS4@{\_afterS4}}
+\index{\_afterS4@{\_afterS4}!serpent.c@{serpent.c}}
+\subsubsection{\texorpdfstring{\_afterS4}{\_afterS4}}
+{\footnotesize\ttfamily \#define \+\_\+after\+S4(\begin{DoxyParamCaption}\item[{}]{f }\end{DoxyParamCaption})~f(5,b,a,e,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d)}
+
+
+
+Definition at line 64 of file serpent.\+c.
+
+\mbox{\Hypertarget{serpent_8c_a9fb1352f175d9586eaf9f6528ee43306}\label{serpent_8c_a9fb1352f175d9586eaf9f6528ee43306}} 
+\index{serpent.c@{serpent.c}!\_afterS5@{\_afterS5}}
+\index{\_afterS5@{\_afterS5}!serpent.c@{serpent.c}}
+\subsubsection{\texorpdfstring{\_afterS5}{\_afterS5}}
+{\footnotesize\ttfamily \#define \+\_\+after\+S5(\begin{DoxyParamCaption}\item[{}]{f }\end{DoxyParamCaption})~f(6,a,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},b,e,d)}
+
+
+
+Definition at line 65 of file serpent.\+c.
+
+\mbox{\Hypertarget{serpent_8c_af1f423f21a5192b13ad78c2295e9b7ff}\label{serpent_8c_af1f423f21a5192b13ad78c2295e9b7ff}} 
+\index{serpent.c@{serpent.c}!\_afterS6@{\_afterS6}}
+\index{\_afterS6@{\_afterS6}!serpent.c@{serpent.c}}
+\subsubsection{\texorpdfstring{\_afterS6}{\_afterS6}}
+{\footnotesize\ttfamily \#define \+\_\+after\+S6(\begin{DoxyParamCaption}\item[{}]{f }\end{DoxyParamCaption})~f(7,a,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d,b,e)}
+
+
+
+Definition at line 66 of file serpent.\+c.
+
+\mbox{\Hypertarget{serpent_8c_a6a1bce41d763280627ef550decfb1802}\label{serpent_8c_a6a1bce41d763280627ef550decfb1802}} 
+\index{serpent.c@{serpent.c}!\_afterS7@{\_afterS7}}
+\index{\_afterS7@{\_afterS7}!serpent.c@{serpent.c}}
+\subsubsection{\texorpdfstring{\_afterS7}{\_afterS7}}
+{\footnotesize\ttfamily \#define \+\_\+after\+S7(\begin{DoxyParamCaption}\item[{}]{f }\end{DoxyParamCaption})~f(8,d,e,b,a,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}})}
+
+
+
+Definition at line 67 of file serpent.\+c.
+
+\mbox{\Hypertarget{serpent_8c_abce815ef71193a0686bccf51fe4a0160}\label{serpent_8c_abce815ef71193a0686bccf51fe4a0160}} 
+\index{serpent.c@{serpent.c}!\_beforeI7@{\_beforeI7}}
+\index{\_beforeI7@{\_beforeI7}!serpent.c@{serpent.c}}
+\subsubsection{\texorpdfstring{\_beforeI7}{\_beforeI7}}
+{\footnotesize\ttfamily \#define \+\_\+before\+I7(\begin{DoxyParamCaption}\item[{}]{f }\end{DoxyParamCaption})~f(8,a,b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d,e)}
+
+
+
+Definition at line 70 of file serpent.\+c.
+
+\mbox{\Hypertarget{serpent_8c_ab8835333b3d794f427c5e05e07aa58d4}\label{serpent_8c_ab8835333b3d794f427c5e05e07aa58d4}} 
+\index{serpent.c@{serpent.c}!\_beforeS0@{\_beforeS0}}
+\index{\_beforeS0@{\_beforeS0}!serpent.c@{serpent.c}}
+\subsubsection{\texorpdfstring{\_beforeS0}{\_beforeS0}}
+{\footnotesize\ttfamily \#define \+\_\+before\+S0(\begin{DoxyParamCaption}\item[{}]{f }\end{DoxyParamCaption})~f(0,a,b,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},d,e)}
+
+
+
+Definition at line 59 of file serpent.\+c.
+
+\mbox{\Hypertarget{serpent_8c_ad353fff6f31c5a730005b0228aaca6ce}\label{serpent_8c_ad353fff6f31c5a730005b0228aaca6ce}} 
+\index{serpent.c@{serpent.c}!\_I0@{\_I0}}
+\index{\_I0@{\_I0}!serpent.c@{serpent.c}}
+\subsubsection{\texorpdfstring{\_I0}{\_I0}}
+{\footnotesize\ttfamily \#define \+\_\+\+I0(\begin{DoxyParamCaption}\item[{}]{i,  }\item[{}]{r0,  }\item[{}]{r1,  }\item[{}]{r2,  }\item[{}]{r3,  }\item[{}]{r4 }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{ \(\backslash\)}
+\DoxyCodeLine{   r2 = ~r2;   \(\backslash\)}
+\DoxyCodeLine{   r4 = r1;    \(\backslash\)}
+\DoxyCodeLine{   r1 |= r0;   \(\backslash\)}
+\DoxyCodeLine{   r4 = ~r4;   \(\backslash\)}
+\DoxyCodeLine{   r1 \string^= r2;   \(\backslash\)}
+\DoxyCodeLine{   r2 |= r4;   \(\backslash\)}
+\DoxyCodeLine{   r1 \string^= r3;   \(\backslash\)}
+\DoxyCodeLine{   r0 \string^= r4;   \(\backslash\)}
+\DoxyCodeLine{   r2 \string^= r0;   \(\backslash\)}
+\DoxyCodeLine{   r0 \&= r3;   \(\backslash\)}
+\DoxyCodeLine{   r4 \string^= r0;   \(\backslash\)}
+\DoxyCodeLine{   r0 |= r1;   \(\backslash\)}
+\DoxyCodeLine{   r0 \string^= r2;   \(\backslash\)}
+\DoxyCodeLine{   r3 \string^= r4;   \(\backslash\)}
+\DoxyCodeLine{   r2 \string^= r1;   \(\backslash\)}
+\DoxyCodeLine{   r3 \string^= r0;   \(\backslash\)}
+\DoxyCodeLine{   r3 \string^= r1;   \(\backslash\)}
+\DoxyCodeLine{   r2 \&= r3;   \(\backslash\)}
+\DoxyCodeLine{   r4 \string^= r2;   \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line 105 of file serpent.\+c.
+
+\mbox{\Hypertarget{serpent_8c_a45e10296c9524991c27a4cb798610197}\label{serpent_8c_a45e10296c9524991c27a4cb798610197}} 
+\index{serpent.c@{serpent.c}!\_I1@{\_I1}}
+\index{\_I1@{\_I1}!serpent.c@{serpent.c}}
+\subsubsection{\texorpdfstring{\_I1}{\_I1}}
+{\footnotesize\ttfamily \#define \+\_\+\+I1(\begin{DoxyParamCaption}\item[{}]{i,  }\item[{}]{r0,  }\item[{}]{r1,  }\item[{}]{r2,  }\item[{}]{r3,  }\item[{}]{r4 }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{ \(\backslash\)}
+\DoxyCodeLine{   r4 = r1;    \(\backslash\)}
+\DoxyCodeLine{   r1 \string^= r3;   \(\backslash\)}
+\DoxyCodeLine{   r3 \&= r1;   \(\backslash\)}
+\DoxyCodeLine{   r4 \string^= r2;   \(\backslash\)}
+\DoxyCodeLine{   r3 \string^= r0;   \(\backslash\)}
+\DoxyCodeLine{   r0 |= r1;   \(\backslash\)}
+\DoxyCodeLine{   r2 \string^= r3;   \(\backslash\)}
+\DoxyCodeLine{   r0 \string^= r4;   \(\backslash\)}
+\DoxyCodeLine{   r0 |= r2;   \(\backslash\)}
+\DoxyCodeLine{   r1 \string^= r3;   \(\backslash\)}
+\DoxyCodeLine{   r0 \string^= r1;   \(\backslash\)}
+\DoxyCodeLine{   r1 |= r3;   \(\backslash\)}
+\DoxyCodeLine{   r1 \string^= r0;   \(\backslash\)}
+\DoxyCodeLine{   r4 = ~r4;   \(\backslash\)}
+\DoxyCodeLine{   r4 \string^= r1;   \(\backslash\)}
+\DoxyCodeLine{   r1 |= r0;   \(\backslash\)}
+\DoxyCodeLine{   r1 \string^= r0;   \(\backslash\)}
+\DoxyCodeLine{   r1 |= r4;   \(\backslash\)}
+\DoxyCodeLine{   r3 \string^= r1;   \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line 148 of file serpent.\+c.
+
+\mbox{\Hypertarget{serpent_8c_a234edc4b7ae2ac31a6b419683cd5bd96}\label{serpent_8c_a234edc4b7ae2ac31a6b419683cd5bd96}} 
+\index{serpent.c@{serpent.c}!\_I2@{\_I2}}
+\index{\_I2@{\_I2}!serpent.c@{serpent.c}}
+\subsubsection{\texorpdfstring{\_I2}{\_I2}}
+{\footnotesize\ttfamily \#define \+\_\+\+I2(\begin{DoxyParamCaption}\item[{}]{i,  }\item[{}]{r0,  }\item[{}]{r1,  }\item[{}]{r2,  }\item[{}]{r3,  }\item[{}]{r4 }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{ \(\backslash\)}
+\DoxyCodeLine{   r2 \string^= r3;   \(\backslash\)}
+\DoxyCodeLine{   r3 \string^= r0;   \(\backslash\)}
+\DoxyCodeLine{   r4 = r3;    \(\backslash\)}
+\DoxyCodeLine{   r3 \&= r2;   \(\backslash\)}
+\DoxyCodeLine{   r3 \string^= r1;   \(\backslash\)}
+\DoxyCodeLine{   r1 |= r2;   \(\backslash\)}
+\DoxyCodeLine{   r1 \string^= r4;   \(\backslash\)}
+\DoxyCodeLine{   r4 \&= r3;   \(\backslash\)}
+\DoxyCodeLine{   r2 \string^= r3;   \(\backslash\)}
+\DoxyCodeLine{   r4 \&= r0;   \(\backslash\)}
+\DoxyCodeLine{   r4 \string^= r2;   \(\backslash\)}
+\DoxyCodeLine{   r2 \&= r1;   \(\backslash\)}
+\DoxyCodeLine{   r2 |= r0;   \(\backslash\)}
+\DoxyCodeLine{   r3 = ~r3;   \(\backslash\)}
+\DoxyCodeLine{   r2 \string^= r3;   \(\backslash\)}
+\DoxyCodeLine{   r0 \string^= r3;   \(\backslash\)}
+\DoxyCodeLine{   r0 \&= r1;   \(\backslash\)}
+\DoxyCodeLine{   r3 \string^= r4;   \(\backslash\)}
+\DoxyCodeLine{   r3 \string^= r0;   \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line 189 of file serpent.\+c.
+
+\mbox{\Hypertarget{serpent_8c_ab4736eec1a6fd3c1c829b2891cfa5577}\label{serpent_8c_ab4736eec1a6fd3c1c829b2891cfa5577}} 
+\index{serpent.c@{serpent.c}!\_I3@{\_I3}}
+\index{\_I3@{\_I3}!serpent.c@{serpent.c}}
+\subsubsection{\texorpdfstring{\_I3}{\_I3}}
+{\footnotesize\ttfamily \#define \+\_\+\+I3(\begin{DoxyParamCaption}\item[{}]{i,  }\item[{}]{r0,  }\item[{}]{r1,  }\item[{}]{r2,  }\item[{}]{r3,  }\item[{}]{r4 }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{ \(\backslash\)}
+\DoxyCodeLine{   r4 = r2;    \(\backslash\)}
+\DoxyCodeLine{   r2 \string^= r1;   \(\backslash\)}
+\DoxyCodeLine{   r1 \&= r2;   \(\backslash\)}
+\DoxyCodeLine{   r1 \string^= r0;   \(\backslash\)}
+\DoxyCodeLine{   r0 \&= r4;   \(\backslash\)}
+\DoxyCodeLine{   r4 \string^= r3;   \(\backslash\)}
+\DoxyCodeLine{   r3 |= r1;   \(\backslash\)}
+\DoxyCodeLine{   r3 \string^= r2;   \(\backslash\)}
+\DoxyCodeLine{   r0 \string^= r4;   \(\backslash\)}
+\DoxyCodeLine{   r2 \string^= r0;   \(\backslash\)}
+\DoxyCodeLine{   r0 |= r3;   \(\backslash\)}
+\DoxyCodeLine{   r0 \string^= r1;   \(\backslash\)}
+\DoxyCodeLine{   r4 \string^= r2;   \(\backslash\)}
+\DoxyCodeLine{   r2 \&= r3;   \(\backslash\)}
+\DoxyCodeLine{   r1 |= r3;   \(\backslash\)}
+\DoxyCodeLine{   r1 \string^= r2;   \(\backslash\)}
+\DoxyCodeLine{   r4 \string^= r0;   \(\backslash\)}
+\DoxyCodeLine{   r2 \string^= r4;   \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line 233 of file serpent.\+c.
+
+\mbox{\Hypertarget{serpent_8c_ac014326e84ae5a88166f31e6011fb8c2}\label{serpent_8c_ac014326e84ae5a88166f31e6011fb8c2}} 
+\index{serpent.c@{serpent.c}!\_I4@{\_I4}}
+\index{\_I4@{\_I4}!serpent.c@{serpent.c}}
+\subsubsection{\texorpdfstring{\_I4}{\_I4}}
+{\footnotesize\ttfamily \#define \+\_\+\+I4(\begin{DoxyParamCaption}\item[{}]{i,  }\item[{}]{r0,  }\item[{}]{r1,  }\item[{}]{r2,  }\item[{}]{r3,  }\item[{}]{r4 }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{ \(\backslash\)}
+\DoxyCodeLine{   r4 = r2;    \(\backslash\)}
+\DoxyCodeLine{   r2 \&= r3;   \(\backslash\)}
+\DoxyCodeLine{   r2 \string^= r1;   \(\backslash\)}
+\DoxyCodeLine{   r1 |= r3;   \(\backslash\)}
+\DoxyCodeLine{   r1 \&= r0;   \(\backslash\)}
+\DoxyCodeLine{   r4 \string^= r2;   \(\backslash\)}
+\DoxyCodeLine{   r4 \string^= r1;   \(\backslash\)}
+\DoxyCodeLine{   r1 \&= r2;   \(\backslash\)}
+\DoxyCodeLine{   r0 = ~r0;   \(\backslash\)}
+\DoxyCodeLine{   r3 \string^= r4;   \(\backslash\)}
+\DoxyCodeLine{   r1 \string^= r3;   \(\backslash\)}
+\DoxyCodeLine{   r3 \&= r0;   \(\backslash\)}
+\DoxyCodeLine{   r3 \string^= r2;   \(\backslash\)}
+\DoxyCodeLine{   r0 \string^= r1;   \(\backslash\)}
+\DoxyCodeLine{   r2 \&= r0;   \(\backslash\)}
+\DoxyCodeLine{   r3 \string^= r0;   \(\backslash\)}
+\DoxyCodeLine{   r2 \string^= r4;   \(\backslash\)}
+\DoxyCodeLine{   r2 |= r3;   \(\backslash\)}
+\DoxyCodeLine{   r3 \string^= r0;   \(\backslash\)}
+\DoxyCodeLine{   r2 \string^= r1;   \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line 277 of file serpent.\+c.
+
+\mbox{\Hypertarget{serpent_8c_aee88146ad98d8303063d028a13f46020}\label{serpent_8c_aee88146ad98d8303063d028a13f46020}} 
+\index{serpent.c@{serpent.c}!\_I5@{\_I5}}
+\index{\_I5@{\_I5}!serpent.c@{serpent.c}}
+\subsubsection{\texorpdfstring{\_I5}{\_I5}}
+{\footnotesize\ttfamily \#define \+\_\+\+I5(\begin{DoxyParamCaption}\item[{}]{i,  }\item[{}]{r0,  }\item[{}]{r1,  }\item[{}]{r2,  }\item[{}]{r3,  }\item[{}]{r4 }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{ \(\backslash\)}
+\DoxyCodeLine{   r1 = ~r1;   \(\backslash\)}
+\DoxyCodeLine{   r4 = r3;    \(\backslash\)}
+\DoxyCodeLine{   r2 \string^= r1;   \(\backslash\)}
+\DoxyCodeLine{   r3 |= r0;   \(\backslash\)}
+\DoxyCodeLine{   r3 \string^= r2;   \(\backslash\)}
+\DoxyCodeLine{   r2 |= r1;   \(\backslash\)}
+\DoxyCodeLine{   r2 \&= r0;   \(\backslash\)}
+\DoxyCodeLine{   r4 \string^= r3;   \(\backslash\)}
+\DoxyCodeLine{   r2 \string^= r4;   \(\backslash\)}
+\DoxyCodeLine{   r4 |= r0;   \(\backslash\)}
+\DoxyCodeLine{   r4 \string^= r1;   \(\backslash\)}
+\DoxyCodeLine{   r1 \&= r2;   \(\backslash\)}
+\DoxyCodeLine{   r1 \string^= r3;   \(\backslash\)}
+\DoxyCodeLine{   r4 \string^= r2;   \(\backslash\)}
+\DoxyCodeLine{   r3 \&= r4;   \(\backslash\)}
+\DoxyCodeLine{   r4 \string^= r1;   \(\backslash\)}
+\DoxyCodeLine{   r3 \string^= r0;   \(\backslash\)}
+\DoxyCodeLine{   r3 \string^= r4;   \(\backslash\)}
+\DoxyCodeLine{   r4 = ~r4;   \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line 322 of file serpent.\+c.
+
+\mbox{\Hypertarget{serpent_8c_abc07baa481e0a78410bb8492a3994f83}\label{serpent_8c_abc07baa481e0a78410bb8492a3994f83}} 
+\index{serpent.c@{serpent.c}!\_I6@{\_I6}}
+\index{\_I6@{\_I6}!serpent.c@{serpent.c}}
+\subsubsection{\texorpdfstring{\_I6}{\_I6}}
+{\footnotesize\ttfamily \#define \+\_\+\+I6(\begin{DoxyParamCaption}\item[{}]{i,  }\item[{}]{r0,  }\item[{}]{r1,  }\item[{}]{r2,  }\item[{}]{r3,  }\item[{}]{r4 }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{ \(\backslash\)}
+\DoxyCodeLine{   r0 \string^= r2;   \(\backslash\)}
+\DoxyCodeLine{   r4 = r2;    \(\backslash\)}
+\DoxyCodeLine{   r2 \&= r0;   \(\backslash\)}
+\DoxyCodeLine{   r4 \string^= r3;   \(\backslash\)}
+\DoxyCodeLine{   r2 = ~r2;   \(\backslash\)}
+\DoxyCodeLine{   r3 \string^= r1;   \(\backslash\)}
+\DoxyCodeLine{   r2 \string^= r3;   \(\backslash\)}
+\DoxyCodeLine{   r4 |= r0;   \(\backslash\)}
+\DoxyCodeLine{   r0 \string^= r2;   \(\backslash\)}
+\DoxyCodeLine{   r3 \string^= r4;   \(\backslash\)}
+\DoxyCodeLine{   r4 \string^= r1;   \(\backslash\)}
+\DoxyCodeLine{   r1 \&= r3;   \(\backslash\)}
+\DoxyCodeLine{   r1 \string^= r0;   \(\backslash\)}
+\DoxyCodeLine{   r0 \string^= r3;   \(\backslash\)}
+\DoxyCodeLine{   r0 |= r2;   \(\backslash\)}
+\DoxyCodeLine{   r3 \string^= r1;   \(\backslash\)}
+\DoxyCodeLine{   r4 \string^= r0;   \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line 365 of file serpent.\+c.
+
+\mbox{\Hypertarget{serpent_8c_a9cf2d4bd46cb074d6825db8130f15ec4}\label{serpent_8c_a9cf2d4bd46cb074d6825db8130f15ec4}} 
+\index{serpent.c@{serpent.c}!\_I7@{\_I7}}
+\index{\_I7@{\_I7}!serpent.c@{serpent.c}}
+\subsubsection{\texorpdfstring{\_I7}{\_I7}}
+{\footnotesize\ttfamily \#define \+\_\+\+I7(\begin{DoxyParamCaption}\item[{}]{i,  }\item[{}]{r0,  }\item[{}]{r1,  }\item[{}]{r2,  }\item[{}]{r3,  }\item[{}]{r4 }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{ \(\backslash\)}
+\DoxyCodeLine{   r4 = r2;    \(\backslash\)}
+\DoxyCodeLine{   r2 \string^= r0;   \(\backslash\)}
+\DoxyCodeLine{   r0 \&= r3;   \(\backslash\)}
+\DoxyCodeLine{   r2 = ~r2;   \(\backslash\)}
+\DoxyCodeLine{   r4 |= r3;   \(\backslash\)}
+\DoxyCodeLine{   r3 \string^= r1;   \(\backslash\)}
+\DoxyCodeLine{   r1 |= r0;   \(\backslash\)}
+\DoxyCodeLine{   r0 \string^= r2;   \(\backslash\)}
+\DoxyCodeLine{   r2 \&= r4;   \(\backslash\)}
+\DoxyCodeLine{   r1 \string^= r2;   \(\backslash\)}
+\DoxyCodeLine{   r2 \string^= r0;   \(\backslash\)}
+\DoxyCodeLine{   r0 |= r2;   \(\backslash\)}
+\DoxyCodeLine{   r3 \&= r4;   \(\backslash\)}
+\DoxyCodeLine{   r0 \string^= r3;   \(\backslash\)}
+\DoxyCodeLine{   r4 \string^= r1;   \(\backslash\)}
+\DoxyCodeLine{   r3 \string^= r4;   \(\backslash\)}
+\DoxyCodeLine{   r4 |= r0;   \(\backslash\)}
+\DoxyCodeLine{   r3 \string^= r2;   \(\backslash\)}
+\DoxyCodeLine{   r4 \string^= r2;   \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line 408 of file serpent.\+c.
+
+\mbox{\Hypertarget{serpent_8c_a7e9ea65935f5e171634f7da272fe7628}\label{serpent_8c_a7e9ea65935f5e171634f7da272fe7628}} 
+\index{serpent.c@{serpent.c}!\_ILT@{\_ILT}}
+\index{\_ILT@{\_ILT}!serpent.c@{serpent.c}}
+\subsubsection{\texorpdfstring{\_ILT}{\_ILT}}
+{\footnotesize\ttfamily \#define \+\_\+\+I\+LT(\begin{DoxyParamCaption}\item[{}]{i,  }\item[{}]{a,  }\item[{}]{b,  }\item[{}]{\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},  }\item[{}]{d,  }\item[{}]{e }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{                                 \(\backslash\)}
+\DoxyCodeLine{                            c = \mbox{\hyperlink{tomcrypt__macros_8h_adb04fb3f7c1736d29125ad0f179b1068}{RORc}}(\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, 22);                \(\backslash\)}
+\DoxyCodeLine{                            a = \mbox{\hyperlink{tomcrypt__macros_8h_adb04fb3f7c1736d29125ad0f179b1068}{RORc}}(a, 5);                 \(\backslash\)}
+\DoxyCodeLine{                            c \string^= d \string^ (b << 7);              \(\backslash\)}
+\DoxyCodeLine{                            a \string^= b \string^ d;                     \(\backslash\)}
+\DoxyCodeLine{                            b = \mbox{\hyperlink{tomcrypt__macros_8h_adb04fb3f7c1736d29125ad0f179b1068}{RORc}}(b, 1);                 \(\backslash\)}
+\DoxyCodeLine{                            d = \mbox{\hyperlink{tomcrypt__macros_8h_adb04fb3f7c1736d29125ad0f179b1068}{RORc}}(d, 7) \string^ \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} \string^ (a << 3);  \(\backslash\)}
+\DoxyCodeLine{                            b \string^= a \string^ \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}};                     \(\backslash\)}
+\DoxyCodeLine{                            c = \mbox{\hyperlink{tomcrypt__macros_8h_adb04fb3f7c1736d29125ad0f179b1068}{RORc}}(\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, 3);                 \(\backslash\)}
+\DoxyCodeLine{                            a = \mbox{\hyperlink{tomcrypt__macros_8h_adb04fb3f7c1736d29125ad0f179b1068}{RORc}}(a, 13);                \(\backslash\)}
+\DoxyCodeLine{                          \}}
+
+\end{DoxyCode}
+
+
+Definition at line 46 of file serpent.\+c.
+
+\mbox{\Hypertarget{serpent_8c_a7ace1b1bbb6c03f023e24836d726213f}\label{serpent_8c_a7ace1b1bbb6c03f023e24836d726213f}} 
+\index{serpent.c@{serpent.c}!\_KX@{\_KX}}
+\index{\_KX@{\_KX}!serpent.c@{serpent.c}}
+\subsubsection{\texorpdfstring{\_KX}{\_KX}}
+{\footnotesize\ttfamily \#define \+\_\+\+KX(\begin{DoxyParamCaption}\item[{}]{r,  }\item[{}]{a,  }\item[{}]{b,  }\item[{}]{\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},  }\item[{}]{d,  }\item[{}]{e }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{ \(\backslash\)}
+\DoxyCodeLine{   a \string^= k[4 * r + 0];   \(\backslash\)}
+\DoxyCodeLine{   b \string^= k[4 * r + 1];   \(\backslash\)}
+\DoxyCodeLine{   c \string^= k[4 * r + 2];   \(\backslash\)}
+\DoxyCodeLine{   d \string^= k[4 * r + 3];   \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line 431 of file serpent.\+c.
+
+\mbox{\Hypertarget{serpent_8c_a2a0d4b7aab3fd4401bcdeb62c50409a6}\label{serpent_8c_a2a0d4b7aab3fd4401bcdeb62c50409a6}} 
+\index{serpent.c@{serpent.c}!\_LK@{\_LK}}
+\index{\_LK@{\_LK}!serpent.c@{serpent.c}}
+\subsubsection{\texorpdfstring{\_LK}{\_LK}}
+{\footnotesize\ttfamily \#define \+\_\+\+LK(\begin{DoxyParamCaption}\item[{}]{r,  }\item[{}]{a,  }\item[{}]{b,  }\item[{}]{\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},  }\item[{}]{d,  }\item[{}]{e }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{ \(\backslash\)}
+\DoxyCodeLine{   a = k[(8-r)*4 + 0];  \(\backslash\)}
+\DoxyCodeLine{   b = k[(8-r)*4 + 1];  \(\backslash\)}
+\DoxyCodeLine{   c = k[(8-r)*4 + 2];  \(\backslash\)}
+\DoxyCodeLine{   d = k[(8-r)*4 + 3];  \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line 438 of file serpent.\+c.
+
+\mbox{\Hypertarget{serpent_8c_ab141499f8b1ea75575206716a268b883}\label{serpent_8c_ab141499f8b1ea75575206716a268b883}} 
+\index{serpent.c@{serpent.c}!\_LT@{\_LT}}
+\index{\_LT@{\_LT}!serpent.c@{serpent.c}}
+\subsubsection{\texorpdfstring{\_LT}{\_LT}}
+{\footnotesize\ttfamily \#define \+\_\+\+LT(\begin{DoxyParamCaption}\item[{}]{i,  }\item[{}]{a,  }\item[{}]{b,  }\item[{}]{\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},  }\item[{}]{d,  }\item[{}]{e }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{                                 \(\backslash\)}
+\DoxyCodeLine{                            a = \mbox{\hyperlink{tomcrypt__macros_8h_a39d625dc0b148466a72c13737e063d86}{ROLc}}(a, 13);                \(\backslash\)}
+\DoxyCodeLine{                            c = \mbox{\hyperlink{tomcrypt__macros_8h_a39d625dc0b148466a72c13737e063d86}{ROLc}}(\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, 3);                 \(\backslash\)}
+\DoxyCodeLine{                            d = \mbox{\hyperlink{tomcrypt__macros_8h_a39d625dc0b148466a72c13737e063d86}{ROLc}}(d \string^ \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} \string^ (a << 3), 7);  \(\backslash\)}
+\DoxyCodeLine{                            b = \mbox{\hyperlink{tomcrypt__macros_8h_a39d625dc0b148466a72c13737e063d86}{ROLc}}(b \string^ a \string^ \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, 1);         \(\backslash\)}
+\DoxyCodeLine{                            a = \mbox{\hyperlink{tomcrypt__macros_8h_a39d625dc0b148466a72c13737e063d86}{ROLc}}(a \string^ b \string^ d, 5);         \(\backslash\)}
+\DoxyCodeLine{                            c = \mbox{\hyperlink{tomcrypt__macros_8h_a39d625dc0b148466a72c13737e063d86}{ROLc}}(\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} \string^ d \string^ (b << 7), 22); \(\backslash\)}
+\DoxyCodeLine{                          \}}
+
+\end{DoxyCode}
+
+
+Definition at line 36 of file serpent.\+c.
+
+\mbox{\Hypertarget{serpent_8c_a046d214669094f1aa47d5c3159433e1d}\label{serpent_8c_a046d214669094f1aa47d5c3159433e1d}} 
+\index{serpent.c@{serpent.c}!\_S0@{\_S0}}
+\index{\_S0@{\_S0}!serpent.c@{serpent.c}}
+\subsubsection{\texorpdfstring{\_S0}{\_S0}}
+{\footnotesize\ttfamily \#define \+\_\+\+S0(\begin{DoxyParamCaption}\item[{}]{i,  }\item[{}]{r0,  }\item[{}]{r1,  }\item[{}]{r2,  }\item[{}]{r3,  }\item[{}]{r4 }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{ \(\backslash\)}
+\DoxyCodeLine{   r3 \string^= r0;   \(\backslash\)}
+\DoxyCodeLine{   r4 = r1;    \(\backslash\)}
+\DoxyCodeLine{   r1 \&= r3;   \(\backslash\)}
+\DoxyCodeLine{   r4 \string^= r2;   \(\backslash\)}
+\DoxyCodeLine{   r1 \string^= r0;   \(\backslash\)}
+\DoxyCodeLine{   r0 |= r3;   \(\backslash\)}
+\DoxyCodeLine{   r0 \string^= r4;   \(\backslash\)}
+\DoxyCodeLine{   r4 \string^= r3;   \(\backslash\)}
+\DoxyCodeLine{   r3 \string^= r2;   \(\backslash\)}
+\DoxyCodeLine{   r2 |= r1;   \(\backslash\)}
+\DoxyCodeLine{   r2 \string^= r4;   \(\backslash\)}
+\DoxyCodeLine{   r4 = ~r4;   \(\backslash\)}
+\DoxyCodeLine{   r4 |= r1;   \(\backslash\)}
+\DoxyCodeLine{   r1 \string^= r3;   \(\backslash\)}
+\DoxyCodeLine{   r1 \string^= r4;   \(\backslash\)}
+\DoxyCodeLine{   r3 |= r0;   \(\backslash\)}
+\DoxyCodeLine{   r1 \string^= r3;   \(\backslash\)}
+\DoxyCodeLine{   r4 \string^= r3;   \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line 84 of file serpent.\+c.
+
+\mbox{\Hypertarget{serpent_8c_a25b3d304e6136e4d806c53a490156fc3}\label{serpent_8c_a25b3d304e6136e4d806c53a490156fc3}} 
+\index{serpent.c@{serpent.c}!\_S1@{\_S1}}
+\index{\_S1@{\_S1}!serpent.c@{serpent.c}}
+\subsubsection{\texorpdfstring{\_S1}{\_S1}}
+{\footnotesize\ttfamily \#define \+\_\+\+S1(\begin{DoxyParamCaption}\item[{}]{i,  }\item[{}]{r0,  }\item[{}]{r1,  }\item[{}]{r2,  }\item[{}]{r3,  }\item[{}]{r4 }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{ \(\backslash\)}
+\DoxyCodeLine{   r0 = ~r0;   \(\backslash\)}
+\DoxyCodeLine{   r2 = ~r2;   \(\backslash\)}
+\DoxyCodeLine{   r4 = r0;    \(\backslash\)}
+\DoxyCodeLine{   r0 \&= r1;   \(\backslash\)}
+\DoxyCodeLine{   r2 \string^= r0;   \(\backslash\)}
+\DoxyCodeLine{   r0 |= r3;   \(\backslash\)}
+\DoxyCodeLine{   r3 \string^= r2;   \(\backslash\)}
+\DoxyCodeLine{   r1 \string^= r0;   \(\backslash\)}
+\DoxyCodeLine{   r0 \string^= r4;   \(\backslash\)}
+\DoxyCodeLine{   r4 |= r1;   \(\backslash\)}
+\DoxyCodeLine{   r1 \string^= r3;   \(\backslash\)}
+\DoxyCodeLine{   r2 |= r0;   \(\backslash\)}
+\DoxyCodeLine{   r2 \&= r4;   \(\backslash\)}
+\DoxyCodeLine{   r0 \string^= r1;   \(\backslash\)}
+\DoxyCodeLine{   r1 \&= r2;   \(\backslash\)}
+\DoxyCodeLine{   r1 \string^= r0;   \(\backslash\)}
+\DoxyCodeLine{   r0 \&= r2;   \(\backslash\)}
+\DoxyCodeLine{   r0 \string^= r4;   \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line 127 of file serpent.\+c.
+
+\mbox{\Hypertarget{serpent_8c_aefd58e5795a2f4629f57ee21f3f74b6e}\label{serpent_8c_aefd58e5795a2f4629f57ee21f3f74b6e}} 
+\index{serpent.c@{serpent.c}!\_S2@{\_S2}}
+\index{\_S2@{\_S2}!serpent.c@{serpent.c}}
+\subsubsection{\texorpdfstring{\_S2}{\_S2}}
+{\footnotesize\ttfamily \#define \+\_\+\+S2(\begin{DoxyParamCaption}\item[{}]{i,  }\item[{}]{r0,  }\item[{}]{r1,  }\item[{}]{r2,  }\item[{}]{r3,  }\item[{}]{r4 }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{ \(\backslash\)}
+\DoxyCodeLine{   r4 = r0;    \(\backslash\)}
+\DoxyCodeLine{   r0 \&= r2;   \(\backslash\)}
+\DoxyCodeLine{   r0 \string^= r3;   \(\backslash\)}
+\DoxyCodeLine{   r2 \string^= r1;   \(\backslash\)}
+\DoxyCodeLine{   r2 \string^= r0;   \(\backslash\)}
+\DoxyCodeLine{   r3 |= r4;   \(\backslash\)}
+\DoxyCodeLine{   r3 \string^= r1;   \(\backslash\)}
+\DoxyCodeLine{   r4 \string^= r2;   \(\backslash\)}
+\DoxyCodeLine{   r1 = r3;    \(\backslash\)}
+\DoxyCodeLine{   r3 |= r4;   \(\backslash\)}
+\DoxyCodeLine{   r3 \string^= r0;   \(\backslash\)}
+\DoxyCodeLine{   r0 \&= r1;   \(\backslash\)}
+\DoxyCodeLine{   r4 \string^= r0;   \(\backslash\)}
+\DoxyCodeLine{   r1 \string^= r3;   \(\backslash\)}
+\DoxyCodeLine{   r1 \string^= r4;   \(\backslash\)}
+\DoxyCodeLine{   r4 = ~r4;   \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line 170 of file serpent.\+c.
+
+\mbox{\Hypertarget{serpent_8c_ad9bc0952856adc30f84754dbad72b9f1}\label{serpent_8c_ad9bc0952856adc30f84754dbad72b9f1}} 
+\index{serpent.c@{serpent.c}!\_S3@{\_S3}}
+\index{\_S3@{\_S3}!serpent.c@{serpent.c}}
+\subsubsection{\texorpdfstring{\_S3}{\_S3}}
+{\footnotesize\ttfamily \#define \+\_\+\+S3(\begin{DoxyParamCaption}\item[{}]{i,  }\item[{}]{r0,  }\item[{}]{r1,  }\item[{}]{r2,  }\item[{}]{r3,  }\item[{}]{r4 }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{ \(\backslash\)}
+\DoxyCodeLine{   r4 = r0;    \(\backslash\)}
+\DoxyCodeLine{   r0 |= r3;   \(\backslash\)}
+\DoxyCodeLine{   r3 \string^= r1;   \(\backslash\)}
+\DoxyCodeLine{   r1 \&= r4;   \(\backslash\)}
+\DoxyCodeLine{   r4 \string^= r2;   \(\backslash\)}
+\DoxyCodeLine{   r2 \string^= r3;   \(\backslash\)}
+\DoxyCodeLine{   r3 \&= r0;   \(\backslash\)}
+\DoxyCodeLine{   r4 |= r1;   \(\backslash\)}
+\DoxyCodeLine{   r3 \string^= r4;   \(\backslash\)}
+\DoxyCodeLine{   r0 \string^= r1;   \(\backslash\)}
+\DoxyCodeLine{   r4 \&= r0;   \(\backslash\)}
+\DoxyCodeLine{   r1 \string^= r3;   \(\backslash\)}
+\DoxyCodeLine{   r4 \string^= r2;   \(\backslash\)}
+\DoxyCodeLine{   r1 |= r0;   \(\backslash\)}
+\DoxyCodeLine{   r1 \string^= r2;   \(\backslash\)}
+\DoxyCodeLine{   r0 \string^= r3;   \(\backslash\)}
+\DoxyCodeLine{   r2 = r1;    \(\backslash\)}
+\DoxyCodeLine{   r1 |= r3;   \(\backslash\)}
+\DoxyCodeLine{   r1 \string^= r0;   \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line 211 of file serpent.\+c.
+
+\mbox{\Hypertarget{serpent_8c_abe9f01f793a3f6d7dc687c8183612802}\label{serpent_8c_abe9f01f793a3f6d7dc687c8183612802}} 
+\index{serpent.c@{serpent.c}!\_S4@{\_S4}}
+\index{\_S4@{\_S4}!serpent.c@{serpent.c}}
+\subsubsection{\texorpdfstring{\_S4}{\_S4}}
+{\footnotesize\ttfamily \#define \+\_\+\+S4(\begin{DoxyParamCaption}\item[{}]{i,  }\item[{}]{r0,  }\item[{}]{r1,  }\item[{}]{r2,  }\item[{}]{r3,  }\item[{}]{r4 }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{ \(\backslash\)}
+\DoxyCodeLine{   r1 \string^= r3;   \(\backslash\)}
+\DoxyCodeLine{   r3 = ~r3;   \(\backslash\)}
+\DoxyCodeLine{   r2 \string^= r3;   \(\backslash\)}
+\DoxyCodeLine{   r3 \string^= r0;   \(\backslash\)}
+\DoxyCodeLine{   r4 = r1;    \(\backslash\)}
+\DoxyCodeLine{   r1 \&= r3;   \(\backslash\)}
+\DoxyCodeLine{   r1 \string^= r2;   \(\backslash\)}
+\DoxyCodeLine{   r4 \string^= r3;   \(\backslash\)}
+\DoxyCodeLine{   r0 \string^= r4;   \(\backslash\)}
+\DoxyCodeLine{   r2 \&= r4;   \(\backslash\)}
+\DoxyCodeLine{   r2 \string^= r0;   \(\backslash\)}
+\DoxyCodeLine{   r0 \&= r1;   \(\backslash\)}
+\DoxyCodeLine{   r3 \string^= r0;   \(\backslash\)}
+\DoxyCodeLine{   r4 |= r1;   \(\backslash\)}
+\DoxyCodeLine{   r4 \string^= r0;   \(\backslash\)}
+\DoxyCodeLine{   r0 |= r3;   \(\backslash\)}
+\DoxyCodeLine{   r0 \string^= r2;   \(\backslash\)}
+\DoxyCodeLine{   r2 \&= r3;   \(\backslash\)}
+\DoxyCodeLine{   r0 = ~r0;   \(\backslash\)}
+\DoxyCodeLine{   r4 \string^= r2;   \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line 254 of file serpent.\+c.
+
+\mbox{\Hypertarget{serpent_8c_ac6a80fbf024aba1ad4515310577ac127}\label{serpent_8c_ac6a80fbf024aba1ad4515310577ac127}} 
+\index{serpent.c@{serpent.c}!\_S5@{\_S5}}
+\index{\_S5@{\_S5}!serpent.c@{serpent.c}}
+\subsubsection{\texorpdfstring{\_S5}{\_S5}}
+{\footnotesize\ttfamily \#define \+\_\+\+S5(\begin{DoxyParamCaption}\item[{}]{i,  }\item[{}]{r0,  }\item[{}]{r1,  }\item[{}]{r2,  }\item[{}]{r3,  }\item[{}]{r4 }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{ \(\backslash\)}
+\DoxyCodeLine{   r0 \string^= r1;   \(\backslash\)}
+\DoxyCodeLine{   r1 \string^= r3;   \(\backslash\)}
+\DoxyCodeLine{   r3 = ~r3;   \(\backslash\)}
+\DoxyCodeLine{   r4 = r1;    \(\backslash\)}
+\DoxyCodeLine{   r1 \&= r0;   \(\backslash\)}
+\DoxyCodeLine{   r2 \string^= r3;   \(\backslash\)}
+\DoxyCodeLine{   r1 \string^= r2;   \(\backslash\)}
+\DoxyCodeLine{   r2 |= r4;   \(\backslash\)}
+\DoxyCodeLine{   r4 \string^= r3;   \(\backslash\)}
+\DoxyCodeLine{   r3 \&= r1;   \(\backslash\)}
+\DoxyCodeLine{   r3 \string^= r0;   \(\backslash\)}
+\DoxyCodeLine{   r4 \string^= r1;   \(\backslash\)}
+\DoxyCodeLine{   r4 \string^= r2;   \(\backslash\)}
+\DoxyCodeLine{   r2 \string^= r0;   \(\backslash\)}
+\DoxyCodeLine{   r0 \&= r3;   \(\backslash\)}
+\DoxyCodeLine{   r2 = ~r2;   \(\backslash\)}
+\DoxyCodeLine{   r0 \string^= r4;   \(\backslash\)}
+\DoxyCodeLine{   r4 |= r3;   \(\backslash\)}
+\DoxyCodeLine{   r2 \string^= r4;   \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line 300 of file serpent.\+c.
+
+\mbox{\Hypertarget{serpent_8c_a3fadb74bcfb707a11f358b8fbf97b268}\label{serpent_8c_a3fadb74bcfb707a11f358b8fbf97b268}} 
+\index{serpent.c@{serpent.c}!\_S6@{\_S6}}
+\index{\_S6@{\_S6}!serpent.c@{serpent.c}}
+\subsubsection{\texorpdfstring{\_S6}{\_S6}}
+{\footnotesize\ttfamily \#define \+\_\+\+S6(\begin{DoxyParamCaption}\item[{}]{i,  }\item[{}]{r0,  }\item[{}]{r1,  }\item[{}]{r2,  }\item[{}]{r3,  }\item[{}]{r4 }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{ \(\backslash\)}
+\DoxyCodeLine{   r2 = ~r2;   \(\backslash\)}
+\DoxyCodeLine{   r4 = r3;    \(\backslash\)}
+\DoxyCodeLine{   r3 \&= r0;   \(\backslash\)}
+\DoxyCodeLine{   r0 \string^= r4;   \(\backslash\)}
+\DoxyCodeLine{   r3 \string^= r2;   \(\backslash\)}
+\DoxyCodeLine{   r2 |= r4;   \(\backslash\)}
+\DoxyCodeLine{   r1 \string^= r3;   \(\backslash\)}
+\DoxyCodeLine{   r2 \string^= r0;   \(\backslash\)}
+\DoxyCodeLine{   r0 |= r1;   \(\backslash\)}
+\DoxyCodeLine{   r2 \string^= r1;   \(\backslash\)}
+\DoxyCodeLine{   r4 \string^= r0;   \(\backslash\)}
+\DoxyCodeLine{   r0 |= r3;   \(\backslash\)}
+\DoxyCodeLine{   r0 \string^= r2;   \(\backslash\)}
+\DoxyCodeLine{   r4 \string^= r3;   \(\backslash\)}
+\DoxyCodeLine{   r4 \string^= r0;   \(\backslash\)}
+\DoxyCodeLine{   r3 = ~r3;   \(\backslash\)}
+\DoxyCodeLine{   r2 \&= r4;   \(\backslash\)}
+\DoxyCodeLine{   r2 \string^= r3;   \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line 344 of file serpent.\+c.
+
+\mbox{\Hypertarget{serpent_8c_a617aa5fbe12527ae4af517003a2b6928}\label{serpent_8c_a617aa5fbe12527ae4af517003a2b6928}} 
+\index{serpent.c@{serpent.c}!\_S7@{\_S7}}
+\index{\_S7@{\_S7}!serpent.c@{serpent.c}}
+\subsubsection{\texorpdfstring{\_S7}{\_S7}}
+{\footnotesize\ttfamily \#define \+\_\+\+S7(\begin{DoxyParamCaption}\item[{}]{i,  }\item[{}]{r0,  }\item[{}]{r1,  }\item[{}]{r2,  }\item[{}]{r3,  }\item[{}]{r4 }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{ \(\backslash\)}
+\DoxyCodeLine{   r4 = r2;    \(\backslash\)}
+\DoxyCodeLine{   r2 \&= r1;   \(\backslash\)}
+\DoxyCodeLine{   r2 \string^= r3;   \(\backslash\)}
+\DoxyCodeLine{   r3 \&= r1;   \(\backslash\)}
+\DoxyCodeLine{   r4 \string^= r2;   \(\backslash\)}
+\DoxyCodeLine{   r2 \string^= r1;   \(\backslash\)}
+\DoxyCodeLine{   r1 \string^= r0;   \(\backslash\)}
+\DoxyCodeLine{   r0 |= r4;   \(\backslash\)}
+\DoxyCodeLine{   r0 \string^= r2;   \(\backslash\)}
+\DoxyCodeLine{   r3 \string^= r1;   \(\backslash\)}
+\DoxyCodeLine{   r2 \string^= r3;   \(\backslash\)}
+\DoxyCodeLine{   r3 \&= r0;   \(\backslash\)}
+\DoxyCodeLine{   r3 \string^= r4;   \(\backslash\)}
+\DoxyCodeLine{   r4 \string^= r2;   \(\backslash\)}
+\DoxyCodeLine{   r2 \&= r0;   \(\backslash\)}
+\DoxyCodeLine{   r4 = ~r4;   \(\backslash\)}
+\DoxyCodeLine{   r2 \string^= r4;   \(\backslash\)}
+\DoxyCodeLine{   r4 \&= r0;   \(\backslash\)}
+\DoxyCodeLine{   r1 \string^= r3;   \(\backslash\)}
+\DoxyCodeLine{   r4 \string^= r1;   \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line 385 of file serpent.\+c.
+
+\mbox{\Hypertarget{serpent_8c_a9a756998a2b75d3af47eef07b36e81f0}\label{serpent_8c_a9a756998a2b75d3af47eef07b36e81f0}} 
+\index{serpent.c@{serpent.c}!\_SK@{\_SK}}
+\index{\_SK@{\_SK}!serpent.c@{serpent.c}}
+\subsubsection{\texorpdfstring{\_SK}{\_SK}}
+{\footnotesize\ttfamily \#define \+\_\+\+SK(\begin{DoxyParamCaption}\item[{}]{r,  }\item[{}]{a,  }\item[{}]{b,  }\item[{}]{\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},  }\item[{}]{d,  }\item[{}]{e }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{ \(\backslash\)}
+\DoxyCodeLine{   k[(8-r)*4 + 4] = a;  \(\backslash\)}
+\DoxyCodeLine{   k[(8-r)*4 + 5] = b;  \(\backslash\)}
+\DoxyCodeLine{   k[(8-r)*4 + 6] = \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}};  \(\backslash\)}
+\DoxyCodeLine{   k[(8-r)*4 + 7] = d;  \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line 445 of file serpent.\+c.
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{serpent_8c_a4c10773b4ec04ccb45a5e11610bc2dca}\label{serpent_8c_a4c10773b4ec04ccb45a5e11610bc2dca}} 
+\index{serpent.c@{serpent.c}!\_dec\_block@{\_dec\_block}}
+\index{\_dec\_block@{\_dec\_block}!serpent.c@{serpent.c}}
+\subsubsection{\texorpdfstring{\_dec\_block()}{\_dec\_block()}}
+{\footnotesize\ttfamily static int \+\_\+dec\+\_\+block (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{in,  }\item[{unsigned char $\ast$}]{out,  }\item[{const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} $\ast$}]{k }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 533 of file serpent.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{534 \{}
+\DoxyCodeLine{535    \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} a, b, \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, d, e;}
+\DoxyCodeLine{536    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} i;}
+\DoxyCodeLine{537 }
+\DoxyCodeLine{538    LOAD32L(a, in + 0);}
+\DoxyCodeLine{539    LOAD32L(b, in + 4);}
+\DoxyCodeLine{540    LOAD32L(\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, in + 8);}
+\DoxyCodeLine{541    LOAD32L(d, in + 12);}
+\DoxyCodeLine{542    e = 0; \mbox{\hyperlink{tomcrypt__macros_8h_accde4b007facd646a8327f8e64b2d1e0}{LTC\_UNUSED\_PARAM}}(e); \textcolor{comment}{/* avoid scan-build warning */}}
+\DoxyCodeLine{543    i = 4;}
+\DoxyCodeLine{544    k += 96;}
+\DoxyCodeLine{545 }
+\DoxyCodeLine{546    \mbox{\hyperlink{serpent_8c_abce815ef71193a0686bccf51fe4a0160}{\_beforeI7}}(\mbox{\hyperlink{serpent_8c_a7ace1b1bbb6c03f023e24836d726213f}{\_KX}});}
+\DoxyCodeLine{547    \textcolor{keywordflow}{goto} start;}
+\DoxyCodeLine{548 }
+\DoxyCodeLine{549    \textcolor{keywordflow}{do} \{}
+\DoxyCodeLine{550       \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} = b;}
+\DoxyCodeLine{551       b = d;}
+\DoxyCodeLine{552       d = e;}
+\DoxyCodeLine{553       k -= 32;}
+\DoxyCodeLine{554       \mbox{\hyperlink{serpent_8c_abce815ef71193a0686bccf51fe4a0160}{\_beforeI7}}(\mbox{\hyperlink{serpent_8c_a7e9ea65935f5e171634f7da272fe7628}{\_ILT}});}
+\DoxyCodeLine{555 start:}
+\DoxyCodeLine{556                       \mbox{\hyperlink{serpent_8c_abce815ef71193a0686bccf51fe4a0160}{\_beforeI7}}(\mbox{\hyperlink{serpent_8c_a9cf2d4bd46cb074d6825db8130f15ec4}{\_I7}}); \mbox{\hyperlink{serpent_8c_ae6eaa866c6c94307523cd29e188a6367}{\_afterI7}}(\mbox{\hyperlink{serpent_8c_a7ace1b1bbb6c03f023e24836d726213f}{\_KX}});}
+\DoxyCodeLine{557       \mbox{\hyperlink{serpent_8c_ae6eaa866c6c94307523cd29e188a6367}{\_afterI7}}(\mbox{\hyperlink{serpent_8c_a7e9ea65935f5e171634f7da272fe7628}{\_ILT}}); \mbox{\hyperlink{serpent_8c_ae6eaa866c6c94307523cd29e188a6367}{\_afterI7}}(\mbox{\hyperlink{serpent_8c_abc07baa481e0a78410bb8492a3994f83}{\_I6}});  \mbox{\hyperlink{serpent_8c_a3fd470cae206426057db98050d9f4865}{\_afterI6}}(\mbox{\hyperlink{serpent_8c_a7ace1b1bbb6c03f023e24836d726213f}{\_KX}});}
+\DoxyCodeLine{558       \mbox{\hyperlink{serpent_8c_a3fd470cae206426057db98050d9f4865}{\_afterI6}}(\mbox{\hyperlink{serpent_8c_a7e9ea65935f5e171634f7da272fe7628}{\_ILT}}); \mbox{\hyperlink{serpent_8c_a3fd470cae206426057db98050d9f4865}{\_afterI6}}(\mbox{\hyperlink{serpent_8c_aee88146ad98d8303063d028a13f46020}{\_I5}});  \mbox{\hyperlink{serpent_8c_a03a356752547223b56ae9d1d939a2488}{\_afterI5}}(\mbox{\hyperlink{serpent_8c_a7ace1b1bbb6c03f023e24836d726213f}{\_KX}});}
+\DoxyCodeLine{559       \mbox{\hyperlink{serpent_8c_a03a356752547223b56ae9d1d939a2488}{\_afterI5}}(\mbox{\hyperlink{serpent_8c_a7e9ea65935f5e171634f7da272fe7628}{\_ILT}}); \mbox{\hyperlink{serpent_8c_a03a356752547223b56ae9d1d939a2488}{\_afterI5}}(\mbox{\hyperlink{serpent_8c_ac014326e84ae5a88166f31e6011fb8c2}{\_I4}});  \mbox{\hyperlink{serpent_8c_afd68ebed0e3b210b6321d807c0b70693}{\_afterI4}}(\mbox{\hyperlink{serpent_8c_a7ace1b1bbb6c03f023e24836d726213f}{\_KX}});}
+\DoxyCodeLine{560       \mbox{\hyperlink{serpent_8c_afd68ebed0e3b210b6321d807c0b70693}{\_afterI4}}(\mbox{\hyperlink{serpent_8c_a7e9ea65935f5e171634f7da272fe7628}{\_ILT}}); \mbox{\hyperlink{serpent_8c_afd68ebed0e3b210b6321d807c0b70693}{\_afterI4}}(\mbox{\hyperlink{serpent_8c_ab4736eec1a6fd3c1c829b2891cfa5577}{\_I3}});  \mbox{\hyperlink{serpent_8c_aa963c67f726012f77487f6a237fe79c8}{\_afterI3}}(\mbox{\hyperlink{serpent_8c_a7ace1b1bbb6c03f023e24836d726213f}{\_KX}});}
+\DoxyCodeLine{561       \mbox{\hyperlink{serpent_8c_aa963c67f726012f77487f6a237fe79c8}{\_afterI3}}(\mbox{\hyperlink{serpent_8c_a7e9ea65935f5e171634f7da272fe7628}{\_ILT}}); \mbox{\hyperlink{serpent_8c_aa963c67f726012f77487f6a237fe79c8}{\_afterI3}}(\mbox{\hyperlink{serpent_8c_a234edc4b7ae2ac31a6b419683cd5bd96}{\_I2}});  \mbox{\hyperlink{serpent_8c_aeaecc2dd5fd885a909010994c4c3b9ef}{\_afterI2}}(\mbox{\hyperlink{serpent_8c_a7ace1b1bbb6c03f023e24836d726213f}{\_KX}});}
+\DoxyCodeLine{562       \mbox{\hyperlink{serpent_8c_aeaecc2dd5fd885a909010994c4c3b9ef}{\_afterI2}}(\mbox{\hyperlink{serpent_8c_a7e9ea65935f5e171634f7da272fe7628}{\_ILT}}); \mbox{\hyperlink{serpent_8c_aeaecc2dd5fd885a909010994c4c3b9ef}{\_afterI2}}(\mbox{\hyperlink{serpent_8c_a45e10296c9524991c27a4cb798610197}{\_I1}});  \mbox{\hyperlink{serpent_8c_a510b5d2f87942d32d5f9bf6845555fbd}{\_afterI1}}(\mbox{\hyperlink{serpent_8c_a7ace1b1bbb6c03f023e24836d726213f}{\_KX}});}
+\DoxyCodeLine{563       \mbox{\hyperlink{serpent_8c_a510b5d2f87942d32d5f9bf6845555fbd}{\_afterI1}}(\mbox{\hyperlink{serpent_8c_a7e9ea65935f5e171634f7da272fe7628}{\_ILT}}); \mbox{\hyperlink{serpent_8c_a510b5d2f87942d32d5f9bf6845555fbd}{\_afterI1}}(\mbox{\hyperlink{serpent_8c_ad353fff6f31c5a730005b0228aaca6ce}{\_I0}});  \mbox{\hyperlink{serpent_8c_a2bc6361678c97eea72338c99444519e9}{\_afterI0}}(\mbox{\hyperlink{serpent_8c_a7ace1b1bbb6c03f023e24836d726213f}{\_KX}});}
+\DoxyCodeLine{564    \} \textcolor{keywordflow}{while} (--i != 0);}
+\DoxyCodeLine{565 }
+\DoxyCodeLine{566    STORE32L(a, out + 0);}
+\DoxyCodeLine{567    STORE32L(d, out + 4);}
+\DoxyCodeLine{568    STORE32L(b, out + 8);}
+\DoxyCodeLine{569    STORE32L(e, out + 12);}
+\DoxyCodeLine{570 }
+\DoxyCodeLine{571    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{572 \}}
+
+\end{DoxyCode}
+
+
+References \+\_\+after\+I0, \+\_\+after\+I1, \+\_\+after\+I2, \+\_\+after\+I3, \+\_\+after\+I4, \+\_\+after\+I5, \+\_\+after\+I6, \+\_\+after\+I7, \+\_\+before\+I7, \+\_\+\+I0, \+\_\+\+I1, \+\_\+\+I2, \+\_\+\+I3, \+\_\+\+I4, \+\_\+\+I5, \+\_\+\+I6, \+\_\+\+I7, \+\_\+\+I\+LT, \+\_\+\+KX, c, C\+R\+Y\+P\+T\+\_\+\+OK, and L\+T\+C\+\_\+\+U\+N\+U\+S\+E\+D\+\_\+\+P\+A\+R\+AM.
+
+
+
+Referenced by serpent\+\_\+ecb\+\_\+decrypt().
+
+Here is the caller graph for this function\+:
+% FIG 1
+\mbox{\Hypertarget{serpent_8c_a02dcf84f5a34c8c7c25ea6867b97c69d}\label{serpent_8c_a02dcf84f5a34c8c7c25ea6867b97c69d}} 
+\index{serpent.c@{serpent.c}!\_enc\_block@{\_enc\_block}}
+\index{\_enc\_block@{\_enc\_block}!serpent.c@{serpent.c}}
+\subsubsection{\texorpdfstring{\_enc\_block()}{\_enc\_block()}}
+{\footnotesize\ttfamily static int \+\_\+enc\+\_\+block (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{in,  }\item[{unsigned char $\ast$}]{out,  }\item[{const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} $\ast$}]{k }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 491 of file serpent.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{492 \{}
+\DoxyCodeLine{493    \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} a, b, \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, d, e;}
+\DoxyCodeLine{494    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} i = 1;}
+\DoxyCodeLine{495 }
+\DoxyCodeLine{496    LOAD32L(a, in + 0);}
+\DoxyCodeLine{497    LOAD32L(b, in + 4);}
+\DoxyCodeLine{498    LOAD32L(\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, in + 8);}
+\DoxyCodeLine{499    LOAD32L(d, in + 12);}
+\DoxyCodeLine{500 }
+\DoxyCodeLine{501    \textcolor{keywordflow}{do} \{}
+\DoxyCodeLine{502       \mbox{\hyperlink{serpent_8c_ab8835333b3d794f427c5e05e07aa58d4}{\_beforeS0}}(\mbox{\hyperlink{serpent_8c_a7ace1b1bbb6c03f023e24836d726213f}{\_KX}}); \mbox{\hyperlink{serpent_8c_ab8835333b3d794f427c5e05e07aa58d4}{\_beforeS0}}(\mbox{\hyperlink{serpent_8c_a046d214669094f1aa47d5c3159433e1d}{\_S0}}); \mbox{\hyperlink{serpent_8c_a78d41d8fd1db5fe343a0c4760afcd686}{\_afterS0}}(\mbox{\hyperlink{serpent_8c_ab141499f8b1ea75575206716a268b883}{\_LT}});}
+\DoxyCodeLine{503       \mbox{\hyperlink{serpent_8c_a78d41d8fd1db5fe343a0c4760afcd686}{\_afterS0}}(\mbox{\hyperlink{serpent_8c_a7ace1b1bbb6c03f023e24836d726213f}{\_KX}});  \mbox{\hyperlink{serpent_8c_a78d41d8fd1db5fe343a0c4760afcd686}{\_afterS0}}(\mbox{\hyperlink{serpent_8c_a25b3d304e6136e4d806c53a490156fc3}{\_S1}});  \mbox{\hyperlink{serpent_8c_a058832dc28a4f64e50fb733d5cbbf388}{\_afterS1}}(\mbox{\hyperlink{serpent_8c_ab141499f8b1ea75575206716a268b883}{\_LT}});}
+\DoxyCodeLine{504       \mbox{\hyperlink{serpent_8c_a058832dc28a4f64e50fb733d5cbbf388}{\_afterS1}}(\mbox{\hyperlink{serpent_8c_a7ace1b1bbb6c03f023e24836d726213f}{\_KX}});  \mbox{\hyperlink{serpent_8c_a058832dc28a4f64e50fb733d5cbbf388}{\_afterS1}}(\mbox{\hyperlink{serpent_8c_aefd58e5795a2f4629f57ee21f3f74b6e}{\_S2}});  \mbox{\hyperlink{serpent_8c_a3b06b9c3e2b54949568d7f47e2662507}{\_afterS2}}(\mbox{\hyperlink{serpent_8c_ab141499f8b1ea75575206716a268b883}{\_LT}});}
+\DoxyCodeLine{505       \mbox{\hyperlink{serpent_8c_a3b06b9c3e2b54949568d7f47e2662507}{\_afterS2}}(\mbox{\hyperlink{serpent_8c_a7ace1b1bbb6c03f023e24836d726213f}{\_KX}});  \mbox{\hyperlink{serpent_8c_a3b06b9c3e2b54949568d7f47e2662507}{\_afterS2}}(\mbox{\hyperlink{serpent_8c_ad9bc0952856adc30f84754dbad72b9f1}{\_S3}});  \mbox{\hyperlink{serpent_8c_aa55e98f82297a1b6db41351f37da477c}{\_afterS3}}(\mbox{\hyperlink{serpent_8c_ab141499f8b1ea75575206716a268b883}{\_LT}});}
+\DoxyCodeLine{506       \mbox{\hyperlink{serpent_8c_aa55e98f82297a1b6db41351f37da477c}{\_afterS3}}(\mbox{\hyperlink{serpent_8c_a7ace1b1bbb6c03f023e24836d726213f}{\_KX}});  \mbox{\hyperlink{serpent_8c_aa55e98f82297a1b6db41351f37da477c}{\_afterS3}}(\mbox{\hyperlink{serpent_8c_abe9f01f793a3f6d7dc687c8183612802}{\_S4}});  \mbox{\hyperlink{serpent_8c_aa4027f772617cc1de1e807165b48c4fc}{\_afterS4}}(\mbox{\hyperlink{serpent_8c_ab141499f8b1ea75575206716a268b883}{\_LT}});}
+\DoxyCodeLine{507       \mbox{\hyperlink{serpent_8c_aa4027f772617cc1de1e807165b48c4fc}{\_afterS4}}(\mbox{\hyperlink{serpent_8c_a7ace1b1bbb6c03f023e24836d726213f}{\_KX}});  \mbox{\hyperlink{serpent_8c_aa4027f772617cc1de1e807165b48c4fc}{\_afterS4}}(\mbox{\hyperlink{serpent_8c_ac6a80fbf024aba1ad4515310577ac127}{\_S5}});  \mbox{\hyperlink{serpent_8c_a9fb1352f175d9586eaf9f6528ee43306}{\_afterS5}}(\mbox{\hyperlink{serpent_8c_ab141499f8b1ea75575206716a268b883}{\_LT}});}
+\DoxyCodeLine{508       \mbox{\hyperlink{serpent_8c_a9fb1352f175d9586eaf9f6528ee43306}{\_afterS5}}(\mbox{\hyperlink{serpent_8c_a7ace1b1bbb6c03f023e24836d726213f}{\_KX}});  \mbox{\hyperlink{serpent_8c_a9fb1352f175d9586eaf9f6528ee43306}{\_afterS5}}(\mbox{\hyperlink{serpent_8c_a3fadb74bcfb707a11f358b8fbf97b268}{\_S6}});  \mbox{\hyperlink{serpent_8c_af1f423f21a5192b13ad78c2295e9b7ff}{\_afterS6}}(\mbox{\hyperlink{serpent_8c_ab141499f8b1ea75575206716a268b883}{\_LT}});}
+\DoxyCodeLine{509       \mbox{\hyperlink{serpent_8c_af1f423f21a5192b13ad78c2295e9b7ff}{\_afterS6}}(\mbox{\hyperlink{serpent_8c_a7ace1b1bbb6c03f023e24836d726213f}{\_KX}});  \mbox{\hyperlink{serpent_8c_af1f423f21a5192b13ad78c2295e9b7ff}{\_afterS6}}(\mbox{\hyperlink{serpent_8c_a617aa5fbe12527ae4af517003a2b6928}{\_S7}});}
+\DoxyCodeLine{510 }
+\DoxyCodeLine{511       \textcolor{keywordflow}{if} (i == 4) \textcolor{keywordflow}{break};}
+\DoxyCodeLine{512 }
+\DoxyCodeLine{513       ++i;}
+\DoxyCodeLine{514       \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} = b;}
+\DoxyCodeLine{515       b = e;}
+\DoxyCodeLine{516       e = d;}
+\DoxyCodeLine{517       d = a;}
+\DoxyCodeLine{518       a = e;}
+\DoxyCodeLine{519       k += 32;}
+\DoxyCodeLine{520       \mbox{\hyperlink{serpent_8c_ab8835333b3d794f427c5e05e07aa58d4}{\_beforeS0}}(\mbox{\hyperlink{serpent_8c_ab141499f8b1ea75575206716a268b883}{\_LT}});}
+\DoxyCodeLine{521    \} \textcolor{keywordflow}{while} (1);}
+\DoxyCodeLine{522 }
+\DoxyCodeLine{523    \mbox{\hyperlink{serpent_8c_a6a1bce41d763280627ef550decfb1802}{\_afterS7}}(\mbox{\hyperlink{serpent_8c_a7ace1b1bbb6c03f023e24836d726213f}{\_KX}});}
+\DoxyCodeLine{524 }
+\DoxyCodeLine{525    STORE32L(d, out + 0);}
+\DoxyCodeLine{526    STORE32L(e, out + 4);}
+\DoxyCodeLine{527    STORE32L(b, out + 8);}
+\DoxyCodeLine{528    STORE32L(a, out + 12);}
+\DoxyCodeLine{529 }
+\DoxyCodeLine{530    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{531 \}}
+
+\end{DoxyCode}
+
+
+References \+\_\+after\+S0, \+\_\+after\+S1, \+\_\+after\+S2, \+\_\+after\+S3, \+\_\+after\+S4, \+\_\+after\+S5, \+\_\+after\+S6, \+\_\+after\+S7, \+\_\+before\+S0, \+\_\+\+KX, \+\_\+\+LT, \+\_\+\+S0, \+\_\+\+S1, \+\_\+\+S2, \+\_\+\+S3, \+\_\+\+S4, \+\_\+\+S5, \+\_\+\+S6, \+\_\+\+S7, c, and C\+R\+Y\+P\+T\+\_\+\+OK.
+
+
+
+Referenced by serpent\+\_\+ecb\+\_\+encrypt().
+
+Here is the caller graph for this function\+:
+% FIG 2
+\mbox{\Hypertarget{serpent_8c_a99215b029ae4d768772f33a10887e9d1}\label{serpent_8c_a99215b029ae4d768772f33a10887e9d1}} 
+\index{serpent.c@{serpent.c}!\_setup\_key@{\_setup\_key}}
+\index{\_setup\_key@{\_setup\_key}!serpent.c@{serpent.c}}
+\subsubsection{\texorpdfstring{\_setup\_key()}{\_setup\_key()}}
+{\footnotesize\ttfamily static int \+\_\+setup\+\_\+key (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{key,  }\item[{int}]{keylen,  }\item[{int}]{rounds,  }\item[{\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} $\ast$}]{k }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 452 of file serpent.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{453 \{}
+\DoxyCodeLine{454    \textcolor{keywordtype}{int} i;}
+\DoxyCodeLine{455    \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} t;}
+\DoxyCodeLine{456    \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} k0[8] = \{ 0 \}; \textcolor{comment}{/* zero-initialize */}}
+\DoxyCodeLine{457    \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} a, b, \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, d, e;}
+\DoxyCodeLine{458 }
+\DoxyCodeLine{459    \textcolor{keywordflow}{for} (i = 0; i < 8 \&\& i < keylen/4; ++i) \{}
+\DoxyCodeLine{460       LOAD32L(k0[i], key + i * 4);}
+\DoxyCodeLine{461    \}}
+\DoxyCodeLine{462    \textcolor{keywordflow}{if} (keylen < 32) \{}
+\DoxyCodeLine{463       k0[keylen/4] |= (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})1 << ((keylen\%4)*8);}
+\DoxyCodeLine{464     \}}
+\DoxyCodeLine{465 }
+\DoxyCodeLine{466    t = k0[7];}
+\DoxyCodeLine{467    \textcolor{keywordflow}{for} (i = 0; i < 8; ++i) \{}
+\DoxyCodeLine{468       k[i] = k0[i] = t = \mbox{\hyperlink{tomcrypt__macros_8h_a39d625dc0b148466a72c13737e063d86}{ROLc}}(k0[i] \string^ k0[(i+3)\%8] \string^ k0[(i+5)\%8] \string^ t \string^ 0x9e3779b9 \string^ i, 11);}
+\DoxyCodeLine{469    \}}
+\DoxyCodeLine{470    \textcolor{keywordflow}{for} (i = 8; i < 4*(\mbox{\hyperlink{kseed_8c_a51da46362a22c8107683876e9c12ec82}{rounds}}+1); ++i) \{}
+\DoxyCodeLine{471       k[i] = t = \mbox{\hyperlink{tomcrypt__macros_8h_a39d625dc0b148466a72c13737e063d86}{ROLc}}(k[i-8] \string^ k[i-5] \string^ k[i-3] \string^ t \string^ 0x9e3779b9 \string^ i, 11);}
+\DoxyCodeLine{472    \}}
+\DoxyCodeLine{473    k -= 20;}
+\DoxyCodeLine{474 }
+\DoxyCodeLine{475    \textcolor{keywordflow}{for} (i = 0; i < \mbox{\hyperlink{kseed_8c_a51da46362a22c8107683876e9c12ec82}{rounds}}/8; i++) \{}
+\DoxyCodeLine{476       \mbox{\hyperlink{serpent_8c_a3b06b9c3e2b54949568d7f47e2662507}{\_afterS2}}(\mbox{\hyperlink{serpent_8c_a2a0d4b7aab3fd4401bcdeb62c50409a6}{\_LK}});  \mbox{\hyperlink{serpent_8c_a3b06b9c3e2b54949568d7f47e2662507}{\_afterS2}}(\mbox{\hyperlink{serpent_8c_ad9bc0952856adc30f84754dbad72b9f1}{\_S3}});  \mbox{\hyperlink{serpent_8c_aa55e98f82297a1b6db41351f37da477c}{\_afterS3}}(\mbox{\hyperlink{serpent_8c_a9a756998a2b75d3af47eef07b36e81f0}{\_SK}});}
+\DoxyCodeLine{477       \mbox{\hyperlink{serpent_8c_a058832dc28a4f64e50fb733d5cbbf388}{\_afterS1}}(\mbox{\hyperlink{serpent_8c_a2a0d4b7aab3fd4401bcdeb62c50409a6}{\_LK}});  \mbox{\hyperlink{serpent_8c_a058832dc28a4f64e50fb733d5cbbf388}{\_afterS1}}(\mbox{\hyperlink{serpent_8c_aefd58e5795a2f4629f57ee21f3f74b6e}{\_S2}});  \mbox{\hyperlink{serpent_8c_a3b06b9c3e2b54949568d7f47e2662507}{\_afterS2}}(\mbox{\hyperlink{serpent_8c_a9a756998a2b75d3af47eef07b36e81f0}{\_SK}});}
+\DoxyCodeLine{478       \mbox{\hyperlink{serpent_8c_a78d41d8fd1db5fe343a0c4760afcd686}{\_afterS0}}(\mbox{\hyperlink{serpent_8c_a2a0d4b7aab3fd4401bcdeb62c50409a6}{\_LK}});  \mbox{\hyperlink{serpent_8c_a78d41d8fd1db5fe343a0c4760afcd686}{\_afterS0}}(\mbox{\hyperlink{serpent_8c_a25b3d304e6136e4d806c53a490156fc3}{\_S1}});  \mbox{\hyperlink{serpent_8c_a058832dc28a4f64e50fb733d5cbbf388}{\_afterS1}}(\mbox{\hyperlink{serpent_8c_a9a756998a2b75d3af47eef07b36e81f0}{\_SK}});}
+\DoxyCodeLine{479       \mbox{\hyperlink{serpent_8c_ab8835333b3d794f427c5e05e07aa58d4}{\_beforeS0}}(\mbox{\hyperlink{serpent_8c_a2a0d4b7aab3fd4401bcdeb62c50409a6}{\_LK}}); \mbox{\hyperlink{serpent_8c_ab8835333b3d794f427c5e05e07aa58d4}{\_beforeS0}}(\mbox{\hyperlink{serpent_8c_a046d214669094f1aa47d5c3159433e1d}{\_S0}}); \mbox{\hyperlink{serpent_8c_a78d41d8fd1db5fe343a0c4760afcd686}{\_afterS0}}(\mbox{\hyperlink{serpent_8c_a9a756998a2b75d3af47eef07b36e81f0}{\_SK}});}
+\DoxyCodeLine{480       k += 8*4;}
+\DoxyCodeLine{481       \mbox{\hyperlink{serpent_8c_af1f423f21a5192b13ad78c2295e9b7ff}{\_afterS6}}(\mbox{\hyperlink{serpent_8c_a2a0d4b7aab3fd4401bcdeb62c50409a6}{\_LK}}); \mbox{\hyperlink{serpent_8c_af1f423f21a5192b13ad78c2295e9b7ff}{\_afterS6}}(\mbox{\hyperlink{serpent_8c_a617aa5fbe12527ae4af517003a2b6928}{\_S7}}); \mbox{\hyperlink{serpent_8c_a6a1bce41d763280627ef550decfb1802}{\_afterS7}}(\mbox{\hyperlink{serpent_8c_a9a756998a2b75d3af47eef07b36e81f0}{\_SK}});}
+\DoxyCodeLine{482       \mbox{\hyperlink{serpent_8c_a9fb1352f175d9586eaf9f6528ee43306}{\_afterS5}}(\mbox{\hyperlink{serpent_8c_a2a0d4b7aab3fd4401bcdeb62c50409a6}{\_LK}}); \mbox{\hyperlink{serpent_8c_a9fb1352f175d9586eaf9f6528ee43306}{\_afterS5}}(\mbox{\hyperlink{serpent_8c_a3fadb74bcfb707a11f358b8fbf97b268}{\_S6}}); \mbox{\hyperlink{serpent_8c_af1f423f21a5192b13ad78c2295e9b7ff}{\_afterS6}}(\mbox{\hyperlink{serpent_8c_a9a756998a2b75d3af47eef07b36e81f0}{\_SK}});}
+\DoxyCodeLine{483       \mbox{\hyperlink{serpent_8c_aa4027f772617cc1de1e807165b48c4fc}{\_afterS4}}(\mbox{\hyperlink{serpent_8c_a2a0d4b7aab3fd4401bcdeb62c50409a6}{\_LK}}); \mbox{\hyperlink{serpent_8c_aa4027f772617cc1de1e807165b48c4fc}{\_afterS4}}(\mbox{\hyperlink{serpent_8c_ac6a80fbf024aba1ad4515310577ac127}{\_S5}}); \mbox{\hyperlink{serpent_8c_a9fb1352f175d9586eaf9f6528ee43306}{\_afterS5}}(\mbox{\hyperlink{serpent_8c_a9a756998a2b75d3af47eef07b36e81f0}{\_SK}});}
+\DoxyCodeLine{484       \mbox{\hyperlink{serpent_8c_aa55e98f82297a1b6db41351f37da477c}{\_afterS3}}(\mbox{\hyperlink{serpent_8c_a2a0d4b7aab3fd4401bcdeb62c50409a6}{\_LK}}); \mbox{\hyperlink{serpent_8c_aa55e98f82297a1b6db41351f37da477c}{\_afterS3}}(\mbox{\hyperlink{serpent_8c_abe9f01f793a3f6d7dc687c8183612802}{\_S4}}); \mbox{\hyperlink{serpent_8c_aa4027f772617cc1de1e807165b48c4fc}{\_afterS4}}(\mbox{\hyperlink{serpent_8c_a9a756998a2b75d3af47eef07b36e81f0}{\_SK}});}
+\DoxyCodeLine{485    \}}
+\DoxyCodeLine{486    \mbox{\hyperlink{serpent_8c_a3b06b9c3e2b54949568d7f47e2662507}{\_afterS2}}(\mbox{\hyperlink{serpent_8c_a2a0d4b7aab3fd4401bcdeb62c50409a6}{\_LK}}); \mbox{\hyperlink{serpent_8c_a3b06b9c3e2b54949568d7f47e2662507}{\_afterS2}}(\mbox{\hyperlink{serpent_8c_ad9bc0952856adc30f84754dbad72b9f1}{\_S3}}); \mbox{\hyperlink{serpent_8c_aa55e98f82297a1b6db41351f37da477c}{\_afterS3}}(\mbox{\hyperlink{serpent_8c_a9a756998a2b75d3af47eef07b36e81f0}{\_SK}});}
+\DoxyCodeLine{487 }
+\DoxyCodeLine{488    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{489 \}}
+
+\end{DoxyCode}
+
+
+References \+\_\+after\+S0, \+\_\+after\+S1, \+\_\+after\+S2, \+\_\+after\+S3, \+\_\+after\+S4, \+\_\+after\+S5, \+\_\+after\+S6, \+\_\+after\+S7, \+\_\+before\+S0, \+\_\+\+LK, \+\_\+\+S0, \+\_\+\+S1, \+\_\+\+S2, \+\_\+\+S3, \+\_\+\+S4, \+\_\+\+S5, \+\_\+\+S6, \+\_\+\+S7, \+\_\+\+SK, c, C\+R\+Y\+P\+T\+\_\+\+OK, R\+O\+Lc, and rounds().
+
+
+
+Referenced by serpent\+\_\+setup().
+
+Here is the call graph for this function\+:
+% FIG 3
+Here is the caller graph for this function\+:
+% FIG 4
+\mbox{\Hypertarget{serpent_8c_a6aa1cc1fd1b300492349bc2788370d9a}\label{serpent_8c_a6aa1cc1fd1b300492349bc2788370d9a}} 
+\index{serpent.c@{serpent.c}!serpent\_done@{serpent\_done}}
+\index{serpent\_done@{serpent\_done}!serpent.c@{serpent.c}}
+\subsubsection{\texorpdfstring{serpent\_done()}{serpent\_done()}}
+{\footnotesize\ttfamily void serpent\+\_\+done (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$}]{skey }\end{DoxyParamCaption})}
+
+
+
+Definition at line 609 of file serpent.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{610 \{}
+\DoxyCodeLine{611    \mbox{\hyperlink{tomcrypt__macros_8h_accde4b007facd646a8327f8e64b2d1e0}{LTC\_UNUSED\_PARAM}}(skey);}
+\DoxyCodeLine{612 \}}
+
+\end{DoxyCode}
+
+
+References L\+T\+C\+\_\+\+U\+N\+U\+S\+E\+D\+\_\+\+P\+A\+R\+AM.
+
+\mbox{\Hypertarget{serpent_8c_a46de2073180230ec624b901f27572557}\label{serpent_8c_a46de2073180230ec624b901f27572557}} 
+\index{serpent.c@{serpent.c}!serpent\_ecb\_decrypt@{serpent\_ecb\_decrypt}}
+\index{serpent\_ecb\_decrypt@{serpent\_ecb\_decrypt}!serpent.c@{serpent.c}}
+\subsubsection{\texorpdfstring{serpent\_ecb\_decrypt()}{serpent\_ecb\_decrypt()}}
+{\footnotesize\ttfamily int serpent\+\_\+ecb\+\_\+decrypt (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{ct,  }\item[{unsigned char $\ast$}]{pt,  }\item[{const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$}]{skey }\end{DoxyParamCaption})}
+
+
+
+Definition at line 600 of file serpent.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{601 \{}
+\DoxyCodeLine{602    \textcolor{keywordtype}{int} err = \mbox{\hyperlink{serpent_8c_a4c10773b4ec04ccb45a5e11610bc2dca}{\_dec\_block}}(ct, pt, skey->serpent.k);}
+\DoxyCodeLine{603 \textcolor{preprocessor}{\#ifdef LTC\_CLEAN\_STACK}}
+\DoxyCodeLine{604    \mbox{\hyperlink{tomcrypt__misc_8h_aea4187c8bba7b6cd9a358041089680ac}{burn\_stack}}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}}) * 5 + \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{int}));}
+\DoxyCodeLine{605 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{606    \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{607 \}}
+
+\end{DoxyCode}
+
+
+References \+\_\+dec\+\_\+block(), and burn\+\_\+stack().
+
+
+
+Referenced by serpent\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 5
+Here is the caller graph for this function\+:
+% FIG 6
+\mbox{\Hypertarget{serpent_8c_ab8c192997dc75850afe136b72d39a0f2}\label{serpent_8c_ab8c192997dc75850afe136b72d39a0f2}} 
+\index{serpent.c@{serpent.c}!serpent\_ecb\_encrypt@{serpent\_ecb\_encrypt}}
+\index{serpent\_ecb\_encrypt@{serpent\_ecb\_encrypt}!serpent.c@{serpent.c}}
+\subsubsection{\texorpdfstring{serpent\_ecb\_encrypt()}{serpent\_ecb\_encrypt()}}
+{\footnotesize\ttfamily int serpent\+\_\+ecb\+\_\+encrypt (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{pt,  }\item[{unsigned char $\ast$}]{ct,  }\item[{const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$}]{skey }\end{DoxyParamCaption})}
+
+
+
+Definition at line 591 of file serpent.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{592 \{}
+\DoxyCodeLine{593    \textcolor{keywordtype}{int} err = \mbox{\hyperlink{serpent_8c_a02dcf84f5a34c8c7c25ea6867b97c69d}{\_enc\_block}}(pt, ct, skey->serpent.k);}
+\DoxyCodeLine{594 \textcolor{preprocessor}{\#ifdef LTC\_CLEAN\_STACK}}
+\DoxyCodeLine{595    \mbox{\hyperlink{tomcrypt__misc_8h_aea4187c8bba7b6cd9a358041089680ac}{burn\_stack}}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}}) * 5 + \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{int}));}
+\DoxyCodeLine{596 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{597    \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{598 \}}
+
+\end{DoxyCode}
+
+
+References \+\_\+enc\+\_\+block(), and burn\+\_\+stack().
+
+
+
+Referenced by serpent\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 7
+Here is the caller graph for this function\+:
+% FIG 8
+\mbox{\Hypertarget{serpent_8c_ab14995e537ba9561c52131e630538f2f}\label{serpent_8c_ab14995e537ba9561c52131e630538f2f}} 
+\index{serpent.c@{serpent.c}!serpent\_keysize@{serpent\_keysize}}
+\index{serpent\_keysize@{serpent\_keysize}!serpent.c@{serpent.c}}
+\subsubsection{\texorpdfstring{serpent\_keysize()}{serpent\_keysize()}}
+{\footnotesize\ttfamily int serpent\+\_\+keysize (\begin{DoxyParamCaption}\item[{int $\ast$}]{keysize }\end{DoxyParamCaption})}
+
+
+
+Definition at line 614 of file serpent.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{615 \{}
+\DoxyCodeLine{616    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(keysize != NULL);}
+\DoxyCodeLine{617 }
+\DoxyCodeLine{618    \textcolor{keywordflow}{if} (*keysize >= 32) \{ *keysize = 32; \}}
+\DoxyCodeLine{619    \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (*keysize >= 24) \{ *keysize = 24; \}}
+\DoxyCodeLine{620    \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (*keysize >= 16) \{ *keysize = 16; \}}
+\DoxyCodeLine{621    \textcolor{keywordflow}{else} \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caafed43f3b625e72191e08e65b4bb5e02}{CRYPT\_INVALID\_KEYSIZE}};}
+\DoxyCodeLine{622    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{623 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+K\+E\+Y\+S\+I\+ZE, C\+R\+Y\+P\+T\+\_\+\+OK, ltc\+\_\+cipher\+\_\+descriptor\+::keysize, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+\mbox{\Hypertarget{serpent_8c_a760fbf5d7d4d33e3f3510e372b1d8630}\label{serpent_8c_a760fbf5d7d4d33e3f3510e372b1d8630}} 
+\index{serpent.c@{serpent.c}!serpent\_setup@{serpent\_setup}}
+\index{serpent\_setup@{serpent\_setup}!serpent.c@{serpent.c}}
+\subsubsection{\texorpdfstring{serpent\_setup()}{serpent\_setup()}}
+{\footnotesize\ttfamily int serpent\+\_\+setup (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{key,  }\item[{int}]{keylen,  }\item[{int}]{num\+\_\+rounds,  }\item[{\mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$}]{skey }\end{DoxyParamCaption})}
+
+
+
+Definition at line 574 of file serpent.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{575 \{}
+\DoxyCodeLine{576    \textcolor{keywordtype}{int} err;}
+\DoxyCodeLine{577 }
+\DoxyCodeLine{578    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(key  != NULL);}
+\DoxyCodeLine{579    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(skey != NULL);}
+\DoxyCodeLine{580 }
+\DoxyCodeLine{581    \textcolor{keywordflow}{if} (num\_rounds != 0 \&\& num\_rounds != 32) \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca69aff0280b5845d03130f8700009caf5}{CRYPT\_INVALID\_ROUNDS}};}
+\DoxyCodeLine{582    \textcolor{keywordflow}{if} (keylen != 16 \&\& keylen != 24 \&\& keylen != 32) \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caafed43f3b625e72191e08e65b4bb5e02}{CRYPT\_INVALID\_KEYSIZE}};}
+\DoxyCodeLine{583 }
+\DoxyCodeLine{584    err = \mbox{\hyperlink{serpent_8c_a99215b029ae4d768772f33a10887e9d1}{\_setup\_key}}(key, keylen, 32, skey->serpent.k);}
+\DoxyCodeLine{585 \textcolor{preprocessor}{\#ifdef LTC\_CLEAN\_STACK}}
+\DoxyCodeLine{586    \mbox{\hyperlink{tomcrypt__misc_8h_aea4187c8bba7b6cd9a358041089680ac}{burn\_stack}}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}}) * 14 + \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{int}));}
+\DoxyCodeLine{587 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{588    \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{589 \}}
+
+\end{DoxyCode}
+
+
+References \+\_\+setup\+\_\+key(), burn\+\_\+stack(), C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+K\+E\+Y\+S\+I\+ZE, C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+R\+O\+U\+N\+DS, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+
+
+Referenced by serpent\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 9
+Here is the caller graph for this function\+:
+% FIG 10
+\mbox{\Hypertarget{serpent_8c_ace09100764d8412de97886d82f794e03}\label{serpent_8c_ace09100764d8412de97886d82f794e03}} 
+\index{serpent.c@{serpent.c}!serpent\_test@{serpent\_test}}
+\index{serpent\_test@{serpent\_test}!serpent.c@{serpent.c}}
+\subsubsection{\texorpdfstring{serpent\_test()}{serpent\_test()}}
+{\footnotesize\ttfamily int serpent\+\_\+test (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 625 of file serpent.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{626 \{}
+\DoxyCodeLine{627 \textcolor{preprocessor}{\#ifndef LTC\_TEST}}
+\DoxyCodeLine{628    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cac43a7799c7fd5f515172da6cfc0f9cf5}{CRYPT\_NOP}};}
+\DoxyCodeLine{629 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{630    \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{631       \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} key[32];}
+\DoxyCodeLine{632       \textcolor{keywordtype}{int} keylen;}
+\DoxyCodeLine{633       \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} pt[16], ct[16];}
+\DoxyCodeLine{634    \} tests[] = \{}
+\DoxyCodeLine{635       \{}
+\DoxyCodeLine{636       \textcolor{comment}{/* key */}    \{0x80,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,}
+\DoxyCodeLine{637                     0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00\},}
+\DoxyCodeLine{638       \textcolor{comment}{/* keylen */} 32,}
+\DoxyCodeLine{639       \textcolor{comment}{/* pt */}     \{0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00\},}
+\DoxyCodeLine{640       \textcolor{comment}{/* ct */}     \{0xA2,0x23,0xAA,0x12,0x88,0x46,0x3C,0x0E,0x2B,0xE3,0x8E,0xBD,0x82,0x56,0x16,0xC0\}}
+\DoxyCodeLine{641       \},}
+\DoxyCodeLine{642       \{}
+\DoxyCodeLine{643       \textcolor{comment}{/* key */}    \{0x40,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,}
+\DoxyCodeLine{644                     0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00\},}
+\DoxyCodeLine{645       \textcolor{comment}{/* keylen */} 32,}
+\DoxyCodeLine{646       \textcolor{comment}{/* pt */}     \{0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00\},}
+\DoxyCodeLine{647       \textcolor{comment}{/* ct */}     \{0xEA,0xE1,0xD4,0x05,0x57,0x01,0x74,0xDF,0x7D,0xF2,0xF9,0x96,0x6D,0x50,0x91,0x59\}}
+\DoxyCodeLine{648       \},}
+\DoxyCodeLine{649       \{}
+\DoxyCodeLine{650       \textcolor{comment}{/* key */}    \{0x20,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,}
+\DoxyCodeLine{651                     0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00\},}
+\DoxyCodeLine{652       \textcolor{comment}{/* keylen */} 32,}
+\DoxyCodeLine{653       \textcolor{comment}{/* pt */}     \{0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00\},}
+\DoxyCodeLine{654       \textcolor{comment}{/* ct */}     \{0x65,0xF3,0x76,0x84,0x47,0x1E,0x92,0x1D,0xC8,0xA3,0x0F,0x45,0xB4,0x3C,0x44,0x99\}}
+\DoxyCodeLine{655       \},}
+\DoxyCodeLine{656       \{}
+\DoxyCodeLine{657       \textcolor{comment}{/* key */}    \{0x80,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,}
+\DoxyCodeLine{658                     0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00\},}
+\DoxyCodeLine{659       \textcolor{comment}{/* keylen */} 24,}
+\DoxyCodeLine{660       \textcolor{comment}{/* pt */}     \{0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00\},}
+\DoxyCodeLine{661       \textcolor{comment}{/* ct */}     \{0x9E,0x27,0x4E,0xAD,0x9B,0x73,0x7B,0xB2,0x1E,0xFC,0xFC,0xA5,0x48,0x60,0x26,0x89\}}
+\DoxyCodeLine{662       \},}
+\DoxyCodeLine{663       \{}
+\DoxyCodeLine{664       \textcolor{comment}{/* key */}    \{0x40,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,}
+\DoxyCodeLine{665                     0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00\},}
+\DoxyCodeLine{666       \textcolor{comment}{/* keylen */} 24,}
+\DoxyCodeLine{667       \textcolor{comment}{/* pt */}     \{0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00\},}
+\DoxyCodeLine{668       \textcolor{comment}{/* ct */}     \{0x92,0xFC,0x8E,0x51,0x03,0x99,0xE4,0x6A,0x04,0x1B,0xF3,0x65,0xE7,0xB3,0xAE,0x82\}}
+\DoxyCodeLine{669       \},}
+\DoxyCodeLine{670       \{}
+\DoxyCodeLine{671       \textcolor{comment}{/* key */}    \{0x20,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,}
+\DoxyCodeLine{672                     0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00\},}
+\DoxyCodeLine{673       \textcolor{comment}{/* keylen */} 24,}
+\DoxyCodeLine{674       \textcolor{comment}{/* pt */}     \{0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00\},}
+\DoxyCodeLine{675       \textcolor{comment}{/* ct */}     \{0x5E,0x0D,0xA3,0x86,0xC4,0x6A,0xD4,0x93,0xDE,0xA2,0x03,0xFD,0xC6,0xF5,0x7D,0x70\}}
+\DoxyCodeLine{676       \},}
+\DoxyCodeLine{677       \{}
+\DoxyCodeLine{678       \textcolor{comment}{/* key */}    \{0x80,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00\},}
+\DoxyCodeLine{679       \textcolor{comment}{/* keylen */} 16,}
+\DoxyCodeLine{680       \textcolor{comment}{/* pt */}     \{0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00\},}
+\DoxyCodeLine{681       \textcolor{comment}{/* ct */}     \{0x26,0x4E,0x54,0x81,0xEF,0xF4,0x2A,0x46,0x06,0xAB,0xDA,0x06,0xC0,0xBF,0xDA,0x3D\}}
+\DoxyCodeLine{682       \},}
+\DoxyCodeLine{683       \{}
+\DoxyCodeLine{684       \textcolor{comment}{/* key */}    \{0x40,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00\},}
+\DoxyCodeLine{685       \textcolor{comment}{/* keylen */} 16,}
+\DoxyCodeLine{686       \textcolor{comment}{/* pt */}     \{0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00\},}
+\DoxyCodeLine{687       \textcolor{comment}{/* ct */}     \{0x4A,0x23,0x1B,0x3B,0xC7,0x27,0x99,0x34,0x07,0xAC,0x6E,0xC8,0x35,0x0E,0x85,0x24\}}
+\DoxyCodeLine{688       \},}
+\DoxyCodeLine{689       \{}
+\DoxyCodeLine{690       \textcolor{comment}{/* key */}    \{0x20,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00\},}
+\DoxyCodeLine{691       \textcolor{comment}{/* keylen */} 16,}
+\DoxyCodeLine{692       \textcolor{comment}{/* pt */}     \{0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00\},}
+\DoxyCodeLine{693       \textcolor{comment}{/* ct */}     \{0xE0,0x32,0x69,0xF9,0xE9,0xFD,0x85,0x3C,0x7D,0x81,0x56,0xDF,0x14,0xB9,0x8D,0x56\}}
+\DoxyCodeLine{694       \}}
+\DoxyCodeLine{695    \};}
+\DoxyCodeLine{696 }
+\DoxyCodeLine{697    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} buf[2][16];}
+\DoxyCodeLine{698    \mbox{\hyperlink{unionSymmetric__key}{symmetric\_key}} key;}
+\DoxyCodeLine{699    \textcolor{keywordtype}{int} err, x;}
+\DoxyCodeLine{700 }
+\DoxyCodeLine{701    \textcolor{keywordflow}{for} (x = 0; x < (int)(\textcolor{keyword}{sizeof}(tests)/\textcolor{keyword}{sizeof}(tests[0])); x++) \{}
+\DoxyCodeLine{702       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{serpent_8c_a760fbf5d7d4d33e3f3510e372b1d8630}{serpent\_setup}}(tests[x].key, tests[x].keylen, 0, \&key)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{703         \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{704       \}}
+\DoxyCodeLine{705       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{serpent_8c_ab8c192997dc75850afe136b72d39a0f2}{serpent\_ecb\_encrypt}}(tests[x].pt, buf[0], \&key)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{706         \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{707       \}}
+\DoxyCodeLine{708       \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(buf[0], 16, tests[x].ct, 16, \textcolor{stringliteral}{"SERPENT Encrypt"}, x)) \{}
+\DoxyCodeLine{709         \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{710       \}}
+\DoxyCodeLine{711       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{serpent_8c_a46de2073180230ec624b901f27572557}{serpent\_ecb\_decrypt}}(tests[x].ct, buf[1], \&key)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{712         \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{713       \}}
+\DoxyCodeLine{714       \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(buf[1], 16, tests[x].pt, 16, \textcolor{stringliteral}{"SERPENT Decrypt"}, x)) \{}
+\DoxyCodeLine{715         \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{716       \}}
+\DoxyCodeLine{717    \}}
+\DoxyCodeLine{718 }
+\DoxyCodeLine{719    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{720 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{721 \}}
+
+\end{DoxyCode}
+
+
+References compare\+\_\+testvector(), C\+R\+Y\+P\+T\+\_\+\+F\+A\+I\+L\+\_\+\+T\+E\+S\+T\+V\+E\+C\+T\+OR, C\+R\+Y\+P\+T\+\_\+\+N\+OP, C\+R\+Y\+P\+T\+\_\+\+OK, serpent\+\_\+ecb\+\_\+decrypt(), serpent\+\_\+ecb\+\_\+encrypt(), and serpent\+\_\+setup().
+
+Here is the call graph for this function\+:
+% FIG 11
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{serpent_8c_a84d78de33832ca89c1ddfb9f164246b1}\label{serpent_8c_a84d78de33832ca89c1ddfb9f164246b1}} 
+\index{serpent.c@{serpent.c}!serpent\_desc@{serpent\_desc}}
+\index{serpent\_desc@{serpent\_desc}!serpent.c@{serpent.c}}
+\subsubsection{\texorpdfstring{serpent\_desc}{serpent\_desc}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structltc__cipher__descriptor}{ltc\+\_\+cipher\+\_\+descriptor}} serpent\+\_\+desc}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{   \textcolor{stringliteral}{"serpent"},}
+\DoxyCodeLine{   25,                  }
+\DoxyCodeLine{   16, 32, 16, 32,      }
+\DoxyCodeLine{   \&\mbox{\hyperlink{serpent_8c_a760fbf5d7d4d33e3f3510e372b1d8630}{serpent\_setup}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{serpent_8c_ab8c192997dc75850afe136b72d39a0f2}{serpent\_ecb\_encrypt}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{serpent_8c_a46de2073180230ec624b901f27572557}{serpent\_ecb\_decrypt}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{serpent_8c_ace09100764d8412de97886d82f794e03}{serpent\_test}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{serpent_8c_a6aa1cc1fd1b300492349bc2788370d9a}{serpent\_done}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{serpent_8c_ab14995e537ba9561c52131e630538f2f}{serpent\_keysize}},}
+\DoxyCodeLine{   NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line 22 of file serpent.\+c.
+
+
+
+Referenced by register\+\_\+all\+\_\+ciphers().
+

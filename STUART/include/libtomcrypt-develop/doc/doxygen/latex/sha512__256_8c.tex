@@ -1,0 +1,237 @@
+\hypertarget{sha512__256_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/hashes/sha2/sha512\+\_\+256.c File Reference}
+\label{sha512__256_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/hashes/sha2/sha512\_256.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/hashes/sha2/sha512\_256.c}}
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for sha512\+\_\+256.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{sha512__256_8c_ac8f43be66c750b2f6935da2e942bbaa9}{sha512\+\_\+256\+\_\+init}} (\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$md)
+\begin{DoxyCompactList}\small\item\em Initialize the hash state. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{sha512__256_8c_a0675093fe7375fc32d628276aaed085e}{sha512\+\_\+256\+\_\+done}} (\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$md, unsigned char $\ast$out)
+\begin{DoxyCompactList}\small\item\em Terminate the hash to get the digest. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{sha512__256_8c_a106417ec8f8933389f03e08a1d33f571}{sha512\+\_\+256\+\_\+test}} (void)
+\begin{DoxyCompactList}\small\item\em Self-\/test the hash. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const struct \mbox{\hyperlink{structltc__hash__descriptor}{ltc\+\_\+hash\+\_\+descriptor}} \mbox{\hyperlink{sha512__256_8c_a2bd8ca2db1bb2f48781adf4b429a25a6}{sha512\+\_\+256\+\_\+desc}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{sha512__256_8c_a0675093fe7375fc32d628276aaed085e}\label{sha512__256_8c_a0675093fe7375fc32d628276aaed085e}} 
+\index{sha512\_256.c@{sha512\_256.c}!sha512\_256\_done@{sha512\_256\_done}}
+\index{sha512\_256\_done@{sha512\_256\_done}!sha512\_256.c@{sha512\_256.c}}
+\subsubsection{\texorpdfstring{sha512\_256\_done()}{sha512\_256\_done()}}
+{\footnotesize\ttfamily int sha512\+\_\+256\+\_\+done (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$}]{md,  }\item[{unsigned char $\ast$}]{out }\end{DoxyParamCaption})}
+
+
+
+Terminate the hash to get the digest. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em md} & The hash state \\
+\hline
+{\em out} & \mbox{[}out\mbox{]} The destination of the hash (48 bytes) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 64 of file sha512\+\_\+256.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{65 \{}
+\DoxyCodeLine{66    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} buf[64];}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{68    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(md  != NULL);}
+\DoxyCodeLine{69    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(out != NULL);}
+\DoxyCodeLine{70 }
+\DoxyCodeLine{71     \textcolor{keywordflow}{if} (md->sha512.curlen >= \textcolor{keyword}{sizeof}(md->sha512.buf)) \{}
+\DoxyCodeLine{72        \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{73     \}}
+\DoxyCodeLine{74 }
+\DoxyCodeLine{75    \mbox{\hyperlink{sha512_8c_a9c65441270276d7372c48211f89fc9c3}{sha512\_done}}(md, buf);}
+\DoxyCodeLine{76    \mbox{\hyperlink{tomcrypt__cfg_8h_a7691dd48d60d5fc6daf2fa7ec4c55e12}{XMEMCPY}}(out, buf, 32);}
+\DoxyCodeLine{77 \textcolor{preprocessor}{\#ifdef LTC\_CLEAN\_STACK}}
+\DoxyCodeLine{78    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(buf, \textcolor{keyword}{sizeof}(buf));}
+\DoxyCodeLine{79 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{80    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{81 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+A\+RG, C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, sha512\+\_\+done(), X\+M\+E\+M\+C\+P\+Y(), and zeromem().
+
+
+
+Referenced by sha512\+\_\+256\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2
+\mbox{\Hypertarget{sha512__256_8c_ac8f43be66c750b2f6935da2e942bbaa9}\label{sha512__256_8c_ac8f43be66c750b2f6935da2e942bbaa9}} 
+\index{sha512\_256.c@{sha512\_256.c}!sha512\_256\_init@{sha512\_256\_init}}
+\index{sha512\_256\_init@{sha512\_256\_init}!sha512\_256.c@{sha512\_256.c}}
+\subsubsection{\texorpdfstring{sha512\_256\_init()}{sha512\_256\_init()}}
+{\footnotesize\ttfamily int sha512\+\_\+256\+\_\+init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$}]{md }\end{DoxyParamCaption})}
+
+
+
+Initialize the hash state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em md} & The hash state you wish to initialize \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 41 of file sha512\+\_\+256.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{42 \{}
+\DoxyCodeLine{43     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(md != NULL);}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45     md->sha512.curlen = 0;}
+\DoxyCodeLine{46     md->sha512.length = 0;}
+\DoxyCodeLine{47     md->sha512.state[0] = \mbox{\hyperlink{tomcrypt__cfg_8h_a7d8e211582dff82d00fc171834e3dc67}{CONST64}}(0x22312194FC2BF72C);}
+\DoxyCodeLine{48     md->sha512.state[1] = \mbox{\hyperlink{tomcrypt__cfg_8h_a7d8e211582dff82d00fc171834e3dc67}{CONST64}}(0x9F555FA3C84C64C2);}
+\DoxyCodeLine{49     md->sha512.state[2] = \mbox{\hyperlink{tomcrypt__cfg_8h_a7d8e211582dff82d00fc171834e3dc67}{CONST64}}(0x2393B86B6F53B151);}
+\DoxyCodeLine{50     md->sha512.state[3] = \mbox{\hyperlink{tomcrypt__cfg_8h_a7d8e211582dff82d00fc171834e3dc67}{CONST64}}(0x963877195940EABD);}
+\DoxyCodeLine{51     md->sha512.state[4] = \mbox{\hyperlink{tomcrypt__cfg_8h_a7d8e211582dff82d00fc171834e3dc67}{CONST64}}(0x96283EE2A88EFFE3);}
+\DoxyCodeLine{52     md->sha512.state[5] = \mbox{\hyperlink{tomcrypt__cfg_8h_a7d8e211582dff82d00fc171834e3dc67}{CONST64}}(0xBE5E1E2553863992);}
+\DoxyCodeLine{53     md->sha512.state[6] = \mbox{\hyperlink{tomcrypt__cfg_8h_a7d8e211582dff82d00fc171834e3dc67}{CONST64}}(0x2B0199FC2C85B8AA);}
+\DoxyCodeLine{54     md->sha512.state[7] = \mbox{\hyperlink{tomcrypt__cfg_8h_a7d8e211582dff82d00fc171834e3dc67}{CONST64}}(0x0EB72DDC81C52CA2);}
+\DoxyCodeLine{55     \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{56 \}}
+
+\end{DoxyCode}
+
+
+References C\+O\+N\+S\+T64, C\+R\+Y\+P\+T\+\_\+\+OK, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+
+
+Referenced by sha512\+\_\+256\+\_\+test().
+
+Here is the caller graph for this function\+:
+% FIG 3
+\mbox{\Hypertarget{sha512__256_8c_a106417ec8f8933389f03e08a1d33f571}\label{sha512__256_8c_a106417ec8f8933389f03e08a1d33f571}} 
+\index{sha512\_256.c@{sha512\_256.c}!sha512\_256\_test@{sha512\_256\_test}}
+\index{sha512\_256\_test@{sha512\_256\_test}!sha512\_256.c@{sha512\_256.c}}
+\subsubsection{\texorpdfstring{sha512\_256\_test()}{sha512\_256\_test()}}
+{\footnotesize\ttfamily int sha512\+\_\+256\+\_\+test (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Self-\/test the hash. 
+
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful, C\+R\+Y\+P\+T\+\_\+\+N\+OP if self-\/tests have been disabled 
+\end{DoxyReturn}
+
+
+Definition at line 87 of file sha512\+\_\+256.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{88 \{}
+\DoxyCodeLine{89 \textcolor{preprocessor}{ \#ifndef LTC\_TEST}}
+\DoxyCodeLine{90     \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cac43a7799c7fd5f515172da6cfc0f9cf5}{CRYPT\_NOP}};}
+\DoxyCodeLine{91 \textcolor{preprocessor}{ \#else}}
+\DoxyCodeLine{92   \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{93       \textcolor{keyword}{const} \textcolor{keywordtype}{char} *msg;}
+\DoxyCodeLine{94       \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} hash[32];}
+\DoxyCodeLine{95   \} tests[] = \{}
+\DoxyCodeLine{96     \{ \textcolor{stringliteral}{"abc"},}
+\DoxyCodeLine{97       \{ 0x53, 0x04, 0x8E, 0x26, 0x81, 0x94, 0x1E, 0xF9,}
+\DoxyCodeLine{98         0x9B, 0x2E, 0x29, 0xB7, 0x6B, 0x4C, 0x7D, 0xAB,}
+\DoxyCodeLine{99         0xE4, 0xC2, 0xD0, 0xC6, 0x34, 0xFC, 0x6D, 0x46,}
+\DoxyCodeLine{100         0xE0, 0xE2, 0xF1, 0x31, 0x07, 0xE7, 0xAF, 0x23 \}}
+\DoxyCodeLine{101     \},}
+\DoxyCodeLine{102     \{ \textcolor{stringliteral}{"abcdefghbcdefghicdefghijdefghijkefghijklfghijklmghijklmnhijklmnoijklmnopjklmnopqklmnopqrlmnopqrsmnopqrstnopqrstu"},}
+\DoxyCodeLine{103       \{ 0x39, 0x28, 0xE1, 0x84, 0xFB, 0x86, 0x90, 0xF8,}
+\DoxyCodeLine{104         0x40, 0xDA, 0x39, 0x88, 0x12, 0x1D, 0x31, 0xBE,}
+\DoxyCodeLine{105         0x65, 0xCB, 0x9D, 0x3E, 0xF8, 0x3E, 0xE6, 0x14,}
+\DoxyCodeLine{106         0x6F, 0xEA, 0xC8, 0x61, 0xE1, 0x9B, 0x56, 0x3A \}}
+\DoxyCodeLine{107     \},}
+\DoxyCodeLine{108   \};}
+\DoxyCodeLine{109 }
+\DoxyCodeLine{110   \textcolor{keywordtype}{int} i;}
+\DoxyCodeLine{111   \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} tmp[32];}
+\DoxyCodeLine{112   \mbox{\hyperlink{unionHash__state}{hash\_state}} md;}
+\DoxyCodeLine{113 }
+\DoxyCodeLine{114   \textcolor{keywordflow}{for} (i = 0; i < (int)(\textcolor{keyword}{sizeof}(tests) / \textcolor{keyword}{sizeof}(tests[0])); i++) \{}
+\DoxyCodeLine{115       \mbox{\hyperlink{sha512__256_8c_ac8f43be66c750b2f6935da2e942bbaa9}{sha512\_256\_init}}(\&md);}
+\DoxyCodeLine{116       sha512\_256\_process(\&md, (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}*)tests[i].msg, (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long})strlen(tests[i].msg));}
+\DoxyCodeLine{117       \mbox{\hyperlink{sha512__256_8c_a0675093fe7375fc32d628276aaed085e}{sha512\_256\_done}}(\&md, tmp);}
+\DoxyCodeLine{118       \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(tmp, \textcolor{keyword}{sizeof}(tmp), tests[i].hash, \textcolor{keyword}{sizeof}(tests[i].hash), \textcolor{stringliteral}{"SHA512-265"}, i)) \{}
+\DoxyCodeLine{119          \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{120       \}}
+\DoxyCodeLine{121   \}}
+\DoxyCodeLine{122   \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{123 \textcolor{preprocessor}{ \#endif}}
+\DoxyCodeLine{124 \}}
+
+\end{DoxyCode}
+
+
+References compare\+\_\+testvector(), C\+R\+Y\+P\+T\+\_\+\+F\+A\+I\+L\+\_\+\+T\+E\+S\+T\+V\+E\+C\+T\+OR, C\+R\+Y\+P\+T\+\_\+\+N\+OP, C\+R\+Y\+P\+T\+\_\+\+OK, sha512\+\_\+256\+\_\+done(), and sha512\+\_\+256\+\_\+init().
+
+Here is the call graph for this function\+:
+% FIG 4
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{sha512__256_8c_a2bd8ca2db1bb2f48781adf4b429a25a6}\label{sha512__256_8c_a2bd8ca2db1bb2f48781adf4b429a25a6}} 
+\index{sha512\_256.c@{sha512\_256.c}!sha512\_256\_desc@{sha512\_256\_desc}}
+\index{sha512\_256\_desc@{sha512\_256\_desc}!sha512\_256.c@{sha512\_256.c}}
+\subsubsection{\texorpdfstring{sha512\_256\_desc}{sha512\_256\_desc}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structltc__hash__descriptor}{ltc\+\_\+hash\+\_\+descriptor}} sha512\+\_\+256\+\_\+desc}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    \textcolor{stringliteral}{"sha512-256"},}
+\DoxyCodeLine{    16,}
+\DoxyCodeLine{    32,}
+\DoxyCodeLine{    128,}
+\DoxyCodeLine{}
+\DoxyCodeLine{    }
+\DoxyCodeLine{   \{ 2, 16, 840, 1, 101, 3, 4, 2, 6,  \},}
+\DoxyCodeLine{   9,}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \&\mbox{\hyperlink{sha512__256_8c_ac8f43be66c750b2f6935da2e942bbaa9}{sha512\_256\_init}},}
+\DoxyCodeLine{    \&\mbox{\hyperlink{sha512_8c_af3bcc9bee16c5fe0c0e02a3b71bdac00}{sha512\_process}},}
+\DoxyCodeLine{    \&\mbox{\hyperlink{sha512__256_8c_a0675093fe7375fc32d628276aaed085e}{sha512\_256\_done}},}
+\DoxyCodeLine{    \&\mbox{\hyperlink{sha512__256_8c_a106417ec8f8933389f03e08a1d33f571}{sha512\_256\_test}},}
+\DoxyCodeLine{    NULL}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+\begin{DoxyParams}{Parameters}
+{\em sha512\+\_\+256.\+c} & S\+H\+A512/256 hash included in sha512.\+c \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 18 of file sha512\+\_\+256.\+c.
+
+
+
+Referenced by register\+\_\+all\+\_\+hashes().
+

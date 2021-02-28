@@ -1,0 +1,76 @@
+\hypertarget{ltc__ecc__is__point__at__infinity_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/pk/ecc/ltc\+\_\+ecc\+\_\+is\+\_\+point\+\_\+at\+\_\+infinity.c File Reference}
+\label{ltc__ecc__is__point__at__infinity_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/ecc/ltc\_ecc\_is\_point\_at\_infinity.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/ecc/ltc\_ecc\_is\_point\_at\_infinity.c}}
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for ltc\+\_\+ecc\+\_\+is\+\_\+point\+\_\+at\+\_\+infinity.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{ltc__ecc__is__point__at__infinity_8c_a54a2d7d30af25ef341a8aca09269177d}{ltc\+\_\+ecc\+\_\+is\+\_\+point\+\_\+at\+\_\+infinity}} (const \mbox{\hyperlink{tomcrypt__math_8h_a2a6efaeaa795aa54274d7c4fd66b018a}{ecc\+\_\+point}} $\ast$P, void $\ast$modulus, int $\ast$retval)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{ltc__ecc__is__point__at__infinity_8c_a54a2d7d30af25ef341a8aca09269177d}\label{ltc__ecc__is__point__at__infinity_8c_a54a2d7d30af25ef341a8aca09269177d}} 
+\index{ltc\_ecc\_is\_point\_at\_infinity.c@{ltc\_ecc\_is\_point\_at\_infinity.c}!ltc\_ecc\_is\_point\_at\_infinity@{ltc\_ecc\_is\_point\_at\_infinity}}
+\index{ltc\_ecc\_is\_point\_at\_infinity@{ltc\_ecc\_is\_point\_at\_infinity}!ltc\_ecc\_is\_point\_at\_infinity.c@{ltc\_ecc\_is\_point\_at\_infinity.c}}
+\subsubsection{\texorpdfstring{ltc\_ecc\_is\_point\_at\_infinity()}{ltc\_ecc\_is\_point\_at\_infinity()}}
+{\footnotesize\ttfamily int ltc\+\_\+ecc\+\_\+is\+\_\+point\+\_\+at\+\_\+infinity (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{tomcrypt__math_8h_a2a6efaeaa795aa54274d7c4fd66b018a}{ecc\+\_\+point}} $\ast$}]{P,  }\item[{void $\ast$}]{modulus,  }\item[{int $\ast$}]{retval }\end{DoxyParamCaption})}
+
+
+
+Definition at line 18 of file ltc\+\_\+ecc\+\_\+is\+\_\+point\+\_\+at\+\_\+infinity.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{19 \{}
+\DoxyCodeLine{20    \textcolor{keywordtype}{int} err;}
+\DoxyCodeLine{21    \textcolor{keywordtype}{void}  *x3, *y2;}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23    \textcolor{comment}{/* trivial case */}}
+\DoxyCodeLine{24    \textcolor{keywordflow}{if} (!\mbox{\hyperlink{tomcrypt__private_8h_a910040068490f9f6e5185c970ab869c9}{mp\_iszero}}(P->z)) \{}
+\DoxyCodeLine{25       *retval = 0;}
+\DoxyCodeLine{26       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{27    \}}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29    \textcolor{comment}{/* point (0,0,0) is not at infinity */}}
+\DoxyCodeLine{30    \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__private_8h_a910040068490f9f6e5185c970ab869c9}{mp\_iszero}}(P->x) \&\& \mbox{\hyperlink{tomcrypt__private_8h_a910040068490f9f6e5185c970ab869c9}{mp\_iszero}}(P->y)) \{}
+\DoxyCodeLine{31       *retval = 0;}
+\DoxyCodeLine{32       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{33    \}}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35    \textcolor{comment}{/* initialize */}}
+\DoxyCodeLine{36    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_adb6322247b1a4f0347219acab3120bd3}{mp\_init\_multi}}(\&x3, \&y2, NULL))      != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})   \textcolor{keywordflow}{goto} done;}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{38    \textcolor{comment}{/* compute y\string^2 */}}
+\DoxyCodeLine{39    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a0c32b20b84951870c7b09f5b6f2679c9}{mp\_mulmod}}(P->y, P->y, modulus, y2)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})   \textcolor{keywordflow}{goto} cleanup;}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41    \textcolor{comment}{/* compute x\string^3 */}}
+\DoxyCodeLine{42    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a0c32b20b84951870c7b09f5b6f2679c9}{mp\_mulmod}}(P->x, P->x, modulus, x3)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})   \textcolor{keywordflow}{goto} cleanup;}
+\DoxyCodeLine{43    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a0c32b20b84951870c7b09f5b6f2679c9}{mp\_mulmod}}(P->x, x3, modulus, x3))   != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})   \textcolor{keywordflow}{goto} cleanup;}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45    \textcolor{comment}{/* test y\string^2 == x\string^3 */}}
+\DoxyCodeLine{46    err = \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{47    \textcolor{keywordflow}{if} ((\mbox{\hyperlink{tomcrypt__private_8h_a62ea02fbe7dd2d456e49520264d775ee}{mp\_cmp}}(x3, y2) == \mbox{\hyperlink{tomcrypt__math_8h_a035a31bde4f31419eb259e36e5776607}{LTC\_MP\_EQ}}) \&\& !\mbox{\hyperlink{tomcrypt__private_8h_a910040068490f9f6e5185c970ab869c9}{mp\_iszero}}(y2)) \{}
+\DoxyCodeLine{48       *retval = 1;}
+\DoxyCodeLine{49    \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{50       *retval = 0;}
+\DoxyCodeLine{51    \}}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{53 cleanup:}
+\DoxyCodeLine{54    \mbox{\hyperlink{tomcrypt__private_8h_aad5c8a3112b3e4613f9efc86692c43cb}{mp\_clear\_multi}}(x3, y2, NULL);}
+\DoxyCodeLine{55 done:}
+\DoxyCodeLine{56    \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{57 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+M\+P\+\_\+\+EQ, mp\+\_\+clear\+\_\+multi, mp\+\_\+cmp, mp\+\_\+init\+\_\+multi, mp\+\_\+iszero, and mp\+\_\+mulmod.
+
+
+
+Referenced by ltc\+\_\+ecc\+\_\+mulmod(), ltc\+\_\+ecc\+\_\+projective\+\_\+add\+\_\+point(), ltc\+\_\+ecc\+\_\+projective\+\_\+dbl\+\_\+point(), ltc\+\_\+ecc\+\_\+verify\+\_\+key(), tfm\+\_\+ecc\+\_\+projective\+\_\+add\+\_\+point(), and tfm\+\_\+ecc\+\_\+projective\+\_\+dbl\+\_\+point().
+
+Here is the caller graph for this function\+:
+% FIG 1

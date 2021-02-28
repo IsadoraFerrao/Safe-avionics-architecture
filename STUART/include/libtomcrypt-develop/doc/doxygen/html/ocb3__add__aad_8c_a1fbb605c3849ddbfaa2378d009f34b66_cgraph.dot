@@ -1,0 +1,16 @@
+digraph "ocb3_add_aad"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node8 [label="ocb3_add_aad",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Add AAD - additional associated data."];
+  Node8 -> Node9 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="_ocb3_int_aad_add_block",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ocb3__add__aad_8c.html#ad03a0d62d1bb1257ed7b9c4f0373c028",tooltip="Add one block of AAD data (internal function)"];
+  Node9 -> Node10 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="ocb3_int_ntz",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ocb3__int__ntz_8c.html#ac4af92f890be670e795a758ec452b402",tooltip="Returns the number of leading zero bits [from lsb up] (internal function)"];
+  Node9 -> Node11 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 [label="ocb3_int_xor_blocks",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ocb3__int__xor__blocks_8c.html#a5bf6caa4615657cdfd8f8941620a987c",tooltip="Compute xor for two blocks of bytes 'out = block_a XOR block_b' (internal function)"];
+  Node8 -> Node12 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node12 [label="XMEMCPY",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cfg_8h.html#a7691dd48d60d5fc6daf2fa7ec4c55e12",tooltip=" "];
+}

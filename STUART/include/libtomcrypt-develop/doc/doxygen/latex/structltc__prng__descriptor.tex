@@ -1,0 +1,296 @@
+\hypertarget{structltc__prng__descriptor}{}\section{ltc\+\_\+prng\+\_\+descriptor Struct Reference}
+\label{structltc__prng__descriptor}\index{ltc\_prng\_descriptor@{ltc\_prng\_descriptor}}
+
+
+P\+R\+NG descriptor.  
+
+
+
+
+{\ttfamily \#include $<$tomcrypt\+\_\+prng.\+h$>$}
+
+
+
+Collaboration diagram for ltc\+\_\+prng\+\_\+descriptor\+:
+% FIG 0
+\subsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+const char $\ast$ \mbox{\hyperlink{structltc__prng__descriptor_a56124a50c35eebe647ae285e14c0d147}{name}}
+\begin{DoxyCompactList}\small\item\em Name of the P\+R\+NG. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{structltc__prng__descriptor_a41ef184ab75b213366392faabcde420c}{export\+\_\+size}}
+\begin{DoxyCompactList}\small\item\em size in bytes of exported state \end{DoxyCompactList}\item 
+int($\ast$ \mbox{\hyperlink{structltc__prng__descriptor_a8a5ccd4e0c8f22ff0bd1778c26de8ab3}{start}} )(\mbox{\hyperlink{structprng__state}{prng\+\_\+state}} $\ast$prng)
+\begin{DoxyCompactList}\small\item\em Start a P\+R\+NG state. \end{DoxyCompactList}\item 
+int($\ast$ \mbox{\hyperlink{structltc__prng__descriptor_acf1a2cad13724ad580a83b8e6d91bcd2}{add\+\_\+entropy}} )(const unsigned char $\ast$in, unsigned long inlen, \mbox{\hyperlink{structprng__state}{prng\+\_\+state}} $\ast$prng)
+\begin{DoxyCompactList}\small\item\em Add entropy to the P\+R\+NG. \end{DoxyCompactList}\item 
+int($\ast$ \mbox{\hyperlink{structltc__prng__descriptor_a73162ce704be53c9407ca333ed63d2c0}{ready}} )(\mbox{\hyperlink{structprng__state}{prng\+\_\+state}} $\ast$prng)
+\begin{DoxyCompactList}\small\item\em Ready a P\+R\+NG state to read from. \end{DoxyCompactList}\item 
+unsigned long($\ast$ \mbox{\hyperlink{structltc__prng__descriptor_a81e69a4cdf51dcb2fe8e6c747d8f2ea0}{read}} )(unsigned char $\ast$out, unsigned long outlen, \mbox{\hyperlink{structprng__state}{prng\+\_\+state}} $\ast$prng)
+\begin{DoxyCompactList}\small\item\em Read from the P\+R\+NG. \end{DoxyCompactList}\item 
+int($\ast$ \mbox{\hyperlink{structltc__prng__descriptor_a525c67b6e5d71539a34c94861223ebd1}{done}} )(\mbox{\hyperlink{structprng__state}{prng\+\_\+state}} $\ast$prng)
+\begin{DoxyCompactList}\small\item\em Terminate a P\+R\+NG state. \end{DoxyCompactList}\item 
+int($\ast$ \mbox{\hyperlink{structltc__prng__descriptor_aa156d23f4baa6a992ce17150596c1b57}{pexport}} )(unsigned char $\ast$out, unsigned long $\ast$outlen, \mbox{\hyperlink{structprng__state}{prng\+\_\+state}} $\ast$prng)
+\begin{DoxyCompactList}\small\item\em Export a P\+R\+NG state. \end{DoxyCompactList}\item 
+int($\ast$ \mbox{\hyperlink{structltc__prng__descriptor_aa88bd4aa3ef1edd1907f07dcc547ac4a}{pimport}} )(const unsigned char $\ast$in, unsigned long inlen, \mbox{\hyperlink{structprng__state}{prng\+\_\+state}} $\ast$prng)
+\begin{DoxyCompactList}\small\item\em Import a P\+R\+NG state. \end{DoxyCompactList}\item 
+int($\ast$ \mbox{\hyperlink{structltc__prng__descriptor_aa8a3657bce888625318110283a80c363}{test}} )(void)
+\begin{DoxyCompactList}\small\item\em Self-\/test the P\+R\+NG. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+P\+R\+NG descriptor. 
+
+Definition at line 81 of file tomcrypt\+\_\+prng.\+h.
+
+
+
+\subsection{Field Documentation}
+\mbox{\Hypertarget{structltc__prng__descriptor_acf1a2cad13724ad580a83b8e6d91bcd2}\label{structltc__prng__descriptor_acf1a2cad13724ad580a83b8e6d91bcd2}} 
+\index{ltc\_prng\_descriptor@{ltc\_prng\_descriptor}!add\_entropy@{add\_entropy}}
+\index{add\_entropy@{add\_entropy}!ltc\_prng\_descriptor@{ltc\_prng\_descriptor}}
+\subsubsection{\texorpdfstring{add\_entropy}{add\_entropy}}
+{\footnotesize\ttfamily int($\ast$ ltc\+\_\+prng\+\_\+descriptor\+::add\+\_\+entropy) (const unsigned char $\ast$in, unsigned long inlen, \mbox{\hyperlink{structprng__state}{prng\+\_\+state}} $\ast$prng)}
+
+
+
+Add entropy to the P\+R\+NG. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em in} & The entropy \\
+\hline
+{\em inlen} & Length of the entropy (octets)\textbackslash{} \\
+\hline
+{\em prng} & The P\+R\+NG state \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 97 of file tomcrypt\+\_\+prng.\+h.
+
+
+
+Referenced by rng\+\_\+make\+\_\+prng().
+
+\mbox{\Hypertarget{structltc__prng__descriptor_a525c67b6e5d71539a34c94861223ebd1}\label{structltc__prng__descriptor_a525c67b6e5d71539a34c94861223ebd1}} 
+\index{ltc\_prng\_descriptor@{ltc\_prng\_descriptor}!done@{done}}
+\index{done@{done}!ltc\_prng\_descriptor@{ltc\_prng\_descriptor}}
+\subsubsection{\texorpdfstring{done}{done}}
+{\footnotesize\ttfamily int($\ast$ ltc\+\_\+prng\+\_\+descriptor\+::done) (\mbox{\hyperlink{structprng__state}{prng\+\_\+state}} $\ast$prng)}
+
+
+
+Terminate a P\+R\+NG state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em prng} & The P\+R\+NG state to terminate \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 114 of file tomcrypt\+\_\+prng.\+h.
+
+
+
+Referenced by f9\+\_\+init(), and f9\+\_\+memory().
+
+\mbox{\Hypertarget{structltc__prng__descriptor_a41ef184ab75b213366392faabcde420c}\label{structltc__prng__descriptor_a41ef184ab75b213366392faabcde420c}} 
+\index{ltc\_prng\_descriptor@{ltc\_prng\_descriptor}!export\_size@{export\_size}}
+\index{export\_size@{export\_size}!ltc\_prng\_descriptor@{ltc\_prng\_descriptor}}
+\subsubsection{\texorpdfstring{export\_size}{export\_size}}
+{\footnotesize\ttfamily int ltc\+\_\+prng\+\_\+descriptor\+::export\+\_\+size}
+
+
+
+size in bytes of exported state 
+
+
+
+Definition at line 85 of file tomcrypt\+\_\+prng.\+h.
+
+
+
+Referenced by chacha20\+\_\+prng\+\_\+import(), fortuna\+\_\+import(), rc4\+\_\+import(), rng\+\_\+make\+\_\+prng(), sober128\+\_\+import(), and yarrow\+\_\+import().
+
+\mbox{\Hypertarget{structltc__prng__descriptor_a56124a50c35eebe647ae285e14c0d147}\label{structltc__prng__descriptor_a56124a50c35eebe647ae285e14c0d147}} 
+\index{ltc\_prng\_descriptor@{ltc\_prng\_descriptor}!name@{name}}
+\index{name@{name}!ltc\_prng\_descriptor@{ltc\_prng\_descriptor}}
+\subsubsection{\texorpdfstring{name}{name}}
+{\footnotesize\ttfamily const char$\ast$ ltc\+\_\+prng\+\_\+descriptor\+::name}
+
+
+
+Name of the P\+R\+NG. 
+
+
+
+Definition at line 83 of file tomcrypt\+\_\+prng.\+h.
+
+
+
+Referenced by prng\+\_\+is\+\_\+valid(), register\+\_\+cipher(), register\+\_\+hash(), register\+\_\+prng(), and unregister\+\_\+prng().
+
+\mbox{\Hypertarget{structltc__prng__descriptor_aa156d23f4baa6a992ce17150596c1b57}\label{structltc__prng__descriptor_aa156d23f4baa6a992ce17150596c1b57}} 
+\index{ltc\_prng\_descriptor@{ltc\_prng\_descriptor}!pexport@{pexport}}
+\index{pexport@{pexport}!ltc\_prng\_descriptor@{ltc\_prng\_descriptor}}
+\subsubsection{\texorpdfstring{pexport}{pexport}}
+{\footnotesize\ttfamily int($\ast$ ltc\+\_\+prng\+\_\+descriptor\+::pexport) (unsigned char $\ast$out, unsigned long $\ast$outlen, \mbox{\hyperlink{structprng__state}{prng\+\_\+state}} $\ast$prng)}
+
+
+
+Export a P\+R\+NG state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em out} & \mbox{[}out\mbox{]} The destination for the state \\
+\hline
+{\em outlen} & \mbox{[}in/out\mbox{]} The max size and resulting size of the P\+R\+NG state \\
+\hline
+{\em prng} & The P\+R\+NG to export \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 121 of file tomcrypt\+\_\+prng.\+h.
+
+\mbox{\Hypertarget{structltc__prng__descriptor_aa88bd4aa3ef1edd1907f07dcc547ac4a}\label{structltc__prng__descriptor_aa88bd4aa3ef1edd1907f07dcc547ac4a}} 
+\index{ltc\_prng\_descriptor@{ltc\_prng\_descriptor}!pimport@{pimport}}
+\index{pimport@{pimport}!ltc\_prng\_descriptor@{ltc\_prng\_descriptor}}
+\subsubsection{\texorpdfstring{pimport}{pimport}}
+{\footnotesize\ttfamily int($\ast$ ltc\+\_\+prng\+\_\+descriptor\+::pimport) (const unsigned char $\ast$in, unsigned long inlen, \mbox{\hyperlink{structprng__state}{prng\+\_\+state}} $\ast$prng)}
+
+
+
+Import a P\+R\+NG state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em in} & The data to import \\
+\hline
+{\em inlen} & The length of the data to import (octets) \\
+\hline
+{\em prng} & The P\+R\+NG to initialize/import \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 128 of file tomcrypt\+\_\+prng.\+h.
+
+
+
+Referenced by rng\+\_\+make\+\_\+prng().
+
+\mbox{\Hypertarget{structltc__prng__descriptor_a81e69a4cdf51dcb2fe8e6c747d8f2ea0}\label{structltc__prng__descriptor_a81e69a4cdf51dcb2fe8e6c747d8f2ea0}} 
+\index{ltc\_prng\_descriptor@{ltc\_prng\_descriptor}!read@{read}}
+\index{read@{read}!ltc\_prng\_descriptor@{ltc\_prng\_descriptor}}
+\subsubsection{\texorpdfstring{read}{read}}
+{\footnotesize\ttfamily unsigned long($\ast$ ltc\+\_\+prng\+\_\+descriptor\+::read) (unsigned char $\ast$out, unsigned long outlen, \mbox{\hyperlink{structprng__state}{prng\+\_\+state}} $\ast$prng)}
+
+
+
+Read from the P\+R\+NG. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em out} & \mbox{[}out\mbox{]} Where to store the data \\
+\hline
+{\em outlen} & Length of data desired (octets) \\
+\hline
+{\em prng} & The P\+R\+NG state to read from \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Number of octets read 
+\end{DoxyReturn}
+
+
+Definition at line 109 of file tomcrypt\+\_\+prng.\+h.
+
+\mbox{\Hypertarget{structltc__prng__descriptor_a73162ce704be53c9407ca333ed63d2c0}\label{structltc__prng__descriptor_a73162ce704be53c9407ca333ed63d2c0}} 
+\index{ltc\_prng\_descriptor@{ltc\_prng\_descriptor}!ready@{ready}}
+\index{ready@{ready}!ltc\_prng\_descriptor@{ltc\_prng\_descriptor}}
+\subsubsection{\texorpdfstring{ready}{ready}}
+{\footnotesize\ttfamily int($\ast$ ltc\+\_\+prng\+\_\+descriptor\+::ready) (\mbox{\hyperlink{structprng__state}{prng\+\_\+state}} $\ast$prng)}
+
+
+
+Ready a P\+R\+NG state to read from. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em prng} & The P\+R\+NG state to ready \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 102 of file tomcrypt\+\_\+prng.\+h.
+
+
+
+Referenced by rng\+\_\+make\+\_\+prng().
+
+\mbox{\Hypertarget{structltc__prng__descriptor_a8a5ccd4e0c8f22ff0bd1778c26de8ab3}\label{structltc__prng__descriptor_a8a5ccd4e0c8f22ff0bd1778c26de8ab3}} 
+\index{ltc\_prng\_descriptor@{ltc\_prng\_descriptor}!start@{start}}
+\index{start@{start}!ltc\_prng\_descriptor@{ltc\_prng\_descriptor}}
+\subsubsection{\texorpdfstring{start}{start}}
+{\footnotesize\ttfamily int($\ast$ ltc\+\_\+prng\+\_\+descriptor\+::start) (\mbox{\hyperlink{structprng__state}{prng\+\_\+state}} $\ast$prng)}
+
+
+
+Start a P\+R\+NG state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em prng} & \mbox{[}out\mbox{]} The state to initialize \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 90 of file tomcrypt\+\_\+prng.\+h.
+
+
+
+Referenced by rng\+\_\+make\+\_\+prng().
+
+\mbox{\Hypertarget{structltc__prng__descriptor_aa8a3657bce888625318110283a80c363}\label{structltc__prng__descriptor_aa8a3657bce888625318110283a80c363}} 
+\index{ltc\_prng\_descriptor@{ltc\_prng\_descriptor}!test@{test}}
+\index{test@{test}!ltc\_prng\_descriptor@{ltc\_prng\_descriptor}}
+\subsubsection{\texorpdfstring{test}{test}}
+{\footnotesize\ttfamily int($\ast$ ltc\+\_\+prng\+\_\+descriptor\+::test) (void)}
+
+
+
+Self-\/test the P\+R\+NG. 
+
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful, C\+R\+Y\+P\+T\+\_\+\+N\+OP if self-\/testing has been disabled 
+\end{DoxyReturn}
+
+
+Definition at line 132 of file tomcrypt\+\_\+prng.\+h.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/headers/\mbox{\hyperlink{tomcrypt__prng_8h}{tomcrypt\+\_\+prng.\+h}}\end{DoxyCompactItemize}

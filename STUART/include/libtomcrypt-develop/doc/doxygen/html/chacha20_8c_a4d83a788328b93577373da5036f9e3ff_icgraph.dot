@@ -1,0 +1,10 @@
+digraph "chacha20_prng_ready"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node49 [label="chacha20_prng_ready",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Make the PRNG ready to read from."];
+  Node49 -> Node50 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node50 [label="chacha20_prng_test",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$chacha20_8c.html#a1c178a6f1b7255371d3340913c29b64a",tooltip="PRNG self-test."];
+}

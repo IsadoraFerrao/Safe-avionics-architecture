@@ -1,0 +1,123 @@
+\hypertarget{cbc__encrypt_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/modes/cbc/cbc\+\_\+encrypt.c File Reference}
+\label{cbc__encrypt_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/modes/cbc/cbc\_encrypt.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/modes/cbc/cbc\_encrypt.c}}
+
+
+C\+BC implementation, encrypt block, Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for cbc\+\_\+encrypt.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{cbc__encrypt_8c_a14881cd79d75314385a5c34a6a11e3be}{cbc\+\_\+encrypt}} (const unsigned char $\ast$pt, unsigned char $\ast$ct, unsigned long \mbox{\hyperlink{pmac__init_8c_afed088663f8704004425cdae2120b9b3}{len}}, symmetric\+\_\+\+C\+BC $\ast$cbc)
+\begin{DoxyCompactList}\small\item\em C\+BC encrypt. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+C\+BC implementation, encrypt block, Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{cbc__encrypt_8c_a14881cd79d75314385a5c34a6a11e3be}\label{cbc__encrypt_8c_a14881cd79d75314385a5c34a6a11e3be}} 
+\index{cbc\_encrypt.c@{cbc\_encrypt.c}!cbc\_encrypt@{cbc\_encrypt}}
+\index{cbc\_encrypt@{cbc\_encrypt}!cbc\_encrypt.c@{cbc\_encrypt.c}}
+\subsubsection{\texorpdfstring{cbc\_encrypt()}{cbc\_encrypt()}}
+{\footnotesize\ttfamily int cbc\+\_\+encrypt (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{pt,  }\item[{unsigned char $\ast$}]{ct,  }\item[{unsigned long}]{len,  }\item[{symmetric\+\_\+\+C\+BC $\ast$}]{cbc }\end{DoxyParamCaption})}
+
+
+
+C\+BC encrypt. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pt} & Plaintext \\
+\hline
+{\em ct} & \mbox{[}out\mbox{]} Ciphertext \\
+\hline
+{\em len} & The number of bytes to process (must be multiple of block length) \\
+\hline
+{\em cbc} & C\+BC state \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 27 of file cbc\+\_\+encrypt.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{28 \{}
+\DoxyCodeLine{29    \textcolor{keywordtype}{int} x, err;}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(pt != NULL);}
+\DoxyCodeLine{32    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(ct != NULL);}
+\DoxyCodeLine{33    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(cbc != NULL);}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_ac30eb68934c4ca07205344dc9d159221}{cipher\_is\_valid}}(cbc->cipher)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{36        \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{37    \}}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39    \textcolor{comment}{/* is blocklen valid? */}}
+\DoxyCodeLine{40    \textcolor{keywordflow}{if} (cbc->blocklen < 1 || cbc->blocklen > (\textcolor{keywordtype}{int})\textcolor{keyword}{sizeof}(cbc->IV)) \{}
+\DoxyCodeLine{41       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{42    \}}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44    \textcolor{keywordflow}{if} (\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}} \% cbc->blocklen) \{}
+\DoxyCodeLine{45       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{46    \}}
+\DoxyCodeLine{47 \textcolor{preprocessor}{\#ifdef LTC\_FAST}}
+\DoxyCodeLine{48    \textcolor{keywordflow}{if} (cbc->blocklen \% \textcolor{keyword}{sizeof}(LTC\_FAST\_TYPE)) \{}
+\DoxyCodeLine{49       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{50    \}}
+\DoxyCodeLine{51 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{53    \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[cbc->cipher].\mbox{\hyperlink{structltc__cipher__descriptor_af9a1617014aadff2e5f30e1fb2c06bbd}{accel\_cbc\_encrypt}} != NULL) \{}
+\DoxyCodeLine{54       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[cbc->cipher].\mbox{\hyperlink{structltc__cipher__descriptor_af9a1617014aadff2e5f30e1fb2c06bbd}{accel\_cbc\_encrypt}}(pt, ct, \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}} / cbc->blocklen, cbc->IV, \&cbc->key);}
+\DoxyCodeLine{55    \}}
+\DoxyCodeLine{56    \textcolor{keywordflow}{while} (\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}) \{}
+\DoxyCodeLine{57       \textcolor{comment}{/* xor IV against plaintext */}}
+\DoxyCodeLine{58 \textcolor{preprocessor}{\#if defined(LTC\_FAST)}}
+\DoxyCodeLine{59       \textcolor{keywordflow}{for} (x = 0; x < cbc->blocklen; x += \textcolor{keyword}{sizeof}(LTC\_FAST\_TYPE)) \{}
+\DoxyCodeLine{60          *(LTC\_FAST\_TYPE\_PTR\_CAST((\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *)cbc->IV + x)) \string^= *(LTC\_FAST\_TYPE\_PTR\_CAST((\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *)pt + x));}
+\DoxyCodeLine{61       \}}
+\DoxyCodeLine{62 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{63       \textcolor{keywordflow}{for} (x = 0; x < cbc->blocklen; x++) \{}
+\DoxyCodeLine{64          cbc->IV[x] \string^= pt[x];}
+\DoxyCodeLine{65       \}}
+\DoxyCodeLine{66 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{68       \textcolor{comment}{/* encrypt */}}
+\DoxyCodeLine{69       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[cbc->cipher].\mbox{\hyperlink{structltc__cipher__descriptor_a46141d86abe22a7c8d382c62a894dd63}{ecb\_encrypt}}(cbc->IV, ct, \&cbc->key)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{70          \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{71       \}}
+\DoxyCodeLine{72 }
+\DoxyCodeLine{73       \textcolor{comment}{/* store IV [ciphertext] for a future block */}}
+\DoxyCodeLine{74 \textcolor{preprocessor}{\#if defined(LTC\_FAST)}}
+\DoxyCodeLine{75       \textcolor{keywordflow}{for} (x = 0; x < cbc->blocklen; x += \textcolor{keyword}{sizeof}(LTC\_FAST\_TYPE)) \{}
+\DoxyCodeLine{76          *(LTC\_FAST\_TYPE\_PTR\_CAST((\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *)cbc->IV + x)) = *(LTC\_FAST\_TYPE\_PTR\_CAST((\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *)ct + x));}
+\DoxyCodeLine{77       \}}
+\DoxyCodeLine{78 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{79       \textcolor{keywordflow}{for} (x = 0; x < cbc->blocklen; x++) \{}
+\DoxyCodeLine{80          cbc->IV[x] = ct[x];}
+\DoxyCodeLine{81       \}}
+\DoxyCodeLine{82 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{83 }
+\DoxyCodeLine{84       ct  += cbc->blocklen;}
+\DoxyCodeLine{85       pt  += cbc->blocklen;}
+\DoxyCodeLine{86       \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}} -= cbc->blocklen;}
+\DoxyCodeLine{87    \}}
+\DoxyCodeLine{88    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{89 \}}
+
+\end{DoxyCode}
+
+
+References ltc\+\_\+cipher\+\_\+descriptor\+::accel\+\_\+cbc\+\_\+encrypt, cipher\+\_\+descriptor, cipher\+\_\+is\+\_\+valid(), C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+A\+RG, C\+R\+Y\+P\+T\+\_\+\+OK, ltc\+\_\+cipher\+\_\+descriptor\+::ecb\+\_\+encrypt, len, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+Here is the call graph for this function\+:
+% FIG 1

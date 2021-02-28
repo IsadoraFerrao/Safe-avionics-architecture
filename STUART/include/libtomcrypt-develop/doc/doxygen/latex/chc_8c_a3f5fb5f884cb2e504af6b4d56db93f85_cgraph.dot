@@ -1,0 +1,16 @@
+digraph "chc_register"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node48 [label="chc_register",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Initialize the CHC state with a given cipher."];
+  Node48 -> Node49 [color="midnightblue",fontsize="10",style="solid"];
+  Node49 [label="cipher_is_valid",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cipher_8h.html#ac30eb68934c4ca07205344dc9d159221",tooltip=" "];
+  Node48 -> Node50 [color="midnightblue",fontsize="10",style="solid"];
+  Node50 [label="find_hash",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__hash_8h.html#a1818254b9c8f09047af3b66ea7f5852b",tooltip="Find a registered hash by name."];
+  Node50 -> Node51 [color="midnightblue",fontsize="10",style="solid"];
+  Node51 [label="XSTRCMP",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cfg_8h.html#a5d6e3d69e1d3f54de008b963bba3c6b3",tooltip=" "];
+  Node48 -> Node52 [color="midnightblue",fontsize="10",style="solid"];
+  Node52 [label="hash_is_valid",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__hash_8h.html#a79647f22bf48bfa7de03fe5fc958c846",tooltip=" "];
+}

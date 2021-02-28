@@ -1,0 +1,72 @@
+\hypertarget{pkcs__1__i2osp_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/pk/pkcs1/pkcs\+\_\+1\+\_\+i2osp.c File Reference}
+\label{pkcs__1__i2osp_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/pkcs1/pkcs\_1\_i2osp.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/pkcs1/pkcs\_1\_i2osp.c}}
+
+
+Integer to Octet I2\+O\+SP, Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for pkcs\+\_\+1\+\_\+i2osp.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{pkcs__1__i2osp_8c_a7980b8fdbeaea9f05043d61e7ca019ff}{pkcs\+\_\+1\+\_\+i2osp}} (void $\ast$n, unsigned long modulus\+\_\+len, unsigned char $\ast$out)
+\begin{DoxyCompactList}\small\item\em P\+K\+CS \#1 Integer to binary. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Integer to Octet I2\+O\+SP, Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{pkcs__1__i2osp_8c_a7980b8fdbeaea9f05043d61e7ca019ff}\label{pkcs__1__i2osp_8c_a7980b8fdbeaea9f05043d61e7ca019ff}} 
+\index{pkcs\_1\_i2osp.c@{pkcs\_1\_i2osp.c}!pkcs\_1\_i2osp@{pkcs\_1\_i2osp}}
+\index{pkcs\_1\_i2osp@{pkcs\_1\_i2osp}!pkcs\_1\_i2osp.c@{pkcs\_1\_i2osp.c}}
+\subsubsection{\texorpdfstring{pkcs\_1\_i2osp()}{pkcs\_1\_i2osp()}}
+{\footnotesize\ttfamily int pkcs\+\_\+1\+\_\+i2osp (\begin{DoxyParamCaption}\item[{void $\ast$}]{n,  }\item[{unsigned long}]{modulus\+\_\+len,  }\item[{unsigned char $\ast$}]{out }\end{DoxyParamCaption})}
+
+
+
+P\+K\+CS \#1 Integer to binary. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & The integer to store \\
+\hline
+{\em modulus\+\_\+len} & The length of the R\+SA modulus \\
+\hline
+{\em out} & \mbox{[}out\mbox{]} The destination for the integer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 29 of file pkcs\+\_\+1\+\_\+i2osp.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{30 \{}
+\DoxyCodeLine{31    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} \mbox{\hyperlink{structedge_a64bdc14a16193c014f1ef50be358441d}{size}};}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33    \mbox{\hyperlink{structedge_a64bdc14a16193c014f1ef50be358441d}{size}} = \mbox{\hyperlink{tomcrypt__private_8h_ad301148bb24f43a8c7003a6976dfaa5a}{mp\_unsigned\_bin\_size}}(n);}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35    \textcolor{keywordflow}{if} (\mbox{\hyperlink{structedge_a64bdc14a16193c014f1ef50be358441d}{size}} > modulus\_len) \{}
+\DoxyCodeLine{36       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caccd878f5599f3036ffe759dbe1a1ac16}{CRYPT\_BUFFER\_OVERFLOW}};}
+\DoxyCodeLine{37    \}}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39    \textcolor{comment}{/* store it */}}
+\DoxyCodeLine{40    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(out, modulus\_len);}
+\DoxyCodeLine{41    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt__private_8h_a376a4d31dcfeb65c069db0485b9602f8}{mp\_to\_unsigned\_bin}}(n, out+(modulus\_len-\mbox{\hyperlink{structedge_a64bdc14a16193c014f1ef50be358441d}{size}}));}
+\DoxyCodeLine{42 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+O\+V\+E\+R\+F\+L\+OW, mp\+\_\+to\+\_\+unsigned\+\_\+bin, mp\+\_\+unsigned\+\_\+bin\+\_\+size, and zeromem().
+
+Here is the call graph for this function\+:
+% FIG 1

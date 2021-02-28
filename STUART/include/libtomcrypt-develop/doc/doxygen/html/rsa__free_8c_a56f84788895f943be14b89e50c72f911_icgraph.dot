@@ -1,0 +1,20 @@
+digraph "rsa_free"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node1 [label="rsa_free",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Free an RSA key from memory."];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="rsa_import_pkcs8",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rsa__import__pkcs8_8c.html#a3d44c6233a326316f7fb01c9d834fad4",tooltip="Import an RSAPublicKey or RSAPrivateKey in PKCS#8 format."];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="rsa_import_x509",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rsa__import__x509_8c.html#af7fd232bdc803e8d3f8a109dc171110d",tooltip="Import an RSA key from a X.509 certificate."];
+  Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="rsa_make_key",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rsa__make__key_8c.html#aece58b13922a56a3fbcce677333dad9a",tooltip="Create an RSA key."];
+  Node1 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="rsa_set_crt_params",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rsa__set_8c.html#acb55b3582fdcaeb43635c65afd3c7ad4",tooltip="Import CRT parameters of an RSA key from raw numbers."];
+  Node1 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="rsa_set_factors",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rsa__set_8c.html#a7a9dbdcb3978f1330ee76ffd4629b185",tooltip="Import factors of an RSA key from raw numbers."];
+  Node1 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="rsa_set_key",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rsa__set_8c.html#a340250b927e87e838859da21dca7606d",tooltip="Import RSA key from raw numbers."];
+}

@@ -1,0 +1,174 @@
+\hypertarget{ocb3__add__aad_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/encauth/ocb3/ocb3\+\_\+add\+\_\+aad.c File Reference}
+\label{ocb3__add__aad_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/encauth/ocb3/ocb3\_add\_aad.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/encauth/ocb3/ocb3\_add\_aad.c}}
+
+
+O\+CB implementation, add A\+AD data, by Karel Miko.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for ocb3\+\_\+add\+\_\+aad.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{ocb3__add__aad_8c_ad03a0d62d1bb1257ed7b9c4f0373c028}{\+\_\+ocb3\+\_\+int\+\_\+aad\+\_\+add\+\_\+block}} (ocb3\+\_\+state $\ast$ocb, const unsigned char $\ast$aad\+\_\+block)
+\begin{DoxyCompactList}\small\item\em Add one block of A\+AD data (internal function) \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{ocb3__add__aad_8c_a1fbb605c3849ddbfaa2378d009f34b66}{ocb3\+\_\+add\+\_\+aad}} (ocb3\+\_\+state $\ast$ocb, const unsigned char $\ast$aad, unsigned long aadlen)
+\begin{DoxyCompactList}\small\item\em Add A\+AD -\/ additional associated data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+O\+CB implementation, add A\+AD data, by Karel Miko. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{ocb3__add__aad_8c_ad03a0d62d1bb1257ed7b9c4f0373c028}\label{ocb3__add__aad_8c_ad03a0d62d1bb1257ed7b9c4f0373c028}} 
+\index{ocb3\_add\_aad.c@{ocb3\_add\_aad.c}!\_ocb3\_int\_aad\_add\_block@{\_ocb3\_int\_aad\_add\_block}}
+\index{\_ocb3\_int\_aad\_add\_block@{\_ocb3\_int\_aad\_add\_block}!ocb3\_add\_aad.c@{ocb3\_add\_aad.c}}
+\subsubsection{\texorpdfstring{\_ocb3\_int\_aad\_add\_block()}{\_ocb3\_int\_aad\_add\_block()}}
+{\footnotesize\ttfamily static int \+\_\+ocb3\+\_\+int\+\_\+aad\+\_\+add\+\_\+block (\begin{DoxyParamCaption}\item[{ocb3\+\_\+state $\ast$}]{ocb,  }\item[{const unsigned char $\ast$}]{aad\+\_\+block }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Add one block of A\+AD data (internal function) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ocb} & The O\+CB state \\
+\hline
+{\em aad\+\_\+block} & \mbox{[}in\mbox{]} A\+AD data (block\+\_\+len size) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 24 of file ocb3\+\_\+add\+\_\+aad.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{25 \{}
+\DoxyCodeLine{26    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} tmp[\mbox{\hyperlink{tomcrypt_8h_ab59933beebb2b857c992b93cf53f0d10}{MAXBLOCKSIZE}}];}
+\DoxyCodeLine{27    \textcolor{keywordtype}{int} err;}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29    \textcolor{comment}{/* Offset\_i = Offset\_\{i-1\} xor L\_\{ntz(i)\} */}}
+\DoxyCodeLine{30    \mbox{\hyperlink{ocb3__int__xor__blocks_8c_a5bf6caa4615657cdfd8f8941620a987c}{ocb3\_int\_xor\_blocks}}(ocb->aOffset\_current, ocb->aOffset\_current, ocb->L\_[\mbox{\hyperlink{ocb3__int__ntz_8c_ac4af92f890be670e795a758ec452b402}{ocb3\_int\_ntz}}(ocb->ablock\_index)], ocb->block\_len);}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32    \textcolor{comment}{/* Sum\_i = Sum\_\{i-1\} xor ENCIPHER(K, A\_i xor Offset\_i) */}}
+\DoxyCodeLine{33    \mbox{\hyperlink{ocb3__int__xor__blocks_8c_a5bf6caa4615657cdfd8f8941620a987c}{ocb3\_int\_xor\_blocks}}(tmp, aad\_block, ocb->aOffset\_current, ocb->block\_len);}
+\DoxyCodeLine{34    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[ocb->cipher].\mbox{\hyperlink{structltc__cipher__descriptor_a46141d86abe22a7c8d382c62a894dd63}{ecb\_encrypt}}(tmp, tmp, \&ocb->key)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{35      \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{36    \}}
+\DoxyCodeLine{37    \mbox{\hyperlink{ocb3__int__xor__blocks_8c_a5bf6caa4615657cdfd8f8941620a987c}{ocb3\_int\_xor\_blocks}}(ocb->aSum\_current, ocb->aSum\_current, tmp, ocb->block\_len);}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39    ocb->ablock\_index++;}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{42 \}}
+
+\end{DoxyCode}
+
+
+References cipher\+\_\+descriptor, C\+R\+Y\+P\+T\+\_\+\+OK, ltc\+\_\+cipher\+\_\+descriptor\+::ecb\+\_\+encrypt, M\+A\+X\+B\+L\+O\+C\+K\+S\+I\+ZE, ocb3\+\_\+int\+\_\+ntz(), and ocb3\+\_\+int\+\_\+xor\+\_\+blocks().
+
+
+
+Referenced by ocb3\+\_\+add\+\_\+aad().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2
+\mbox{\Hypertarget{ocb3__add__aad_8c_a1fbb605c3849ddbfaa2378d009f34b66}\label{ocb3__add__aad_8c_a1fbb605c3849ddbfaa2378d009f34b66}} 
+\index{ocb3\_add\_aad.c@{ocb3\_add\_aad.c}!ocb3\_add\_aad@{ocb3\_add\_aad}}
+\index{ocb3\_add\_aad@{ocb3\_add\_aad}!ocb3\_add\_aad.c@{ocb3\_add\_aad.c}}
+\subsubsection{\texorpdfstring{ocb3\_add\_aad()}{ocb3\_add\_aad()}}
+{\footnotesize\ttfamily int ocb3\+\_\+add\+\_\+aad (\begin{DoxyParamCaption}\item[{ocb3\+\_\+state $\ast$}]{ocb,  }\item[{const unsigned char $\ast$}]{aad,  }\item[{unsigned long}]{aadlen }\end{DoxyParamCaption})}
+
+
+
+Add A\+AD -\/ additional associated data. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ocb} & The O\+CB state \\
+\hline
+{\em aad} & The A\+AD data \\
+\hline
+{\em aadlen} & The size of A\+AD data (octets) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 51 of file ocb3\+\_\+add\+\_\+aad.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{52 \{}
+\DoxyCodeLine{53    \textcolor{keywordtype}{int} err, x, full\_blocks, full\_blocks\_len, last\_block\_len;}
+\DoxyCodeLine{54    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *data;}
+\DoxyCodeLine{55    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} datalen, l;}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{57    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(ocb != NULL);}
+\DoxyCodeLine{58    \textcolor{keywordflow}{if} (aadlen == 0) \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{59    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(aad != NULL);}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{61    \textcolor{keywordflow}{if} (ocb->adata\_buffer\_bytes > 0) \{}
+\DoxyCodeLine{62      l = ocb->block\_len - ocb->adata\_buffer\_bytes;}
+\DoxyCodeLine{63      \textcolor{keywordflow}{if} (l > aadlen) l = aadlen;}
+\DoxyCodeLine{64      \mbox{\hyperlink{tomcrypt__cfg_8h_a7691dd48d60d5fc6daf2fa7ec4c55e12}{XMEMCPY}}(ocb->adata\_buffer+ocb->adata\_buffer\_bytes, aad, l);}
+\DoxyCodeLine{65      ocb->adata\_buffer\_bytes += l;}
+\DoxyCodeLine{66 }
+\DoxyCodeLine{67      \textcolor{keywordflow}{if} (ocb->adata\_buffer\_bytes == ocb->block\_len) \{}
+\DoxyCodeLine{68        \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{ocb3__add__aad_8c_ad03a0d62d1bb1257ed7b9c4f0373c028}{\_ocb3\_int\_aad\_add\_block}}(ocb, ocb->adata\_buffer)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{69          \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{70        \}}
+\DoxyCodeLine{71        ocb->adata\_buffer\_bytes = 0;}
+\DoxyCodeLine{72      \}}
+\DoxyCodeLine{73 }
+\DoxyCodeLine{74      data = (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *)aad + l;}
+\DoxyCodeLine{75      datalen = aadlen - l;}
+\DoxyCodeLine{76    \}}
+\DoxyCodeLine{77    \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{78      data = (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *)aad;}
+\DoxyCodeLine{79      datalen = aadlen;}
+\DoxyCodeLine{80    \}}
+\DoxyCodeLine{81 }
+\DoxyCodeLine{82    \textcolor{keywordflow}{if} (datalen == 0) \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{83 }
+\DoxyCodeLine{84    full\_blocks = datalen/ocb->block\_len;}
+\DoxyCodeLine{85    full\_blocks\_len = full\_blocks * ocb->block\_len;}
+\DoxyCodeLine{86    last\_block\_len = datalen - full\_blocks\_len;}
+\DoxyCodeLine{87 }
+\DoxyCodeLine{88    \textcolor{keywordflow}{for} (x=0; x<full\_blocks; x++) \{}
+\DoxyCodeLine{89      \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{ocb3__add__aad_8c_ad03a0d62d1bb1257ed7b9c4f0373c028}{\_ocb3\_int\_aad\_add\_block}}(ocb, data+x*ocb->block\_len)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{90        \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{91      \}}
+\DoxyCodeLine{92    \}}
+\DoxyCodeLine{93 }
+\DoxyCodeLine{94    \textcolor{keywordflow}{if} (last\_block\_len>0) \{}
+\DoxyCodeLine{95      \mbox{\hyperlink{tomcrypt__cfg_8h_a7691dd48d60d5fc6daf2fa7ec4c55e12}{XMEMCPY}}(ocb->adata\_buffer, data+full\_blocks\_len, last\_block\_len);}
+\DoxyCodeLine{96      ocb->adata\_buffer\_bytes = last\_block\_len;}
+\DoxyCodeLine{97    \}}
+\DoxyCodeLine{98 }
+\DoxyCodeLine{99    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{100 \}}
+
+\end{DoxyCode}
+
+
+References \+\_\+ocb3\+\_\+int\+\_\+aad\+\_\+add\+\_\+block(), C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, and X\+M\+E\+M\+C\+P\+Y().
+
+
+
+Referenced by ocb3\+\_\+decrypt\+\_\+verify\+\_\+memory(), ocb3\+\_\+encrypt\+\_\+authenticate\+\_\+memory(), and ocb3\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 3
+Here is the caller graph for this function\+:
+% FIG 4

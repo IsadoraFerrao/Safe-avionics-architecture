@@ -1,0 +1,27 @@
+digraph "error_to_string"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node125 [label="error_to_string",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Convert an LTC error code to ASCII."];
+  Node125 -> Node126 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node126 [label="der_decode_sequence\l_flexi",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$der__decode__sequence__flexi_8c.html#acec68888a6eae3b64f54b37cfb43d9b1",tooltip="ASN.1 DER Flexi(ble) decoder will decode arbitrary DER packets and create a linked list of the decode..."];
+  Node126 -> Node127 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node127 [label="pkcs8_decode_flexi",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$pkcs8__decode__flexi_8c.html#a1b0d8fcf234d94638b2554ccea725003",tooltip="PKCS#8 decrypt if necessary & flexi-decode."];
+  Node127 -> Node128 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node128 [label="ecc_import_pkcs8",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ecc__import__pkcs8_8c.html#a0f0e747f119685eee3cc412f4480c52e",tooltip=" "];
+  Node127 -> Node129 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node129 [label="rsa_import_pkcs8",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rsa__import__pkcs8_8c.html#a3d44c6233a326316f7fb01c9d834fad4",tooltip="Import an RSAPublicKey or RSAPrivateKey in PKCS#8 format."];
+  Node126 -> Node128 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node126 -> Node130 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node130 [label="ecc_import_x509",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ecc__import__x509_8c.html#abd7477bc1144cdfd4f9e2da835eefbf6",tooltip="Import an ECC key from a X.509 certificate."];
+  Node126 -> Node131 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node131 [label="rsa_import_x509",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rsa__import__x509_8c.html#af7fd232bdc803e8d3f8a109dc171110d",tooltip="Import an RSA key from a X.509 certificate."];
+  Node125 -> Node132 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node132 [label="hkdf_test",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$hkdf__test_8c.html#a373d92dae833619c1fccb018f21357dd",tooltip="LTC_HKDF self-test."];
+  Node125 -> Node133 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node133 [label="hmac_test",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$hmac__test_8c.html#af43c4e10ec1984cf428cf69cd3184e53",tooltip="HMAC self-test."];
+  Node125 -> Node134 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node134 [label="pkcs_5_test",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$pkcs__5__test_8c.html#a1a78c0bca3595115dd9272c2026b607e",tooltip="PKCS #5 self-test."];
+}

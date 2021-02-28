@@ -1,0 +1,10 @@
+digraph "ltc_ecc_projective_dbl_point"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node4 [label="ltc_ecc_projective\l_dbl_point",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Double an ECC point."];
+  Node4 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="ltc_ecc_projective\l_add_point",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ltc__ecc__projective__add__point_8c.html#a16f3ff8dd19aa2ccc2aab4024927bc93",tooltip="Add two ECC points."];
+}

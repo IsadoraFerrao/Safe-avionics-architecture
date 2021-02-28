@@ -1,0 +1,147 @@
+\hypertarget{ocb3__encrypt__last_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/encauth/ocb3/ocb3\+\_\+encrypt\+\_\+last.c File Reference}
+\label{ocb3__encrypt__last_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/encauth/ocb3/ocb3\_encrypt\_last.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/encauth/ocb3/ocb3\_encrypt\_last.c}}
+
+
+O\+CB implementation, internal helper, by Karel Miko.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for ocb3\+\_\+encrypt\+\_\+last.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{ocb3__encrypt__last_8c_a7059d3b0e1618f0f4dd88b6314830ba6}{ocb3\+\_\+encrypt\+\_\+last}} (ocb3\+\_\+state $\ast$ocb, const unsigned char $\ast$pt, unsigned long ptlen, unsigned char $\ast$ct)
+\begin{DoxyCompactList}\small\item\em Finish an O\+CB (encryption) stream. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+O\+CB implementation, internal helper, by Karel Miko. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{ocb3__encrypt__last_8c_a7059d3b0e1618f0f4dd88b6314830ba6}\label{ocb3__encrypt__last_8c_a7059d3b0e1618f0f4dd88b6314830ba6}} 
+\index{ocb3\_encrypt\_last.c@{ocb3\_encrypt\_last.c}!ocb3\_encrypt\_last@{ocb3\_encrypt\_last}}
+\index{ocb3\_encrypt\_last@{ocb3\_encrypt\_last}!ocb3\_encrypt\_last.c@{ocb3\_encrypt\_last.c}}
+\subsubsection{\texorpdfstring{ocb3\_encrypt\_last()}{ocb3\_encrypt\_last()}}
+{\footnotesize\ttfamily int ocb3\+\_\+encrypt\+\_\+last (\begin{DoxyParamCaption}\item[{ocb3\+\_\+state $\ast$}]{ocb,  }\item[{const unsigned char $\ast$}]{pt,  }\item[{unsigned long}]{ptlen,  }\item[{unsigned char $\ast$}]{ct }\end{DoxyParamCaption})}
+
+
+
+Finish an O\+CB (encryption) stream. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ocb} & The O\+CB state \\
+\hline
+{\em pt} & The remaining plaintext \\
+\hline
+{\em ptlen} & The length of the plaintext (octets) \\
+\hline
+{\em ct} & \mbox{[}out\mbox{]} The output buffer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 26 of file ocb3\+\_\+encrypt\+\_\+last.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{27 \{}
+\DoxyCodeLine{28    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} iOffset\_star[\mbox{\hyperlink{tomcrypt_8h_ab59933beebb2b857c992b93cf53f0d10}{MAXBLOCKSIZE}}];}
+\DoxyCodeLine{29    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} iPad[\mbox{\hyperlink{tomcrypt_8h_ab59933beebb2b857c992b93cf53f0d10}{MAXBLOCKSIZE}}];}
+\DoxyCodeLine{30    \textcolor{keywordtype}{int} err, x, full\_blocks, full\_blocks\_len, last\_block\_len;}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(ocb != NULL);}
+\DoxyCodeLine{33    \textcolor{keywordflow}{if} (pt == NULL) \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(ptlen == 0);}
+\DoxyCodeLine{34    \textcolor{keywordflow}{if} (ptlen != 0) \{}
+\DoxyCodeLine{35       \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(pt    != NULL);}
+\DoxyCodeLine{36       \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(ct    != NULL);}
+\DoxyCodeLine{37    \}}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_ac30eb68934c4ca07205344dc9d159221}{cipher\_is\_valid}}(ocb->cipher)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{40       \textcolor{keywordflow}{goto} LBL\_ERR;}
+\DoxyCodeLine{41    \}}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{43    full\_blocks = ptlen/ocb->block\_len;}
+\DoxyCodeLine{44    full\_blocks\_len = full\_blocks * ocb->block\_len;}
+\DoxyCodeLine{45    last\_block\_len = ptlen - full\_blocks\_len;}
+\DoxyCodeLine{46 }
+\DoxyCodeLine{47    \textcolor{comment}{/* process full blocks first */}}
+\DoxyCodeLine{48    \textcolor{keywordflow}{if} (full\_blocks>0) \{}
+\DoxyCodeLine{49      \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{ocb3__encrypt_8c_a0e9e87fe853d64959bd70533d1952bfa}{ocb3\_encrypt}}(ocb, pt, full\_blocks\_len, ct)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{50        \textcolor{keywordflow}{goto} LBL\_ERR;}
+\DoxyCodeLine{51      \}}
+\DoxyCodeLine{52    \}}
+\DoxyCodeLine{53 }
+\DoxyCodeLine{54    \textcolor{comment}{/* at this point: m = ocb->block\_index (last block index), Offset\_m = ocb->Offset\_current */}}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{56    \textcolor{keywordflow}{if} (last\_block\_len>0) \{}
+\DoxyCodeLine{57      \textcolor{comment}{/* Offset\_* = Offset\_m xor L\_* */}}
+\DoxyCodeLine{58      \mbox{\hyperlink{ocb3__int__xor__blocks_8c_a5bf6caa4615657cdfd8f8941620a987c}{ocb3\_int\_xor\_blocks}}(iOffset\_star, ocb->Offset\_current, ocb->L\_star, ocb->block\_len);}
+\DoxyCodeLine{59 }
+\DoxyCodeLine{60      \textcolor{comment}{/* Pad = ENCIPHER(K, Offset\_*) */}}
+\DoxyCodeLine{61      \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[ocb->cipher].\mbox{\hyperlink{structltc__cipher__descriptor_a46141d86abe22a7c8d382c62a894dd63}{ecb\_encrypt}}(iOffset\_star, iPad, \&ocb->key)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{62        \textcolor{keywordflow}{goto} LBL\_ERR;}
+\DoxyCodeLine{63      \}}
+\DoxyCodeLine{64 }
+\DoxyCodeLine{65      \textcolor{comment}{/* C\_* = P\_* xor Pad[1..bitlen(P\_*)] */}}
+\DoxyCodeLine{66      \mbox{\hyperlink{ocb3__int__xor__blocks_8c_a5bf6caa4615657cdfd8f8941620a987c}{ocb3\_int\_xor\_blocks}}(ct+full\_blocks\_len, pt+full\_blocks\_len, iPad, last\_block\_len);}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{68      \textcolor{comment}{/* Checksum\_* = Checksum\_m xor (P\_* || 1 || zeros(127-bitlen(P\_*))) */}}
+\DoxyCodeLine{69      \mbox{\hyperlink{ocb3__int__xor__blocks_8c_a5bf6caa4615657cdfd8f8941620a987c}{ocb3\_int\_xor\_blocks}}(ocb->checksum, ocb->checksum, pt+full\_blocks\_len, last\_block\_len);}
+\DoxyCodeLine{70      \textcolor{keywordflow}{for}(x=last\_block\_len; x<ocb->block\_len; x++) \{}
+\DoxyCodeLine{71        \textcolor{keywordflow}{if} (x == last\_block\_len) \{}
+\DoxyCodeLine{72          ocb->checksum[x] \string^= 0x80;}
+\DoxyCodeLine{73        \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{74          ocb->checksum[x] \string^= 0x00;}
+\DoxyCodeLine{75        \}}
+\DoxyCodeLine{76      \}}
+\DoxyCodeLine{77 }
+\DoxyCodeLine{78      \textcolor{comment}{/* Tag = ENCIPHER(K, Checksum\_* xor Offset\_* xor L\_\$) xor HASH(K,A) */}}
+\DoxyCodeLine{79      \textcolor{comment}{/* at this point we calculate only: Tag\_part = ENCIPHER(K, Checksum\_* xor Offset\_* xor L\_\$) */}}
+\DoxyCodeLine{80      \textcolor{keywordflow}{for}(x=0; x<ocb->block\_len; x++) \{}
+\DoxyCodeLine{81        ocb->tag\_part[x] = (ocb->checksum[x] \string^ iOffset\_star[x]) \string^ ocb->L\_dollar[x];}
+\DoxyCodeLine{82      \}}
+\DoxyCodeLine{83      \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[ocb->cipher].\mbox{\hyperlink{structltc__cipher__descriptor_a46141d86abe22a7c8d382c62a894dd63}{ecb\_encrypt}}(ocb->tag\_part, ocb->tag\_part, \&ocb->key)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{84        \textcolor{keywordflow}{goto} LBL\_ERR;}
+\DoxyCodeLine{85      \}}
+\DoxyCodeLine{86    \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{87      \textcolor{comment}{/* Tag = ENCIPHER(K, Checksum\_m xor Offset\_m xor L\_\$) xor HASH(K,A) */}}
+\DoxyCodeLine{88      \textcolor{comment}{/* at this point we calculate only: Tag\_part = ENCIPHER(K, Checksum\_m xor Offset\_m xor L\_\$) */}}
+\DoxyCodeLine{89      \textcolor{keywordflow}{for}(x=0; x<ocb->block\_len; x++) \{}
+\DoxyCodeLine{90        ocb->tag\_part[x] = (ocb->checksum[x] \string^ ocb->Offset\_current[x]) \string^ ocb->L\_dollar[x];}
+\DoxyCodeLine{91      \}}
+\DoxyCodeLine{92      \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[ocb->cipher].\mbox{\hyperlink{structltc__cipher__descriptor_a46141d86abe22a7c8d382c62a894dd63}{ecb\_encrypt}}(ocb->tag\_part, ocb->tag\_part, \&ocb->key)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{93        \textcolor{keywordflow}{goto} LBL\_ERR;}
+\DoxyCodeLine{94      \}}
+\DoxyCodeLine{95    \}}
+\DoxyCodeLine{96 }
+\DoxyCodeLine{97    err = \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{98 }
+\DoxyCodeLine{99 LBL\_ERR:}
+\DoxyCodeLine{100 \textcolor{preprocessor}{\#ifdef LTC\_CLEAN\_STACK}}
+\DoxyCodeLine{101    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(iOffset\_star, \mbox{\hyperlink{tomcrypt_8h_ab59933beebb2b857c992b93cf53f0d10}{MAXBLOCKSIZE}});}
+\DoxyCodeLine{102    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(iPad, \mbox{\hyperlink{tomcrypt_8h_ab59933beebb2b857c992b93cf53f0d10}{MAXBLOCKSIZE}});}
+\DoxyCodeLine{103 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{104 }
+\DoxyCodeLine{105    \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{106 \}}
+
+\end{DoxyCode}
+
+
+References cipher\+\_\+descriptor, cipher\+\_\+is\+\_\+valid(), C\+R\+Y\+P\+T\+\_\+\+OK, ltc\+\_\+cipher\+\_\+descriptor\+::ecb\+\_\+encrypt, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, M\+A\+X\+B\+L\+O\+C\+K\+S\+I\+ZE, ocb3\+\_\+encrypt(), ocb3\+\_\+int\+\_\+xor\+\_\+blocks(), and zeromem().
+
+
+
+Referenced by ocb3\+\_\+encrypt\+\_\+authenticate\+\_\+memory(), and ocb3\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2

@@ -1,0 +1,21 @@
+digraph "kseed_test"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node15 [label="kseed_test",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Performs a self-test of the SEED block cipher."];
+  Node15 -> Node16 [color="midnightblue",fontsize="10",style="solid"];
+  Node16 [label="compare_testvector",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__misc_8h.html#a7764a7f27897c6182335752df00b5f8e",tooltip="Compare two test-vectors."];
+  Node16 -> Node17 [color="midnightblue",fontsize="10",style="solid"];
+  Node17 [label="XMEMCMP",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cfg_8h.html#a372b974ec0ac07abcd55297554fe540f",tooltip=" "];
+  Node15 -> Node18 [color="midnightblue",fontsize="10",style="solid"];
+  Node18 [label="kseed_ecb_decrypt",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$kseed_8c.html#a80835f0c80afe2c000faab4743e7ed51",tooltip="Decrypts a block of text with SEED."];
+  Node18 -> Node19 [color="midnightblue",fontsize="10",style="solid"];
+  Node19 [label="rounds",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$kseed_8c.html#a51da46362a22c8107683876e9c12ec82",tooltip=" "];
+  Node15 -> Node20 [color="midnightblue",fontsize="10",style="solid"];
+  Node20 [label="kseed_ecb_encrypt",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$kseed_8c.html#ac81961e6d45f7a12086f62b67b0f95d9",tooltip="Encrypts a block of text with SEED."];
+  Node20 -> Node19 [color="midnightblue",fontsize="10",style="solid"];
+  Node15 -> Node21 [color="midnightblue",fontsize="10",style="solid"];
+  Node21 [label="kseed_setup",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$kseed_8c.html#aef4ec3be5d026f20fba47f2626f8eebd",tooltip="Initialize the SEED block cipher."];
+}

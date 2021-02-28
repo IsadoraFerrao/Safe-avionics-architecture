@@ -1,0 +1,23 @@
+digraph "register_all_hashes"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node139 [label="register_all_hashes",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node139 -> Node140 [color="midnightblue",fontsize="10",style="solid"];
+  Node140 [label="chc_register",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$chc_8c.html#a3f5fb5f884cb2e504af6b4d56db93f85",tooltip="Initialize the CHC state with a given cipher."];
+  Node140 -> Node141 [color="midnightblue",fontsize="10",style="solid"];
+  Node141 [label="cipher_is_valid",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cipher_8h.html#ac30eb68934c4ca07205344dc9d159221",tooltip=" "];
+  Node140 -> Node142 [color="midnightblue",fontsize="10",style="solid"];
+  Node142 [label="find_hash",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__hash_8h.html#a1818254b9c8f09047af3b66ea7f5852b",tooltip="Find a registered hash by name."];
+  Node142 -> Node143 [color="midnightblue",fontsize="10",style="solid"];
+  Node143 [label="XSTRCMP",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cfg_8h.html#a5d6e3d69e1d3f54de008b963bba3c6b3",tooltip=" "];
+  Node140 -> Node144 [color="midnightblue",fontsize="10",style="solid"];
+  Node144 [label="hash_is_valid",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__hash_8h.html#a79647f22bf48bfa7de03fe5fc958c846",tooltip=" "];
+  Node139 -> Node145 [color="midnightblue",fontsize="10",style="solid"];
+  Node145 [label="find_cipher_any",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cipher_8h.html#a292925e244bbb7c919aa60eedcba5bf6",tooltip="Find a cipher flexibly."];
+  Node145 -> Node146 [color="midnightblue",fontsize="10",style="solid"];
+  Node146 [label="find_cipher",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cipher_8h.html#af5c3882342fd65a17239cd04bfdf44e2",tooltip="Find a registered cipher by name."];
+  Node146 -> Node143 [color="midnightblue",fontsize="10",style="solid"];
+}

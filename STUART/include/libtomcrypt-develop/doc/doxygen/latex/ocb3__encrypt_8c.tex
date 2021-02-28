@@ -1,0 +1,121 @@
+\hypertarget{ocb3__encrypt_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/encauth/ocb3/ocb3\+\_\+encrypt.c File Reference}
+\label{ocb3__encrypt_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/encauth/ocb3/ocb3\_encrypt.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/encauth/ocb3/ocb3\_encrypt.c}}
+
+
+O\+CB implementation, encrypt data, by Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for ocb3\+\_\+encrypt.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{ocb3__encrypt_8c_a0e9e87fe853d64959bd70533d1952bfa}{ocb3\+\_\+encrypt}} (ocb3\+\_\+state $\ast$ocb, const unsigned char $\ast$pt, unsigned long ptlen, unsigned char $\ast$ct)
+\begin{DoxyCompactList}\small\item\em Encrypt blocks of data with O\+CB. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+O\+CB implementation, encrypt data, by Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{ocb3__encrypt_8c_a0e9e87fe853d64959bd70533d1952bfa}\label{ocb3__encrypt_8c_a0e9e87fe853d64959bd70533d1952bfa}} 
+\index{ocb3\_encrypt.c@{ocb3\_encrypt.c}!ocb3\_encrypt@{ocb3\_encrypt}}
+\index{ocb3\_encrypt@{ocb3\_encrypt}!ocb3\_encrypt.c@{ocb3\_encrypt.c}}
+\subsubsection{\texorpdfstring{ocb3\_encrypt()}{ocb3\_encrypt()}}
+{\footnotesize\ttfamily int ocb3\+\_\+encrypt (\begin{DoxyParamCaption}\item[{ocb3\+\_\+state $\ast$}]{ocb,  }\item[{const unsigned char $\ast$}]{pt,  }\item[{unsigned long}]{ptlen,  }\item[{unsigned char $\ast$}]{ct }\end{DoxyParamCaption})}
+
+
+
+Encrypt blocks of data with O\+CB. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ocb} & The O\+CB state \\
+\hline
+{\em pt} & The plaintext (length multiple of the block size of the block cipher) \\
+\hline
+{\em ptlen} & The length of the input (octets) \\
+\hline
+{\em ct} & \mbox{[}out\mbox{]} The ciphertext (same size as the pt) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 26 of file ocb3\+\_\+encrypt.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{27 \{}
+\DoxyCodeLine{28    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} tmp[\mbox{\hyperlink{tomcrypt_8h_ab59933beebb2b857c992b93cf53f0d10}{MAXBLOCKSIZE}}];}
+\DoxyCodeLine{29    \textcolor{keywordtype}{int} err, i, full\_blocks;}
+\DoxyCodeLine{30    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *pt\_b, *ct\_b;}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(ocb != NULL);}
+\DoxyCodeLine{33    \textcolor{keywordflow}{if} (ptlen == 0) \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}; \textcolor{comment}{/* no data, nothing to do */}}
+\DoxyCodeLine{34    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(pt != NULL);}
+\DoxyCodeLine{35    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(ct != NULL);}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_ac30eb68934c4ca07205344dc9d159221}{cipher\_is\_valid}}(ocb->cipher)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{38       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{39    \}}
+\DoxyCodeLine{40    \textcolor{keywordflow}{if} (ocb->block\_len != \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[ocb->cipher].\mbox{\hyperlink{structltc__cipher__descriptor_afa2af7325fd3a834910dd92e8c9acf49}{block\_length}}) \{}
+\DoxyCodeLine{41       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{42    \}}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44    \textcolor{keywordflow}{if} (ptlen \% ocb->block\_len) \{ \textcolor{comment}{/* ptlen has to bu multiple of block\_len */}}
+\DoxyCodeLine{45       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{46    \}}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48    full\_blocks = ptlen/ocb->block\_len;}
+\DoxyCodeLine{49    \textcolor{keywordflow}{for}(i=0; i<full\_blocks; i++) \{}
+\DoxyCodeLine{50      pt\_b = (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *)pt+i*ocb->block\_len;}
+\DoxyCodeLine{51      ct\_b = (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *)ct+i*ocb->block\_len;}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{53      \textcolor{comment}{/* ocb->Offset\_current[] = ocb->Offset\_current[] \string^ Offset\_\{ntz(block\_index)\} */}}
+\DoxyCodeLine{54      \mbox{\hyperlink{ocb3__int__xor__blocks_8c_a5bf6caa4615657cdfd8f8941620a987c}{ocb3\_int\_xor\_blocks}}(ocb->Offset\_current, ocb->Offset\_current, ocb->L\_[\mbox{\hyperlink{ocb3__int__ntz_8c_ac4af92f890be670e795a758ec452b402}{ocb3\_int\_ntz}}(ocb->block\_index)], ocb->block\_len);}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{56      \textcolor{comment}{/* tmp[] = pt[] XOR ocb->Offset\_current[] */}}
+\DoxyCodeLine{57      \mbox{\hyperlink{ocb3__int__xor__blocks_8c_a5bf6caa4615657cdfd8f8941620a987c}{ocb3\_int\_xor\_blocks}}(tmp, pt\_b, ocb->Offset\_current, ocb->block\_len);}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{59      \textcolor{comment}{/* encrypt */}}
+\DoxyCodeLine{60      \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[ocb->cipher].\mbox{\hyperlink{structltc__cipher__descriptor_a46141d86abe22a7c8d382c62a894dd63}{ecb\_encrypt}}(tmp, tmp, \&ocb->key)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{61         \textcolor{keywordflow}{goto} LBL\_ERR;}
+\DoxyCodeLine{62      \}}
+\DoxyCodeLine{63 }
+\DoxyCodeLine{64      \textcolor{comment}{/* ct[] = tmp[] XOR ocb->Offset\_current[] */}}
+\DoxyCodeLine{65      \mbox{\hyperlink{ocb3__int__xor__blocks_8c_a5bf6caa4615657cdfd8f8941620a987c}{ocb3\_int\_xor\_blocks}}(ct\_b, tmp, ocb->Offset\_current, ocb->block\_len);}
+\DoxyCodeLine{66 }
+\DoxyCodeLine{67      \textcolor{comment}{/* ocb->checksum[] = ocb->checksum[] XOR pt[] */}}
+\DoxyCodeLine{68      \mbox{\hyperlink{ocb3__int__xor__blocks_8c_a5bf6caa4615657cdfd8f8941620a987c}{ocb3\_int\_xor\_blocks}}(ocb->checksum, ocb->checksum, pt\_b, ocb->block\_len);}
+\DoxyCodeLine{69 }
+\DoxyCodeLine{70      ocb->block\_index++;}
+\DoxyCodeLine{71    \}}
+\DoxyCodeLine{72 }
+\DoxyCodeLine{73    err = \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{74 }
+\DoxyCodeLine{75 LBL\_ERR:}
+\DoxyCodeLine{76 \textcolor{preprocessor}{\#ifdef LTC\_CLEAN\_STACK}}
+\DoxyCodeLine{77    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(tmp, \textcolor{keyword}{sizeof}(tmp));}
+\DoxyCodeLine{78 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{79    \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{80 \}}
+
+\end{DoxyCode}
+
+
+References ltc\+\_\+cipher\+\_\+descriptor\+::block\+\_\+length, cipher\+\_\+descriptor, cipher\+\_\+is\+\_\+valid(), C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+A\+RG, C\+R\+Y\+P\+T\+\_\+\+OK, ltc\+\_\+cipher\+\_\+descriptor\+::ecb\+\_\+encrypt, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, M\+A\+X\+B\+L\+O\+C\+K\+S\+I\+ZE, ocb3\+\_\+int\+\_\+ntz(), ocb3\+\_\+int\+\_\+xor\+\_\+blocks(), and zeromem().
+
+
+
+Referenced by ocb3\+\_\+encrypt\+\_\+last(), and ocb3\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2

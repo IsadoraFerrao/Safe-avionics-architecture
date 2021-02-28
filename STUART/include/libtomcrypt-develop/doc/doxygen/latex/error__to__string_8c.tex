@@ -1,0 +1,87 @@
+\hypertarget{error__to__string_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/misc/error\+\_\+to\+\_\+string.c File Reference}
+\label{error__to__string_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/misc/error\_to\_string.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/misc/error\_to\_string.c}}
+
+
+Convert error codes to A\+S\+C\+II strings, Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for error\+\_\+to\+\_\+string.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+const char $\ast$ \mbox{\hyperlink{error__to__string_8c_a3bd8fe097a1951bd18d73b2231c7f700}{error\+\_\+to\+\_\+string}} (int err)
+\begin{DoxyCompactList}\small\item\em Convert an L\+TC error code to A\+S\+C\+II. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static const char $\ast$const \mbox{\hyperlink{error__to__string_8c_acd01160e3166c4b2bc08ec8ea8cd61a2}{err\+\_\+2\+\_\+str}} \mbox{[}$\,$\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Convert error codes to A\+S\+C\+II strings, Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{error__to__string_8c_a3bd8fe097a1951bd18d73b2231c7f700}\label{error__to__string_8c_a3bd8fe097a1951bd18d73b2231c7f700}} 
+\index{error\_to\_string.c@{error\_to\_string.c}!error\_to\_string@{error\_to\_string}}
+\index{error\_to\_string@{error\_to\_string}!error\_to\_string.c@{error\_to\_string.c}}
+\subsubsection{\texorpdfstring{error\_to\_string()}{error\_to\_string()}}
+{\footnotesize\ttfamily const char$\ast$ error\+\_\+to\+\_\+string (\begin{DoxyParamCaption}\item[{int}]{err }\end{DoxyParamCaption})}
+
+
+
+Convert an L\+TC error code to A\+S\+C\+II. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em err} & The error code \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the A\+S\+C\+II N\+UL terminated string for the error or \char`\"{}\+Invalid error code.\char`\"{} if the err code was not valid. 
+\end{DoxyReturn}
+
+
+Definition at line 67 of file error\+\_\+to\+\_\+string.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{68 \{}
+\DoxyCodeLine{69    \textcolor{keywordflow}{if} (err < 0 || err >= (\textcolor{keywordtype}{int})(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{error__to__string_8c_acd01160e3166c4b2bc08ec8ea8cd61a2}{err\_2\_str}})/\textcolor{keyword}{sizeof}(\mbox{\hyperlink{error__to__string_8c_acd01160e3166c4b2bc08ec8ea8cd61a2}{err\_2\_str}}[0]))) \{}
+\DoxyCodeLine{70       \textcolor{keywordflow}{return} \textcolor{stringliteral}{"Invalid error code."};}
+\DoxyCodeLine{71    \}}
+\DoxyCodeLine{72    \textcolor{keywordflow}{return} \mbox{\hyperlink{error__to__string_8c_acd01160e3166c4b2bc08ec8ea8cd61a2}{err\_2\_str}}[err];}
+\DoxyCodeLine{73 \}}
+
+\end{DoxyCode}
+
+
+References err\+\_\+2\+\_\+str.
+
+
+
+Referenced by der\+\_\+decode\+\_\+sequence\+\_\+flexi(), hkdf\+\_\+test(), hmac\+\_\+test(), and pkcs\+\_\+5\+\_\+test().
+
+Here is the caller graph for this function\+:
+% FIG 1
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{error__to__string_8c_acd01160e3166c4b2bc08ec8ea8cd61a2}\label{error__to__string_8c_acd01160e3166c4b2bc08ec8ea8cd61a2}} 
+\index{error\_to\_string.c@{error\_to\_string.c}!err\_2\_str@{err\_2\_str}}
+\index{err\_2\_str@{err\_2\_str}!error\_to\_string.c@{error\_to\_string.c}}
+\subsubsection{\texorpdfstring{err\_2\_str}{err\_2\_str}}
+{\footnotesize\ttfamily const char$\ast$ const err\+\_\+2\+\_\+str\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 17 of file error\+\_\+to\+\_\+string.\+c.
+
+
+
+Referenced by error\+\_\+to\+\_\+string().
+

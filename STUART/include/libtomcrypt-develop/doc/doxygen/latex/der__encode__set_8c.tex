@@ -1,0 +1,147 @@
+\hypertarget{der__encode__set_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/pk/asn1/der/set/der\+\_\+encode\+\_\+set.c File Reference}
+\label{der__encode__set_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/asn1/der/set/der\_encode\_set.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/asn1/der/set/der\_encode\_set.c}}
+
+
+A\+S\+N.\+1 D\+ER, Encode a S\+ET, Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for der\+\_\+encode\+\_\+set.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{der__encode__set_8c_a33f717f0a1fe1dc1be597b9c3dbc09bb}{\+\_\+ltc\+\_\+to\+\_\+asn1}} (ltc\+\_\+asn1\+\_\+type v)
+\item 
+static int \mbox{\hyperlink{der__encode__set_8c_a343e2cf2b34f7d54860f6e7c4e6fef61}{\+\_\+qsort\+\_\+helper}} (const void $\ast$a, const void $\ast$b)
+\item 
+int \mbox{\hyperlink{der__encode__set_8c_a4aa04a42171146d2f510e41b84dd72f1}{der\+\_\+encode\+\_\+set}} (const ltc\+\_\+asn1\+\_\+list $\ast$list, unsigned long inlen, unsigned char $\ast$out, unsigned long $\ast$outlen)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A\+S\+N.\+1 D\+ER, Encode a S\+ET, Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{der__encode__set_8c_a33f717f0a1fe1dc1be597b9c3dbc09bb}\label{der__encode__set_8c_a33f717f0a1fe1dc1be597b9c3dbc09bb}} 
+\index{der\_encode\_set.c@{der\_encode\_set.c}!\_ltc\_to\_asn1@{\_ltc\_to\_asn1}}
+\index{\_ltc\_to\_asn1@{\_ltc\_to\_asn1}!der\_encode\_set.c@{der\_encode\_set.c}}
+\subsubsection{\texorpdfstring{\_ltc\_to\_asn1()}{\_ltc\_to\_asn1()}}
+{\footnotesize\ttfamily static int \+\_\+ltc\+\_\+to\+\_\+asn1 (\begin{DoxyParamCaption}\item[{ltc\+\_\+asn1\+\_\+type}]{v }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 19 of file der\+\_\+encode\+\_\+set.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{20 \{}
+\DoxyCodeLine{21    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt__private_8h_a6306ca88074facac89ee0f6c04cbf2f2}{der\_asn1\_type\_to\_identifier\_map}}[v];}
+\DoxyCodeLine{22 \}}
+
+\end{DoxyCode}
+
+
+References der\+\_\+asn1\+\_\+type\+\_\+to\+\_\+identifier\+\_\+map.
+
+
+
+Referenced by \+\_\+qsort\+\_\+helper().
+
+Here is the caller graph for this function\+:
+% FIG 1
+\mbox{\Hypertarget{der__encode__set_8c_a343e2cf2b34f7d54860f6e7c4e6fef61}\label{der__encode__set_8c_a343e2cf2b34f7d54860f6e7c4e6fef61}} 
+\index{der\_encode\_set.c@{der\_encode\_set.c}!\_qsort\_helper@{\_qsort\_helper}}
+\index{\_qsort\_helper@{\_qsort\_helper}!der\_encode\_set.c@{der\_encode\_set.c}}
+\subsubsection{\texorpdfstring{\_qsort\_helper()}{\_qsort\_helper()}}
+{\footnotesize\ttfamily static int \+\_\+qsort\+\_\+helper (\begin{DoxyParamCaption}\item[{const void $\ast$}]{a,  }\item[{const void $\ast$}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 25 of file der\+\_\+encode\+\_\+set.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{26 \{}
+\DoxyCodeLine{27    ltc\_asn1\_list *A = (ltc\_asn1\_list *)a, *B = (ltc\_asn1\_list *)b;}
+\DoxyCodeLine{28    \textcolor{keywordtype}{int}            r;}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30    r = \mbox{\hyperlink{der__encode__set_8c_a33f717f0a1fe1dc1be597b9c3dbc09bb}{\_ltc\_to\_asn1}}(A->type) - \mbox{\hyperlink{der__encode__set_8c_a33f717f0a1fe1dc1be597b9c3dbc09bb}{\_ltc\_to\_asn1}}(B->type);}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32    \textcolor{comment}{/* for QSORT the order is UNDEFINED if they are "equal" which means it is NOT DETERMINISTIC.  So we force it to be :-) */}}
+\DoxyCodeLine{33    \textcolor{keywordflow}{if} (r == 0) \{}
+\DoxyCodeLine{34       \textcolor{comment}{/* their order in the original list now determines the position */}}
+\DoxyCodeLine{35       \textcolor{keywordflow}{return} A->used - B->used;}
+\DoxyCodeLine{36    \}}
+\DoxyCodeLine{37    \textcolor{keywordflow}{return} r;}
+\DoxyCodeLine{38 \}}
+
+\end{DoxyCode}
+
+
+References \+\_\+ltc\+\_\+to\+\_\+asn1().
+
+
+
+Referenced by der\+\_\+encode\+\_\+set().
+
+Here is the call graph for this function\+:
+% FIG 2
+Here is the caller graph for this function\+:
+% FIG 3
+\mbox{\Hypertarget{der__encode__set_8c_a4aa04a42171146d2f510e41b84dd72f1}\label{der__encode__set_8c_a4aa04a42171146d2f510e41b84dd72f1}} 
+\index{der\_encode\_set.c@{der\_encode\_set.c}!der\_encode\_set@{der\_encode\_set}}
+\index{der\_encode\_set@{der\_encode\_set}!der\_encode\_set.c@{der\_encode\_set.c}}
+\subsubsection{\texorpdfstring{der\_encode\_set()}{der\_encode\_set()}}
+{\footnotesize\ttfamily int der\+\_\+encode\+\_\+set (\begin{DoxyParamCaption}\item[{const ltc\+\_\+asn1\+\_\+list $\ast$}]{list,  }\item[{unsigned long}]{inlen,  }\item[{unsigned char $\ast$}]{out,  }\item[{unsigned long $\ast$}]{outlen }\end{DoxyParamCaption})}
+
+
+
+Definition at line 48 of file der\+\_\+encode\+\_\+set.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{50 \{}
+\DoxyCodeLine{51    ltc\_asn1\_list  *\mbox{\hyperlink{gmp__desc_8c_ad88f68a4e6f0c7334e93eebf7ddbb2d3}{copy}};}
+\DoxyCodeLine{52    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long}   x;}
+\DoxyCodeLine{53    \textcolor{keywordtype}{int}             err;}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55    \textcolor{comment}{/* make copy of list */}}
+\DoxyCodeLine{56    \mbox{\hyperlink{gmp__desc_8c_ad88f68a4e6f0c7334e93eebf7ddbb2d3}{copy}} = \mbox{\hyperlink{tomcrypt__cfg_8h_a151dda14cd7acae31eaf1102b0cc0685}{XCALLOC}}(inlen, \textcolor{keyword}{sizeof}(*\mbox{\hyperlink{gmp__desc_8c_ad88f68a4e6f0c7334e93eebf7ddbb2d3}{copy}}));}
+\DoxyCodeLine{57    \textcolor{keywordflow}{if} (\mbox{\hyperlink{gmp__desc_8c_ad88f68a4e6f0c7334e93eebf7ddbb2d3}{copy}} == NULL) \{}
+\DoxyCodeLine{58       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca0ce0d27adc7ea10b74b7ea904b8bfa82}{CRYPT\_MEM}};}
+\DoxyCodeLine{59    \}}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{61    \textcolor{comment}{/* fill in used member with index so we can fully sort it */}}
+\DoxyCodeLine{62    \textcolor{keywordflow}{for} (x = 0; x < inlen; x++) \{}
+\DoxyCodeLine{63        \mbox{\hyperlink{gmp__desc_8c_ad88f68a4e6f0c7334e93eebf7ddbb2d3}{copy}}[x]      = list[x];}
+\DoxyCodeLine{64        \mbox{\hyperlink{gmp__desc_8c_ad88f68a4e6f0c7334e93eebf7ddbb2d3}{copy}}[x].used = x;}
+\DoxyCodeLine{65    \}}
+\DoxyCodeLine{66 }
+\DoxyCodeLine{67    \textcolor{comment}{/* sort it by the "type" field */}}
+\DoxyCodeLine{68    \mbox{\hyperlink{tomcrypt__cfg_8h_aceefd8dacef70eb3f302b8df2da8aec9}{XQSORT}}(\mbox{\hyperlink{gmp__desc_8c_ad88f68a4e6f0c7334e93eebf7ddbb2d3}{copy}}, inlen, \textcolor{keyword}{sizeof}(*\mbox{\hyperlink{gmp__desc_8c_ad88f68a4e6f0c7334e93eebf7ddbb2d3}{copy}}), \&\mbox{\hyperlink{der__encode__set_8c_a343e2cf2b34f7d54860f6e7c4e6fef61}{\_qsort\_helper}});}
+\DoxyCodeLine{69 }
+\DoxyCodeLine{70    \textcolor{comment}{/* call der\_encode\_sequence\_ex() */}}
+\DoxyCodeLine{71    err = \mbox{\hyperlink{der__encode__sequence__ex_8c_af435bfc378dd9f42af2a211c0fe1aced}{der\_encode\_sequence\_ex}}(\mbox{\hyperlink{gmp__desc_8c_ad88f68a4e6f0c7334e93eebf7ddbb2d3}{copy}}, inlen, out, outlen, LTC\_ASN1\_SET);}
+\DoxyCodeLine{72 }
+\DoxyCodeLine{73    \textcolor{comment}{/* free list */}}
+\DoxyCodeLine{74    \mbox{\hyperlink{tomcrypt__cfg_8h_a260d66fc0690e0502cf3bfe7b5244b75}{XFREE}}(\mbox{\hyperlink{gmp__desc_8c_ad88f68a4e6f0c7334e93eebf7ddbb2d3}{copy}});}
+\DoxyCodeLine{75 }
+\DoxyCodeLine{76    \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{77 \}}
+
+\end{DoxyCode}
+
+
+References \+\_\+qsort\+\_\+helper(), copy(), C\+R\+Y\+P\+T\+\_\+\+M\+EM, der\+\_\+encode\+\_\+sequence\+\_\+ex(), X\+C\+A\+L\+L\+O\+C(), X\+F\+R\+E\+E(), and X\+Q\+S\+O\+R\+T().
+
+
+
+Referenced by der\+\_\+encode\+\_\+custom\+\_\+type(), and der\+\_\+encode\+\_\+sequence\+\_\+ex().
+
+Here is the call graph for this function\+:
+% FIG 4
+Here is the caller graph for this function\+:
+% FIG 5

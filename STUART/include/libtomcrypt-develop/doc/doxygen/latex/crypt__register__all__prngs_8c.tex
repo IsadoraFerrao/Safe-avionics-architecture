@@ -1,0 +1,88 @@
+\hypertarget{crypt__register__all__prngs_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/misc/crypt/crypt\+\_\+register\+\_\+all\+\_\+prngs.c File Reference}
+\label{crypt__register__all__prngs_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/misc/crypt/crypt\_register\_all\_prngs.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/misc/crypt/crypt\_register\_all\_prngs.c}}
+
+
+Steffen Jaeckel.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for crypt\+\_\+register\+\_\+all\+\_\+prngs.\+c\+:
+% FIG 0
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{crypt__register__all__prngs_8c_a4bbbe9f0557235896b121872e1a7d0e8}{R\+E\+G\+I\+S\+T\+E\+R\+\_\+\+P\+R\+NG}}(h)
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{crypt__register__all__prngs_8c_add92eee71e65b8a649c5ff9817c5ad95}{register\+\_\+all\+\_\+prngs}} (void)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Steffen Jaeckel. 
+
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{crypt__register__all__prngs_8c_a4bbbe9f0557235896b121872e1a7d0e8}\label{crypt__register__all__prngs_8c_a4bbbe9f0557235896b121872e1a7d0e8}} 
+\index{crypt\_register\_all\_prngs.c@{crypt\_register\_all\_prngs.c}!REGISTER\_PRNG@{REGISTER\_PRNG}}
+\index{REGISTER\_PRNG@{REGISTER\_PRNG}!crypt\_register\_all\_prngs.c@{crypt\_register\_all\_prngs.c}}
+\subsubsection{\texorpdfstring{REGISTER\_PRNG}{REGISTER\_PRNG}}
+{\footnotesize\ttfamily \#define R\+E\+G\+I\+S\+T\+E\+R\+\_\+\+P\+R\+NG(\begin{DoxyParamCaption}\item[{}]{h }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{\(\backslash\)}
+\DoxyCodeLine{   LTC\_ARGCHK(\mbox{\hyperlink{tomcrypt__prng_8h_a075b0025b7c09b69bb5cb1b9ff32dfee}{register\_prng}}(h) != -1); \(\backslash\)}
+\DoxyCodeLine{\} \textcolor{keywordflow}{while}(0)}
+
+\end{DoxyCode}
+
+
+Definition at line 18 of file crypt\+\_\+register\+\_\+all\+\_\+prngs.\+c.
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{crypt__register__all__prngs_8c_add92eee71e65b8a649c5ff9817c5ad95}\label{crypt__register__all__prngs_8c_add92eee71e65b8a649c5ff9817c5ad95}} 
+\index{crypt\_register\_all\_prngs.c@{crypt\_register\_all\_prngs.c}!register\_all\_prngs@{register\_all\_prngs}}
+\index{register\_all\_prngs@{register\_all\_prngs}!crypt\_register\_all\_prngs.c@{crypt\_register\_all\_prngs.c}}
+\subsubsection{\texorpdfstring{register\_all\_prngs()}{register\_all\_prngs()}}
+{\footnotesize\ttfamily int register\+\_\+all\+\_\+prngs (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 22 of file crypt\+\_\+register\+\_\+all\+\_\+prngs.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{23 \{}
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#ifdef LTC\_YARROW}}
+\DoxyCodeLine{25    \mbox{\hyperlink{crypt__register__all__prngs_8c_a4bbbe9f0557235896b121872e1a7d0e8}{REGISTER\_PRNG}}(\&\mbox{\hyperlink{yarrow_8c_a565c22c2b2e0b2fbbbbfeccedabc7bfc}{yarrow\_desc}});}
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#ifdef LTC\_FORTUNA}}
+\DoxyCodeLine{28    \mbox{\hyperlink{crypt__register__all__prngs_8c_a4bbbe9f0557235896b121872e1a7d0e8}{REGISTER\_PRNG}}(\&\mbox{\hyperlink{fortuna_8c_a58d667818369213be05a67ff635ebb78}{fortuna\_desc}});}
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{30 \textcolor{preprocessor}{\#ifdef LTC\_RC4}}
+\DoxyCodeLine{31    \mbox{\hyperlink{crypt__register__all__prngs_8c_a4bbbe9f0557235896b121872e1a7d0e8}{REGISTER\_PRNG}}(\&\mbox{\hyperlink{rc4_8c_af600b7283289a2db35dd33c40ca97552}{rc4\_desc}});}
+\DoxyCodeLine{32 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{33 \textcolor{preprocessor}{\#ifdef LTC\_CHACHA20\_PRNG}}
+\DoxyCodeLine{34    \mbox{\hyperlink{crypt__register__all__prngs_8c_a4bbbe9f0557235896b121872e1a7d0e8}{REGISTER\_PRNG}}(\&\mbox{\hyperlink{chacha20_8c_a379b46b2ee8c713bed1a63d68bf0086c}{chacha20\_prng\_desc}});}
+\DoxyCodeLine{35 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{36 \textcolor{preprocessor}{\#ifdef LTC\_SOBER128}}
+\DoxyCodeLine{37    \mbox{\hyperlink{crypt__register__all__prngs_8c_a4bbbe9f0557235896b121872e1a7d0e8}{REGISTER\_PRNG}}(\&\mbox{\hyperlink{sober128_8c_acf82d6da430aca8ad53806c4a90a8fff}{sober128\_desc}});}
+\DoxyCodeLine{38 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{39 \textcolor{preprocessor}{\#ifdef LTC\_SPRNG}}
+\DoxyCodeLine{40    \mbox{\hyperlink{crypt__register__all__prngs_8c_a4bbbe9f0557235896b121872e1a7d0e8}{REGISTER\_PRNG}}(\&\mbox{\hyperlink{sprng_8c_a77e92e9c355edf3bb0998501b23c08d5}{sprng\_desc}});}
+\DoxyCodeLine{41 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{43    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{44 \}}
+
+\end{DoxyCode}
+
+
+References chacha20\+\_\+prng\+\_\+desc, C\+R\+Y\+P\+T\+\_\+\+OK, fortuna\+\_\+desc, rc4\+\_\+desc, R\+E\+G\+I\+S\+T\+E\+R\+\_\+\+P\+R\+NG, sober128\+\_\+desc, sprng\+\_\+desc, and yarrow\+\_\+desc.
+

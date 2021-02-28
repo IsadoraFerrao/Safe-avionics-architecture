@@ -1,0 +1,74 @@
+\hypertarget{rabbit__memory_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/stream/rabbit/rabbit\+\_\+memory.c File Reference}
+\label{rabbit__memory_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/stream/rabbit/rabbit\_memory.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/stream/rabbit/rabbit\_memory.c}}
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for rabbit\+\_\+memory.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{rabbit__memory_8c_a10314f2825525c0c69881907d65ab91b}{rabbit\+\_\+memory}} (const unsigned char $\ast$key, unsigned long keylen, const unsigned char $\ast$iv, unsigned long ivlen, const unsigned char $\ast$datain, unsigned long datalen, unsigned char $\ast$dataout)
+\begin{DoxyCompactList}\small\item\em Encrypt (or decrypt) bytes of ciphertext (or plaintext) with Rabbit. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{rabbit__memory_8c_a10314f2825525c0c69881907d65ab91b}\label{rabbit__memory_8c_a10314f2825525c0c69881907d65ab91b}} 
+\index{rabbit\_memory.c@{rabbit\_memory.c}!rabbit\_memory@{rabbit\_memory}}
+\index{rabbit\_memory@{rabbit\_memory}!rabbit\_memory.c@{rabbit\_memory.c}}
+\subsubsection{\texorpdfstring{rabbit\_memory()}{rabbit\_memory()}}
+{\footnotesize\ttfamily int rabbit\+\_\+memory (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{key,  }\item[{unsigned long}]{keylen,  }\item[{const unsigned char $\ast$}]{iv,  }\item[{unsigned long}]{ivlen,  }\item[{const unsigned char $\ast$}]{datain,  }\item[{unsigned long}]{datalen,  }\item[{unsigned char $\ast$}]{dataout }\end{DoxyParamCaption})}
+
+
+
+Encrypt (or decrypt) bytes of ciphertext (or plaintext) with Rabbit. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The key \\
+\hline
+{\em keylen} & The key length \\
+\hline
+{\em iv} & The initial vector \\
+\hline
+{\em ivlen} & The initial vector length \\
+\hline
+{\em datain} & The plaintext (or ciphertext) \\
+\hline
+{\em datalen} & The length of the input and output (octets) \\
+\hline
+{\em dataout} & \mbox{[}out\mbox{]} The ciphertext (or plaintext) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 30 of file rabbit\+\_\+memory.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{34 \{}
+\DoxyCodeLine{35    rabbit\_state st;}
+\DoxyCodeLine{36    \textcolor{keywordtype}{int} err;}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{38    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{rabbit_8c_ac522e3bb890d2fe32276a4a596371461}{rabbit\_setup}}(\&st, key, keylen)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \textcolor{keywordflow}{goto} WIPE\_KEY;}
+\DoxyCodeLine{39    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{rabbit_8c_ac6f6bf7b05fa527a8fed39dcae781cec}{rabbit\_setiv}}(\&st, iv, ivlen))   != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \textcolor{keywordflow}{goto} WIPE\_KEY;}
+\DoxyCodeLine{40    err = \mbox{\hyperlink{rabbit_8c_a5391d40531a20557491ef7d58fb93cda}{rabbit\_crypt}}(\&st, datain, datalen, dataout);}
+\DoxyCodeLine{41 WIPE\_KEY:}
+\DoxyCodeLine{42    \mbox{\hyperlink{rabbit_8c_a931b3a1f3f35366a90bc7c7b994cac92}{rabbit\_done}}(\&st);}
+\DoxyCodeLine{43    \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{44 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, rabbit\+\_\+crypt(), rabbit\+\_\+done(), rabbit\+\_\+setiv(), and rabbit\+\_\+setup().
+
+
+
+Referenced by rabbit\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2

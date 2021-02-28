@@ -1,0 +1,82 @@
+\hypertarget{eax__encrypt_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/encauth/eax/eax\+\_\+encrypt.c File Reference}
+\label{eax__encrypt_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/encauth/eax/eax\_encrypt.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/encauth/eax/eax\_encrypt.c}}
+
+
+E\+AX implementation, encrypt block by Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for eax\+\_\+encrypt.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{eax__encrypt_8c_a4c2033e156115547075152c7a45c2957}{eax\+\_\+encrypt}} (eax\+\_\+state $\ast$eax, const unsigned char $\ast$pt, unsigned char $\ast$ct, unsigned long length)
+\begin{DoxyCompactList}\small\item\em Encrypt with E\+AX a block of data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+E\+AX implementation, encrypt block by Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{eax__encrypt_8c_a4c2033e156115547075152c7a45c2957}\label{eax__encrypt_8c_a4c2033e156115547075152c7a45c2957}} 
+\index{eax\_encrypt.c@{eax\_encrypt.c}!eax\_encrypt@{eax\_encrypt}}
+\index{eax\_encrypt@{eax\_encrypt}!eax\_encrypt.c@{eax\_encrypt.c}}
+\subsubsection{\texorpdfstring{eax\_encrypt()}{eax\_encrypt()}}
+{\footnotesize\ttfamily int eax\+\_\+encrypt (\begin{DoxyParamCaption}\item[{eax\+\_\+state $\ast$}]{eax,  }\item[{const unsigned char $\ast$}]{pt,  }\item[{unsigned char $\ast$}]{ct,  }\item[{unsigned long}]{length }\end{DoxyParamCaption})}
+
+
+
+Encrypt with E\+AX a block of data. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em eax} & The E\+AX state \\
+\hline
+{\em pt} & The plaintext to encrypt \\
+\hline
+{\em ct} & \mbox{[}out\mbox{]} The ciphertext as encrypted \\
+\hline
+{\em length} & The length of the plaintext (octets) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 26 of file eax\+\_\+encrypt.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{28 \{}
+\DoxyCodeLine{29    \textcolor{keywordtype}{int} err;}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(eax != NULL);}
+\DoxyCodeLine{32    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(pt  != NULL);}
+\DoxyCodeLine{33    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(ct  != NULL);}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35    \textcolor{comment}{/* encrypt */}}
+\DoxyCodeLine{36    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{ctr__encrypt_8c_af42c91e4fb7f9aa679399e44e632ae44}{ctr\_encrypt}}(pt, ct, length, \&eax->ctr)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{37       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{38    \}}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{40    \textcolor{comment}{/* omac ciphertext */}}
+\DoxyCodeLine{41    \textcolor{keywordflow}{return} \mbox{\hyperlink{omac__process_8c_a7d42bf0deb0f7dbdd1637c3f7c21f93e}{omac\_process}}(\&eax->ctomac, ct, length);}
+\DoxyCodeLine{42 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, ctr\+\_\+encrypt(), L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, and omac\+\_\+process().
+
+
+
+Referenced by eax\+\_\+encrypt\+\_\+authenticate\+\_\+memory().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2

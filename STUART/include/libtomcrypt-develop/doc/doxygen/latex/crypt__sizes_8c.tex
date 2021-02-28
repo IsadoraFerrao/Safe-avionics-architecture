@@ -1,0 +1,169 @@
+\hypertarget{crypt__sizes_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/misc/crypt/crypt\+\_\+sizes.c File Reference}
+\label{crypt__sizes_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/misc/crypt/crypt\_sizes.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/misc/crypt/crypt\_sizes.c}}
+
+
+Make various struct sizes available to dynamic languages like Python -\/ Larry Bugbee, February 2013.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for crypt\+\_\+sizes.\+c\+:
+% FIG 0
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structcrypt__size}{crypt\+\_\+size}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{crypt__sizes_8c_ac1ffe4235364de09159cf5f1d82e7162}{\+\_\+\+S\+Z\+\_\+\+S\+T\+R\+I\+N\+G\+I\+F\+Y\+\_\+S}}(s)~\{ \#s, sizeof(struct s) \}
+\item 
+\#define \mbox{\hyperlink{crypt__sizes_8c_aaf5162118d8845ae139d89057afcb06a}{\+\_\+\+S\+Z\+\_\+\+S\+T\+R\+I\+N\+G\+I\+F\+Y\+\_\+T}}(s)~\{ \#s, sizeof(s) \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{crypt__sizes_8c_ae318059936467e1cf6aef3dba84f89a5}{crypt\+\_\+get\+\_\+size}} (const char $\ast$namein, unsigned int $\ast$sizeout)
+\item 
+int \mbox{\hyperlink{crypt__sizes_8c_a6852c0b0d7d4e23f4a8b2ccf0c682904}{crypt\+\_\+list\+\_\+all\+\_\+sizes}} (char $\ast$names\+\_\+list, unsigned int $\ast$names\+\_\+list\+\_\+size)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static const \mbox{\hyperlink{structcrypt__size}{crypt\+\_\+size}} \mbox{\hyperlink{crypt__sizes_8c_ac850bd1a39b65c5e1900cbbf08131f8e}{\+\_\+crypt\+\_\+sizes}} \mbox{[}$\,$\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Make various struct sizes available to dynamic languages like Python -\/ Larry Bugbee, February 2013. 
+
+LB -\/ Dec 2013 -\/ revised to include compiler define options 
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{crypt__sizes_8c_ac1ffe4235364de09159cf5f1d82e7162}\label{crypt__sizes_8c_ac1ffe4235364de09159cf5f1d82e7162}} 
+\index{crypt\_sizes.c@{crypt\_sizes.c}!\_SZ\_STRINGIFY\_S@{\_SZ\_STRINGIFY\_S}}
+\index{\_SZ\_STRINGIFY\_S@{\_SZ\_STRINGIFY\_S}!crypt\_sizes.c@{crypt\_sizes.c}}
+\subsubsection{\texorpdfstring{\_SZ\_STRINGIFY\_S}{\_SZ\_STRINGIFY\_S}}
+{\footnotesize\ttfamily \#define \+\_\+\+S\+Z\+\_\+\+S\+T\+R\+I\+N\+G\+I\+F\+Y\+\_\+S(\begin{DoxyParamCaption}\item[{}]{s }\end{DoxyParamCaption})~\{ \#s, sizeof(struct s) \}}
+
+
+
+Definition at line 26 of file crypt\+\_\+sizes.\+c.
+
+\mbox{\Hypertarget{crypt__sizes_8c_aaf5162118d8845ae139d89057afcb06a}\label{crypt__sizes_8c_aaf5162118d8845ae139d89057afcb06a}} 
+\index{crypt\_sizes.c@{crypt\_sizes.c}!\_SZ\_STRINGIFY\_T@{\_SZ\_STRINGIFY\_T}}
+\index{\_SZ\_STRINGIFY\_T@{\_SZ\_STRINGIFY\_T}!crypt\_sizes.c@{crypt\_sizes.c}}
+\subsubsection{\texorpdfstring{\_SZ\_STRINGIFY\_T}{\_SZ\_STRINGIFY\_T}}
+{\footnotesize\ttfamily \#define \+\_\+\+S\+Z\+\_\+\+S\+T\+R\+I\+N\+G\+I\+F\+Y\+\_\+T(\begin{DoxyParamCaption}\item[{}]{s }\end{DoxyParamCaption})~\{ \#s, sizeof(s) \}}
+
+
+
+Definition at line 27 of file crypt\+\_\+sizes.\+c.
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{crypt__sizes_8c_ae318059936467e1cf6aef3dba84f89a5}\label{crypt__sizes_8c_ae318059936467e1cf6aef3dba84f89a5}} 
+\index{crypt\_sizes.c@{crypt\_sizes.c}!crypt\_get\_size@{crypt\_get\_size}}
+\index{crypt\_get\_size@{crypt\_get\_size}!crypt\_sizes.c@{crypt\_sizes.c}}
+\subsubsection{\texorpdfstring{crypt\_get\_size()}{crypt\_get\_size()}}
+{\footnotesize\ttfamily int crypt\+\_\+get\+\_\+size (\begin{DoxyParamCaption}\item[{const char $\ast$}]{namein,  }\item[{unsigned int $\ast$}]{sizeout }\end{DoxyParamCaption})}
+
+
+
+Definition at line 297 of file crypt\+\_\+sizes.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{297                                                               \{}
+\DoxyCodeLine{298     \textcolor{keywordtype}{int} i;}
+\DoxyCodeLine{299     \textcolor{keywordtype}{int} count = \textcolor{keyword}{sizeof}(\mbox{\hyperlink{crypt__sizes_8c_ac850bd1a39b65c5e1900cbbf08131f8e}{\_crypt\_sizes}}) / \textcolor{keyword}{sizeof}(\mbox{\hyperlink{crypt__sizes_8c_ac850bd1a39b65c5e1900cbbf08131f8e}{\_crypt\_sizes}}[0]);}
+\DoxyCodeLine{300     \textcolor{keywordflow}{for} (i=0; i<count; i++) \{}
+\DoxyCodeLine{301         \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__cfg_8h_a5d6e3d69e1d3f54de008b963bba3c6b3}{XSTRCMP}}(\mbox{\hyperlink{crypt__sizes_8c_ac850bd1a39b65c5e1900cbbf08131f8e}{\_crypt\_sizes}}[i].name, namein) == 0) \{}
+\DoxyCodeLine{302             *sizeout = \mbox{\hyperlink{crypt__sizes_8c_ac850bd1a39b65c5e1900cbbf08131f8e}{\_crypt\_sizes}}[i].\mbox{\hyperlink{structcrypt__size_ab128ec1834486827ef888f52cb06abb6}{size}};}
+\DoxyCodeLine{303             \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{304         \}}
+\DoxyCodeLine{305     \}}
+\DoxyCodeLine{306     \textcolor{keywordflow}{return} -1;}
+\DoxyCodeLine{307 \}}
+
+\end{DoxyCode}
+
+
+References \+\_\+crypt\+\_\+sizes, crypt\+\_\+size\+::size, and X\+S\+T\+R\+C\+M\+P().
+
+Here is the call graph for this function\+:
+% FIG 1
+\mbox{\Hypertarget{crypt__sizes_8c_a6852c0b0d7d4e23f4a8b2ccf0c682904}\label{crypt__sizes_8c_a6852c0b0d7d4e23f4a8b2ccf0c682904}} 
+\index{crypt\_sizes.c@{crypt\_sizes.c}!crypt\_list\_all\_sizes@{crypt\_list\_all\_sizes}}
+\index{crypt\_list\_all\_sizes@{crypt\_list\_all\_sizes}!crypt\_sizes.c@{crypt\_sizes.c}}
+\subsubsection{\texorpdfstring{crypt\_list\_all\_sizes()}{crypt\_list\_all\_sizes()}}
+{\footnotesize\ttfamily int crypt\+\_\+list\+\_\+all\+\_\+sizes (\begin{DoxyParamCaption}\item[{char $\ast$}]{names\+\_\+list,  }\item[{unsigned int $\ast$}]{names\+\_\+list\+\_\+size }\end{DoxyParamCaption})}
+
+
+
+Definition at line 319 of file crypt\+\_\+sizes.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{319                                                                           \{}
+\DoxyCodeLine{320     \textcolor{keywordtype}{int} i;}
+\DoxyCodeLine{321     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} total\_len = 0;}
+\DoxyCodeLine{322     \textcolor{keywordtype}{char} *ptr;}
+\DoxyCodeLine{323     \textcolor{keywordtype}{int} number\_len;}
+\DoxyCodeLine{324     \textcolor{keywordtype}{int} count = \textcolor{keyword}{sizeof}(\mbox{\hyperlink{crypt__sizes_8c_ac850bd1a39b65c5e1900cbbf08131f8e}{\_crypt\_sizes}}) / \textcolor{keyword}{sizeof}(\mbox{\hyperlink{crypt__sizes_8c_ac850bd1a39b65c5e1900cbbf08131f8e}{\_crypt\_sizes}}[0]);}
+\DoxyCodeLine{325 }
+\DoxyCodeLine{326     \textcolor{comment}{/* calculate amount of memory required for the list */}}
+\DoxyCodeLine{327     \textcolor{keywordflow}{for} (i=0; i<count; i++) \{}
+\DoxyCodeLine{328         number\_len = snprintf(NULL, 0, \textcolor{stringliteral}{"\%s,\%u\(\backslash\)n"}, \mbox{\hyperlink{crypt__sizes_8c_ac850bd1a39b65c5e1900cbbf08131f8e}{\_crypt\_sizes}}[i].name, \mbox{\hyperlink{crypt__sizes_8c_ac850bd1a39b65c5e1900cbbf08131f8e}{\_crypt\_sizes}}[i].size);}
+\DoxyCodeLine{329         \textcolor{keywordflow}{if} (number\_len < 0) \{}
+\DoxyCodeLine{330           \textcolor{keywordflow}{return} -1;}
+\DoxyCodeLine{331         \}}
+\DoxyCodeLine{332         total\_len += number\_len;}
+\DoxyCodeLine{333         \textcolor{comment}{/* this last +1 is for newlines (and ending NULL) */}}
+\DoxyCodeLine{334     \}}
+\DoxyCodeLine{335 }
+\DoxyCodeLine{336     \textcolor{keywordflow}{if} (names\_list == NULL) \{}
+\DoxyCodeLine{337         *names\_list\_size = total\_len;}
+\DoxyCodeLine{338     \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{339         \textcolor{keywordflow}{if} (total\_len > *names\_list\_size) \{}
+\DoxyCodeLine{340             \textcolor{keywordflow}{return} -1;}
+\DoxyCodeLine{341         \}}
+\DoxyCodeLine{342         \textcolor{comment}{/* build the names list */}}
+\DoxyCodeLine{343         ptr = names\_list;}
+\DoxyCodeLine{344         \textcolor{keywordflow}{for} (i=0; i<count; i++) \{}
+\DoxyCodeLine{345             number\_len = snprintf(ptr, total\_len, \textcolor{stringliteral}{"\%s,\%u\(\backslash\)n"}, \mbox{\hyperlink{crypt__sizes_8c_ac850bd1a39b65c5e1900cbbf08131f8e}{\_crypt\_sizes}}[i].name, \mbox{\hyperlink{crypt__sizes_8c_ac850bd1a39b65c5e1900cbbf08131f8e}{\_crypt\_sizes}}[i].size);}
+\DoxyCodeLine{346             \textcolor{keywordflow}{if} (number\_len < 0) \textcolor{keywordflow}{return} -1;}
+\DoxyCodeLine{347             \textcolor{keywordflow}{if} ((\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int})number\_len > total\_len) \textcolor{keywordflow}{return} -1;}
+\DoxyCodeLine{348             total\_len -= number\_len;}
+\DoxyCodeLine{349             ptr += number\_len;}
+\DoxyCodeLine{350         \}}
+\DoxyCodeLine{351         \textcolor{comment}{/* to remove the trailing new-line */}}
+\DoxyCodeLine{352         ptr -= 1;}
+\DoxyCodeLine{353         *ptr = 0;}
+\DoxyCodeLine{354     \}}
+\DoxyCodeLine{355     \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{356 \}}
+
+\end{DoxyCode}
+
+
+References \+\_\+crypt\+\_\+sizes.
+
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{crypt__sizes_8c_ac850bd1a39b65c5e1900cbbf08131f8e}\label{crypt__sizes_8c_ac850bd1a39b65c5e1900cbbf08131f8e}} 
+\index{crypt\_sizes.c@{crypt\_sizes.c}!\_crypt\_sizes@{\_crypt\_sizes}}
+\index{\_crypt\_sizes@{\_crypt\_sizes}!crypt\_sizes.c@{crypt\_sizes.c}}
+\subsubsection{\texorpdfstring{\_crypt\_sizes}{\_crypt\_sizes}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{structcrypt__size}{crypt\+\_\+size}} \+\_\+crypt\+\_\+sizes\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 29 of file crypt\+\_\+sizes.\+c.
+
+
+
+Referenced by crypt\+\_\+get\+\_\+size(), and crypt\+\_\+list\+\_\+all\+\_\+sizes().
+

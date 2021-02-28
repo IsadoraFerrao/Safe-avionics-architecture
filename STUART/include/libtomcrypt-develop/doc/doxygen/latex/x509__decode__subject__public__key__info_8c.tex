@@ -1,0 +1,150 @@
+\hypertarget{x509__decode__subject__public__key__info_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/pk/asn1/x509/x509\+\_\+decode\+\_\+subject\+\_\+public\+\_\+key\+\_\+info.c File Reference}
+\label{x509__decode__subject__public__key__info_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/asn1/x509/x509\_decode\_subject\_public\_key\_info.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/asn1/x509/x509\_decode\_subject\_public\_key\_info.c}}
+
+
+A\+S\+N.\+1 D\+E\+R/\+X.\+509, encode a Subject\+Public\+Key\+Info structure --nmav.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for x509\+\_\+decode\+\_\+subject\+\_\+public\+\_\+key\+\_\+info.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{x509__decode__subject__public__key__info_8c_aec241d5f502a71d5a72188a42d6be5f0}{x509\+\_\+decode\+\_\+subject\+\_\+public\+\_\+key\+\_\+info}} (const unsigned char $\ast$in, unsigned long inlen, unsigned int algorithm, void $\ast$public\+\_\+key, unsigned long $\ast$public\+\_\+key\+\_\+len, ltc\+\_\+asn1\+\_\+type parameters\+\_\+type, ltc\+\_\+asn1\+\_\+list $\ast$parameters, unsigned long $\ast$parameters\+\_\+len)
+\begin{DoxyCompactList}\small\item\em Decode a Subject\+Public\+Key\+Info. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A\+S\+N.\+1 D\+E\+R/\+X.\+509, encode a Subject\+Public\+Key\+Info structure --nmav. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{x509__decode__subject__public__key__info_8c_aec241d5f502a71d5a72188a42d6be5f0}\label{x509__decode__subject__public__key__info_8c_aec241d5f502a71d5a72188a42d6be5f0}} 
+\index{x509\_decode\_subject\_public\_key\_info.c@{x509\_decode\_subject\_public\_key\_info.c}!x509\_decode\_subject\_public\_key\_info@{x509\_decode\_subject\_public\_key\_info}}
+\index{x509\_decode\_subject\_public\_key\_info@{x509\_decode\_subject\_public\_key\_info}!x509\_decode\_subject\_public\_key\_info.c@{x509\_decode\_subject\_public\_key\_info.c}}
+\subsubsection{\texorpdfstring{x509\_decode\_subject\_public\_key\_info()}{x509\_decode\_subject\_public\_key\_info()}}
+{\footnotesize\ttfamily int x509\+\_\+decode\+\_\+subject\+\_\+public\+\_\+key\+\_\+info (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{in,  }\item[{unsigned long}]{inlen,  }\item[{unsigned int}]{algorithm,  }\item[{void $\ast$}]{public\+\_\+key,  }\item[{unsigned long $\ast$}]{public\+\_\+key\+\_\+len,  }\item[{ltc\+\_\+asn1\+\_\+type}]{parameters\+\_\+type,  }\item[{ltc\+\_\+asn1\+\_\+list $\ast$}]{parameters,  }\item[{unsigned long $\ast$}]{parameters\+\_\+len }\end{DoxyParamCaption})}
+
+
+
+Decode a Subject\+Public\+Key\+Info. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em in} & The input buffer \\
+\hline
+{\em inlen} & The length of the input buffer \\
+\hline
+{\em algorithm} & One out of the enum \#public\+\_\+key\+\_\+algorithms \\
+\hline
+{\em public\+\_\+key} & The buffer for the public key \\
+\hline
+{\em public\+\_\+key\+\_\+len} & \mbox{[}in/out\mbox{]} The length of the public key buffer and the written length \\
+\hline
+{\em parameters\+\_\+type} & The parameters\textquotesingle{} type out of the enum ltc\+\_\+asn1\+\_\+type \\
+\hline
+{\em parameters} & The parameters to include \\
+\hline
+{\em parameters\+\_\+len} & \mbox{[}in/out\mbox{]}The number of parameters to include \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK on success 
+\end{DoxyReturn}
+
+
+Definition at line 40 of file x509\+\_\+decode\+\_\+subject\+\_\+public\+\_\+key\+\_\+info.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{43 \{}
+\DoxyCodeLine{44    \textcolor{keywordtype}{int} err;}
+\DoxyCodeLine{45    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}, alg\_id\_num;}
+\DoxyCodeLine{46    \textcolor{keyword}{const} \textcolor{keywordtype}{char}* oid;}
+\DoxyCodeLine{47    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *tmpbuf;}
+\DoxyCodeLine{48    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long}  tmpoid[16];}
+\DoxyCodeLine{49    ltc\_asn1\_list alg\_id[2];}
+\DoxyCodeLine{50    ltc\_asn1\_list subject\_pubkey[2];}
+\DoxyCodeLine{51 }
+\DoxyCodeLine{52    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(in    != NULL);}
+\DoxyCodeLine{53    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(inlen != 0);}
+\DoxyCodeLine{54    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(public\_key\_len != NULL);}
+\DoxyCodeLine{55    \textcolor{keywordflow}{if} (parameters\_type != LTC\_ASN1\_EOL) \{}
+\DoxyCodeLine{56       \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(parameters\_len != NULL);}
+\DoxyCodeLine{57    \}}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{59    err = \mbox{\hyperlink{tomcrypt__private_8h_acff5b3d0c6e1145e07d1a3ff53fadce5}{pk\_get\_oid}}(algorithm, \&oid);}
+\DoxyCodeLine{60    \textcolor{keywordflow}{if} (err != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{61         \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{62    \}}
+\DoxyCodeLine{63 }
+\DoxyCodeLine{64    \textcolor{comment}{/* see if the OpenSSL DER format RSA public key will work */}}
+\DoxyCodeLine{65    tmpbuf = \mbox{\hyperlink{tomcrypt__cfg_8h_a151dda14cd7acae31eaf1102b0cc0685}{XCALLOC}}(1, inlen);}
+\DoxyCodeLine{66    \textcolor{keywordflow}{if} (tmpbuf == NULL) \{}
+\DoxyCodeLine{67        err = \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca0ce0d27adc7ea10b74b7ea904b8bfa82}{CRYPT\_MEM}};}
+\DoxyCodeLine{68        \textcolor{keywordflow}{goto} LBL\_ERR;}
+\DoxyCodeLine{69    \}}
+\DoxyCodeLine{70 }
+\DoxyCodeLine{71    \textcolor{comment}{/* this includes the internal hash ID and optional params (NULL in this case) */}}
+\DoxyCodeLine{72    LTC\_SET\_ASN1(alg\_id, 0, LTC\_ASN1\_OBJECT\_IDENTIFIER, tmpoid, \textcolor{keyword}{sizeof}(tmpoid)/\textcolor{keyword}{sizeof}(tmpoid[0]));}
+\DoxyCodeLine{73    \textcolor{keywordflow}{if} (parameters\_type == LTC\_ASN1\_EOL) \{}
+\DoxyCodeLine{74       alg\_id\_num = 1;}
+\DoxyCodeLine{75    \}}
+\DoxyCodeLine{76    \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{77       LTC\_SET\_ASN1(alg\_id, 1, parameters\_type, parameters, *parameters\_len);}
+\DoxyCodeLine{78       alg\_id\_num = 2;}
+\DoxyCodeLine{79    \}}
+\DoxyCodeLine{80 }
+\DoxyCodeLine{81    \textcolor{comment}{/* the actual format of the SSL DER key is odd, it stores a RSAPublicKey}}
+\DoxyCodeLine{82 \textcolor{comment}{    * in a **BIT** string ... so we have to extract it then proceed to convert bit to octet}}
+\DoxyCodeLine{83 \textcolor{comment}{    */}}
+\DoxyCodeLine{84    LTC\_SET\_ASN1(subject\_pubkey, 0, LTC\_ASN1\_SEQUENCE, alg\_id, alg\_id\_num);}
+\DoxyCodeLine{85    LTC\_SET\_ASN1(subject\_pubkey, 1, LTC\_ASN1\_RAW\_BIT\_STRING, tmpbuf, inlen*8U);}
+\DoxyCodeLine{86 }
+\DoxyCodeLine{87    err=der\_decode\_sequence(in, inlen, subject\_pubkey, 2UL);}
+\DoxyCodeLine{88    \textcolor{keywordflow}{if} (err != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{89            \textcolor{keywordflow}{goto} LBL\_ERR;}
+\DoxyCodeLine{90    \}}
+\DoxyCodeLine{91    \textcolor{keywordflow}{if} (parameters\_type != LTC\_ASN1\_EOL) \{}
+\DoxyCodeLine{92       *parameters\_len = alg\_id[1].size;}
+\DoxyCodeLine{93    \}}
+\DoxyCodeLine{94 }
+\DoxyCodeLine{95    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_aaa860b1fbc776e0760df8934a6aa245a}{pk\_oid\_cmp\_with\_asn1}}(oid, \&alg\_id[0])) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{96       \textcolor{comment}{/* OID mismatch */}}
+\DoxyCodeLine{97       \textcolor{keywordflow}{goto} LBL\_ERR;}
+\DoxyCodeLine{98    \}}
+\DoxyCodeLine{99 }
+\DoxyCodeLine{100    \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}} = subject\_pubkey[1].size/8;}
+\DoxyCodeLine{101    \textcolor{keywordflow}{if} (*public\_key\_len >= \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}) \{}
+\DoxyCodeLine{102        \mbox{\hyperlink{tomcrypt__cfg_8h_a7691dd48d60d5fc6daf2fa7ec4c55e12}{XMEMCPY}}(public\_key, subject\_pubkey[1].data, \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}});}
+\DoxyCodeLine{103        *public\_key\_len = \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}};}
+\DoxyCodeLine{104     \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{105         *public\_key\_len = \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}};}
+\DoxyCodeLine{106         err = \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caccd878f5599f3036ffe759dbe1a1ac16}{CRYPT\_BUFFER\_OVERFLOW}};}
+\DoxyCodeLine{107         \textcolor{keywordflow}{goto} LBL\_ERR;}
+\DoxyCodeLine{108     \}}
+\DoxyCodeLine{109 }
+\DoxyCodeLine{110     err = \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{111 }
+\DoxyCodeLine{112 LBL\_ERR:}
+\DoxyCodeLine{113 }
+\DoxyCodeLine{114     \mbox{\hyperlink{tomcrypt__cfg_8h_a260d66fc0690e0502cf3bfe7b5244b75}{XFREE}}(tmpbuf);}
+\DoxyCodeLine{115 }
+\DoxyCodeLine{116     \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{117 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+O\+V\+E\+R\+F\+L\+OW, C\+R\+Y\+P\+T\+\_\+\+M\+EM, C\+R\+Y\+P\+T\+\_\+\+OK, len, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, pk\+\_\+get\+\_\+oid(), pk\+\_\+oid\+\_\+cmp\+\_\+with\+\_\+asn1(), X\+C\+A\+L\+L\+O\+C(), X\+F\+R\+E\+E(), and X\+M\+E\+M\+C\+P\+Y().
+
+
+
+Referenced by \+\_\+ecc\+\_\+import\+\_\+x509\+\_\+with\+\_\+curve(), \+\_\+ecc\+\_\+import\+\_\+x509\+\_\+with\+\_\+oid(), dsa\+\_\+import(), rsa\+\_\+import(), and rsa\+\_\+import\+\_\+x509().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2

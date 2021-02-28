@@ -1,0 +1,77 @@
+\hypertarget{dh__set__pg__dhparam_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/pk/dh/dh\+\_\+set\+\_\+pg\+\_\+dhparam.c File Reference}
+\label{dh__set__pg__dhparam_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/dh/dh\_set\_pg\_dhparam.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/dh/dh\_set\_pg\_dhparam.c}}
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for dh\+\_\+set\+\_\+pg\+\_\+dhparam.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{dh__set__pg__dhparam_8c_a442807cd759a5df755d184f894be3fe3}{dh\+\_\+set\+\_\+pg\+\_\+dhparam}} (const unsigned char $\ast$dhparam, unsigned long dhparamlen, dh\+\_\+key $\ast$key)
+\begin{DoxyCompactList}\small\item\em Import DH key parts p and g from dhparam. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{dh__set__pg__dhparam_8c_a442807cd759a5df755d184f894be3fe3}\label{dh__set__pg__dhparam_8c_a442807cd759a5df755d184f894be3fe3}} 
+\index{dh\_set\_pg\_dhparam.c@{dh\_set\_pg\_dhparam.c}!dh\_set\_pg\_dhparam@{dh\_set\_pg\_dhparam}}
+\index{dh\_set\_pg\_dhparam@{dh\_set\_pg\_dhparam}!dh\_set\_pg\_dhparam.c@{dh\_set\_pg\_dhparam.c}}
+\subsubsection{\texorpdfstring{dh\_set\_pg\_dhparam()}{dh\_set\_pg\_dhparam()}}
+{\footnotesize\ttfamily int dh\+\_\+set\+\_\+pg\+\_\+dhparam (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{dhparam,  }\item[{unsigned long}]{dhparamlen,  }\item[{dh\+\_\+key $\ast$}]{key }\end{DoxyParamCaption})}
+
+
+
+Import DH key parts p and g from dhparam. 
+
+\begin{DoxyVerb}dhparam data: openssl dhparam -outform DER -out dhparam.der 2048
+\end{DoxyVerb}
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em dhparam} & The DH param D\+ER encoded data \\
+\hline
+{\em dhparamlen} & The length of dhparam data \\
+\hline
+{\em key} & \mbox{[}out\mbox{]} Where the newly created DH key will be stored \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful, note\+: on error all allocated memory will be freed automatically. 
+\end{DoxyReturn}
+
+
+Definition at line 24 of file dh\+\_\+set\+\_\+pg\+\_\+dhparam.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{25 \{}
+\DoxyCodeLine{26    \textcolor{keywordtype}{int} err;}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(key         != NULL);}
+\DoxyCodeLine{29    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(\mbox{\hyperlink{tomcrypt__math_8h_a3d38c44518c63b7a8abd0938f3d41c65}{ltc\_mp}}.\mbox{\hyperlink{structltc__math__descriptor_a8838126de4a27e382f91096e369a2728}{name}} != NULL);}
+\DoxyCodeLine{30    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(dhparam     != NULL);}
+\DoxyCodeLine{31    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(dhparamlen  > 0);}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_adb6322247b1a4f0347219acab3120bd3}{mp\_init\_multi}}(\&key->x, \&key->y, \&key->base, \&key->prime, NULL)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{34       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{35    \}}
+\DoxyCodeLine{36    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{der__decode__sequence__multi_8c_a6d86b670c8f3801b0fe6e2cd544df678}{der\_decode\_sequence\_multi}}(dhparam, dhparamlen,}
+\DoxyCodeLine{37                                         LTC\_ASN1\_INTEGER, 1UL, key->prime,}
+\DoxyCodeLine{38                                         LTC\_ASN1\_INTEGER, 1UL, key->base,}
+\DoxyCodeLine{39                                         LTC\_ASN1\_EOL,     0UL, NULL)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{40       \textcolor{keywordflow}{goto} LBL\_ERR;}
+\DoxyCodeLine{41    \}}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{43    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45 LBL\_ERR:}
+\DoxyCodeLine{46    \mbox{\hyperlink{dh__free_8c_ac6413849059daca7d0482fa400db5d82}{dh\_free}}(key);}
+\DoxyCodeLine{47    \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{48 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, der\+\_\+decode\+\_\+sequence\+\_\+multi(), dh\+\_\+free(), L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, ltc\+\_\+mp, mp\+\_\+init\+\_\+multi, and ltc\+\_\+math\+\_\+descriptor\+::name.
+
+Here is the call graph for this function\+:
+% FIG 1

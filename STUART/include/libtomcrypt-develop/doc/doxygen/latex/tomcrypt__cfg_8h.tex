@@ -1,0 +1,342 @@
+\hypertarget{tomcrypt__cfg_8h}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/headers/tomcrypt\+\_\+cfg.h File Reference}
+\label{tomcrypt__cfg_8h}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/headers/tomcrypt\_cfg.h@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/headers/tomcrypt\_cfg.h}}
+This graph shows which files directly or indirectly include this file\+:
+% FIG 0
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__cfg_8h_ad039930ed9235ce4493343aa415c2c38}{L\+T\+C\+\_\+\+C\+A\+LL}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__cfg_8h_acd75dbc489c25c64021f43c54dde8585}{L\+T\+C\+\_\+\+E\+X\+P\+O\+RT}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__cfg_8h_a57e74cfa23b0e61a13adaed6ed7fc546}{L\+T\+C\+\_\+\+I\+N\+L\+I\+NE}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__cfg_8h_a6366bc4175918bd668dcd65dbb1769bf}{L\+T\+C\+\_\+\+N\+O\+R\+E\+T\+U\+RN}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__cfg_8h_a0e45bc313d1b9fc9071f1900f5a663a0}{A\+R\+G\+T\+Y\+PE}}~0
+\item 
+\#define \mbox{\hyperlink{tomcrypt__cfg_8h_ab10342d5490c985bf58defd467be7039}{L\+T\+C\+\_\+\+E\+N\+C\+R\+Y\+PT}}~0
+\item 
+\#define \mbox{\hyperlink{tomcrypt__cfg_8h_a3997e2479cd0ec419845b634f338f999}{L\+T\+C\+\_\+\+D\+E\+C\+R\+Y\+PT}}~1
+\item 
+\#define \mbox{\hyperlink{tomcrypt__cfg_8h_a7d8e211582dff82d00fc171834e3dc67}{C\+O\+N\+S\+T64}}(n)~n \#\# U\+LL
+\item 
+\#define \mbox{\hyperlink{tomcrypt__cfg_8h_a13972b80a637de058afe9fecf8d82fd6}{E\+N\+D\+I\+A\+N\+\_\+32\+B\+I\+T\+W\+O\+RD}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__cfg_8h_a00454d026bddecf54d6c3f7cf6ff202a}{E\+N\+D\+I\+A\+N\+\_\+\+N\+E\+U\+T\+R\+AL}}
+\item 
+\#define \mbox{\hyperlink{tomcrypt__cfg_8h_a447121dcab4275b7839a56082b7a1ab8}{\+\_\+\+\_\+has\+\_\+builtin}}(x)~0
+\item 
+\#define \mbox{\hyperlink{tomcrypt__cfg_8h_a2c88aadd176c391d1743dea242edda41}{L\+T\+C\+\_\+\+D\+E\+P\+R\+E\+C\+A\+T\+ED}}
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef unsigned long long \mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}}
+\item 
+typedef unsigned long \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}}
+\item 
+typedef unsigned long \mbox{\hyperlink{tomcrypt__cfg_8h_a4e98fa26a5de0ac87e06af901bad57c4}{ltc\+\_\+mp\+\_\+digit}}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void $\ast$ \mbox{\hyperlink{tomcrypt__cfg_8h_af363355f38fbaacdefacf270436ae1c9}{X\+M\+A\+L\+L\+OC}} (size\+\_\+t n)
+\item 
+void $\ast$ \mbox{\hyperlink{tomcrypt__cfg_8h_a6146d108fa03ec35ee5fd391f874ad5d}{X\+R\+E\+A\+L\+L\+OC}} (void $\ast$p, size\+\_\+t n)
+\item 
+void $\ast$ \mbox{\hyperlink{tomcrypt__cfg_8h_a151dda14cd7acae31eaf1102b0cc0685}{X\+C\+A\+L\+L\+OC}} (size\+\_\+t n, size\+\_\+t s)
+\item 
+void \mbox{\hyperlink{tomcrypt__cfg_8h_a260d66fc0690e0502cf3bfe7b5244b75}{X\+F\+R\+EE}} (void $\ast$p)
+\item 
+void \mbox{\hyperlink{tomcrypt__cfg_8h_aceefd8dacef70eb3f302b8df2da8aec9}{X\+Q\+S\+O\+RT}} (void $\ast$base, size\+\_\+t nmemb, size\+\_\+t size, int($\ast$compar)(const void $\ast$, const void $\ast$))
+\item 
+clock\+\_\+t \mbox{\hyperlink{tomcrypt__cfg_8h_a87093d90435a60f5cbb14bcca6191c76}{X\+C\+L\+O\+CK}} (void)
+\item 
+void $\ast$ \mbox{\hyperlink{tomcrypt__cfg_8h_a7691dd48d60d5fc6daf2fa7ec4c55e12}{X\+M\+E\+M\+C\+PY}} (void $\ast$dest, const void $\ast$src, size\+\_\+t n)
+\item 
+int \mbox{\hyperlink{tomcrypt__cfg_8h_a372b974ec0ac07abcd55297554fe540f}{X\+M\+E\+M\+C\+MP}} (const void $\ast$s1, const void $\ast$s2, size\+\_\+t n)
+\item 
+void $\ast$ \mbox{\hyperlink{tomcrypt__cfg_8h_aa3c34a6f6c61de7da9258b5a30e32c2f}{X\+M\+E\+M\+S\+ET}} (void $\ast$s, int \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, size\+\_\+t n)
+\item 
+int \mbox{\hyperlink{tomcrypt__cfg_8h_a5d6e3d69e1d3f54de008b963bba3c6b3}{X\+S\+T\+R\+C\+MP}} (const char $\ast$s1, const char $\ast$s2)
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{tomcrypt__cfg_8h_a447121dcab4275b7839a56082b7a1ab8}\label{tomcrypt__cfg_8h_a447121dcab4275b7839a56082b7a1ab8}} 
+\index{tomcrypt\_cfg.h@{tomcrypt\_cfg.h}!\_\_has\_builtin@{\_\_has\_builtin}}
+\index{\_\_has\_builtin@{\_\_has\_builtin}!tomcrypt\_cfg.h@{tomcrypt\_cfg.h}}
+\subsubsection{\texorpdfstring{\_\_has\_builtin}{\_\_has\_builtin}}
+{\footnotesize\ttfamily \#define \+\_\+\+\_\+has\+\_\+builtin(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~0}
+
+
+
+Definition at line 282 of file tomcrypt\+\_\+cfg.\+h.
+
+\mbox{\Hypertarget{tomcrypt__cfg_8h_a0e45bc313d1b9fc9071f1900f5a663a0}\label{tomcrypt__cfg_8h_a0e45bc313d1b9fc9071f1900f5a663a0}} 
+\index{tomcrypt\_cfg.h@{tomcrypt\_cfg.h}!ARGTYPE@{ARGTYPE}}
+\index{ARGTYPE@{ARGTYPE}!tomcrypt\_cfg.h@{tomcrypt\_cfg.h}}
+\subsubsection{\texorpdfstring{ARGTYPE}{ARGTYPE}}
+{\footnotesize\ttfamily \#define A\+R\+G\+T\+Y\+PE~0}
+
+
+
+Definition at line 74 of file tomcrypt\+\_\+cfg.\+h.
+
+\mbox{\Hypertarget{tomcrypt__cfg_8h_a7d8e211582dff82d00fc171834e3dc67}\label{tomcrypt__cfg_8h_a7d8e211582dff82d00fc171834e3dc67}} 
+\index{tomcrypt\_cfg.h@{tomcrypt\_cfg.h}!CONST64@{CONST64}}
+\index{CONST64@{CONST64}!tomcrypt\_cfg.h@{tomcrypt\_cfg.h}}
+\subsubsection{\texorpdfstring{CONST64}{CONST64}}
+{\footnotesize\ttfamily \#define C\+O\+N\+S\+T64(\begin{DoxyParamCaption}\item[{}]{n }\end{DoxyParamCaption})~n \#\# U\+LL}
+
+
+
+Definition at line 210 of file tomcrypt\+\_\+cfg.\+h.
+
+\mbox{\Hypertarget{tomcrypt__cfg_8h_a13972b80a637de058afe9fecf8d82fd6}\label{tomcrypt__cfg_8h_a13972b80a637de058afe9fecf8d82fd6}} 
+\index{tomcrypt\_cfg.h@{tomcrypt\_cfg.h}!ENDIAN\_32BITWORD@{ENDIAN\_32BITWORD}}
+\index{ENDIAN\_32BITWORD@{ENDIAN\_32BITWORD}!tomcrypt\_cfg.h@{tomcrypt\_cfg.h}}
+\subsubsection{\texorpdfstring{ENDIAN\_32BITWORD}{ENDIAN\_32BITWORD}}
+{\footnotesize\ttfamily \#define E\+N\+D\+I\+A\+N\+\_\+32\+B\+I\+T\+W\+O\+RD}
+
+
+
+Definition at line 228 of file tomcrypt\+\_\+cfg.\+h.
+
+\mbox{\Hypertarget{tomcrypt__cfg_8h_a00454d026bddecf54d6c3f7cf6ff202a}\label{tomcrypt__cfg_8h_a00454d026bddecf54d6c3f7cf6ff202a}} 
+\index{tomcrypt\_cfg.h@{tomcrypt\_cfg.h}!ENDIAN\_NEUTRAL@{ENDIAN\_NEUTRAL}}
+\index{ENDIAN\_NEUTRAL@{ENDIAN\_NEUTRAL}!tomcrypt\_cfg.h@{tomcrypt\_cfg.h}}
+\subsubsection{\texorpdfstring{ENDIAN\_NEUTRAL}{ENDIAN\_NEUTRAL}}
+{\footnotesize\ttfamily \#define E\+N\+D\+I\+A\+N\+\_\+\+N\+E\+U\+T\+R\+AL}
+
+
+
+Definition at line 267 of file tomcrypt\+\_\+cfg.\+h.
+
+\mbox{\Hypertarget{tomcrypt__cfg_8h_ad039930ed9235ce4493343aa415c2c38}\label{tomcrypt__cfg_8h_ad039930ed9235ce4493343aa415c2c38}} 
+\index{tomcrypt\_cfg.h@{tomcrypt\_cfg.h}!LTC\_CALL@{LTC\_CALL}}
+\index{LTC\_CALL@{LTC\_CALL}!tomcrypt\_cfg.h@{tomcrypt\_cfg.h}}
+\subsubsection{\texorpdfstring{LTC\_CALL}{LTC\_CALL}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+C\+A\+LL}
+
+
+
+Definition at line 22 of file tomcrypt\+\_\+cfg.\+h.
+
+\mbox{\Hypertarget{tomcrypt__cfg_8h_a3997e2479cd0ec419845b634f338f999}\label{tomcrypt__cfg_8h_a3997e2479cd0ec419845b634f338f999}} 
+\index{tomcrypt\_cfg.h@{tomcrypt\_cfg.h}!LTC\_DECRYPT@{LTC\_DECRYPT}}
+\index{LTC\_DECRYPT@{LTC\_DECRYPT}!tomcrypt\_cfg.h@{tomcrypt\_cfg.h}}
+\subsubsection{\texorpdfstring{LTC\_DECRYPT}{LTC\_DECRYPT}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+D\+E\+C\+R\+Y\+PT~1}
+
+
+
+Definition at line 80 of file tomcrypt\+\_\+cfg.\+h.
+
+\mbox{\Hypertarget{tomcrypt__cfg_8h_a2c88aadd176c391d1743dea242edda41}\label{tomcrypt__cfg_8h_a2c88aadd176c391d1743dea242edda41}} 
+\index{tomcrypt\_cfg.h@{tomcrypt\_cfg.h}!LTC\_DEPRECATED@{LTC\_DEPRECATED}}
+\index{LTC\_DEPRECATED@{LTC\_DEPRECATED}!tomcrypt\_cfg.h@{tomcrypt\_cfg.h}}
+\subsubsection{\texorpdfstring{LTC\_DEPRECATED}{LTC\_DEPRECATED}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+D\+E\+P\+R\+E\+C\+A\+T\+ED}
+
+
+
+Definition at line 296 of file tomcrypt\+\_\+cfg.\+h.
+
+\mbox{\Hypertarget{tomcrypt__cfg_8h_ab10342d5490c985bf58defd467be7039}\label{tomcrypt__cfg_8h_ab10342d5490c985bf58defd467be7039}} 
+\index{tomcrypt\_cfg.h@{tomcrypt\_cfg.h}!LTC\_ENCRYPT@{LTC\_ENCRYPT}}
+\index{LTC\_ENCRYPT@{LTC\_ENCRYPT}!tomcrypt\_cfg.h@{tomcrypt\_cfg.h}}
+\subsubsection{\texorpdfstring{LTC\_ENCRYPT}{LTC\_ENCRYPT}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+E\+N\+C\+R\+Y\+PT~0}
+
+
+
+Definition at line 78 of file tomcrypt\+\_\+cfg.\+h.
+
+\mbox{\Hypertarget{tomcrypt__cfg_8h_acd75dbc489c25c64021f43c54dde8585}\label{tomcrypt__cfg_8h_acd75dbc489c25c64021f43c54dde8585}} 
+\index{tomcrypt\_cfg.h@{tomcrypt\_cfg.h}!LTC\_EXPORT@{LTC\_EXPORT}}
+\index{LTC\_EXPORT@{LTC\_EXPORT}!tomcrypt\_cfg.h@{tomcrypt\_cfg.h}}
+\subsubsection{\texorpdfstring{LTC\_EXPORT}{LTC\_EXPORT}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+E\+X\+P\+O\+RT}
+
+
+
+Definition at line 26 of file tomcrypt\+\_\+cfg.\+h.
+
+\mbox{\Hypertarget{tomcrypt__cfg_8h_a57e74cfa23b0e61a13adaed6ed7fc546}\label{tomcrypt__cfg_8h_a57e74cfa23b0e61a13adaed6ed7fc546}} 
+\index{tomcrypt\_cfg.h@{tomcrypt\_cfg.h}!LTC\_INLINE@{LTC\_INLINE}}
+\index{LTC\_INLINE@{LTC\_INLINE}!tomcrypt\_cfg.h@{tomcrypt\_cfg.h}}
+\subsubsection{\texorpdfstring{LTC\_INLINE}{LTC\_INLINE}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+I\+N\+L\+I\+NE}
+
+
+
+Definition at line 61 of file tomcrypt\+\_\+cfg.\+h.
+
+\mbox{\Hypertarget{tomcrypt__cfg_8h_a6366bc4175918bd668dcd65dbb1769bf}\label{tomcrypt__cfg_8h_a6366bc4175918bd668dcd65dbb1769bf}} 
+\index{tomcrypt\_cfg.h@{tomcrypt\_cfg.h}!LTC\_NORETURN@{LTC\_NORETURN}}
+\index{LTC\_NORETURN@{LTC\_NORETURN}!tomcrypt\_cfg.h@{tomcrypt\_cfg.h}}
+\subsubsection{\texorpdfstring{LTC\_NORETURN}{LTC\_NORETURN}}
+{\footnotesize\ttfamily \#define L\+T\+C\+\_\+\+N\+O\+R\+E\+T\+U\+RN}
+
+
+
+Definition at line 69 of file tomcrypt\+\_\+cfg.\+h.
+
+
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{tomcrypt__cfg_8h_a4e98fa26a5de0ac87e06af901bad57c4}\label{tomcrypt__cfg_8h_a4e98fa26a5de0ac87e06af901bad57c4}} 
+\index{tomcrypt\_cfg.h@{tomcrypt\_cfg.h}!ltc\_mp\_digit@{ltc\_mp\_digit}}
+\index{ltc\_mp\_digit@{ltc\_mp\_digit}!tomcrypt\_cfg.h@{tomcrypt\_cfg.h}}
+\subsubsection{\texorpdfstring{ltc\_mp\_digit}{ltc\_mp\_digit}}
+{\footnotesize\ttfamily typedef unsigned long \mbox{\hyperlink{tomcrypt__cfg_8h_a4e98fa26a5de0ac87e06af901bad57c4}{ltc\+\_\+mp\+\_\+digit}}}
+
+
+
+Definition at line 235 of file tomcrypt\+\_\+cfg.\+h.
+
+\mbox{\Hypertarget{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}\label{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}} 
+\index{tomcrypt\_cfg.h@{tomcrypt\_cfg.h}!ulong32@{ulong32}}
+\index{ulong32@{ulong32}!tomcrypt\_cfg.h@{tomcrypt\_cfg.h}}
+\subsubsection{\texorpdfstring{ulong32}{ulong32}}
+{\footnotesize\ttfamily typedef unsigned long \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}}}
+
+
+
+Definition at line 226 of file tomcrypt\+\_\+cfg.\+h.
+
+\mbox{\Hypertarget{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}\label{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}} 
+\index{tomcrypt\_cfg.h@{tomcrypt\_cfg.h}!ulong64@{ulong64}}
+\index{ulong64@{ulong64}!tomcrypt\_cfg.h@{tomcrypt\_cfg.h}}
+\subsubsection{\texorpdfstring{ulong64}{ulong64}}
+{\footnotesize\ttfamily typedef unsigned long long \mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}}}
+
+
+
+Definition at line 211 of file tomcrypt\+\_\+cfg.\+h.
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{tomcrypt__cfg_8h_a151dda14cd7acae31eaf1102b0cc0685}\label{tomcrypt__cfg_8h_a151dda14cd7acae31eaf1102b0cc0685}} 
+\index{tomcrypt\_cfg.h@{tomcrypt\_cfg.h}!XCALLOC@{XCALLOC}}
+\index{XCALLOC@{XCALLOC}!tomcrypt\_cfg.h@{tomcrypt\_cfg.h}}
+\subsubsection{\texorpdfstring{XCALLOC()}{XCALLOC()}}
+{\footnotesize\ttfamily void$\ast$ X\+C\+A\+L\+L\+OC (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{n,  }\item[{size\+\_\+t}]{s }\end{DoxyParamCaption})}
+
+
+
+Referenced by \+\_\+der\+\_\+decode\+\_\+sequence\+\_\+va(), \+\_\+new\+\_\+element(), der\+\_\+decode\+\_\+sequence\+\_\+flexi(), der\+\_\+encode\+\_\+sequence\+\_\+multi(), der\+\_\+encode\+\_\+set(), der\+\_\+encode\+\_\+setof(), dsa\+\_\+import(), f9\+\_\+memory(), init(), ltc\+\_\+ecc\+\_\+mul2add(), ltc\+\_\+ecc\+\_\+new\+\_\+point(), montgomery\+\_\+setup(), rand\+\_\+bn\+\_\+bits(), rand\+\_\+prime(), rsa\+\_\+import(), rsa\+\_\+import\+\_\+x509(), x509\+\_\+decode\+\_\+subject\+\_\+public\+\_\+key\+\_\+info(), xcbc\+\_\+init(), and xcbc\+\_\+memory().
+
+Here is the caller graph for this function\+:
+% FIG 1
+\mbox{\Hypertarget{tomcrypt__cfg_8h_a87093d90435a60f5cbb14bcca6191c76}\label{tomcrypt__cfg_8h_a87093d90435a60f5cbb14bcca6191c76}} 
+\index{tomcrypt\_cfg.h@{tomcrypt\_cfg.h}!XCLOCK@{XCLOCK}}
+\index{XCLOCK@{XCLOCK}!tomcrypt\_cfg.h@{tomcrypt\_cfg.h}}
+\subsubsection{\texorpdfstring{XCLOCK()}{XCLOCK()}}
+{\footnotesize\ttfamily clock\+\_\+t X\+C\+L\+O\+CK (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Referenced by \+\_\+rng\+\_\+ansic().
+
+Here is the caller graph for this function\+:
+% FIG 2
+\mbox{\Hypertarget{tomcrypt__cfg_8h_a260d66fc0690e0502cf3bfe7b5244b75}\label{tomcrypt__cfg_8h_a260d66fc0690e0502cf3bfe7b5244b75}} 
+\index{tomcrypt\_cfg.h@{tomcrypt\_cfg.h}!XFREE@{XFREE}}
+\index{XFREE@{XFREE}!tomcrypt\_cfg.h@{tomcrypt\_cfg.h}}
+\subsubsection{\texorpdfstring{XFREE()}{XFREE()}}
+{\footnotesize\ttfamily void X\+F\+R\+EE (\begin{DoxyParamCaption}\item[{void $\ast$}]{p }\end{DoxyParamCaption})}
+
+
+
+Referenced by \+\_\+der\+\_\+decode\+\_\+sequence\+\_\+va(), \+\_\+dsa\+\_\+make\+\_\+params(), \+\_\+pkcs\+\_\+12\+\_\+wrap(), \+\_\+pkcs\+\_\+5\+\_\+alg1\+\_\+common(), blake2bmac\+\_\+file(), blake2smac\+\_\+file(), ccm\+\_\+memory(), chc\+\_\+compress(), chc\+\_\+init(), deinit(), der\+\_\+decode\+\_\+custom\+\_\+type\+\_\+ex(), der\+\_\+decode\+\_\+sequence\+\_\+flexi(), der\+\_\+encode\+\_\+sequence\+\_\+multi(), der\+\_\+encode\+\_\+set(), der\+\_\+encode\+\_\+setof(), der\+\_\+sequence\+\_\+free(), der\+\_\+sequence\+\_\+shrink(), dh\+\_\+generate\+\_\+key(), dsa\+\_\+decrypt\+\_\+key(), dsa\+\_\+encrypt\+\_\+key(), dsa\+\_\+export(), dsa\+\_\+import(), dsa\+\_\+sign\+\_\+hash\+\_\+raw(), eax\+\_\+decrypt\+\_\+verify\+\_\+memory(), eax\+\_\+done(), eax\+\_\+encrypt\+\_\+authenticate\+\_\+memory(), eax\+\_\+init(), ecc\+\_\+decrypt\+\_\+key(), ecc\+\_\+encrypt\+\_\+key(), f9\+\_\+file(), f9\+\_\+memory(), f9\+\_\+memory\+\_\+multi(), gcm\+\_\+memory(), hash\+\_\+filehandle(), hash\+\_\+memory(), hash\+\_\+memory\+\_\+multi(), hkdf(), hkdf\+\_\+expand(), hmac\+\_\+done(), hmac\+\_\+file(), hmac\+\_\+init(), hmac\+\_\+memory(), hmac\+\_\+memory\+\_\+multi(), init(), ltc\+\_\+ecc\+\_\+del\+\_\+point(), ltc\+\_\+ecc\+\_\+mul2add(), ltc\+\_\+ecc\+\_\+new\+\_\+point(), montgomery\+\_\+deinit(), montgomery\+\_\+setup(), ocb3\+\_\+decrypt\+\_\+verify\+\_\+memory(), ocb3\+\_\+encrypt\+\_\+authenticate\+\_\+memory(), ocb\+\_\+decrypt\+\_\+verify\+\_\+memory(), ocb\+\_\+done\+\_\+decrypt(), ocb\+\_\+encrypt\+\_\+authenticate\+\_\+memory(), omac\+\_\+file(), omac\+\_\+memory(), omac\+\_\+memory\+\_\+multi(), pelican\+\_\+memory(), pkcs12\+\_\+kdf(), pkcs8\+\_\+decode\+\_\+flexi(), pkcs\+\_\+1\+\_\+mgf1(), pkcs\+\_\+1\+\_\+oaep\+\_\+decode(), pkcs\+\_\+1\+\_\+oaep\+\_\+encode(), pkcs\+\_\+1\+\_\+pss\+\_\+decode(), pkcs\+\_\+1\+\_\+pss\+\_\+encode(), pkcs\+\_\+5\+\_\+alg2(), pmac\+\_\+file(), pmac\+\_\+init(), pmac\+\_\+memory(), pmac\+\_\+memory\+\_\+multi(), poly1305\+\_\+file(), rand\+\_\+bn\+\_\+bits(), rand\+\_\+prime(), read\+\_\+radix(), rng\+\_\+make\+\_\+prng(), rsa\+\_\+decrypt\+\_\+key\+\_\+ex(), rsa\+\_\+export(), rsa\+\_\+import(), rsa\+\_\+import\+\_\+pkcs8(), rsa\+\_\+import\+\_\+x509(), rsa\+\_\+sign\+\_\+hash\+\_\+ex(), rsa\+\_\+verify\+\_\+hash\+\_\+ex(), s\+\_\+ocb\+\_\+done(), x509\+\_\+decode\+\_\+subject\+\_\+public\+\_\+key\+\_\+info(), xcbc\+\_\+file(), xcbc\+\_\+init(), xcbc\+\_\+memory(), and xcbc\+\_\+memory\+\_\+multi().
+
+Here is the caller graph for this function\+:
+% FIG 3
+\mbox{\Hypertarget{tomcrypt__cfg_8h_af363355f38fbaacdefacf270436ae1c9}\label{tomcrypt__cfg_8h_af363355f38fbaacdefacf270436ae1c9}} 
+\index{tomcrypt\_cfg.h@{tomcrypt\_cfg.h}!XMALLOC@{XMALLOC}}
+\index{XMALLOC@{XMALLOC}!tomcrypt\_cfg.h@{tomcrypt\_cfg.h}}
+\subsubsection{\texorpdfstring{XMALLOC()}{XMALLOC()}}
+{\footnotesize\ttfamily void$\ast$ X\+M\+A\+L\+L\+OC (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{n }\end{DoxyParamCaption})}
+
+
+
+Referenced by \+\_\+dsa\+\_\+make\+\_\+params(), \+\_\+pkcs\+\_\+12\+\_\+wrap(), \+\_\+pkcs\+\_\+5\+\_\+alg1\+\_\+common(), blake2bmac\+\_\+file(), blake2smac\+\_\+file(), ccm\+\_\+memory(), chc\+\_\+compress(), chc\+\_\+init(), der\+\_\+decode\+\_\+custom\+\_\+type\+\_\+ex(), der\+\_\+decode\+\_\+sequence\+\_\+flexi(), dh\+\_\+generate\+\_\+key(), dsa\+\_\+decrypt\+\_\+key(), dsa\+\_\+encrypt\+\_\+key(), dsa\+\_\+export(), dsa\+\_\+sign\+\_\+hash\+\_\+raw(), eax\+\_\+decrypt\+\_\+verify\+\_\+memory(), eax\+\_\+done(), eax\+\_\+encrypt\+\_\+authenticate\+\_\+memory(), eax\+\_\+init(), ecc\+\_\+decrypt\+\_\+key(), ecc\+\_\+encrypt\+\_\+key(), f9\+\_\+file(), f9\+\_\+memory\+\_\+multi(), gcm\+\_\+memory(), hash\+\_\+filehandle(), hash\+\_\+memory(), hash\+\_\+memory\+\_\+multi(), hkdf(), hkdf\+\_\+expand(), hmac\+\_\+done(), hmac\+\_\+file(), hmac\+\_\+init(), hmac\+\_\+memory(), hmac\+\_\+memory\+\_\+multi(), ocb3\+\_\+decrypt\+\_\+verify\+\_\+memory(), ocb3\+\_\+encrypt\+\_\+authenticate\+\_\+memory(), ocb\+\_\+decrypt\+\_\+verify\+\_\+memory(), ocb\+\_\+done\+\_\+decrypt(), ocb\+\_\+encrypt\+\_\+authenticate\+\_\+memory(), omac\+\_\+file(), omac\+\_\+memory(), omac\+\_\+memory\+\_\+multi(), pelican\+\_\+memory(), pkcs12\+\_\+kdf(), pkcs8\+\_\+decode\+\_\+flexi(), pkcs\+\_\+1\+\_\+mgf1(), pkcs\+\_\+1\+\_\+oaep\+\_\+decode(), pkcs\+\_\+1\+\_\+oaep\+\_\+encode(), pkcs\+\_\+1\+\_\+pss\+\_\+decode(), pkcs\+\_\+1\+\_\+pss\+\_\+encode(), pkcs\+\_\+5\+\_\+alg2(), pmac\+\_\+file(), pmac\+\_\+init(), pmac\+\_\+memory(), pmac\+\_\+memory\+\_\+multi(), poly1305\+\_\+file(), read\+\_\+radix(), rng\+\_\+make\+\_\+prng(), rsa\+\_\+decrypt\+\_\+key\+\_\+ex(), rsa\+\_\+export(), rsa\+\_\+import\+\_\+pkcs8(), rsa\+\_\+sign\+\_\+hash\+\_\+ex(), rsa\+\_\+verify\+\_\+hash\+\_\+ex(), s\+\_\+ocb\+\_\+done(), xcbc\+\_\+file(), and xcbc\+\_\+memory\+\_\+multi().
+
+Here is the caller graph for this function\+:
+% FIG 4
+\mbox{\Hypertarget{tomcrypt__cfg_8h_a372b974ec0ac07abcd55297554fe540f}\label{tomcrypt__cfg_8h_a372b974ec0ac07abcd55297554fe540f}} 
+\index{tomcrypt\_cfg.h@{tomcrypt\_cfg.h}!XMEMCMP@{XMEMCMP}}
+\index{XMEMCMP@{XMEMCMP}!tomcrypt\_cfg.h@{tomcrypt\_cfg.h}}
+\subsubsection{\texorpdfstring{XMEMCMP()}{XMEMCMP()}}
+{\footnotesize\ttfamily int X\+M\+E\+M\+C\+MP (\begin{DoxyParamCaption}\item[{const void $\ast$}]{s1,  }\item[{const void $\ast$}]{s2,  }\item[{size\+\_\+t}]{n }\end{DoxyParamCaption})}
+
+
+
+Referenced by \+\_\+qsort\+\_\+helper(), ccm\+\_\+test(), compare\+\_\+testvector(), find\+\_\+hash\+\_\+oid(), gcm\+\_\+test(), register\+\_\+hash(), register\+\_\+prng(), rsa\+\_\+verify\+\_\+hash\+\_\+ex(), unregister\+\_\+cipher(), unregister\+\_\+hash(), and unregister\+\_\+prng().
+
+Here is the caller graph for this function\+:
+% FIG 5
+\mbox{\Hypertarget{tomcrypt__cfg_8h_a7691dd48d60d5fc6daf2fa7ec4c55e12}\label{tomcrypt__cfg_8h_a7691dd48d60d5fc6daf2fa7ec4c55e12}} 
+\index{tomcrypt\_cfg.h@{tomcrypt\_cfg.h}!XMEMCPY@{XMEMCPY}}
+\index{XMEMCPY@{XMEMCPY}!tomcrypt\_cfg.h@{tomcrypt\_cfg.h}}
+\subsubsection{\texorpdfstring{XMEMCPY()}{XMEMCPY()}}
+{\footnotesize\ttfamily void$\ast$ X\+M\+E\+M\+C\+PY (\begin{DoxyParamCaption}\item[{void $\ast$}]{dest,  }\item[{const void $\ast$}]{src,  }\item[{size\+\_\+t}]{n }\end{DoxyParamCaption})}
+
+
+
+Referenced by \+\_\+chacha\+\_\+block(), \+\_\+done(), \+\_\+pkcs\+\_\+5\+\_\+alg1\+\_\+common(), \+\_\+salsa20\+\_\+block(), \+\_\+xts\+\_\+test\+\_\+accel\+\_\+xts\+\_\+decrypt(), \+\_\+xts\+\_\+test\+\_\+accel\+\_\+xts\+\_\+encrypt(), blake2b\+\_\+done(), blake2b\+\_\+init(), blake2b\+\_\+process(), blake2s\+\_\+done(), blake2s\+\_\+init(), blake2s\+\_\+process(), cast5\+\_\+setup(), cbc\+\_\+getiv(), cbc\+\_\+setiv(), ccm\+\_\+test(), cfb\+\_\+getiv(), chacha20poly1305\+\_\+test(), chc\+\_\+compress(), chc\+\_\+done(), cookey(), crypt\+\_\+fsa(), ctr\+\_\+getiv(), ctr\+\_\+setiv(), der\+\_\+decode\+\_\+custom\+\_\+type\+\_\+ex(), der\+\_\+decode\+\_\+sequence\+\_\+flexi(), der\+\_\+encode\+\_\+setof(), f8\+\_\+getiv(), fortuna\+\_\+read(), gcm\+\_\+add\+\_\+aad(), gcm\+\_\+gf\+\_\+mult(), gcm\+\_\+mult\+\_\+h(), gcm\+\_\+test(), hkdf\+\_\+expand(), hmac\+\_\+init(), lrw\+\_\+getiv(), lrw\+\_\+process(), lrw\+\_\+setiv(), lrw\+\_\+start(), ltc\+\_\+ecc\+\_\+export\+\_\+point(), md2\+\_\+done(), md2\+\_\+process(), ocb3\+\_\+add\+\_\+aad(), ocb\+\_\+init(), ofb\+\_\+getiv(), omac\+\_\+init(), omac\+\_\+process(), pkcs12\+\_\+kdf(), pkcs\+\_\+1\+\_\+oaep\+\_\+decode(), pkcs\+\_\+1\+\_\+oaep\+\_\+encode(), pkcs\+\_\+1\+\_\+pss\+\_\+decode(), pkcs\+\_\+1\+\_\+pss\+\_\+encode(), pkcs\+\_\+1\+\_\+v1\+\_\+5\+\_\+decode(), pkcs\+\_\+1\+\_\+v1\+\_\+5\+\_\+encode(), pkcs\+\_\+5\+\_\+alg2(), pmac\+\_\+init(), pmac\+\_\+process(), rabbit\+\_\+setiv(), rabbit\+\_\+setup(), rc4\+\_\+ready(), rc5\+\_\+setup(), rc6\+\_\+setup(), register\+\_\+cipher(), register\+\_\+hash(), register\+\_\+prng(), s\+\_\+ocb\+\_\+done(), sha224\+\_\+done(), sha384\+\_\+done(), sha512\+\_\+224\+\_\+done(), sha512\+\_\+256\+\_\+done(), sosemanuk\+\_\+setiv(), sosemanuk\+\_\+setup(), x509\+\_\+decode\+\_\+subject\+\_\+public\+\_\+key\+\_\+info(), xcbc\+\_\+init(), xts\+\_\+decrypt(), xts\+\_\+encrypt(), and xts\+\_\+test().
+
+Here is the caller graph for this function\+:
+% FIG 6
+\mbox{\Hypertarget{tomcrypt__cfg_8h_aa3c34a6f6c61de7da9258b5a30e32c2f}\label{tomcrypt__cfg_8h_aa3c34a6f6c61de7da9258b5a30e32c2f}} 
+\index{tomcrypt\_cfg.h@{tomcrypt\_cfg.h}!XMEMSET@{XMEMSET}}
+\index{XMEMSET@{XMEMSET}!tomcrypt\_cfg.h@{tomcrypt\_cfg.h}}
+\subsubsection{\texorpdfstring{XMEMSET()}{XMEMSET()}}
+{\footnotesize\ttfamily void$\ast$ X\+M\+E\+M\+S\+ET (\begin{DoxyParamCaption}\item[{void $\ast$}]{s,  }\item[{int}]{c,  }\item[{size\+\_\+t}]{n }\end{DoxyParamCaption})}
+
+
+
+Referenced by blake2b\+\_\+done(), blake2b\+\_\+init(), blake2b\+\_\+init0(), blake2s\+\_\+done(), blake2s\+\_\+init(), blake2s\+\_\+init0(), ccm\+\_\+init(), chacha20\+\_\+prng\+\_\+ready(), chacha20\+\_\+prng\+\_\+start(), chacha\+\_\+done(), chacha\+\_\+keystream(), padding\+\_\+pad(), pkcs8\+\_\+decode\+\_\+flexi(), pkcs\+\_\+1\+\_\+oaep\+\_\+encode(), pkcs\+\_\+1\+\_\+pss\+\_\+encode(), pkcs\+\_\+1\+\_\+v1\+\_\+5\+\_\+encode(), rabbit\+\_\+keystream(), rabbit\+\_\+setiv(), rabbit\+\_\+setup(), rc4\+\_\+start(), rc4\+\_\+stream\+\_\+done(), rc4\+\_\+stream\+\_\+keystream(), salsa20\+\_\+done(), salsa20\+\_\+keystream(), sha3\+\_\+224\+\_\+init(), sha3\+\_\+224\+\_\+test(), sha3\+\_\+256\+\_\+init(), sha3\+\_\+256\+\_\+test(), sha3\+\_\+384\+\_\+init(), sha3\+\_\+384\+\_\+test(), sha3\+\_\+512\+\_\+init(), sha3\+\_\+512\+\_\+test(), sha3\+\_\+shake\+\_\+init(), sha3\+\_\+shake\+\_\+test(), sober128\+\_\+ready(), sober128\+\_\+start(), sober128\+\_\+stream\+\_\+done(), sober128\+\_\+stream\+\_\+keystream(), sober128\+\_\+stream\+\_\+test(), sosemanuk\+\_\+done(), sosemanuk\+\_\+keystream(), sosemanuk\+\_\+setup(), and xts\+\_\+test().
+
+Here is the caller graph for this function\+:
+% FIG 7
+\mbox{\Hypertarget{tomcrypt__cfg_8h_aceefd8dacef70eb3f302b8df2da8aec9}\label{tomcrypt__cfg_8h_aceefd8dacef70eb3f302b8df2da8aec9}} 
+\index{tomcrypt\_cfg.h@{tomcrypt\_cfg.h}!XQSORT@{XQSORT}}
+\index{XQSORT@{XQSORT}!tomcrypt\_cfg.h@{tomcrypt\_cfg.h}}
+\subsubsection{\texorpdfstring{XQSORT()}{XQSORT()}}
+{\footnotesize\ttfamily void X\+Q\+S\+O\+RT (\begin{DoxyParamCaption}\item[{void $\ast$}]{base,  }\item[{size\+\_\+t}]{nmemb,  }\item[{size\+\_\+t}]{size,  }\item[{int($\ast$)(const void $\ast$, const void $\ast$)}]{compar }\end{DoxyParamCaption})}
+
+
+
+Referenced by der\+\_\+encode\+\_\+set(), and der\+\_\+encode\+\_\+setof().
+
+Here is the caller graph for this function\+:
+% FIG 8
+\mbox{\Hypertarget{tomcrypt__cfg_8h_a6146d108fa03ec35ee5fd391f874ad5d}\label{tomcrypt__cfg_8h_a6146d108fa03ec35ee5fd391f874ad5d}} 
+\index{tomcrypt\_cfg.h@{tomcrypt\_cfg.h}!XREALLOC@{XREALLOC}}
+\index{XREALLOC@{XREALLOC}!tomcrypt\_cfg.h@{tomcrypt\_cfg.h}}
+\subsubsection{\texorpdfstring{XREALLOC()}{XREALLOC()}}
+{\footnotesize\ttfamily void$\ast$ X\+R\+E\+A\+L\+L\+OC (\begin{DoxyParamCaption}\item[{void $\ast$}]{p,  }\item[{size\+\_\+t}]{n }\end{DoxyParamCaption})}
+
+
+
+Referenced by der\+\_\+decode\+\_\+sequence\+\_\+flexi().
+
+Here is the caller graph for this function\+:
+% FIG 9
+\mbox{\Hypertarget{tomcrypt__cfg_8h_a5d6e3d69e1d3f54de008b963bba3c6b3}\label{tomcrypt__cfg_8h_a5d6e3d69e1d3f54de008b963bba3c6b3}} 
+\index{tomcrypt\_cfg.h@{tomcrypt\_cfg.h}!XSTRCMP@{XSTRCMP}}
+\index{XSTRCMP@{XSTRCMP}!tomcrypt\_cfg.h@{tomcrypt\_cfg.h}}
+\subsubsection{\texorpdfstring{XSTRCMP()}{XSTRCMP()}}
+{\footnotesize\ttfamily int X\+S\+T\+R\+C\+MP (\begin{DoxyParamCaption}\item[{const char $\ast$}]{s1,  }\item[{const char $\ast$}]{s2 }\end{DoxyParamCaption})}
+
+
+
+Referenced by crypt\+\_\+get\+\_\+constant(), crypt\+\_\+get\+\_\+size(), ecc\+\_\+find\+\_\+curve(), ecc\+\_\+recover\+\_\+key(), ecc\+\_\+ssh\+\_\+ecdsa\+\_\+encode\+\_\+name(), ecc\+\_\+verify\+\_\+hash\+\_\+ex(), find\+\_\+cipher(), find\+\_\+hash(), find\+\_\+prng(), and pk\+\_\+oid\+\_\+cmp\+\_\+with\+\_\+ulong().
+
+Here is the caller graph for this function\+:
+% FIG 10

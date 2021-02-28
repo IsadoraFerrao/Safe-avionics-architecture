@@ -1,0 +1,18 @@
+digraph "_sosemanuk_internal"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node1 [label="_sosemanuk_internal",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node2 [label="sosemanuk_crypt",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sosemanuk_8c.html#ae473e1b8845f3b37e79e6c099e54247c",tooltip=" "];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node3 [label="sosemanuk_keystream",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sosemanuk_8c.html#ac9cf23b2cb5a1585248c91498f3dd026",tooltip=" "];
+  Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node4 [label="sosemanuk_test",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sosemanuk__test_8c.html#a56d20dc99a9bd776ac8f303c19e8c15b",tooltip=" "];
+  Node2 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node5 [label="sosemanuk_memory",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sosemanuk__memory_8c.html#af5bb4d327884d7b137ddf18366f8d47d",tooltip="Encrypt (or decrypt) bytes of ciphertext (or plaintext) with Sosemanuk."];
+  Node5 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node2 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+}

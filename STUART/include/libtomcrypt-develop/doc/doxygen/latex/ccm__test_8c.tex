@@ -1,0 +1,303 @@
+\hypertarget{ccm__test_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/encauth/ccm/ccm\+\_\+test.c File Reference}
+\label{ccm__test_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/encauth/ccm/ccm\_test.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/encauth/ccm/ccm\_test.c}}
+
+
+C\+CM support, process a block of memory, Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for ccm\+\_\+test.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{ccm__test_8c_af02fbfac6da1b71a49ad14537796b006}{ccm\+\_\+test}} (void)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+C\+CM support, process a block of memory, Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{ccm__test_8c_af02fbfac6da1b71a49ad14537796b006}\label{ccm__test_8c_af02fbfac6da1b71a49ad14537796b006}} 
+\index{ccm\_test.c@{ccm\_test.c}!ccm\_test@{ccm\_test}}
+\index{ccm\_test@{ccm\_test}!ccm\_test.c@{ccm\_test.c}}
+\subsubsection{\texorpdfstring{ccm\_test()}{ccm\_test()}}
+{\footnotesize\ttfamily int ccm\+\_\+test (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 18 of file ccm\+\_\+test.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{19 \{}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#ifndef LTC\_TEST}}
+\DoxyCodeLine{21    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cac43a7799c7fd5f515172da6cfc0f9cf5}{CRYPT\_NOP}};}
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{23    \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{24        \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} key[16];}
+\DoxyCodeLine{25        \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} nonce[16];}
+\DoxyCodeLine{26        \textcolor{keywordtype}{int}           noncelen;}
+\DoxyCodeLine{27        \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} header[64];}
+\DoxyCodeLine{28        \textcolor{keywordtype}{int}           headerlen;}
+\DoxyCodeLine{29        \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} pt[64];}
+\DoxyCodeLine{30        \textcolor{keywordtype}{int}           ptlen;}
+\DoxyCodeLine{31        \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} ct[64];}
+\DoxyCodeLine{32        \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} tag[16];}
+\DoxyCodeLine{33        \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} taglen;}
+\DoxyCodeLine{34    \} tests[] = \{}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36 \textcolor{comment}{/* 13 byte nonce, 8 byte auth, 23 byte pt */}}
+\DoxyCodeLine{37 \{}
+\DoxyCodeLine{38    \{ 0xC0, 0xC1, 0xC2, 0xC3, 0xC4, 0xC5, 0xC6, 0xC7,}
+\DoxyCodeLine{39      0xC8, 0xC9, 0xCA, 0xCB, 0xCC, 0xCD, 0xCE, 0xCF \},}
+\DoxyCodeLine{40    \{ 0x00, 0x00, 0x00, 0x03, 0x02, 0x01, 0x00, 0xA0,}
+\DoxyCodeLine{41      0xA1, 0xA2, 0xA3, 0xA4, 0xA5 \},}
+\DoxyCodeLine{42    13,}
+\DoxyCodeLine{43    \{ 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07 \},}
+\DoxyCodeLine{44    8,}
+\DoxyCodeLine{45    \{ 0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F,}
+\DoxyCodeLine{46      0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17,}
+\DoxyCodeLine{47      0x18, 0x19, 0x1A, 0x1B, 0x1C, 0x1D, 0x1E \},}
+\DoxyCodeLine{48    23,}
+\DoxyCodeLine{49    \{ 0x58, 0x8C, 0x97, 0x9A, 0x61, 0xC6, 0x63, 0xD2,}
+\DoxyCodeLine{50      0xF0, 0x66, 0xD0, 0xC2, 0xC0, 0xF9, 0x89, 0x80,}
+\DoxyCodeLine{51      0x6D, 0x5F, 0x6B, 0x61, 0xDA, 0xC3, 0x84 \},}
+\DoxyCodeLine{52    \{ 0x17, 0xe8, 0xd1, 0x2c, 0xfd, 0xf9, 0x26, 0xe0 \},}
+\DoxyCodeLine{53    8}
+\DoxyCodeLine{54 \},}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{56 \textcolor{comment}{/* 13 byte nonce, 12 byte header, 19 byte pt */}}
+\DoxyCodeLine{57 \{}
+\DoxyCodeLine{58    \{ 0xC0, 0xC1, 0xC2, 0xC3, 0xC4, 0xC5, 0xC6, 0xC7,}
+\DoxyCodeLine{59      0xC8, 0xC9, 0xCA, 0xCB, 0xCC, 0xCD, 0xCE, 0xCF \},}
+\DoxyCodeLine{60    \{ 0x00, 0x00, 0x00, 0x06, 0x05, 0x04, 0x03, 0xA0,}
+\DoxyCodeLine{61      0xA1, 0xA2, 0xA3, 0xA4, 0xA5 \},}
+\DoxyCodeLine{62    13,}
+\DoxyCodeLine{63    \{ 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07,}
+\DoxyCodeLine{64      0x08, 0x09, 0x0A, 0x0B \},}
+\DoxyCodeLine{65    12,}
+\DoxyCodeLine{66    \{ 0x0C, 0x0D, 0x0E, 0x0F, 0x10, 0x11, 0x12, 0x13,}
+\DoxyCodeLine{67      0x14, 0x15, 0x16, 0x17, 0x18, 0x19, 0x1A, 0x1B,}
+\DoxyCodeLine{68      0x1C, 0x1D, 0x1E \},}
+\DoxyCodeLine{69    19,}
+\DoxyCodeLine{70    \{ 0xA2, 0x8C, 0x68, 0x65, 0x93, 0x9A, 0x9A, 0x79,}
+\DoxyCodeLine{71      0xFA, 0xAA, 0x5C, 0x4C, 0x2A, 0x9D, 0x4A, 0x91,}
+\DoxyCodeLine{72      0xCD, 0xAC, 0x8C \},}
+\DoxyCodeLine{73    \{ 0x96, 0xC8, 0x61, 0xB9, 0xC9, 0xE6, 0x1E, 0xF1 \},}
+\DoxyCodeLine{74    8}
+\DoxyCodeLine{75 \},}
+\DoxyCodeLine{76 }
+\DoxyCodeLine{77 \textcolor{comment}{/* supplied by Brian Gladman */}}
+\DoxyCodeLine{78 \{}
+\DoxyCodeLine{79    \{ 0x40, 0x41, 0x42, 0x43, 0x44, 0x45, 0x46, 0x47,}
+\DoxyCodeLine{80      0x48, 0x49, 0x4a, 0x4b, 0x4c, 0x4d, 0x4e, 0x4f \},}
+\DoxyCodeLine{81    \{ 0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16  \},}
+\DoxyCodeLine{82    7,}
+\DoxyCodeLine{83    \{ 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07 \},}
+\DoxyCodeLine{84    8,}
+\DoxyCodeLine{85    \{ 0x20, 0x21, 0x22, 0x23 \},}
+\DoxyCodeLine{86    4,}
+\DoxyCodeLine{87    \{ 0x71, 0x62, 0x01, 0x5b \},}
+\DoxyCodeLine{88    \{ 0x4d, 0xac, 0x25, 0x5d \},}
+\DoxyCodeLine{89    4}
+\DoxyCodeLine{90 \},}
+\DoxyCodeLine{91 }
+\DoxyCodeLine{92 \{}
+\DoxyCodeLine{93    \{ 0xc9, 0x7c, 0x1f, 0x67, 0xce, 0x37, 0x11, 0x85,}
+\DoxyCodeLine{94      0x51, 0x4a, 0x8a, 0x19, 0xf2, 0xbd, 0xd5, 0x2f \},}
+\DoxyCodeLine{95    \{ 0x00, 0x50, 0x30, 0xf1, 0x84, 0x44, 0x08, 0xb5,}
+\DoxyCodeLine{96      0x03, 0x97, 0x76, 0xe7, 0x0c \},}
+\DoxyCodeLine{97    13,}
+\DoxyCodeLine{98    \{ 0x08, 0x40, 0x0f, 0xd2, 0xe1, 0x28, 0xa5, 0x7c,}
+\DoxyCodeLine{99      0x50, 0x30, 0xf1, 0x84, 0x44, 0x08, 0xab, 0xae,}
+\DoxyCodeLine{100      0xa5, 0xb8, 0xfc, 0xba, 0x00, 0x00 \},}
+\DoxyCodeLine{101    22,}
+\DoxyCodeLine{102    \{ 0xf8, 0xba, 0x1a, 0x55, 0xd0, 0x2f, 0x85, 0xae,}
+\DoxyCodeLine{103      0x96, 0x7b, 0xb6, 0x2f, 0xb6, 0xcd, 0xa8, 0xeb,}
+\DoxyCodeLine{104      0x7e, 0x78, 0xa0, 0x50 \},}
+\DoxyCodeLine{105    20,}
+\DoxyCodeLine{106    \{ 0xf3, 0xd0, 0xa2, 0xfe, 0x9a, 0x3d, 0xbf, 0x23,}
+\DoxyCodeLine{107      0x42, 0xa6, 0x43, 0xe4, 0x32, 0x46, 0xe8, 0x0c,}
+\DoxyCodeLine{108      0x3c, 0x04, 0xd0, 0x19 \},}
+\DoxyCodeLine{109    \{ 0x78, 0x45, 0xce, 0x0b, 0x16, 0xf9, 0x76, 0x23 \},}
+\DoxyCodeLine{110    8}
+\DoxyCodeLine{111 \},}
+\DoxyCodeLine{112 }
+\DoxyCodeLine{113 \};}
+\DoxyCodeLine{114    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} taglen, x, y;}
+\DoxyCodeLine{115    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} buf[64], buf2[64], tag[16], tag2[16], tag3[16], zero[64];}
+\DoxyCodeLine{116    \textcolor{keywordtype}{int}           err, idx;}
+\DoxyCodeLine{117    \mbox{\hyperlink{unionSymmetric__key}{symmetric\_key}} skey;}
+\DoxyCodeLine{118    ccm\_state ccm;}
+\DoxyCodeLine{119 }
+\DoxyCodeLine{120    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(zero, 64);}
+\DoxyCodeLine{121 }
+\DoxyCodeLine{122    idx = \mbox{\hyperlink{tomcrypt__cipher_8h_af5c3882342fd65a17239cd04bfdf44e2}{find\_cipher}}(\textcolor{stringliteral}{"aes"});}
+\DoxyCodeLine{123    \textcolor{keywordflow}{if} (idx == -1) \{}
+\DoxyCodeLine{124       idx = \mbox{\hyperlink{tomcrypt__cipher_8h_af5c3882342fd65a17239cd04bfdf44e2}{find\_cipher}}(\textcolor{stringliteral}{"rijndael"});}
+\DoxyCodeLine{125       \textcolor{keywordflow}{if} (idx == -1) \{}
+\DoxyCodeLine{126          \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cac43a7799c7fd5f515172da6cfc0f9cf5}{CRYPT\_NOP}};}
+\DoxyCodeLine{127       \}}
+\DoxyCodeLine{128    \}}
+\DoxyCodeLine{129 }
+\DoxyCodeLine{130    \textcolor{keywordflow}{for} (x = 0; x < (\textcolor{keyword}{sizeof}(tests)/\textcolor{keyword}{sizeof}(tests[0])); x++) \{}
+\DoxyCodeLine{131       \textcolor{keywordflow}{for} (y = 0; y < 2; y++) \{}
+\DoxyCodeLine{132          taglen = tests[x].taglen;}
+\DoxyCodeLine{133          \textcolor{keywordflow}{if} (y == 0) \{}
+\DoxyCodeLine{134             \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[idx].\mbox{\hyperlink{multi2_8c_ad0625943f7d847668b869ed827c51d47}{setup}}(tests[x].key, 16, 0, \&skey)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{135                \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{136             \}}
+\DoxyCodeLine{137 }
+\DoxyCodeLine{138             \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{ccm__memory_8c_acdd7923e6aee8984662ed5000dc2d7fe}{ccm\_memory}}(idx,}
+\DoxyCodeLine{139                                   tests[x].key, 16,}
+\DoxyCodeLine{140                                   \&skey,}
+\DoxyCodeLine{141                                   tests[x].nonce, tests[x].noncelen,}
+\DoxyCodeLine{142                                   tests[x].header, tests[x].headerlen,}
+\DoxyCodeLine{143                                   (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}*)tests[x].pt, tests[x].ptlen,}
+\DoxyCodeLine{144                                   buf,}
+\DoxyCodeLine{145                                   tag, \&taglen, 0)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{146                \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{147             \}}
+\DoxyCodeLine{148             \textcolor{comment}{/* run a second time to make sure skey is not touched */}}
+\DoxyCodeLine{149             \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{ccm__memory_8c_acdd7923e6aee8984662ed5000dc2d7fe}{ccm\_memory}}(idx,}
+\DoxyCodeLine{150                                   tests[x].key, 16,}
+\DoxyCodeLine{151                                   \&skey,}
+\DoxyCodeLine{152                                   tests[x].nonce, tests[x].noncelen,}
+\DoxyCodeLine{153                                   tests[x].header, tests[x].headerlen,}
+\DoxyCodeLine{154                                   (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}*)tests[x].pt, tests[x].ptlen,}
+\DoxyCodeLine{155                                   buf,}
+\DoxyCodeLine{156                                   tag, \&taglen, 0)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{157                \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{158             \}}
+\DoxyCodeLine{159          \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{160             \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{ccm__init_8c_a23e25e4c7b06cafb883ffc6ea4217a31}{ccm\_init}}(\&ccm, idx, tests[x].key, 16, tests[x].ptlen, tests[x].taglen, tests[x].headerlen)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{161                \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{162             \}}
+\DoxyCodeLine{163             \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{ccm__add__nonce_8c_abe9109373588f8e2fcd7cfb9111ee76b}{ccm\_add\_nonce}}(\&ccm, tests[x].nonce, tests[x].noncelen)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{164                \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{165             \}}
+\DoxyCodeLine{166             \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{ccm__add__aad_8c_aab3b1397422d9da974a6276a0ae9e09f}{ccm\_add\_aad}}(\&ccm, tests[x].header, tests[x].headerlen)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{167                \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{168             \}}
+\DoxyCodeLine{169             \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{ccm__process_8c_a8948039b55b2461f243d97fa28bb0614}{ccm\_process}}(\&ccm, (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}*)tests[x].pt, tests[x].ptlen, buf, CCM\_ENCRYPT)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{170                \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{171             \}}
+\DoxyCodeLine{172             \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{ccm__done_8c_a3c42ef38537c89debe10d69e0cfabed9}{ccm\_done}}(\&ccm, tag, \&taglen)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{173                \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{174             \}}
+\DoxyCodeLine{175          \}}
+\DoxyCodeLine{176 }
+\DoxyCodeLine{177          \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(buf, tests[x].ptlen, tests[x].ct, tests[x].ptlen, \textcolor{stringliteral}{"CCM encrypt data"}, x)) \{}
+\DoxyCodeLine{178             \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{179          \}}
+\DoxyCodeLine{180          \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(tag, taglen, tests[x].tag, tests[x].taglen, \textcolor{stringliteral}{"CCM encrypt tag"}, x)) \{}
+\DoxyCodeLine{181             \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{182          \}}
+\DoxyCodeLine{183 }
+\DoxyCodeLine{184          \textcolor{keywordflow}{if} (y == 0) \{}
+\DoxyCodeLine{185             \mbox{\hyperlink{tomcrypt__cfg_8h_a7691dd48d60d5fc6daf2fa7ec4c55e12}{XMEMCPY}}(tag3, tests[x].tag, tests[x].taglen);}
+\DoxyCodeLine{186             taglen = tests[x].taglen;}
+\DoxyCodeLine{187             \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{ccm__memory_8c_acdd7923e6aee8984662ed5000dc2d7fe}{ccm\_memory}}(idx,}
+\DoxyCodeLine{188                                   tests[x].key, 16,}
+\DoxyCodeLine{189                                   NULL,}
+\DoxyCodeLine{190                                   tests[x].nonce, tests[x].noncelen,}
+\DoxyCodeLine{191                                   tests[x].header, tests[x].headerlen,}
+\DoxyCodeLine{192                                   buf2, tests[x].ptlen,}
+\DoxyCodeLine{193                                   buf,}
+\DoxyCodeLine{194                                   tag3, \&taglen, 1   )) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{195                \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{196             \}}
+\DoxyCodeLine{197          \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{198             \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{ccm__init_8c_a23e25e4c7b06cafb883ffc6ea4217a31}{ccm\_init}}(\&ccm, idx, tests[x].key, 16, tests[x].ptlen, tests[x].taglen, tests[x].headerlen)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{199                \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{200             \}}
+\DoxyCodeLine{201             \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{ccm__add__nonce_8c_abe9109373588f8e2fcd7cfb9111ee76b}{ccm\_add\_nonce}}(\&ccm, tests[x].nonce, tests[x].noncelen)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{202                \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{203             \}}
+\DoxyCodeLine{204             \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{ccm__add__aad_8c_aab3b1397422d9da974a6276a0ae9e09f}{ccm\_add\_aad}}(\&ccm, tests[x].header, tests[x].headerlen)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{205                \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{206             \}}
+\DoxyCodeLine{207             \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{ccm__process_8c_a8948039b55b2461f243d97fa28bb0614}{ccm\_process}}(\&ccm, buf2, tests[x].ptlen, buf, CCM\_DECRYPT)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{208                \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{209             \}}
+\DoxyCodeLine{210             \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{ccm__done_8c_a3c42ef38537c89debe10d69e0cfabed9}{ccm\_done}}(\&ccm, tag2, \&taglen)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{211                \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{212             \}}
+\DoxyCodeLine{213          \}}
+\DoxyCodeLine{214 }
+\DoxyCodeLine{215 }
+\DoxyCodeLine{216          \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(buf2, tests[x].ptlen, tests[x].pt, tests[x].ptlen, \textcolor{stringliteral}{"CCM decrypt data"}, x)) \{}
+\DoxyCodeLine{217             \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{218          \}}
+\DoxyCodeLine{219          \textcolor{keywordflow}{if} (y == 0) \{}
+\DoxyCodeLine{220             \textcolor{comment}{/* check if decryption with the wrong tag does not reveal the plaintext */}}
+\DoxyCodeLine{221             \mbox{\hyperlink{tomcrypt__cfg_8h_a7691dd48d60d5fc6daf2fa7ec4c55e12}{XMEMCPY}}(tag3, tests[x].tag, tests[x].taglen);}
+\DoxyCodeLine{222             tag3[0] \string^= 0xff; \textcolor{comment}{/* set the tag to the wrong value */}}
+\DoxyCodeLine{223             taglen = tests[x].taglen;}
+\DoxyCodeLine{224             \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{ccm__memory_8c_acdd7923e6aee8984662ed5000dc2d7fe}{ccm\_memory}}(idx,}
+\DoxyCodeLine{225                                   tests[x].key, 16,}
+\DoxyCodeLine{226                                   NULL,}
+\DoxyCodeLine{227                                   tests[x].nonce, tests[x].noncelen,}
+\DoxyCodeLine{228                                   tests[x].header, tests[x].headerlen,}
+\DoxyCodeLine{229                                   buf2, tests[x].ptlen,}
+\DoxyCodeLine{230                                   buf,}
+\DoxyCodeLine{231                                   tag3, \&taglen, 1   )) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca03c22220d7538be04455cd2aa6ddf9da}{CRYPT\_ERROR}}) \{}
+\DoxyCodeLine{232                \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{233             \}}
+\DoxyCodeLine{234             \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(buf2, tests[x].ptlen, zero, tests[x].ptlen, \textcolor{stringliteral}{"CCM decrypt wrong tag"}, x)) \{}
+\DoxyCodeLine{235                \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{236             \}}
+\DoxyCodeLine{237          \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{238             \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(tag2, taglen, tests[x].tag, tests[x].taglen, \textcolor{stringliteral}{"CCM decrypt tag"}, x)) \{}
+\DoxyCodeLine{239                \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{240             \}}
+\DoxyCodeLine{241          \}}
+\DoxyCodeLine{242 }
+\DoxyCodeLine{243          \textcolor{keywordflow}{if} (y == 0) \{}
+\DoxyCodeLine{244             \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[idx].\mbox{\hyperlink{structltc__cipher__descriptor_a0ad1c101005c70a69e40fded0e606191}{done}}(\&skey);}
+\DoxyCodeLine{245          \}}
+\DoxyCodeLine{246       \}}
+\DoxyCodeLine{247    \}}
+\DoxyCodeLine{248 }
+\DoxyCodeLine{249    \textcolor{comment}{/* wycheproof failing test - https://github.com/libtom/libtomcrypt/pull/452 */}}
+\DoxyCodeLine{250    \{}
+\DoxyCodeLine{251       \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} key[] = \{ 0x00,0x01,0x02,0x03,0x04,0x05,0x06,0x07,0x08,0x09,0x0a,0x0b,0x0c,0x0d,0x0e,0x0f \};}
+\DoxyCodeLine{252       \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} iv[]  = \{ 0x46,0x47,0x48,0x49,0x4a,0x4b,0x4c,0x4d,0x4e,0x4f,0x50,0x51 \};}
+\DoxyCodeLine{253       \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} valid\_tag[]   = \{ 0x23,0x1a,0x2d,0x8f \};}
+\DoxyCodeLine{254       \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} invalid\_tag[] = \{ 0x23,0x1a,0x2d,0x8f,0x6a \};}
+\DoxyCodeLine{255       \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} msg[] = \{ 0x20,0x21,0x22,0x23,0x24,0x25,0x26,0x27,0x28,0x29,0x2a,0x2b,0x2c,0x2d,0x2e,0x2f \};}
+\DoxyCodeLine{256       \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} ct[]  = \{ 0xd3,0xda,0xb1,0xee,0x49,0x4c,0xc2,0x29,0x09,0x9d,0x6c,0xac,0x7d,0xf1,0x4a,0xdd \};}
+\DoxyCodeLine{257       \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} pt[20] = \{ 0 \};}
+\DoxyCodeLine{258 }
+\DoxyCodeLine{259       \textcolor{comment}{/* VALID tag */}}
+\DoxyCodeLine{260       taglen = \textcolor{keyword}{sizeof}(valid\_tag);}
+\DoxyCodeLine{261       err = \mbox{\hyperlink{ccm__memory_8c_acdd7923e6aee8984662ed5000dc2d7fe}{ccm\_memory}}(idx, key, \textcolor{keyword}{sizeof}(key), NULL, iv, \textcolor{keyword}{sizeof}(iv), NULL, 0,}
+\DoxyCodeLine{262                        pt, \textcolor{keyword}{sizeof}(ct), ct, valid\_tag, \&taglen, CCM\_DECRYPT);}
+\DoxyCodeLine{263       \textcolor{keywordflow}{if} ((err != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) || (\mbox{\hyperlink{tomcrypt__cfg_8h_a372b974ec0ac07abcd55297554fe540f}{XMEMCMP}}(msg, pt, \textcolor{keyword}{sizeof}(msg)) != 0)) \{}
+\DoxyCodeLine{264          \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{265       \}}
+\DoxyCodeLine{266 }
+\DoxyCodeLine{267       \textcolor{comment}{/* INVALID tag */}}
+\DoxyCodeLine{268       taglen = \textcolor{keyword}{sizeof}(invalid\_tag);}
+\DoxyCodeLine{269       err = \mbox{\hyperlink{ccm__memory_8c_acdd7923e6aee8984662ed5000dc2d7fe}{ccm\_memory}}(idx, key, \textcolor{keyword}{sizeof}(key), NULL, iv, \textcolor{keyword}{sizeof}(iv), NULL, 0,}
+\DoxyCodeLine{270                        pt, \textcolor{keyword}{sizeof}(ct), ct, invalid\_tag, \&taglen, CCM\_DECRYPT);}
+\DoxyCodeLine{271       \textcolor{keywordflow}{if} (err == \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{272          \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}}; \textcolor{comment}{/* should fail */}}
+\DoxyCodeLine{273       \}}
+\DoxyCodeLine{274    \}}
+\DoxyCodeLine{275 }
+\DoxyCodeLine{276    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{277 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{278 \}}
+
+\end{DoxyCode}
+
+
+References ccm\+\_\+add\+\_\+aad(), ccm\+\_\+add\+\_\+nonce(), ccm\+\_\+done(), ccm\+\_\+init(), ccm\+\_\+memory(), ccm\+\_\+process(), cipher\+\_\+descriptor, compare\+\_\+testvector(), C\+R\+Y\+P\+T\+\_\+\+E\+R\+R\+OR, C\+R\+Y\+P\+T\+\_\+\+F\+A\+I\+L\+\_\+\+T\+E\+S\+T\+V\+E\+C\+T\+OR, C\+R\+Y\+P\+T\+\_\+\+N\+OP, C\+R\+Y\+P\+T\+\_\+\+OK, ltc\+\_\+cipher\+\_\+descriptor\+::done, find\+\_\+cipher(), setup(), X\+M\+E\+M\+C\+M\+P(), X\+M\+E\+M\+C\+P\+Y(), and zeromem().
+
+Here is the call graph for this function\+:
+% FIG 1

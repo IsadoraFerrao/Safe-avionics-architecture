@@ -1,0 +1,21 @@
+digraph "fortuna_update_seed"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node99 [label="fortuna_update_seed",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="\"Update Seed File\"-compliant update of K"];
+  Node99 -> Node100 [color="midnightblue",fontsize="10",style="solid"];
+  Node100 [label="_fortuna_update_iv",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$fortuna_8c.html#a5e5b2b7f0a18fae044e2f53384a51c6b",tooltip=" "];
+  Node99 -> Node101 [color="midnightblue",fontsize="10",style="solid"];
+  Node101 [label="sha256_done",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sha256_8c.html#a53db56f3eb9f35c59b134533be31c301",tooltip="Terminate the hash to get the digest."];
+  Node101 -> Node102 [color="midnightblue",fontsize="10",style="solid"];
+  Node102 [label="sha256_compress",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sha256_8c.html#ac87e8a7c22810735390e70611006bfe5",tooltip=" "];
+  Node101 -> Node103 [color="midnightblue",fontsize="10",style="solid"];
+  Node103 [label="zeromem",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__misc_8h.html#a63b6e188713790263bfd3612fe8b398f",tooltip="Zero a block of memory."];
+  Node99 -> Node104 [color="midnightblue",fontsize="10",style="solid"];
+  Node104 [label="sha256_init",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sha256_8c.html#a6290ad544b02c822c2ca6c30b8d1ee07",tooltip="Initialize the hash state."];
+  Node99 -> Node105 [color="midnightblue",fontsize="10",style="solid"];
+  Node105 [label="sha256_process",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sha256_8c.html#a8b983a80c9edd5d997a3937963ae7856",tooltip="Process a block of memory though the hash."];
+  Node99 -> Node103 [color="midnightblue",fontsize="10",style="solid"];
+}

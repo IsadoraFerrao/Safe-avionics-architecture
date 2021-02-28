@@ -1,0 +1,66 @@
+\hypertarget{der__length__asn1__identifier_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/pk/asn1/der/general/der\+\_\+length\+\_\+asn1\+\_\+identifier.c File Reference}
+\label{der__length__asn1__identifier_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/asn1/der/general/der\_length\_asn1\_identifier.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/asn1/der/general/der\_length\_asn1\_identifier.c}}
+
+
+A\+S\+N.\+1 D\+ER, determine the length when encoding the A\+S\+N.\+1 Identifier, Steffen Jaeckel.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for der\+\_\+length\+\_\+asn1\+\_\+identifier.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{der__length__asn1__identifier_8c_a12ee6e955851d0daff84581e3770a807}{der\+\_\+length\+\_\+asn1\+\_\+identifier}} (const ltc\+\_\+asn1\+\_\+list $\ast$id, unsigned long $\ast$idlen)
+\begin{DoxyCompactList}\small\item\em Determine the length required when encoding the A\+S\+N.\+1 Identifier. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A\+S\+N.\+1 D\+ER, determine the length when encoding the A\+S\+N.\+1 Identifier, Steffen Jaeckel. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{der__length__asn1__identifier_8c_a12ee6e955851d0daff84581e3770a807}\label{der__length__asn1__identifier_8c_a12ee6e955851d0daff84581e3770a807}} 
+\index{der\_length\_asn1\_identifier.c@{der\_length\_asn1\_identifier.c}!der\_length\_asn1\_identifier@{der\_length\_asn1\_identifier}}
+\index{der\_length\_asn1\_identifier@{der\_length\_asn1\_identifier}!der\_length\_asn1\_identifier.c@{der\_length\_asn1\_identifier.c}}
+\subsubsection{\texorpdfstring{der\_length\_asn1\_identifier()}{der\_length\_asn1\_identifier()}}
+{\footnotesize\ttfamily int der\+\_\+length\+\_\+asn1\+\_\+identifier (\begin{DoxyParamCaption}\item[{const ltc\+\_\+asn1\+\_\+list $\ast$}]{id,  }\item[{unsigned long $\ast$}]{idlen }\end{DoxyParamCaption})}
+
+
+
+Determine the length required when encoding the A\+S\+N.\+1 Identifier. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The A\+S\+N.\+1 identifier to encode \\
+\hline
+{\em idlen} & \mbox{[}out\mbox{]} The required length to encode list \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 24 of file der\+\_\+length\+\_\+asn1\+\_\+identifier.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{25 \{}
+\DoxyCodeLine{26    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt__private_8h_a093815c0cc44624723a3d668992b3008}{der\_encode\_asn1\_identifier}}(\textcolor{keywordtype}{id}, NULL, idlen);}
+\DoxyCodeLine{27 \}}
+
+\end{DoxyCode}
+
+
+References der\+\_\+encode\+\_\+asn1\+\_\+identifier().
+
+
+
+Referenced by der\+\_\+encode\+\_\+custom\+\_\+type(), and der\+\_\+length\+\_\+custom\+\_\+type().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2

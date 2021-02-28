@@ -1,0 +1,916 @@
+\hypertarget{sha3_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/hashes/sha3.c File Reference}
+\label{sha3_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/hashes/sha3.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/hashes/sha3.c}}
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for sha3.\+c\+:
+% FIG 0
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{sha3_8c_a523878099e5ec16cb61e01d0365201f5}{S\+H\+A3\+\_\+\+K\+E\+C\+C\+A\+K\+\_\+\+S\+P\+O\+N\+G\+E\+\_\+\+W\+O\+R\+DS}}~25 /$\ast$ 1600 bits $>$ 200 bytes $>$ 25 x \mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}} $\ast$/
+\item 
+\#define \mbox{\hyperlink{sha3_8c_a958ab831e69e0e312de6acc0bc0ab00e}{S\+H\+A3\+\_\+\+K\+E\+C\+C\+A\+K\+\_\+\+R\+O\+U\+N\+DS}}~24
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{sha3_8c_a7fd78116706c35ac94b8fb5553220678}{keccakf}} (\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}} s\mbox{[}25\mbox{]})
+\item 
+static int \mbox{\hyperlink{sha3_8c_a70447c15a8370dc0c8353265433ef0da}{\+\_\+done}} (\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$md, unsigned char $\ast$hash, \mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}} pad)
+\item 
+int \mbox{\hyperlink{sha3_8c_ab24df1989694bccf62793acb23184bf0}{sha3\+\_\+224\+\_\+init}} (\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$md)
+\item 
+int \mbox{\hyperlink{sha3_8c_ae9cca742da51fb0723121936067e2a72}{sha3\+\_\+256\+\_\+init}} (\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$md)
+\item 
+int \mbox{\hyperlink{sha3_8c_ae32e36c847895e0350bc4ccccf6e0e8a}{sha3\+\_\+384\+\_\+init}} (\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$md)
+\item 
+int \mbox{\hyperlink{sha3_8c_a16645fcb0695ae6c3231fcc15cd471d1}{sha3\+\_\+512\+\_\+init}} (\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$md)
+\item 
+int \mbox{\hyperlink{sha3_8c_af50f8a0f885a2483d8123b44e80176cf}{sha3\+\_\+shake\+\_\+init}} (\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$md, int num)
+\item 
+int \mbox{\hyperlink{sha3_8c_a219bb33c73fc17f796f3673ee079d1e2}{sha3\+\_\+process}} (\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$md, const unsigned char $\ast$in, unsigned long inlen)
+\item 
+int \mbox{\hyperlink{sha3_8c_a366200437edbbf12e1dda073566619e9}{sha3\+\_\+done}} (\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$md, unsigned char $\ast$out)
+\item 
+int \mbox{\hyperlink{sha3_8c_a31831af26bc9cc4951ec2808dee5d4f3}{keccak\+\_\+done}} (\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$md, unsigned char $\ast$out)
+\item 
+int \mbox{\hyperlink{sha3_8c_a28a11ba4ab2b4ab690d50af5a192ee22}{sha3\+\_\+shake\+\_\+done}} (\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$md, unsigned char $\ast$out, unsigned long outlen)
+\item 
+int \mbox{\hyperlink{sha3_8c_a7de1578a754c0ec8629d465bab3cd55c}{sha3\+\_\+shake\+\_\+memory}} (int num, const unsigned char $\ast$in, unsigned long inlen, unsigned char $\ast$out, const unsigned long $\ast$outlen)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const struct \mbox{\hyperlink{structltc__hash__descriptor}{ltc\+\_\+hash\+\_\+descriptor}} \mbox{\hyperlink{sha3_8c_a17a249a77f0c1d349f9db5202f0a6309}{sha3\+\_\+224\+\_\+desc}}
+\item 
+const struct \mbox{\hyperlink{structltc__hash__descriptor}{ltc\+\_\+hash\+\_\+descriptor}} \mbox{\hyperlink{sha3_8c_a05bcc641692c2b2dd143a9230e26d0ea}{sha3\+\_\+256\+\_\+desc}}
+\item 
+const struct \mbox{\hyperlink{structltc__hash__descriptor}{ltc\+\_\+hash\+\_\+descriptor}} \mbox{\hyperlink{sha3_8c_ab7c1b759d0b5780a58fd5db28a94e372}{sha3\+\_\+384\+\_\+desc}}
+\item 
+const struct \mbox{\hyperlink{structltc__hash__descriptor}{ltc\+\_\+hash\+\_\+descriptor}} \mbox{\hyperlink{sha3_8c_a6281ec9346ad08bd8489a51d65661711}{sha3\+\_\+512\+\_\+desc}}
+\item 
+const struct \mbox{\hyperlink{structltc__hash__descriptor}{ltc\+\_\+hash\+\_\+descriptor}} \mbox{\hyperlink{sha3_8c_a1745d19879cd7b7d4e5c22b2b2b16a4e}{keccak\+\_\+224\+\_\+desc}}
+\item 
+const struct \mbox{\hyperlink{structltc__hash__descriptor}{ltc\+\_\+hash\+\_\+descriptor}} \mbox{\hyperlink{sha3_8c_a3e79c28c5fdacf5210ed91bad26942d8}{keccak\+\_\+256\+\_\+desc}}
+\item 
+const struct \mbox{\hyperlink{structltc__hash__descriptor}{ltc\+\_\+hash\+\_\+descriptor}} \mbox{\hyperlink{sha3_8c_a4a83d05c452b775df983244e3f463357}{keccak\+\_\+384\+\_\+desc}}
+\item 
+const struct \mbox{\hyperlink{structltc__hash__descriptor}{ltc\+\_\+hash\+\_\+descriptor}} \mbox{\hyperlink{sha3_8c_a04e575059db4685471164daaf2c28f22}{keccak\+\_\+512\+\_\+desc}}
+\item 
+static const \mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}} \mbox{\hyperlink{sha3_8c_a312f466b1a2c10c366f93446880a2580}{keccakf\+\_\+rndc}} \mbox{[}24\mbox{]}
+\item 
+static const unsigned \mbox{\hyperlink{sha3_8c_a2c50e9d2e14e52d2205f95f50e4b6413}{keccakf\+\_\+rotc}} \mbox{[}24\mbox{]}
+\item 
+static const unsigned \mbox{\hyperlink{sha3_8c_a4808a2f6f8465bcaee6bba304a215be7}{keccakf\+\_\+piln}} \mbox{[}24\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{sha3_8c_a958ab831e69e0e312de6acc0bc0ab00e}\label{sha3_8c_a958ab831e69e0e312de6acc0bc0ab00e}} 
+\index{sha3.c@{sha3.c}!SHA3\_KECCAK\_ROUNDS@{SHA3\_KECCAK\_ROUNDS}}
+\index{SHA3\_KECCAK\_ROUNDS@{SHA3\_KECCAK\_ROUNDS}!sha3.c@{sha3.c}}
+\subsubsection{\texorpdfstring{SHA3\_KECCAK\_ROUNDS}{SHA3\_KECCAK\_ROUNDS}}
+{\footnotesize\ttfamily \#define S\+H\+A3\+\_\+\+K\+E\+C\+C\+A\+K\+\_\+\+R\+O\+U\+N\+DS~24}
+
+
+
+Definition at line 138 of file sha3.\+c.
+
+\mbox{\Hypertarget{sha3_8c_a523878099e5ec16cb61e01d0365201f5}\label{sha3_8c_a523878099e5ec16cb61e01d0365201f5}} 
+\index{sha3.c@{sha3.c}!SHA3\_KECCAK\_SPONGE\_WORDS@{SHA3\_KECCAK\_SPONGE\_WORDS}}
+\index{SHA3\_KECCAK\_SPONGE\_WORDS@{SHA3\_KECCAK\_SPONGE\_WORDS}!sha3.c@{sha3.c}}
+\subsubsection{\texorpdfstring{SHA3\_KECCAK\_SPONGE\_WORDS}{SHA3\_KECCAK\_SPONGE\_WORDS}}
+{\footnotesize\ttfamily \#define S\+H\+A3\+\_\+\+K\+E\+C\+C\+A\+K\+\_\+\+S\+P\+O\+N\+G\+E\+\_\+\+W\+O\+R\+DS~25 /$\ast$ 1600 bits $>$ 200 bytes $>$ 25 x \mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}} $\ast$/}
+
+
+
+Definition at line 137 of file sha3.\+c.
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{sha3_8c_a70447c15a8370dc0c8353265433ef0da}\label{sha3_8c_a70447c15a8370dc0c8353265433ef0da}} 
+\index{sha3.c@{sha3.c}!\_done@{\_done}}
+\index{\_done@{\_done}!sha3.c@{sha3.c}}
+\subsubsection{\texorpdfstring{\_done()}{\_done()}}
+{\footnotesize\ttfamily static int \+\_\+done (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$}]{md,  }\item[{unsigned char $\ast$}]{hash,  }\item[{\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}}}]{pad }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 201 of file sha3.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{202 \{}
+\DoxyCodeLine{203    \textcolor{keywordtype}{unsigned} i;}
+\DoxyCodeLine{204 }
+\DoxyCodeLine{205    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(md   != NULL);}
+\DoxyCodeLine{206    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(hash != NULL);}
+\DoxyCodeLine{207 }
+\DoxyCodeLine{208    md->sha3.s[md->sha3.word\_index] \string^= (md->sha3.saved \string^ (pad << (md->sha3.byte\_index * 8)));}
+\DoxyCodeLine{209    md->sha3.s[\mbox{\hyperlink{sha3_8c_a523878099e5ec16cb61e01d0365201f5}{SHA3\_KECCAK\_SPONGE\_WORDS}} - md->sha3.capacity\_words - 1] \string^= \mbox{\hyperlink{tomcrypt__cfg_8h_a7d8e211582dff82d00fc171834e3dc67}{CONST64}}(0x8000000000000000);}
+\DoxyCodeLine{210    \mbox{\hyperlink{sha3_8c_a7fd78116706c35ac94b8fb5553220678}{keccakf}}(md->sha3.s);}
+\DoxyCodeLine{211 }
+\DoxyCodeLine{212    \textcolor{comment}{/* store sha3.s[] as little-endian bytes into sha3.sb */}}
+\DoxyCodeLine{213    \textcolor{keywordflow}{for}(i = 0; i < \mbox{\hyperlink{sha3_8c_a523878099e5ec16cb61e01d0365201f5}{SHA3\_KECCAK\_SPONGE\_WORDS}}; i++) \{}
+\DoxyCodeLine{214       STORE64L(md->sha3.s[i], md->sha3.sb + i * 8);}
+\DoxyCodeLine{215    \}}
+\DoxyCodeLine{216 }
+\DoxyCodeLine{217    \mbox{\hyperlink{tomcrypt__cfg_8h_a7691dd48d60d5fc6daf2fa7ec4c55e12}{XMEMCPY}}(hash, md->sha3.sb, md->sha3.capacity\_words * 4);}
+\DoxyCodeLine{218    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{219 \}}
+
+\end{DoxyCode}
+
+
+References C\+O\+N\+S\+T64, C\+R\+Y\+P\+T\+\_\+\+OK, keccakf(), L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, S\+H\+A3\+\_\+\+K\+E\+C\+C\+A\+K\+\_\+\+S\+P\+O\+N\+G\+E\+\_\+\+W\+O\+R\+DS, and X\+M\+E\+M\+C\+P\+Y().
+
+
+
+Referenced by keccak\+\_\+done(), and sha3\+\_\+done().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2
+\mbox{\Hypertarget{sha3_8c_a31831af26bc9cc4951ec2808dee5d4f3}\label{sha3_8c_a31831af26bc9cc4951ec2808dee5d4f3}} 
+\index{sha3.c@{sha3.c}!keccak\_done@{keccak\_done}}
+\index{keccak\_done@{keccak\_done}!sha3.c@{sha3.c}}
+\subsubsection{\texorpdfstring{keccak\_done()}{keccak\_done()}}
+{\footnotesize\ttfamily int keccak\+\_\+done (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$}]{md,  }\item[{unsigned char $\ast$}]{out }\end{DoxyParamCaption})}
+
+
+
+Definition at line 326 of file sha3.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{327 \{}
+\DoxyCodeLine{328    \textcolor{keywordflow}{return} \mbox{\hyperlink{sha3_8c_a70447c15a8370dc0c8353265433ef0da}{\_done}}(md, out, \mbox{\hyperlink{tomcrypt__cfg_8h_a7d8e211582dff82d00fc171834e3dc67}{CONST64}}(0x01));}
+\DoxyCodeLine{329 \}}
+
+\end{DoxyCode}
+
+
+References \+\_\+done(), and C\+O\+N\+S\+T64.
+
+
+
+Referenced by keccak\+\_\+224\+\_\+test(), keccak\+\_\+256\+\_\+test(), keccak\+\_\+384\+\_\+test(), and keccak\+\_\+512\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 3
+Here is the caller graph for this function\+:
+% FIG 4
+\mbox{\Hypertarget{sha3_8c_a7fd78116706c35ac94b8fb5553220678}\label{sha3_8c_a7fd78116706c35ac94b8fb5553220678}} 
+\index{sha3.c@{sha3.c}!keccakf@{keccakf}}
+\index{keccakf@{keccakf}!sha3.c@{sha3.c}}
+\subsubsection{\texorpdfstring{keccakf()}{keccakf()}}
+{\footnotesize\ttfamily static void keccakf (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}}}]{s\mbox{[}25\mbox{]} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 163 of file sha3.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{164 \{}
+\DoxyCodeLine{165    \textcolor{keywordtype}{int} i, j, round;}
+\DoxyCodeLine{166    \mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}} t, bc[5];}
+\DoxyCodeLine{167 }
+\DoxyCodeLine{168    \textcolor{keywordflow}{for}(round = 0; round < \mbox{\hyperlink{sha3_8c_a958ab831e69e0e312de6acc0bc0ab00e}{SHA3\_KECCAK\_ROUNDS}}; round++) \{}
+\DoxyCodeLine{169       \textcolor{comment}{/* Theta */}}
+\DoxyCodeLine{170       \textcolor{keywordflow}{for}(i = 0; i < 5; i++) \{}
+\DoxyCodeLine{171          bc[i] = s[i] \string^ s[i + 5] \string^ s[i + 10] \string^ s[i + 15] \string^ s[i + 20];}
+\DoxyCodeLine{172       \}}
+\DoxyCodeLine{173       \textcolor{keywordflow}{for}(i = 0; i < 5; i++) \{}
+\DoxyCodeLine{174          t = bc[(i + 4) \% 5] \string^ \mbox{\hyperlink{tomcrypt__macros_8h_a11721d8ea2f76401b4a51abc07c09eae}{ROL64}}(bc[(i + 1) \% 5], 1);}
+\DoxyCodeLine{175          \textcolor{keywordflow}{for}(j = 0; j < 25; j += 5) \{}
+\DoxyCodeLine{176             s[j + i] \string^= t;}
+\DoxyCodeLine{177          \}}
+\DoxyCodeLine{178       \}}
+\DoxyCodeLine{179       \textcolor{comment}{/* Rho Pi */}}
+\DoxyCodeLine{180       t = s[1];}
+\DoxyCodeLine{181       \textcolor{keywordflow}{for}(i = 0; i < 24; i++) \{}
+\DoxyCodeLine{182          j = \mbox{\hyperlink{sha3_8c_a4808a2f6f8465bcaee6bba304a215be7}{keccakf\_piln}}[i];}
+\DoxyCodeLine{183          bc[0] = s[j];}
+\DoxyCodeLine{184          s[j] = \mbox{\hyperlink{tomcrypt__macros_8h_a11721d8ea2f76401b4a51abc07c09eae}{ROL64}}(t, \mbox{\hyperlink{sha3_8c_a2c50e9d2e14e52d2205f95f50e4b6413}{keccakf\_rotc}}[i]);}
+\DoxyCodeLine{185          t = bc[0];}
+\DoxyCodeLine{186       \}}
+\DoxyCodeLine{187       \textcolor{comment}{/* Chi */}}
+\DoxyCodeLine{188       \textcolor{keywordflow}{for}(j = 0; j < 25; j += 5) \{}
+\DoxyCodeLine{189          \textcolor{keywordflow}{for}(i = 0; i < 5; i++) \{}
+\DoxyCodeLine{190             bc[i] = s[j + i];}
+\DoxyCodeLine{191          \}}
+\DoxyCodeLine{192          \textcolor{keywordflow}{for}(i = 0; i < 5; i++) \{}
+\DoxyCodeLine{193             s[j + i] \string^= (~bc[(i + 1) \% 5]) \& bc[(i + 2) \% 5];}
+\DoxyCodeLine{194          \}}
+\DoxyCodeLine{195       \}}
+\DoxyCodeLine{196       \textcolor{comment}{/* Iota */}}
+\DoxyCodeLine{197       s[0] \string^= \mbox{\hyperlink{sha3_8c_a312f466b1a2c10c366f93446880a2580}{keccakf\_rndc}}[round];}
+\DoxyCodeLine{198    \}}
+\DoxyCodeLine{199 \}}
+
+\end{DoxyCode}
+
+
+References keccakf\+\_\+piln, keccakf\+\_\+rndc, keccakf\+\_\+rotc, R\+O\+L64, and S\+H\+A3\+\_\+\+K\+E\+C\+C\+A\+K\+\_\+\+R\+O\+U\+N\+DS.
+
+
+
+Referenced by \+\_\+done(), sha3\+\_\+process(), and sha3\+\_\+shake\+\_\+done().
+
+Here is the caller graph for this function\+:
+% FIG 5
+\mbox{\Hypertarget{sha3_8c_ab24df1989694bccf62793acb23184bf0}\label{sha3_8c_ab24df1989694bccf62793acb23184bf0}} 
+\index{sha3.c@{sha3.c}!sha3\_224\_init@{sha3\_224\_init}}
+\index{sha3\_224\_init@{sha3\_224\_init}!sha3.c@{sha3.c}}
+\subsubsection{\texorpdfstring{sha3\_224\_init()}{sha3\_224\_init()}}
+{\footnotesize\ttfamily int sha3\+\_\+224\+\_\+init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$}]{md }\end{DoxyParamCaption})}
+
+
+
+Definition at line 223 of file sha3.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{224 \{}
+\DoxyCodeLine{225    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(md != NULL);}
+\DoxyCodeLine{226    \mbox{\hyperlink{tomcrypt__cfg_8h_aa3c34a6f6c61de7da9258b5a30e32c2f}{XMEMSET}}(\&md->sha3, 0, \textcolor{keyword}{sizeof}(md->sha3));}
+\DoxyCodeLine{227    md->sha3.capacity\_words = 2 * 224 / (8 * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}}));}
+\DoxyCodeLine{228    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{229 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, and X\+M\+E\+M\+S\+E\+T().
+
+
+
+Referenced by sha3\+\_\+224\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 6
+Here is the caller graph for this function\+:
+% FIG 7
+\mbox{\Hypertarget{sha3_8c_ae9cca742da51fb0723121936067e2a72}\label{sha3_8c_ae9cca742da51fb0723121936067e2a72}} 
+\index{sha3.c@{sha3.c}!sha3\_256\_init@{sha3\_256\_init}}
+\index{sha3\_256\_init@{sha3\_256\_init}!sha3.c@{sha3.c}}
+\subsubsection{\texorpdfstring{sha3\_256\_init()}{sha3\_256\_init()}}
+{\footnotesize\ttfamily int sha3\+\_\+256\+\_\+init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$}]{md }\end{DoxyParamCaption})}
+
+
+
+Definition at line 231 of file sha3.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{232 \{}
+\DoxyCodeLine{233    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(md != NULL);}
+\DoxyCodeLine{234    \mbox{\hyperlink{tomcrypt__cfg_8h_aa3c34a6f6c61de7da9258b5a30e32c2f}{XMEMSET}}(\&md->sha3, 0, \textcolor{keyword}{sizeof}(md->sha3));}
+\DoxyCodeLine{235    md->sha3.capacity\_words = 2 * 256 / (8 * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}}));}
+\DoxyCodeLine{236    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{237 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, and X\+M\+E\+M\+S\+E\+T().
+
+
+
+Referenced by sha3\+\_\+256\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 8
+Here is the caller graph for this function\+:
+% FIG 9
+\mbox{\Hypertarget{sha3_8c_ae32e36c847895e0350bc4ccccf6e0e8a}\label{sha3_8c_ae32e36c847895e0350bc4ccccf6e0e8a}} 
+\index{sha3.c@{sha3.c}!sha3\_384\_init@{sha3\_384\_init}}
+\index{sha3\_384\_init@{sha3\_384\_init}!sha3.c@{sha3.c}}
+\subsubsection{\texorpdfstring{sha3\_384\_init()}{sha3\_384\_init()}}
+{\footnotesize\ttfamily int sha3\+\_\+384\+\_\+init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$}]{md }\end{DoxyParamCaption})}
+
+
+
+Definition at line 239 of file sha3.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{240 \{}
+\DoxyCodeLine{241    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(md != NULL);}
+\DoxyCodeLine{242    \mbox{\hyperlink{tomcrypt__cfg_8h_aa3c34a6f6c61de7da9258b5a30e32c2f}{XMEMSET}}(\&md->sha3, 0, \textcolor{keyword}{sizeof}(md->sha3));}
+\DoxyCodeLine{243    md->sha3.capacity\_words = 2 * 384 / (8 * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}}));}
+\DoxyCodeLine{244    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{245 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, and X\+M\+E\+M\+S\+E\+T().
+
+
+
+Referenced by sha3\+\_\+384\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 10
+Here is the caller graph for this function\+:
+% FIG 11
+\mbox{\Hypertarget{sha3_8c_a16645fcb0695ae6c3231fcc15cd471d1}\label{sha3_8c_a16645fcb0695ae6c3231fcc15cd471d1}} 
+\index{sha3.c@{sha3.c}!sha3\_512\_init@{sha3\_512\_init}}
+\index{sha3\_512\_init@{sha3\_512\_init}!sha3.c@{sha3.c}}
+\subsubsection{\texorpdfstring{sha3\_512\_init()}{sha3\_512\_init()}}
+{\footnotesize\ttfamily int sha3\+\_\+512\+\_\+init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$}]{md }\end{DoxyParamCaption})}
+
+
+
+Definition at line 247 of file sha3.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{248 \{}
+\DoxyCodeLine{249    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(md != NULL);}
+\DoxyCodeLine{250    \mbox{\hyperlink{tomcrypt__cfg_8h_aa3c34a6f6c61de7da9258b5a30e32c2f}{XMEMSET}}(\&md->sha3, 0, \textcolor{keyword}{sizeof}(md->sha3));}
+\DoxyCodeLine{251    md->sha3.capacity\_words = 2 * 512 / (8 * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}}));}
+\DoxyCodeLine{252    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{253 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, and X\+M\+E\+M\+S\+E\+T().
+
+
+
+Referenced by sha3\+\_\+512\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 12
+Here is the caller graph for this function\+:
+% FIG 13
+\mbox{\Hypertarget{sha3_8c_a366200437edbbf12e1dda073566619e9}\label{sha3_8c_a366200437edbbf12e1dda073566619e9}} 
+\index{sha3.c@{sha3.c}!sha3\_done@{sha3\_done}}
+\index{sha3\_done@{sha3\_done}!sha3.c@{sha3.c}}
+\subsubsection{\texorpdfstring{sha3\_done()}{sha3\_done()}}
+{\footnotesize\ttfamily int sha3\+\_\+done (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$}]{md,  }\item[{unsigned char $\ast$}]{out }\end{DoxyParamCaption})}
+
+
+
+Definition at line 319 of file sha3.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{320 \{}
+\DoxyCodeLine{321    \textcolor{keywordflow}{return} \mbox{\hyperlink{sha3_8c_a70447c15a8370dc0c8353265433ef0da}{\_done}}(md, out, \mbox{\hyperlink{tomcrypt__cfg_8h_a7d8e211582dff82d00fc171834e3dc67}{CONST64}}(0x06));}
+\DoxyCodeLine{322 \}}
+
+\end{DoxyCode}
+
+
+References \+\_\+done(), and C\+O\+N\+S\+T64.
+
+
+
+Referenced by sha3\+\_\+224\+\_\+test(), sha3\+\_\+256\+\_\+test(), sha3\+\_\+384\+\_\+test(), and sha3\+\_\+512\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 14
+Here is the caller graph for this function\+:
+% FIG 15
+\mbox{\Hypertarget{sha3_8c_a219bb33c73fc17f796f3673ee079d1e2}\label{sha3_8c_a219bb33c73fc17f796f3673ee079d1e2}} 
+\index{sha3.c@{sha3.c}!sha3\_process@{sha3\_process}}
+\index{sha3\_process@{sha3\_process}!sha3.c@{sha3.c}}
+\subsubsection{\texorpdfstring{sha3\_process()}{sha3\_process()}}
+{\footnotesize\ttfamily int sha3\+\_\+process (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$}]{md,  }\item[{const unsigned char $\ast$}]{in,  }\item[{unsigned long}]{inlen }\end{DoxyParamCaption})}
+
+
+
+Definition at line 266 of file sha3.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{267 \{}
+\DoxyCodeLine{268    \textcolor{comment}{/* 0...7 -- how much is needed to have a word */}}
+\DoxyCodeLine{269    \textcolor{keywordtype}{unsigned} old\_tail = (8 - md->sha3.byte\_index) \& 7;}
+\DoxyCodeLine{270 }
+\DoxyCodeLine{271    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} words;}
+\DoxyCodeLine{272    \textcolor{keywordtype}{unsigned} tail;}
+\DoxyCodeLine{273    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} i;}
+\DoxyCodeLine{274 }
+\DoxyCodeLine{275    \textcolor{keywordflow}{if} (inlen == 0) \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}; \textcolor{comment}{/* nothing to do */}}
+\DoxyCodeLine{276    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(md != NULL);}
+\DoxyCodeLine{277    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(in != NULL);}
+\DoxyCodeLine{278 }
+\DoxyCodeLine{279    \textcolor{keywordflow}{if}(inlen < old\_tail) \{       \textcolor{comment}{/* have no complete word or haven't started the word yet */}}
+\DoxyCodeLine{280       \textcolor{keywordflow}{while} (inlen--) md->sha3.saved |= (\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}}) (*(in++)) << ((md->sha3.byte\_index++) * 8);}
+\DoxyCodeLine{281       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{282    \}}
+\DoxyCodeLine{283 }
+\DoxyCodeLine{284    \textcolor{keywordflow}{if}(old\_tail) \{               \textcolor{comment}{/* will have one word to process */}}
+\DoxyCodeLine{285       inlen -= old\_tail;}
+\DoxyCodeLine{286       \textcolor{keywordflow}{while} (old\_tail--) md->sha3.saved |= (\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}}) (*(in++)) << ((md->sha3.byte\_index++) * 8);}
+\DoxyCodeLine{287       \textcolor{comment}{/* now ready to add saved to the sponge */}}
+\DoxyCodeLine{288       md->sha3.s[md->sha3.word\_index] \string^= md->sha3.saved;}
+\DoxyCodeLine{289       md->sha3.byte\_index = 0;}
+\DoxyCodeLine{290       md->sha3.saved = 0;}
+\DoxyCodeLine{291       \textcolor{keywordflow}{if}(++md->sha3.word\_index == (\mbox{\hyperlink{sha3_8c_a523878099e5ec16cb61e01d0365201f5}{SHA3\_KECCAK\_SPONGE\_WORDS}} - md->sha3.capacity\_words)) \{}
+\DoxyCodeLine{292          \mbox{\hyperlink{sha3_8c_a7fd78116706c35ac94b8fb5553220678}{keccakf}}(md->sha3.s);}
+\DoxyCodeLine{293          md->sha3.word\_index = 0;}
+\DoxyCodeLine{294       \}}
+\DoxyCodeLine{295    \}}
+\DoxyCodeLine{296 }
+\DoxyCodeLine{297    \textcolor{comment}{/* now work in full words directly from input */}}
+\DoxyCodeLine{298    words = inlen / \textcolor{keyword}{sizeof}(\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}});}
+\DoxyCodeLine{299    tail = inlen - words * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}});}
+\DoxyCodeLine{300 }
+\DoxyCodeLine{301    \textcolor{keywordflow}{for}(i = 0; i < words; i++, in += \textcolor{keyword}{sizeof}(\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}})) \{}
+\DoxyCodeLine{302       \mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}} t;}
+\DoxyCodeLine{303       LOAD64L(t, in);}
+\DoxyCodeLine{304       md->sha3.s[md->sha3.word\_index] \string^= t;}
+\DoxyCodeLine{305       \textcolor{keywordflow}{if}(++md->sha3.word\_index == (\mbox{\hyperlink{sha3_8c_a523878099e5ec16cb61e01d0365201f5}{SHA3\_KECCAK\_SPONGE\_WORDS}} - md->sha3.capacity\_words)) \{}
+\DoxyCodeLine{306          \mbox{\hyperlink{sha3_8c_a7fd78116706c35ac94b8fb5553220678}{keccakf}}(md->sha3.s);}
+\DoxyCodeLine{307          md->sha3.word\_index = 0;}
+\DoxyCodeLine{308       \}}
+\DoxyCodeLine{309    \}}
+\DoxyCodeLine{310 }
+\DoxyCodeLine{311    \textcolor{comment}{/* finally, save the partial word */}}
+\DoxyCodeLine{312    \textcolor{keywordflow}{while} (tail--) \{}
+\DoxyCodeLine{313       md->sha3.saved |= (\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}}) (*(in++)) << ((md->sha3.byte\_index++) * 8);}
+\DoxyCodeLine{314    \}}
+\DoxyCodeLine{315    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{316 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, keccakf(), L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, and S\+H\+A3\+\_\+\+K\+E\+C\+C\+A\+K\+\_\+\+S\+P\+O\+N\+G\+E\+\_\+\+W\+O\+R\+DS.
+
+
+
+Referenced by sha3\+\_\+224\+\_\+test(), sha3\+\_\+256\+\_\+test(), sha3\+\_\+384\+\_\+test(), and sha3\+\_\+512\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 16
+Here is the caller graph for this function\+:
+% FIG 17
+\mbox{\Hypertarget{sha3_8c_a28a11ba4ab2b4ab690d50af5a192ee22}\label{sha3_8c_a28a11ba4ab2b4ab690d50af5a192ee22}} 
+\index{sha3.c@{sha3.c}!sha3\_shake\_done@{sha3\_shake\_done}}
+\index{sha3\_shake\_done@{sha3\_shake\_done}!sha3.c@{sha3.c}}
+\subsubsection{\texorpdfstring{sha3\_shake\_done()}{sha3\_shake\_done()}}
+{\footnotesize\ttfamily int sha3\+\_\+shake\+\_\+done (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$}]{md,  }\item[{unsigned char $\ast$}]{out,  }\item[{unsigned long}]{outlen }\end{DoxyParamCaption})}
+
+
+
+Definition at line 333 of file sha3.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{334 \{}
+\DoxyCodeLine{335    \textcolor{comment}{/* IMPORTANT NOTE: sha3\_shake\_done can be called many times */}}
+\DoxyCodeLine{336    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} idx;}
+\DoxyCodeLine{337    \textcolor{keywordtype}{unsigned} i;}
+\DoxyCodeLine{338 }
+\DoxyCodeLine{339    \textcolor{keywordflow}{if} (outlen == 0) \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}; \textcolor{comment}{/* nothing to do */}}
+\DoxyCodeLine{340    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(md  != NULL);}
+\DoxyCodeLine{341    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(out != NULL);}
+\DoxyCodeLine{342 }
+\DoxyCodeLine{343    \textcolor{keywordflow}{if} (!md->sha3.xof\_flag) \{}
+\DoxyCodeLine{344       \textcolor{comment}{/* shake\_xof operation must be done only once */}}
+\DoxyCodeLine{345       md->sha3.s[md->sha3.word\_index] \string^= (md->sha3.saved \string^ (\mbox{\hyperlink{tomcrypt__cfg_8h_a7d8e211582dff82d00fc171834e3dc67}{CONST64}}(0x1F) << (md->sha3.byte\_index * 8)));}
+\DoxyCodeLine{346       md->sha3.s[\mbox{\hyperlink{sha3_8c_a523878099e5ec16cb61e01d0365201f5}{SHA3\_KECCAK\_SPONGE\_WORDS}} - md->sha3.capacity\_words - 1] \string^= \mbox{\hyperlink{tomcrypt__cfg_8h_a7d8e211582dff82d00fc171834e3dc67}{CONST64}}(0x8000000000000000);}
+\DoxyCodeLine{347       \mbox{\hyperlink{sha3_8c_a7fd78116706c35ac94b8fb5553220678}{keccakf}}(md->sha3.s);}
+\DoxyCodeLine{348       \textcolor{comment}{/* store sha3.s[] as little-endian bytes into sha3.sb */}}
+\DoxyCodeLine{349       \textcolor{keywordflow}{for}(i = 0; i < \mbox{\hyperlink{sha3_8c_a523878099e5ec16cb61e01d0365201f5}{SHA3\_KECCAK\_SPONGE\_WORDS}}; i++) \{}
+\DoxyCodeLine{350          STORE64L(md->sha3.s[i], md->sha3.sb + i * 8);}
+\DoxyCodeLine{351       \}}
+\DoxyCodeLine{352       md->sha3.byte\_index = 0;}
+\DoxyCodeLine{353       md->sha3.xof\_flag = 1;}
+\DoxyCodeLine{354    \}}
+\DoxyCodeLine{355 }
+\DoxyCodeLine{356    \textcolor{keywordflow}{for} (idx = 0; idx < outlen; idx++) \{}
+\DoxyCodeLine{357       \textcolor{keywordflow}{if}(md->sha3.byte\_index >= (\mbox{\hyperlink{sha3_8c_a523878099e5ec16cb61e01d0365201f5}{SHA3\_KECCAK\_SPONGE\_WORDS}} - md->sha3.capacity\_words) * 8) \{}
+\DoxyCodeLine{358          \mbox{\hyperlink{sha3_8c_a7fd78116706c35ac94b8fb5553220678}{keccakf}}(md->sha3.s);}
+\DoxyCodeLine{359          \textcolor{comment}{/* store sha3.s[] as little-endian bytes into sha3.sb */}}
+\DoxyCodeLine{360          \textcolor{keywordflow}{for}(i = 0; i < \mbox{\hyperlink{sha3_8c_a523878099e5ec16cb61e01d0365201f5}{SHA3\_KECCAK\_SPONGE\_WORDS}}; i++) \{}
+\DoxyCodeLine{361             STORE64L(md->sha3.s[i], md->sha3.sb + i * 8);}
+\DoxyCodeLine{362          \}}
+\DoxyCodeLine{363          md->sha3.byte\_index = 0;}
+\DoxyCodeLine{364       \}}
+\DoxyCodeLine{365       out[idx] = md->sha3.sb[md->sha3.byte\_index++];}
+\DoxyCodeLine{366    \}}
+\DoxyCodeLine{367    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{368 \}}
+
+\end{DoxyCode}
+
+
+References C\+O\+N\+S\+T64, C\+R\+Y\+P\+T\+\_\+\+OK, keccakf(), L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, and S\+H\+A3\+\_\+\+K\+E\+C\+C\+A\+K\+\_\+\+S\+P\+O\+N\+G\+E\+\_\+\+W\+O\+R\+DS.
+
+
+
+Referenced by sha3\+\_\+shake\+\_\+memory(), and sha3\+\_\+shake\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 18
+Here is the caller graph for this function\+:
+% FIG 19
+\mbox{\Hypertarget{sha3_8c_af50f8a0f885a2483d8123b44e80176cf}\label{sha3_8c_af50f8a0f885a2483d8123b44e80176cf}} 
+\index{sha3.c@{sha3.c}!sha3\_shake\_init@{sha3\_shake\_init}}
+\index{sha3\_shake\_init@{sha3\_shake\_init}!sha3.c@{sha3.c}}
+\subsubsection{\texorpdfstring{sha3\_shake\_init()}{sha3\_shake\_init()}}
+{\footnotesize\ttfamily int sha3\+\_\+shake\+\_\+init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$}]{md,  }\item[{int}]{num }\end{DoxyParamCaption})}
+
+
+
+Definition at line 256 of file sha3.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{257 \{}
+\DoxyCodeLine{258    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(md != NULL);}
+\DoxyCodeLine{259    \textcolor{keywordflow}{if} (num != 128 \&\& num != 256) \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{260    \mbox{\hyperlink{tomcrypt__cfg_8h_aa3c34a6f6c61de7da9258b5a30e32c2f}{XMEMSET}}(\&md->sha3, 0, \textcolor{keyword}{sizeof}(md->sha3));}
+\DoxyCodeLine{261    md->sha3.capacity\_words = (\textcolor{keywordtype}{unsigned} short)(2 * num / (8 * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}})));}
+\DoxyCodeLine{262    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{263 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+A\+RG, C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, and X\+M\+E\+M\+S\+E\+T().
+
+
+
+Referenced by sha3\+\_\+shake\+\_\+memory(), and sha3\+\_\+shake\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 20
+Here is the caller graph for this function\+:
+% FIG 21
+\mbox{\Hypertarget{sha3_8c_a7de1578a754c0ec8629d465bab3cd55c}\label{sha3_8c_a7de1578a754c0ec8629d465bab3cd55c}} 
+\index{sha3.c@{sha3.c}!sha3\_shake\_memory@{sha3\_shake\_memory}}
+\index{sha3\_shake\_memory@{sha3\_shake\_memory}!sha3.c@{sha3.c}}
+\subsubsection{\texorpdfstring{sha3\_shake\_memory()}{sha3\_shake\_memory()}}
+{\footnotesize\ttfamily int sha3\+\_\+shake\+\_\+memory (\begin{DoxyParamCaption}\item[{int}]{num,  }\item[{const unsigned char $\ast$}]{in,  }\item[{unsigned long}]{inlen,  }\item[{unsigned char $\ast$}]{out,  }\item[{const unsigned long $\ast$}]{outlen }\end{DoxyParamCaption})}
+
+
+
+Definition at line 370 of file sha3.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{371 \{}
+\DoxyCodeLine{372    \mbox{\hyperlink{unionHash__state}{hash\_state}} md;}
+\DoxyCodeLine{373    \textcolor{keywordtype}{int} err;}
+\DoxyCodeLine{374    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(in  != NULL);}
+\DoxyCodeLine{375    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(out != NULL);}
+\DoxyCodeLine{376    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(outlen != NULL);}
+\DoxyCodeLine{377    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{sha3_8c_af50f8a0f885a2483d8123b44e80176cf}{sha3\_shake\_init}}(\&md, num))          != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{378    \textcolor{keywordflow}{if} ((err = sha3\_shake\_process(\&md, in, inlen)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{379    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{sha3_8c_a28a11ba4ab2b4ab690d50af5a192ee22}{sha3\_shake\_done}}(\&md, out, *outlen)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{380    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{381 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, sha3\+\_\+shake\+\_\+done(), and sha3\+\_\+shake\+\_\+init().
+
+
+
+Referenced by sha3\+\_\+shake\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 22
+Here is the caller graph for this function\+:
+% FIG 23
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{sha3_8c_a1745d19879cd7b7d4e5c22b2b2b16a4e}\label{sha3_8c_a1745d19879cd7b7d4e5c22b2b2b16a4e}} 
+\index{sha3.c@{sha3.c}!keccak\_224\_desc@{keccak\_224\_desc}}
+\index{keccak\_224\_desc@{keccak\_224\_desc}!sha3.c@{sha3.c}}
+\subsubsection{\texorpdfstring{keccak\_224\_desc}{keccak\_224\_desc}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structltc__hash__descriptor}{ltc\+\_\+hash\+\_\+descriptor}} keccak\+\_\+224\+\_\+desc}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{   \textcolor{stringliteral}{"keccak224"},                 }
+\DoxyCodeLine{   29,                          }
+\DoxyCodeLine{   28,                          }
+\DoxyCodeLine{   144,                         }
+\DoxyCodeLine{   \{ 0 \}, 0,                    }
+\DoxyCodeLine{   \&\mbox{\hyperlink{sha3_8c_ab24df1989694bccf62793acb23184bf0}{sha3\_224\_init}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{sha3_8c_a219bb33c73fc17f796f3673ee079d1e2}{sha3\_process}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{sha3_8c_a31831af26bc9cc4951ec2808dee5d4f3}{keccak\_done}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{sha3__test_8c_abbe20bf64ded7367985637fe50b79bf6}{keccak\_224\_test}},}
+\DoxyCodeLine{   NULL}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line 78 of file sha3.\+c.
+
+
+
+Referenced by register\+\_\+all\+\_\+hashes().
+
+\mbox{\Hypertarget{sha3_8c_a3e79c28c5fdacf5210ed91bad26942d8}\label{sha3_8c_a3e79c28c5fdacf5210ed91bad26942d8}} 
+\index{sha3.c@{sha3.c}!keccak\_256\_desc@{keccak\_256\_desc}}
+\index{keccak\_256\_desc@{keccak\_256\_desc}!sha3.c@{sha3.c}}
+\subsubsection{\texorpdfstring{keccak\_256\_desc}{keccak\_256\_desc}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structltc__hash__descriptor}{ltc\+\_\+hash\+\_\+descriptor}} keccak\+\_\+256\+\_\+desc}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{   \textcolor{stringliteral}{"keccak256"},                 }
+\DoxyCodeLine{   30,                          }
+\DoxyCodeLine{   32,                          }
+\DoxyCodeLine{   136,                         }
+\DoxyCodeLine{   \{ 0 \}, 0,                    }
+\DoxyCodeLine{   \&\mbox{\hyperlink{sha3_8c_ae9cca742da51fb0723121936067e2a72}{sha3\_256\_init}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{sha3_8c_a219bb33c73fc17f796f3673ee079d1e2}{sha3\_process}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{sha3_8c_a31831af26bc9cc4951ec2808dee5d4f3}{keccak\_done}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{sha3__test_8c_ae239a7f95920b29d1f93a1fa8a243e1f}{keccak\_256\_test}},}
+\DoxyCodeLine{   NULL}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line 92 of file sha3.\+c.
+
+
+
+Referenced by register\+\_\+all\+\_\+hashes().
+
+\mbox{\Hypertarget{sha3_8c_a4a83d05c452b775df983244e3f463357}\label{sha3_8c_a4a83d05c452b775df983244e3f463357}} 
+\index{sha3.c@{sha3.c}!keccak\_384\_desc@{keccak\_384\_desc}}
+\index{keccak\_384\_desc@{keccak\_384\_desc}!sha3.c@{sha3.c}}
+\subsubsection{\texorpdfstring{keccak\_384\_desc}{keccak\_384\_desc}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structltc__hash__descriptor}{ltc\+\_\+hash\+\_\+descriptor}} keccak\+\_\+384\+\_\+desc}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{   \textcolor{stringliteral}{"keccak384"},                 }
+\DoxyCodeLine{   31,                          }
+\DoxyCodeLine{   48,                          }
+\DoxyCodeLine{   104,                         }
+\DoxyCodeLine{   \{ 0 \}, 0,                    }
+\DoxyCodeLine{   \&\mbox{\hyperlink{sha3_8c_ae32e36c847895e0350bc4ccccf6e0e8a}{sha3\_384\_init}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{sha3_8c_a219bb33c73fc17f796f3673ee079d1e2}{sha3\_process}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{sha3_8c_a31831af26bc9cc4951ec2808dee5d4f3}{keccak\_done}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{sha3__test_8c_a90630c908fb0ac0a009c63152d56f0a0}{keccak\_384\_test}},}
+\DoxyCodeLine{   NULL}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line 106 of file sha3.\+c.
+
+
+
+Referenced by register\+\_\+all\+\_\+hashes().
+
+\mbox{\Hypertarget{sha3_8c_a04e575059db4685471164daaf2c28f22}\label{sha3_8c_a04e575059db4685471164daaf2c28f22}} 
+\index{sha3.c@{sha3.c}!keccak\_512\_desc@{keccak\_512\_desc}}
+\index{keccak\_512\_desc@{keccak\_512\_desc}!sha3.c@{sha3.c}}
+\subsubsection{\texorpdfstring{keccak\_512\_desc}{keccak\_512\_desc}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structltc__hash__descriptor}{ltc\+\_\+hash\+\_\+descriptor}} keccak\+\_\+512\+\_\+desc}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{   \textcolor{stringliteral}{"keccak512"},                 }
+\DoxyCodeLine{   32,                          }
+\DoxyCodeLine{   64,                          }
+\DoxyCodeLine{   72,                          }
+\DoxyCodeLine{   \{ 0 \}, 0,                    }
+\DoxyCodeLine{   \&\mbox{\hyperlink{sha3_8c_a16645fcb0695ae6c3231fcc15cd471d1}{sha3\_512\_init}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{sha3_8c_a219bb33c73fc17f796f3673ee079d1e2}{sha3\_process}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{sha3_8c_a31831af26bc9cc4951ec2808dee5d4f3}{keccak\_done}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{sha3__test_8c_a47fd72744c16de6a8c777d52f63f0879}{keccak\_512\_test}},}
+\DoxyCodeLine{   NULL}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line 120 of file sha3.\+c.
+
+
+
+Referenced by register\+\_\+all\+\_\+hashes().
+
+\mbox{\Hypertarget{sha3_8c_a4808a2f6f8465bcaee6bba304a215be7}\label{sha3_8c_a4808a2f6f8465bcaee6bba304a215be7}} 
+\index{sha3.c@{sha3.c}!keccakf\_piln@{keccakf\_piln}}
+\index{keccakf\_piln@{keccakf\_piln}!sha3.c@{sha3.c}}
+\subsubsection{\texorpdfstring{keccakf\_piln}{keccakf\_piln}}
+{\footnotesize\ttfamily const unsigned keccakf\+\_\+piln\mbox{[}24\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{   10, 7, 11, 17, 18, 3, 5, 16, 8, 21, 24, 4, 15, 23, 19, 13, 12, 2, 20, 14, 22, 9, 6, 1}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line 159 of file sha3.\+c.
+
+
+
+Referenced by keccakf().
+
+\mbox{\Hypertarget{sha3_8c_a312f466b1a2c10c366f93446880a2580}\label{sha3_8c_a312f466b1a2c10c366f93446880a2580}} 
+\index{sha3.c@{sha3.c}!keccakf\_rndc@{keccakf\_rndc}}
+\index{keccakf\_rndc@{keccakf\_rndc}!sha3.c@{sha3.c}}
+\subsubsection{\texorpdfstring{keccakf\_rndc}{keccakf\_rndc}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}} keccakf\+\_\+rndc\mbox{[}24\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    0x0000000000000001ULL,  0x0000000000008082ULL,}
+\DoxyCodeLine{    0x800000000000808aULL,  0x8000000080008000ULL,}
+\DoxyCodeLine{    0x000000000000808bULL,  0x0000000080000001ULL,}
+\DoxyCodeLine{    0x8000000080008081ULL,  0x8000000000008009ULL,}
+\DoxyCodeLine{    0x000000000000008aULL,  0x0000000000000088ULL,}
+\DoxyCodeLine{    0x0000000080008009ULL,  0x000000008000000aULL,}
+\DoxyCodeLine{    0x000000008000808bULL,  0x800000000000008bULL,}
+\DoxyCodeLine{    0x8000000000008089ULL,  0x8000000000008003ULL,}
+\DoxyCodeLine{    0x8000000000008002ULL,  0x8000000000000080ULL,}
+\DoxyCodeLine{    0x000000000000800aULL,  0x800000008000000aULL,}
+\DoxyCodeLine{    0x8000000080008081ULL,  0x8000000000008080ULL,}
+\DoxyCodeLine{    0x0000000080000001ULL,  0x8000000080008008ULL}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line 140 of file sha3.\+c.
+
+
+
+Referenced by keccakf().
+
+\mbox{\Hypertarget{sha3_8c_a2c50e9d2e14e52d2205f95f50e4b6413}\label{sha3_8c_a2c50e9d2e14e52d2205f95f50e4b6413}} 
+\index{sha3.c@{sha3.c}!keccakf\_rotc@{keccakf\_rotc}}
+\index{keccakf\_rotc@{keccakf\_rotc}!sha3.c@{sha3.c}}
+\subsubsection{\texorpdfstring{keccakf\_rotc}{keccakf\_rotc}}
+{\footnotesize\ttfamily const unsigned keccakf\+\_\+rotc\mbox{[}24\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{   1, 3, 6, 10, 15, 21, 28, 36, 45, 55, 2, 14, 27, 41, 56, 8, 25, 43, 62, 18, 39, 61, 20, 44}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line 155 of file sha3.\+c.
+
+
+
+Referenced by keccakf().
+
+\mbox{\Hypertarget{sha3_8c_a17a249a77f0c1d349f9db5202f0a6309}\label{sha3_8c_a17a249a77f0c1d349f9db5202f0a6309}} 
+\index{sha3.c@{sha3.c}!sha3\_224\_desc@{sha3\_224\_desc}}
+\index{sha3\_224\_desc@{sha3\_224\_desc}!sha3.c@{sha3.c}}
+\subsubsection{\texorpdfstring{sha3\_224\_desc}{sha3\_224\_desc}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structltc__hash__descriptor}{ltc\+\_\+hash\+\_\+descriptor}} sha3\+\_\+224\+\_\+desc}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{   \textcolor{stringliteral}{"sha3-224"},                  }
+\DoxyCodeLine{   17,                          }
+\DoxyCodeLine{   28,                          }
+\DoxyCodeLine{   144,                         }
+\DoxyCodeLine{   \{ 2,16,840,1,101,3,4,2,7 \},  }
+\DoxyCodeLine{   9,                           }
+\DoxyCodeLine{   \&\mbox{\hyperlink{sha3_8c_ab24df1989694bccf62793acb23184bf0}{sha3\_224\_init}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{sha3_8c_a219bb33c73fc17f796f3673ee079d1e2}{sha3\_process}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{sha3_8c_a366200437edbbf12e1dda073566619e9}{sha3\_done}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{sha3__test_8c_a53d3cf451582bb9c57a032d967cbdecb}{sha3\_224\_test}},}
+\DoxyCodeLine{   NULL}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line 16 of file sha3.\+c.
+
+
+
+Referenced by register\+\_\+all\+\_\+hashes().
+
+\mbox{\Hypertarget{sha3_8c_a05bcc641692c2b2dd143a9230e26d0ea}\label{sha3_8c_a05bcc641692c2b2dd143a9230e26d0ea}} 
+\index{sha3.c@{sha3.c}!sha3\_256\_desc@{sha3\_256\_desc}}
+\index{sha3\_256\_desc@{sha3\_256\_desc}!sha3.c@{sha3.c}}
+\subsubsection{\texorpdfstring{sha3\_256\_desc}{sha3\_256\_desc}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structltc__hash__descriptor}{ltc\+\_\+hash\+\_\+descriptor}} sha3\+\_\+256\+\_\+desc}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{   \textcolor{stringliteral}{"sha3-256"},                  }
+\DoxyCodeLine{   18,                          }
+\DoxyCodeLine{   32,                          }
+\DoxyCodeLine{   136,                         }
+\DoxyCodeLine{   \{ 2,16,840,1,101,3,4,2,8 \},  }
+\DoxyCodeLine{   9,                           }
+\DoxyCodeLine{   \&\mbox{\hyperlink{sha3_8c_ae9cca742da51fb0723121936067e2a72}{sha3\_256\_init}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{sha3_8c_a219bb33c73fc17f796f3673ee079d1e2}{sha3\_process}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{sha3_8c_a366200437edbbf12e1dda073566619e9}{sha3\_done}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{sha3__test_8c_aafa6f2186a83cf477969e60264de4d7c}{sha3\_256\_test}},}
+\DoxyCodeLine{   NULL}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line 31 of file sha3.\+c.
+
+
+
+Referenced by register\+\_\+all\+\_\+hashes().
+
+\mbox{\Hypertarget{sha3_8c_ab7c1b759d0b5780a58fd5db28a94e372}\label{sha3_8c_ab7c1b759d0b5780a58fd5db28a94e372}} 
+\index{sha3.c@{sha3.c}!sha3\_384\_desc@{sha3\_384\_desc}}
+\index{sha3\_384\_desc@{sha3\_384\_desc}!sha3.c@{sha3.c}}
+\subsubsection{\texorpdfstring{sha3\_384\_desc}{sha3\_384\_desc}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structltc__hash__descriptor}{ltc\+\_\+hash\+\_\+descriptor}} sha3\+\_\+384\+\_\+desc}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{   \textcolor{stringliteral}{"sha3-384"},                  }
+\DoxyCodeLine{   19,                          }
+\DoxyCodeLine{   48,                          }
+\DoxyCodeLine{   104,                         }
+\DoxyCodeLine{   \{ 2,16,840,1,101,3,4,2,9 \},  }
+\DoxyCodeLine{   9,                           }
+\DoxyCodeLine{   \&\mbox{\hyperlink{sha3_8c_ae32e36c847895e0350bc4ccccf6e0e8a}{sha3\_384\_init}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{sha3_8c_a219bb33c73fc17f796f3673ee079d1e2}{sha3\_process}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{sha3_8c_a366200437edbbf12e1dda073566619e9}{sha3\_done}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{sha3__test_8c_a2b995816e706a145a50e2714a48bc37d}{sha3\_384\_test}},}
+\DoxyCodeLine{   NULL}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line 46 of file sha3.\+c.
+
+
+
+Referenced by register\+\_\+all\+\_\+hashes().
+
+\mbox{\Hypertarget{sha3_8c_a6281ec9346ad08bd8489a51d65661711}\label{sha3_8c_a6281ec9346ad08bd8489a51d65661711}} 
+\index{sha3.c@{sha3.c}!sha3\_512\_desc@{sha3\_512\_desc}}
+\index{sha3\_512\_desc@{sha3\_512\_desc}!sha3.c@{sha3.c}}
+\subsubsection{\texorpdfstring{sha3\_512\_desc}{sha3\_512\_desc}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structltc__hash__descriptor}{ltc\+\_\+hash\+\_\+descriptor}} sha3\+\_\+512\+\_\+desc}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{   \textcolor{stringliteral}{"sha3-512"},                  }
+\DoxyCodeLine{   20,                          }
+\DoxyCodeLine{   64,                          }
+\DoxyCodeLine{   72,                          }
+\DoxyCodeLine{   \{ 2,16,840,1,101,3,4,2,10 \}, }
+\DoxyCodeLine{   9,                           }
+\DoxyCodeLine{   \&\mbox{\hyperlink{sha3_8c_a16645fcb0695ae6c3231fcc15cd471d1}{sha3\_512\_init}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{sha3_8c_a219bb33c73fc17f796f3673ee079d1e2}{sha3\_process}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{sha3_8c_a366200437edbbf12e1dda073566619e9}{sha3\_done}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{sha3__test_8c_a64686c97ddb8c28598ee5d0d36f2af6c}{sha3\_512\_test}},}
+\DoxyCodeLine{   NULL}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line 61 of file sha3.\+c.
+
+
+
+Referenced by register\+\_\+all\+\_\+hashes().
+

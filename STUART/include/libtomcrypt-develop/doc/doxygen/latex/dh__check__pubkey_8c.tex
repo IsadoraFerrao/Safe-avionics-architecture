@@ -1,0 +1,89 @@
+\hypertarget{dh__check__pubkey_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/pk/dh/dh\+\_\+check\+\_\+pubkey.c File Reference}
+\label{dh__check__pubkey_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/dh/dh\_check\_pubkey.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/dh/dh\_check\_pubkey.c}}
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for dh\+\_\+check\+\_\+pubkey.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{dh__check__pubkey_8c_a88fc16c33e95216e30eae5beb8e92da1}{dh\+\_\+check\+\_\+pubkey}} (const dh\+\_\+key $\ast$key)
+\begin{DoxyCompactList}\small\item\em Check DH public key (I\+N\+T\+E\+R\+N\+AL O\+N\+LY, not part of public A\+PI) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{dh__check__pubkey_8c_a88fc16c33e95216e30eae5beb8e92da1}\label{dh__check__pubkey_8c_a88fc16c33e95216e30eae5beb8e92da1}} 
+\index{dh\_check\_pubkey.c@{dh\_check\_pubkey.c}!dh\_check\_pubkey@{dh\_check\_pubkey}}
+\index{dh\_check\_pubkey@{dh\_check\_pubkey}!dh\_check\_pubkey.c@{dh\_check\_pubkey.c}}
+\subsubsection{\texorpdfstring{dh\_check\_pubkey()}{dh\_check\_pubkey()}}
+{\footnotesize\ttfamily int dh\+\_\+check\+\_\+pubkey (\begin{DoxyParamCaption}\item[{const dh\+\_\+key $\ast$}]{key }\end{DoxyParamCaption})}
+
+
+
+Check DH public key (I\+N\+T\+E\+R\+N\+AL O\+N\+LY, not part of public A\+PI) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The key you wish to test \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 19 of file dh\+\_\+check\+\_\+pubkey.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{20 \{}
+\DoxyCodeLine{21    \textcolor{keywordtype}{void} *p\_minus1;}
+\DoxyCodeLine{22    \mbox{\hyperlink{tomcrypt__cfg_8h_a4e98fa26a5de0ac87e06af901bad57c4}{ltc\_mp\_digit}} digit;}
+\DoxyCodeLine{23    \textcolor{keywordtype}{int} i, digit\_count, bits\_set = 0, err;}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(key != NULL);}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_aff03c4f22c68d651747055048c509cf3}{mp\_init}}(\&p\_minus1)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{28       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{29    \}}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31    \textcolor{comment}{/* avoid: y <= 1 OR y >= p-1 */}}
+\DoxyCodeLine{32    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a4215ff0d6838acb3d959d3e68c923de7}{mp\_sub\_d}}(key->prime, 1, p\_minus1)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{33       \textcolor{keywordflow}{goto} error;}
+\DoxyCodeLine{34    \}}
+\DoxyCodeLine{35    \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__private_8h_a62ea02fbe7dd2d456e49520264d775ee}{mp\_cmp}}(key->y, p\_minus1) != \mbox{\hyperlink{tomcrypt__math_8h_a42d0c7d4c09793df79660774d3436db2}{LTC\_MP\_LT}} || \mbox{\hyperlink{tomcrypt__private_8h_a6ce44f2e6f872565a468b67d9a93dc28}{mp\_cmp\_d}}(key->y, 1) != \mbox{\hyperlink{tomcrypt__math_8h_adff156a960d44f0f5b67b75ef1f1c29b}{LTC\_MP\_GT}}) \{}
+\DoxyCodeLine{36       err = \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{37       \textcolor{keywordflow}{goto} error;}
+\DoxyCodeLine{38    \}}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{40    \textcolor{comment}{/* public key must have more than one bit set */}}
+\DoxyCodeLine{41    digit\_count = \mbox{\hyperlink{tomcrypt__private_8h_ae51a279d51ab72f09d9f97335b8be6c9}{mp\_get\_digit\_count}}(key->y);}
+\DoxyCodeLine{42    \textcolor{keywordflow}{for} (i = 0; i < digit\_count \&\& bits\_set < 2; i++) \{}
+\DoxyCodeLine{43       digit = \mbox{\hyperlink{tomcrypt__private_8h_a62267879327e26468c45bbd83f7f2669}{mp\_get\_digit}}(key->y, i);}
+\DoxyCodeLine{44       \textcolor{keywordflow}{while} (digit > 0) \{}
+\DoxyCodeLine{45          \textcolor{keywordflow}{if} (digit \& 1) bits\_set++;}
+\DoxyCodeLine{46          digit >>= 1;}
+\DoxyCodeLine{47       \}}
+\DoxyCodeLine{48    \}}
+\DoxyCodeLine{49    \textcolor{keywordflow}{if} (bits\_set > 1) \{}
+\DoxyCodeLine{50       err = \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{51    \}}
+\DoxyCodeLine{52    \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{53       err = \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{54    \}}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{56 error:}
+\DoxyCodeLine{57    \mbox{\hyperlink{tomcrypt__private_8h_ab05b6b59fa182b81f5f990d5621229f6}{mp\_clear}}(p\_minus1);}
+\DoxyCodeLine{58    \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{59 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+A\+RG, C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, L\+T\+C\+\_\+\+M\+P\+\_\+\+GT, L\+T\+C\+\_\+\+M\+P\+\_\+\+LT, mp\+\_\+clear, mp\+\_\+cmp, mp\+\_\+cmp\+\_\+d, mp\+\_\+get\+\_\+digit, mp\+\_\+get\+\_\+digit\+\_\+count, mp\+\_\+init, and mp\+\_\+sub\+\_\+d.
+
+
+
+Referenced by dh\+\_\+generate\+\_\+key(), dh\+\_\+import(), dh\+\_\+set\+\_\+key(), and dh\+\_\+shared\+\_\+secret().
+
+Here is the caller graph for this function\+:
+% FIG 1

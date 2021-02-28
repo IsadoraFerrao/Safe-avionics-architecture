@@ -1,0 +1,77 @@
+\hypertarget{f8__setiv_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/modes/f8/f8\+\_\+setiv.c File Reference}
+\label{f8__setiv_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/modes/f8/f8\_setiv.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/modes/f8/f8\_setiv.c}}
+
+
+F8 implementation, set IV, Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for f8\+\_\+setiv.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{f8__setiv_8c_af2e80d01cc9c79367815123466cb14ca}{f8\+\_\+setiv}} (const unsigned char $\ast$IV, unsigned long \mbox{\hyperlink{pmac__init_8c_afed088663f8704004425cdae2120b9b3}{len}}, symmetric\+\_\+\+F8 $\ast$f8)
+\begin{DoxyCompactList}\small\item\em Set an initialization vector. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+F8 implementation, set IV, Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{f8__setiv_8c_af2e80d01cc9c79367815123466cb14ca}\label{f8__setiv_8c_af2e80d01cc9c79367815123466cb14ca}} 
+\index{f8\_setiv.c@{f8\_setiv.c}!f8\_setiv@{f8\_setiv}}
+\index{f8\_setiv@{f8\_setiv}!f8\_setiv.c@{f8\_setiv.c}}
+\subsubsection{\texorpdfstring{f8\_setiv()}{f8\_setiv()}}
+{\footnotesize\ttfamily int f8\+\_\+setiv (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{IV,  }\item[{unsigned long}]{len,  }\item[{symmetric\+\_\+\+F8 $\ast$}]{f8 }\end{DoxyParamCaption})}
+
+
+
+Set an initialization vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em IV} & The initialization vector \\
+\hline
+{\em len} & The length of the vector (in octets) \\
+\hline
+{\em f8} & The F8 state \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 25 of file f8\+\_\+setiv.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{26 \{}
+\DoxyCodeLine{27    \textcolor{keywordtype}{int} err;}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(IV != NULL);}
+\DoxyCodeLine{30    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(f8 != NULL);}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_ac30eb68934c4ca07205344dc9d159221}{cipher\_is\_valid}}(f8->cipher)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{33        \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{34    \}}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36    \textcolor{keywordflow}{if} (\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}} != (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long})f8->blocklen) \{}
+\DoxyCodeLine{37       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{38    \}}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{40    \textcolor{comment}{/* force next block */}}
+\DoxyCodeLine{41    f8->padlen = 0;}
+\DoxyCodeLine{42    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[f8->cipher].\mbox{\hyperlink{structltc__cipher__descriptor_a46141d86abe22a7c8d382c62a894dd63}{ecb\_encrypt}}(IV, f8->IV, \&f8->key);}
+\DoxyCodeLine{43 \}}
+
+\end{DoxyCode}
+
+
+References cipher\+\_\+descriptor, cipher\+\_\+is\+\_\+valid(), C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+A\+RG, C\+R\+Y\+P\+T\+\_\+\+OK, ltc\+\_\+cipher\+\_\+descriptor\+::ecb\+\_\+encrypt, len, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+Here is the call graph for this function\+:
+% FIG 1

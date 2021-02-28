@@ -1,0 +1,19 @@
+digraph "s_ocb_done"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node8 [label="s_ocb_done",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Shared code to finish an OCB stream."];
+  Node8 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node9 [label="ocb_done_decrypt",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ocb__done__decrypt_8c.html#a9f8c7f1d6dd8025f8b4375841707a096",tooltip="Terminate a decrypting OCB state."];
+  Node9 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node10 [label="ocb_decrypt_verify\l_memory",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ocb__decrypt__verify__memory_8c.html#a54a8c51becc57a9eded7c6da4479ac10",tooltip="Decrypt and compare the tag with OCB."];
+  Node10 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node11 [label="ocb_test",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ocb__test_8c.html#afbc7c6139aaabac9146afff688bafbb9",tooltip="Test the OCB protocol."];
+  Node8 -> Node12 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node12 [label="ocb_done_encrypt",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ocb__done__encrypt_8c.html#aab90ede8c55c4f4a167a26dd2095556e",tooltip="Terminate an encryption OCB state."];
+  Node12 -> Node13 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node13 [label="ocb_encrypt_authenticate\l_memory",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ocb__encrypt__authenticate__memory_8c.html#a6dc818f74acf81f66cd2f25b5f0024b6",tooltip="Encrypt and generate an authentication code for a buffer of memory."];
+  Node13 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+}

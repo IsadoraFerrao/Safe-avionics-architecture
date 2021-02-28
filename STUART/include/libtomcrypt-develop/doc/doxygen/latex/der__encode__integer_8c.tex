@@ -1,0 +1,147 @@
+\hypertarget{der__encode__integer_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/pk/asn1/der/integer/der\+\_\+encode\+\_\+integer.c File Reference}
+\label{der__encode__integer_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/asn1/der/integer/der\_encode\_integer.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/asn1/der/integer/der\_encode\_integer.c}}
+
+
+A\+S\+N.\+1 D\+ER, encode an integer, Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for der\+\_\+encode\+\_\+integer.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{der__encode__integer_8c_a6087b9a2564eb9cc073665ed525721fa}{der\+\_\+encode\+\_\+integer}} (void $\ast$num, unsigned char $\ast$out, unsigned long $\ast$outlen)
+\begin{DoxyCompactList}\small\item\em Store a mp\+\_\+int integer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A\+S\+N.\+1 D\+ER, encode an integer, Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{der__encode__integer_8c_a6087b9a2564eb9cc073665ed525721fa}\label{der__encode__integer_8c_a6087b9a2564eb9cc073665ed525721fa}} 
+\index{der\_encode\_integer.c@{der\_encode\_integer.c}!der\_encode\_integer@{der\_encode\_integer}}
+\index{der\_encode\_integer@{der\_encode\_integer}!der\_encode\_integer.c@{der\_encode\_integer.c}}
+\subsubsection{\texorpdfstring{der\_encode\_integer()}{der\_encode\_integer()}}
+{\footnotesize\ttfamily int der\+\_\+encode\+\_\+integer (\begin{DoxyParamCaption}\item[{void $\ast$}]{num,  }\item[{unsigned char $\ast$}]{out,  }\item[{unsigned long $\ast$}]{outlen }\end{DoxyParamCaption})}
+
+
+
+Store a mp\+\_\+int integer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em num} & The first mp\+\_\+int to encode \\
+\hline
+{\em out} & \mbox{[}out\mbox{]} The destination for the D\+ER encoded integers \\
+\hline
+{\em outlen} & \mbox{[}in/out\mbox{]} The max size and resulting size of the D\+ER encoded integers \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 27 of file der\+\_\+encode\+\_\+integer.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{28 \{}
+\DoxyCodeLine{29    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} tmplen, y, \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}};}
+\DoxyCodeLine{30    \textcolor{keywordtype}{int}           err, leading\_zero;}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(num    != NULL);}
+\DoxyCodeLine{33    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(out    != NULL);}
+\DoxyCodeLine{34    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(outlen != NULL);}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36    \textcolor{comment}{/* find out how big this will be */}}
+\DoxyCodeLine{37    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{der__length__integer_8c_af27dfc46ec4a482af05a2265a9d31ca3}{der\_length\_integer}}(num, \&tmplen)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{38       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{39    \}}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41    \textcolor{keywordflow}{if} (*outlen < tmplen) \{}
+\DoxyCodeLine{42       *outlen = tmplen;}
+\DoxyCodeLine{43       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caccd878f5599f3036ffe759dbe1a1ac16}{CRYPT\_BUFFER\_OVERFLOW}};}
+\DoxyCodeLine{44    \}}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46    \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__private_8h_a6ce44f2e6f872565a468b67d9a93dc28}{mp\_cmp\_d}}(num, 0) != \mbox{\hyperlink{tomcrypt__math_8h_a42d0c7d4c09793df79660774d3436db2}{LTC\_MP\_LT}}) \{}
+\DoxyCodeLine{47       \textcolor{comment}{/* we only need a leading zero if the msb of the first byte is one */}}
+\DoxyCodeLine{48       \textcolor{keywordflow}{if} ((\mbox{\hyperlink{tomcrypt__private_8h_afa1671e20e699f66319ed2e8d9119e7e}{mp\_count\_bits}}(num) \& 7) == 0 || \mbox{\hyperlink{tomcrypt__private_8h_a910040068490f9f6e5185c970ab869c9}{mp\_iszero}}(num) == \mbox{\hyperlink{tomcrypt__math_8h_acc2da047f8fb30a3e2b2403aac617fe0}{LTC\_MP\_YES}}) \{}
+\DoxyCodeLine{49          leading\_zero = 1;}
+\DoxyCodeLine{50       \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{51          leading\_zero = 0;}
+\DoxyCodeLine{52       \}}
+\DoxyCodeLine{53 }
+\DoxyCodeLine{54       \textcolor{comment}{/* get length of num in bytes (plus 1 since we force the msbyte to zero) */}}
+\DoxyCodeLine{55       y = \mbox{\hyperlink{tomcrypt__private_8h_ad301148bb24f43a8c7003a6976dfaa5a}{mp\_unsigned\_bin\_size}}(num) + leading\_zero;}
+\DoxyCodeLine{56    \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{57       leading\_zero = 0;}
+\DoxyCodeLine{58       y            = \mbox{\hyperlink{tomcrypt__private_8h_afa1671e20e699f66319ed2e8d9119e7e}{mp\_count\_bits}}(num);}
+\DoxyCodeLine{59       y            = y + (8 - (y \& 7));}
+\DoxyCodeLine{60       y            = y >> 3;}
+\DoxyCodeLine{61       \textcolor{keywordflow}{if} (((\mbox{\hyperlink{tomcrypt__private_8h_a566a41699158970f4d7a0554081706dd}{mp\_cnt\_lsb}}(num)+1)==\mbox{\hyperlink{tomcrypt__private_8h_afa1671e20e699f66319ed2e8d9119e7e}{mp\_count\_bits}}(num)) \&\& ((\mbox{\hyperlink{tomcrypt__private_8h_afa1671e20e699f66319ed2e8d9119e7e}{mp\_count\_bits}}(num)\&7)==0)) --y;}
+\DoxyCodeLine{62    \}}
+\DoxyCodeLine{63 }
+\DoxyCodeLine{64    \textcolor{comment}{/* now store initial data */}}
+\DoxyCodeLine{65    *out++ = 0x02;}
+\DoxyCodeLine{66    \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}} = *outlen - 1;}
+\DoxyCodeLine{67    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_ae0b6c1f1188a5aa201aa84de9a659550}{der\_encode\_asn1\_length}}(y, out, \&\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}})) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{68       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{69    \}}
+\DoxyCodeLine{70    out += \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}};}
+\DoxyCodeLine{71 }
+\DoxyCodeLine{72    \textcolor{comment}{/* now store msbyte of zero if num is non-zero */}}
+\DoxyCodeLine{73    \textcolor{keywordflow}{if} (leading\_zero) \{}
+\DoxyCodeLine{74       *out++ = 0x00;}
+\DoxyCodeLine{75    \}}
+\DoxyCodeLine{76 }
+\DoxyCodeLine{77    \textcolor{comment}{/* if it's not zero store it as big endian */}}
+\DoxyCodeLine{78    \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__private_8h_a6ce44f2e6f872565a468b67d9a93dc28}{mp\_cmp\_d}}(num, 0) == \mbox{\hyperlink{tomcrypt__math_8h_adff156a960d44f0f5b67b75ef1f1c29b}{LTC\_MP\_GT}}) \{}
+\DoxyCodeLine{79       \textcolor{comment}{/* now store the mpint */}}
+\DoxyCodeLine{80       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a376a4d31dcfeb65c069db0485b9602f8}{mp\_to\_unsigned\_bin}}(num, out)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{81           \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{82       \}}
+\DoxyCodeLine{83    \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__private_8h_a910040068490f9f6e5185c970ab869c9}{mp\_iszero}}(num) != \mbox{\hyperlink{tomcrypt__math_8h_acc2da047f8fb30a3e2b2403aac617fe0}{LTC\_MP\_YES}}) \{}
+\DoxyCodeLine{84       \textcolor{keywordtype}{void} *tmp;}
+\DoxyCodeLine{85 }
+\DoxyCodeLine{86       \textcolor{comment}{/* negative */}}
+\DoxyCodeLine{87       \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__private_8h_aff03c4f22c68d651747055048c509cf3}{mp\_init}}(\&tmp) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{88          \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca0ce0d27adc7ea10b74b7ea904b8bfa82}{CRYPT\_MEM}};}
+\DoxyCodeLine{89       \}}
+\DoxyCodeLine{90 }
+\DoxyCodeLine{91       \textcolor{comment}{/* 2\string^roundup and subtract */}}
+\DoxyCodeLine{92       y = \mbox{\hyperlink{tomcrypt__private_8h_afa1671e20e699f66319ed2e8d9119e7e}{mp\_count\_bits}}(num);}
+\DoxyCodeLine{93       y = y + (8 - (y \& 7));}
+\DoxyCodeLine{94       \textcolor{keywordflow}{if} (((\mbox{\hyperlink{tomcrypt__private_8h_a566a41699158970f4d7a0554081706dd}{mp\_cnt\_lsb}}(num)+1)==\mbox{\hyperlink{tomcrypt__private_8h_afa1671e20e699f66319ed2e8d9119e7e}{mp\_count\_bits}}(num)) \&\& ((\mbox{\hyperlink{tomcrypt__private_8h_afa1671e20e699f66319ed2e8d9119e7e}{mp\_count\_bits}}(num)\&7)==0)) y -= 8;}
+\DoxyCodeLine{95       \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__private_8h_abeb03f01d3819863d5de470797c629de}{mp\_2expt}}(tmp, y) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}} || \mbox{\hyperlink{tomcrypt__private_8h_a175d04f8aeaa1c3895fe14de6cc0d2db}{mp\_add}}(tmp, num, tmp) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{96          \mbox{\hyperlink{tomcrypt__private_8h_ab05b6b59fa182b81f5f990d5621229f6}{mp\_clear}}(tmp);}
+\DoxyCodeLine{97          \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca0ce0d27adc7ea10b74b7ea904b8bfa82}{CRYPT\_MEM}};}
+\DoxyCodeLine{98       \}}
+\DoxyCodeLine{99       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a376a4d31dcfeb65c069db0485b9602f8}{mp\_to\_unsigned\_bin}}(tmp, out)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{100          \mbox{\hyperlink{tomcrypt__private_8h_ab05b6b59fa182b81f5f990d5621229f6}{mp\_clear}}(tmp);}
+\DoxyCodeLine{101          \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{102       \}}
+\DoxyCodeLine{103       \mbox{\hyperlink{tomcrypt__private_8h_ab05b6b59fa182b81f5f990d5621229f6}{mp\_clear}}(tmp);}
+\DoxyCodeLine{104    \}}
+\DoxyCodeLine{105 }
+\DoxyCodeLine{106    \textcolor{comment}{/* we good */}}
+\DoxyCodeLine{107    *outlen = tmplen;}
+\DoxyCodeLine{108    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{109 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+O\+V\+E\+R\+F\+L\+OW, C\+R\+Y\+P\+T\+\_\+\+M\+EM, C\+R\+Y\+P\+T\+\_\+\+OK, der\+\_\+encode\+\_\+asn1\+\_\+length(), der\+\_\+length\+\_\+integer(), len, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, L\+T\+C\+\_\+\+M\+P\+\_\+\+GT, L\+T\+C\+\_\+\+M\+P\+\_\+\+LT, L\+T\+C\+\_\+\+M\+P\+\_\+\+Y\+ES, mp\+\_\+2expt, mp\+\_\+add, mp\+\_\+clear, mp\+\_\+cmp\+\_\+d, mp\+\_\+cnt\+\_\+lsb, mp\+\_\+count\+\_\+bits, mp\+\_\+init, mp\+\_\+iszero, mp\+\_\+to\+\_\+unsigned\+\_\+bin, and mp\+\_\+unsigned\+\_\+bin\+\_\+size.
+
+
+
+Referenced by der\+\_\+encode\+\_\+custom\+\_\+type(), der\+\_\+encode\+\_\+sequence\+\_\+ex(), and dsa\+\_\+export().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2

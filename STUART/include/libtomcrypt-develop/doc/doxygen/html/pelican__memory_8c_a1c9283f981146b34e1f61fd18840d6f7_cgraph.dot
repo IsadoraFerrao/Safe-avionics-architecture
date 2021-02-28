@@ -1,0 +1,23 @@
+digraph "pelican_memory"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node0 [label="pelican_memory",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Pelican block of memory."];
+  Node0 -> Node1 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 [label="pelican_done",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$pelican_8c.html#a70b6868acfc0b1287d358a8e890e648a",tooltip="Terminate Pelican MAC."];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="_four_rounds",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$pelican_8c.html#a295658c56a732ddef9c71036e54aa0e2",tooltip=" "];
+  Node0 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="pelican_init",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$pelican_8c.html#a0e62b20609006626506ac50406906920",tooltip="Initialize a Pelican state."];
+  Node3 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="zeromem",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__misc_8h.html#a63b6e188713790263bfd3612fe8b398f",tooltip="Zero a block of memory."];
+  Node0 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="pelican_process",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$pelican_8c.html#aef428c8672b216a7d31256baee8c1a95",tooltip="Process a block of text through Pelican."];
+  Node5 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node0 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="XFREE",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cfg_8h.html#a260d66fc0690e0502cf3bfe7b5244b75",tooltip=" "];
+  Node0 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="XMALLOC",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cfg_8h.html#af363355f38fbaacdefacf270436ae1c9",tooltip=" "];
+}

@@ -1,0 +1,25 @@
+digraph "rc4_stream_test"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node0 [label="rc4_stream_test",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node0 -> Node1 [color="midnightblue",fontsize="10",style="solid"];
+  Node1 [label="compare_testvector",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__misc_8h.html#a7764a7f27897c6182335752df00b5f8e",tooltip="Compare two test-vectors."];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid"];
+  Node2 [label="XMEMCMP",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cfg_8h.html#a372b974ec0ac07abcd55297554fe540f",tooltip=" "];
+  Node0 -> Node3 [color="midnightblue",fontsize="10",style="solid"];
+  Node3 [label="rc4_stream_crypt",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rc4__stream_8c.html#a0a9515051ae76dc9e68c8eb2c31537d7",tooltip="Encrypt (or decrypt) bytes of ciphertext (or plaintext) with RC4."];
+  Node0 -> Node4 [color="midnightblue",fontsize="10",style="solid"];
+  Node4 [label="rc4_stream_done",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rc4__stream_8c.html#ade109a0be5199381ba2f0b9627d0a9f6",tooltip="Terminate and clear RC4 state."];
+  Node4 -> Node5 [color="midnightblue",fontsize="10",style="solid"];
+  Node5 [label="XMEMSET",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cfg_8h.html#aa3c34a6f6c61de7da9258b5a30e32c2f",tooltip=" "];
+  Node0 -> Node6 [color="midnightblue",fontsize="10",style="solid"];
+  Node6 [label="rc4_stream_memory",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rc4__stream__memory_8c.html#a3d744655eede094f61a105587ddf5fba",tooltip="Encrypt (or decrypt) bytes of ciphertext (or plaintext) with RC4."];
+  Node6 -> Node3 [color="midnightblue",fontsize="10",style="solid"];
+  Node6 -> Node4 [color="midnightblue",fontsize="10",style="solid"];
+  Node6 -> Node7 [color="midnightblue",fontsize="10",style="solid"];
+  Node7 [label="rc4_stream_setup",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rc4__stream_8c.html#a4f9ba9106b0ee28cffced552636662a2",tooltip="Initialize an RC4 context (only the key)"];
+  Node0 -> Node7 [color="midnightblue",fontsize="10",style="solid"];
+}

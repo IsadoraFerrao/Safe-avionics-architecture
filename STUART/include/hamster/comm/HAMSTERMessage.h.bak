@@ -1,0 +1,209 @@
+/*
+ * Copyright (C) 2017     Critical Embedded System Laboratory (LSEC)
+ * 
+ * This program is free software; you can redistribute it and/or modify it 
+ * under the terms of the GNU Lesser General Public License as published by the
+ * Free Software Foundation; either version 2 of the License, or (at your 
+ * option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful, but WITHOUT 
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or 
+ * FITNESS FOR A PARTICULAR PURPOSE.
+ * 
+ * See the GNU Lesser General Public License for more details.
+ * <http://www.gnu.org/licenses/>
+ */
+
+/*!
+ * \if DESIGN_MODEL
+ * 
+ *  \anchor HAMSTERMessage
+ *  \class hamster::comm::HAMSTERQueue HAMSTERMessage.h
+ *  \brief Class to enable message exchange between HAMSTER Units.
+ *  \details HAMSTER Messages have a predefined structure, whith a message code 
+ *  and the message payload. To see HAMSTER Messages, refer to \ref "HAMSTER 
+ *  Messages" HAMSTERMessages.
+ * 
+ *  \author    Mariana Rodrigues    rodrigues.mariana@gmail.com
+ *  \copyright GNU Lesser General Public License.
+ * 
+ *  \endif
+ */
+
+#ifndef HAMSTERMESSAGE_H
+#define HAMSTERMESSAGE_H
+
+#include "HAMSTER.h"
+#include "HAMSTERPeer.h"
+
+namespace hamster{
+namespace comm{
+    
+#define MAX_BUFFER_SIZE 2000
+    
+enum HAMSTER_MESSAGE_CODE : std::uint32_t{
+    ACK,
+    NACK,
+    HAMSTER_USER_MSGS = 2,
+    HAMSTER_UNIT_ID = 0x10000000,
+    REQ_ENTITY_ACCESS = 0xA0000002,              // csu
+    REQ_MODULE_ACCESS,
+    ENTITY_ACC_GRANTED,
+    UNIT_FUNCTION_INFO,             // unit como um todo
+    REQ_FUNCTION_INFOS,     // unit como um todo
+    FUNCINFO_UNIT_LIST,               // unit como um todo (aplicação, talvez)
+    REQ_PEER_CONN_INFO,            // csu
+    RET_PEER_CONN_INFO,            // csu
+    REQUEST_CONNECTION,                 // acceptor
+    REQUEST_PEER_DATA,                        // application
+};
+
+inline std::ostream& operator<<(std::ostream& stream, const HAMSTER_MESSAGE_CODE& code) {
+    switch(code){
+        case HAMSTER_MESSAGE_CODE::ACK:
+            stream << "ACK";
+            break;
+        case HAMSTER_MESSAGE_CODE::NACK:
+            stream << "NACK";
+            break;
+        case HAMSTER_MESSAGE_CODE::HAMSTER_USER_MSGS:
+            stream << "USER MESSAGE";
+            break;
+        case HAMSTER_MESSAGE_CODE::HAMSTER_UNIT_ID:
+            stream << "HAMSTER_UNIT_ID";
+            break;
+        case HAMSTER_MESSAGE_CODE::REQ_ENTITY_ACCESS:
+            stream << "REQ_ENTITY_ACCESS";
+            break;
+        case HAMSTER_MESSAGE_CODE::REQ_MODULE_ACCESS:
+            stream << "REQ_MODULE_ACCESS";
+            break;
+        case HAMSTER_MESSAGE_CODE::ENTITY_ACC_GRANTED:
+            stream << "ENTITY_ACC_GRANTED";
+            break;
+        case HAMSTER_MESSAGE_CODE::UNIT_FUNCTION_INFO:
+            stream << "UNIT_FUNCTION_INFO";
+            break;
+        case HAMSTER_MESSAGE_CODE::REQ_FUNCTION_INFOS:
+            stream << "REQ_FUNCTION_INFOS";
+            break;
+        case HAMSTER_MESSAGE_CODE::FUNCINFO_UNIT_LIST:
+            stream << "FUNCINFO_UNIT_LIST";
+            break;
+        case HAMSTER_MESSAGE_CODE::REQ_PEER_CONN_INFO:
+            stream << "REQ_PEER_CONN_INFO";
+            break;
+        case HAMSTER_MESSAGE_CODE::RET_PEER_CONN_INFO:
+            stream << "RET_PEER_CONN_INFO";
+            break;
+        case HAMSTER_MESSAGE_CODE::REQUEST_CONNECTION:
+            stream << "REQUEST_CONNECTION";
+            break;
+        case HAMSTER_MESSAGE_CODE::REQUEST_PEER_DATA:
+            stream << "REQUEST_PEER_DATA";
+            break;
+        default:
+            stream << "INVALID";
+            break;
+    }
+    return stream;
+}
+
+enum HAMSTER_MESSAGE_DIRECTION : uint8_t{
+    INTERNAL,
+    EXTERNAL
+};
+
+enum HAMSTER_MESSAGE_MASK : uint8_t{
+    USER_DEFINED_MASK = 0xFF,
+    EXTERNAL_MESSAGE_MASK = 0x80,
+    BROADCAST_MASK = 0x40,
+    PLATFORM_MASK = 0x3F,
+    CSU_MASK = 0x20,
+    SMU_MASK = 0x10,
+    SEMU_MASK = 0x08,
+    NCI_MASK = 0x04,
+    NIMBLE_MASK = 0x02,
+    NP_MASK = 0x01
+};
+
+class HAMSTERMessage {
+public:
+    HAMSTERMessage(HAMSTER_MESSAGE_DIRECTION dir,HAMSTER_MESSAGE_CODE code);
+    HAMSTERMessage(HAMSTER_MESSAGE_DIRECTION dir,char * buffer);
+    HAMSTERMessage(HAMSTER_MESSAGE_DIRECTION dir,HAMSTER_MESSAGE_CODE code, int buffer_size);
+    HAMSTERMessage(const HAMSTERMessage& orig);
+    virtual ~HAMSTERMessage();
+    
+    HAMSTER_RETURN addToPayload(int8_t value);
+//    HAMSTER_RETURN addToPayload(uint8_t value);
+    HAMSTER_RETURN addToPayload(char * string);
+    HAMSTER_MESSAGE_CODE extractCode();
+    char * extractStringFromPayload();
+    
+    HAMSTER_MESSAGE_CODE getCode() const {
+        return message_code;
+    }
+
+    HAMSTERPeer* getRecipient() const {
+        return recipient;
+    }
+    
+    char* getMessagePayload() const {
+        return message_payload;
+    }
+
+    uint8_t getMessageSize() const {
+        return message_buffer_index;
+    }
+
+
+    void setRecipient(HAMSTERPeer* recipient) {
+        this->recipient = recipient;
+    }
+    
+    HAMSTER_MESSAGE_DIRECTION getDirection(){
+        return this->direction;
+    }
+    
+    uint8_t getHeader(){
+        uint32_t code = ((this->message_code & 0xFF000000) >> 24);
+        return (uint8_t) (code & 0xFF);
+    }
+
+    inline std::ostream& operator<<(std::ostream& stream) {
+        stream << "Code: " << (int) this->message_code << std::endl;
+        stream << "Recipient ID: " << this->recipient->GetID() << std::endl;
+    }
+    
+    void destroyBuffer(){
+        if(this->message_payload != NULL){
+            delete this->message_payload;
+            this->message_payload = NULL;
+        }
+    }
+    
+    void switchToInternal(){
+        this->direction = HAMSTER_MESSAGE_DIRECTION::INTERNAL;
+    }
+    
+private:
+   
+    uint8_t remainingSize();
+    
+    HAMSTER_MESSAGE_CODE message_code;
+    HAMSTER_MESSAGE_DIRECTION direction;
+    uint8_t message_payload_size;
+    uint8_t message_buffer_index = 0;
+    char * message_payload;
+    HAMSTERPeer * recipient;
+
+};
+
+
+
+} /* namespace comm */
+} /* namespace hamster */
+
+#endif /* HAMSTERMESSAGE_H */
+

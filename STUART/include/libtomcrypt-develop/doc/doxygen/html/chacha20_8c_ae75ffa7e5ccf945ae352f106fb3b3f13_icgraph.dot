@@ -1,0 +1,13 @@
+digraph "chacha20_prng_add_entropy"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node10 [label="chacha20_prng_add_entropy",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Add entropy to the PRNG state."];
+  Node10 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 [label="chacha20_prng_import",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$chacha20_8c.html#aec1d8ebf9e796fe1223995e48d665a92",tooltip="Import a PRNG state."];
+  Node11 -> Node12 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node12 [label="chacha20_prng_test",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$chacha20_8c.html#a1c178a6f1b7255371d3340913c29b64a",tooltip="PRNG self-test."];
+  Node10 -> Node12 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}

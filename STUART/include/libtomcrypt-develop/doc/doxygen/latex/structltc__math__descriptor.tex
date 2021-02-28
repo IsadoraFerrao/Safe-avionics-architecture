@@ -1,0 +1,1528 @@
+\hypertarget{structltc__math__descriptor}{}\section{ltc\+\_\+math\+\_\+descriptor Struct Reference}
+\label{structltc__math__descriptor}\index{ltc\_math\_descriptor@{ltc\_math\_descriptor}}
+
+
+math descriptor  
+
+
+
+
+{\ttfamily \#include $<$tomcrypt\+\_\+math.\+h$>$}
+
+
+
+Collaboration diagram for ltc\+\_\+math\+\_\+descriptor\+:
+% FIG 0
+\subsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+const char $\ast$ \mbox{\hyperlink{structltc__math__descriptor_a8838126de4a27e382f91096e369a2728}{name}}
+\begin{DoxyCompactList}\small\item\em Name of the math provider. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{structltc__math__descriptor_a0cea337ac807728b20f2b980788b3078}{bits\+\_\+per\+\_\+digit}}
+\begin{DoxyCompactList}\small\item\em Bits per digit, amount of bits must fit in an unsigned long. \end{DoxyCompactList}\item 
+int($\ast$ \mbox{\hyperlink{structltc__math__descriptor_a0663bfda2c6b628f94df2aa82142f921}{init}} )(void $\ast$$\ast$a)
+\begin{DoxyCompactList}\small\item\em initialize a bignum \end{DoxyCompactList}\item 
+int($\ast$ \mbox{\hyperlink{structltc__math__descriptor_ab37507025ee53d5ad903a4b8b8c2f1db}{init\+\_\+copy}} )(void $\ast$$\ast$dst, void $\ast$src)
+\begin{DoxyCompactList}\small\item\em init copy \end{DoxyCompactList}\item 
+void($\ast$ \mbox{\hyperlink{structltc__math__descriptor_aacc2306d4534b21b76ddd11b54274f31}{deinit}} )(void $\ast$a)
+\begin{DoxyCompactList}\small\item\em deinit \end{DoxyCompactList}\item 
+int($\ast$ \mbox{\hyperlink{structltc__math__descriptor_a5a6883b492216ee9047c10ce733b80b5}{neg}} )(void $\ast$src, void $\ast$dst)
+\begin{DoxyCompactList}\small\item\em negate \end{DoxyCompactList}\item 
+int($\ast$ \mbox{\hyperlink{structltc__math__descriptor_a1f4a910f2a962c70c7ef7dae0bc84eef}{copy}} )(void $\ast$src, void $\ast$dst)
+\begin{DoxyCompactList}\small\item\em copy \end{DoxyCompactList}\item 
+int($\ast$ \mbox{\hyperlink{structltc__math__descriptor_ad306f25bb0a78e082f0c3baf85c4f44c}{set\+\_\+int}} )(void $\ast$a, \mbox{\hyperlink{tomcrypt__cfg_8h_a4e98fa26a5de0ac87e06af901bad57c4}{ltc\+\_\+mp\+\_\+digit}} n)
+\begin{DoxyCompactList}\small\item\em set small constant \end{DoxyCompactList}\item 
+unsigned long($\ast$ \mbox{\hyperlink{structltc__math__descriptor_adc1cbca3af3282460af8ff4ac4dabdeb}{get\+\_\+int}} )(void $\ast$a)
+\begin{DoxyCompactList}\small\item\em get small constant \end{DoxyCompactList}\item 
+\mbox{\hyperlink{tomcrypt__cfg_8h_a4e98fa26a5de0ac87e06af901bad57c4}{ltc\+\_\+mp\+\_\+digit}}($\ast$ \mbox{\hyperlink{structltc__math__descriptor_adb2107094f3c0aa279a3f12977672a78}{get\+\_\+digit}} )(void $\ast$a, int n)
+\begin{DoxyCompactList}\small\item\em get digit n \end{DoxyCompactList}\item 
+int($\ast$ \mbox{\hyperlink{structltc__math__descriptor_ae185e44bd77639feb5c360b10bf826ca}{get\+\_\+digit\+\_\+count}} )(void $\ast$a)
+\begin{DoxyCompactList}\small\item\em Get the number of digits that represent the number. \end{DoxyCompactList}\item 
+int($\ast$ \mbox{\hyperlink{structltc__math__descriptor_afa00530838786ca9b52a21a2c00f0f57}{compare}} )(void $\ast$a, void $\ast$b)
+\begin{DoxyCompactList}\small\item\em compare two integers \end{DoxyCompactList}\item 
+int($\ast$ \mbox{\hyperlink{structltc__math__descriptor_a5b3038e00644c477282802863619323b}{compare\+\_\+d}} )(void $\ast$a, \mbox{\hyperlink{tomcrypt__cfg_8h_a4e98fa26a5de0ac87e06af901bad57c4}{ltc\+\_\+mp\+\_\+digit}} n)
+\begin{DoxyCompactList}\small\item\em compare against int \end{DoxyCompactList}\item 
+int($\ast$ \mbox{\hyperlink{structltc__math__descriptor_a8397a978088c5d65413a3d110e9d163f}{count\+\_\+bits}} )(void $\ast$a)
+\begin{DoxyCompactList}\small\item\em Count the number of bits used to represent the integer. \end{DoxyCompactList}\item 
+int($\ast$ \mbox{\hyperlink{structltc__math__descriptor_a35b5d101c179e6504397fd7bb9dab0d7}{count\+\_\+lsb\+\_\+bits}} )(void $\ast$a)
+\begin{DoxyCompactList}\small\item\em Count the number of L\+SB bits which are zero. \end{DoxyCompactList}\item 
+int($\ast$ \mbox{\hyperlink{structltc__math__descriptor_a2c95a128028d91f98692e75e2349bddc}{twoexpt}} )(void $\ast$a, int n)
+\begin{DoxyCompactList}\small\item\em Compute a power of two. \end{DoxyCompactList}\item 
+int($\ast$ \mbox{\hyperlink{structltc__math__descriptor_afb032eeb403a00f981461b23f8b95588}{read\+\_\+radix}} )(void $\ast$a, const char $\ast$str, int radix)
+\begin{DoxyCompactList}\small\item\em read ascii string \end{DoxyCompactList}\item 
+int($\ast$ \mbox{\hyperlink{structltc__math__descriptor_a2e15b6390426a57dad267e123d50f317}{write\+\_\+radix}} )(void $\ast$a, char $\ast$str, int radix)
+\begin{DoxyCompactList}\small\item\em write number to string \end{DoxyCompactList}\item 
+unsigned long($\ast$ \mbox{\hyperlink{structltc__math__descriptor_ad00aec091ffab4884b7eb4e826f7e5b0}{unsigned\+\_\+size}} )(void $\ast$a)
+\begin{DoxyCompactList}\small\item\em get size as unsigned char string \end{DoxyCompactList}\item 
+int($\ast$ \mbox{\hyperlink{structltc__math__descriptor_adad74e32ded1d53e400ff3816d0dd029}{unsigned\+\_\+write}} )(void $\ast$src, unsigned char $\ast$dst)
+\begin{DoxyCompactList}\small\item\em store an integer as an array of octets \end{DoxyCompactList}\item 
+int($\ast$ \mbox{\hyperlink{structltc__math__descriptor_a9f36dbadfa806134bb8be4125a18027d}{unsigned\+\_\+read}} )(void $\ast$dst, unsigned char $\ast$src, unsigned long \mbox{\hyperlink{pmac__init_8c_afed088663f8704004425cdae2120b9b3}{len}})
+\begin{DoxyCompactList}\small\item\em read an array of octets and store as integer \end{DoxyCompactList}\item 
+int($\ast$ \mbox{\hyperlink{structltc__math__descriptor_a2ee4cfad89c8d9197de3da244f97b111}{add}} )(void $\ast$a, void $\ast$b, void $\ast$\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}})
+\begin{DoxyCompactList}\small\item\em add two integers \end{DoxyCompactList}\item 
+int($\ast$ \mbox{\hyperlink{structltc__math__descriptor_a8920bd1f62e2345cdaa3dc423ac5b301}{addi}} )(void $\ast$a, \mbox{\hyperlink{tomcrypt__cfg_8h_a4e98fa26a5de0ac87e06af901bad57c4}{ltc\+\_\+mp\+\_\+digit}} b, void $\ast$\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}})
+\begin{DoxyCompactList}\small\item\em add two integers \end{DoxyCompactList}\item 
+int($\ast$ \mbox{\hyperlink{structltc__math__descriptor_ad58ab4f6ccb46060585efb0a6f934734}{sub}} )(void $\ast$a, void $\ast$b, void $\ast$\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}})
+\begin{DoxyCompactList}\small\item\em subtract two integers \end{DoxyCompactList}\item 
+int($\ast$ \mbox{\hyperlink{structltc__math__descriptor_a346773e3af932abe74f88d2dadd6541f}{subi}} )(void $\ast$a, \mbox{\hyperlink{tomcrypt__cfg_8h_a4e98fa26a5de0ac87e06af901bad57c4}{ltc\+\_\+mp\+\_\+digit}} b, void $\ast$\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}})
+\begin{DoxyCompactList}\small\item\em subtract two integers \end{DoxyCompactList}\item 
+int($\ast$ \mbox{\hyperlink{structltc__math__descriptor_ac70c777311b45bcca48b99003a00d68d}{mul}} )(void $\ast$a, void $\ast$b, void $\ast$\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}})
+\begin{DoxyCompactList}\small\item\em multiply two integers \end{DoxyCompactList}\item 
+int($\ast$ \mbox{\hyperlink{structltc__math__descriptor_a3b5e51d99539d173b794c5abeab0390e}{muli}} )(void $\ast$a, \mbox{\hyperlink{tomcrypt__cfg_8h_a4e98fa26a5de0ac87e06af901bad57c4}{ltc\+\_\+mp\+\_\+digit}} b, void $\ast$\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}})
+\begin{DoxyCompactList}\small\item\em multiply two integers \end{DoxyCompactList}\item 
+int($\ast$ \mbox{\hyperlink{structltc__math__descriptor_add76f47ec6a9e3b331750e6d37c1841b}{sqr}} )(void $\ast$a, void $\ast$b)
+\begin{DoxyCompactList}\small\item\em Square an integer. \end{DoxyCompactList}\item 
+int($\ast$ \mbox{\hyperlink{structltc__math__descriptor_ae588937a77f227870ff809f5f8f0deb8}{sqrtmod\+\_\+prime}} )(void $\ast$a, void $\ast$b, void $\ast$\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}})
+\begin{DoxyCompactList}\small\item\em Square root (mod prime) \end{DoxyCompactList}\item 
+int($\ast$ \mbox{\hyperlink{structltc__math__descriptor_a8d4d13c1f48643b29bbb27c17a1fa8bd}{mpdiv}} )(void $\ast$a, void $\ast$b, void $\ast$\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, void $\ast$d)
+\begin{DoxyCompactList}\small\item\em Divide an integer. \end{DoxyCompactList}\item 
+int($\ast$ \mbox{\hyperlink{structltc__math__descriptor_a2ea0c675165d9e8aaa99b65b82b97fbb}{div\+\_\+2}} )(void $\ast$a, void $\ast$b)
+\begin{DoxyCompactList}\small\item\em divide by two \end{DoxyCompactList}\item 
+int($\ast$ \mbox{\hyperlink{structltc__math__descriptor_a85075e806eb136a3bfb1f23274909406}{modi}} )(void $\ast$a, \mbox{\hyperlink{tomcrypt__cfg_8h_a4e98fa26a5de0ac87e06af901bad57c4}{ltc\+\_\+mp\+\_\+digit}} b, \mbox{\hyperlink{tomcrypt__cfg_8h_a4e98fa26a5de0ac87e06af901bad57c4}{ltc\+\_\+mp\+\_\+digit}} $\ast$\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}})
+\begin{DoxyCompactList}\small\item\em Get remainder (small value) \end{DoxyCompactList}\item 
+int($\ast$ \mbox{\hyperlink{structltc__math__descriptor_a2cac3e41594eeb13e40841ee30c8d476}{gcd}} )(void $\ast$a, void $\ast$b, void $\ast$\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}})
+\begin{DoxyCompactList}\small\item\em gcd \end{DoxyCompactList}\item 
+int($\ast$ \mbox{\hyperlink{structltc__math__descriptor_a3259308dc6b547a475ed53506590f4ec}{lcm}} )(void $\ast$a, void $\ast$b, void $\ast$\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}})
+\begin{DoxyCompactList}\small\item\em lcm \end{DoxyCompactList}\item 
+int($\ast$ \mbox{\hyperlink{structltc__math__descriptor_a4be8c3cd23da49dd7bd0fc77860ebf4e}{mulmod}} )(void $\ast$a, void $\ast$b, void $\ast$\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, void $\ast$d)
+\begin{DoxyCompactList}\small\item\em Modular multiplication. \end{DoxyCompactList}\item 
+int($\ast$ \mbox{\hyperlink{structltc__math__descriptor_ac3bd23fc614e9b3cc990b810700bc78a}{sqrmod}} )(void $\ast$a, void $\ast$b, void $\ast$\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}})
+\begin{DoxyCompactList}\small\item\em Modular squaring. \end{DoxyCompactList}\item 
+int($\ast$ \mbox{\hyperlink{structltc__math__descriptor_a49591ee15093ebd18983a557fa9df096}{invmod}} )(void $\ast$, void $\ast$, void $\ast$)
+\begin{DoxyCompactList}\small\item\em Modular inversion. \end{DoxyCompactList}\item 
+int($\ast$ \mbox{\hyperlink{structltc__math__descriptor_ab371384383f0e671c6211d6b0e439f3d}{montgomery\+\_\+setup}} )(void $\ast$a, void $\ast$$\ast$b)
+\begin{DoxyCompactList}\small\item\em setup Montgomery \end{DoxyCompactList}\item 
+int($\ast$ \mbox{\hyperlink{structltc__math__descriptor_a78422650d8687db2363f716434c29605}{montgomery\+\_\+normalization}} )(void $\ast$a, void $\ast$b)
+\begin{DoxyCompactList}\small\item\em get normalization value \end{DoxyCompactList}\item 
+int($\ast$ \mbox{\hyperlink{structltc__math__descriptor_a337d88eba818e96370144d654ffb19d7}{montgomery\+\_\+reduce}} )(void $\ast$a, void $\ast$b, void $\ast$\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}})
+\begin{DoxyCompactList}\small\item\em reduce a number \end{DoxyCompactList}\item 
+void($\ast$ \mbox{\hyperlink{structltc__math__descriptor_afa1cd36e8317d3acffaca94edf19f341}{montgomery\+\_\+deinit}} )(void $\ast$a)
+\begin{DoxyCompactList}\small\item\em clean up (frees memory) \end{DoxyCompactList}\item 
+int($\ast$ \mbox{\hyperlink{structltc__math__descriptor_ab836b238695e44d514946d3cd420f60e}{exptmod}} )(void $\ast$a, void $\ast$b, void $\ast$\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, void $\ast$d)
+\begin{DoxyCompactList}\small\item\em Modular exponentiation. \end{DoxyCompactList}\item 
+int($\ast$ \mbox{\hyperlink{structltc__math__descriptor_a8567019d2e686cfd237dee851809c177}{isprime}} )(void $\ast$a, int b, int $\ast$\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}})
+\begin{DoxyCompactList}\small\item\em Primality testing. \end{DoxyCompactList}\item 
+int($\ast$ \mbox{\hyperlink{structltc__math__descriptor_ac58c8ded3c63f11c5289141157fd8d61}{ecc\+\_\+ptmul}} )(void $\ast$k, const \mbox{\hyperlink{tomcrypt__math_8h_a2a6efaeaa795aa54274d7c4fd66b018a}{ecc\+\_\+point}} $\ast$\mbox{\hyperlink{rmd320_8c_ad96b7cf3182ce2ba85e5a7a93b12c441}{G}}, \mbox{\hyperlink{tomcrypt__math_8h_a2a6efaeaa795aa54274d7c4fd66b018a}{ecc\+\_\+point}} $\ast$\mbox{\hyperlink{sha512_8c_a8fb1dfc3ad6dd07bc99c1962e6583087}{R}}, void $\ast$a, void $\ast$modulus, int map)
+\begin{DoxyCompactList}\small\item\em E\+CC G\+F(p) point multiplication (from the N\+I\+ST curves) \end{DoxyCompactList}\item 
+int($\ast$ \mbox{\hyperlink{structltc__math__descriptor_a20678986df75fa338c4267c94b98ae68}{ecc\+\_\+ptadd}} )(const \mbox{\hyperlink{tomcrypt__math_8h_a2a6efaeaa795aa54274d7c4fd66b018a}{ecc\+\_\+point}} $\ast$P, const \mbox{\hyperlink{tomcrypt__math_8h_a2a6efaeaa795aa54274d7c4fd66b018a}{ecc\+\_\+point}} $\ast$Q, \mbox{\hyperlink{tomcrypt__math_8h_a2a6efaeaa795aa54274d7c4fd66b018a}{ecc\+\_\+point}} $\ast$\mbox{\hyperlink{sha512_8c_a8fb1dfc3ad6dd07bc99c1962e6583087}{R}}, void $\ast$ma, void $\ast$modulus, void $\ast$mp)
+\begin{DoxyCompactList}\small\item\em E\+CC G\+F(p) point addition. \end{DoxyCompactList}\item 
+int($\ast$ \mbox{\hyperlink{structltc__math__descriptor_aeb3ece135c988d56932916b57872e78c}{ecc\+\_\+ptdbl}} )(const \mbox{\hyperlink{tomcrypt__math_8h_a2a6efaeaa795aa54274d7c4fd66b018a}{ecc\+\_\+point}} $\ast$P, \mbox{\hyperlink{tomcrypt__math_8h_a2a6efaeaa795aa54274d7c4fd66b018a}{ecc\+\_\+point}} $\ast$\mbox{\hyperlink{sha512_8c_a8fb1dfc3ad6dd07bc99c1962e6583087}{R}}, void $\ast$ma, void $\ast$modulus, void $\ast$mp)
+\begin{DoxyCompactList}\small\item\em E\+CC G\+F(p) point double. \end{DoxyCompactList}\item 
+int($\ast$ \mbox{\hyperlink{structltc__math__descriptor_a4855dff07d894997cc3fb66a93b45a88}{ecc\+\_\+map}} )(\mbox{\hyperlink{tomcrypt__math_8h_a2a6efaeaa795aa54274d7c4fd66b018a}{ecc\+\_\+point}} $\ast$P, void $\ast$modulus, void $\ast$mp)
+\begin{DoxyCompactList}\small\item\em E\+CC mapping from projective to affine, currently uses (x,y,z) =$>$ (x/z$^\wedge$2, y/z$^\wedge$3, 1) \end{DoxyCompactList}\item 
+int($\ast$ \mbox{\hyperlink{structltc__math__descriptor_adf813ecf9a43ff1d83012f5168a2110c}{ecc\+\_\+mul2add}} )(const \mbox{\hyperlink{tomcrypt__math_8h_a2a6efaeaa795aa54274d7c4fd66b018a}{ecc\+\_\+point}} $\ast$A, void $\ast$kA, const \mbox{\hyperlink{tomcrypt__math_8h_a2a6efaeaa795aa54274d7c4fd66b018a}{ecc\+\_\+point}} $\ast$B, void $\ast$kB, \mbox{\hyperlink{tomcrypt__math_8h_a2a6efaeaa795aa54274d7c4fd66b018a}{ecc\+\_\+point}} $\ast$C, void $\ast$ma, void $\ast$modulus)
+\begin{DoxyCompactList}\small\item\em Computes k\+A$\ast$A + k\+B$\ast$B = C using Shamir\textquotesingle{}s Trick. \end{DoxyCompactList}\item 
+int($\ast$ \mbox{\hyperlink{structltc__math__descriptor_a27047df117a3242ffbe01ad7c3fd1db1}{rsa\+\_\+keygen}} )(\mbox{\hyperlink{structprng__state}{prng\+\_\+state}} $\ast$prng, int wprng, int size, long e, \mbox{\hyperlink{tomcrypt__math_8h_a99eca413acdcc914993162bd18cba437}{rsa\+\_\+key}} $\ast$key)
+\begin{DoxyCompactList}\small\item\em R\+SA Key Generation. \end{DoxyCompactList}\item 
+int($\ast$ \mbox{\hyperlink{structltc__math__descriptor_a3dd5741c852c680f51c441763792ad58}{rsa\+\_\+me}} )(const unsigned char $\ast$in, unsigned long inlen, unsigned char $\ast$out, unsigned long $\ast$outlen, int which, const \mbox{\hyperlink{tomcrypt__math_8h_a99eca413acdcc914993162bd18cba437}{rsa\+\_\+key}} $\ast$key)
+\begin{DoxyCompactList}\small\item\em R\+SA exponentiation. \end{DoxyCompactList}\item 
+int($\ast$ \mbox{\hyperlink{structltc__math__descriptor_a876c59572a7a5f1d69cac2d76e307bde}{addmod}} )(void $\ast$a, void $\ast$b, void $\ast$\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, void $\ast$d)
+\begin{DoxyCompactList}\small\item\em Modular addition. \end{DoxyCompactList}\item 
+int($\ast$ \mbox{\hyperlink{structltc__math__descriptor_a3146dc4c319519d72bedb7d4dd3ff4de}{submod}} )(void $\ast$a, void $\ast$b, void $\ast$\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, void $\ast$d)
+\begin{DoxyCompactList}\small\item\em Modular substraction. \end{DoxyCompactList}\item 
+int($\ast$ \mbox{\hyperlink{structltc__math__descriptor_a46140709a2fad31f70ff9eb6887f1f99}{rand}} )(void $\ast$a, int size)
+\begin{DoxyCompactList}\small\item\em Make a pseudo-\/random mpi. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+math descriptor 
+
+Definition at line 37 of file tomcrypt\+\_\+math.\+h.
+
+
+
+\subsection{Field Documentation}
+\mbox{\Hypertarget{structltc__math__descriptor_a2ee4cfad89c8d9197de3da244f97b111}\label{structltc__math__descriptor_a2ee4cfad89c8d9197de3da244f97b111}} 
+\index{ltc\_math\_descriptor@{ltc\_math\_descriptor}!add@{add}}
+\index{add@{add}!ltc\_math\_descriptor@{ltc\_math\_descriptor}}
+\subsubsection{\texorpdfstring{add}{add}}
+{\footnotesize\ttfamily int($\ast$ ltc\+\_\+math\+\_\+descriptor\+::add) (void $\ast$a, void $\ast$b, void $\ast$\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}})}
+
+
+
+add two integers 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & The first source integer \\
+\hline
+{\em b} & The second source integer \\
+\hline
+{\em c} & The destination of \char`\"{}a + b\char`\"{} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK on success 
+\end{DoxyReturn}
+
+
+Definition at line 196 of file tomcrypt\+\_\+math.\+h.
+
+\mbox{\Hypertarget{structltc__math__descriptor_a8920bd1f62e2345cdaa3dc423ac5b301}\label{structltc__math__descriptor_a8920bd1f62e2345cdaa3dc423ac5b301}} 
+\index{ltc\_math\_descriptor@{ltc\_math\_descriptor}!addi@{addi}}
+\index{addi@{addi}!ltc\_math\_descriptor@{ltc\_math\_descriptor}}
+\subsubsection{\texorpdfstring{addi}{addi}}
+{\footnotesize\ttfamily int($\ast$ ltc\+\_\+math\+\_\+descriptor\+::addi) (void $\ast$a, \mbox{\hyperlink{tomcrypt__cfg_8h_a4e98fa26a5de0ac87e06af901bad57c4}{ltc\+\_\+mp\+\_\+digit}} b, void $\ast$\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}})}
+
+
+
+add two integers 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & The first source integer \\
+\hline
+{\em b} & The second source integer (single digit of upto bits\+\_\+per\+\_\+digit in length) \\
+\hline
+{\em c} & The destination of \char`\"{}a + b\char`\"{} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK on success 
+\end{DoxyReturn}
+
+
+Definition at line 205 of file tomcrypt\+\_\+math.\+h.
+
+\mbox{\Hypertarget{structltc__math__descriptor_a876c59572a7a5f1d69cac2d76e307bde}\label{structltc__math__descriptor_a876c59572a7a5f1d69cac2d76e307bde}} 
+\index{ltc\_math\_descriptor@{ltc\_math\_descriptor}!addmod@{addmod}}
+\index{addmod@{addmod}!ltc\_math\_descriptor@{ltc\_math\_descriptor}}
+\subsubsection{\texorpdfstring{addmod}{addmod}}
+{\footnotesize\ttfamily int($\ast$ ltc\+\_\+math\+\_\+descriptor\+::addmod) (void $\ast$a, void $\ast$b, void $\ast$\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, void $\ast$d)}
+
+
+
+Modular addition. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & The first source \\
+\hline
+{\em b} & The second source \\
+\hline
+{\em c} & The modulus \\
+\hline
+{\em d} & The destination (a + b mod c) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK on success 
+\end{DoxyReturn}
+
+
+Definition at line 488 of file tomcrypt\+\_\+math.\+h.
+
+\mbox{\Hypertarget{structltc__math__descriptor_a0cea337ac807728b20f2b980788b3078}\label{structltc__math__descriptor_a0cea337ac807728b20f2b980788b3078}} 
+\index{ltc\_math\_descriptor@{ltc\_math\_descriptor}!bits\_per\_digit@{bits\_per\_digit}}
+\index{bits\_per\_digit@{bits\_per\_digit}!ltc\_math\_descriptor@{ltc\_math\_descriptor}}
+\subsubsection{\texorpdfstring{bits\_per\_digit}{bits\_per\_digit}}
+{\footnotesize\ttfamily int ltc\+\_\+math\+\_\+descriptor\+::bits\+\_\+per\+\_\+digit}
+
+
+
+Bits per digit, amount of bits must fit in an unsigned long. 
+
+
+
+Definition at line 42 of file tomcrypt\+\_\+math.\+h.
+
+\mbox{\Hypertarget{structltc__math__descriptor_afa00530838786ca9b52a21a2c00f0f57}\label{structltc__math__descriptor_afa00530838786ca9b52a21a2c00f0f57}} 
+\index{ltc\_math\_descriptor@{ltc\_math\_descriptor}!compare@{compare}}
+\index{compare@{compare}!ltc\_math\_descriptor@{ltc\_math\_descriptor}}
+\subsubsection{\texorpdfstring{compare}{compare}}
+{\footnotesize\ttfamily int($\ast$ ltc\+\_\+math\+\_\+descriptor\+::compare) (void $\ast$a, void $\ast$b)}
+
+
+
+compare two integers 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & The left side integer \\
+\hline
+{\em b} & The right side integer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+L\+T\+C\+\_\+\+M\+P\+\_\+\+LT if a $<$ b, L\+T\+C\+\_\+\+M\+P\+\_\+\+GT if a $>$ b and L\+T\+C\+\_\+\+M\+P\+\_\+\+EQ otherwise. (signed comparison) 
+\end{DoxyReturn}
+
+
+Definition at line 117 of file tomcrypt\+\_\+math.\+h.
+
+
+
+Referenced by ltc\+\_\+ecc\+\_\+verify\+\_\+key().
+
+\mbox{\Hypertarget{structltc__math__descriptor_a5b3038e00644c477282802863619323b}\label{structltc__math__descriptor_a5b3038e00644c477282802863619323b}} 
+\index{ltc\_math\_descriptor@{ltc\_math\_descriptor}!compare\_d@{compare\_d}}
+\index{compare\_d@{compare\_d}!ltc\_math\_descriptor@{ltc\_math\_descriptor}}
+\subsubsection{\texorpdfstring{compare\_d}{compare\_d}}
+{\footnotesize\ttfamily int($\ast$ ltc\+\_\+math\+\_\+descriptor\+::compare\+\_\+d) (void $\ast$a, \mbox{\hyperlink{tomcrypt__cfg_8h_a4e98fa26a5de0ac87e06af901bad57c4}{ltc\+\_\+mp\+\_\+digit}} n)}
+
+
+
+compare against int 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & The left side integer \\
+\hline
+{\em b} & The right side integer (upto bits\+\_\+per\+\_\+digit) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+L\+T\+C\+\_\+\+M\+P\+\_\+\+LT if a $<$ b, L\+T\+C\+\_\+\+M\+P\+\_\+\+GT if a $>$ b and L\+T\+C\+\_\+\+M\+P\+\_\+\+EQ otherwise. (signed comparison) 
+\end{DoxyReturn}
+
+
+Definition at line 126 of file tomcrypt\+\_\+math.\+h.
+
+
+
+Referenced by ltc\+\_\+ecc\+\_\+verify\+\_\+key().
+
+\mbox{\Hypertarget{structltc__math__descriptor_a1f4a910f2a962c70c7ef7dae0bc84eef}\label{structltc__math__descriptor_a1f4a910f2a962c70c7ef7dae0bc84eef}} 
+\index{ltc\_math\_descriptor@{ltc\_math\_descriptor}!copy@{copy}}
+\index{copy@{copy}!ltc\_math\_descriptor@{ltc\_math\_descriptor}}
+\subsubsection{\texorpdfstring{copy}{copy}}
+{\footnotesize\ttfamily int($\ast$ ltc\+\_\+math\+\_\+descriptor\+::copy) (void $\ast$src, void $\ast$dst)}
+
+
+
+copy 
+
+
+\begin{DoxyParams}{Parameters}
+{\em src} & The number to copy from \\
+\hline
+{\em dst} & The number to write to \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK on success 
+\end{DoxyReturn}
+
+
+Definition at line 79 of file tomcrypt\+\_\+math.\+h.
+
+
+
+Referenced by ltc\+\_\+ecc\+\_\+copy\+\_\+point(), and tfm\+\_\+ecc\+\_\+projective\+\_\+add\+\_\+point().
+
+\mbox{\Hypertarget{structltc__math__descriptor_a8397a978088c5d65413a3d110e9d163f}\label{structltc__math__descriptor_a8397a978088c5d65413a3d110e9d163f}} 
+\index{ltc\_math\_descriptor@{ltc\_math\_descriptor}!count\_bits@{count\_bits}}
+\index{count\_bits@{count\_bits}!ltc\_math\_descriptor@{ltc\_math\_descriptor}}
+\subsubsection{\texorpdfstring{count\_bits}{count\_bits}}
+{\footnotesize\ttfamily int($\ast$ ltc\+\_\+math\+\_\+descriptor\+::count\+\_\+bits) (void $\ast$a)}
+
+
+
+Count the number of bits used to represent the integer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & The integer to count \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The number of bits required to represent the integer 
+\end{DoxyReturn}
+
+
+Definition at line 132 of file tomcrypt\+\_\+math.\+h.
+
+\mbox{\Hypertarget{structltc__math__descriptor_a35b5d101c179e6504397fd7bb9dab0d7}\label{structltc__math__descriptor_a35b5d101c179e6504397fd7bb9dab0d7}} 
+\index{ltc\_math\_descriptor@{ltc\_math\_descriptor}!count\_lsb\_bits@{count\_lsb\_bits}}
+\index{count\_lsb\_bits@{count\_lsb\_bits}!ltc\_math\_descriptor@{ltc\_math\_descriptor}}
+\subsubsection{\texorpdfstring{count\_lsb\_bits}{count\_lsb\_bits}}
+{\footnotesize\ttfamily int($\ast$ ltc\+\_\+math\+\_\+descriptor\+::count\+\_\+lsb\+\_\+bits) (void $\ast$a)}
+
+
+
+Count the number of L\+SB bits which are zero. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & The integer to count \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The number of contiguous zero L\+SB bits 
+\end{DoxyReturn}
+
+
+Definition at line 138 of file tomcrypt\+\_\+math.\+h.
+
+\mbox{\Hypertarget{structltc__math__descriptor_aacc2306d4534b21b76ddd11b54274f31}\label{structltc__math__descriptor_aacc2306d4534b21b76ddd11b54274f31}} 
+\index{ltc\_math\_descriptor@{ltc\_math\_descriptor}!deinit@{deinit}}
+\index{deinit@{deinit}!ltc\_math\_descriptor@{ltc\_math\_descriptor}}
+\subsubsection{\texorpdfstring{deinit}{deinit}}
+{\footnotesize\ttfamily void($\ast$ ltc\+\_\+math\+\_\+descriptor\+::deinit) (void $\ast$a)}
+
+
+
+deinit 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & The number to free \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK on success 
+\end{DoxyReturn}
+
+
+Definition at line 63 of file tomcrypt\+\_\+math.\+h.
+
+\mbox{\Hypertarget{structltc__math__descriptor_a2ea0c675165d9e8aaa99b65b82b97fbb}\label{structltc__math__descriptor_a2ea0c675165d9e8aaa99b65b82b97fbb}} 
+\index{ltc\_math\_descriptor@{ltc\_math\_descriptor}!div\_2@{div\_2}}
+\index{div\_2@{div\_2}!ltc\_math\_descriptor@{ltc\_math\_descriptor}}
+\subsubsection{\texorpdfstring{div\_2}{div\_2}}
+{\footnotesize\ttfamily int($\ast$ ltc\+\_\+math\+\_\+descriptor\+::div\+\_\+2) (void $\ast$a, void $\ast$b)}
+
+
+
+divide by two 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & The integer to divide (shift right) \\
+\hline
+{\em b} & The destination \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK on success 
+\end{DoxyReturn}
+
+
+Definition at line 271 of file tomcrypt\+\_\+math.\+h.
+
+\mbox{\Hypertarget{structltc__math__descriptor_a4855dff07d894997cc3fb66a93b45a88}\label{structltc__math__descriptor_a4855dff07d894997cc3fb66a93b45a88}} 
+\index{ltc\_math\_descriptor@{ltc\_math\_descriptor}!ecc\_map@{ecc\_map}}
+\index{ecc\_map@{ecc\_map}!ltc\_math\_descriptor@{ltc\_math\_descriptor}}
+\subsubsection{\texorpdfstring{ecc\_map}{ecc\_map}}
+{\footnotesize\ttfamily int($\ast$ ltc\+\_\+math\+\_\+descriptor\+::ecc\+\_\+map) (\mbox{\hyperlink{tomcrypt__math_8h_a2a6efaeaa795aa54274d7c4fd66b018a}{ecc\+\_\+point}} $\ast$P, void $\ast$modulus, void $\ast$mp)}
+
+
+
+E\+CC mapping from projective to affine, currently uses (x,y,z) =$>$ (x/z$^\wedge$2, y/z$^\wedge$3, 1) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em P} & The point to map \\
+\hline
+{\em modulus} & The modulus \\
+\hline
+{\em mp} & The \char`\"{}b\char`\"{} value from \mbox{\hyperlink{structltc__math__descriptor_ab371384383f0e671c6211d6b0e439f3d}{montgomery\+\_\+setup()}} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK on success 
+\end{DoxyReturn}
+\begin{DoxyRemark}{Remarks}
+The mapping can be different but keep in mind a ecc\+\_\+point only has three integers (x,y,z) so if you use a different mapping you have to make it fit. 
+\end{DoxyRemark}
+
+
+Definition at line 430 of file tomcrypt\+\_\+math.\+h.
+
+
+
+Referenced by ecc\+\_\+verify\+\_\+hash\+\_\+ex().
+
+\mbox{\Hypertarget{structltc__math__descriptor_adf813ecf9a43ff1d83012f5168a2110c}\label{structltc__math__descriptor_adf813ecf9a43ff1d83012f5168a2110c}} 
+\index{ltc\_math\_descriptor@{ltc\_math\_descriptor}!ecc\_mul2add@{ecc\_mul2add}}
+\index{ecc\_mul2add@{ecc\_mul2add}!ltc\_math\_descriptor@{ltc\_math\_descriptor}}
+\subsubsection{\texorpdfstring{ecc\_mul2add}{ecc\_mul2add}}
+{\footnotesize\ttfamily int($\ast$ ltc\+\_\+math\+\_\+descriptor\+::ecc\+\_\+mul2add) (const \mbox{\hyperlink{tomcrypt__math_8h_a2a6efaeaa795aa54274d7c4fd66b018a}{ecc\+\_\+point}} $\ast$A, void $\ast$kA, const \mbox{\hyperlink{tomcrypt__math_8h_a2a6efaeaa795aa54274d7c4fd66b018a}{ecc\+\_\+point}} $\ast$B, void $\ast$kB, \mbox{\hyperlink{tomcrypt__math_8h_a2a6efaeaa795aa54274d7c4fd66b018a}{ecc\+\_\+point}} $\ast$C, void $\ast$ma, void $\ast$modulus)}
+
+
+
+Computes k\+A$\ast$A + k\+B$\ast$B = C using Shamir\textquotesingle{}s Trick. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em A} & First point to multiply \\
+\hline
+{\em kA} & What to multiple A by \\
+\hline
+{\em B} & Second point to multiply \\
+\hline
+{\em kB} & What to multiple B by \\
+\hline
+{\em C} & \mbox{[}out\mbox{]} Destination point (can overlap with A or B) \\
+\hline
+{\em ma} & The curve parameter \char`\"{}a\char`\"{} in montgomery form \\
+\hline
+{\em modulus} & Modulus for curve \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK on success 
+\end{DoxyReturn}
+
+
+Definition at line 442 of file tomcrypt\+\_\+math.\+h.
+
+
+
+Referenced by ecc\+\_\+recover\+\_\+key(), and ecc\+\_\+verify\+\_\+hash\+\_\+ex().
+
+\mbox{\Hypertarget{structltc__math__descriptor_a20678986df75fa338c4267c94b98ae68}\label{structltc__math__descriptor_a20678986df75fa338c4267c94b98ae68}} 
+\index{ltc\_math\_descriptor@{ltc\_math\_descriptor}!ecc\_ptadd@{ecc\_ptadd}}
+\index{ecc\_ptadd@{ecc\_ptadd}!ltc\_math\_descriptor@{ltc\_math\_descriptor}}
+\subsubsection{\texorpdfstring{ecc\_ptadd}{ecc\_ptadd}}
+{\footnotesize\ttfamily int($\ast$ ltc\+\_\+math\+\_\+descriptor\+::ecc\+\_\+ptadd) (const \mbox{\hyperlink{tomcrypt__math_8h_a2a6efaeaa795aa54274d7c4fd66b018a}{ecc\+\_\+point}} $\ast$P, const \mbox{\hyperlink{tomcrypt__math_8h_a2a6efaeaa795aa54274d7c4fd66b018a}{ecc\+\_\+point}} $\ast$Q, \mbox{\hyperlink{tomcrypt__math_8h_a2a6efaeaa795aa54274d7c4fd66b018a}{ecc\+\_\+point}} $\ast$\mbox{\hyperlink{sha512_8c_a8fb1dfc3ad6dd07bc99c1962e6583087}{R}}, void $\ast$ma, void $\ast$modulus, void $\ast$mp)}
+
+
+
+E\+CC G\+F(p) point addition. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em P} & The first point \\
+\hline
+{\em Q} & The second point \\
+\hline
+{\em R} & The destination of P + Q \\
+\hline
+{\em ma} & The curve parameter \char`\"{}a\char`\"{} in montgomery form \\
+\hline
+{\em modulus} & The modulus \\
+\hline
+{\em mp} & The \char`\"{}b\char`\"{} value from \mbox{\hyperlink{structltc__math__descriptor_ab371384383f0e671c6211d6b0e439f3d}{montgomery\+\_\+setup()}} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK on success 
+\end{DoxyReturn}
+
+
+Definition at line 399 of file tomcrypt\+\_\+math.\+h.
+
+
+
+Referenced by ecc\+\_\+verify\+\_\+hash\+\_\+ex(), ltc\+\_\+ecc\+\_\+mul2add(), and ltc\+\_\+ecc\+\_\+mulmod().
+
+\mbox{\Hypertarget{structltc__math__descriptor_aeb3ece135c988d56932916b57872e78c}\label{structltc__math__descriptor_aeb3ece135c988d56932916b57872e78c}} 
+\index{ltc\_math\_descriptor@{ltc\_math\_descriptor}!ecc\_ptdbl@{ecc\_ptdbl}}
+\index{ecc\_ptdbl@{ecc\_ptdbl}!ltc\_math\_descriptor@{ltc\_math\_descriptor}}
+\subsubsection{\texorpdfstring{ecc\_ptdbl}{ecc\_ptdbl}}
+{\footnotesize\ttfamily int($\ast$ ltc\+\_\+math\+\_\+descriptor\+::ecc\+\_\+ptdbl) (const \mbox{\hyperlink{tomcrypt__math_8h_a2a6efaeaa795aa54274d7c4fd66b018a}{ecc\+\_\+point}} $\ast$P, \mbox{\hyperlink{tomcrypt__math_8h_a2a6efaeaa795aa54274d7c4fd66b018a}{ecc\+\_\+point}} $\ast$\mbox{\hyperlink{sha512_8c_a8fb1dfc3ad6dd07bc99c1962e6583087}{R}}, void $\ast$ma, void $\ast$modulus, void $\ast$mp)}
+
+
+
+E\+CC G\+F(p) point double. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em P} & The first point \\
+\hline
+{\em R} & The destination of 2P \\
+\hline
+{\em ma} & The curve parameter \char`\"{}a\char`\"{} in montgomery form \\
+\hline
+{\em modulus} & The modulus \\
+\hline
+{\em mp} & The \char`\"{}b\char`\"{} value from \mbox{\hyperlink{structltc__math__descriptor_ab371384383f0e671c6211d6b0e439f3d}{montgomery\+\_\+setup()}} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK on success 
+\end{DoxyReturn}
+
+
+Definition at line 414 of file tomcrypt\+\_\+math.\+h.
+
+
+
+Referenced by ltc\+\_\+ecc\+\_\+mul2add(), and ltc\+\_\+ecc\+\_\+mulmod().
+
+\mbox{\Hypertarget{structltc__math__descriptor_ac58c8ded3c63f11c5289141157fd8d61}\label{structltc__math__descriptor_ac58c8ded3c63f11c5289141157fd8d61}} 
+\index{ltc\_math\_descriptor@{ltc\_math\_descriptor}!ecc\_ptmul@{ecc\_ptmul}}
+\index{ecc\_ptmul@{ecc\_ptmul}!ltc\_math\_descriptor@{ltc\_math\_descriptor}}
+\subsubsection{\texorpdfstring{ecc\_ptmul}{ecc\_ptmul}}
+{\footnotesize\ttfamily int($\ast$ ltc\+\_\+math\+\_\+descriptor\+::ecc\+\_\+ptmul) (void $\ast$k, const \mbox{\hyperlink{tomcrypt__math_8h_a2a6efaeaa795aa54274d7c4fd66b018a}{ecc\+\_\+point}} $\ast$\mbox{\hyperlink{rmd320_8c_ad96b7cf3182ce2ba85e5a7a93b12c441}{G}}, \mbox{\hyperlink{tomcrypt__math_8h_a2a6efaeaa795aa54274d7c4fd66b018a}{ecc\+\_\+point}} $\ast$\mbox{\hyperlink{sha512_8c_a8fb1dfc3ad6dd07bc99c1962e6583087}{R}}, void $\ast$a, void $\ast$modulus, int map)}
+
+
+
+E\+CC G\+F(p) point multiplication (from the N\+I\+ST curves) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em k} & The integer to multiply the point by \\
+\hline
+{\em G} & The point to multiply \\
+\hline
+{\em R} & The destination for kG \\
+\hline
+{\em a} & E\+CC curve parameter a \\
+\hline
+{\em modulus} & The modulus for the field \\
+\hline
+{\em map} & Boolean indicated whether to map back to affine or not (can be ignored if you work in affine only) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK on success 
+\end{DoxyReturn}
+
+
+Definition at line 383 of file tomcrypt\+\_\+math.\+h.
+
+
+
+Referenced by ecc\+\_\+generate\+\_\+key(), ecc\+\_\+set\+\_\+key(), ecc\+\_\+shared\+\_\+secret(), and ecc\+\_\+verify\+\_\+hash\+\_\+ex().
+
+\mbox{\Hypertarget{structltc__math__descriptor_ab836b238695e44d514946d3cd420f60e}\label{structltc__math__descriptor_ab836b238695e44d514946d3cd420f60e}} 
+\index{ltc\_math\_descriptor@{ltc\_math\_descriptor}!exptmod@{exptmod}}
+\index{exptmod@{exptmod}!ltc\_math\_descriptor@{ltc\_math\_descriptor}}
+\subsubsection{\texorpdfstring{exptmod}{exptmod}}
+{\footnotesize\ttfamily int($\ast$ ltc\+\_\+math\+\_\+descriptor\+::exptmod) (void $\ast$a, void $\ast$b, void $\ast$\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, void $\ast$d)}
+
+
+
+Modular exponentiation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & The base integer \\
+\hline
+{\em b} & The power (can be negative) integer \\
+\hline
+{\em c} & The modulus integer \\
+\hline
+{\em d} & The destination \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK on success 
+\end{DoxyReturn}
+
+
+Definition at line 361 of file tomcrypt\+\_\+math.\+h.
+
+\mbox{\Hypertarget{structltc__math__descriptor_a2cac3e41594eeb13e40841ee30c8d476}\label{structltc__math__descriptor_a2cac3e41594eeb13e40841ee30c8d476}} 
+\index{ltc\_math\_descriptor@{ltc\_math\_descriptor}!gcd@{gcd}}
+\index{gcd@{gcd}!ltc\_math\_descriptor@{ltc\_math\_descriptor}}
+\subsubsection{\texorpdfstring{gcd}{gcd}}
+{\footnotesize\ttfamily int($\ast$ ltc\+\_\+math\+\_\+descriptor\+::gcd) (void $\ast$a, void $\ast$b, void $\ast$\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}})}
+
+
+
+gcd 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & The first integer \\
+\hline
+{\em b} & The second integer \\
+\hline
+{\em c} & The destination for (a, b) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK on success 
+\end{DoxyReturn}
+
+
+Definition at line 287 of file tomcrypt\+\_\+math.\+h.
+
+\mbox{\Hypertarget{structltc__math__descriptor_adb2107094f3c0aa279a3f12977672a78}\label{structltc__math__descriptor_adb2107094f3c0aa279a3f12977672a78}} 
+\index{ltc\_math\_descriptor@{ltc\_math\_descriptor}!get\_digit@{get\_digit}}
+\index{get\_digit@{get\_digit}!ltc\_math\_descriptor@{ltc\_math\_descriptor}}
+\subsubsection{\texorpdfstring{get\_digit}{get\_digit}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tomcrypt__cfg_8h_a4e98fa26a5de0ac87e06af901bad57c4}{ltc\+\_\+mp\+\_\+digit}}($\ast$ ltc\+\_\+math\+\_\+descriptor\+::get\+\_\+digit) (void $\ast$a, int n)}
+
+
+
+get digit n 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & The number to read from \\
+\hline
+{\em n} & The number of the digit to fetch \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The bits\+\_\+per\+\_\+digit sized n\textquotesingle{}th digit of a 
+\end{DoxyReturn}
+
+
+Definition at line 102 of file tomcrypt\+\_\+math.\+h.
+
+\mbox{\Hypertarget{structltc__math__descriptor_ae185e44bd77639feb5c360b10bf826ca}\label{structltc__math__descriptor_ae185e44bd77639feb5c360b10bf826ca}} 
+\index{ltc\_math\_descriptor@{ltc\_math\_descriptor}!get\_digit\_count@{get\_digit\_count}}
+\index{get\_digit\_count@{get\_digit\_count}!ltc\_math\_descriptor@{ltc\_math\_descriptor}}
+\subsubsection{\texorpdfstring{get\_digit\_count}{get\_digit\_count}}
+{\footnotesize\ttfamily int($\ast$ ltc\+\_\+math\+\_\+descriptor\+::get\+\_\+digit\+\_\+count) (void $\ast$a)}
+
+
+
+Get the number of digits that represent the number. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & The number to count \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The number of digits used to represent the number 
+\end{DoxyReturn}
+
+
+Definition at line 108 of file tomcrypt\+\_\+math.\+h.
+
+\mbox{\Hypertarget{structltc__math__descriptor_adc1cbca3af3282460af8ff4ac4dabdeb}\label{structltc__math__descriptor_adc1cbca3af3282460af8ff4ac4dabdeb}} 
+\index{ltc\_math\_descriptor@{ltc\_math\_descriptor}!get\_int@{get\_int}}
+\index{get\_int@{get\_int}!ltc\_math\_descriptor@{ltc\_math\_descriptor}}
+\subsubsection{\texorpdfstring{get\_int}{get\_int}}
+{\footnotesize\ttfamily unsigned long($\ast$ ltc\+\_\+math\+\_\+descriptor\+::get\+\_\+int) (void $\ast$a)}
+
+
+
+get small constant 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & Small number to read, only fetches up to bits\+\_\+per\+\_\+digit from the number \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The lower bits\+\_\+per\+\_\+digit of the integer (unsigned) 
+\end{DoxyReturn}
+
+
+Definition at line 95 of file tomcrypt\+\_\+math.\+h.
+
+\mbox{\Hypertarget{structltc__math__descriptor_a0663bfda2c6b628f94df2aa82142f921}\label{structltc__math__descriptor_a0663bfda2c6b628f94df2aa82142f921}} 
+\index{ltc\_math\_descriptor@{ltc\_math\_descriptor}!init@{init}}
+\index{init@{init}!ltc\_math\_descriptor@{ltc\_math\_descriptor}}
+\subsubsection{\texorpdfstring{init}{init}}
+{\footnotesize\ttfamily int($\ast$ ltc\+\_\+math\+\_\+descriptor\+::init) (void $\ast$$\ast$a)}
+
+
+
+initialize a bignum 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & The number to initialize \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK on success 
+\end{DoxyReturn}
+
+
+Definition at line 50 of file tomcrypt\+\_\+math.\+h.
+
+\mbox{\Hypertarget{structltc__math__descriptor_ab37507025ee53d5ad903a4b8b8c2f1db}\label{structltc__math__descriptor_ab37507025ee53d5ad903a4b8b8c2f1db}} 
+\index{ltc\_math\_descriptor@{ltc\_math\_descriptor}!init\_copy@{init\_copy}}
+\index{init\_copy@{init\_copy}!ltc\_math\_descriptor@{ltc\_math\_descriptor}}
+\subsubsection{\texorpdfstring{init\_copy}{init\_copy}}
+{\footnotesize\ttfamily int($\ast$ ltc\+\_\+math\+\_\+descriptor\+::init\+\_\+copy) (void $\ast$$\ast$dst, void $\ast$src)}
+
+
+
+init copy 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dst} & The number to initialize and write to \\
+\hline
+{\em src} & The number to copy from \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK on success 
+\end{DoxyReturn}
+
+
+Definition at line 57 of file tomcrypt\+\_\+math.\+h.
+
+\mbox{\Hypertarget{structltc__math__descriptor_a49591ee15093ebd18983a557fa9df096}\label{structltc__math__descriptor_a49591ee15093ebd18983a557fa9df096}} 
+\index{ltc\_math\_descriptor@{ltc\_math\_descriptor}!invmod@{invmod}}
+\index{invmod@{invmod}!ltc\_math\_descriptor@{ltc\_math\_descriptor}}
+\subsubsection{\texorpdfstring{invmod}{invmod}}
+{\footnotesize\ttfamily int($\ast$ ltc\+\_\+math\+\_\+descriptor\+::invmod) (void $\ast$, void $\ast$, void $\ast$)}
+
+
+
+Modular inversion. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & The value to invert \\
+\hline
+{\em b} & The modulus \\
+\hline
+{\em c} & The destination (1/a mod b) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK on success 
+\end{DoxyReturn}
+
+
+Definition at line 320 of file tomcrypt\+\_\+math.\+h.
+
+\mbox{\Hypertarget{structltc__math__descriptor_a8567019d2e686cfd237dee851809c177}\label{structltc__math__descriptor_a8567019d2e686cfd237dee851809c177}} 
+\index{ltc\_math\_descriptor@{ltc\_math\_descriptor}!isprime@{isprime}}
+\index{isprime@{isprime}!ltc\_math\_descriptor@{ltc\_math\_descriptor}}
+\subsubsection{\texorpdfstring{isprime}{isprime}}
+{\footnotesize\ttfamily int($\ast$ ltc\+\_\+math\+\_\+descriptor\+::isprime) (void $\ast$a, int b, int $\ast$\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}})}
+
+
+
+Primality testing. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & The integer to test \\
+\hline
+{\em b} & The number of Miller-\/\+Rabin tests that shall be executed \\
+\hline
+{\em c} & The destination of the result (F\+P\+\_\+\+Y\+ES if prime) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK on success 
+\end{DoxyReturn}
+
+
+Definition at line 369 of file tomcrypt\+\_\+math.\+h.
+
+\mbox{\Hypertarget{structltc__math__descriptor_a3259308dc6b547a475ed53506590f4ec}\label{structltc__math__descriptor_a3259308dc6b547a475ed53506590f4ec}} 
+\index{ltc\_math\_descriptor@{ltc\_math\_descriptor}!lcm@{lcm}}
+\index{lcm@{lcm}!ltc\_math\_descriptor@{ltc\_math\_descriptor}}
+\subsubsection{\texorpdfstring{lcm}{lcm}}
+{\footnotesize\ttfamily int($\ast$ ltc\+\_\+math\+\_\+descriptor\+::lcm) (void $\ast$a, void $\ast$b, void $\ast$\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}})}
+
+
+
+lcm 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & The first integer \\
+\hline
+{\em b} & The second integer \\
+\hline
+{\em c} & The destination for \mbox{[}a, b\mbox{]} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK on success 
+\end{DoxyReturn}
+
+
+Definition at line 295 of file tomcrypt\+\_\+math.\+h.
+
+\mbox{\Hypertarget{structltc__math__descriptor_a85075e806eb136a3bfb1f23274909406}\label{structltc__math__descriptor_a85075e806eb136a3bfb1f23274909406}} 
+\index{ltc\_math\_descriptor@{ltc\_math\_descriptor}!modi@{modi}}
+\index{modi@{modi}!ltc\_math\_descriptor@{ltc\_math\_descriptor}}
+\subsubsection{\texorpdfstring{modi}{modi}}
+{\footnotesize\ttfamily int($\ast$ ltc\+\_\+math\+\_\+descriptor\+::modi) (void $\ast$a, \mbox{\hyperlink{tomcrypt__cfg_8h_a4e98fa26a5de0ac87e06af901bad57c4}{ltc\+\_\+mp\+\_\+digit}} b, \mbox{\hyperlink{tomcrypt__cfg_8h_a4e98fa26a5de0ac87e06af901bad57c4}{ltc\+\_\+mp\+\_\+digit}} $\ast$\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}})}
+
+
+
+Get remainder (small value) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & The integer to reduce \\
+\hline
+{\em b} & The modulus (upto bits\+\_\+per\+\_\+digit in length) \\
+\hline
+{\em c} & The destination for the residue \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK on success 
+\end{DoxyReturn}
+
+
+Definition at line 279 of file tomcrypt\+\_\+math.\+h.
+
+\mbox{\Hypertarget{structltc__math__descriptor_afa1cd36e8317d3acffaca94edf19f341}\label{structltc__math__descriptor_afa1cd36e8317d3acffaca94edf19f341}} 
+\index{ltc\_math\_descriptor@{ltc\_math\_descriptor}!montgomery\_deinit@{montgomery\_deinit}}
+\index{montgomery\_deinit@{montgomery\_deinit}!ltc\_math\_descriptor@{ltc\_math\_descriptor}}
+\subsubsection{\texorpdfstring{montgomery\_deinit}{montgomery\_deinit}}
+{\footnotesize\ttfamily void($\ast$ ltc\+\_\+math\+\_\+descriptor\+::montgomery\+\_\+deinit) (void $\ast$a)}
+
+
+
+clean up (frees memory) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & The value \char`\"{}b\char`\"{} from \mbox{\hyperlink{structltc__math__descriptor_ab371384383f0e671c6211d6b0e439f3d}{montgomery\+\_\+setup()}} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK on success 
+\end{DoxyReturn}
+
+
+Definition at line 350 of file tomcrypt\+\_\+math.\+h.
+
+\mbox{\Hypertarget{structltc__math__descriptor_a78422650d8687db2363f716434c29605}\label{structltc__math__descriptor_a78422650d8687db2363f716434c29605}} 
+\index{ltc\_math\_descriptor@{ltc\_math\_descriptor}!montgomery\_normalization@{montgomery\_normalization}}
+\index{montgomery\_normalization@{montgomery\_normalization}!ltc\_math\_descriptor@{ltc\_math\_descriptor}}
+\subsubsection{\texorpdfstring{montgomery\_normalization}{montgomery\_normalization}}
+{\footnotesize\ttfamily int($\ast$ ltc\+\_\+math\+\_\+descriptor\+::montgomery\+\_\+normalization) (void $\ast$a, void $\ast$b)}
+
+
+
+get normalization value 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & The destination for the normalization value \\
+\hline
+{\em b} & The modulus \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK on success 
+\end{DoxyReturn}
+
+
+Definition at line 336 of file tomcrypt\+\_\+math.\+h.
+
+\mbox{\Hypertarget{structltc__math__descriptor_a337d88eba818e96370144d654ffb19d7}\label{structltc__math__descriptor_a337d88eba818e96370144d654ffb19d7}} 
+\index{ltc\_math\_descriptor@{ltc\_math\_descriptor}!montgomery\_reduce@{montgomery\_reduce}}
+\index{montgomery\_reduce@{montgomery\_reduce}!ltc\_math\_descriptor@{ltc\_math\_descriptor}}
+\subsubsection{\texorpdfstring{montgomery\_reduce}{montgomery\_reduce}}
+{\footnotesize\ttfamily int($\ast$ ltc\+\_\+math\+\_\+descriptor\+::montgomery\+\_\+reduce) (void $\ast$a, void $\ast$b, void $\ast$\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}})}
+
+
+
+reduce a number 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & The number \mbox{[}and dest\mbox{]} to reduce \\
+\hline
+{\em b} & The modulus \\
+\hline
+{\em c} & The value \char`\"{}b\char`\"{} from \mbox{\hyperlink{structltc__math__descriptor_ab371384383f0e671c6211d6b0e439f3d}{montgomery\+\_\+setup()}} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK on success 
+\end{DoxyReturn}
+
+
+Definition at line 344 of file tomcrypt\+\_\+math.\+h.
+
+\mbox{\Hypertarget{structltc__math__descriptor_ab371384383f0e671c6211d6b0e439f3d}\label{structltc__math__descriptor_ab371384383f0e671c6211d6b0e439f3d}} 
+\index{ltc\_math\_descriptor@{ltc\_math\_descriptor}!montgomery\_setup@{montgomery\_setup}}
+\index{montgomery\_setup@{montgomery\_setup}!ltc\_math\_descriptor@{ltc\_math\_descriptor}}
+\subsubsection{\texorpdfstring{montgomery\_setup}{montgomery\_setup}}
+{\footnotesize\ttfamily int($\ast$ ltc\+\_\+math\+\_\+descriptor\+::montgomery\+\_\+setup) (void $\ast$a, void $\ast$$\ast$b)}
+
+
+
+setup Montgomery 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & The modulus \\
+\hline
+{\em b} & The destination for the reduction digit \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK on success 
+\end{DoxyReturn}
+
+
+Definition at line 329 of file tomcrypt\+\_\+math.\+h.
+
+\mbox{\Hypertarget{structltc__math__descriptor_a8d4d13c1f48643b29bbb27c17a1fa8bd}\label{structltc__math__descriptor_a8d4d13c1f48643b29bbb27c17a1fa8bd}} 
+\index{ltc\_math\_descriptor@{ltc\_math\_descriptor}!mpdiv@{mpdiv}}
+\index{mpdiv@{mpdiv}!ltc\_math\_descriptor@{ltc\_math\_descriptor}}
+\subsubsection{\texorpdfstring{mpdiv}{mpdiv}}
+{\footnotesize\ttfamily int($\ast$ ltc\+\_\+math\+\_\+descriptor\+::mpdiv) (void $\ast$a, void $\ast$b, void $\ast$\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, void $\ast$d)}
+
+
+
+Divide an integer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & The dividend \\
+\hline
+{\em b} & The divisor \\
+\hline
+{\em c} & The quotient (can be N\+U\+LL to signify don\textquotesingle{}t care) \\
+\hline
+{\em d} & The remainder (can be N\+U\+LL to signify don\textquotesingle{}t care) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK on success 
+\end{DoxyReturn}
+
+
+Definition at line 264 of file tomcrypt\+\_\+math.\+h.
+
+\mbox{\Hypertarget{structltc__math__descriptor_ac70c777311b45bcca48b99003a00d68d}\label{structltc__math__descriptor_ac70c777311b45bcca48b99003a00d68d}} 
+\index{ltc\_math\_descriptor@{ltc\_math\_descriptor}!mul@{mul}}
+\index{mul@{mul}!ltc\_math\_descriptor@{ltc\_math\_descriptor}}
+\subsubsection{\texorpdfstring{mul}{mul}}
+{\footnotesize\ttfamily int($\ast$ ltc\+\_\+math\+\_\+descriptor\+::mul) (void $\ast$a, void $\ast$b, void $\ast$\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}})}
+
+
+
+multiply two integers 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & The first source integer \\
+\hline
+{\em b} & The second source integer (single digit of upto bits\+\_\+per\+\_\+digit in length) \\
+\hline
+{\em c} & The destination of \char`\"{}a $\ast$ b\char`\"{} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK on success 
+\end{DoxyReturn}
+
+
+Definition at line 231 of file tomcrypt\+\_\+math.\+h.
+
+\mbox{\Hypertarget{structltc__math__descriptor_a3b5e51d99539d173b794c5abeab0390e}\label{structltc__math__descriptor_a3b5e51d99539d173b794c5abeab0390e}} 
+\index{ltc\_math\_descriptor@{ltc\_math\_descriptor}!muli@{muli}}
+\index{muli@{muli}!ltc\_math\_descriptor@{ltc\_math\_descriptor}}
+\subsubsection{\texorpdfstring{muli}{muli}}
+{\footnotesize\ttfamily int($\ast$ ltc\+\_\+math\+\_\+descriptor\+::muli) (void $\ast$a, \mbox{\hyperlink{tomcrypt__cfg_8h_a4e98fa26a5de0ac87e06af901bad57c4}{ltc\+\_\+mp\+\_\+digit}} b, void $\ast$\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}})}
+
+
+
+multiply two integers 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & The first source integer \\
+\hline
+{\em b} & The second source integer (single digit of upto bits\+\_\+per\+\_\+digit in length) \\
+\hline
+{\em c} & The destination of \char`\"{}a $\ast$ b\char`\"{} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK on success 
+\end{DoxyReturn}
+
+
+Definition at line 240 of file tomcrypt\+\_\+math.\+h.
+
+\mbox{\Hypertarget{structltc__math__descriptor_a4be8c3cd23da49dd7bd0fc77860ebf4e}\label{structltc__math__descriptor_a4be8c3cd23da49dd7bd0fc77860ebf4e}} 
+\index{ltc\_math\_descriptor@{ltc\_math\_descriptor}!mulmod@{mulmod}}
+\index{mulmod@{mulmod}!ltc\_math\_descriptor@{ltc\_math\_descriptor}}
+\subsubsection{\texorpdfstring{mulmod}{mulmod}}
+{\footnotesize\ttfamily int($\ast$ ltc\+\_\+math\+\_\+descriptor\+::mulmod) (void $\ast$a, void $\ast$b, void $\ast$\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, void $\ast$d)}
+
+
+
+Modular multiplication. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & The first source \\
+\hline
+{\em b} & The second source \\
+\hline
+{\em c} & The modulus \\
+\hline
+{\em d} & The destination (a$\ast$b mod c) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK on success 
+\end{DoxyReturn}
+
+
+Definition at line 304 of file tomcrypt\+\_\+math.\+h.
+
+\mbox{\Hypertarget{structltc__math__descriptor_a8838126de4a27e382f91096e369a2728}\label{structltc__math__descriptor_a8838126de4a27e382f91096e369a2728}} 
+\index{ltc\_math\_descriptor@{ltc\_math\_descriptor}!name@{name}}
+\index{name@{name}!ltc\_math\_descriptor@{ltc\_math\_descriptor}}
+\subsubsection{\texorpdfstring{name}{name}}
+{\footnotesize\ttfamily const char$\ast$ ltc\+\_\+math\+\_\+descriptor\+::name}
+
+
+
+Name of the math provider. 
+
+
+
+Definition at line 39 of file tomcrypt\+\_\+math.\+h.
+
+
+
+Referenced by dh\+\_\+generate\+\_\+key(), dh\+\_\+set\+\_\+key(), dh\+\_\+set\+\_\+pg(), dh\+\_\+set\+\_\+pg\+\_\+dhparam(), dh\+\_\+set\+\_\+pg\+\_\+groupsize(), dsa\+\_\+generate\+\_\+key(), dsa\+\_\+generate\+\_\+pqg(), dsa\+\_\+import(), dsa\+\_\+set\+\_\+key(), dsa\+\_\+set\+\_\+pqg(), dsa\+\_\+set\+\_\+pqg\+\_\+dsaparam(), ecc\+\_\+generate\+\_\+key(), ecc\+\_\+import\+\_\+ex(), ecc\+\_\+import\+\_\+pkcs8(), rsa\+\_\+import(), rsa\+\_\+import\+\_\+pkcs8(), rsa\+\_\+import\+\_\+x509(), rsa\+\_\+make\+\_\+key(), rsa\+\_\+set\+\_\+crt\+\_\+params(), rsa\+\_\+set\+\_\+factors(), and rsa\+\_\+set\+\_\+key().
+
+\mbox{\Hypertarget{structltc__math__descriptor_a5a6883b492216ee9047c10ce733b80b5}\label{structltc__math__descriptor_a5a6883b492216ee9047c10ce733b80b5}} 
+\index{ltc\_math\_descriptor@{ltc\_math\_descriptor}!neg@{neg}}
+\index{neg@{neg}!ltc\_math\_descriptor@{ltc\_math\_descriptor}}
+\subsubsection{\texorpdfstring{neg}{neg}}
+{\footnotesize\ttfamily int($\ast$ ltc\+\_\+math\+\_\+descriptor\+::neg) (void $\ast$src, void $\ast$dst)}
+
+
+
+negate 
+
+
+\begin{DoxyParams}{Parameters}
+{\em src} & The number to negate \\
+\hline
+{\em dst} & The destination \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK on success 
+\end{DoxyReturn}
+
+
+Definition at line 72 of file tomcrypt\+\_\+math.\+h.
+
+\mbox{\Hypertarget{structltc__math__descriptor_a46140709a2fad31f70ff9eb6887f1f99}\label{structltc__math__descriptor_a46140709a2fad31f70ff9eb6887f1f99}} 
+\index{ltc\_math\_descriptor@{ltc\_math\_descriptor}!rand@{rand}}
+\index{rand@{rand}!ltc\_math\_descriptor@{ltc\_math\_descriptor}}
+\subsubsection{\texorpdfstring{rand}{rand}}
+{\footnotesize\ttfamily int($\ast$ ltc\+\_\+math\+\_\+descriptor\+::rand) (void $\ast$a, int size)}
+
+
+
+Make a pseudo-\/random mpi. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & The mpi to make random \\
+\hline
+{\em size} & The desired length \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK on success 
+\end{DoxyReturn}
+
+
+Definition at line 506 of file tomcrypt\+\_\+math.\+h.
+
+\mbox{\Hypertarget{structltc__math__descriptor_afb032eeb403a00f981461b23f8b95588}\label{structltc__math__descriptor_afb032eeb403a00f981461b23f8b95588}} 
+\index{ltc\_math\_descriptor@{ltc\_math\_descriptor}!read\_radix@{read\_radix}}
+\index{read\_radix@{read\_radix}!ltc\_math\_descriptor@{ltc\_math\_descriptor}}
+\subsubsection{\texorpdfstring{read\_radix}{read\_radix}}
+{\footnotesize\ttfamily int($\ast$ ltc\+\_\+math\+\_\+descriptor\+::read\+\_\+radix) (void $\ast$a, const char $\ast$str, int radix)}
+
+
+
+read ascii string 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & The integer to store into \\
+\hline
+{\em str} & The string to read \\
+\hline
+{\em radix} & The radix the integer has been represented in (2-\/64) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK on success 
+\end{DoxyReturn}
+
+
+Definition at line 155 of file tomcrypt\+\_\+math.\+h.
+
+\mbox{\Hypertarget{structltc__math__descriptor_a27047df117a3242ffbe01ad7c3fd1db1}\label{structltc__math__descriptor_a27047df117a3242ffbe01ad7c3fd1db1}} 
+\index{ltc\_math\_descriptor@{ltc\_math\_descriptor}!rsa\_keygen@{rsa\_keygen}}
+\index{rsa\_keygen@{rsa\_keygen}!ltc\_math\_descriptor@{ltc\_math\_descriptor}}
+\subsubsection{\texorpdfstring{rsa\_keygen}{rsa\_keygen}}
+{\footnotesize\ttfamily int($\ast$ ltc\+\_\+math\+\_\+descriptor\+::rsa\+\_\+keygen) (\mbox{\hyperlink{structprng__state}{prng\+\_\+state}} $\ast$prng, int wprng, int size, long e, \mbox{\hyperlink{tomcrypt__math_8h_a99eca413acdcc914993162bd18cba437}{rsa\+\_\+key}} $\ast$key)}
+
+
+
+R\+SA Key Generation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em prng} & An active P\+R\+NG state \\
+\hline
+{\em wprng} & The index of the P\+R\+NG desired \\
+\hline
+{\em size} & The size of the key in octets \\
+\hline
+{\em e} & The \char`\"{}e\char`\"{} value (public key). e==65537 is a good choice \\
+\hline
+{\em key} & \mbox{[}out\mbox{]} Destination of a newly created private key pair \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful, upon error all allocated ram is freed 
+\end{DoxyReturn}
+
+
+Definition at line 459 of file tomcrypt\+\_\+math.\+h.
+
+\mbox{\Hypertarget{structltc__math__descriptor_a3dd5741c852c680f51c441763792ad58}\label{structltc__math__descriptor_a3dd5741c852c680f51c441763792ad58}} 
+\index{ltc\_math\_descriptor@{ltc\_math\_descriptor}!rsa\_me@{rsa\_me}}
+\index{rsa\_me@{rsa\_me}!ltc\_math\_descriptor@{ltc\_math\_descriptor}}
+\subsubsection{\texorpdfstring{rsa\_me}{rsa\_me}}
+{\footnotesize\ttfamily int($\ast$ ltc\+\_\+math\+\_\+descriptor\+::rsa\+\_\+me) (const unsigned char $\ast$in, unsigned long inlen, unsigned char $\ast$out, unsigned long $\ast$outlen, int which, const \mbox{\hyperlink{tomcrypt__math_8h_a99eca413acdcc914993162bd18cba437}{rsa\+\_\+key}} $\ast$key)}
+
+
+
+R\+SA exponentiation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em in} & The octet array representing the base \\
+\hline
+{\em inlen} & The length of the input \\
+\hline
+{\em out} & The destination (to be stored in an octet array format) \\
+\hline
+{\em outlen} & The length of the output buffer and the resulting size (zero padded to the size of the modulus) \\
+\hline
+{\em which} & P\+K\+\_\+\+P\+U\+B\+L\+IC for public R\+SA and P\+K\+\_\+\+P\+R\+I\+V\+A\+TE for private R\+SA \\
+\hline
+{\em key} & The R\+SA key to use \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK on success 
+\end{DoxyReturn}
+
+
+Definition at line 475 of file tomcrypt\+\_\+math.\+h.
+
+
+
+Referenced by rsa\+\_\+decrypt\+\_\+key\+\_\+ex(), rsa\+\_\+encrypt\+\_\+key\+\_\+ex(), rsa\+\_\+sign\+\_\+hash\+\_\+ex(), and rsa\+\_\+verify\+\_\+hash\+\_\+ex().
+
+\mbox{\Hypertarget{structltc__math__descriptor_ad306f25bb0a78e082f0c3baf85c4f44c}\label{structltc__math__descriptor_ad306f25bb0a78e082f0c3baf85c4f44c}} 
+\index{ltc\_math\_descriptor@{ltc\_math\_descriptor}!set\_int@{set\_int}}
+\index{set\_int@{set\_int}!ltc\_math\_descriptor@{ltc\_math\_descriptor}}
+\subsubsection{\texorpdfstring{set\_int}{set\_int}}
+{\footnotesize\ttfamily int($\ast$ ltc\+\_\+math\+\_\+descriptor\+::set\+\_\+int) (void $\ast$a, \mbox{\hyperlink{tomcrypt__cfg_8h_a4e98fa26a5de0ac87e06af901bad57c4}{ltc\+\_\+mp\+\_\+digit}} n)}
+
+
+
+set small constant 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & Number to write to \\
+\hline
+{\em n} & Source upto bits\+\_\+per\+\_\+digit (actually meant for very small constants) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK on success 
+\end{DoxyReturn}
+
+
+Definition at line 88 of file tomcrypt\+\_\+math.\+h.
+
+
+
+Referenced by ltc\+\_\+ecc\+\_\+set\+\_\+point\+\_\+xyz(), and tfm\+\_\+ecc\+\_\+projective\+\_\+dbl\+\_\+point().
+
+\mbox{\Hypertarget{structltc__math__descriptor_add76f47ec6a9e3b331750e6d37c1841b}\label{structltc__math__descriptor_add76f47ec6a9e3b331750e6d37c1841b}} 
+\index{ltc\_math\_descriptor@{ltc\_math\_descriptor}!sqr@{sqr}}
+\index{sqr@{sqr}!ltc\_math\_descriptor@{ltc\_math\_descriptor}}
+\subsubsection{\texorpdfstring{sqr}{sqr}}
+{\footnotesize\ttfamily int($\ast$ ltc\+\_\+math\+\_\+descriptor\+::sqr) (void $\ast$a, void $\ast$b)}
+
+
+
+Square an integer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & The integer to square \\
+\hline
+{\em b} & The destination \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK on success 
+\end{DoxyReturn}
+
+
+Definition at line 247 of file tomcrypt\+\_\+math.\+h.
+
+\mbox{\Hypertarget{structltc__math__descriptor_ac3bd23fc614e9b3cc990b810700bc78a}\label{structltc__math__descriptor_ac3bd23fc614e9b3cc990b810700bc78a}} 
+\index{ltc\_math\_descriptor@{ltc\_math\_descriptor}!sqrmod@{sqrmod}}
+\index{sqrmod@{sqrmod}!ltc\_math\_descriptor@{ltc\_math\_descriptor}}
+\subsubsection{\texorpdfstring{sqrmod}{sqrmod}}
+{\footnotesize\ttfamily int($\ast$ ltc\+\_\+math\+\_\+descriptor\+::sqrmod) (void $\ast$a, void $\ast$b, void $\ast$\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}})}
+
+
+
+Modular squaring. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & The first source \\
+\hline
+{\em b} & The modulus \\
+\hline
+{\em c} & The destination (a$\ast$a mod b) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK on success 
+\end{DoxyReturn}
+
+
+Definition at line 312 of file tomcrypt\+\_\+math.\+h.
+
+\mbox{\Hypertarget{structltc__math__descriptor_ae588937a77f227870ff809f5f8f0deb8}\label{structltc__math__descriptor_ae588937a77f227870ff809f5f8f0deb8}} 
+\index{ltc\_math\_descriptor@{ltc\_math\_descriptor}!sqrtmod\_prime@{sqrtmod\_prime}}
+\index{sqrtmod\_prime@{sqrtmod\_prime}!ltc\_math\_descriptor@{ltc\_math\_descriptor}}
+\subsubsection{\texorpdfstring{sqrtmod\_prime}{sqrtmod\_prime}}
+{\footnotesize\ttfamily int($\ast$ ltc\+\_\+math\+\_\+descriptor\+::sqrtmod\+\_\+prime) (void $\ast$a, void $\ast$b, void $\ast$\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}})}
+
+
+
+Square root (mod prime) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & The integer to compute square root mod prime from \\
+\hline
+{\em b} & The prime \\
+\hline
+{\em c} & The destination \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK on success 
+\end{DoxyReturn}
+
+
+Definition at line 255 of file tomcrypt\+\_\+math.\+h.
+
+
+
+Referenced by ecc\+\_\+encrypt\+\_\+key(), ecc\+\_\+recover\+\_\+key(), and ltc\+\_\+ecc\+\_\+import\+\_\+point().
+
+\mbox{\Hypertarget{structltc__math__descriptor_ad58ab4f6ccb46060585efb0a6f934734}\label{structltc__math__descriptor_ad58ab4f6ccb46060585efb0a6f934734}} 
+\index{ltc\_math\_descriptor@{ltc\_math\_descriptor}!sub@{sub}}
+\index{sub@{sub}!ltc\_math\_descriptor@{ltc\_math\_descriptor}}
+\subsubsection{\texorpdfstring{sub}{sub}}
+{\footnotesize\ttfamily int($\ast$ ltc\+\_\+math\+\_\+descriptor\+::sub) (void $\ast$a, void $\ast$b, void $\ast$\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}})}
+
+
+
+subtract two integers 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & The first source integer \\
+\hline
+{\em b} & The second source integer \\
+\hline
+{\em c} & The destination of \char`\"{}a -\/ b\char`\"{} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK on success 
+\end{DoxyReturn}
+
+
+Definition at line 213 of file tomcrypt\+\_\+math.\+h.
+
+\mbox{\Hypertarget{structltc__math__descriptor_a346773e3af932abe74f88d2dadd6541f}\label{structltc__math__descriptor_a346773e3af932abe74f88d2dadd6541f}} 
+\index{ltc\_math\_descriptor@{ltc\_math\_descriptor}!subi@{subi}}
+\index{subi@{subi}!ltc\_math\_descriptor@{ltc\_math\_descriptor}}
+\subsubsection{\texorpdfstring{subi}{subi}}
+{\footnotesize\ttfamily int($\ast$ ltc\+\_\+math\+\_\+descriptor\+::subi) (void $\ast$a, \mbox{\hyperlink{tomcrypt__cfg_8h_a4e98fa26a5de0ac87e06af901bad57c4}{ltc\+\_\+mp\+\_\+digit}} b, void $\ast$\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}})}
+
+
+
+subtract two integers 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & The first source integer \\
+\hline
+{\em b} & The second source integer (single digit of upto bits\+\_\+per\+\_\+digit in length) \\
+\hline
+{\em c} & The destination of \char`\"{}a -\/ b\char`\"{} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK on success 
+\end{DoxyReturn}
+
+
+Definition at line 222 of file tomcrypt\+\_\+math.\+h.
+
+\mbox{\Hypertarget{structltc__math__descriptor_a3146dc4c319519d72bedb7d4dd3ff4de}\label{structltc__math__descriptor_a3146dc4c319519d72bedb7d4dd3ff4de}} 
+\index{ltc\_math\_descriptor@{ltc\_math\_descriptor}!submod@{submod}}
+\index{submod@{submod}!ltc\_math\_descriptor@{ltc\_math\_descriptor}}
+\subsubsection{\texorpdfstring{submod}{submod}}
+{\footnotesize\ttfamily int($\ast$ ltc\+\_\+math\+\_\+descriptor\+::submod) (void $\ast$a, void $\ast$b, void $\ast$\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, void $\ast$d)}
+
+
+
+Modular substraction. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & The first source \\
+\hline
+{\em b} & The second source \\
+\hline
+{\em c} & The modulus \\
+\hline
+{\em d} & The destination (a -\/ b mod c) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK on success 
+\end{DoxyReturn}
+
+
+Definition at line 497 of file tomcrypt\+\_\+math.\+h.
+
+\mbox{\Hypertarget{structltc__math__descriptor_a2c95a128028d91f98692e75e2349bddc}\label{structltc__math__descriptor_a2c95a128028d91f98692e75e2349bddc}} 
+\index{ltc\_math\_descriptor@{ltc\_math\_descriptor}!twoexpt@{twoexpt}}
+\index{twoexpt@{twoexpt}!ltc\_math\_descriptor@{ltc\_math\_descriptor}}
+\subsubsection{\texorpdfstring{twoexpt}{twoexpt}}
+{\footnotesize\ttfamily int($\ast$ ltc\+\_\+math\+\_\+descriptor\+::twoexpt) (void $\ast$a, int n)}
+
+
+
+Compute a power of two. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & The integer to store the power in \\
+\hline
+{\em n} & The power of two you want to store (a = 2$^\wedge$n) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK on success 
+\end{DoxyReturn}
+
+
+Definition at line 145 of file tomcrypt\+\_\+math.\+h.
+
+\mbox{\Hypertarget{structltc__math__descriptor_a9f36dbadfa806134bb8be4125a18027d}\label{structltc__math__descriptor_a9f36dbadfa806134bb8be4125a18027d}} 
+\index{ltc\_math\_descriptor@{ltc\_math\_descriptor}!unsigned\_read@{unsigned\_read}}
+\index{unsigned\_read@{unsigned\_read}!ltc\_math\_descriptor@{ltc\_math\_descriptor}}
+\subsubsection{\texorpdfstring{unsigned\_read}{unsigned\_read}}
+{\footnotesize\ttfamily int($\ast$ ltc\+\_\+math\+\_\+descriptor\+::unsigned\+\_\+read) (void $\ast$dst, unsigned char $\ast$src, unsigned long \mbox{\hyperlink{pmac__init_8c_afed088663f8704004425cdae2120b9b3}{len}})}
+
+
+
+read an array of octets and store as integer 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dst} & The integer to load \\
+\hline
+{\em src} & The array of octets \\
+\hline
+{\em len} & The number of octets \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK on success 
+\end{DoxyReturn}
+
+
+Definition at line 184 of file tomcrypt\+\_\+math.\+h.
+
+\mbox{\Hypertarget{structltc__math__descriptor_ad00aec091ffab4884b7eb4e826f7e5b0}\label{structltc__math__descriptor_ad00aec091ffab4884b7eb4e826f7e5b0}} 
+\index{ltc\_math\_descriptor@{ltc\_math\_descriptor}!unsigned\_size@{unsigned\_size}}
+\index{unsigned\_size@{unsigned\_size}!ltc\_math\_descriptor@{ltc\_math\_descriptor}}
+\subsubsection{\texorpdfstring{unsigned\_size}{unsigned\_size}}
+{\footnotesize\ttfamily unsigned long($\ast$ ltc\+\_\+math\+\_\+descriptor\+::unsigned\+\_\+size) (void $\ast$a)}
+
+
+
+get size as unsigned char string 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & The integer to get the size (when stored in array of octets) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The length of the integer in octets 
+\end{DoxyReturn}
+
+
+Definition at line 169 of file tomcrypt\+\_\+math.\+h.
+
+\mbox{\Hypertarget{structltc__math__descriptor_adad74e32ded1d53e400ff3816d0dd029}\label{structltc__math__descriptor_adad74e32ded1d53e400ff3816d0dd029}} 
+\index{ltc\_math\_descriptor@{ltc\_math\_descriptor}!unsigned\_write@{unsigned\_write}}
+\index{unsigned\_write@{unsigned\_write}!ltc\_math\_descriptor@{ltc\_math\_descriptor}}
+\subsubsection{\texorpdfstring{unsigned\_write}{unsigned\_write}}
+{\footnotesize\ttfamily int($\ast$ ltc\+\_\+math\+\_\+descriptor\+::unsigned\+\_\+write) (void $\ast$src, unsigned char $\ast$dst)}
+
+
+
+store an integer as an array of octets 
+
+
+\begin{DoxyParams}{Parameters}
+{\em src} & The integer to store \\
+\hline
+{\em dst} & The buffer to store the integer in \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK on success 
+\end{DoxyReturn}
+
+
+Definition at line 176 of file tomcrypt\+\_\+math.\+h.
+
+\mbox{\Hypertarget{structltc__math__descriptor_a2e15b6390426a57dad267e123d50f317}\label{structltc__math__descriptor_a2e15b6390426a57dad267e123d50f317}} 
+\index{ltc\_math\_descriptor@{ltc\_math\_descriptor}!write\_radix@{write\_radix}}
+\index{write\_radix@{write\_radix}!ltc\_math\_descriptor@{ltc\_math\_descriptor}}
+\subsubsection{\texorpdfstring{write\_radix}{write\_radix}}
+{\footnotesize\ttfamily int($\ast$ ltc\+\_\+math\+\_\+descriptor\+::write\+\_\+radix) (void $\ast$a, char $\ast$str, int radix)}
+
+
+
+write number to string 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & The integer to store \\
+\hline
+{\em str} & The destination for the string \\
+\hline
+{\em radix} & The radix the integer is to be represented in (2-\/64) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK on success 
+\end{DoxyReturn}
+
+
+Definition at line 163 of file tomcrypt\+\_\+math.\+h.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/headers/\mbox{\hyperlink{tomcrypt__math_8h}{tomcrypt\+\_\+math.\+h}}\end{DoxyCompactItemize}

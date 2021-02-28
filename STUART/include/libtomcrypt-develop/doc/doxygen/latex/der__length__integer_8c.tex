@@ -1,0 +1,98 @@
+\hypertarget{der__length__integer_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/pk/asn1/der/integer/der\+\_\+length\+\_\+integer.c File Reference}
+\label{der__length__integer_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/asn1/der/integer/der\_length\_integer.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/asn1/der/integer/der\_length\_integer.c}}
+
+
+A\+S\+N.\+1 D\+ER, get length of encoding, Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for der\+\_\+length\+\_\+integer.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{der__length__integer_8c_af27dfc46ec4a482af05a2265a9d31ca3}{der\+\_\+length\+\_\+integer}} (void $\ast$num, unsigned long $\ast$outlen)
+\begin{DoxyCompactList}\small\item\em Gets length of D\+ER encoding of num. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A\+S\+N.\+1 D\+ER, get length of encoding, Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{der__length__integer_8c_af27dfc46ec4a482af05a2265a9d31ca3}\label{der__length__integer_8c_af27dfc46ec4a482af05a2265a9d31ca3}} 
+\index{der\_length\_integer.c@{der\_length\_integer.c}!der\_length\_integer@{der\_length\_integer}}
+\index{der\_length\_integer@{der\_length\_integer}!der\_length\_integer.c@{der\_length\_integer.c}}
+\subsubsection{\texorpdfstring{der\_length\_integer()}{der\_length\_integer()}}
+{\footnotesize\ttfamily int der\+\_\+length\+\_\+integer (\begin{DoxyParamCaption}\item[{void $\ast$}]{num,  }\item[{unsigned long $\ast$}]{outlen }\end{DoxyParamCaption})}
+
+
+
+Gets length of D\+ER encoding of num. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em num} & The int to get the size of \\
+\hline
+{\em outlen} & \mbox{[}out\mbox{]} The length of the D\+ER encoding for the given integer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 24 of file der\+\_\+length\+\_\+integer.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{25 \{}
+\DoxyCodeLine{26    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} z, \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}};}
+\DoxyCodeLine{27    \textcolor{keywordtype}{int}           leading\_zero, err;}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(num     != NULL);}
+\DoxyCodeLine{30    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(outlen  != NULL);}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32    \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__private_8h_a6ce44f2e6f872565a468b67d9a93dc28}{mp\_cmp\_d}}(num, 0) != \mbox{\hyperlink{tomcrypt__math_8h_a42d0c7d4c09793df79660774d3436db2}{LTC\_MP\_LT}}) \{}
+\DoxyCodeLine{33       \textcolor{comment}{/* positive */}}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35       \textcolor{comment}{/* we only need a leading zero if the msb of the first byte is one */}}
+\DoxyCodeLine{36       \textcolor{keywordflow}{if} ((\mbox{\hyperlink{tomcrypt__private_8h_afa1671e20e699f66319ed2e8d9119e7e}{mp\_count\_bits}}(num) \& 7) == 0 || \mbox{\hyperlink{tomcrypt__private_8h_a910040068490f9f6e5185c970ab869c9}{mp\_iszero}}(num) == \mbox{\hyperlink{tomcrypt__math_8h_acc2da047f8fb30a3e2b2403aac617fe0}{LTC\_MP\_YES}}) \{}
+\DoxyCodeLine{37          leading\_zero = 1;}
+\DoxyCodeLine{38       \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{39          leading\_zero = 0;}
+\DoxyCodeLine{40       \}}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{42       \textcolor{comment}{/* size for bignum */}}
+\DoxyCodeLine{43       \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}} = leading\_zero + \mbox{\hyperlink{tomcrypt__private_8h_ad301148bb24f43a8c7003a6976dfaa5a}{mp\_unsigned\_bin\_size}}(num);}
+\DoxyCodeLine{44    \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{45       \textcolor{comment}{/* it's negative */}}
+\DoxyCodeLine{46       \textcolor{comment}{/* find power of 2 that is a multiple of eight and greater than count bits */}}
+\DoxyCodeLine{47       z = \mbox{\hyperlink{tomcrypt__private_8h_afa1671e20e699f66319ed2e8d9119e7e}{mp\_count\_bits}}(num);}
+\DoxyCodeLine{48       z = z + (8 - (z \& 7));}
+\DoxyCodeLine{49       \textcolor{keywordflow}{if} (((\mbox{\hyperlink{tomcrypt__private_8h_a566a41699158970f4d7a0554081706dd}{mp\_cnt\_lsb}}(num)+1)==\mbox{\hyperlink{tomcrypt__private_8h_afa1671e20e699f66319ed2e8d9119e7e}{mp\_count\_bits}}(num)) \&\& ((\mbox{\hyperlink{tomcrypt__private_8h_afa1671e20e699f66319ed2e8d9119e7e}{mp\_count\_bits}}(num)\&7)==0)) --z;}
+\DoxyCodeLine{50       \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}} = z >> 3;}
+\DoxyCodeLine{51    \}}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{53    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a8999e23c66cda0d777570e54f3a5c795}{der\_length\_asn1\_length}}(\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}, \&z)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{54       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{55    \}}
+\DoxyCodeLine{56    *outlen = 1 + z + \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}};}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{58    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{59 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, der\+\_\+length\+\_\+asn1\+\_\+length(), len, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, L\+T\+C\+\_\+\+M\+P\+\_\+\+LT, L\+T\+C\+\_\+\+M\+P\+\_\+\+Y\+ES, mp\+\_\+cmp\+\_\+d, mp\+\_\+cnt\+\_\+lsb, mp\+\_\+count\+\_\+bits, mp\+\_\+iszero, and mp\+\_\+unsigned\+\_\+bin\+\_\+size.
+
+
+
+Referenced by der\+\_\+decode\+\_\+choice(), der\+\_\+decode\+\_\+custom\+\_\+type\+\_\+ex(), der\+\_\+decode\+\_\+sequence\+\_\+flexi(), der\+\_\+encode\+\_\+integer(), der\+\_\+length\+\_\+custom\+\_\+type(), and der\+\_\+length\+\_\+sequence\+\_\+ex().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2

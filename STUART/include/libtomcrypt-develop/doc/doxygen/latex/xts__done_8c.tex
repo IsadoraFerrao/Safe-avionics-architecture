@@ -1,0 +1,51 @@
+\hypertarget{xts__done_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/modes/xts/xts\+\_\+done.c File Reference}
+\label{xts__done_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/modes/xts/xts\_done.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/modes/xts/xts\_done.c}}
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for xts\+\_\+done.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{xts__done_8c_a1acb51f1a303879e8ff78f67608d68ef}{xts\+\_\+done}} (symmetric\+\_\+xts $\ast$xts)
+\begin{DoxyCompactList}\small\item\em Source donated by Elliptic Semiconductor Inc (www.\+ellipticsemi.\+com) to the Lib\+Tom Projects. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{xts__done_8c_a1acb51f1a303879e8ff78f67608d68ef}\label{xts__done_8c_a1acb51f1a303879e8ff78f67608d68ef}} 
+\index{xts\_done.c@{xts\_done.c}!xts\_done@{xts\_done}}
+\index{xts\_done@{xts\_done}!xts\_done.c@{xts\_done.c}}
+\subsubsection{\texorpdfstring{xts\_done()}{xts\_done()}}
+{\footnotesize\ttfamily void xts\+\_\+done (\begin{DoxyParamCaption}\item[{symmetric\+\_\+xts $\ast$}]{xts }\end{DoxyParamCaption})}
+
+
+
+Source donated by Elliptic Semiconductor Inc (www.\+ellipticsemi.\+com) to the Lib\+Tom Projects. 
+
+Terminate X\+TS state 
+\begin{DoxyParams}{Parameters}
+{\em xts} & The state to terminate \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 20 of file xts\+\_\+done.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{21 \{}
+\DoxyCodeLine{22    \mbox{\hyperlink{tomcrypt__argchk_8h_a67a6e5d66d0c7d80ddf5c583054608bd}{LTC\_ARGCHKVD}}(xts != NULL);}
+\DoxyCodeLine{23    \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[xts->cipher].\mbox{\hyperlink{structltc__cipher__descriptor_a0ad1c101005c70a69e40fded0e606191}{done}}(\&xts->key1);}
+\DoxyCodeLine{24    \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[xts->cipher].\mbox{\hyperlink{structltc__cipher__descriptor_a0ad1c101005c70a69e40fded0e606191}{done}}(\&xts->key2);}
+\DoxyCodeLine{25 \}}
+
+\end{DoxyCode}
+
+
+References cipher\+\_\+descriptor, ltc\+\_\+cipher\+\_\+descriptor\+::done, and L\+T\+C\+\_\+\+A\+R\+G\+C\+H\+K\+VD.
+
+
+
+Referenced by xts\+\_\+test().
+
+Here is the caller graph for this function\+:
+% FIG 1

@@ -1,0 +1,171 @@
+\hypertarget{chacha__crypt_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/stream/chacha/chacha\+\_\+crypt.c File Reference}
+\label{chacha__crypt_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/stream/chacha/chacha\_crypt.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/stream/chacha/chacha\_crypt.c}}
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for chacha\+\_\+crypt.\+c\+:
+% FIG 0
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{chacha__crypt_8c_aae524f06f43cef9dde57fb1cecc75d4a}{Q\+U\+A\+R\+T\+E\+R\+R\+O\+U\+ND}}(a,  b,  \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},  d)
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{chacha__crypt_8c_a0f59b85d38348fa6829e4cedb228c594}{\+\_\+chacha\+\_\+block}} (unsigned char $\ast$output, const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} $\ast$input, int \mbox{\hyperlink{kseed_8c_a51da46362a22c8107683876e9c12ec82}{rounds}})
+\item 
+int \mbox{\hyperlink{chacha__crypt_8c_a1b1272fcac65a1e6a1ee555891b7c95e}{chacha\+\_\+crypt}} (chacha\+\_\+state $\ast$st, const unsigned char $\ast$in, unsigned long inlen, unsigned char $\ast$out)
+\begin{DoxyCompactList}\small\item\em Encrypt (or decrypt) bytes of ciphertext (or plaintext) with Cha\+Cha. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{chacha__crypt_8c_aae524f06f43cef9dde57fb1cecc75d4a}\label{chacha__crypt_8c_aae524f06f43cef9dde57fb1cecc75d4a}} 
+\index{chacha\_crypt.c@{chacha\_crypt.c}!QUARTERROUND@{QUARTERROUND}}
+\index{QUARTERROUND@{QUARTERROUND}!chacha\_crypt.c@{chacha\_crypt.c}}
+\subsubsection{\texorpdfstring{QUARTERROUND}{QUARTERROUND}}
+{\footnotesize\ttfamily \#define Q\+U\+A\+R\+T\+E\+R\+R\+O\+U\+ND(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{b,  }\item[{}]{\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},  }\item[{}]{d }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{x[a] += x[b]; x[d] = \mbox{\hyperlink{tomcrypt__macros_8h_a2e1da5c8810967170c889976d1fe9fa1}{ROL}}(x[d] \string^ x[a], 16); \(\backslash\)}
+\DoxyCodeLine{  x[\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}] += x[d]; x[b] = \mbox{\hyperlink{tomcrypt__macros_8h_a2e1da5c8810967170c889976d1fe9fa1}{ROL}}(x[b] \string^ x[\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}], 12); \(\backslash\)}
+\DoxyCodeLine{  x[a] += x[b]; x[d] = \mbox{\hyperlink{tomcrypt__macros_8h_a2e1da5c8810967170c889976d1fe9fa1}{ROL}}(x[d] \string^ x[a],  8); \(\backslash\)}
+\DoxyCodeLine{  x[\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}] += x[d]; x[b] = \mbox{\hyperlink{tomcrypt__macros_8h_a2e1da5c8810967170c889976d1fe9fa1}{ROL}}(x[b] \string^ x[\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}],  7);}
+
+\end{DoxyCode}
+
+
+Definition at line 19 of file chacha\+\_\+crypt.\+c.
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{chacha__crypt_8c_a0f59b85d38348fa6829e4cedb228c594}\label{chacha__crypt_8c_a0f59b85d38348fa6829e4cedb228c594}} 
+\index{chacha\_crypt.c@{chacha\_crypt.c}!\_chacha\_block@{\_chacha\_block}}
+\index{\_chacha\_block@{\_chacha\_block}!chacha\_crypt.c@{chacha\_crypt.c}}
+\subsubsection{\texorpdfstring{\_chacha\_block()}{\_chacha\_block()}}
+{\footnotesize\ttfamily static void \+\_\+chacha\+\_\+block (\begin{DoxyParamCaption}\item[{unsigned char $\ast$}]{output,  }\item[{const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} $\ast$}]{input,  }\item[{int}]{rounds }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 25 of file chacha\+\_\+crypt.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{26 \{}
+\DoxyCodeLine{27    \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} x[16];}
+\DoxyCodeLine{28    \textcolor{keywordtype}{int} i;}
+\DoxyCodeLine{29    \mbox{\hyperlink{tomcrypt__cfg_8h_a7691dd48d60d5fc6daf2fa7ec4c55e12}{XMEMCPY}}(x, input, \textcolor{keyword}{sizeof}(x));}
+\DoxyCodeLine{30    \textcolor{keywordflow}{for} (i = \mbox{\hyperlink{kseed_8c_a51da46362a22c8107683876e9c12ec82}{rounds}}; i > 0; i -= 2) \{}
+\DoxyCodeLine{31       \mbox{\hyperlink{chacha__crypt_8c_aae524f06f43cef9dde57fb1cecc75d4a}{QUARTERROUND}}(0, 4, 8,12)}
+\DoxyCodeLine{32       \mbox{\hyperlink{chacha__crypt_8c_aae524f06f43cef9dde57fb1cecc75d4a}{QUARTERROUND}}(1, 5, 9,13)}
+\DoxyCodeLine{33       \mbox{\hyperlink{chacha__crypt_8c_aae524f06f43cef9dde57fb1cecc75d4a}{QUARTERROUND}}(2, 6,10,14)}
+\DoxyCodeLine{34       \mbox{\hyperlink{chacha__crypt_8c_aae524f06f43cef9dde57fb1cecc75d4a}{QUARTERROUND}}(3, 7,11,15)}
+\DoxyCodeLine{35       \mbox{\hyperlink{chacha__crypt_8c_aae524f06f43cef9dde57fb1cecc75d4a}{QUARTERROUND}}(0, 5,10,15)}
+\DoxyCodeLine{36       \mbox{\hyperlink{chacha__crypt_8c_aae524f06f43cef9dde57fb1cecc75d4a}{QUARTERROUND}}(1, 6,11,12)}
+\DoxyCodeLine{37       \mbox{\hyperlink{chacha__crypt_8c_aae524f06f43cef9dde57fb1cecc75d4a}{QUARTERROUND}}(2, 7, 8,13)}
+\DoxyCodeLine{38       \mbox{\hyperlink{chacha__crypt_8c_aae524f06f43cef9dde57fb1cecc75d4a}{QUARTERROUND}}(3, 4, 9,14)}
+\DoxyCodeLine{39    \}}
+\DoxyCodeLine{40    for (i = 0; i < 16; ++i) \{}
+\DoxyCodeLine{41      x[i] += input[i];}
+\DoxyCodeLine{42      STORE32L(x[i], output + 4 * i);}
+\DoxyCodeLine{43    \}}
+\DoxyCodeLine{44 \}}
+
+\end{DoxyCode}
+
+
+References Q\+U\+A\+R\+T\+E\+R\+R\+O\+U\+ND, rounds(), and X\+M\+E\+M\+C\+P\+Y().
+
+
+
+Referenced by chacha\+\_\+crypt().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2
+\mbox{\Hypertarget{chacha__crypt_8c_a1b1272fcac65a1e6a1ee555891b7c95e}\label{chacha__crypt_8c_a1b1272fcac65a1e6a1ee555891b7c95e}} 
+\index{chacha\_crypt.c@{chacha\_crypt.c}!chacha\_crypt@{chacha\_crypt}}
+\index{chacha\_crypt@{chacha\_crypt}!chacha\_crypt.c@{chacha\_crypt.c}}
+\subsubsection{\texorpdfstring{chacha\_crypt()}{chacha\_crypt()}}
+{\footnotesize\ttfamily int chacha\+\_\+crypt (\begin{DoxyParamCaption}\item[{chacha\+\_\+state $\ast$}]{st,  }\item[{const unsigned char $\ast$}]{in,  }\item[{unsigned long}]{inlen,  }\item[{unsigned char $\ast$}]{out }\end{DoxyParamCaption})}
+
+
+
+Encrypt (or decrypt) bytes of ciphertext (or plaintext) with Cha\+Cha. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em st} & The Cha\+Cha state \\
+\hline
+{\em in} & The plaintext (or ciphertext) \\
+\hline
+{\em inlen} & The length of the input (octets) \\
+\hline
+{\em out} & \mbox{[}out\mbox{]} The ciphertext (or plaintext), length inlen \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 54 of file chacha\+\_\+crypt.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{55 \{}
+\DoxyCodeLine{56    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} buf[64];}
+\DoxyCodeLine{57    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} i, j;}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{59    \textcolor{keywordflow}{if} (inlen == 0) \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}; \textcolor{comment}{/* nothing to do */}}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{61    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(st        != NULL);}
+\DoxyCodeLine{62    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(in        != NULL);}
+\DoxyCodeLine{63    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(out       != NULL);}
+\DoxyCodeLine{64    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(st->ivlen != 0);}
+\DoxyCodeLine{65 }
+\DoxyCodeLine{66    \textcolor{keywordflow}{if} (st->ksleft > 0) \{}
+\DoxyCodeLine{67       j = \mbox{\hyperlink{tomcrypt__macros_8h_a74e75242132eaabbc1c512488a135926}{MIN}}(st->ksleft, inlen);}
+\DoxyCodeLine{68       \textcolor{keywordflow}{for} (i = 0; i < j; ++i, st->ksleft--) out[i] = in[i] \string^ st->kstream[64 - st->ksleft];}
+\DoxyCodeLine{69       inlen -= j;}
+\DoxyCodeLine{70       if (inlen == 0) \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{71       out += j;}
+\DoxyCodeLine{72       in  += j;}
+\DoxyCodeLine{73    \}}
+\DoxyCodeLine{74    \textcolor{keywordflow}{for} (;;) \{}
+\DoxyCodeLine{75      \mbox{\hyperlink{chacha__crypt_8c_a0f59b85d38348fa6829e4cedb228c594}{\_chacha\_block}}(buf, st->input, st->rounds);}
+\DoxyCodeLine{76      \textcolor{keywordflow}{if} (st->ivlen == 8) \{}
+\DoxyCodeLine{77        \textcolor{comment}{/* IV-64bit, increment 64bit counter */}}
+\DoxyCodeLine{78        \textcolor{keywordflow}{if} (0 == ++st->input[12] \&\& 0 == ++st->input[13]) \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca3a147cc0bbea3f8779364ad00c2678b4}{CRYPT\_OVERFLOW}};}
+\DoxyCodeLine{79      \}}
+\DoxyCodeLine{80      \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{81        \textcolor{comment}{/* IV-96bit, increment 32bit counter */}}
+\DoxyCodeLine{82        \textcolor{keywordflow}{if} (0 == ++st->input[12]) \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca3a147cc0bbea3f8779364ad00c2678b4}{CRYPT\_OVERFLOW}};}
+\DoxyCodeLine{83      \}}
+\DoxyCodeLine{84      \textcolor{keywordflow}{if} (inlen <= 64) \{}
+\DoxyCodeLine{85        \textcolor{keywordflow}{for} (i = 0; i < inlen; ++i) out[i] = in[i] \string^ buf[i];}
+\DoxyCodeLine{86        st->ksleft = 64 - inlen;}
+\DoxyCodeLine{87        \textcolor{keywordflow}{for} (i = inlen; i < 64; ++i) st->kstream[i] = buf[i];}
+\DoxyCodeLine{88        \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{89      \}}
+\DoxyCodeLine{90      \textcolor{keywordflow}{for} (i = 0; i < 64; ++i) out[i] = in[i] \string^ buf[i];}
+\DoxyCodeLine{91      inlen -= 64;}
+\DoxyCodeLine{92      out += 64;}
+\DoxyCodeLine{93      in  += 64;}
+\DoxyCodeLine{94    \}}
+\DoxyCodeLine{95 \}}
+
+\end{DoxyCode}
+
+
+References \+\_\+chacha\+\_\+block(), C\+R\+Y\+P\+T\+\_\+\+OK, C\+R\+Y\+P\+T\+\_\+\+O\+V\+E\+R\+F\+L\+OW, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, and M\+IN.
+
+
+
+Referenced by chacha20poly1305\+\_\+decrypt(), chacha20poly1305\+\_\+encrypt(), chacha\+\_\+keystream(), chacha\+\_\+memory(), and chacha\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 3
+Here is the caller graph for this function\+:
+% FIG 4

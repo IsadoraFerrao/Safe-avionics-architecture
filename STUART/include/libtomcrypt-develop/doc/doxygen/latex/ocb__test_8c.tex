@@ -1,0 +1,229 @@
+\hypertarget{ocb__test_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/encauth/ocb/ocb\+\_\+test.c File Reference}
+\label{ocb__test_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/encauth/ocb/ocb\_test.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/encauth/ocb/ocb\_test.c}}
+
+
+O\+CB implementation, self-\/test by Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for ocb\+\_\+test.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{ocb__test_8c_afbc7c6139aaabac9146afff688bafbb9}{ocb\+\_\+test}} (void)
+\begin{DoxyCompactList}\small\item\em Test the O\+CB protocol. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+O\+CB implementation, self-\/test by Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{ocb__test_8c_afbc7c6139aaabac9146afff688bafbb9}\label{ocb__test_8c_afbc7c6139aaabac9146afff688bafbb9}} 
+\index{ocb\_test.c@{ocb\_test.c}!ocb\_test@{ocb\_test}}
+\index{ocb\_test@{ocb\_test}!ocb\_test.c@{ocb\_test.c}}
+\subsubsection{\texorpdfstring{ocb\_test()}{ocb\_test()}}
+{\footnotesize\ttfamily int ocb\+\_\+test (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Test the O\+CB protocol. 
+
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 22 of file ocb\+\_\+test.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{23 \{}
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#ifndef LTC\_TEST}}
+\DoxyCodeLine{25    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cac43a7799c7fd5f515172da6cfc0f9cf5}{CRYPT\_NOP}};}
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{27    \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{28          \textcolor{keywordtype}{int} ptlen;}
+\DoxyCodeLine{29          \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} key[16], nonce[16], pt[34], ct[34], tag[16];}
+\DoxyCodeLine{30    \} tests[] = \{}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32    \textcolor{comment}{/* OCB-AES-128-0B */}}
+\DoxyCodeLine{33 \{}
+\DoxyCodeLine{34    0,}
+\DoxyCodeLine{35    \textcolor{comment}{/* key */}}
+\DoxyCodeLine{36    \{ 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07,}
+\DoxyCodeLine{37      0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f \},}
+\DoxyCodeLine{38    \textcolor{comment}{/* nonce */}}
+\DoxyCodeLine{39    \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{40      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01 \},}
+\DoxyCodeLine{41    \textcolor{comment}{/* pt */}}
+\DoxyCodeLine{42    \{ 0 \},}
+\DoxyCodeLine{43    \textcolor{comment}{/* ct */}}
+\DoxyCodeLine{44    \{ 0 \},}
+\DoxyCodeLine{45    \textcolor{comment}{/* tag */}}
+\DoxyCodeLine{46    \{ 0x15, 0xd3, 0x7d, 0xd7, 0xc8, 0x90, 0xd5, 0xd6,}
+\DoxyCodeLine{47      0xac, 0xab, 0x92, 0x7b, 0xc0, 0xdc, 0x60, 0xee \},}
+\DoxyCodeLine{48 \},}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{50 }
+\DoxyCodeLine{51    \textcolor{comment}{/* OCB-AES-128-3B */}}
+\DoxyCodeLine{52 \{}
+\DoxyCodeLine{53    3,}
+\DoxyCodeLine{54    \textcolor{comment}{/* key */}}
+\DoxyCodeLine{55    \{ 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07,}
+\DoxyCodeLine{56      0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f \},}
+\DoxyCodeLine{57    \textcolor{comment}{/* nonce */}}
+\DoxyCodeLine{58    \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{59      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01 \},}
+\DoxyCodeLine{60    \textcolor{comment}{/* pt */}}
+\DoxyCodeLine{61    \{ 0x00, 0x01, 0x02 \},}
+\DoxyCodeLine{62    \textcolor{comment}{/* ct */}}
+\DoxyCodeLine{63    \{ 0xfc, 0xd3, 0x7d \},}
+\DoxyCodeLine{64    \textcolor{comment}{/* tag */}}
+\DoxyCodeLine{65    \{ 0x02, 0x25, 0x47, 0x39, 0xa5, 0xe3, 0x56, 0x5a,}
+\DoxyCodeLine{66      0xe2, 0xdc, 0xd6, 0x2c, 0x65, 0x97, 0x46, 0xba \},}
+\DoxyCodeLine{67 \},}
+\DoxyCodeLine{68 }
+\DoxyCodeLine{69    \textcolor{comment}{/* OCB-AES-128-16B */}}
+\DoxyCodeLine{70 \{}
+\DoxyCodeLine{71    16,}
+\DoxyCodeLine{72    \textcolor{comment}{/* key */}}
+\DoxyCodeLine{73    \{ 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07,}
+\DoxyCodeLine{74      0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f \},}
+\DoxyCodeLine{75    \textcolor{comment}{/* nonce */}}
+\DoxyCodeLine{76    \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{77      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01 \},}
+\DoxyCodeLine{78    \textcolor{comment}{/* pt */}}
+\DoxyCodeLine{79    \{ 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07,}
+\DoxyCodeLine{80      0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f \},}
+\DoxyCodeLine{81    \textcolor{comment}{/* ct */}}
+\DoxyCodeLine{82    \{ 0x37, 0xdf, 0x8c, 0xe1, 0x5b, 0x48, 0x9b, 0xf3,}
+\DoxyCodeLine{83      0x1d, 0x0f, 0xc4, 0x4d, 0xa1, 0xfa, 0xf6, 0xd6 \},}
+\DoxyCodeLine{84    \textcolor{comment}{/* tag */}}
+\DoxyCodeLine{85    \{ 0xdf, 0xb7, 0x63, 0xeb, 0xdb, 0x5f, 0x0e, 0x71,}
+\DoxyCodeLine{86      0x9c, 0x7b, 0x41, 0x61, 0x80, 0x80, 0x04, 0xdf \},}
+\DoxyCodeLine{87 \},}
+\DoxyCodeLine{88 }
+\DoxyCodeLine{89    \textcolor{comment}{/* OCB-AES-128-20B  */}}
+\DoxyCodeLine{90 \{}
+\DoxyCodeLine{91    20,}
+\DoxyCodeLine{92    \textcolor{comment}{/* key */}}
+\DoxyCodeLine{93    \{ 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07,}
+\DoxyCodeLine{94      0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f \},}
+\DoxyCodeLine{95    \textcolor{comment}{/* nonce */}}
+\DoxyCodeLine{96    \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{97      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01 \},}
+\DoxyCodeLine{98    \textcolor{comment}{/* pt */}}
+\DoxyCodeLine{99    \{ 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07,}
+\DoxyCodeLine{100      0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f,}
+\DoxyCodeLine{101      0x10, 0x11, 0x12, 0x13 \},}
+\DoxyCodeLine{102    \textcolor{comment}{/* ct */}}
+\DoxyCodeLine{103    \{ 0x01, 0xa0, 0x75, 0xf0, 0xd8, 0x15, 0xb1, 0xa4,}
+\DoxyCodeLine{104      0xe9, 0xc8, 0x81, 0xa1, 0xbc, 0xff, 0xc3, 0xeb,}
+\DoxyCodeLine{105      0x70, 0x03, 0xeb, 0x55\},}
+\DoxyCodeLine{106    \textcolor{comment}{/* tag */}}
+\DoxyCodeLine{107    \{ 0x75, 0x30, 0x84, 0x14, 0x4e, 0xb6, 0x3b, 0x77,}
+\DoxyCodeLine{108      0x0b, 0x06, 0x3c, 0x2e, 0x23, 0xcd, 0xa0, 0xbb \},}
+\DoxyCodeLine{109 \},}
+\DoxyCodeLine{110 }
+\DoxyCodeLine{111    \textcolor{comment}{/* OCB-AES-128-32B  */}}
+\DoxyCodeLine{112 \{}
+\DoxyCodeLine{113    32,}
+\DoxyCodeLine{114    \textcolor{comment}{/* key */}}
+\DoxyCodeLine{115    \{ 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07,}
+\DoxyCodeLine{116      0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f \},}
+\DoxyCodeLine{117    \textcolor{comment}{/* nonce */}}
+\DoxyCodeLine{118    \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{119      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01 \},}
+\DoxyCodeLine{120    \textcolor{comment}{/* pt */}}
+\DoxyCodeLine{121    \{ 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07,}
+\DoxyCodeLine{122      0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f,}
+\DoxyCodeLine{123      0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17,}
+\DoxyCodeLine{124      0x18, 0x19, 0x1a, 0x1b, 0x1c, 0x1d, 0x1e, 0x1f \},}
+\DoxyCodeLine{125    \textcolor{comment}{/* ct */}}
+\DoxyCodeLine{126    \{ 0x01, 0xa0, 0x75, 0xf0, 0xd8, 0x15, 0xb1, 0xa4,}
+\DoxyCodeLine{127      0xe9, 0xc8, 0x81, 0xa1, 0xbc, 0xff, 0xc3, 0xeb,}
+\DoxyCodeLine{128      0x4a, 0xfc, 0xbb, 0x7f, 0xed, 0xc0, 0x8c, 0xa8,}
+\DoxyCodeLine{129      0x65, 0x4c, 0x6d, 0x30, 0x4d, 0x16, 0x12, 0xfa \},}
+\DoxyCodeLine{130 }
+\DoxyCodeLine{131    \textcolor{comment}{/* tag */}}
+\DoxyCodeLine{132    \{ 0xc1, 0x4c, 0xbf, 0x2c, 0x1a, 0x1f, 0x1c, 0x3c,}
+\DoxyCodeLine{133      0x13, 0x7e, 0xad, 0xea, 0x1f, 0x2f, 0x2f, 0xcf \},}
+\DoxyCodeLine{134 \},}
+\DoxyCodeLine{135 }
+\DoxyCodeLine{136    \textcolor{comment}{/* OCB-AES-128-34B  */}}
+\DoxyCodeLine{137 \{}
+\DoxyCodeLine{138    34,}
+\DoxyCodeLine{139    \textcolor{comment}{/* key */}}
+\DoxyCodeLine{140    \{ 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07,}
+\DoxyCodeLine{141      0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f \},}
+\DoxyCodeLine{142    \textcolor{comment}{/* nonce */}}
+\DoxyCodeLine{143    \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,}
+\DoxyCodeLine{144      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01 \},}
+\DoxyCodeLine{145    \textcolor{comment}{/* pt */}}
+\DoxyCodeLine{146    \{ 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07,}
+\DoxyCodeLine{147      0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f,}
+\DoxyCodeLine{148      0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17,}
+\DoxyCodeLine{149      0x18, 0x19, 0x1a, 0x1b, 0x1c, 0x1d, 0x1e, 0x1f,}
+\DoxyCodeLine{150      0x20, 0x21 \},}
+\DoxyCodeLine{151    \textcolor{comment}{/* ct */}}
+\DoxyCodeLine{152    \{ 0x01, 0xa0, 0x75, 0xf0, 0xd8, 0x15, 0xb1, 0xa4,}
+\DoxyCodeLine{153      0xe9, 0xc8, 0x81, 0xa1, 0xbc, 0xff, 0xc3, 0xeb,}
+\DoxyCodeLine{154      0xd4, 0x90, 0x3d, 0xd0, 0x02, 0x5b, 0xa4, 0xaa,}
+\DoxyCodeLine{155      0x83, 0x7c, 0x74, 0xf1, 0x21, 0xb0, 0x26, 0x0f,}
+\DoxyCodeLine{156      0xa9, 0x5d \},}
+\DoxyCodeLine{157 }
+\DoxyCodeLine{158    \textcolor{comment}{/* tag */}}
+\DoxyCodeLine{159    \{ 0xcf, 0x83, 0x41, 0xbb, 0x10, 0x82, 0x0c, 0xcf,}
+\DoxyCodeLine{160      0x14, 0xbd, 0xec, 0x56, 0xb8, 0xd7, 0xd6, 0xab \},}
+\DoxyCodeLine{161 \},}
+\DoxyCodeLine{162 }
+\DoxyCodeLine{163 \};}
+\DoxyCodeLine{164 }
+\DoxyCodeLine{165    \textcolor{keywordtype}{int} err, x, idx, res;}
+\DoxyCodeLine{166    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}};}
+\DoxyCodeLine{167    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} outct[\mbox{\hyperlink{tomcrypt_8h_ab59933beebb2b857c992b93cf53f0d10}{MAXBLOCKSIZE}}], outtag[\mbox{\hyperlink{tomcrypt_8h_ab59933beebb2b857c992b93cf53f0d10}{MAXBLOCKSIZE}}];}
+\DoxyCodeLine{168 }
+\DoxyCodeLine{169     \textcolor{comment}{/* AES can be under rijndael or aes... try to find it */}}
+\DoxyCodeLine{170     \textcolor{keywordflow}{if} ((idx = \mbox{\hyperlink{tomcrypt__cipher_8h_af5c3882342fd65a17239cd04bfdf44e2}{find\_cipher}}(\textcolor{stringliteral}{"aes"})) == -1) \{}
+\DoxyCodeLine{171        \textcolor{keywordflow}{if} ((idx = \mbox{\hyperlink{tomcrypt__cipher_8h_af5c3882342fd65a17239cd04bfdf44e2}{find\_cipher}}(\textcolor{stringliteral}{"rijndael"})) == -1) \{}
+\DoxyCodeLine{172           \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cac43a7799c7fd5f515172da6cfc0f9cf5}{CRYPT\_NOP}};}
+\DoxyCodeLine{173        \}}
+\DoxyCodeLine{174     \}}
+\DoxyCodeLine{175 }
+\DoxyCodeLine{176     \textcolor{keywordflow}{for} (x = 0; x < (int)(\textcolor{keyword}{sizeof}(tests)/\textcolor{keyword}{sizeof}(tests[0])); x++) \{}
+\DoxyCodeLine{177         \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}} = \textcolor{keyword}{sizeof}(outtag);}
+\DoxyCodeLine{178         \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{ocb__encrypt__authenticate__memory_8c_a6dc818f74acf81f66cd2f25b5f0024b6}{ocb\_encrypt\_authenticate\_memory}}(idx, tests[x].key, 16,}
+\DoxyCodeLine{179              tests[x].nonce, tests[x].pt, tests[x].ptlen, outct, outtag, \&\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}})) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{180            \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{181         \}}
+\DoxyCodeLine{182 }
+\DoxyCodeLine{183         \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(outtag, \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}, tests[x].tag, \textcolor{keyword}{sizeof}(tests[x].tag), \textcolor{stringliteral}{"OCB Tag"}, x) ||}
+\DoxyCodeLine{184               \mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(outct, tests[x].ptlen, tests[x].ct, tests[x].ptlen, \textcolor{stringliteral}{"OCB CT"}, x)) \{}
+\DoxyCodeLine{185            \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{186         \}}
+\DoxyCodeLine{187 }
+\DoxyCodeLine{188         \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{ocb__decrypt__verify__memory_8c_a54a8c51becc57a9eded7c6da4479ac10}{ocb\_decrypt\_verify\_memory}}(idx, tests[x].key, 16, tests[x].nonce, outct, tests[x].ptlen,}
+\DoxyCodeLine{189              outct, tests[x].tag, \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}, \&res)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{190            \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{191         \}}
+\DoxyCodeLine{192         \textcolor{keywordflow}{if} ((res != 1) || \mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(outct, tests[x].ptlen, tests[x].pt, tests[x].ptlen, \textcolor{stringliteral}{"OCB"}, x)) \{}
+\DoxyCodeLine{193 \textcolor{preprocessor}{\#ifdef LTC\_TEST\_DBG}}
+\DoxyCodeLine{194            printf(\textcolor{stringliteral}{"\(\backslash\)n\(\backslash\)nOCB: Failure-decrypt - res = \%d\(\backslash\)n"}, res);}
+\DoxyCodeLine{195 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{196            \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{197         \}}
+\DoxyCodeLine{198     \}}
+\DoxyCodeLine{199     \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{200 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* LTC\_TEST */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{201 \}}
+
+\end{DoxyCode}
+
+
+References compare\+\_\+testvector(), C\+R\+Y\+P\+T\+\_\+\+F\+A\+I\+L\+\_\+\+T\+E\+S\+T\+V\+E\+C\+T\+OR, C\+R\+Y\+P\+T\+\_\+\+N\+OP, C\+R\+Y\+P\+T\+\_\+\+OK, find\+\_\+cipher(), len, M\+A\+X\+B\+L\+O\+C\+K\+S\+I\+ZE, ocb\+\_\+decrypt\+\_\+verify\+\_\+memory(), and ocb\+\_\+encrypt\+\_\+authenticate\+\_\+memory().
+
+Here is the call graph for this function\+:
+% FIG 1

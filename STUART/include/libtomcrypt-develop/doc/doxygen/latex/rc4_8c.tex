@@ -1,0 +1,512 @@
+\hypertarget{rc4_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/prngs/rc4.c File Reference}
+\label{rc4_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/prngs/rc4.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/prngs/rc4.c}}
+
+
+R\+C4 P\+R\+NG, Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for rc4.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{rc4_8c_a8bfd80b8ba38e3eb896eb3d3caa59cd7}{rc4\+\_\+start}} (\mbox{\hyperlink{structprng__state}{prng\+\_\+state}} $\ast$prng)
+\begin{DoxyCompactList}\small\item\em Start the P\+R\+NG. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{rc4_8c_a4f610c15f71bd7133905ba8c42b25085}{rc4\+\_\+add\+\_\+entropy}} (const unsigned char $\ast$in, unsigned long inlen, \mbox{\hyperlink{structprng__state}{prng\+\_\+state}} $\ast$prng)
+\begin{DoxyCompactList}\small\item\em Add entropy to the P\+R\+NG state. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{rc4_8c_a2736422ebc97697aacbc3fd53ce82da6}{rc4\+\_\+ready}} (\mbox{\hyperlink{structprng__state}{prng\+\_\+state}} $\ast$prng)
+\begin{DoxyCompactList}\small\item\em Make the P\+R\+NG ready to read from. \end{DoxyCompactList}\item 
+unsigned long \mbox{\hyperlink{rc4_8c_a672bb35f2b7ef86d24499ef90ea2676a}{rc4\+\_\+read}} (unsigned char $\ast$out, unsigned long outlen, \mbox{\hyperlink{structprng__state}{prng\+\_\+state}} $\ast$prng)
+\begin{DoxyCompactList}\small\item\em Read from the P\+R\+NG. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{rc4_8c_a952a774c3bf86fc6b351bfd1fcfa7558}{rc4\+\_\+done}} (\mbox{\hyperlink{structprng__state}{prng\+\_\+state}} $\ast$prng)
+\begin{DoxyCompactList}\small\item\em Terminate the P\+R\+NG. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{rc4_8c_ab734b7565ee735e487a23ab72774ef4d}{rc4\+\_\+export}} (unsigned char $\ast$out, unsigned long $\ast$outlen, \mbox{\hyperlink{structprng__state}{prng\+\_\+state}} $\ast$prng)
+\begin{DoxyCompactList}\small\item\em Export the P\+R\+NG state. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{rc4_8c_ad11a03b9a6aabff43cb59d46d1eef7ce}{rc4\+\_\+import}} (const unsigned char $\ast$in, unsigned long inlen, \mbox{\hyperlink{structprng__state}{prng\+\_\+state}} $\ast$prng)
+\begin{DoxyCompactList}\small\item\em Import a P\+R\+NG state. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{rc4_8c_ad8af7083fd45b4c39ec2720455518560}{rc4\+\_\+test}} (void)
+\begin{DoxyCompactList}\small\item\em P\+R\+NG self-\/test. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const struct \mbox{\hyperlink{structltc__prng__descriptor}{ltc\+\_\+prng\+\_\+descriptor}} \mbox{\hyperlink{rc4_8c_af600b7283289a2db35dd33c40ca97552}{rc4\+\_\+desc}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+R\+C4 P\+R\+NG, Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{rc4_8c_a4f610c15f71bd7133905ba8c42b25085}\label{rc4_8c_a4f610c15f71bd7133905ba8c42b25085}} 
+\index{rc4.c@{rc4.c}!rc4\_add\_entropy@{rc4\_add\_entropy}}
+\index{rc4\_add\_entropy@{rc4\_add\_entropy}!rc4.c@{rc4.c}}
+\subsubsection{\texorpdfstring{rc4\_add\_entropy()}{rc4\_add\_entropy()}}
+{\footnotesize\ttfamily int rc4\+\_\+add\+\_\+entropy (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{in,  }\item[{unsigned long}]{inlen,  }\item[{\mbox{\hyperlink{structprng__state}{prng\+\_\+state}} $\ast$}]{prng }\end{DoxyParamCaption})}
+
+
+
+Add entropy to the P\+R\+NG state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em in} & The data to add \\
+\hline
+{\em inlen} & Length of the data to add \\
+\hline
+{\em prng} & P\+R\+NG state to update \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 56 of file rc4.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{57 \{}
+\DoxyCodeLine{58    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} buf[256];}
+\DoxyCodeLine{59    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} i;}
+\DoxyCodeLine{60    \textcolor{keywordtype}{int} err;}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{62    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(prng != NULL);}
+\DoxyCodeLine{63    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(in != NULL);}
+\DoxyCodeLine{64    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(inlen > 0);}
+\DoxyCodeLine{65 }
+\DoxyCodeLine{66    \mbox{\hyperlink{tomcrypt__custom_8h_a427a107414e4d775fbf23f4a499f4a31}{LTC\_MUTEX\_LOCK}}(\&prng->lock);}
+\DoxyCodeLine{67    \textcolor{keywordflow}{if} (prng->\mbox{\hyperlink{structprng__state_ad5b2704260668ba49701ba0169286837}{ready}}) \{}
+\DoxyCodeLine{68       \textcolor{comment}{/* rc4\_ready() was already called, do "rekey" operation */}}
+\DoxyCodeLine{69       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{rc4__stream_8c_a51958ea4c995703c6f9596af8507c136}{rc4\_stream\_keystream}}(\&prng->\mbox{\hyperlink{structprng__state_a73ffeba26752871bc883f035a89f0991}{u}}.rc4.s, buf, \textcolor{keyword}{sizeof}(buf))) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \textcolor{keywordflow}{goto} LBL\_UNLOCK;}
+\DoxyCodeLine{70       \textcolor{keywordflow}{for}(i = 0; i < inlen; i++) buf[i \% \textcolor{keyword}{sizeof}(buf)] \string^= in[i];}
+\DoxyCodeLine{71       \textcolor{comment}{/* initialize RC4 */}}
+\DoxyCodeLine{72       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{rc4__stream_8c_a4f9ba9106b0ee28cffced552636662a2}{rc4\_stream\_setup}}(\&prng->\mbox{\hyperlink{structprng__state_a73ffeba26752871bc883f035a89f0991}{u}}.rc4.s, buf, \textcolor{keyword}{sizeof}(buf))) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \textcolor{keywordflow}{goto} LBL\_UNLOCK;}
+\DoxyCodeLine{73       \textcolor{comment}{/* drop first 3072 bytes - https://en.wikipedia.org/wiki/RC4\#Fluhrer.2C\_Mantin\_and\_Shamir\_attack */}}
+\DoxyCodeLine{74       \textcolor{keywordflow}{for} (i = 0; i < 12; i++) \mbox{\hyperlink{rc4__stream_8c_a51958ea4c995703c6f9596af8507c136}{rc4\_stream\_keystream}}(\&prng->\mbox{\hyperlink{structprng__state_a73ffeba26752871bc883f035a89f0991}{u}}.rc4.s, buf, \textcolor{keyword}{sizeof}(buf));}
+\DoxyCodeLine{75       \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(buf, \textcolor{keyword}{sizeof}(buf));}
+\DoxyCodeLine{76    \}}
+\DoxyCodeLine{77    \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{78       \textcolor{comment}{/* rc4\_ready() was not called yet, add entropy to the buffer */}}
+\DoxyCodeLine{79       \textcolor{keywordflow}{while} (inlen--) prng->\mbox{\hyperlink{structprng__state_a73ffeba26752871bc883f035a89f0991}{u}}.rc4.s.buf[prng->\mbox{\hyperlink{structprng__state_a73ffeba26752871bc883f035a89f0991}{u}}.rc4.s.x++ \% \textcolor{keyword}{sizeof}(prng->\mbox{\hyperlink{structprng__state_a73ffeba26752871bc883f035a89f0991}{u}}.rc4.s.buf)] \string^= *in++;}
+\DoxyCodeLine{80    \}}
+\DoxyCodeLine{81    err = \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{82 LBL\_UNLOCK:}
+\DoxyCodeLine{83    \mbox{\hyperlink{tomcrypt__custom_8h_acdf267be91b178b4fafe8f992d57a7f1}{LTC\_MUTEX\_UNLOCK}}(\&prng->lock);}
+\DoxyCodeLine{84    \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{85 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, L\+T\+C\+\_\+\+M\+U\+T\+E\+X\+\_\+\+L\+O\+CK, L\+T\+C\+\_\+\+M\+U\+T\+E\+X\+\_\+\+U\+N\+L\+O\+CK, rc4\+\_\+stream\+\_\+keystream(), rc4\+\_\+stream\+\_\+setup(), prng\+\_\+state\+::ready, prng\+\_\+state\+::u, and zeromem().
+
+
+
+Referenced by rc4\+\_\+import(), and rc4\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2
+\mbox{\Hypertarget{rc4_8c_a952a774c3bf86fc6b351bfd1fcfa7558}\label{rc4_8c_a952a774c3bf86fc6b351bfd1fcfa7558}} 
+\index{rc4.c@{rc4.c}!rc4\_done@{rc4\_done}}
+\index{rc4\_done@{rc4\_done}!rc4.c@{rc4.c}}
+\subsubsection{\texorpdfstring{rc4\_done()}{rc4\_done()}}
+{\footnotesize\ttfamily int rc4\+\_\+done (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structprng__state}{prng\+\_\+state}} $\ast$}]{prng }\end{DoxyParamCaption})}
+
+
+
+Terminate the P\+R\+NG. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em prng} & The P\+R\+NG to terminate \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 137 of file rc4.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{138 \{}
+\DoxyCodeLine{139    \textcolor{keywordtype}{int} err;}
+\DoxyCodeLine{140    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(prng != NULL);}
+\DoxyCodeLine{141    \mbox{\hyperlink{tomcrypt__custom_8h_a427a107414e4d775fbf23f4a499f4a31}{LTC\_MUTEX\_LOCK}}(\&prng->lock);}
+\DoxyCodeLine{142    prng->\mbox{\hyperlink{structprng__state_ad5b2704260668ba49701ba0169286837}{ready}} = 0;}
+\DoxyCodeLine{143    err = \mbox{\hyperlink{rc4__stream_8c_ade109a0be5199381ba2f0b9627d0a9f6}{rc4\_stream\_done}}(\&prng->\mbox{\hyperlink{structprng__state_a73ffeba26752871bc883f035a89f0991}{u}}.rc4.s);}
+\DoxyCodeLine{144    \mbox{\hyperlink{tomcrypt__custom_8h_acdf267be91b178b4fafe8f992d57a7f1}{LTC\_MUTEX\_UNLOCK}}(\&prng->lock);}
+\DoxyCodeLine{145    \mbox{\hyperlink{tomcrypt__custom_8h_ae3979e1469d64fe3e864c9effca73724}{LTC\_MUTEX\_DESTROY}}(\&prng->lock);}
+\DoxyCodeLine{146    \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{147 \}}
+
+\end{DoxyCode}
+
+
+References L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, L\+T\+C\+\_\+\+M\+U\+T\+E\+X\+\_\+\+D\+E\+S\+T\+R\+OY, L\+T\+C\+\_\+\+M\+U\+T\+E\+X\+\_\+\+L\+O\+CK, L\+T\+C\+\_\+\+M\+U\+T\+E\+X\+\_\+\+U\+N\+L\+O\+CK, rc4\+\_\+stream\+\_\+done(), prng\+\_\+state\+::ready, and prng\+\_\+state\+::u.
+
+
+
+Referenced by rc4\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 3
+Here is the caller graph for this function\+:
+% FIG 4
+\mbox{\Hypertarget{rc4_8c_ab734b7565ee735e487a23ab72774ef4d}\label{rc4_8c_ab734b7565ee735e487a23ab72774ef4d}} 
+\index{rc4.c@{rc4.c}!rc4\_export@{rc4\_export}}
+\index{rc4\_export@{rc4\_export}!rc4.c@{rc4.c}}
+\subsubsection{\texorpdfstring{rc4\_export()}{rc4\_export()}}
+{\footnotesize\ttfamily int rc4\+\_\+export (\begin{DoxyParamCaption}\item[{unsigned char $\ast$}]{out,  }\item[{unsigned long $\ast$}]{outlen,  }\item[{\mbox{\hyperlink{structprng__state}{prng\+\_\+state}} $\ast$}]{prng }\end{DoxyParamCaption})}
+
+
+
+Export the P\+R\+NG state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em out} & \mbox{[}out\mbox{]} Destination \\
+\hline
+{\em outlen} & \mbox{[}in/out\mbox{]} Max size and resulting size of the state \\
+\hline
+{\em prng} & The P\+R\+NG to export \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 156 of file rc4.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{166 \{}
+
+\end{DoxyCode}
+
+
+Referenced by rc4\+\_\+test().
+
+Here is the caller graph for this function\+:
+% FIG 5
+\mbox{\Hypertarget{rc4_8c_ad11a03b9a6aabff43cb59d46d1eef7ce}\label{rc4_8c_ad11a03b9a6aabff43cb59d46d1eef7ce}} 
+\index{rc4.c@{rc4.c}!rc4\_import@{rc4\_import}}
+\index{rc4\_import@{rc4\_import}!rc4.c@{rc4.c}}
+\subsubsection{\texorpdfstring{rc4\_import()}{rc4\_import()}}
+{\footnotesize\ttfamily int rc4\+\_\+import (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{in,  }\item[{unsigned long}]{inlen,  }\item[{\mbox{\hyperlink{structprng__state}{prng\+\_\+state}} $\ast$}]{prng }\end{DoxyParamCaption})}
+
+
+
+Import a P\+R\+NG state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em in} & The P\+R\+NG state \\
+\hline
+{\em inlen} & Size of the state \\
+\hline
+{\em prng} & The P\+R\+NG to import \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 165 of file rc4.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{166 \{}
+\DoxyCodeLine{167    \textcolor{keywordtype}{int} err;}
+\DoxyCodeLine{168 }
+\DoxyCodeLine{169    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(prng != NULL);}
+\DoxyCodeLine{170    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(in   != NULL);}
+\DoxyCodeLine{171    \textcolor{keywordflow}{if} (inlen < (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long})\mbox{\hyperlink{rc4_8c_af600b7283289a2db35dd33c40ca97552}{rc4\_desc}}.\mbox{\hyperlink{structltc__prng__descriptor_a41ef184ab75b213366392faabcde420c}{export\_size}}) \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{172 }
+\DoxyCodeLine{173    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{rc4_8c_a8bfd80b8ba38e3eb896eb3d3caa59cd7}{rc4\_start}}(prng)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                  \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{174    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{rc4_8c_a4f610c15f71bd7133905ba8c42b25085}{rc4\_add\_entropy}}(in, inlen, prng)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{175    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{176 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+A\+RG, C\+R\+Y\+P\+T\+\_\+\+OK, ltc\+\_\+prng\+\_\+descriptor\+::export\+\_\+size, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, rc4\+\_\+add\+\_\+entropy(), rc4\+\_\+desc, and rc4\+\_\+start().
+
+
+
+Referenced by rc4\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 6
+Here is the caller graph for this function\+:
+% FIG 7
+\mbox{\Hypertarget{rc4_8c_a672bb35f2b7ef86d24499ef90ea2676a}\label{rc4_8c_a672bb35f2b7ef86d24499ef90ea2676a}} 
+\index{rc4.c@{rc4.c}!rc4\_read@{rc4\_read}}
+\index{rc4\_read@{rc4\_read}!rc4.c@{rc4.c}}
+\subsubsection{\texorpdfstring{rc4\_read()}{rc4\_read()}}
+{\footnotesize\ttfamily unsigned long rc4\+\_\+read (\begin{DoxyParamCaption}\item[{unsigned char $\ast$}]{out,  }\item[{unsigned long}]{outlen,  }\item[{\mbox{\hyperlink{structprng__state}{prng\+\_\+state}} $\ast$}]{prng }\end{DoxyParamCaption})}
+
+
+
+Read from the P\+R\+NG. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em out} & Destination \\
+\hline
+{\em outlen} & Length of output \\
+\hline
+{\em prng} & The active P\+R\+NG to read from \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Number of octets read 
+\end{DoxyReturn}
+
+
+Definition at line 121 of file rc4.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{122 \{}
+\DoxyCodeLine{123    \textcolor{keywordflow}{if} (outlen == 0 || prng == NULL || out == NULL) \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{124    \mbox{\hyperlink{tomcrypt__custom_8h_a427a107414e4d775fbf23f4a499f4a31}{LTC\_MUTEX\_LOCK}}(\&prng->lock);}
+\DoxyCodeLine{125    \textcolor{keywordflow}{if} (!prng->\mbox{\hyperlink{structprng__state_ad5b2704260668ba49701ba0169286837}{ready}}) \{ outlen = 0; \textcolor{keywordflow}{goto} LBL\_UNLOCK; \}}
+\DoxyCodeLine{126    \textcolor{keywordflow}{if} (\mbox{\hyperlink{rc4__stream_8c_a51958ea4c995703c6f9596af8507c136}{rc4\_stream\_keystream}}(\&prng->\mbox{\hyperlink{structprng__state_a73ffeba26752871bc883f035a89f0991}{u}}.rc4.s, out, outlen) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) outlen = 0;}
+\DoxyCodeLine{127 LBL\_UNLOCK:}
+\DoxyCodeLine{128    \mbox{\hyperlink{tomcrypt__custom_8h_acdf267be91b178b4fafe8f992d57a7f1}{LTC\_MUTEX\_UNLOCK}}(\&prng->lock);}
+\DoxyCodeLine{129    \textcolor{keywordflow}{return} outlen;}
+\DoxyCodeLine{130 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+M\+U\+T\+E\+X\+\_\+\+L\+O\+CK, L\+T\+C\+\_\+\+M\+U\+T\+E\+X\+\_\+\+U\+N\+L\+O\+CK, rc4\+\_\+stream\+\_\+keystream(), prng\+\_\+state\+::ready, and prng\+\_\+state\+::u.
+
+
+
+Referenced by rc4\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 8
+Here is the caller graph for this function\+:
+% FIG 9
+\mbox{\Hypertarget{rc4_8c_a2736422ebc97697aacbc3fd53ce82da6}\label{rc4_8c_a2736422ebc97697aacbc3fd53ce82da6}} 
+\index{rc4.c@{rc4.c}!rc4\_ready@{rc4\_ready}}
+\index{rc4\_ready@{rc4\_ready}!rc4.c@{rc4.c}}
+\subsubsection{\texorpdfstring{rc4\_ready()}{rc4\_ready()}}
+{\footnotesize\ttfamily int rc4\+\_\+ready (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structprng__state}{prng\+\_\+state}} $\ast$}]{prng }\end{DoxyParamCaption})}
+
+
+
+Make the P\+R\+NG ready to read from. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em prng} & The P\+R\+NG to make active \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 92 of file rc4.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{93 \{}
+\DoxyCodeLine{94    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} buf[256] = \{ 0 \};}
+\DoxyCodeLine{95    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}};}
+\DoxyCodeLine{96    \textcolor{keywordtype}{int} err, i;}
+\DoxyCodeLine{97 }
+\DoxyCodeLine{98    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(prng != NULL);}
+\DoxyCodeLine{99 }
+\DoxyCodeLine{100    \mbox{\hyperlink{tomcrypt__custom_8h_a427a107414e4d775fbf23f4a499f4a31}{LTC\_MUTEX\_LOCK}}(\&prng->lock);}
+\DoxyCodeLine{101    \textcolor{keywordflow}{if} (prng->\mbox{\hyperlink{structprng__state_ad5b2704260668ba49701ba0169286837}{ready}}) \{ err = \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}; \textcolor{keywordflow}{goto} LBL\_UNLOCK; \}}
+\DoxyCodeLine{102    \mbox{\hyperlink{tomcrypt__cfg_8h_a7691dd48d60d5fc6daf2fa7ec4c55e12}{XMEMCPY}}(buf, prng->\mbox{\hyperlink{structprng__state_a73ffeba26752871bc883f035a89f0991}{u}}.rc4.s.buf, \textcolor{keyword}{sizeof}(buf));}
+\DoxyCodeLine{103    \textcolor{comment}{/* initialize RC4 */}}
+\DoxyCodeLine{104    \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}} = \mbox{\hyperlink{tomcrypt__macros_8h_a74e75242132eaabbc1c512488a135926}{MIN}}(prng->\mbox{\hyperlink{structprng__state_a73ffeba26752871bc883f035a89f0991}{u}}.rc4.s.x, 256); \textcolor{comment}{/* TODO: we can perhaps always use all 256 bytes */}}
+\DoxyCodeLine{105    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{rc4__stream_8c_a4f9ba9106b0ee28cffced552636662a2}{rc4\_stream\_setup}}(\&prng->\mbox{\hyperlink{structprng__state_a73ffeba26752871bc883f035a89f0991}{u}}.rc4.s, buf, \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}})) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \textcolor{keywordflow}{goto} LBL\_UNLOCK;}
+\DoxyCodeLine{106    \textcolor{comment}{/* drop first 3072 bytes - https://en.wikipedia.org/wiki/RC4\#Fluhrer.2C\_Mantin\_and\_Shamir\_attack */}}
+\DoxyCodeLine{107    \textcolor{keywordflow}{for} (i = 0; i < 12; i++) \mbox{\hyperlink{rc4__stream_8c_a51958ea4c995703c6f9596af8507c136}{rc4\_stream\_keystream}}(\&prng->\mbox{\hyperlink{structprng__state_a73ffeba26752871bc883f035a89f0991}{u}}.rc4.s, buf, \textcolor{keyword}{sizeof}(buf));}
+\DoxyCodeLine{108    prng->\mbox{\hyperlink{structprng__state_ad5b2704260668ba49701ba0169286837}{ready}} = 1;}
+\DoxyCodeLine{109 LBL\_UNLOCK:}
+\DoxyCodeLine{110    \mbox{\hyperlink{tomcrypt__custom_8h_acdf267be91b178b4fafe8f992d57a7f1}{LTC\_MUTEX\_UNLOCK}}(\&prng->lock);}
+\DoxyCodeLine{111    \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{112 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, len, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, L\+T\+C\+\_\+\+M\+U\+T\+E\+X\+\_\+\+L\+O\+CK, L\+T\+C\+\_\+\+M\+U\+T\+E\+X\+\_\+\+U\+N\+L\+O\+CK, M\+IN, rc4\+\_\+stream\+\_\+keystream(), rc4\+\_\+stream\+\_\+setup(), prng\+\_\+state\+::ready, prng\+\_\+state\+::u, and X\+M\+E\+M\+C\+P\+Y().
+
+
+
+Referenced by rc4\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 10
+Here is the caller graph for this function\+:
+% FIG 11
+\mbox{\Hypertarget{rc4_8c_a8bfd80b8ba38e3eb896eb3d3caa59cd7}\label{rc4_8c_a8bfd80b8ba38e3eb896eb3d3caa59cd7}} 
+\index{rc4.c@{rc4.c}!rc4\_start@{rc4\_start}}
+\index{rc4\_start@{rc4\_start}!rc4.c@{rc4.c}}
+\subsubsection{\texorpdfstring{rc4\_start()}{rc4\_start()}}
+{\footnotesize\ttfamily int rc4\+\_\+start (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structprng__state}{prng\+\_\+state}} $\ast$}]{prng }\end{DoxyParamCaption})}
+
+
+
+Start the P\+R\+NG. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em prng} & \mbox{[}out\mbox{]} The P\+R\+NG state to initialize \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 37 of file rc4.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{38 \{}
+\DoxyCodeLine{39    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(prng != NULL);}
+\DoxyCodeLine{40    prng->\mbox{\hyperlink{structprng__state_ad5b2704260668ba49701ba0169286837}{ready}} = 0;}
+\DoxyCodeLine{41    \textcolor{comment}{/* set entropy (key) size to zero */}}
+\DoxyCodeLine{42    prng->\mbox{\hyperlink{structprng__state_a73ffeba26752871bc883f035a89f0991}{u}}.rc4.s.x = 0;}
+\DoxyCodeLine{43    \textcolor{comment}{/* clear entropy (key) buffer */}}
+\DoxyCodeLine{44    \mbox{\hyperlink{tomcrypt__cfg_8h_aa3c34a6f6c61de7da9258b5a30e32c2f}{XMEMSET}}(\&prng->\mbox{\hyperlink{structprng__state_a73ffeba26752871bc883f035a89f0991}{u}}.rc4.s.buf, 0, \textcolor{keyword}{sizeof}(prng->\mbox{\hyperlink{structprng__state_a73ffeba26752871bc883f035a89f0991}{u}}.rc4.s.buf));}
+\DoxyCodeLine{45    \mbox{\hyperlink{tomcrypt__custom_8h_a450b04a6e1d004908791edaa0901d284}{LTC\_MUTEX\_INIT}}(\&prng->lock)}
+\DoxyCodeLine{46    return \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{47 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, L\+T\+C\+\_\+\+M\+U\+T\+E\+X\+\_\+\+I\+N\+IT, prng\+\_\+state\+::ready, prng\+\_\+state\+::u, and X\+M\+E\+M\+S\+E\+T().
+
+
+
+Referenced by rc4\+\_\+import(), and rc4\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 12
+Here is the caller graph for this function\+:
+% FIG 13
+\mbox{\Hypertarget{rc4_8c_ad8af7083fd45b4c39ec2720455518560}\label{rc4_8c_ad8af7083fd45b4c39ec2720455518560}} 
+\index{rc4.c@{rc4.c}!rc4\_test@{rc4\_test}}
+\index{rc4\_test@{rc4\_test}!rc4.c@{rc4.c}}
+\subsubsection{\texorpdfstring{rc4\_test()}{rc4\_test()}}
+{\footnotesize\ttfamily int rc4\+\_\+test (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+P\+R\+NG self-\/test. 
+
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful, C\+R\+Y\+P\+T\+\_\+\+N\+OP if self-\/testing has been disabled 
+\end{DoxyReturn}
+
+
+Definition at line 182 of file rc4.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{183 \{}
+\DoxyCodeLine{184 \textcolor{preprocessor}{\#ifndef LTC\_TEST}}
+\DoxyCodeLine{185    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cac43a7799c7fd5f515172da6cfc0f9cf5}{CRYPT\_NOP}};}
+\DoxyCodeLine{186 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{187    \mbox{\hyperlink{structprng__state}{prng\_state}} st;}
+\DoxyCodeLine{188    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} en[] = \{ 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0a,}
+\DoxyCodeLine{189                           0x0b, 0x0c, 0x0d, 0x0e, 0x0f, 0x10, 0x11, 0x12, 0x13, 0x14,}
+\DoxyCodeLine{190                           0x15, 0x16, 0x17, 0x18, 0x19, 0x1a, 0x1b, 0x1c, 0x1d, 0x1e,}
+\DoxyCodeLine{191                           0x1f, 0x20, 0x21, 0x22, 0x23, 0x24, 0x25, 0x26, 0x27, 0x28,}
+\DoxyCodeLine{192                           0x29, 0x2a, 0x2b, 0x2c, 0x2d, 0x2e, 0x2f, 0x30, 0x31, 0x32 \};}
+\DoxyCodeLine{193    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} dmp[500];}
+\DoxyCodeLine{194    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} dmplen = \textcolor{keyword}{sizeof}(dmp);}
+\DoxyCodeLine{195    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} out[1000];}
+\DoxyCodeLine{196    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} \mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}}[] = \{ 0xE0, 0x4D, 0x9A, 0xF6, 0xA8, 0x9D, 0x77, 0x53, 0xAE, 0x09 \};}
+\DoxyCodeLine{197    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} \mbox{\hyperlink{tiger_8c_aa4652e2d6053d420dcbea07a113db5fe}{t2}}[] = \{ 0xEF, 0x80, 0xA2, 0xE6, 0x50, 0x91, 0xF3, 0x17, 0x4A, 0x8A \};}
+\DoxyCodeLine{198    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} \mbox{\hyperlink{tiger_8c_a71a491fa5f35065b954a3001ebed0f28}{t3}}[] = \{ 0x4B, 0xD6, 0x5C, 0x67, 0x99, 0x03, 0x56, 0x12, 0x80, 0x48 \};}
+\DoxyCodeLine{199    \textcolor{keywordtype}{int} err;}
+\DoxyCodeLine{200 }
+\DoxyCodeLine{201    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{rc4_8c_a8bfd80b8ba38e3eb896eb3d3caa59cd7}{rc4\_start}}(\&st)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                         \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{202    \textcolor{comment}{/* add entropy to uninitialized prng */}}
+\DoxyCodeLine{203    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{rc4_8c_a4f610c15f71bd7133905ba8c42b25085}{rc4\_add\_entropy}}(en, \textcolor{keyword}{sizeof}(en), \&st)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})   \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{204    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{rc4_8c_a2736422ebc97697aacbc3fd53ce82da6}{rc4\_ready}}(\&st)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                         \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{205    \textcolor{keywordflow}{if} (\mbox{\hyperlink{rc4_8c_a672bb35f2b7ef86d24499ef90ea2676a}{rc4\_read}}(out, 10, \&st) != 10)                               \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca68eea82b3b71f23031cd94b10c920bf3}{CRYPT\_ERROR\_READPRNG}}; \textcolor{comment}{/* 10 bytes for testing */}}
+\DoxyCodeLine{206    \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(out, 10, \mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}}, \textcolor{keyword}{sizeof}(\mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}}), \textcolor{stringliteral}{"RC4-PRNG"}, 1)) \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{207    \textcolor{keywordflow}{if} (\mbox{\hyperlink{rc4_8c_a672bb35f2b7ef86d24499ef90ea2676a}{rc4\_read}}(out, 500, \&st) != 500)                             \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca68eea82b3b71f23031cd94b10c920bf3}{CRYPT\_ERROR\_READPRNG}}; \textcolor{comment}{/* skip 500 bytes */}}
+\DoxyCodeLine{208    \textcolor{comment}{/* add entropy to already initialized prng */}}
+\DoxyCodeLine{209    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{rc4_8c_a4f610c15f71bd7133905ba8c42b25085}{rc4\_add\_entropy}}(en, \textcolor{keyword}{sizeof}(en), \&st)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})   \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{210    \textcolor{keywordflow}{if} (\mbox{\hyperlink{rc4_8c_a672bb35f2b7ef86d24499ef90ea2676a}{rc4\_read}}(out, 500, \&st) != 500)                             \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca68eea82b3b71f23031cd94b10c920bf3}{CRYPT\_ERROR\_READPRNG}}; \textcolor{comment}{/* skip 500 bytes */}}
+\DoxyCodeLine{211    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{rc4_8c_ab734b7565ee735e487a23ab72774ef4d}{rc4\_export}}(dmp, \&dmplen, \&st)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})          \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{212    \textcolor{keywordflow}{if} (\mbox{\hyperlink{rc4_8c_a672bb35f2b7ef86d24499ef90ea2676a}{rc4\_read}}(out, 500, \&st) != 500)                             \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca68eea82b3b71f23031cd94b10c920bf3}{CRYPT\_ERROR\_READPRNG}}; \textcolor{comment}{/* skip 500 bytes */}}
+\DoxyCodeLine{213    \textcolor{keywordflow}{if} (\mbox{\hyperlink{rc4_8c_a672bb35f2b7ef86d24499ef90ea2676a}{rc4\_read}}(out, 10, \&st) != 10)                               \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca68eea82b3b71f23031cd94b10c920bf3}{CRYPT\_ERROR\_READPRNG}}; \textcolor{comment}{/* 10 bytes for testing */}}
+\DoxyCodeLine{214    \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(out, 10, \mbox{\hyperlink{tiger_8c_aa4652e2d6053d420dcbea07a113db5fe}{t2}}, \textcolor{keyword}{sizeof}(\mbox{\hyperlink{tiger_8c_aa4652e2d6053d420dcbea07a113db5fe}{t2}}), \textcolor{stringliteral}{"RC4-PRNG"}, 2)) \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{215    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{rc4_8c_a952a774c3bf86fc6b351bfd1fcfa7558}{rc4\_done}}(\&st)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                          \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{216    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{rc4_8c_ad11a03b9a6aabff43cb59d46d1eef7ce}{rc4\_import}}(dmp, dmplen, \&st)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})           \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{217    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{rc4_8c_a2736422ebc97697aacbc3fd53ce82da6}{rc4\_ready}}(\&st)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                         \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{218    \textcolor{keywordflow}{if} (\mbox{\hyperlink{rc4_8c_a672bb35f2b7ef86d24499ef90ea2676a}{rc4\_read}}(out, 500, \&st) != 500)                             \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca68eea82b3b71f23031cd94b10c920bf3}{CRYPT\_ERROR\_READPRNG}}; \textcolor{comment}{/* skip 500 bytes */}}
+\DoxyCodeLine{219    \textcolor{keywordflow}{if} (\mbox{\hyperlink{rc4_8c_a672bb35f2b7ef86d24499ef90ea2676a}{rc4\_read}}(out, 10, \&st) != 10)                               \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca68eea82b3b71f23031cd94b10c920bf3}{CRYPT\_ERROR\_READPRNG}}; \textcolor{comment}{/* 10 bytes for testing */}}
+\DoxyCodeLine{220    \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(out, 10, \mbox{\hyperlink{tiger_8c_a71a491fa5f35065b954a3001ebed0f28}{t3}}, \textcolor{keyword}{sizeof}(\mbox{\hyperlink{tiger_8c_a71a491fa5f35065b954a3001ebed0f28}{t3}}), \textcolor{stringliteral}{"RC4-PRNG"}, 3)) \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{221    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{rc4_8c_a952a774c3bf86fc6b351bfd1fcfa7558}{rc4\_done}}(\&st)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                          \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{222 }
+\DoxyCodeLine{223    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{224 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{225 \}}
+
+\end{DoxyCode}
+
+
+References compare\+\_\+testvector(), C\+R\+Y\+P\+T\+\_\+\+E\+R\+R\+O\+R\+\_\+\+R\+E\+A\+D\+P\+R\+NG, C\+R\+Y\+P\+T\+\_\+\+F\+A\+I\+L\+\_\+\+T\+E\+S\+T\+V\+E\+C\+T\+OR, C\+R\+Y\+P\+T\+\_\+\+N\+OP, C\+R\+Y\+P\+T\+\_\+\+OK, rc4\+\_\+add\+\_\+entropy(), rc4\+\_\+done(), rc4\+\_\+export(), rc4\+\_\+import(), rc4\+\_\+read(), rc4\+\_\+ready(), rc4\+\_\+start(), t1, t2, and t3.
+
+Here is the call graph for this function\+:
+% FIG 14
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{rc4_8c_af600b7283289a2db35dd33c40ca97552}\label{rc4_8c_af600b7283289a2db35dd33c40ca97552}} 
+\index{rc4.c@{rc4.c}!rc4\_desc@{rc4\_desc}}
+\index{rc4\_desc@{rc4\_desc}!rc4.c@{rc4.c}}
+\subsubsection{\texorpdfstring{rc4\_desc}{rc4\_desc}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structltc__prng__descriptor}{ltc\+\_\+prng\+\_\+descriptor}} rc4\+\_\+desc}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{   \textcolor{stringliteral}{"rc4"},}
+\DoxyCodeLine{   32,}
+\DoxyCodeLine{   \&\mbox{\hyperlink{rc4_8c_a8bfd80b8ba38e3eb896eb3d3caa59cd7}{rc4\_start}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{rc4_8c_a4f610c15f71bd7133905ba8c42b25085}{rc4\_add\_entropy}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{rc4_8c_a2736422ebc97697aacbc3fd53ce82da6}{rc4\_ready}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{rc4_8c_a672bb35f2b7ef86d24499ef90ea2676a}{rc4\_read}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{rc4_8c_a952a774c3bf86fc6b351bfd1fcfa7558}{rc4\_done}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{rc4_8c_ab734b7565ee735e487a23ab72774ef4d}{rc4\_export}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{rc4_8c_ad11a03b9a6aabff43cb59d46d1eef7ce}{rc4\_import}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{rc4_8c_ad8af7083fd45b4c39ec2720455518560}{rc4\_test}}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line 18 of file rc4.\+c.
+
+
+
+Referenced by rc4\+\_\+import(), and register\+\_\+all\+\_\+prngs().
+

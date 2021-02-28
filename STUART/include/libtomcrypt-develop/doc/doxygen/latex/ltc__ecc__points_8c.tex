@@ -1,0 +1,178 @@
+\hypertarget{ltc__ecc__points_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/pk/ecc/ltc\+\_\+ecc\+\_\+points.c File Reference}
+\label{ltc__ecc__points_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/ecc/ltc\_ecc\_points.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/ecc/ltc\_ecc\_points.c}}
+
+
+E\+CC Crypto, Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for ltc\+\_\+ecc\+\_\+points.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{tomcrypt__math_8h_a2a6efaeaa795aa54274d7c4fd66b018a}{ecc\+\_\+point}} $\ast$ \mbox{\hyperlink{ltc__ecc__points_8c_a532af6ef2d0f6d1d8cd79e5f81e87cf8}{ltc\+\_\+ecc\+\_\+new\+\_\+point}} (void)
+\begin{DoxyCompactList}\small\item\em Allocate a new E\+CC point. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{ltc__ecc__points_8c_a4cef83a7c070c94ff78d4df10a7b624f}{ltc\+\_\+ecc\+\_\+del\+\_\+point}} (\mbox{\hyperlink{tomcrypt__math_8h_a2a6efaeaa795aa54274d7c4fd66b018a}{ecc\+\_\+point}} $\ast$p)
+\begin{DoxyCompactList}\small\item\em Free an E\+CC point from memory. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{ltc__ecc__points_8c_adc0366a4a0c272b7594bcea0d8fe7ccb}{ltc\+\_\+ecc\+\_\+set\+\_\+point\+\_\+xyz}} (\mbox{\hyperlink{tomcrypt__cfg_8h_a4e98fa26a5de0ac87e06af901bad57c4}{ltc\+\_\+mp\+\_\+digit}} x, \mbox{\hyperlink{tomcrypt__cfg_8h_a4e98fa26a5de0ac87e06af901bad57c4}{ltc\+\_\+mp\+\_\+digit}} y, \mbox{\hyperlink{tomcrypt__cfg_8h_a4e98fa26a5de0ac87e06af901bad57c4}{ltc\+\_\+mp\+\_\+digit}} z, \mbox{\hyperlink{tomcrypt__math_8h_a2a6efaeaa795aa54274d7c4fd66b018a}{ecc\+\_\+point}} $\ast$p)
+\item 
+int \mbox{\hyperlink{ltc__ecc__points_8c_a4b36b54e30a0a87aff57a936b386df7f}{ltc\+\_\+ecc\+\_\+copy\+\_\+point}} (const \mbox{\hyperlink{tomcrypt__math_8h_a2a6efaeaa795aa54274d7c4fd66b018a}{ecc\+\_\+point}} $\ast$src, \mbox{\hyperlink{tomcrypt__math_8h_a2a6efaeaa795aa54274d7c4fd66b018a}{ecc\+\_\+point}} $\ast$dst)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+E\+CC Crypto, Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{ltc__ecc__points_8c_a4b36b54e30a0a87aff57a936b386df7f}\label{ltc__ecc__points_8c_a4b36b54e30a0a87aff57a936b386df7f}} 
+\index{ltc\_ecc\_points.c@{ltc\_ecc\_points.c}!ltc\_ecc\_copy\_point@{ltc\_ecc\_copy\_point}}
+\index{ltc\_ecc\_copy\_point@{ltc\_ecc\_copy\_point}!ltc\_ecc\_points.c@{ltc\_ecc\_points.c}}
+\subsubsection{\texorpdfstring{ltc\_ecc\_copy\_point()}{ltc\_ecc\_copy\_point()}}
+{\footnotesize\ttfamily int ltc\+\_\+ecc\+\_\+copy\+\_\+point (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{tomcrypt__math_8h_a2a6efaeaa795aa54274d7c4fd66b018a}{ecc\+\_\+point}} $\ast$}]{src,  }\item[{\mbox{\hyperlink{tomcrypt__math_8h_a2a6efaeaa795aa54274d7c4fd66b018a}{ecc\+\_\+point}} $\ast$}]{dst }\end{DoxyParamCaption})}
+
+
+
+Definition at line 58 of file ltc\+\_\+ecc\+\_\+points.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{59 \{}
+\DoxyCodeLine{60    \textcolor{keywordtype}{int} err;}
+\DoxyCodeLine{61    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__math_8h_a3d38c44518c63b7a8abd0938f3d41c65}{ltc\_mp}}.\mbox{\hyperlink{structltc__math__descriptor_a1f4a910f2a962c70c7ef7dae0bc84eef}{copy}}(src->x, dst->x)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{62    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__math_8h_a3d38c44518c63b7a8abd0938f3d41c65}{ltc\_mp}}.\mbox{\hyperlink{structltc__math__descriptor_a1f4a910f2a962c70c7ef7dae0bc84eef}{copy}}(src->y, dst->y)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{63    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__math_8h_a3d38c44518c63b7a8abd0938f3d41c65}{ltc\_mp}}.\mbox{\hyperlink{structltc__math__descriptor_a1f4a910f2a962c70c7ef7dae0bc84eef}{copy}}(src->z, dst->z)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{64    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{65 \}}
+
+\end{DoxyCode}
+
+
+References ltc\+\_\+math\+\_\+descriptor\+::copy, C\+R\+Y\+P\+T\+\_\+\+OK, and ltc\+\_\+mp.
+
+
+
+Referenced by ecc\+\_\+copy\+\_\+curve(), ecc\+\_\+recover\+\_\+key(), ecc\+\_\+verify\+\_\+hash\+\_\+ex(), ltc\+\_\+ecc\+\_\+mul2add(), ltc\+\_\+ecc\+\_\+mulmod(), ltc\+\_\+ecc\+\_\+projective\+\_\+add\+\_\+point(), and ltc\+\_\+ecc\+\_\+projective\+\_\+dbl\+\_\+point().
+
+Here is the caller graph for this function\+:
+% FIG 1
+\mbox{\Hypertarget{ltc__ecc__points_8c_a4cef83a7c070c94ff78d4df10a7b624f}\label{ltc__ecc__points_8c_a4cef83a7c070c94ff78d4df10a7b624f}} 
+\index{ltc\_ecc\_points.c@{ltc\_ecc\_points.c}!ltc\_ecc\_del\_point@{ltc\_ecc\_del\_point}}
+\index{ltc\_ecc\_del\_point@{ltc\_ecc\_del\_point}!ltc\_ecc\_points.c@{ltc\_ecc\_points.c}}
+\subsubsection{\texorpdfstring{ltc\_ecc\_del\_point()}{ltc\_ecc\_del\_point()}}
+{\footnotesize\ttfamily void ltc\+\_\+ecc\+\_\+del\+\_\+point (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__math_8h_a2a6efaeaa795aa54274d7c4fd66b018a}{ecc\+\_\+point}} $\ast$}]{p }\end{DoxyParamCaption})}
+
+
+
+Free an E\+CC point from memory. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p} & The point to free \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 40 of file ltc\+\_\+ecc\+\_\+points.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{41 \{}
+\DoxyCodeLine{42    \textcolor{comment}{/* prevents free'ing null arguments */}}
+\DoxyCodeLine{43    \textcolor{keywordflow}{if} (p != NULL) \{}
+\DoxyCodeLine{44       \mbox{\hyperlink{tomcrypt__private_8h_aad5c8a3112b3e4613f9efc86692c43cb}{mp\_clear\_multi}}(p->x, p->y, p->z, NULL); \textcolor{comment}{/* note: p->z may be NULL but that's ok with this function anyways */}}
+\DoxyCodeLine{45       \mbox{\hyperlink{tomcrypt__cfg_8h_a260d66fc0690e0502cf3bfe7b5244b75}{XFREE}}(p);}
+\DoxyCodeLine{46    \}}
+\DoxyCodeLine{47 \}}
+
+\end{DoxyCode}
+
+
+References mp\+\_\+clear\+\_\+multi, and X\+F\+R\+E\+E().
+
+
+
+Referenced by ecc\+\_\+recover\+\_\+key(), ecc\+\_\+shared\+\_\+secret(), ecc\+\_\+verify\+\_\+hash\+\_\+ex(), ltc\+\_\+ecc\+\_\+mul2add(), ltc\+\_\+ecc\+\_\+mulmod(), and ltc\+\_\+ecc\+\_\+verify\+\_\+key().
+
+Here is the call graph for this function\+:
+% FIG 2
+Here is the caller graph for this function\+:
+% FIG 3
+\mbox{\Hypertarget{ltc__ecc__points_8c_a532af6ef2d0f6d1d8cd79e5f81e87cf8}\label{ltc__ecc__points_8c_a532af6ef2d0f6d1d8cd79e5f81e87cf8}} 
+\index{ltc\_ecc\_points.c@{ltc\_ecc\_points.c}!ltc\_ecc\_new\_point@{ltc\_ecc\_new\_point}}
+\index{ltc\_ecc\_new\_point@{ltc\_ecc\_new\_point}!ltc\_ecc\_points.c@{ltc\_ecc\_points.c}}
+\subsubsection{\texorpdfstring{ltc\_ecc\_new\_point()}{ltc\_ecc\_new\_point()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tomcrypt__math_8h_a2a6efaeaa795aa54274d7c4fd66b018a}{ecc\+\_\+point}}$\ast$ ltc\+\_\+ecc\+\_\+new\+\_\+point (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Allocate a new E\+CC point. 
+
+\begin{DoxyReturn}{Returns}
+A newly allocated point or N\+U\+LL on error 
+\end{DoxyReturn}
+
+
+Definition at line 23 of file ltc\+\_\+ecc\+\_\+points.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{24 \{}
+\DoxyCodeLine{25    \mbox{\hyperlink{tomcrypt__math_8h_a2a6efaeaa795aa54274d7c4fd66b018a}{ecc\_point}} *p;}
+\DoxyCodeLine{26    p = \mbox{\hyperlink{tomcrypt__cfg_8h_a151dda14cd7acae31eaf1102b0cc0685}{XCALLOC}}(1, \textcolor{keyword}{sizeof}(*p));}
+\DoxyCodeLine{27    \textcolor{keywordflow}{if} (p == NULL) \{}
+\DoxyCodeLine{28       \textcolor{keywordflow}{return} NULL;}
+\DoxyCodeLine{29    \}}
+\DoxyCodeLine{30    \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__private_8h_adb6322247b1a4f0347219acab3120bd3}{mp\_init\_multi}}(\&p->x, \&p->y, \&p->z, NULL) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{31       \mbox{\hyperlink{tomcrypt__cfg_8h_a260d66fc0690e0502cf3bfe7b5244b75}{XFREE}}(p);}
+\DoxyCodeLine{32       \textcolor{keywordflow}{return} NULL;}
+\DoxyCodeLine{33    \}}
+\DoxyCodeLine{34    \textcolor{keywordflow}{return} p;}
+\DoxyCodeLine{35 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, mp\+\_\+init\+\_\+multi, X\+C\+A\+L\+L\+O\+C(), and X\+F\+R\+E\+E().
+
+
+
+Referenced by ecc\+\_\+recover\+\_\+key(), ecc\+\_\+shared\+\_\+secret(), ecc\+\_\+verify\+\_\+hash\+\_\+ex(), ltc\+\_\+ecc\+\_\+mul2add(), ltc\+\_\+ecc\+\_\+mulmod(), and ltc\+\_\+ecc\+\_\+verify\+\_\+key().
+
+Here is the call graph for this function\+:
+% FIG 4
+Here is the caller graph for this function\+:
+% FIG 5
+\mbox{\Hypertarget{ltc__ecc__points_8c_adc0366a4a0c272b7594bcea0d8fe7ccb}\label{ltc__ecc__points_8c_adc0366a4a0c272b7594bcea0d8fe7ccb}} 
+\index{ltc\_ecc\_points.c@{ltc\_ecc\_points.c}!ltc\_ecc\_set\_point\_xyz@{ltc\_ecc\_set\_point\_xyz}}
+\index{ltc\_ecc\_set\_point\_xyz@{ltc\_ecc\_set\_point\_xyz}!ltc\_ecc\_points.c@{ltc\_ecc\_points.c}}
+\subsubsection{\texorpdfstring{ltc\_ecc\_set\_point\_xyz()}{ltc\_ecc\_set\_point\_xyz()}}
+{\footnotesize\ttfamily int ltc\+\_\+ecc\+\_\+set\+\_\+point\+\_\+xyz (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__cfg_8h_a4e98fa26a5de0ac87e06af901bad57c4}{ltc\+\_\+mp\+\_\+digit}}}]{x,  }\item[{\mbox{\hyperlink{tomcrypt__cfg_8h_a4e98fa26a5de0ac87e06af901bad57c4}{ltc\+\_\+mp\+\_\+digit}}}]{y,  }\item[{\mbox{\hyperlink{tomcrypt__cfg_8h_a4e98fa26a5de0ac87e06af901bad57c4}{ltc\+\_\+mp\+\_\+digit}}}]{z,  }\item[{\mbox{\hyperlink{tomcrypt__math_8h_a2a6efaeaa795aa54274d7c4fd66b018a}{ecc\+\_\+point}} $\ast$}]{p }\end{DoxyParamCaption})}
+
+
+
+Definition at line 49 of file ltc\+\_\+ecc\+\_\+points.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{50 \{}
+\DoxyCodeLine{51    \textcolor{keywordtype}{int} err;}
+\DoxyCodeLine{52    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__math_8h_a3d38c44518c63b7a8abd0938f3d41c65}{ltc\_mp}}.\mbox{\hyperlink{structltc__math__descriptor_ad306f25bb0a78e082f0c3baf85c4f44c}{set\_int}}(p->x, x)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{53    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__math_8h_a3d38c44518c63b7a8abd0938f3d41c65}{ltc\_mp}}.\mbox{\hyperlink{structltc__math__descriptor_ad306f25bb0a78e082f0c3baf85c4f44c}{set\_int}}(p->y, y)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{54    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__math_8h_a3d38c44518c63b7a8abd0938f3d41c65}{ltc\_mp}}.\mbox{\hyperlink{structltc__math__descriptor_ad306f25bb0a78e082f0c3baf85c4f44c}{set\_int}}(p->z, z)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{55    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{56 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, ltc\+\_\+mp, and ltc\+\_\+math\+\_\+descriptor\+::set\+\_\+int.
+
+
+
+Referenced by ltc\+\_\+ecc\+\_\+map(), ltc\+\_\+ecc\+\_\+mulmod(), ltc\+\_\+ecc\+\_\+projective\+\_\+add\+\_\+point(), and ltc\+\_\+ecc\+\_\+projective\+\_\+dbl\+\_\+point().
+
+Here is the caller graph for this function\+:
+% FIG 6

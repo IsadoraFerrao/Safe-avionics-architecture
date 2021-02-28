@@ -1,0 +1,99 @@
+/*
+ * Copyright (C) 2017     Critical Embedded System Laboratory (LSEC)
+ * 
+ * This program is free software; you can redistribute it and/or modify it 
+ * under the terms of the GNU Lesser General Public License as published by the
+ * Free Software Foundation; either version 2 of the License, or (at your 
+ * option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful, but WITHOUT 
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or 
+ * FITNESS FOR A PARTICULAR PURPOSE.
+ * 
+ * See the GNU Lesser General Public License for more details.
+ * <http://www.gnu.org/licenses/>
+ */
+
+/* 
+ * \file   HAMSTEREntity.cc
+ * \author: Mariana Rodrigues   rodrigues.mariana@gmail.com
+ * \copyright GNU Lesser General Public License.
+ */
+
+#include "HAMSTEREntity.h"
+#include "NCI.h"
+#include "NCIEntity.h"
+#include "NPManager.h"
+#include "NIMBLE.h"
+#include "CommBroker.h"
+#include "INETSocketAddressInfo.h"
+#include <cstring>
+#include <type_traits>
+#include <iostream>
+
+namespace hamster {
+//------------------------------------------------------------------------------
+// Constructor/Destructor
+//------------------------------------------------------------------------------
+HAMSTEREntity::HAMSTEREntity(char * config_file_name): HAMSTERUnit(config_file_name){
+
+    bool centralized,known_formation;
+    int integer_attribute, port_number;
+    TiXmlDocument config_file;
+    
+    // Load configuration file
+    if(config_file.LoadFile(config_file_name) != true){
+        utils::Uuid * temp_id = new utils::Uuid();
+        this->getID().fromString(temp_id->toString());
+        logErrorMessage("Error in loading configuration file in unit. Error description:",
+                config_file.ErrorDesc(),"Random ID ",this->getID().toString()," created.");
+    }else{
+        // Read configuration file
+        // 1. Read options
+        TiXmlElement * options = config_file.FirstChildElement("OPTIONS");
+        options->QueryBoolAttribute("CENTRALIZED",&centralized);
+        options->QueryBoolAttribute("KNOWN_FORMATION",&known_formation);
+        TiXmlElement * unit_element = options->NextSiblingElement();    // 'Unit' element
+        unit_element->Attribute("Type",&integer_attribute);
+        if(integer_attribute == 1){     // Read Entity data. Not applicable for SuperEntity.
+            if(centralized == true){
+                // Anything specific?
+            }else if(known_formation == true){
+                // Read entity's HAMSTER Peers
+            }else{
+                // Decentralized, unknown formation.
+            }
+            // Create entity platforms
+            this->setSPHEREPlatform(new sphere::CentralSPHERE(this,this->getCommunicationInfo()));
+            this->setNCIPlatform(new nci::NCIEntity(this,this->getCommunicationInfo()));
+            this->setNPPlatform(new navigation_phases::NPManager(this,this->getCommunicationInfo()));
+            this->setNIMBLEPlatform(new nimble::NIMBLE(this,this->getCommunicationInfo()));
+            logDebugMessage("New HAMSTEREntity. ID = ", this->getID().toString());
+        }
+    }
+}
+HAMSTEREntity::~HAMSTEREntity() {
+}
+//------------------------------------------------------------------------------
+// HAMSTER Node methods
+//------------------------------------------------------------------------------
+void HAMSTEREntity::initialize(void){
+    // Initialize unit
+    HAMSTERUnit::initialize();
+    // Initialize user application
+    logDebugMessage("Entity Initialization. ID = ",this->getID().toString());
+};
+void HAMSTEREntity::execute(void){
+    do{
+        this->customExecution();
+    }while(this->terminate == false);
+};
+
+void HAMSTEREntity::nodeTermination(void){};
+std::ostream& HAMSTEREntity::printNode(std::ostream& stream) const{
+    hamster::HAMSTERUnit::printNode(stream);
+    // HAMSTER Entity specific data may be inserted.
+}
+    
+
+} /* namespace hamster */

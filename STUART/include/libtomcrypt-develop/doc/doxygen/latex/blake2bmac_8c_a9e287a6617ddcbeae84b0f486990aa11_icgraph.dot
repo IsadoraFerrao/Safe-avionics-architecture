@@ -1,0 +1,16 @@
+digraph "blake2bmac_done"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node10 [label="blake2bmac_done",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Terminate a BLAKE2B MAC session."];
+  Node10 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node11 [label="blake2bmac_file",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$blake2bmac__file_8c.html#a372c957a4b186ee3a6f737eacfd0b9b3",tooltip="BLAKE2B MAC a file."];
+  Node10 -> Node12 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node12 [label="blake2bmac_memory",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$blake2bmac__memory_8c.html#a77f61ab09e05bfd6b7953ec24b3f55c0",tooltip="BLAKE2B MAC a block of memory to produce the authentication tag."];
+  Node10 -> Node13 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node13 [label="blake2bmac_memory_multi",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$blake2bmac__memory__multi_8c.html#aec804c047997d283f5b0d8ec8b8c20c0",tooltip="BLAKE2B MAC multiple blocks of memory to produce the authentication tag."];
+  Node10 -> Node14 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node14 [label="blake2bmac_test",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$blake2bmac__test_8c.html#ad73d93774d527ef21c4fa0da9bafbb60",tooltip=" "];
+}

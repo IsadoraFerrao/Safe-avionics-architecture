@@ -1,0 +1,56 @@
+\hypertarget{crypt__hash__is__valid_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/misc/crypt/crypt\+\_\+hash\+\_\+is\+\_\+valid.c File Reference}
+\label{crypt__hash__is__valid_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/misc/crypt/crypt\_hash\_is\_valid.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/misc/crypt/crypt\_hash\_is\_valid.c}}
+
+
+Determine if hash is valid, Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for crypt\+\_\+hash\+\_\+is\+\_\+valid.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{crypt__hash__is__valid_8c_a79647f22bf48bfa7de03fe5fc958c846}{hash\+\_\+is\+\_\+valid}} (int idx)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Determine if hash is valid, Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{crypt__hash__is__valid_8c_a79647f22bf48bfa7de03fe5fc958c846}\label{crypt__hash__is__valid_8c_a79647f22bf48bfa7de03fe5fc958c846}} 
+\index{crypt\_hash\_is\_valid.c@{crypt\_hash\_is\_valid.c}!hash\_is\_valid@{hash\_is\_valid}}
+\index{hash\_is\_valid@{hash\_is\_valid}!crypt\_hash\_is\_valid.c@{crypt\_hash\_is\_valid.c}}
+\subsubsection{\texorpdfstring{hash\_is\_valid()}{hash\_is\_valid()}}
+{\footnotesize\ttfamily int hash\+\_\+is\+\_\+valid (\begin{DoxyParamCaption}\item[{int}]{idx }\end{DoxyParamCaption})}
+
+
+
+Definition at line 21 of file crypt\+\_\+hash\+\_\+is\+\_\+valid.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{22 \{}
+\DoxyCodeLine{23    \mbox{\hyperlink{tomcrypt__custom_8h_a427a107414e4d775fbf23f4a499f4a31}{LTC\_MUTEX\_LOCK}}(\&ltc\_hash\_mutex);}
+\DoxyCodeLine{24    \textcolor{keywordflow}{if} (idx < 0 || idx >= \mbox{\hyperlink{tomcrypt_8h_a9ad1b4a1e4f7381611cfd2ae6620a727}{TAB\_SIZE}} || \mbox{\hyperlink{tomcrypt__hash_8h_ab0e4f02e30a47da79baa9240e79cde92}{hash\_descriptor}}[idx].name == NULL) \{}
+\DoxyCodeLine{25       \mbox{\hyperlink{tomcrypt__custom_8h_acdf267be91b178b4fafe8f992d57a7f1}{LTC\_MUTEX\_UNLOCK}}(\&ltc\_hash\_mutex);}
+\DoxyCodeLine{26       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cae729ddc4864ea7e12e9865bf6264642d}{CRYPT\_INVALID\_HASH}};}
+\DoxyCodeLine{27    \}}
+\DoxyCodeLine{28    \mbox{\hyperlink{tomcrypt__custom_8h_acdf267be91b178b4fafe8f992d57a7f1}{LTC\_MUTEX\_UNLOCK}}(\&ltc\_hash\_mutex);}
+\DoxyCodeLine{29    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{30 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+H\+A\+SH, C\+R\+Y\+P\+T\+\_\+\+OK, hash\+\_\+descriptor, L\+T\+C\+\_\+\+M\+U\+T\+E\+X\+\_\+\+L\+O\+CK, L\+T\+C\+\_\+\+M\+U\+T\+E\+X\+\_\+\+U\+N\+L\+O\+CK, ltc\+\_\+hash\+\_\+descriptor\+::name, and T\+A\+B\+\_\+\+S\+I\+ZE.
+
+
+
+Referenced by \+\_\+dsa\+\_\+make\+\_\+params(), \+\_\+pkcs\+\_\+5\+\_\+alg1\+\_\+common(), chc\+\_\+register(), dsa\+\_\+decrypt\+\_\+key(), dsa\+\_\+encrypt\+\_\+key(), ecc\+\_\+decrypt\+\_\+key(), ecc\+\_\+encrypt\+\_\+key(), hash\+\_\+file(), hash\+\_\+filehandle(), hash\+\_\+memory(), hash\+\_\+memory\+\_\+multi(), hkdf(), hkdf\+\_\+expand(), hmac\+\_\+done(), hmac\+\_\+file(), hmac\+\_\+init(), hmac\+\_\+memory(), hmac\+\_\+process(), pkcs\+\_\+1\+\_\+mgf1(), pkcs\+\_\+1\+\_\+oaep\+\_\+decode(), pkcs\+\_\+1\+\_\+oaep\+\_\+encode(), pkcs\+\_\+1\+\_\+pss\+\_\+decode(), pkcs\+\_\+1\+\_\+pss\+\_\+encode(), pkcs\+\_\+5\+\_\+alg2(), rsa\+\_\+decrypt\+\_\+key\+\_\+ex(), rsa\+\_\+encrypt\+\_\+key\+\_\+ex(), rsa\+\_\+sign\+\_\+hash\+\_\+ex(), rsa\+\_\+sign\+\_\+saltlen\+\_\+get\+\_\+max\+\_\+ex(), rsa\+\_\+verify\+\_\+hash\+\_\+ex(), yarrow\+\_\+add\+\_\+entropy(), yarrow\+\_\+ready(), and yarrow\+\_\+start().
+
+Here is the caller graph for this function\+:
+% FIG 1

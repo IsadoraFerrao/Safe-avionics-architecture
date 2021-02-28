@@ -1,0 +1,68 @@
+\hypertarget{cbc__setiv_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/modes/cbc/cbc\+\_\+setiv.c File Reference}
+\label{cbc__setiv_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/modes/cbc/cbc\_setiv.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/modes/cbc/cbc\_setiv.c}}
+
+
+C\+BC implementation, set IV, Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for cbc\+\_\+setiv.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{cbc__setiv_8c_a89cf7cf4cb24b2511dea778930c1772d}{cbc\+\_\+setiv}} (const unsigned char $\ast$IV, unsigned long \mbox{\hyperlink{pmac__init_8c_afed088663f8704004425cdae2120b9b3}{len}}, symmetric\+\_\+\+C\+BC $\ast$cbc)
+\begin{DoxyCompactList}\small\item\em Set an initialization vector. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+C\+BC implementation, set IV, Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{cbc__setiv_8c_a89cf7cf4cb24b2511dea778930c1772d}\label{cbc__setiv_8c_a89cf7cf4cb24b2511dea778930c1772d}} 
+\index{cbc\_setiv.c@{cbc\_setiv.c}!cbc\_setiv@{cbc\_setiv}}
+\index{cbc\_setiv@{cbc\_setiv}!cbc\_setiv.c@{cbc\_setiv.c}}
+\subsubsection{\texorpdfstring{cbc\_setiv()}{cbc\_setiv()}}
+{\footnotesize\ttfamily int cbc\+\_\+setiv (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{IV,  }\item[{unsigned long}]{len,  }\item[{symmetric\+\_\+\+C\+BC $\ast$}]{cbc }\end{DoxyParamCaption})}
+
+
+
+Set an initialization vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em IV} & The initialization vector \\
+\hline
+{\em len} & The length of the vector (in octets) \\
+\hline
+{\em cbc} & The C\+BC state \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 26 of file cbc\+\_\+setiv.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{27 \{}
+\DoxyCodeLine{28    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(IV  != NULL);}
+\DoxyCodeLine{29    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(cbc != NULL);}
+\DoxyCodeLine{30    \textcolor{keywordflow}{if} (\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}} != (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long})cbc->blocklen) \{}
+\DoxyCodeLine{31       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{32    \}}
+\DoxyCodeLine{33    \mbox{\hyperlink{tomcrypt__cfg_8h_a7691dd48d60d5fc6daf2fa7ec4c55e12}{XMEMCPY}}(cbc->IV, IV, \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}});}
+\DoxyCodeLine{34    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{35 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+A\+RG, C\+R\+Y\+P\+T\+\_\+\+OK, len, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, and X\+M\+E\+M\+C\+P\+Y().
+
+Here is the call graph for this function\+:
+% FIG 1

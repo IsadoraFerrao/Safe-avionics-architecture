@@ -1,0 +1,34 @@
+digraph "fortuna_read"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node51 [label="fortuna_read",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Read from the PRNG."];
+  Node51 -> Node52 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node52 [label="_fortuna_reseed",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$fortuna_8c.html#aad833baa2e75f93d847e5a7ac30ea4d2",tooltip=" "];
+  Node52 -> Node53 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node53 [label="_fortuna_update_iv",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$fortuna_8c.html#a5e5b2b7f0a18fae044e2f53384a51c6b",tooltip=" "];
+  Node52 -> Node54 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node54 [label="rijndael_setup",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$aes_8c.html#a3b2fab908c22514c91332a5c9a3d7166",tooltip="Initialize the AES (Rijndael) block cipher."];
+  Node54 -> Node55 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node55 [label="setup_mix",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$aes_8c.html#a523ac00c3bbdb4656024ab0ad32f571f",tooltip=" "];
+  Node52 -> Node56 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node56 [label="sha256_done",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sha256_8c.html#a53db56f3eb9f35c59b134533be31c301",tooltip="Terminate the hash to get the digest."];
+  Node56 -> Node57 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node57 [label="sha256_compress",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sha256_8c.html#ac87e8a7c22810735390e70611006bfe5",tooltip=" "];
+  Node56 -> Node58 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node58 [label="zeromem",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__misc_8h.html#a63b6e188713790263bfd3612fe8b398f",tooltip="Zero a block of memory."];
+  Node52 -> Node59 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node59 [label="sha256_init",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sha256_8c.html#a6290ad544b02c822c2ca6c30b8d1ee07",tooltip="Initialize the hash state."];
+  Node52 -> Node60 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node60 [label="sha256_process",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sha256_8c.html#a8b983a80c9edd5d997a3937963ae7856",tooltip="Process a block of memory though the hash."];
+  Node52 -> Node58 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node51 -> Node53 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node51 -> Node61 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node61 [label="rijndael_ecb_encrypt",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$aes_8c.html#acd7dbcdfa46b39fa19932a0658676047",tooltip="Encrypts a block of text with AES."];
+  Node51 -> Node54 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node51 -> Node62 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node62 [label="XMEMCPY",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cfg_8h.html#a7691dd48d60d5fc6daf2fa7ec4c55e12",tooltip=" "];
+  Node51 -> Node58 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}

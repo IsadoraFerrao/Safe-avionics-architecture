@@ -1,0 +1,25 @@
+var searchData=
+[
+  ['r',['R',['../khazad_8c.html#a5c71a5e59a53413cd6c270266d63b031',1,'R():&#160;khazad.c'],['../sha256_8c.html#a8fb1dfc3ad6dd07bc99c1962e6583087',1,'R():&#160;sha256.c'],['../sha512_8c.html#a8fb1dfc3ad6dd07bc99c1962e6583087',1,'R():&#160;sha512.c']]],
+  ['register_5fcipher',['REGISTER_CIPHER',['../crypt__register__all__ciphers_8c.html#a612b5d315b033e9d231dca71256b00ac',1,'crypt_register_all_ciphers.c']]],
+  ['register_5fhash',['REGISTER_HASH',['../crypt__register__all__hashes_8c.html#a3ac8ba6e16af235f0606be8d039739c2',1,'crypt_register_all_hashes.c']]],
+  ['register_5fprng',['REGISTER_PRNG',['../crypt__register__all__prngs_8c.html#a4bbbe9f0557235896b121872e1a7d0e8',1,'crypt_register_all_prngs.c']]],
+  ['rnd',['RND',['../rc6_8c.html#afb82c570e30a5bed110b968e43eaea45',1,'RND():&#160;rc6.c'],['../rc6_8c.html#afb82c570e30a5bed110b968e43eaea45',1,'RND():&#160;rc6.c'],['../sha256_8c.html#a4653a54c50b5bbfc17a57857f6cb5713',1,'RND():&#160;sha256.c'],['../sha512_8c.html#a14b75d9ce98c82d21041eba16021cba7',1,'RND():&#160;sha512.c']]],
+  ['rol',['ROL',['../tomcrypt__macros_8h.html#a2e1da5c8810967170c889976d1fe9fa1',1,'tomcrypt_macros.h']]],
+  ['rol16',['ROL16',['../kasumi_8c.html#a2801daf7c5c32ff251ecfec7c33c41f4',1,'kasumi.c']]],
+  ['rol64',['ROL64',['../tomcrypt__macros_8h.html#a11721d8ea2f76401b4a51abc07c09eae',1,'tomcrypt_macros.h']]],
+  ['rol64c',['ROL64c',['../tomcrypt__macros_8h.html#a1c394d78d382cd32f945dc552a986fba',1,'tomcrypt_macros.h']]],
+  ['rol8',['ROL8',['../safer_8c.html#a9ad7d23069041aba515bf50f1e9acf00',1,'safer.c']]],
+  ['rolc',['ROLc',['../tomcrypt__macros_8h.html#a39d625dc0b148466a72c13737e063d86',1,'tomcrypt_macros.h']]],
+  ['ror',['ROR',['../tomcrypt__macros_8h.html#a77e6e81d8ff86d6c17b9bd73658fb393',1,'tomcrypt_macros.h']]],
+  ['ror64',['ROR64',['../tomcrypt__macros_8h.html#a54395352f505e61474b01f454393167a',1,'tomcrypt_macros.h']]],
+  ['ror64c',['ROR64c',['../tomcrypt__macros_8h.html#a140a16d966f0c47c50c62c96f44879e7',1,'tomcrypt_macros.h']]],
+  ['rorc',['RORc',['../tomcrypt__macros_8h.html#adb04fb3f7c1736d29125ad0f179b1068',1,'tomcrypt_macros.h']]],
+  ['rotate_5fleft',['ROTATE_LEFT',['../md4_8c.html#a7417fd4e875360c0533fa5b412cdab49',1,'md4.c']]],
+  ['round',['ROUND',['../noekeon_8c.html#a04ce02591bed8d5f7ccdd222845df9d2',1,'ROUND():&#160;noekeon.c'],['../noekeon_8c.html#a04ce02591bed8d5f7ccdd222845df9d2',1,'ROUND():&#160;noekeon.c'],['../saferp_8c.html#ad69cd28baafd5d8a85ca9eeca8722a6e',1,'ROUND():&#160;saferp.c'],['../blake2b_8c.html#ab35e822e8226ebfbc2122810b5ac5827',1,'ROUND():&#160;blake2b.c'],['../blake2s_8c.html#ab35e822e8226ebfbc2122810b5ac5827',1,'ROUND():&#160;blake2s.c']]],
+  ['rs_5fpoly',['RS_POLY',['../twofish_8c.html#a26ad21363cd0246a426b58cbd1a206c2',1,'twofish.c']]],
+  ['rule_5fa',['RULE_A',['../skipjack_8c.html#acdb0c66a96e431b581597e999d03305a',1,'skipjack.c']]],
+  ['rule_5fa1',['RULE_A1',['../skipjack_8c.html#a8137ac5422074b48d37776d954a6bbcb',1,'skipjack.c']]],
+  ['rule_5fb',['RULE_B',['../skipjack_8c.html#a2e68755e2aec77e04a5c0d022be41b0a',1,'skipjack.c']]],
+  ['rule_5fb1',['RULE_B1',['../skipjack_8c.html#a4a69a24271273c3295d9b4d3ea6cf4ff',1,'skipjack.c']]]
+];

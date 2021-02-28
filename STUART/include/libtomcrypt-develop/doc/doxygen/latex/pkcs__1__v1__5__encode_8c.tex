@@ -1,0 +1,139 @@
+\hypertarget{pkcs__1__v1__5__encode_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/pk/pkcs1/pkcs\+\_\+1\+\_\+v1\+\_\+5\+\_\+encode.c File Reference}
+\label{pkcs__1__v1__5__encode_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/pkcs1/pkcs\_1\_v1\_5\_encode.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/pkcs1/pkcs\_1\_v1\_5\_encode.c}}
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for pkcs\+\_\+1\+\_\+v1\+\_\+5\+\_\+encode.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{pkcs__1__v1__5__encode_8c_afe6168498a2fbf50d740f86290ad06de}{pkcs\+\_\+1\+\_\+v1\+\_\+5\+\_\+encode}} (const unsigned char $\ast$msg, unsigned long msglen, int block\+\_\+type, unsigned long modulus\+\_\+bitlen, \mbox{\hyperlink{structprng__state}{prng\+\_\+state}} $\ast$prng, int prng\+\_\+idx, unsigned char $\ast$out, unsigned long $\ast$outlen)
+\begin{DoxyCompactList}\small\item\em P\+K\+CS \#1 v1.\+5 encode. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+P\+K\+CS \#1 v1.\+5 Padding (Andreas Lange) 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{pkcs__1__v1__5__encode_8c_afe6168498a2fbf50d740f86290ad06de}\label{pkcs__1__v1__5__encode_8c_afe6168498a2fbf50d740f86290ad06de}} 
+\index{pkcs\_1\_v1\_5\_encode.c@{pkcs\_1\_v1\_5\_encode.c}!pkcs\_1\_v1\_5\_encode@{pkcs\_1\_v1\_5\_encode}}
+\index{pkcs\_1\_v1\_5\_encode@{pkcs\_1\_v1\_5\_encode}!pkcs\_1\_v1\_5\_encode.c@{pkcs\_1\_v1\_5\_encode.c}}
+\subsubsection{\texorpdfstring{pkcs\_1\_v1\_5\_encode()}{pkcs\_1\_v1\_5\_encode()}}
+{\footnotesize\ttfamily int pkcs\+\_\+1\+\_\+v1\+\_\+5\+\_\+encode (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{msg,  }\item[{unsigned long}]{msglen,  }\item[{int}]{block\+\_\+type,  }\item[{unsigned long}]{modulus\+\_\+bitlen,  }\item[{\mbox{\hyperlink{structprng__state}{prng\+\_\+state}} $\ast$}]{prng,  }\item[{int}]{prng\+\_\+idx,  }\item[{unsigned char $\ast$}]{out,  }\item[{unsigned long $\ast$}]{outlen }\end{DoxyParamCaption})}
+
+
+
+P\+K\+CS \#1 v1.\+5 encode. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & The data to encode \\
+\hline
+{\em msglen} & The length of the data to encode (octets) \\
+\hline
+{\em block\+\_\+type} & Block type to use in padding (\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+ltc\+\_\+pkcs\+\_\+1\+\_\+v1\+\_\+5\+\_\+blocks) 
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}{Parameters}
+{\em modulus\+\_\+bitlen} & The bit length of the R\+SA modulus \\
+\hline
+{\em prng} & An active P\+R\+NG state (only for L\+T\+C\+\_\+\+P\+K\+C\+S\+\_\+1\+\_\+\+E\+ME) \\
+\hline
+{\em prng\+\_\+idx} & The index of the P\+R\+NG desired (only for L\+T\+C\+\_\+\+P\+K\+C\+S\+\_\+1\+\_\+\+E\+ME) \\
+\hline
+{\em out} & \mbox{[}out\mbox{]} The destination for the encoded data \\
+\hline
+{\em outlen} & \mbox{[}in/out\mbox{]} The max size and resulting size of the encoded data\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 31 of file pkcs\+\_\+1\+\_\+v1\+\_\+5\+\_\+encode.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{39 \{}
+\DoxyCodeLine{40   \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} modulus\_len, ps\_len, i;}
+\DoxyCodeLine{41   \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *ps;}
+\DoxyCodeLine{42   \textcolor{keywordtype}{int} result;}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44   \textcolor{comment}{/* valid block\_type? */}}
+\DoxyCodeLine{45   \textcolor{keywordflow}{if} ((block\_type != LTC\_PKCS\_1\_EMSA) \&\&}
+\DoxyCodeLine{46       (block\_type != LTC\_PKCS\_1\_EME)) \{}
+\DoxyCodeLine{47      \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caee3022c2372277db42c7d43310bcb43b}{CRYPT\_PK\_INVALID\_PADDING}};}
+\DoxyCodeLine{48   \}}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{50   \textcolor{keywordflow}{if} (block\_type == LTC\_PKCS\_1\_EME) \{    \textcolor{comment}{/* encryption padding, we need a valid PRNG */}}
+\DoxyCodeLine{51     \textcolor{keywordflow}{if} ((result = \mbox{\hyperlink{tomcrypt__prng_8h_a7e4a212c1a29a3b8bb4f8d5a34676a1e}{prng\_is\_valid}}(prng\_idx)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{52        \textcolor{keywordflow}{return} result;}
+\DoxyCodeLine{53     \}}
+\DoxyCodeLine{54   \}}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{56   modulus\_len = (modulus\_bitlen >> 3) + (modulus\_bitlen \& 7 ? 1 : 0);}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{58   \textcolor{comment}{/* test message size */}}
+\DoxyCodeLine{59   \textcolor{keywordflow}{if} ((msglen + 11) > modulus\_len) \{}
+\DoxyCodeLine{60     \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cadfac76b902650db645da5999f2b78b4e}{CRYPT\_PK\_INVALID\_SIZE}};}
+\DoxyCodeLine{61   \}}
+\DoxyCodeLine{62 }
+\DoxyCodeLine{63   \textcolor{keywordflow}{if} (*outlen < modulus\_len) \{}
+\DoxyCodeLine{64     *outlen = modulus\_len;}
+\DoxyCodeLine{65     result = \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caccd878f5599f3036ffe759dbe1a1ac16}{CRYPT\_BUFFER\_OVERFLOW}};}
+\DoxyCodeLine{66     \textcolor{keywordflow}{goto} bail;}
+\DoxyCodeLine{67   \}}
+\DoxyCodeLine{68 }
+\DoxyCodeLine{69   \textcolor{comment}{/* generate an octets string PS */}}
+\DoxyCodeLine{70   ps = \&out[2];}
+\DoxyCodeLine{71   ps\_len = modulus\_len - msglen - 3;}
+\DoxyCodeLine{72 }
+\DoxyCodeLine{73   \textcolor{keywordflow}{if} (block\_type == LTC\_PKCS\_1\_EME) \{}
+\DoxyCodeLine{74     \textcolor{comment}{/* now choose a random ps */}}
+\DoxyCodeLine{75     \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__prng_8h_ac03ee9f603bf966f3afb3f6be156239b}{prng\_descriptor}}[prng\_idx].read(ps, ps\_len, prng) != ps\_len) \{}
+\DoxyCodeLine{76       result = \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca68eea82b3b71f23031cd94b10c920bf3}{CRYPT\_ERROR\_READPRNG}};}
+\DoxyCodeLine{77       \textcolor{keywordflow}{goto} bail;}
+\DoxyCodeLine{78     \}}
+\DoxyCodeLine{79 }
+\DoxyCodeLine{80     \textcolor{comment}{/* transform zero bytes (if any) to non-zero random bytes */}}
+\DoxyCodeLine{81     \textcolor{keywordflow}{for} (i = 0; i < ps\_len; i++) \{}
+\DoxyCodeLine{82       \textcolor{keywordflow}{while} (ps[i] == 0) \{}
+\DoxyCodeLine{83         \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__prng_8h_ac03ee9f603bf966f3afb3f6be156239b}{prng\_descriptor}}[prng\_idx].read(\&ps[i], 1, prng) != 1) \{}
+\DoxyCodeLine{84           result = \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca68eea82b3b71f23031cd94b10c920bf3}{CRYPT\_ERROR\_READPRNG}};}
+\DoxyCodeLine{85           \textcolor{keywordflow}{goto} bail;}
+\DoxyCodeLine{86         \}}
+\DoxyCodeLine{87       \}}
+\DoxyCodeLine{88     \}}
+\DoxyCodeLine{89   \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{90     \mbox{\hyperlink{tomcrypt__cfg_8h_aa3c34a6f6c61de7da9258b5a30e32c2f}{XMEMSET}}(ps, 0xFF, ps\_len);}
+\DoxyCodeLine{91   \}}
+\DoxyCodeLine{92 }
+\DoxyCodeLine{93   \textcolor{comment}{/* create string of length modulus\_len */}}
+\DoxyCodeLine{94   out[0]          = 0x00;}
+\DoxyCodeLine{95   out[1]          = (\textcolor{keywordtype}{unsigned} char)block\_type;  \textcolor{comment}{/* block\_type 1 or 2 */}}
+\DoxyCodeLine{96   out[2 + ps\_len] = 0x00;}
+\DoxyCodeLine{97   \mbox{\hyperlink{tomcrypt__cfg_8h_a7691dd48d60d5fc6daf2fa7ec4c55e12}{XMEMCPY}}(\&out[2 + ps\_len + 1], msg, msglen);}
+\DoxyCodeLine{98   *outlen = modulus\_len;}
+\DoxyCodeLine{99 }
+\DoxyCodeLine{100   result  = \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{101 bail:}
+\DoxyCodeLine{102   \textcolor{keywordflow}{return} result;}
+\DoxyCodeLine{103 \} \textcolor{comment}{/* pkcs\_1\_v1\_5\_encode */}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+O\+V\+E\+R\+F\+L\+OW, C\+R\+Y\+P\+T\+\_\+\+E\+R\+R\+O\+R\+\_\+\+R\+E\+A\+D\+P\+R\+NG, C\+R\+Y\+P\+T\+\_\+\+OK, C\+R\+Y\+P\+T\+\_\+\+P\+K\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+P\+A\+D\+D\+I\+NG, C\+R\+Y\+P\+T\+\_\+\+P\+K\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+S\+I\+ZE, prng\+\_\+descriptor, prng\+\_\+is\+\_\+valid(), X\+M\+E\+M\+C\+P\+Y(), and X\+M\+E\+M\+S\+E\+T().
+
+
+
+Referenced by rsa\+\_\+encrypt\+\_\+key\+\_\+ex(), and rsa\+\_\+sign\+\_\+hash\+\_\+ex().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2

@@ -1,0 +1,106 @@
+\hypertarget{xcbc__done_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/mac/xcbc/xcbc\+\_\+done.c File Reference}
+\label{xcbc__done_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/mac/xcbc/xcbc\_done.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/mac/xcbc/xcbc\_done.c}}
+
+
+X\+C\+BC Support, terminate the state.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for xcbc\+\_\+done.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{xcbc__done_8c_a396b96e5257706bdbc462d17eb3c4276}{xcbc\+\_\+done}} (xcbc\+\_\+state $\ast$xcbc, unsigned char $\ast$out, unsigned long $\ast$outlen)
+\begin{DoxyCompactList}\small\item\em Terminate the X\+C\+B\+C-\/\+M\+AC state. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+X\+C\+BC Support, terminate the state. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{xcbc__done_8c_a396b96e5257706bdbc462d17eb3c4276}\label{xcbc__done_8c_a396b96e5257706bdbc462d17eb3c4276}} 
+\index{xcbc\_done.c@{xcbc\_done.c}!xcbc\_done@{xcbc\_done}}
+\index{xcbc\_done@{xcbc\_done}!xcbc\_done.c@{xcbc\_done.c}}
+\subsubsection{\texorpdfstring{xcbc\_done()}{xcbc\_done()}}
+{\footnotesize\ttfamily int xcbc\+\_\+done (\begin{DoxyParamCaption}\item[{xcbc\+\_\+state $\ast$}]{xcbc,  }\item[{unsigned char $\ast$}]{out,  }\item[{unsigned long $\ast$}]{outlen }\end{DoxyParamCaption})}
+
+
+
+Terminate the X\+C\+B\+C-\/\+M\+AC state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em xcbc} & X\+C\+BC state to terminate \\
+\hline
+{\em out} & \mbox{[}out\mbox{]} Destination for the M\+AC tag \\
+\hline
+{\em outlen} & \mbox{[}in/out\mbox{]} Destination size and final tag size Return C\+R\+Y\+P\+T\+\_\+\+OK on success \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 24 of file xcbc\+\_\+done.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{25 \{}
+\DoxyCodeLine{26    \textcolor{keywordtype}{int} err, x;}
+\DoxyCodeLine{27    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(xcbc != NULL);}
+\DoxyCodeLine{28    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(out  != NULL);}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30    \textcolor{comment}{/* check structure */}}
+\DoxyCodeLine{31    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_ac30eb68934c4ca07205344dc9d159221}{cipher\_is\_valid}}(xcbc->cipher)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{32       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{33    \}}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35    \textcolor{keywordflow}{if} ((xcbc->blocksize > \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[xcbc->cipher].\mbox{\hyperlink{structltc__cipher__descriptor_afa2af7325fd3a834910dd92e8c9acf49}{block\_length}}) || (xcbc->blocksize < 0) ||}
+\DoxyCodeLine{36        (xcbc->buflen > xcbc->blocksize) || (xcbc->buflen < 0)) \{}
+\DoxyCodeLine{37       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{38    \}}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{40    \textcolor{comment}{/* which key do we use? */}}
+\DoxyCodeLine{41    \textcolor{keywordflow}{if} (xcbc->buflen == xcbc->blocksize) \{}
+\DoxyCodeLine{42       \textcolor{comment}{/* k2 */}}
+\DoxyCodeLine{43       \textcolor{keywordflow}{for} (x = 0; x < xcbc->blocksize; x++) \{}
+\DoxyCodeLine{44          xcbc->IV[x] \string^= xcbc->K[1][x];}
+\DoxyCodeLine{45       \}}
+\DoxyCodeLine{46    \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{47       xcbc->IV[xcbc->buflen] \string^= 0x80;}
+\DoxyCodeLine{48       \textcolor{comment}{/* k3 */}}
+\DoxyCodeLine{49       \textcolor{keywordflow}{for} (x = 0; x < xcbc->blocksize; x++) \{}
+\DoxyCodeLine{50          xcbc->IV[x] \string^= xcbc->K[2][x];}
+\DoxyCodeLine{51       \}}
+\DoxyCodeLine{52    \}}
+\DoxyCodeLine{53 }
+\DoxyCodeLine{54    \textcolor{comment}{/* encrypt */}}
+\DoxyCodeLine{55    \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[xcbc->cipher].\mbox{\hyperlink{structltc__cipher__descriptor_a46141d86abe22a7c8d382c62a894dd63}{ecb\_encrypt}}(xcbc->IV, xcbc->IV, \&xcbc->key);}
+\DoxyCodeLine{56    \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[xcbc->cipher].\mbox{\hyperlink{structltc__cipher__descriptor_a0ad1c101005c70a69e40fded0e606191}{done}}(\&xcbc->key);}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{58    \textcolor{comment}{/* extract tag */}}
+\DoxyCodeLine{59    \textcolor{keywordflow}{for} (x = 0; x < xcbc->blocksize \&\& (\textcolor{keywordtype}{unsigned} long)x < *outlen; x++) \{}
+\DoxyCodeLine{60       out[x] = xcbc->IV[x];}
+\DoxyCodeLine{61    \}}
+\DoxyCodeLine{62    *outlen = x;}
+\DoxyCodeLine{63 }
+\DoxyCodeLine{64 \textcolor{preprocessor}{\#ifdef LTC\_CLEAN\_STACK}}
+\DoxyCodeLine{65    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(xcbc, \textcolor{keyword}{sizeof}(*xcbc));}
+\DoxyCodeLine{66 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{67    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{68 \}}
+
+\end{DoxyCode}
+
+
+References ltc\+\_\+cipher\+\_\+descriptor\+::block\+\_\+length, cipher\+\_\+descriptor, cipher\+\_\+is\+\_\+valid(), C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+A\+RG, C\+R\+Y\+P\+T\+\_\+\+OK, ltc\+\_\+cipher\+\_\+descriptor\+::done, ltc\+\_\+cipher\+\_\+descriptor\+::ecb\+\_\+encrypt, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, and zeromem().
+
+
+
+Referenced by xcbc\+\_\+file(), xcbc\+\_\+memory(), and xcbc\+\_\+memory\+\_\+multi().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2

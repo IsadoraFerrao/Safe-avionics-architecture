@@ -1,0 +1,209 @@
+\hypertarget{padding__pad_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/misc/padding/padding\+\_\+pad.c File Reference}
+\label{padding__pad_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/misc/padding/padding\_pad.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/misc/padding/padding\_pad.c}}
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for padding\+\_\+pad.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{padding__pad_8c_a3c21f068a2c5cddb668c007bff50b865}{\+\_\+padding\+\_\+padded\+\_\+length}} (unsigned long $\ast$length, unsigned long mode)
+\begin{DoxyCompactList}\small\item\em Determine the to-\/be-\/padded length. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{padding__pad_8c_a8f102a5979403348430452eaf82bb878}{padding\+\_\+pad}} (unsigned char $\ast$data, unsigned long length, unsigned long $\ast$padded\+\_\+length, unsigned long mode)
+\begin{DoxyCompactList}\small\item\em Add padding to data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{padding__pad_8c_a3c21f068a2c5cddb668c007bff50b865}\label{padding__pad_8c_a3c21f068a2c5cddb668c007bff50b865}} 
+\index{padding\_pad.c@{padding\_pad.c}!\_padding\_padded\_length@{\_padding\_padded\_length}}
+\index{\_padding\_padded\_length@{\_padding\_padded\_length}!padding\_pad.c@{padding\_pad.c}}
+\subsubsection{\texorpdfstring{\_padding\_padded\_length()}{\_padding\_padded\_length()}}
+{\footnotesize\ttfamily static int \+\_\+padding\+\_\+padded\+\_\+length (\begin{DoxyParamCaption}\item[{unsigned long $\ast$}]{length,  }\item[{unsigned long}]{mode }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Determine the to-\/be-\/padded length. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em length} & \mbox{[}in/out\mbox{]} The size of the data before/after padding \\
+\hline
+{\em mode} & Mask of (L\+T\+C\+\_\+\+P\+A\+D\+\_\+xxx $\vert$ block\+\_\+length) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK on success 
+\end{DoxyReturn}
+
+
+Definition at line 20 of file padding\+\_\+pad.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{21 \{}
+\DoxyCodeLine{22    \textcolor{keyword}{enum} padding\_type padding;}
+\DoxyCodeLine{23    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} pad, block\_length, r, t;}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(length != NULL);}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27    block\_length = mode \& 0xff;}
+\DoxyCodeLine{28    padding = mode \& \mbox{\hyperlink{tomcrypt__private_8h_a2b8e12593fe11f8eaeace6ce0fcc7566}{LTC\_PAD\_MASK}};}
+\DoxyCodeLine{29    r = *length \% block\_length;}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31    \textcolor{keywordflow}{switch} (padding) \{}
+\DoxyCodeLine{32       \textcolor{keywordflow}{case} LTC\_PAD\_ZERO:}
+\DoxyCodeLine{33          \textcolor{keywordflow}{if} (r == 0) \{}
+\DoxyCodeLine{34             t = 0;}
+\DoxyCodeLine{35             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{36          \}}
+\DoxyCodeLine{37          \textcolor{comment}{/* FALLTHROUGH */}}
+\DoxyCodeLine{38       \textcolor{keywordflow}{case} LTC\_PAD\_PKCS7:}
+\DoxyCodeLine{39       \textcolor{keywordflow}{case} LTC\_PAD\_ONE\_AND\_ZERO:}
+\DoxyCodeLine{40       \textcolor{keywordflow}{case} LTC\_PAD\_ZERO\_ALWAYS:}
+\DoxyCodeLine{41          t = 1;}
+\DoxyCodeLine{42          \textcolor{keywordflow}{break};}
+\DoxyCodeLine{43 \textcolor{preprocessor}{\#ifdef LTC\_RNG\_GET\_BYTES}}
+\DoxyCodeLine{44       \textcolor{keywordflow}{case} LTC\_PAD\_ISO\_10126:}
+\DoxyCodeLine{45          \textcolor{keywordflow}{do} \{}
+\DoxyCodeLine{46             \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__prng_8h_ace80a0f11a76e7ebd59c2188b2ec2520}{rng\_get\_bytes}}(\&t, \textcolor{keyword}{sizeof}(t), NULL) != \textcolor{keyword}{sizeof}(t)) \{}
+\DoxyCodeLine{47                \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca68eea82b3b71f23031cd94b10c920bf3}{CRYPT\_ERROR\_READPRNG}};}
+\DoxyCodeLine{48             \}}
+\DoxyCodeLine{49             t \%= (256 / block\_length);}
+\DoxyCodeLine{50          \} \textcolor{keywordflow}{while} (t == 0);}
+\DoxyCodeLine{51          \textcolor{keywordflow}{break};}
+\DoxyCodeLine{52 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{53       \textcolor{keywordflow}{case} LTC\_PAD\_ANSI\_X923:}
+\DoxyCodeLine{54          \textcolor{keywordflow}{if} (block\_length != 16) \{}
+\DoxyCodeLine{55             \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{56          \}}
+\DoxyCodeLine{57          t = 1;}
+\DoxyCodeLine{58          \textcolor{keywordflow}{break};}
+\DoxyCodeLine{59       \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{60          \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{61    \}}
+\DoxyCodeLine{62 }
+\DoxyCodeLine{63    pad = (t * block\_length) - r;}
+\DoxyCodeLine{64 }
+\DoxyCodeLine{65    \textcolor{keywordflow}{if} ((pad == 0) \&\& (padding != LTC\_PAD\_ZERO)) \{}
+\DoxyCodeLine{66       pad = block\_length;}
+\DoxyCodeLine{67    \}}
+\DoxyCodeLine{68 }
+\DoxyCodeLine{69    *length += pad;}
+\DoxyCodeLine{70 }
+\DoxyCodeLine{71    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{72 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+E\+R\+R\+O\+R\+\_\+\+R\+E\+A\+D\+P\+R\+NG, C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+A\+RG, C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, L\+T\+C\+\_\+\+P\+A\+D\+\_\+\+M\+A\+SK, and rng\+\_\+get\+\_\+bytes().
+
+
+
+Referenced by padding\+\_\+pad().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2
+\mbox{\Hypertarget{padding__pad_8c_a8f102a5979403348430452eaf82bb878}\label{padding__pad_8c_a8f102a5979403348430452eaf82bb878}} 
+\index{padding\_pad.c@{padding\_pad.c}!padding\_pad@{padding\_pad}}
+\index{padding\_pad@{padding\_pad}!padding\_pad.c@{padding\_pad.c}}
+\subsubsection{\texorpdfstring{padding\_pad()}{padding\_pad()}}
+{\footnotesize\ttfamily int padding\+\_\+pad (\begin{DoxyParamCaption}\item[{unsigned char $\ast$}]{data,  }\item[{unsigned long}]{length,  }\item[{unsigned long $\ast$}]{padded\+\_\+length,  }\item[{unsigned long}]{mode }\end{DoxyParamCaption})}
+
+
+
+Add padding to data. 
+
+This pads your data.
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & The data to depad \\
+\hline
+{\em length} & The size of the data before padding \\
+\hline
+{\em padded\+\_\+length} & \mbox{[}in/out\mbox{]} The size of the data available/after padding \\
+\hline
+{\em mode} & One of the L\+T\+C\+\_\+\+P\+A\+D\+\_\+xx flags \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK on success 
+\end{DoxyReturn}
+
+
+Definition at line 85 of file padding\+\_\+pad.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{86 \{}
+\DoxyCodeLine{87    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} diff, l;}
+\DoxyCodeLine{88    \textcolor{keyword}{enum} padding\_type type;}
+\DoxyCodeLine{89    \textcolor{keywordtype}{int} err;}
+\DoxyCodeLine{90 }
+\DoxyCodeLine{91    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(data          != NULL);}
+\DoxyCodeLine{92    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(padded\_length != NULL);}
+\DoxyCodeLine{93 }
+\DoxyCodeLine{94    l = length;}
+\DoxyCodeLine{95    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{padding__pad_8c_a3c21f068a2c5cddb668c007bff50b865}{\_padding\_padded\_length}}(\&l, mode)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{96       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{97    \}}
+\DoxyCodeLine{98 }
+\DoxyCodeLine{99    type = mode \& \mbox{\hyperlink{tomcrypt__private_8h_a2b8e12593fe11f8eaeace6ce0fcc7566}{LTC\_PAD\_MASK}};}
+\DoxyCodeLine{100 }
+\DoxyCodeLine{101    \textcolor{keywordflow}{if} (*padded\_length < l) \{}
+\DoxyCodeLine{102 \textcolor{preprocessor}{\#ifdef LTC\_RNG\_GET\_BYTES}}
+\DoxyCodeLine{103       \textcolor{keywordflow}{if} (type != LTC\_PAD\_ISO\_10126) \{}
+\DoxyCodeLine{104          *padded\_length = l;}
+\DoxyCodeLine{105       \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{106          *padded\_length = length + 256;}
+\DoxyCodeLine{107       \}}
+\DoxyCodeLine{108 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{109       *padded\_length = l;}
+\DoxyCodeLine{110 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{111       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caccd878f5599f3036ffe759dbe1a1ac16}{CRYPT\_BUFFER\_OVERFLOW}};}
+\DoxyCodeLine{112    \}}
+\DoxyCodeLine{113 }
+\DoxyCodeLine{114    diff = l - length;}
+\DoxyCodeLine{115    \textcolor{keywordflow}{if} (diff > 255) \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{116 }
+\DoxyCodeLine{117    \textcolor{keywordflow}{switch} (type) \{}
+\DoxyCodeLine{118       \textcolor{keywordflow}{case} LTC\_PAD\_PKCS7:}
+\DoxyCodeLine{119          \mbox{\hyperlink{tomcrypt__cfg_8h_aa3c34a6f6c61de7da9258b5a30e32c2f}{XMEMSET}}(\&data[length], diff, diff);}
+\DoxyCodeLine{120          \textcolor{keywordflow}{break};}
+\DoxyCodeLine{121 \textcolor{preprocessor}{\#ifdef LTC\_RNG\_GET\_BYTES}}
+\DoxyCodeLine{122       \textcolor{keywordflow}{case} LTC\_PAD\_ISO\_10126:}
+\DoxyCodeLine{123          \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__prng_8h_ace80a0f11a76e7ebd59c2188b2ec2520}{rng\_get\_bytes}}(\&data[length], diff-1, NULL) != diff-1) \{}
+\DoxyCodeLine{124             \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca68eea82b3b71f23031cd94b10c920bf3}{CRYPT\_ERROR\_READPRNG}};}
+\DoxyCodeLine{125          \}}
+\DoxyCodeLine{126          data[l-1] =  diff;}
+\DoxyCodeLine{127          \textcolor{keywordflow}{break};}
+\DoxyCodeLine{128 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{129       \textcolor{keywordflow}{case} LTC\_PAD\_ANSI\_X923:}
+\DoxyCodeLine{130          \mbox{\hyperlink{tomcrypt__cfg_8h_aa3c34a6f6c61de7da9258b5a30e32c2f}{XMEMSET}}(\&data[length], 0, diff-1);}
+\DoxyCodeLine{131          data[l-1] =  diff;}
+\DoxyCodeLine{132          \textcolor{keywordflow}{break};}
+\DoxyCodeLine{133       \textcolor{keywordflow}{case} LTC\_PAD\_ONE\_AND\_ZERO:}
+\DoxyCodeLine{134          \mbox{\hyperlink{tomcrypt__cfg_8h_aa3c34a6f6c61de7da9258b5a30e32c2f}{XMEMSET}}(\&data[length + 1], 0, diff);}
+\DoxyCodeLine{135          data[length] =  0x80;}
+\DoxyCodeLine{136          \textcolor{keywordflow}{break};}
+\DoxyCodeLine{137       \textcolor{keywordflow}{case} LTC\_PAD\_ZERO:}
+\DoxyCodeLine{138       \textcolor{keywordflow}{case} LTC\_PAD\_ZERO\_ALWAYS:}
+\DoxyCodeLine{139          \mbox{\hyperlink{tomcrypt__cfg_8h_aa3c34a6f6c61de7da9258b5a30e32c2f}{XMEMSET}}(\&data[length], 0, diff);}
+\DoxyCodeLine{140          \textcolor{keywordflow}{break};}
+\DoxyCodeLine{141       \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{142          \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{143    \}}
+\DoxyCodeLine{144    *padded\_length = l;}
+\DoxyCodeLine{145 }
+\DoxyCodeLine{146    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{147 \}}
+
+\end{DoxyCode}
+
+
+References \+\_\+padding\+\_\+padded\+\_\+length(), C\+R\+Y\+P\+T\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+O\+V\+E\+R\+F\+L\+OW, C\+R\+Y\+P\+T\+\_\+\+E\+R\+R\+O\+R\+\_\+\+R\+E\+A\+D\+P\+R\+NG, C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+A\+RG, C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, L\+T\+C\+\_\+\+P\+A\+D\+\_\+\+M\+A\+SK, rng\+\_\+get\+\_\+bytes(), and X\+M\+E\+M\+S\+E\+T().
+
+Here is the call graph for this function\+:
+% FIG 3

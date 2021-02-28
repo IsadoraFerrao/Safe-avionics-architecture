@@ -1,0 +1,146 @@
+\hypertarget{crypt__register__all__ciphers_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/misc/crypt/crypt\+\_\+register\+\_\+all\+\_\+ciphers.c File Reference}
+\label{crypt__register__all__ciphers_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/misc/crypt/crypt\_register\_all\_ciphers.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/misc/crypt/crypt\_register\_all\_ciphers.c}}
+
+
+Steffen Jaeckel.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for crypt\+\_\+register\+\_\+all\+\_\+ciphers.\+c\+:
+% FIG 0
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{crypt__register__all__ciphers_8c_a612b5d315b033e9d231dca71256b00ac}{R\+E\+G\+I\+S\+T\+E\+R\+\_\+\+C\+I\+P\+H\+ER}}(h)
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{crypt__register__all__ciphers_8c_a6ac4768959e71b972dbc6e7fccd80f3e}{register\+\_\+all\+\_\+ciphers}} (void)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Steffen Jaeckel. 
+
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{crypt__register__all__ciphers_8c_a612b5d315b033e9d231dca71256b00ac}\label{crypt__register__all__ciphers_8c_a612b5d315b033e9d231dca71256b00ac}} 
+\index{crypt\_register\_all\_ciphers.c@{crypt\_register\_all\_ciphers.c}!REGISTER\_CIPHER@{REGISTER\_CIPHER}}
+\index{REGISTER\_CIPHER@{REGISTER\_CIPHER}!crypt\_register\_all\_ciphers.c@{crypt\_register\_all\_ciphers.c}}
+\subsubsection{\texorpdfstring{REGISTER\_CIPHER}{REGISTER\_CIPHER}}
+{\footnotesize\ttfamily \#define R\+E\+G\+I\+S\+T\+E\+R\+\_\+\+C\+I\+P\+H\+ER(\begin{DoxyParamCaption}\item[{}]{h }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{\(\backslash\)}
+\DoxyCodeLine{   LTC\_ARGCHK(\mbox{\hyperlink{tomcrypt__cipher_8h_a61ac42bfbce4e88791a80140e8854a72}{register\_cipher}}(h) != -1); \(\backslash\)}
+\DoxyCodeLine{\} \textcolor{keywordflow}{while}(0)}
+
+\end{DoxyCode}
+
+
+Definition at line 18 of file crypt\+\_\+register\+\_\+all\+\_\+ciphers.\+c.
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{crypt__register__all__ciphers_8c_a6ac4768959e71b972dbc6e7fccd80f3e}\label{crypt__register__all__ciphers_8c_a6ac4768959e71b972dbc6e7fccd80f3e}} 
+\index{crypt\_register\_all\_ciphers.c@{crypt\_register\_all\_ciphers.c}!register\_all\_ciphers@{register\_all\_ciphers}}
+\index{register\_all\_ciphers@{register\_all\_ciphers}!crypt\_register\_all\_ciphers.c@{crypt\_register\_all\_ciphers.c}}
+\subsubsection{\texorpdfstring{register\_all\_ciphers()}{register\_all\_ciphers()}}
+{\footnotesize\ttfamily int register\+\_\+all\+\_\+ciphers (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 22 of file crypt\+\_\+register\+\_\+all\+\_\+ciphers.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{23 \{}
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#ifdef LTC\_RIJNDAEL}}
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#ifdef ENCRYPT\_ONLY}}
+\DoxyCodeLine{26    \textcolor{comment}{/* alternative would be}}
+\DoxyCodeLine{27 \textcolor{comment}{    * register\_cipher(\&rijndael\_enc\_desc);}}
+\DoxyCodeLine{28 \textcolor{comment}{    */}}
+\DoxyCodeLine{29    \mbox{\hyperlink{crypt__register__all__ciphers_8c_a612b5d315b033e9d231dca71256b00ac}{REGISTER\_CIPHER}}(\&aes\_enc\_desc);}
+\DoxyCodeLine{30 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{31    \textcolor{comment}{/* alternative would be}}
+\DoxyCodeLine{32 \textcolor{comment}{    * register\_cipher(\&rijndael\_desc);}}
+\DoxyCodeLine{33 \textcolor{comment}{    */}}
+\DoxyCodeLine{34    \mbox{\hyperlink{crypt__register__all__ciphers_8c_a612b5d315b033e9d231dca71256b00ac}{REGISTER\_CIPHER}}(\&\mbox{\hyperlink{aes_8c_a2aa48c4ff0b29440e5c83b7dac768801}{aes\_desc}});}
+\DoxyCodeLine{35 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{36 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{37 \textcolor{preprocessor}{\#ifdef LTC\_BLOWFISH}}
+\DoxyCodeLine{38    \mbox{\hyperlink{crypt__register__all__ciphers_8c_a612b5d315b033e9d231dca71256b00ac}{REGISTER\_CIPHER}}(\&\mbox{\hyperlink{blowfish_8c_aa69cbd19d84b49f3863a4443e51433ba}{blowfish\_desc}});}
+\DoxyCodeLine{39 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{40 \textcolor{preprocessor}{\#ifdef LTC\_XTEA}}
+\DoxyCodeLine{41    \mbox{\hyperlink{crypt__register__all__ciphers_8c_a612b5d315b033e9d231dca71256b00ac}{REGISTER\_CIPHER}}(\&\mbox{\hyperlink{xtea_8c_a6fe160700a333cae733af99b30449aef}{xtea\_desc}});}
+\DoxyCodeLine{42 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{43 \textcolor{preprocessor}{\#ifdef LTC\_RC5}}
+\DoxyCodeLine{44    \mbox{\hyperlink{crypt__register__all__ciphers_8c_a612b5d315b033e9d231dca71256b00ac}{REGISTER\_CIPHER}}(\&\mbox{\hyperlink{rc5_8c_a694a18b2153a39eea83dbe59d619b6dc}{rc5\_desc}});}
+\DoxyCodeLine{45 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{46 \textcolor{preprocessor}{\#ifdef LTC\_RC6}}
+\DoxyCodeLine{47    \mbox{\hyperlink{crypt__register__all__ciphers_8c_a612b5d315b033e9d231dca71256b00ac}{REGISTER\_CIPHER}}(\&\mbox{\hyperlink{rc6_8c_a4bc4cd50d3da515c89e6df4d00371b3d}{rc6\_desc}});}
+\DoxyCodeLine{48 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{49 \textcolor{preprocessor}{\#ifdef LTC\_SAFERP}}
+\DoxyCodeLine{50    \mbox{\hyperlink{crypt__register__all__ciphers_8c_a612b5d315b033e9d231dca71256b00ac}{REGISTER\_CIPHER}}(\&\mbox{\hyperlink{saferp_8c_a2b33e3e25708b5e3cf97aa55e9488229}{saferp\_desc}});}
+\DoxyCodeLine{51 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{52 \textcolor{preprocessor}{\#ifdef LTC\_TWOFISH}}
+\DoxyCodeLine{53    \mbox{\hyperlink{crypt__register__all__ciphers_8c_a612b5d315b033e9d231dca71256b00ac}{REGISTER\_CIPHER}}(\&\mbox{\hyperlink{twofish_8c_af0de9cc3deb118ab8ca14f7ff6d52fd3}{twofish\_desc}});}
+\DoxyCodeLine{54 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{55 \textcolor{preprocessor}{\#ifdef LTC\_SAFER}}
+\DoxyCodeLine{56    \mbox{\hyperlink{crypt__register__all__ciphers_8c_a612b5d315b033e9d231dca71256b00ac}{REGISTER\_CIPHER}}(\&\mbox{\hyperlink{safer_8c_a93709ca54132dfbb88c8929f195044a7}{safer\_k64\_desc}});}
+\DoxyCodeLine{57    \mbox{\hyperlink{crypt__register__all__ciphers_8c_a612b5d315b033e9d231dca71256b00ac}{REGISTER\_CIPHER}}(\&\mbox{\hyperlink{safer_8c_aa1e344aed15e529eb252da3506cfbc27}{safer\_sk64\_desc}});}
+\DoxyCodeLine{58    \mbox{\hyperlink{crypt__register__all__ciphers_8c_a612b5d315b033e9d231dca71256b00ac}{REGISTER\_CIPHER}}(\&\mbox{\hyperlink{safer_8c_a915866930788beb465e50a0e0d762a20}{safer\_k128\_desc}});}
+\DoxyCodeLine{59    \mbox{\hyperlink{crypt__register__all__ciphers_8c_a612b5d315b033e9d231dca71256b00ac}{REGISTER\_CIPHER}}(\&\mbox{\hyperlink{safer_8c_ad84579c3b6c86e51d479d189502e1827}{safer\_sk128\_desc}});}
+\DoxyCodeLine{60 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{61 \textcolor{preprocessor}{\#ifdef LTC\_RC2}}
+\DoxyCodeLine{62    \mbox{\hyperlink{crypt__register__all__ciphers_8c_a612b5d315b033e9d231dca71256b00ac}{REGISTER\_CIPHER}}(\&\mbox{\hyperlink{rc2_8c_af2a69c5eed0f0f5201a34c72801bdcb9}{rc2\_desc}});}
+\DoxyCodeLine{63 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{64 \textcolor{preprocessor}{\#ifdef LTC\_DES}}
+\DoxyCodeLine{65    \mbox{\hyperlink{crypt__register__all__ciphers_8c_a612b5d315b033e9d231dca71256b00ac}{REGISTER\_CIPHER}}(\&\mbox{\hyperlink{des_8c_a3063e5b41add687be02cd6b134f5a73f}{des\_desc}});}
+\DoxyCodeLine{66    \mbox{\hyperlink{crypt__register__all__ciphers_8c_a612b5d315b033e9d231dca71256b00ac}{REGISTER\_CIPHER}}(\&\mbox{\hyperlink{des_8c_af3193b5d652e9e91159ff5a098fd95d3}{des3\_desc}});}
+\DoxyCodeLine{67 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{68 \textcolor{preprocessor}{\#ifdef LTC\_CAST5}}
+\DoxyCodeLine{69    \mbox{\hyperlink{crypt__register__all__ciphers_8c_a612b5d315b033e9d231dca71256b00ac}{REGISTER\_CIPHER}}(\&\mbox{\hyperlink{cast5_8c_a3c28f696b4ea4bc133a4889b6d1a72d1}{cast5\_desc}});}
+\DoxyCodeLine{70 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{71 \textcolor{preprocessor}{\#ifdef LTC\_NOEKEON}}
+\DoxyCodeLine{72    \mbox{\hyperlink{crypt__register__all__ciphers_8c_a612b5d315b033e9d231dca71256b00ac}{REGISTER\_CIPHER}}(\&\mbox{\hyperlink{noekeon_8c_a9d3c31904b318246bbc99df8bf5f74b3}{noekeon\_desc}});}
+\DoxyCodeLine{73 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{74 \textcolor{preprocessor}{\#ifdef LTC\_SKIPJACK}}
+\DoxyCodeLine{75    \mbox{\hyperlink{crypt__register__all__ciphers_8c_a612b5d315b033e9d231dca71256b00ac}{REGISTER\_CIPHER}}(\&\mbox{\hyperlink{skipjack_8c_a15ea2ed4036004060ddc9e763fea84de}{skipjack\_desc}});}
+\DoxyCodeLine{76 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{77 \textcolor{preprocessor}{\#ifdef LTC\_ANUBIS}}
+\DoxyCodeLine{78    \mbox{\hyperlink{crypt__register__all__ciphers_8c_a612b5d315b033e9d231dca71256b00ac}{REGISTER\_CIPHER}}(\&\mbox{\hyperlink{anubis_8c_a90e32a17644ba7c27cee346ddb2517ef}{anubis\_desc}});}
+\DoxyCodeLine{79 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{80 \textcolor{preprocessor}{\#ifdef LTC\_KHAZAD}}
+\DoxyCodeLine{81    \mbox{\hyperlink{crypt__register__all__ciphers_8c_a612b5d315b033e9d231dca71256b00ac}{REGISTER\_CIPHER}}(\&\mbox{\hyperlink{khazad_8c_a07a193e67bcb1833c10b1fbcba1d90fc}{khazad\_desc}});}
+\DoxyCodeLine{82 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{83 \textcolor{preprocessor}{\#ifdef LTC\_KSEED}}
+\DoxyCodeLine{84    \mbox{\hyperlink{crypt__register__all__ciphers_8c_a612b5d315b033e9d231dca71256b00ac}{REGISTER\_CIPHER}}(\&\mbox{\hyperlink{kseed_8c_abb75fd3d7465d0109cb6577b350b7b07}{kseed\_desc}});}
+\DoxyCodeLine{85 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{86 \textcolor{preprocessor}{\#ifdef LTC\_KASUMI}}
+\DoxyCodeLine{87    \mbox{\hyperlink{crypt__register__all__ciphers_8c_a612b5d315b033e9d231dca71256b00ac}{REGISTER\_CIPHER}}(\&\mbox{\hyperlink{kasumi_8c_a0a9143785f21664be453500c0dd55099}{kasumi\_desc}});}
+\DoxyCodeLine{88 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{89 \textcolor{preprocessor}{\#ifdef LTC\_MULTI2}}
+\DoxyCodeLine{90    \mbox{\hyperlink{crypt__register__all__ciphers_8c_a612b5d315b033e9d231dca71256b00ac}{REGISTER\_CIPHER}}(\&\mbox{\hyperlink{multi2_8c_aebf3a1b41bc8763287eecb37dc846bca}{multi2\_desc}});}
+\DoxyCodeLine{91 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{92 \textcolor{preprocessor}{\#ifdef LTC\_CAMELLIA}}
+\DoxyCodeLine{93    \mbox{\hyperlink{crypt__register__all__ciphers_8c_a612b5d315b033e9d231dca71256b00ac}{REGISTER\_CIPHER}}(\&\mbox{\hyperlink{camellia_8c_a10d3fccfb54d69182deb1c6ed8c699db}{camellia\_desc}});}
+\DoxyCodeLine{94 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{95 \textcolor{preprocessor}{\#ifdef LTC\_IDEA}}
+\DoxyCodeLine{96    \mbox{\hyperlink{crypt__register__all__ciphers_8c_a612b5d315b033e9d231dca71256b00ac}{REGISTER\_CIPHER}}(\&\mbox{\hyperlink{idea_8c_ab86cc28faab2395bdfc121bde0c170a2}{idea\_desc}});}
+\DoxyCodeLine{97 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{98 \textcolor{preprocessor}{\#ifdef LTC\_SERPENT}}
+\DoxyCodeLine{99    \mbox{\hyperlink{crypt__register__all__ciphers_8c_a612b5d315b033e9d231dca71256b00ac}{REGISTER\_CIPHER}}(\&\mbox{\hyperlink{serpent_8c_a84d78de33832ca89c1ddfb9f164246b1}{serpent\_desc}});}
+\DoxyCodeLine{100 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{101    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{102 \}}
+
+\end{DoxyCode}
+
+
+References aes\+\_\+desc, anubis\+\_\+desc, blowfish\+\_\+desc, camellia\+\_\+desc, cast5\+\_\+desc, C\+R\+Y\+P\+T\+\_\+\+OK, des3\+\_\+desc, des\+\_\+desc, idea\+\_\+desc, kasumi\+\_\+desc, khazad\+\_\+desc, kseed\+\_\+desc, multi2\+\_\+desc, noekeon\+\_\+desc, rc2\+\_\+desc, rc5\+\_\+desc, rc6\+\_\+desc, R\+E\+G\+I\+S\+T\+E\+R\+\_\+\+C\+I\+P\+H\+ER, safer\+\_\+k128\+\_\+desc, safer\+\_\+k64\+\_\+desc, safer\+\_\+sk128\+\_\+desc, safer\+\_\+sk64\+\_\+desc, saferp\+\_\+desc, serpent\+\_\+desc, skipjack\+\_\+desc, twofish\+\_\+desc, and xtea\+\_\+desc.
+

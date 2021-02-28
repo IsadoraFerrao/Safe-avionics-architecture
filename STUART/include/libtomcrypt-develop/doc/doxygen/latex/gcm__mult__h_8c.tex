@@ -1,0 +1,90 @@
+\hypertarget{gcm__mult__h_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/encauth/gcm/gcm\+\_\+mult\+\_\+h.c File Reference}
+\label{gcm__mult__h_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/encauth/gcm/gcm\_mult\_h.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/encauth/gcm/gcm\_mult\_h.c}}
+
+
+G\+CM implementation, do the GF mult, by Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for gcm\+\_\+mult\+\_\+h.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{gcm__mult__h_8c_a198e51a3d6b56455cc781d140ebd6f6d}{gcm\+\_\+mult\+\_\+h}} (const gcm\+\_\+state $\ast$gcm, unsigned char $\ast$\mbox{\hyperlink{rmd320_8c_ac0eafdc9ee161b71e7af98af736952fd}{I}})
+\begin{DoxyCompactList}\small\item\em G\+CM multiply by H. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+G\+CM implementation, do the GF mult, by Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{gcm__mult__h_8c_a198e51a3d6b56455cc781d140ebd6f6d}\label{gcm__mult__h_8c_a198e51a3d6b56455cc781d140ebd6f6d}} 
+\index{gcm\_mult\_h.c@{gcm\_mult\_h.c}!gcm\_mult\_h@{gcm\_mult\_h}}
+\index{gcm\_mult\_h@{gcm\_mult\_h}!gcm\_mult\_h.c@{gcm\_mult\_h.c}}
+\subsubsection{\texorpdfstring{gcm\_mult\_h()}{gcm\_mult\_h()}}
+{\footnotesize\ttfamily void gcm\+\_\+mult\+\_\+h (\begin{DoxyParamCaption}\item[{const gcm\+\_\+state $\ast$}]{gcm,  }\item[{unsigned char $\ast$}]{I }\end{DoxyParamCaption})}
+
+
+
+G\+CM multiply by H. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gcm} & The G\+CM state which holds the H value \\
+\hline
+{\em I} & The value to multiply H by \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 22 of file gcm\+\_\+mult\+\_\+h.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{23 \{}
+\DoxyCodeLine{24    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} T[16];}
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#ifdef LTC\_GCM\_TABLES}}
+\DoxyCodeLine{26    \textcolor{keywordtype}{int} x;}
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#ifdef LTC\_GCM\_TABLES\_SSE2}}
+\DoxyCodeLine{28    \textcolor{keyword}{asm}(\textcolor{stringliteral}{"movdqa (\%0),\%\%xmm0"}::\textcolor{stringliteral}{"r"}(\&gcm->PC[0][\mbox{\hyperlink{md5_8c_ac0eafdc9ee161b71e7af98af736952fd}{I}}[0]][0]));}
+\DoxyCodeLine{29    \textcolor{keywordflow}{for} (x = 1; x < 16; x++) \{}
+\DoxyCodeLine{30       \textcolor{keyword}{asm}(\textcolor{stringliteral}{"pxor (\%0),\%\%xmm0"}::\textcolor{stringliteral}{"r"}(\&gcm->PC[x][\mbox{\hyperlink{md5_8c_ac0eafdc9ee161b71e7af98af736952fd}{I}}[x]][0]));}
+\DoxyCodeLine{31    \}}
+\DoxyCodeLine{32    \textcolor{keyword}{asm}(\textcolor{stringliteral}{"movdqa \%\%xmm0,(\%0)"}::\textcolor{stringliteral}{"r"}(\&T));}
+\DoxyCodeLine{33 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{34    \textcolor{keywordtype}{int} y;}
+\DoxyCodeLine{35    \mbox{\hyperlink{tomcrypt__cfg_8h_a7691dd48d60d5fc6daf2fa7ec4c55e12}{XMEMCPY}}(T, \&gcm->PC[0][\mbox{\hyperlink{md5_8c_ac0eafdc9ee161b71e7af98af736952fd}{I}}[0]][0], 16);}
+\DoxyCodeLine{36    \textcolor{keywordflow}{for} (x = 1; x < 16; x++) \{}
+\DoxyCodeLine{37 \textcolor{preprocessor}{\#ifdef LTC\_FAST}}
+\DoxyCodeLine{38        \textcolor{keywordflow}{for} (y = 0; y < 16; y += \textcolor{keyword}{sizeof}(LTC\_FAST\_TYPE)) \{}
+\DoxyCodeLine{39            *(LTC\_FAST\_TYPE\_PTR\_CAST(T + y)) \string^= *(LTC\_FAST\_TYPE\_PTR\_CAST(\&gcm->PC[x][\mbox{\hyperlink{md5_8c_ac0eafdc9ee161b71e7af98af736952fd}{I}}[x]][y]));}
+\DoxyCodeLine{40        \}}
+\DoxyCodeLine{41 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{42        \textcolor{keywordflow}{for} (y = 0; y < 16; y++) \{}
+\DoxyCodeLine{43            T[y] \string^= gcm->PC[x][\mbox{\hyperlink{md5_8c_ac0eafdc9ee161b71e7af98af736952fd}{I}}[x]][y];}
+\DoxyCodeLine{44        \}}
+\DoxyCodeLine{45 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* LTC\_FAST */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{46    \}}
+\DoxyCodeLine{47 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* LTC\_GCM\_TABLES\_SSE2 */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{48 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{49    \mbox{\hyperlink{gcm__gf__mult_8c_af64448959cfcae8b0a774822f2219f47}{gcm\_gf\_mult}}(gcm->H, \mbox{\hyperlink{md5_8c_ac0eafdc9ee161b71e7af98af736952fd}{I}}, T);}
+\DoxyCodeLine{50 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{51    \mbox{\hyperlink{tomcrypt__cfg_8h_a7691dd48d60d5fc6daf2fa7ec4c55e12}{XMEMCPY}}(\mbox{\hyperlink{md5_8c_ac0eafdc9ee161b71e7af98af736952fd}{I}}, T, 16);}
+\DoxyCodeLine{52 \}}
+
+\end{DoxyCode}
+
+
+References gcm\+\_\+gf\+\_\+mult(), I, and X\+M\+E\+M\+C\+P\+Y().
+
+
+
+Referenced by gcm\+\_\+add\+\_\+aad(), gcm\+\_\+add\+\_\+iv(), gcm\+\_\+done(), and gcm\+\_\+process().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2

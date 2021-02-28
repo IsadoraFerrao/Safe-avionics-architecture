@@ -1,0 +1,10 @@
+digraph "rc5_ecb_encrypt"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node6 [label="rc5_ecb_encrypt",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Encrypts a block of text with LTC_RC5."];
+  Node6 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="rc5_test",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rc5_8c.html#ae148891e5f29f2ce908358bc05667d81",tooltip="Performs a self-test of the LTC_RC5 block cipher."];
+}

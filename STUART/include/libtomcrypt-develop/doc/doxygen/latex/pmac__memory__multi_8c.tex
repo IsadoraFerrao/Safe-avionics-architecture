@@ -1,0 +1,117 @@
+\hypertarget{pmac__memory__multi_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/mac/pmac/pmac\+\_\+memory\+\_\+multi.c File Reference}
+\label{pmac__memory__multi_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/mac/pmac/pmac\_memory\_multi.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/mac/pmac/pmac\_memory\_multi.c}}
+
+
+P\+M\+AC implementation, process multiple blocks of memory, by Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdarg.\+h$>$}\newline
+Include dependency graph for pmac\+\_\+memory\+\_\+multi.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{pmac__memory__multi_8c_a1de02e9aa8851625d40265b30c639369}{pmac\+\_\+memory\+\_\+multi}} (int cipher, const unsigned char $\ast$key, unsigned long keylen, unsigned char $\ast$out, unsigned long $\ast$outlen, const unsigned char $\ast$in, unsigned long inlen,...)
+\begin{DoxyCompactList}\small\item\em P\+M\+AC multiple blocks of memory. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+P\+M\+AC implementation, process multiple blocks of memory, by Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{pmac__memory__multi_8c_a1de02e9aa8851625d40265b30c639369}\label{pmac__memory__multi_8c_a1de02e9aa8851625d40265b30c639369}} 
+\index{pmac\_memory\_multi.c@{pmac\_memory\_multi.c}!pmac\_memory\_multi@{pmac\_memory\_multi}}
+\index{pmac\_memory\_multi@{pmac\_memory\_multi}!pmac\_memory\_multi.c@{pmac\_memory\_multi.c}}
+\subsubsection{\texorpdfstring{pmac\_memory\_multi()}{pmac\_memory\_multi()}}
+{\footnotesize\ttfamily int pmac\+\_\+memory\+\_\+multi (\begin{DoxyParamCaption}\item[{int}]{cipher,  }\item[{const unsigned char $\ast$}]{key,  }\item[{unsigned long}]{keylen,  }\item[{unsigned char $\ast$}]{out,  }\item[{unsigned long $\ast$}]{outlen,  }\item[{const unsigned char $\ast$}]{in,  }\item[{unsigned long}]{inlen,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+
+
+P\+M\+AC multiple blocks of memory. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cipher} & The index of the cipher desired \\
+\hline
+{\em key} & The secret key \\
+\hline
+{\em keylen} & The length of the secret key (octets) \\
+\hline
+{\em out} & \mbox{[}out\mbox{]} Destination for the authentication tag \\
+\hline
+{\em outlen} & \mbox{[}in/out\mbox{]} The max size and resulting size of the authentication tag \\
+\hline
+{\em in} & The data you wish to send through P\+M\+AC \\
+\hline
+{\em inlen} & The length of data you wish to send through P\+M\+AC (octets) \\
+\hline
+{\em ...} & tuples of (data,len) pairs to P\+M\+AC, terminated with a (N\+U\+LL,x) (x=don\textquotesingle{}t care) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 31 of file pmac\+\_\+memory\+\_\+multi.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{35 \{}
+\DoxyCodeLine{36    \textcolor{keywordtype}{int}                  err;}
+\DoxyCodeLine{37    pmac\_state          *pmac;}
+\DoxyCodeLine{38    va\_list              args;}
+\DoxyCodeLine{39    \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *curptr;}
+\DoxyCodeLine{40    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long}        curlen;}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{42    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(key    != NULL);}
+\DoxyCodeLine{43    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(in     != NULL);}
+\DoxyCodeLine{44    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(out    != NULL);}
+\DoxyCodeLine{45    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(outlen != NULL);}
+\DoxyCodeLine{46 }
+\DoxyCodeLine{47    \textcolor{comment}{/* allocate ram for pmac state */}}
+\DoxyCodeLine{48    pmac = \mbox{\hyperlink{tomcrypt__cfg_8h_af363355f38fbaacdefacf270436ae1c9}{XMALLOC}}(\textcolor{keyword}{sizeof}(pmac\_state));}
+\DoxyCodeLine{49    \textcolor{keywordflow}{if} (pmac == NULL) \{}
+\DoxyCodeLine{50       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca0ce0d27adc7ea10b74b7ea904b8bfa82}{CRYPT\_MEM}};}
+\DoxyCodeLine{51    \}}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{53    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{pmac__init_8c_a2cc36e2064ee6f365143f6f51083de9a}{pmac\_init}}(pmac, cipher, key, keylen)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{54       \textcolor{keywordflow}{goto} LBL\_ERR;}
+\DoxyCodeLine{55    \}}
+\DoxyCodeLine{56    va\_start(args, inlen);}
+\DoxyCodeLine{57    curptr = in;}
+\DoxyCodeLine{58    curlen = inlen;}
+\DoxyCodeLine{59    \textcolor{keywordflow}{for} (;;) \{}
+\DoxyCodeLine{60       \textcolor{comment}{/* process buf */}}
+\DoxyCodeLine{61       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{pmac__process_8c_a85d97f77425bf5e1ce9a8f9bb1aab059}{pmac\_process}}(pmac, curptr, curlen)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{62          \textcolor{keywordflow}{goto} LBL\_ERR;}
+\DoxyCodeLine{63       \}}
+\DoxyCodeLine{64       \textcolor{comment}{/* step to next */}}
+\DoxyCodeLine{65       curptr = va\_arg(args, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}*);}
+\DoxyCodeLine{66       \textcolor{keywordflow}{if} (curptr == NULL) \{}
+\DoxyCodeLine{67          \textcolor{keywordflow}{break};}
+\DoxyCodeLine{68       \}}
+\DoxyCodeLine{69       curlen = va\_arg(args, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long});}
+\DoxyCodeLine{70    \}}
+\DoxyCodeLine{71    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{pmac__done_8c_a28451cb8ae23f8bed3a577b101aac5a0}{pmac\_done}}(pmac, out, outlen)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{72       \textcolor{keywordflow}{goto} LBL\_ERR;}
+\DoxyCodeLine{73    \}}
+\DoxyCodeLine{74 LBL\_ERR:}
+\DoxyCodeLine{75 \textcolor{preprocessor}{\#ifdef LTC\_CLEAN\_STACK}}
+\DoxyCodeLine{76    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(pmac, \textcolor{keyword}{sizeof}(pmac\_state));}
+\DoxyCodeLine{77 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{78    \mbox{\hyperlink{tomcrypt__cfg_8h_a260d66fc0690e0502cf3bfe7b5244b75}{XFREE}}(pmac);}
+\DoxyCodeLine{79    va\_end(args);}
+\DoxyCodeLine{80    \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{81 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+M\+EM, C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, pmac\+\_\+done(), pmac\+\_\+init(), pmac\+\_\+process(), X\+F\+R\+E\+E(), X\+M\+A\+L\+L\+O\+C(), and zeromem().
+
+Here is the call graph for this function\+:
+% FIG 1

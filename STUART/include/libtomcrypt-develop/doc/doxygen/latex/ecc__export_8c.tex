@@ -1,0 +1,99 @@
+\hypertarget{ecc__export_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/pk/ecc/ecc\+\_\+export.c File Reference}
+\label{ecc__export_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/ecc/ecc\_export.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/ecc/ecc\_export.c}}
+
+
+E\+CC Crypto, Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for ecc\+\_\+export.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{ecc__export_8c_a0d5ba7729d561cb890d1c78dc3c20866}{ecc\+\_\+export}} (unsigned char $\ast$out, unsigned long $\ast$outlen, int type, const ecc\+\_\+key $\ast$key)
+\begin{DoxyCompactList}\small\item\em Export an E\+CC key as a binary packet. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+E\+CC Crypto, Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{ecc__export_8c_a0d5ba7729d561cb890d1c78dc3c20866}\label{ecc__export_8c_a0d5ba7729d561cb890d1c78dc3c20866}} 
+\index{ecc\_export.c@{ecc\_export.c}!ecc\_export@{ecc\_export}}
+\index{ecc\_export@{ecc\_export}!ecc\_export.c@{ecc\_export.c}}
+\subsubsection{\texorpdfstring{ecc\_export()}{ecc\_export()}}
+{\footnotesize\ttfamily int ecc\+\_\+export (\begin{DoxyParamCaption}\item[{unsigned char $\ast$}]{out,  }\item[{unsigned long $\ast$}]{outlen,  }\item[{int}]{type,  }\item[{const ecc\+\_\+key $\ast$}]{key }\end{DoxyParamCaption})}
+
+
+
+Export an E\+CC key as a binary packet. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em out} & \mbox{[}out\mbox{]} Destination for the key \\
+\hline
+{\em outlen} & \mbox{[}in/out\mbox{]} Max size and resulting size of the exported key \\
+\hline
+{\em type} & The type of key you want to export (P\+K\+\_\+\+P\+R\+I\+V\+A\+TE or P\+K\+\_\+\+P\+U\+B\+L\+IC) \\
+\hline
+{\em key} & The key to export \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 27 of file ecc\+\_\+export.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{28 \{}
+\DoxyCodeLine{29    \textcolor{keywordtype}{int}           err;}
+\DoxyCodeLine{30    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} flags[1];}
+\DoxyCodeLine{31    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} key\_size;}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(out    != NULL);}
+\DoxyCodeLine{34    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(outlen != NULL);}
+\DoxyCodeLine{35    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(key    != NULL);}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37    \textcolor{comment}{/* type valid? */}}
+\DoxyCodeLine{38    \textcolor{keywordflow}{if} (key->type != \mbox{\hyperlink{tomcrypt__pk_8h_afb69d121a43f5ae8b47e6b83611d9272a7295b3dea2c5277912c6e040e1c96649}{PK\_PRIVATE}} \&\& type == \mbox{\hyperlink{tomcrypt__pk_8h_afb69d121a43f5ae8b47e6b83611d9272a7295b3dea2c5277912c6e040e1c96649}{PK\_PRIVATE}}) \{}
+\DoxyCodeLine{39       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca48b20c804be422f37699bb4846ccf8e0}{CRYPT\_PK\_TYPE\_MISMATCH}};}
+\DoxyCodeLine{40    \}}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{42    \textcolor{comment}{/* we store the NIST byte size */}}
+\DoxyCodeLine{43    key\_size = key->dp.size;}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45    \textcolor{keywordflow}{if} (type == \mbox{\hyperlink{tomcrypt__pk_8h_afb69d121a43f5ae8b47e6b83611d9272a7295b3dea2c5277912c6e040e1c96649}{PK\_PRIVATE}}) \{}
+\DoxyCodeLine{46        flags[0] = 1;}
+\DoxyCodeLine{47        err = \mbox{\hyperlink{der__encode__sequence__multi_8c_a1a5a69543a5c89f81560b52d6f11b8c5}{der\_encode\_sequence\_multi}}(out, outlen,}
+\DoxyCodeLine{48                                  LTC\_ASN1\_BIT\_STRING,      1UL, flags,}
+\DoxyCodeLine{49                                  LTC\_ASN1\_SHORT\_INTEGER,   1UL, \&key\_size,}
+\DoxyCodeLine{50                                  LTC\_ASN1\_INTEGER,         1UL, key->pubkey.x,}
+\DoxyCodeLine{51                                  LTC\_ASN1\_INTEGER,         1UL, key->pubkey.y,}
+\DoxyCodeLine{52                                  LTC\_ASN1\_INTEGER,         1UL, key->k,}
+\DoxyCodeLine{53                                  LTC\_ASN1\_EOL,             0UL, NULL);}
+\DoxyCodeLine{54    \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{55        flags[0] = 0;}
+\DoxyCodeLine{56        err = \mbox{\hyperlink{der__encode__sequence__multi_8c_a1a5a69543a5c89f81560b52d6f11b8c5}{der\_encode\_sequence\_multi}}(out, outlen,}
+\DoxyCodeLine{57                                  LTC\_ASN1\_BIT\_STRING,      1UL, flags,}
+\DoxyCodeLine{58                                  LTC\_ASN1\_SHORT\_INTEGER,   1UL, \&key\_size,}
+\DoxyCodeLine{59                                  LTC\_ASN1\_INTEGER,         1UL, key->pubkey.x,}
+\DoxyCodeLine{60                                  LTC\_ASN1\_INTEGER,         1UL, key->pubkey.y,}
+\DoxyCodeLine{61                                  LTC\_ASN1\_EOL,             0UL, NULL);}
+\DoxyCodeLine{62    \}}
+\DoxyCodeLine{63 }
+\DoxyCodeLine{64    \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{65 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+P\+K\+\_\+\+T\+Y\+P\+E\+\_\+\+M\+I\+S\+M\+A\+T\+CH, der\+\_\+encode\+\_\+sequence\+\_\+multi(), L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, and P\+K\+\_\+\+P\+R\+I\+V\+A\+TE.
+
+Here is the call graph for this function\+:
+% FIG 1

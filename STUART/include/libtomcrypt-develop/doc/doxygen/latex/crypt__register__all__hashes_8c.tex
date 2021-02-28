@@ -1,0 +1,147 @@
+\hypertarget{crypt__register__all__hashes_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/misc/crypt/crypt\+\_\+register\+\_\+all\+\_\+hashes.c File Reference}
+\label{crypt__register__all__hashes_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/misc/crypt/crypt\_register\_all\_hashes.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/misc/crypt/crypt\_register\_all\_hashes.c}}
+
+
+Steffen Jaeckel.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for crypt\+\_\+register\+\_\+all\+\_\+hashes.\+c\+:
+% FIG 0
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{crypt__register__all__hashes_8c_a3ac8ba6e16af235f0606be8d039739c2}{R\+E\+G\+I\+S\+T\+E\+R\+\_\+\+H\+A\+SH}}(h)
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{crypt__register__all__hashes_8c_a646235ec81bef5215708a56a23e43874}{register\+\_\+all\+\_\+hashes}} (void)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Steffen Jaeckel. 
+
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{crypt__register__all__hashes_8c_a3ac8ba6e16af235f0606be8d039739c2}\label{crypt__register__all__hashes_8c_a3ac8ba6e16af235f0606be8d039739c2}} 
+\index{crypt\_register\_all\_hashes.c@{crypt\_register\_all\_hashes.c}!REGISTER\_HASH@{REGISTER\_HASH}}
+\index{REGISTER\_HASH@{REGISTER\_HASH}!crypt\_register\_all\_hashes.c@{crypt\_register\_all\_hashes.c}}
+\subsubsection{\texorpdfstring{REGISTER\_HASH}{REGISTER\_HASH}}
+{\footnotesize\ttfamily \#define R\+E\+G\+I\+S\+T\+E\+R\+\_\+\+H\+A\+SH(\begin{DoxyParamCaption}\item[{}]{h }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{\(\backslash\)}
+\DoxyCodeLine{   LTC\_ARGCHK(\mbox{\hyperlink{tomcrypt__hash_8h_a675b9eda0e8cf146aca2cc89ea5ad571}{register\_hash}}(h) != -1); \(\backslash\)}
+\DoxyCodeLine{\} \textcolor{keywordflow}{while}(0)}
+
+\end{DoxyCode}
+
+
+Definition at line 18 of file crypt\+\_\+register\+\_\+all\+\_\+hashes.\+c.
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{crypt__register__all__hashes_8c_a646235ec81bef5215708a56a23e43874}\label{crypt__register__all__hashes_8c_a646235ec81bef5215708a56a23e43874}} 
+\index{crypt\_register\_all\_hashes.c@{crypt\_register\_all\_hashes.c}!register\_all\_hashes@{register\_all\_hashes}}
+\index{register\_all\_hashes@{register\_all\_hashes}!crypt\_register\_all\_hashes.c@{crypt\_register\_all\_hashes.c}}
+\subsubsection{\texorpdfstring{register\_all\_hashes()}{register\_all\_hashes()}}
+{\footnotesize\ttfamily int register\+\_\+all\+\_\+hashes (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 22 of file crypt\+\_\+register\+\_\+all\+\_\+hashes.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{23 \{}
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#ifdef LTC\_TIGER}}
+\DoxyCodeLine{25    \mbox{\hyperlink{crypt__register__all__hashes_8c_a3ac8ba6e16af235f0606be8d039739c2}{REGISTER\_HASH}}(\&\mbox{\hyperlink{tiger_8c_a44eec4b5ea7ebd749996709dcbb7fa02}{tiger\_desc}});}
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#ifdef LTC\_MD2}}
+\DoxyCodeLine{28    \mbox{\hyperlink{crypt__register__all__hashes_8c_a3ac8ba6e16af235f0606be8d039739c2}{REGISTER\_HASH}}(\&\mbox{\hyperlink{md2_8c_ae32433d72cdc0cb99d8c45998acf3efc}{md2\_desc}});}
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{30 \textcolor{preprocessor}{\#ifdef LTC\_MD4}}
+\DoxyCodeLine{31    \mbox{\hyperlink{crypt__register__all__hashes_8c_a3ac8ba6e16af235f0606be8d039739c2}{REGISTER\_HASH}}(\&\mbox{\hyperlink{md4_8c_aab2ebda0ab4c495fb1dff5af5b6c1c1f}{md4\_desc}});}
+\DoxyCodeLine{32 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{33 \textcolor{preprocessor}{\#ifdef LTC\_MD5}}
+\DoxyCodeLine{34    \mbox{\hyperlink{crypt__register__all__hashes_8c_a3ac8ba6e16af235f0606be8d039739c2}{REGISTER\_HASH}}(\&\mbox{\hyperlink{md5_8c_a70c38ffa9636c7aa5e6d83d061da20b4}{md5\_desc}});}
+\DoxyCodeLine{35 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{36 \textcolor{preprocessor}{\#ifdef LTC\_SHA1}}
+\DoxyCodeLine{37    \mbox{\hyperlink{crypt__register__all__hashes_8c_a3ac8ba6e16af235f0606be8d039739c2}{REGISTER\_HASH}}(\&\mbox{\hyperlink{sha1_8c_aae521fdbe0f9dea61c37f76ece473360}{sha1\_desc}});}
+\DoxyCodeLine{38 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{39 \textcolor{preprocessor}{\#ifdef LTC\_SHA224}}
+\DoxyCodeLine{40    \mbox{\hyperlink{crypt__register__all__hashes_8c_a3ac8ba6e16af235f0606be8d039739c2}{REGISTER\_HASH}}(\&\mbox{\hyperlink{sha224_8c_a1ca01f6b95871f666745ef6f6b34ccdb}{sha224\_desc}});}
+\DoxyCodeLine{41 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{42 \textcolor{preprocessor}{\#ifdef LTC\_SHA256}}
+\DoxyCodeLine{43    \mbox{\hyperlink{crypt__register__all__hashes_8c_a3ac8ba6e16af235f0606be8d039739c2}{REGISTER\_HASH}}(\&\mbox{\hyperlink{sha256_8c_a06cf2e3df8c7f3f9a7b169d03d6fed92}{sha256\_desc}});}
+\DoxyCodeLine{44 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{45 \textcolor{preprocessor}{\#ifdef LTC\_SHA384}}
+\DoxyCodeLine{46    \mbox{\hyperlink{crypt__register__all__hashes_8c_a3ac8ba6e16af235f0606be8d039739c2}{REGISTER\_HASH}}(\&\mbox{\hyperlink{sha384_8c_a8ab593a3bcc67245157b1a2fddd6008f}{sha384\_desc}});}
+\DoxyCodeLine{47 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{48 \textcolor{preprocessor}{\#ifdef LTC\_SHA512}}
+\DoxyCodeLine{49    \mbox{\hyperlink{crypt__register__all__hashes_8c_a3ac8ba6e16af235f0606be8d039739c2}{REGISTER\_HASH}}(\&\mbox{\hyperlink{sha512_8c_a9d10b4fc704b2dd97c24f59601464839}{sha512\_desc}});}
+\DoxyCodeLine{50 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{51 \textcolor{preprocessor}{\#ifdef LTC\_SHA512\_224}}
+\DoxyCodeLine{52    \mbox{\hyperlink{crypt__register__all__hashes_8c_a3ac8ba6e16af235f0606be8d039739c2}{REGISTER\_HASH}}(\&\mbox{\hyperlink{sha512__224_8c_ac8764cbe00b9e4261ee19a52f66011ba}{sha512\_224\_desc}});}
+\DoxyCodeLine{53 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{54 \textcolor{preprocessor}{\#ifdef LTC\_SHA512\_256}}
+\DoxyCodeLine{55    \mbox{\hyperlink{crypt__register__all__hashes_8c_a3ac8ba6e16af235f0606be8d039739c2}{REGISTER\_HASH}}(\&\mbox{\hyperlink{sha512__256_8c_a2bd8ca2db1bb2f48781adf4b429a25a6}{sha512\_256\_desc}});}
+\DoxyCodeLine{56 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{57 \textcolor{preprocessor}{\#ifdef LTC\_SHA3}}
+\DoxyCodeLine{58    \mbox{\hyperlink{crypt__register__all__hashes_8c_a3ac8ba6e16af235f0606be8d039739c2}{REGISTER\_HASH}}(\&\mbox{\hyperlink{sha3_8c_a17a249a77f0c1d349f9db5202f0a6309}{sha3\_224\_desc}});}
+\DoxyCodeLine{59    \mbox{\hyperlink{crypt__register__all__hashes_8c_a3ac8ba6e16af235f0606be8d039739c2}{REGISTER\_HASH}}(\&\mbox{\hyperlink{sha3_8c_a05bcc641692c2b2dd143a9230e26d0ea}{sha3\_256\_desc}});}
+\DoxyCodeLine{60    \mbox{\hyperlink{crypt__register__all__hashes_8c_a3ac8ba6e16af235f0606be8d039739c2}{REGISTER\_HASH}}(\&\mbox{\hyperlink{sha3_8c_ab7c1b759d0b5780a58fd5db28a94e372}{sha3\_384\_desc}});}
+\DoxyCodeLine{61    \mbox{\hyperlink{crypt__register__all__hashes_8c_a3ac8ba6e16af235f0606be8d039739c2}{REGISTER\_HASH}}(\&\mbox{\hyperlink{sha3_8c_a6281ec9346ad08bd8489a51d65661711}{sha3\_512\_desc}});}
+\DoxyCodeLine{62 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{63 \textcolor{preprocessor}{\#ifdef LTC\_KECCAK}}
+\DoxyCodeLine{64    \mbox{\hyperlink{crypt__register__all__hashes_8c_a3ac8ba6e16af235f0606be8d039739c2}{REGISTER\_HASH}}(\&\mbox{\hyperlink{sha3_8c_a1745d19879cd7b7d4e5c22b2b2b16a4e}{keccak\_224\_desc}});}
+\DoxyCodeLine{65    \mbox{\hyperlink{crypt__register__all__hashes_8c_a3ac8ba6e16af235f0606be8d039739c2}{REGISTER\_HASH}}(\&\mbox{\hyperlink{sha3_8c_a3e79c28c5fdacf5210ed91bad26942d8}{keccak\_256\_desc}});}
+\DoxyCodeLine{66    \mbox{\hyperlink{crypt__register__all__hashes_8c_a3ac8ba6e16af235f0606be8d039739c2}{REGISTER\_HASH}}(\&\mbox{\hyperlink{sha3_8c_a4a83d05c452b775df983244e3f463357}{keccak\_384\_desc}});}
+\DoxyCodeLine{67    \mbox{\hyperlink{crypt__register__all__hashes_8c_a3ac8ba6e16af235f0606be8d039739c2}{REGISTER\_HASH}}(\&\mbox{\hyperlink{sha3_8c_a04e575059db4685471164daaf2c28f22}{keccak\_512\_desc}});}
+\DoxyCodeLine{68 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{69 \textcolor{preprocessor}{\#ifdef LTC\_RIPEMD128}}
+\DoxyCodeLine{70    \mbox{\hyperlink{crypt__register__all__hashes_8c_a3ac8ba6e16af235f0606be8d039739c2}{REGISTER\_HASH}}(\&\mbox{\hyperlink{rmd128_8c_a6cdb5b1eb339c651a909c16ce6aed0a3}{rmd128\_desc}});}
+\DoxyCodeLine{71 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{72 \textcolor{preprocessor}{\#ifdef LTC\_RIPEMD160}}
+\DoxyCodeLine{73    \mbox{\hyperlink{crypt__register__all__hashes_8c_a3ac8ba6e16af235f0606be8d039739c2}{REGISTER\_HASH}}(\&\mbox{\hyperlink{rmd160_8c_adc5d2fd08b4977b760c42c7611fdedfb}{rmd160\_desc}});}
+\DoxyCodeLine{74 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{75 \textcolor{preprocessor}{\#ifdef LTC\_RIPEMD256}}
+\DoxyCodeLine{76    \mbox{\hyperlink{crypt__register__all__hashes_8c_a3ac8ba6e16af235f0606be8d039739c2}{REGISTER\_HASH}}(\&\mbox{\hyperlink{rmd256_8c_afdfd681cdf38928449039232133c5081}{rmd256\_desc}});}
+\DoxyCodeLine{77 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{78 \textcolor{preprocessor}{\#ifdef LTC\_RIPEMD320}}
+\DoxyCodeLine{79    \mbox{\hyperlink{crypt__register__all__hashes_8c_a3ac8ba6e16af235f0606be8d039739c2}{REGISTER\_HASH}}(\&\mbox{\hyperlink{rmd320_8c_abe58aeef9029a46a95935220544638f7}{rmd320\_desc}});}
+\DoxyCodeLine{80 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{81 \textcolor{preprocessor}{\#ifdef LTC\_WHIRLPOOL}}
+\DoxyCodeLine{82    \mbox{\hyperlink{crypt__register__all__hashes_8c_a3ac8ba6e16af235f0606be8d039739c2}{REGISTER\_HASH}}(\&\mbox{\hyperlink{whirl_8c_a411c753dea7cc362d85b6032e7cafbf3}{whirlpool\_desc}});}
+\DoxyCodeLine{83 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{84 \textcolor{preprocessor}{\#ifdef LTC\_BLAKE2S}}
+\DoxyCodeLine{85    \mbox{\hyperlink{crypt__register__all__hashes_8c_a3ac8ba6e16af235f0606be8d039739c2}{REGISTER\_HASH}}(\&\mbox{\hyperlink{blake2s_8c_a7d143cb0b5f500d06d9c308b72e0dcf4}{blake2s\_128\_desc}});}
+\DoxyCodeLine{86    \mbox{\hyperlink{crypt__register__all__hashes_8c_a3ac8ba6e16af235f0606be8d039739c2}{REGISTER\_HASH}}(\&\mbox{\hyperlink{blake2s_8c_aa9d23a739fb431cd454e5545f48d585c}{blake2s\_160\_desc}});}
+\DoxyCodeLine{87    \mbox{\hyperlink{crypt__register__all__hashes_8c_a3ac8ba6e16af235f0606be8d039739c2}{REGISTER\_HASH}}(\&\mbox{\hyperlink{blake2s_8c_a942ed13e472c8c423dda363d6b51c571}{blake2s\_224\_desc}});}
+\DoxyCodeLine{88    \mbox{\hyperlink{crypt__register__all__hashes_8c_a3ac8ba6e16af235f0606be8d039739c2}{REGISTER\_HASH}}(\&\mbox{\hyperlink{blake2s_8c_a57db936639d7b24f402798b761a972f2}{blake2s\_256\_desc}});}
+\DoxyCodeLine{89 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{90 \textcolor{preprocessor}{\#ifdef LTC\_BLAKE2S}}
+\DoxyCodeLine{91    \mbox{\hyperlink{crypt__register__all__hashes_8c_a3ac8ba6e16af235f0606be8d039739c2}{REGISTER\_HASH}}(\&\mbox{\hyperlink{blake2b_8c_a54be2063051609d32d710aab7aa25471}{blake2b\_160\_desc}});}
+\DoxyCodeLine{92    \mbox{\hyperlink{crypt__register__all__hashes_8c_a3ac8ba6e16af235f0606be8d039739c2}{REGISTER\_HASH}}(\&\mbox{\hyperlink{blake2b_8c_ad13b82df8fd7d7954cabed6b9ce595e1}{blake2b\_256\_desc}});}
+\DoxyCodeLine{93    \mbox{\hyperlink{crypt__register__all__hashes_8c_a3ac8ba6e16af235f0606be8d039739c2}{REGISTER\_HASH}}(\&\mbox{\hyperlink{blake2b_8c_aad9be3dd5ddf14e4ba80cd6715fd44fc}{blake2b\_384\_desc}});}
+\DoxyCodeLine{94    \mbox{\hyperlink{crypt__register__all__hashes_8c_a3ac8ba6e16af235f0606be8d039739c2}{REGISTER\_HASH}}(\&\mbox{\hyperlink{blake2b_8c_a8ef4d43fecbd25e592d1a3062a81f2ea}{blake2b\_512\_desc}});}
+\DoxyCodeLine{95 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{96 \textcolor{preprocessor}{\#ifdef LTC\_CHC\_HASH}}
+\DoxyCodeLine{97    \mbox{\hyperlink{crypt__register__all__hashes_8c_a3ac8ba6e16af235f0606be8d039739c2}{REGISTER\_HASH}}(\&\mbox{\hyperlink{chc_8c_aef428098fae27aadb653eed38ee249e4}{chc\_desc}});}
+\DoxyCodeLine{98    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(\mbox{\hyperlink{chc_8c_a3f5fb5f884cb2e504af6b4d56db93f85}{chc\_register}}(\mbox{\hyperlink{tomcrypt__cipher_8h_a292925e244bbb7c919aa60eedcba5bf6}{find\_cipher\_any}}(\textcolor{stringliteral}{"aes"}, 8, 16)) == \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}});}
+\DoxyCodeLine{99 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{100    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{101 \}}
+
+\end{DoxyCode}
+
+
+References blake2b\+\_\+160\+\_\+desc, blake2b\+\_\+256\+\_\+desc, blake2b\+\_\+384\+\_\+desc, blake2b\+\_\+512\+\_\+desc, blake2s\+\_\+128\+\_\+desc, blake2s\+\_\+160\+\_\+desc, blake2s\+\_\+224\+\_\+desc, blake2s\+\_\+256\+\_\+desc, chc\+\_\+desc, chc\+\_\+register(), C\+R\+Y\+P\+T\+\_\+\+OK, find\+\_\+cipher\+\_\+any(), keccak\+\_\+224\+\_\+desc, keccak\+\_\+256\+\_\+desc, keccak\+\_\+384\+\_\+desc, keccak\+\_\+512\+\_\+desc, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, md2\+\_\+desc, md4\+\_\+desc, md5\+\_\+desc, R\+E\+G\+I\+S\+T\+E\+R\+\_\+\+H\+A\+SH, rmd128\+\_\+desc, rmd160\+\_\+desc, rmd256\+\_\+desc, rmd320\+\_\+desc, sha1\+\_\+desc, sha224\+\_\+desc, sha256\+\_\+desc, sha384\+\_\+desc, sha3\+\_\+224\+\_\+desc, sha3\+\_\+256\+\_\+desc, sha3\+\_\+384\+\_\+desc, sha3\+\_\+512\+\_\+desc, sha512\+\_\+224\+\_\+desc, sha512\+\_\+256\+\_\+desc, sha512\+\_\+desc, tiger\+\_\+desc, and whirlpool\+\_\+desc.
+
+Here is the call graph for this function\+:
+% FIG 1

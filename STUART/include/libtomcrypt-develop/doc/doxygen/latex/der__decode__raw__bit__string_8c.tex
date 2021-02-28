@@ -1,0 +1,144 @@
+\hypertarget{der__decode__raw__bit__string_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/pk/asn1/der/bit/der\+\_\+decode\+\_\+raw\+\_\+bit\+\_\+string.c File Reference}
+\label{der__decode__raw__bit__string_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/asn1/der/bit/der\_decode\_raw\_bit\_string.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/asn1/der/bit/der\_decode\_raw\_bit\_string.c}}
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for der\+\_\+decode\+\_\+raw\+\_\+bit\+\_\+string.\+c\+:
+% FIG 0
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{der__decode__raw__bit__string_8c_ab279a794f1a43247e18b06dcf2e5a540}{S\+E\+T\+B\+IT}}(v,  n)~(v=((unsigned char)(v) $\vert$ (1\+U $<$$<$ (unsigned char)(n))))
+\item 
+\#define \mbox{\hyperlink{der__decode__raw__bit__string_8c_af7903dcf7948f2c15167b52011fb1e57}{C\+L\+R\+B\+IT}}(v,  n)~(v=((unsigned char)(v) \& $\sim$(1\+U $<$$<$ (unsigned char)(n))))
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{der__decode__raw__bit__string_8c_a4e8241401c8f49b3b2dbadd1b8e0eee0}{der\+\_\+decode\+\_\+raw\+\_\+bit\+\_\+string}} (const unsigned char $\ast$in, unsigned long inlen, unsigned char $\ast$out, unsigned long $\ast$outlen)
+\begin{DoxyCompactList}\small\item\em Store a B\+IT S\+T\+R\+I\+NG. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{der__decode__raw__bit__string_8c_af7903dcf7948f2c15167b52011fb1e57}\label{der__decode__raw__bit__string_8c_af7903dcf7948f2c15167b52011fb1e57}} 
+\index{der\_decode\_raw\_bit\_string.c@{der\_decode\_raw\_bit\_string.c}!CLRBIT@{CLRBIT}}
+\index{CLRBIT@{CLRBIT}!der\_decode\_raw\_bit\_string.c@{der\_decode\_raw\_bit\_string.c}}
+\subsubsection{\texorpdfstring{CLRBIT}{CLRBIT}}
+{\footnotesize\ttfamily \#define C\+L\+R\+B\+IT(\begin{DoxyParamCaption}\item[{}]{v,  }\item[{}]{n }\end{DoxyParamCaption})~(v=((unsigned char)(v) \& $\sim$(1\+U $<$$<$ (unsigned char)(n))))}
+
+
+
+Definition at line 20 of file der\+\_\+decode\+\_\+raw\+\_\+bit\+\_\+string.\+c.
+
+\mbox{\Hypertarget{der__decode__raw__bit__string_8c_ab279a794f1a43247e18b06dcf2e5a540}\label{der__decode__raw__bit__string_8c_ab279a794f1a43247e18b06dcf2e5a540}} 
+\index{der\_decode\_raw\_bit\_string.c@{der\_decode\_raw\_bit\_string.c}!SETBIT@{SETBIT}}
+\index{SETBIT@{SETBIT}!der\_decode\_raw\_bit\_string.c@{der\_decode\_raw\_bit\_string.c}}
+\subsubsection{\texorpdfstring{SETBIT}{SETBIT}}
+{\footnotesize\ttfamily \#define S\+E\+T\+B\+IT(\begin{DoxyParamCaption}\item[{}]{v,  }\item[{}]{n }\end{DoxyParamCaption})~(v=((unsigned char)(v) $\vert$ (1\+U $<$$<$ (unsigned char)(n))))}
+
+
+
+Definition at line 19 of file der\+\_\+decode\+\_\+raw\+\_\+bit\+\_\+string.\+c.
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{der__decode__raw__bit__string_8c_a4e8241401c8f49b3b2dbadd1b8e0eee0}\label{der__decode__raw__bit__string_8c_a4e8241401c8f49b3b2dbadd1b8e0eee0}} 
+\index{der\_decode\_raw\_bit\_string.c@{der\_decode\_raw\_bit\_string.c}!der\_decode\_raw\_bit\_string@{der\_decode\_raw\_bit\_string}}
+\index{der\_decode\_raw\_bit\_string@{der\_decode\_raw\_bit\_string}!der\_decode\_raw\_bit\_string.c@{der\_decode\_raw\_bit\_string.c}}
+\subsubsection{\texorpdfstring{der\_decode\_raw\_bit\_string()}{der\_decode\_raw\_bit\_string()}}
+{\footnotesize\ttfamily int der\+\_\+decode\+\_\+raw\+\_\+bit\+\_\+string (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{in,  }\item[{unsigned long}]{inlen,  }\item[{unsigned char $\ast$}]{out,  }\item[{unsigned long $\ast$}]{outlen }\end{DoxyParamCaption})}
+
+
+
+Store a B\+IT S\+T\+R\+I\+NG. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em in} & The D\+ER encoded B\+IT S\+T\+R\+I\+NG \\
+\hline
+{\em inlen} & The size of the D\+ER B\+IT S\+T\+R\+I\+NG \\
+\hline
+{\em out} & \mbox{[}out\mbox{]} The array of bits stored (8 per char) \\
+\hline
+{\em outlen} & \mbox{[}in/out\mbox{]} The number of bits stored \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 30 of file der\+\_\+decode\+\_\+raw\+\_\+bit\+\_\+string.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{32 \{}
+\DoxyCodeLine{33    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} dlen, blen, x, y;}
+\DoxyCodeLine{34    \textcolor{keywordtype}{int} err;}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(in     != NULL);}
+\DoxyCodeLine{37    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(out    != NULL);}
+\DoxyCodeLine{38    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(outlen != NULL);}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{40    \textcolor{comment}{/* packet must be at least 4 bytes */}}
+\DoxyCodeLine{41    \textcolor{keywordflow}{if} (inlen < 4) \{}
+\DoxyCodeLine{42        \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{43    \}}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45    \textcolor{comment}{/* check for 0x03 */}}
+\DoxyCodeLine{46    \textcolor{keywordflow}{if} ((in[0]\&0x1F) != 0x03) \{}
+\DoxyCodeLine{47       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca980088f10ffe9009aec286038a9e79da}{CRYPT\_INVALID\_PACKET}};}
+\DoxyCodeLine{48    \}}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{50    \textcolor{comment}{/* offset in the data */}}
+\DoxyCodeLine{51    x = 1;}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{53    \textcolor{comment}{/* get the length of the data */}}
+\DoxyCodeLine{54    y = inlen - 1;}
+\DoxyCodeLine{55    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_af90423764098b8876368d0984d96053a}{der\_decode\_asn1\_length}}(in + x, \&y, \&dlen)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{56       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{57    \}}
+\DoxyCodeLine{58    x += y;}
+\DoxyCodeLine{59    \textcolor{comment}{/* is the data len too long or too short? */}}
+\DoxyCodeLine{60    \textcolor{keywordflow}{if} ((dlen == 0) || (dlen > (inlen - x))) \{}
+\DoxyCodeLine{61        \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca980088f10ffe9009aec286038a9e79da}{CRYPT\_INVALID\_PACKET}};}
+\DoxyCodeLine{62    \}}
+\DoxyCodeLine{63 }
+\DoxyCodeLine{64    \textcolor{comment}{/* get padding count */}}
+\DoxyCodeLine{65    blen = ((dlen - 1) << 3) - (in[x++] \& 7);}
+\DoxyCodeLine{66 }
+\DoxyCodeLine{67    \textcolor{comment}{/* too many bits? */}}
+\DoxyCodeLine{68    \textcolor{keywordflow}{if} (blen > *outlen) \{}
+\DoxyCodeLine{69       *outlen = blen;}
+\DoxyCodeLine{70       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caccd878f5599f3036ffe759dbe1a1ac16}{CRYPT\_BUFFER\_OVERFLOW}};}
+\DoxyCodeLine{71    \}}
+\DoxyCodeLine{72 }
+\DoxyCodeLine{73    \textcolor{comment}{/* decode/store the bits */}}
+\DoxyCodeLine{74    \textcolor{keywordflow}{for} (y = 0; y < blen; y++) \{}
+\DoxyCodeLine{75       \textcolor{keywordflow}{if} (in[x] \& (1 << (7 - (y \& 7)))) \{}
+\DoxyCodeLine{76          \mbox{\hyperlink{der__decode__raw__bit__string_8c_ab279a794f1a43247e18b06dcf2e5a540}{SETBIT}}(out[y/8], 7-(y\%8));}
+\DoxyCodeLine{77       \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{78          \mbox{\hyperlink{der__decode__raw__bit__string_8c_af7903dcf7948f2c15167b52011fb1e57}{CLRBIT}}(out[y/8], 7-(y\%8));}
+\DoxyCodeLine{79       \}}
+\DoxyCodeLine{80       \textcolor{keywordflow}{if} ((y \& 7) == 7) \{}
+\DoxyCodeLine{81          ++x;}
+\DoxyCodeLine{82       \}}
+\DoxyCodeLine{83    \}}
+\DoxyCodeLine{84 }
+\DoxyCodeLine{85    \textcolor{comment}{/* we done */}}
+\DoxyCodeLine{86    *outlen = blen;}
+\DoxyCodeLine{87    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{88 \}}
+
+\end{DoxyCode}
+
+
+References C\+L\+R\+B\+IT, C\+R\+Y\+P\+T\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+O\+V\+E\+R\+F\+L\+OW, C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+A\+RG, C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+P\+A\+C\+K\+ET, C\+R\+Y\+P\+T\+\_\+\+OK, der\+\_\+decode\+\_\+asn1\+\_\+length(), L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, and S\+E\+T\+B\+IT.
+
+
+
+Referenced by der\+\_\+decode\+\_\+choice(), and der\+\_\+decode\+\_\+custom\+\_\+type\+\_\+ex().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2

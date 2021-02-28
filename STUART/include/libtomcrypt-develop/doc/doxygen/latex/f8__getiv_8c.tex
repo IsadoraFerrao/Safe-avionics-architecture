@@ -1,0 +1,62 @@
+\hypertarget{f8__getiv_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/modes/f8/f8\+\_\+getiv.c File Reference}
+\label{f8__getiv_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/modes/f8/f8\_getiv.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/modes/f8/f8\_getiv.c}}
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for f8\+\_\+getiv.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{f8__getiv_8c_abeefacf27df1778e80ea6be221ce3b3b}{f8\+\_\+getiv}} (unsigned char $\ast$IV, unsigned long $\ast$\mbox{\hyperlink{pmac__init_8c_afed088663f8704004425cdae2120b9b3}{len}}, const symmetric\+\_\+\+F8 $\ast$f8)
+\begin{DoxyCompactList}\small\item\em Get the current initialization vector. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{f8__getiv_8c_abeefacf27df1778e80ea6be221ce3b3b}\label{f8__getiv_8c_abeefacf27df1778e80ea6be221ce3b3b}} 
+\index{f8\_getiv.c@{f8\_getiv.c}!f8\_getiv@{f8\_getiv}}
+\index{f8\_getiv@{f8\_getiv}!f8\_getiv.c@{f8\_getiv.c}}
+\subsubsection{\texorpdfstring{f8\_getiv()}{f8\_getiv()}}
+{\footnotesize\ttfamily int f8\+\_\+getiv (\begin{DoxyParamCaption}\item[{unsigned char $\ast$}]{IV,  }\item[{unsigned long $\ast$}]{len,  }\item[{const symmetric\+\_\+\+F8 $\ast$}]{f8 }\end{DoxyParamCaption})}
+
+
+
+Get the current initialization vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em IV} & \mbox{[}out\mbox{]} The destination of the initialization vector \\
+\hline
+{\em len} & \mbox{[}in/out\mbox{]} The max size and resulting size of the initialization vector \\
+\hline
+{\em f8} & The F8 state \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 25 of file f8\+\_\+getiv.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{26 \{}
+\DoxyCodeLine{27    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(IV  != NULL);}
+\DoxyCodeLine{28    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}} != NULL);}
+\DoxyCodeLine{29    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(f8  != NULL);}
+\DoxyCodeLine{30    \textcolor{keywordflow}{if} ((\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long})f8->blocklen > *\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}) \{}
+\DoxyCodeLine{31       *\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}} = f8->blocklen;}
+\DoxyCodeLine{32       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caccd878f5599f3036ffe759dbe1a1ac16}{CRYPT\_BUFFER\_OVERFLOW}};}
+\DoxyCodeLine{33    \}}
+\DoxyCodeLine{34    \mbox{\hyperlink{tomcrypt__cfg_8h_a7691dd48d60d5fc6daf2fa7ec4c55e12}{XMEMCPY}}(IV, f8->IV, f8->blocklen);}
+\DoxyCodeLine{35    *\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}} = f8->blocklen;}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{38 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+O\+V\+E\+R\+F\+L\+OW, C\+R\+Y\+P\+T\+\_\+\+OK, len, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, and X\+M\+E\+M\+C\+P\+Y().
+
+Here is the call graph for this function\+:
+% FIG 1

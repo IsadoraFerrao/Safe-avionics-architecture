@@ -1,0 +1,15 @@
+digraph "md2_compress"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node1 [label="md2_compress",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node2 [label="md2_done",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$md2_8c.html#a4bd9b171ae5fd817c88abd1050924e83",tooltip="Terminate the hash to get the digest."];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node3 [label="md2_test",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$md2_8c.html#a19f63336fd915d311a395eec0426a46b",tooltip="Self-test the hash."];
+  Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node4 [label="md2_process",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$md2_8c.html#a3d02956023772aa634ebf79543a04edf",tooltip="Process a block of memory though the hash."];
+  Node4 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+}

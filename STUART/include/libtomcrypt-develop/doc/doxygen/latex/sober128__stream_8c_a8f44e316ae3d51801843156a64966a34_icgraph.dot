@@ -1,0 +1,18 @@
+digraph "sober128_stream_keystream"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node102 [label="sober128_stream_keystream",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node102 -> Node103 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node103 [label="sober128_add_entropy",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sober128_8c.html#a477d801a7eb2e66db6c4c3d7f2db3827",tooltip="Add entropy to the PRNG state."];
+  Node103 -> Node104 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node104 [label="sober128_import",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sober128_8c.html#abd0bdcc3d2a0436f74ab10b0c68fcbca",tooltip="Import a PRNG state."];
+  Node104 -> Node105 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node105 [label="sober128_test",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sober128_8c.html#ae89334392b56e0cb75d493a5bdba60b7",tooltip="PRNG self-test."];
+  Node103 -> Node105 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node102 -> Node106 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node106 [label="sober128_read",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sober128_8c.html#a8e7604858301441d7c791a5e86b03025",tooltip="Read from the PRNG."];
+  Node106 -> Node105 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+}

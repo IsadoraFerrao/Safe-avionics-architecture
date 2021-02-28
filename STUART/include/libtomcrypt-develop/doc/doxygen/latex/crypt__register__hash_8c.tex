@@ -1,0 +1,88 @@
+\hypertarget{crypt__register__hash_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/misc/crypt/crypt\+\_\+register\+\_\+hash.c File Reference}
+\label{crypt__register__hash_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/misc/crypt/crypt\_register\_hash.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/misc/crypt/crypt\_register\_hash.c}}
+
+
+Register a H\+A\+SH, Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for crypt\+\_\+register\+\_\+hash.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{crypt__register__hash_8c_a675b9eda0e8cf146aca2cc89ea5ad571}{register\+\_\+hash}} (const struct \mbox{\hyperlink{structltc__hash__descriptor}{ltc\+\_\+hash\+\_\+descriptor}} $\ast$hash)
+\begin{DoxyCompactList}\small\item\em Register a hash with the descriptor table. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Register a H\+A\+SH, Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{crypt__register__hash_8c_a675b9eda0e8cf146aca2cc89ea5ad571}\label{crypt__register__hash_8c_a675b9eda0e8cf146aca2cc89ea5ad571}} 
+\index{crypt\_register\_hash.c@{crypt\_register\_hash.c}!register\_hash@{register\_hash}}
+\index{register\_hash@{register\_hash}!crypt\_register\_hash.c@{crypt\_register\_hash.c}}
+\subsubsection{\texorpdfstring{register\_hash()}{register\_hash()}}
+{\footnotesize\ttfamily int register\+\_\+hash (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structltc__hash__descriptor}{ltc\+\_\+hash\+\_\+descriptor}} $\ast$}]{hash }\end{DoxyParamCaption})}
+
+
+
+Register a hash with the descriptor table. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em hash} & The hash you wish to register \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+value $>$= 0 if successfully added (or already present), -\/1 if unsuccessful 
+\end{DoxyReturn}
+
+
+Definition at line 21 of file crypt\+\_\+register\+\_\+hash.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{22 \{}
+\DoxyCodeLine{23    \textcolor{keywordtype}{int} x;}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(hash != NULL);}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27    \textcolor{comment}{/* is it already registered? */}}
+\DoxyCodeLine{28    \mbox{\hyperlink{tomcrypt__custom_8h_a427a107414e4d775fbf23f4a499f4a31}{LTC\_MUTEX\_LOCK}}(\&ltc\_hash\_mutex);}
+\DoxyCodeLine{29    \textcolor{keywordflow}{for} (x = 0; x < \mbox{\hyperlink{tomcrypt_8h_a9ad1b4a1e4f7381611cfd2ae6620a727}{TAB\_SIZE}}; x++) \{}
+\DoxyCodeLine{30        \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__cfg_8h_a372b974ec0ac07abcd55297554fe540f}{XMEMCMP}}(\&\mbox{\hyperlink{tomcrypt__hash_8h_ab0e4f02e30a47da79baa9240e79cde92}{hash\_descriptor}}[x], hash, \textcolor{keyword}{sizeof}(\textcolor{keyword}{struct} \mbox{\hyperlink{structltc__hash__descriptor}{ltc\_hash\_descriptor}})) == 0) \{}
+\DoxyCodeLine{31           \mbox{\hyperlink{tomcrypt__custom_8h_acdf267be91b178b4fafe8f992d57a7f1}{LTC\_MUTEX\_UNLOCK}}(\&ltc\_hash\_mutex);}
+\DoxyCodeLine{32           \textcolor{keywordflow}{return} x;}
+\DoxyCodeLine{33        \}}
+\DoxyCodeLine{34    \}}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36    \textcolor{comment}{/* find a blank spot */}}
+\DoxyCodeLine{37    \textcolor{keywordflow}{for} (x = 0; x < \mbox{\hyperlink{tomcrypt_8h_a9ad1b4a1e4f7381611cfd2ae6620a727}{TAB\_SIZE}}; x++) \{}
+\DoxyCodeLine{38        \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__hash_8h_ab0e4f02e30a47da79baa9240e79cde92}{hash\_descriptor}}[x].name == NULL) \{}
+\DoxyCodeLine{39           \mbox{\hyperlink{tomcrypt__cfg_8h_a7691dd48d60d5fc6daf2fa7ec4c55e12}{XMEMCPY}}(\&\mbox{\hyperlink{tomcrypt__hash_8h_ab0e4f02e30a47da79baa9240e79cde92}{hash\_descriptor}}[x], hash, \textcolor{keyword}{sizeof}(\textcolor{keyword}{struct} \mbox{\hyperlink{structltc__hash__descriptor}{ltc\_hash\_descriptor}}));}
+\DoxyCodeLine{40           \mbox{\hyperlink{tomcrypt__custom_8h_acdf267be91b178b4fafe8f992d57a7f1}{LTC\_MUTEX\_UNLOCK}}(\&ltc\_hash\_mutex);}
+\DoxyCodeLine{41           \textcolor{keywordflow}{return} x;}
+\DoxyCodeLine{42        \}}
+\DoxyCodeLine{43    \}}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45    \textcolor{comment}{/* no spot */}}
+\DoxyCodeLine{46    \mbox{\hyperlink{tomcrypt__custom_8h_acdf267be91b178b4fafe8f992d57a7f1}{LTC\_MUTEX\_UNLOCK}}(\&ltc\_hash\_mutex);}
+\DoxyCodeLine{47    \textcolor{keywordflow}{return} -1;}
+\DoxyCodeLine{48 \}}
+
+\end{DoxyCode}
+
+
+References hash\+\_\+descriptor, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, L\+T\+C\+\_\+\+M\+U\+T\+E\+X\+\_\+\+L\+O\+CK, L\+T\+C\+\_\+\+M\+U\+T\+E\+X\+\_\+\+U\+N\+L\+O\+CK, ltc\+\_\+prng\+\_\+descriptor\+::name, T\+A\+B\+\_\+\+S\+I\+ZE, X\+M\+E\+M\+C\+M\+P(), and X\+M\+E\+M\+C\+P\+Y().
+
+
+
+Referenced by \+\_\+dsa\+\_\+make\+\_\+params(), crypt\+\_\+fsa(), and yarrow\+\_\+start().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2

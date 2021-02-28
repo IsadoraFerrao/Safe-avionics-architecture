@@ -1,0 +1,246 @@
+\hypertarget{der__encode__sequence__ex_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/pk/asn1/der/sequence/der\+\_\+encode\+\_\+sequence\+\_\+ex.c File Reference}
+\label{der__encode__sequence__ex_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/asn1/der/sequence/der\_encode\_sequence\_ex.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/asn1/der/sequence/der\_encode\_sequence\_ex.c}}
+
+
+A\+S\+N.\+1 D\+ER, encode a S\+E\+Q\+U\+E\+N\+CE, Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for der\+\_\+encode\+\_\+sequence\+\_\+ex.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{der__encode__sequence__ex_8c_af435bfc378dd9f42af2a211c0fe1aced}{der\+\_\+encode\+\_\+sequence\+\_\+ex}} (const ltc\+\_\+asn1\+\_\+list $\ast$list, unsigned long inlen, unsigned char $\ast$out, unsigned long $\ast$outlen, int type\+\_\+of)
+\begin{DoxyCompactList}\small\item\em Encode a S\+E\+Q\+U\+E\+N\+CE. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A\+S\+N.\+1 D\+ER, encode a S\+E\+Q\+U\+E\+N\+CE, Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{der__encode__sequence__ex_8c_af435bfc378dd9f42af2a211c0fe1aced}\label{der__encode__sequence__ex_8c_af435bfc378dd9f42af2a211c0fe1aced}} 
+\index{der\_encode\_sequence\_ex.c@{der\_encode\_sequence\_ex.c}!der\_encode\_sequence\_ex@{der\_encode\_sequence\_ex}}
+\index{der\_encode\_sequence\_ex@{der\_encode\_sequence\_ex}!der\_encode\_sequence\_ex.c@{der\_encode\_sequence\_ex.c}}
+\subsubsection{\texorpdfstring{der\_encode\_sequence\_ex()}{der\_encode\_sequence\_ex()}}
+{\footnotesize\ttfamily int der\+\_\+encode\+\_\+sequence\+\_\+ex (\begin{DoxyParamCaption}\item[{const ltc\+\_\+asn1\+\_\+list $\ast$}]{list,  }\item[{unsigned long}]{inlen,  }\item[{unsigned char $\ast$}]{out,  }\item[{unsigned long $\ast$}]{outlen,  }\item[{int}]{type\+\_\+of }\end{DoxyParamCaption})}
+
+
+
+Encode a S\+E\+Q\+U\+E\+N\+CE. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list} & The list of items to encode \\
+\hline
+{\em inlen} & The number of items in the list \\
+\hline
+{\em out} & \mbox{[}out\mbox{]} The destination \\
+\hline
+{\em outlen} & \mbox{[}in/out\mbox{]} The size of the output \\
+\hline
+{\em type\+\_\+of} & L\+T\+C\+\_\+\+A\+S\+N1\+\_\+\+S\+E\+Q\+U\+E\+N\+CE or L\+T\+C\+\_\+\+A\+S\+N1\+\_\+\+S\+E\+T/\+L\+T\+C\+\_\+\+A\+S\+N1\+\_\+\+S\+E\+T\+OF \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK on success 
+\end{DoxyReturn}
+
+
+Definition at line 28 of file der\+\_\+encode\+\_\+sequence\+\_\+ex.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{30 \{}
+\DoxyCodeLine{31    \textcolor{keywordtype}{int}           err;}
+\DoxyCodeLine{32    ltc\_asn1\_type type;}
+\DoxyCodeLine{33    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} size, x, y, z, i;}
+\DoxyCodeLine{34    \textcolor{keywordtype}{void}          *data;}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(list    != NULL);}
+\DoxyCodeLine{37    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(out     != NULL);}
+\DoxyCodeLine{38    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(outlen  != NULL);}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{40    \textcolor{comment}{/* get size of output that will be required */}}
+\DoxyCodeLine{41    y = 0; z = 0;}
+\DoxyCodeLine{42    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_ad3804ae56675e41a9d142c62d6c3bb2d}{der\_length\_sequence\_ex}}(list, inlen, \&y, \&z)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44    \textcolor{comment}{/* too big ? */}}
+\DoxyCodeLine{45    \textcolor{keywordflow}{if} (*outlen < y) \{}
+\DoxyCodeLine{46       *outlen = y;}
+\DoxyCodeLine{47       err = \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caccd878f5599f3036ffe759dbe1a1ac16}{CRYPT\_BUFFER\_OVERFLOW}};}
+\DoxyCodeLine{48       \textcolor{keywordflow}{goto} LBL\_ERR;}
+\DoxyCodeLine{49    \}}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{51    \textcolor{comment}{/* store header */}}
+\DoxyCodeLine{52    x = 0;}
+\DoxyCodeLine{53    out[x++] = (type\_of == LTC\_ASN1\_SEQUENCE) ? 0x30 : 0x31;}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55    y = *outlen - x;}
+\DoxyCodeLine{56    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_ae0b6c1f1188a5aa201aa84de9a659550}{der\_encode\_asn1\_length}}(z, \&out[x], \&y)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{57       \textcolor{keywordflow}{goto} LBL\_ERR;}
+\DoxyCodeLine{58    \}}
+\DoxyCodeLine{59    x += y;}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{61    \textcolor{comment}{/* store data */}}
+\DoxyCodeLine{62    *outlen -= x;}
+\DoxyCodeLine{63    \textcolor{keywordflow}{for} (i = 0; i < inlen; i++) \{}
+\DoxyCodeLine{64        type = list[i].type;}
+\DoxyCodeLine{65        size = list[i].size;}
+\DoxyCodeLine{66        data = list[i].data;}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{68        \textcolor{keywordflow}{if} (type == LTC\_ASN1\_EOL) \{}
+\DoxyCodeLine{69           \textcolor{keywordflow}{break};}
+\DoxyCodeLine{70        \}}
+\DoxyCodeLine{71 }
+\DoxyCodeLine{72        \textcolor{keywordflow}{switch} (type) \{}
+\DoxyCodeLine{73             \textcolor{keywordflow}{case} LTC\_ASN1\_BOOLEAN:}
+\DoxyCodeLine{74                z = *outlen;}
+\DoxyCodeLine{75                \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{der__encode__boolean_8c_aa863fa125a67e45f9ddfcf3489a733c4}{der\_encode\_boolean}}(*((\textcolor{keywordtype}{int} *)data), out + x, \&z)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{76                   \textcolor{keywordflow}{goto} LBL\_ERR;}
+\DoxyCodeLine{77                \}}
+\DoxyCodeLine{78                \textcolor{keywordflow}{break};}
+\DoxyCodeLine{79 }
+\DoxyCodeLine{80            \textcolor{keywordflow}{case} LTC\_ASN1\_INTEGER:}
+\DoxyCodeLine{81                z = *outlen;}
+\DoxyCodeLine{82                \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{der__encode__integer_8c_a6087b9a2564eb9cc073665ed525721fa}{der\_encode\_integer}}(data, out + x, \&z)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{83                   \textcolor{keywordflow}{goto} LBL\_ERR;}
+\DoxyCodeLine{84                \}}
+\DoxyCodeLine{85                \textcolor{keywordflow}{break};}
+\DoxyCodeLine{86 }
+\DoxyCodeLine{87            \textcolor{keywordflow}{case} LTC\_ASN1\_SHORT\_INTEGER:}
+\DoxyCodeLine{88                z = *outlen;}
+\DoxyCodeLine{89                \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{der__encode__short__integer_8c_adfe0254f1b5f151c1eb53fe8aa926e45}{der\_encode\_short\_integer}}(*((\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long}*)data), out + x, \&z)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{90                   \textcolor{keywordflow}{goto} LBL\_ERR;}
+\DoxyCodeLine{91                \}}
+\DoxyCodeLine{92                \textcolor{keywordflow}{break};}
+\DoxyCodeLine{93 }
+\DoxyCodeLine{94            \textcolor{keywordflow}{case} LTC\_ASN1\_BIT\_STRING:}
+\DoxyCodeLine{95                z = *outlen;}
+\DoxyCodeLine{96                \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{der__encode__bit__string_8c_af7f3c358d789a3a5c58d46b642cf4d02}{der\_encode\_bit\_string}}(data, size, out + x, \&z)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{97                   \textcolor{keywordflow}{goto} LBL\_ERR;}
+\DoxyCodeLine{98                \}}
+\DoxyCodeLine{99                \textcolor{keywordflow}{break};}
+\DoxyCodeLine{100 }
+\DoxyCodeLine{101            \textcolor{keywordflow}{case} LTC\_ASN1\_RAW\_BIT\_STRING:}
+\DoxyCodeLine{102                z = *outlen;}
+\DoxyCodeLine{103                \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{der__encode__raw__bit__string_8c_a4553630d68159ef0dd8f05158aeae8c9}{der\_encode\_raw\_bit\_string}}(data, size, out + x, \&z)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{104                   \textcolor{keywordflow}{goto} LBL\_ERR;}
+\DoxyCodeLine{105                \}}
+\DoxyCodeLine{106                \textcolor{keywordflow}{break};}
+\DoxyCodeLine{107 }
+\DoxyCodeLine{108            \textcolor{keywordflow}{case} LTC\_ASN1\_OCTET\_STRING:}
+\DoxyCodeLine{109                z = *outlen;}
+\DoxyCodeLine{110                \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{der__encode__octet__string_8c_a343242d3077611c148675859cfb0afda}{der\_encode\_octet\_string}}(data, size, out + x, \&z)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{111                   \textcolor{keywordflow}{goto} LBL\_ERR;}
+\DoxyCodeLine{112                \}}
+\DoxyCodeLine{113                \textcolor{keywordflow}{break};}
+\DoxyCodeLine{114 }
+\DoxyCodeLine{115            \textcolor{keywordflow}{case} LTC\_ASN1\_NULL:}
+\DoxyCodeLine{116                out[x] = 0x05;}
+\DoxyCodeLine{117                out[x+1] = 0x00;}
+\DoxyCodeLine{118                z = 2;}
+\DoxyCodeLine{119                \textcolor{keywordflow}{break};}
+\DoxyCodeLine{120 }
+\DoxyCodeLine{121            \textcolor{keywordflow}{case} LTC\_ASN1\_OBJECT\_IDENTIFIER:}
+\DoxyCodeLine{122                z = *outlen;}
+\DoxyCodeLine{123                \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{der__encode__object__identifier_8c_abd46e5c51bd1c05377fe63fd15bc35be}{der\_encode\_object\_identifier}}(data, size, out + x, \&z)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{124                   \textcolor{keywordflow}{goto} LBL\_ERR;}
+\DoxyCodeLine{125                \}}
+\DoxyCodeLine{126                \textcolor{keywordflow}{break};}
+\DoxyCodeLine{127 }
+\DoxyCodeLine{128            \textcolor{keywordflow}{case} LTC\_ASN1\_IA5\_STRING:}
+\DoxyCodeLine{129                z = *outlen;}
+\DoxyCodeLine{130                \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{der__encode__ia5__string_8c_aacd6a2caac510779f82b845b78f4ba15}{der\_encode\_ia5\_string}}(data, size, out + x, \&z)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{131                   \textcolor{keywordflow}{goto} LBL\_ERR;}
+\DoxyCodeLine{132                \}}
+\DoxyCodeLine{133                \textcolor{keywordflow}{break};}
+\DoxyCodeLine{134 }
+\DoxyCodeLine{135            \textcolor{keywordflow}{case} LTC\_ASN1\_PRINTABLE\_STRING:}
+\DoxyCodeLine{136                z = *outlen;}
+\DoxyCodeLine{137                \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{der__encode__printable__string_8c_a829efc760a989f7d8bd34c0c5ada3f16}{der\_encode\_printable\_string}}(data, size, out + x, \&z)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{138                   \textcolor{keywordflow}{goto} LBL\_ERR;}
+\DoxyCodeLine{139                \}}
+\DoxyCodeLine{140                \textcolor{keywordflow}{break};}
+\DoxyCodeLine{141 }
+\DoxyCodeLine{142            \textcolor{keywordflow}{case} LTC\_ASN1\_UTF8\_STRING:}
+\DoxyCodeLine{143                z = *outlen;}
+\DoxyCodeLine{144                \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{der__encode__utf8__string_8c_a45bc247126732c6f78858a0637f9ce7a}{der\_encode\_utf8\_string}}(data, size, out + x, \&z)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{145                   \textcolor{keywordflow}{goto} LBL\_ERR;}
+\DoxyCodeLine{146                \}}
+\DoxyCodeLine{147                \textcolor{keywordflow}{break};}
+\DoxyCodeLine{148 }
+\DoxyCodeLine{149            \textcolor{keywordflow}{case} LTC\_ASN1\_UTCTIME:}
+\DoxyCodeLine{150                z = *outlen;}
+\DoxyCodeLine{151                \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{der__encode__utctime_8c_a8b92a8a2246fa8aaca2378471d1ed78d}{der\_encode\_utctime}}(data, out + x, \&z)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{152                   \textcolor{keywordflow}{goto} LBL\_ERR;}
+\DoxyCodeLine{153                \}}
+\DoxyCodeLine{154                \textcolor{keywordflow}{break};}
+\DoxyCodeLine{155 }
+\DoxyCodeLine{156            \textcolor{keywordflow}{case} LTC\_ASN1\_GENERALIZEDTIME:}
+\DoxyCodeLine{157                z = *outlen;}
+\DoxyCodeLine{158                \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{der__encode__generalizedtime_8c_aad5cb8eacf3ef8a1317dfff253f1a3da}{der\_encode\_generalizedtime}}(data, out + x, \&z)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{159                   \textcolor{keywordflow}{goto} LBL\_ERR;}
+\DoxyCodeLine{160                \}}
+\DoxyCodeLine{161                \textcolor{keywordflow}{break};}
+\DoxyCodeLine{162 }
+\DoxyCodeLine{163            \textcolor{keywordflow}{case} LTC\_ASN1\_SET:}
+\DoxyCodeLine{164                z = *outlen;}
+\DoxyCodeLine{165                \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{der__encode__set_8c_a4aa04a42171146d2f510e41b84dd72f1}{der\_encode\_set}}(data, size, out + x, \&z)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{166                   \textcolor{keywordflow}{goto} LBL\_ERR;}
+\DoxyCodeLine{167                \}}
+\DoxyCodeLine{168                \textcolor{keywordflow}{break};}
+\DoxyCodeLine{169 }
+\DoxyCodeLine{170            \textcolor{keywordflow}{case} LTC\_ASN1\_SETOF:}
+\DoxyCodeLine{171                z = *outlen;}
+\DoxyCodeLine{172                \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{der__encode__setof_8c_a5187d93224e9b002d4e7db8c7d721339}{der\_encode\_setof}}(data, size, out + x, \&z)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{173                   \textcolor{keywordflow}{goto} LBL\_ERR;}
+\DoxyCodeLine{174                \}}
+\DoxyCodeLine{175                \textcolor{keywordflow}{break};}
+\DoxyCodeLine{176 }
+\DoxyCodeLine{177            \textcolor{keywordflow}{case} LTC\_ASN1\_SEQUENCE:}
+\DoxyCodeLine{178                z = *outlen;}
+\DoxyCodeLine{179                \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{der__encode__sequence__ex_8c_af435bfc378dd9f42af2a211c0fe1aced}{der\_encode\_sequence\_ex}}(data, size, out + x, \&z, type)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{180                   \textcolor{keywordflow}{goto} LBL\_ERR;}
+\DoxyCodeLine{181                \}}
+\DoxyCodeLine{182                \textcolor{keywordflow}{break};}
+\DoxyCodeLine{183 }
+\DoxyCodeLine{184            \textcolor{keywordflow}{case} LTC\_ASN1\_CUSTOM\_TYPE:}
+\DoxyCodeLine{185                z = *outlen;}
+\DoxyCodeLine{186                \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{der__encode__custom__type_8c_a20c801e1d73f944c7f43acc2228211b2}{der\_encode\_custom\_type}}(\&list[i], out + x, \&z)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{187                   \textcolor{keywordflow}{goto} LBL\_ERR;}
+\DoxyCodeLine{188                \}}
+\DoxyCodeLine{189                \textcolor{keywordflow}{break};}
+\DoxyCodeLine{190 }
+\DoxyCodeLine{191            \textcolor{keywordflow}{case} LTC\_ASN1\_CHOICE:}
+\DoxyCodeLine{192            \textcolor{keywordflow}{case} LTC\_ASN1\_EOL:}
+\DoxyCodeLine{193            \textcolor{keywordflow}{case} LTC\_ASN1\_TELETEX\_STRING:}
+\DoxyCodeLine{194                err = \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{195                \textcolor{keywordflow}{goto} LBL\_ERR;}
+\DoxyCodeLine{196        \}}
+\DoxyCodeLine{197 }
+\DoxyCodeLine{198        x       += z;}
+\DoxyCodeLine{199        *outlen -= z;}
+\DoxyCodeLine{200    \}}
+\DoxyCodeLine{201    *outlen = x;}
+\DoxyCodeLine{202    err = \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{203 }
+\DoxyCodeLine{204 LBL\_ERR:}
+\DoxyCodeLine{205    \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{206 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+O\+V\+E\+R\+F\+L\+OW, C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+A\+RG, C\+R\+Y\+P\+T\+\_\+\+OK, der\+\_\+encode\+\_\+asn1\+\_\+length(), der\+\_\+encode\+\_\+bit\+\_\+string(), der\+\_\+encode\+\_\+boolean(), der\+\_\+encode\+\_\+custom\+\_\+type(), der\+\_\+encode\+\_\+generalizedtime(), der\+\_\+encode\+\_\+ia5\+\_\+string(), der\+\_\+encode\+\_\+integer(), der\+\_\+encode\+\_\+object\+\_\+identifier(), der\+\_\+encode\+\_\+octet\+\_\+string(), der\+\_\+encode\+\_\+printable\+\_\+string(), der\+\_\+encode\+\_\+raw\+\_\+bit\+\_\+string(), der\+\_\+encode\+\_\+set(), der\+\_\+encode\+\_\+setof(), der\+\_\+encode\+\_\+short\+\_\+integer(), der\+\_\+encode\+\_\+utctime(), der\+\_\+encode\+\_\+utf8\+\_\+string(), der\+\_\+length\+\_\+sequence\+\_\+ex(), and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+
+
+Referenced by der\+\_\+encode\+\_\+custom\+\_\+type(), der\+\_\+encode\+\_\+set(), and der\+\_\+encode\+\_\+setof().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2

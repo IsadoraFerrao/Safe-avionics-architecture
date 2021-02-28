@@ -1,0 +1,105 @@
+\hypertarget{ccm__init_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/encauth/ccm/ccm\+\_\+init.c File Reference}
+\label{ccm__init_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/encauth/ccm/ccm\_init.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/encauth/ccm/ccm\_init.c}}
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for ccm\+\_\+init.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{ccm__init_8c_a23e25e4c7b06cafb883ffc6ea4217a31}{ccm\+\_\+init}} (ccm\+\_\+state $\ast$ccm, int cipher, const unsigned char $\ast$key, int keylen, int ptlen, int taglen, int aadlen)
+\begin{DoxyCompactList}\small\item\em Initialize a C\+CM state. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{ccm__init_8c_a23e25e4c7b06cafb883ffc6ea4217a31}\label{ccm__init_8c_a23e25e4c7b06cafb883ffc6ea4217a31}} 
+\index{ccm\_init.c@{ccm\_init.c}!ccm\_init@{ccm\_init}}
+\index{ccm\_init@{ccm\_init}!ccm\_init.c@{ccm\_init.c}}
+\subsubsection{\texorpdfstring{ccm\_init()}{ccm\_init()}}
+{\footnotesize\ttfamily int ccm\+\_\+init (\begin{DoxyParamCaption}\item[{ccm\+\_\+state $\ast$}]{ccm,  }\item[{int}]{cipher,  }\item[{const unsigned char $\ast$}]{key,  }\item[{int}]{keylen,  }\item[{int}]{ptlen,  }\item[{int}]{taglen,  }\item[{int}]{aadlen }\end{DoxyParamCaption})}
+
+
+
+Initialize a C\+CM state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ccm} & The C\+CM state to initialize \\
+\hline
+{\em cipher} & The index of the cipher to use \\
+\hline
+{\em key} & The secret key \\
+\hline
+{\em keylen} & The length of the secret key \\
+\hline
+{\em ptlen} & The length of the plain/cipher text that will be processed \\
+\hline
+{\em taglen} & The max length of the M\+AC tag \\
+\hline
+{\em aadlen} & The length of the A\+AD\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK on success 
+\end{DoxyReturn}
+
+
+Definition at line 25 of file ccm\+\_\+init.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{27 \{}
+\DoxyCodeLine{28    \textcolor{keywordtype}{int}            err;}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(ccm    != NULL);}
+\DoxyCodeLine{31    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(key    != NULL);}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33    \mbox{\hyperlink{tomcrypt__cfg_8h_aa3c34a6f6c61de7da9258b5a30e32c2f}{XMEMSET}}(ccm, 0, \textcolor{keyword}{sizeof}(ccm\_state));}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35    \textcolor{comment}{/* check cipher input */}}
+\DoxyCodeLine{36    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_ac30eb68934c4ca07205344dc9d159221}{cipher\_is\_valid}}(cipher)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{37       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{38    \}}
+\DoxyCodeLine{39    \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[cipher].block\_length != 16) \{}
+\DoxyCodeLine{40       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca302b958f5664adeb427c22f57c9d90a4}{CRYPT\_INVALID\_CIPHER}};}
+\DoxyCodeLine{41    \}}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{43    \textcolor{comment}{/* make sure the taglen is valid */}}
+\DoxyCodeLine{44    \textcolor{keywordflow}{if} (taglen < 4 || taglen > 16 || (taglen \% 2) == 1) \{}
+\DoxyCodeLine{45       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{46    \}}
+\DoxyCodeLine{47    ccm->taglen = taglen;}
+\DoxyCodeLine{48 }
+\DoxyCodeLine{49    \textcolor{comment}{/* schedule key */}}
+\DoxyCodeLine{50    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[cipher].\mbox{\hyperlink{multi2_8c_ad0625943f7d847668b869ed827c51d47}{setup}}(key, keylen, 0, \&ccm->K)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{51       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{52    \}}
+\DoxyCodeLine{53    ccm->cipher = cipher;}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55    \textcolor{comment}{/* let's get the L value */}}
+\DoxyCodeLine{56    ccm->ptlen = ptlen;}
+\DoxyCodeLine{57    ccm->L   = 0;}
+\DoxyCodeLine{58    \textcolor{keywordflow}{while} (ptlen) \{}
+\DoxyCodeLine{59       ++ccm->L;}
+\DoxyCodeLine{60       ptlen >>= 8;}
+\DoxyCodeLine{61    \}}
+\DoxyCodeLine{62    \textcolor{keywordflow}{if} (ccm->L <= 1) \{}
+\DoxyCodeLine{63       ccm->L = 2;}
+\DoxyCodeLine{64    \}}
+\DoxyCodeLine{65 }
+\DoxyCodeLine{66    ccm->aadlen = aadlen;}
+\DoxyCodeLine{67    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{68 \}}
+
+\end{DoxyCode}
+
+
+References cipher\+\_\+descriptor, cipher\+\_\+is\+\_\+valid(), C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+A\+RG, C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+C\+I\+P\+H\+ER, C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, setup(), and X\+M\+E\+M\+S\+E\+T().
+
+
+
+Referenced by ccm\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2

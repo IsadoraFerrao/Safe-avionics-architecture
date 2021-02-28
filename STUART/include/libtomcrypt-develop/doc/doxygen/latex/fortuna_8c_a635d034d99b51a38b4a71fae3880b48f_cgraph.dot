@@ -1,0 +1,27 @@
+digraph "fortuna_ready"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node64 [label="fortuna_ready",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Make the PRNG ready to read from."];
+  Node64 -> Node65 [color="midnightblue",fontsize="10",style="solid"];
+  Node65 [label="_fortuna_reseed",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$fortuna_8c.html#aad833baa2e75f93d847e5a7ac30ea4d2",tooltip=" "];
+  Node65 -> Node66 [color="midnightblue",fontsize="10",style="solid"];
+  Node66 [label="_fortuna_update_iv",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$fortuna_8c.html#a5e5b2b7f0a18fae044e2f53384a51c6b",tooltip=" "];
+  Node65 -> Node67 [color="midnightblue",fontsize="10",style="solid"];
+  Node67 [label="rijndael_setup",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$aes_8c.html#a3b2fab908c22514c91332a5c9a3d7166",tooltip="Initialize the AES (Rijndael) block cipher."];
+  Node67 -> Node68 [color="midnightblue",fontsize="10",style="solid"];
+  Node68 [label="setup_mix",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$aes_8c.html#a523ac00c3bbdb4656024ab0ad32f571f",tooltip=" "];
+  Node65 -> Node69 [color="midnightblue",fontsize="10",style="solid"];
+  Node69 [label="sha256_done",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sha256_8c.html#a53db56f3eb9f35c59b134533be31c301",tooltip="Terminate the hash to get the digest."];
+  Node69 -> Node70 [color="midnightblue",fontsize="10",style="solid"];
+  Node70 [label="sha256_compress",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sha256_8c.html#ac87e8a7c22810735390e70611006bfe5",tooltip=" "];
+  Node69 -> Node71 [color="midnightblue",fontsize="10",style="solid"];
+  Node71 [label="zeromem",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__misc_8h.html#a63b6e188713790263bfd3612fe8b398f",tooltip="Zero a block of memory."];
+  Node65 -> Node72 [color="midnightblue",fontsize="10",style="solid"];
+  Node72 [label="sha256_init",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sha256_8c.html#a6290ad544b02c822c2ca6c30b8d1ee07",tooltip="Initialize the hash state."];
+  Node65 -> Node73 [color="midnightblue",fontsize="10",style="solid"];
+  Node73 [label="sha256_process",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sha256_8c.html#a8b983a80c9edd5d997a3937963ae7856",tooltip="Process a block of memory though the hash."];
+  Node65 -> Node71 [color="midnightblue",fontsize="10",style="solid"];
+}

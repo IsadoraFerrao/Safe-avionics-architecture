@@ -1,0 +1,111 @@
+\hypertarget{pbes_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/misc/pbes/pbes.c File Reference}
+\label{pbes_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/misc/pbes/pbes.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/misc/pbes/pbes.c}}
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for pbes.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{pbes_8c_a7df0f8ba7d5d6b9752a7bb9c5e3f7081}{pbes\+\_\+decrypt}} (const \mbox{\hyperlink{structpbes__arg}{pbes\+\_\+arg}} $\ast$arg, unsigned char $\ast$dec\+\_\+data, unsigned long $\ast$dec\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Decrypt Data encrypted via either P\+B\+E\+S1 or P\+B\+E\+S2. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{pbes_8c_a7df0f8ba7d5d6b9752a7bb9c5e3f7081}\label{pbes_8c_a7df0f8ba7d5d6b9752a7bb9c5e3f7081}} 
+\index{pbes.c@{pbes.c}!pbes\_decrypt@{pbes\_decrypt}}
+\index{pbes\_decrypt@{pbes\_decrypt}!pbes.c@{pbes.c}}
+\subsubsection{\texorpdfstring{pbes\_decrypt()}{pbes\_decrypt()}}
+{\footnotesize\ttfamily int pbes\+\_\+decrypt (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structpbes__arg}{pbes\+\_\+arg}} $\ast$}]{arg,  }\item[{unsigned char $\ast$}]{dec\+\_\+data,  }\item[{unsigned long $\ast$}]{dec\+\_\+size }\end{DoxyParamCaption})}
+
+
+
+Decrypt Data encrypted via either P\+B\+E\+S1 or P\+B\+E\+S2. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em arg} & The according P\+B\+ES parameters \\
+\hline
+{\em dec\+\_\+data} & \mbox{[}out\mbox{]} The decrypted data \\
+\hline
+{\em dec\+\_\+size} & \mbox{[}in/out\mbox{]} The length of the encrypted resp. decrypted data \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK on success 
+\end{DoxyReturn}
+
+
+Definition at line 21 of file pbes.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{22 \{}
+\DoxyCodeLine{23    \textcolor{keywordtype}{int} err, hid, cid;}
+\DoxyCodeLine{24    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} k[32], *iv;}
+\DoxyCodeLine{25    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} klen, keylen, dlen;}
+\DoxyCodeLine{26    \textcolor{keywordtype}{long} diff;}
+\DoxyCodeLine{27    symmetric\_CBC cbc;}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(arg           != NULL);}
+\DoxyCodeLine{30    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(arg->\mbox{\hyperlink{structpbes__arg_a6879b93a34abc3b85c42fea0b0e92156}{type}}.\mbox{\hyperlink{structpbes__properties_a6edc1f4ee556a89b6812d0be927b1547}{kdf}} != NULL);}
+\DoxyCodeLine{31    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(dec\_data      != NULL);}
+\DoxyCodeLine{32    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(dec\_size      != NULL);}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34    hid = \mbox{\hyperlink{tomcrypt__hash_8h_a1818254b9c8f09047af3b66ea7f5852b}{find\_hash}}(arg->\mbox{\hyperlink{structpbes__arg_a6879b93a34abc3b85c42fea0b0e92156}{type}}.\mbox{\hyperlink{structpbes__properties_ae2a9b6e73cee94acd3d082641c2b6ea8}{h}});}
+\DoxyCodeLine{35    \textcolor{keywordflow}{if} (hid == -1) \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cae729ddc4864ea7e12e9865bf6264642d}{CRYPT\_INVALID\_HASH}};}
+\DoxyCodeLine{36    cid = \mbox{\hyperlink{tomcrypt__cipher_8h_af5c3882342fd65a17239cd04bfdf44e2}{find\_cipher}}(arg->\mbox{\hyperlink{structpbes__arg_a6879b93a34abc3b85c42fea0b0e92156}{type}}.\mbox{\hyperlink{structpbes__properties_a821664389b9d7c6de99aeb7593beb48c}{c}});}
+\DoxyCodeLine{37    \textcolor{keywordflow}{if} (cid == -1) \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca302b958f5664adeb427c22f57c9d90a4}{CRYPT\_INVALID\_CIPHER}};}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39    klen = arg->\mbox{\hyperlink{structpbes__arg_a6879b93a34abc3b85c42fea0b0e92156}{type}}.\mbox{\hyperlink{structpbes__properties_ad29dce0a2ea0da6e3007fbf220383ae4}{keylen}};}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41    \textcolor{comment}{/* RC2 special case */}}
+\DoxyCodeLine{42    \textcolor{keywordflow}{if} (arg->\mbox{\hyperlink{structpbes__arg_ac59e419107215d6c89e2d9789a0c49f4}{key\_bits}} != 0) \{}
+\DoxyCodeLine{43       \textcolor{comment}{/* We can't handle odd lengths of Key Bits */}}
+\DoxyCodeLine{44       \textcolor{keywordflow}{if} ((arg->\mbox{\hyperlink{structpbes__arg_ac59e419107215d6c89e2d9789a0c49f4}{key\_bits}} \% 8) != 0) \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caafed43f3b625e72191e08e65b4bb5e02}{CRYPT\_INVALID\_KEYSIZE}};}
+\DoxyCodeLine{45       \textcolor{comment}{/* Internally we use bytes, not bits */}}
+\DoxyCodeLine{46       klen = arg->\mbox{\hyperlink{structpbes__arg_ac59e419107215d6c89e2d9789a0c49f4}{key\_bits}} / 8;}
+\DoxyCodeLine{47    \}}
+\DoxyCodeLine{48    keylen = klen;}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{50    \textcolor{keywordflow}{if} (arg->\mbox{\hyperlink{structpbes__arg_aeecdb7fb21b9beacfa5adf1f715eb9fd}{iv}} != NULL) \{}
+\DoxyCodeLine{51       iv = arg->\mbox{\hyperlink{structpbes__arg_aeecdb7fb21b9beacfa5adf1f715eb9fd}{iv}}->data;}
+\DoxyCodeLine{52    \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{53       iv = k + klen;}
+\DoxyCodeLine{54       klen += arg->\mbox{\hyperlink{structpbes__arg_a6879b93a34abc3b85c42fea0b0e92156}{type}}.\mbox{\hyperlink{structpbes__properties_a62ec0e2217643f5e3a52684b067f5dc2}{blocklen}};}
+\DoxyCodeLine{55    \}}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{57    \textcolor{keywordflow}{if} (klen > \textcolor{keyword}{sizeof}(k)) \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{59    \textcolor{keywordflow}{if} ((err = arg->\mbox{\hyperlink{structpbes__arg_a6879b93a34abc3b85c42fea0b0e92156}{type}}.\mbox{\hyperlink{structpbes__properties_a6edc1f4ee556a89b6812d0be927b1547}{kdf}}(arg->\mbox{\hyperlink{structpbes__arg_a146b6c8875be0a3ac9f426327e83186a}{pwd}}, arg->\mbox{\hyperlink{structpbes__arg_a6f7f1324f1acfd51dcc7c1e334db7e0a}{pwdlen}}, arg->\mbox{\hyperlink{structpbes__arg_a356304efb7c4b45d06779905fd254797}{salt}}->data, arg->\mbox{\hyperlink{structpbes__arg_a356304efb7c4b45d06779905fd254797}{salt}}->size, arg->\mbox{\hyperlink{structpbes__arg_a78b52a8d8572e6947ebe909b51490ec6}{iterations}}, hid, k, \&klen)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \textcolor{keywordflow}{goto} LBL\_ERROR;}
+\DoxyCodeLine{60    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{cbc__start_8c_abba6632aa97f200faf29cdb7f5d99eee}{cbc\_start}}(cid, iv, k, keylen, 0, \&cbc)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \textcolor{keywordflow}{goto} LBL\_ERROR;}
+\DoxyCodeLine{61    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{cbc__decrypt_8c_a370774a78d86e94ee3dee504dc15773f}{cbc\_decrypt}}(arg->\mbox{\hyperlink{structpbes__arg_a8e69f095d7a7e8f5fad6fa49ea2d0d00}{enc\_data}}->data, dec\_data, arg->\mbox{\hyperlink{structpbes__arg_a8e69f095d7a7e8f5fad6fa49ea2d0d00}{enc\_data}}->size, \&cbc)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \textcolor{keywordflow}{goto} LBL\_ERROR;}
+\DoxyCodeLine{62    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{cbc__done_8c_a13f57f4d9801877029527e4ad3a2dd5f}{cbc\_done}}(\&cbc)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \textcolor{keywordflow}{goto} LBL\_ERROR;}
+\DoxyCodeLine{63    dlen = arg->\mbox{\hyperlink{structpbes__arg_a8e69f095d7a7e8f5fad6fa49ea2d0d00}{enc\_data}}->size;}
+\DoxyCodeLine{64    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{padding__depad_8c_a82df175ea5c72fef7e519125bbe9fb89}{padding\_depad}}(dec\_data, \&dlen, LTC\_PAD\_PKCS7)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \textcolor{keywordflow}{goto} LBL\_ERROR;}
+\DoxyCodeLine{65    diff = (long)arg->\mbox{\hyperlink{structpbes__arg_a8e69f095d7a7e8f5fad6fa49ea2d0d00}{enc\_data}}->size - (\textcolor{keywordtype}{long})dlen;}
+\DoxyCodeLine{66    \textcolor{keywordflow}{if} ((diff <= 0) || (diff > \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[cid].\mbox{\hyperlink{structltc__cipher__descriptor_afa2af7325fd3a834910dd92e8c9acf49}{block\_length}})) \{}
+\DoxyCodeLine{67       err = \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caee3022c2372277db42c7d43310bcb43b}{CRYPT\_PK\_INVALID\_PADDING}};}
+\DoxyCodeLine{68       \textcolor{keywordflow}{goto} LBL\_ERROR;}
+\DoxyCodeLine{69    \}}
+\DoxyCodeLine{70    *dec\_size = dlen;}
+\DoxyCodeLine{71    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{72 }
+\DoxyCodeLine{73 LBL\_ERROR:}
+\DoxyCodeLine{74    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(k, \textcolor{keyword}{sizeof}(k));}
+\DoxyCodeLine{75    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(dec\_data, *dec\_size);}
+\DoxyCodeLine{76    \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{77 \}}
+
+\end{DoxyCode}
+
+
+References ltc\+\_\+cipher\+\_\+descriptor\+::block\+\_\+length, pbes\+\_\+properties\+::blocklen, pbes\+\_\+properties\+::c, cbc\+\_\+decrypt(), cbc\+\_\+done(), cbc\+\_\+start(), cipher\+\_\+descriptor, C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+A\+RG, C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+C\+I\+P\+H\+ER, C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+H\+A\+SH, C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+K\+E\+Y\+S\+I\+ZE, C\+R\+Y\+P\+T\+\_\+\+OK, C\+R\+Y\+P\+T\+\_\+\+P\+K\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+P\+A\+D\+D\+I\+NG, pbes\+\_\+arg\+::enc\+\_\+data, find\+\_\+cipher(), find\+\_\+hash(), pbes\+\_\+properties\+::h, pbes\+\_\+arg\+::iterations, pbes\+\_\+arg\+::iv, pbes\+\_\+properties\+::kdf, pbes\+\_\+arg\+::key\+\_\+bits, pbes\+\_\+properties\+::keylen, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, padding\+\_\+depad(), pbes\+\_\+arg\+::pwd, pbes\+\_\+arg\+::pwdlen, pbes\+\_\+arg\+::salt, pbes\+\_\+arg\+::type, and zeromem().
+
+
+
+Referenced by pkcs8\+\_\+decode\+\_\+flexi().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2

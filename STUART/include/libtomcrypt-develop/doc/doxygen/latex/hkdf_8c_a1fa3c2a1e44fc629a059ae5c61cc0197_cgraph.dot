@@ -1,0 +1,52 @@
+digraph "hkdf_expand"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node17 [label="hkdf_expand",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node17 -> Node18 [color="midnightblue",fontsize="10",style="solid"];
+  Node18 [label="hash_is_valid",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__hash_8h.html#a79647f22bf48bfa7de03fe5fc958c846",tooltip=" "];
+  Node17 -> Node19 [color="midnightblue",fontsize="10",style="solid"];
+  Node19 [label="hmac_memory",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$hmac__memory_8c.html#a6bf2dff4537e6332dec46266a9db7580",tooltip="HMAC a block of memory to produce the authentication tag."];
+  Node19 -> Node18 [color="midnightblue",fontsize="10",style="solid"];
+  Node19 -> Node20 [color="midnightblue",fontsize="10",style="solid"];
+  Node20 [label="hmac_done",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$hmac__done_8c.html#a25eaf3db04e6464adbba95d1153885d3",tooltip="Terminate an HMAC session."];
+  Node20 -> Node18 [color="midnightblue",fontsize="10",style="solid"];
+  Node20 -> Node21 [color="midnightblue",fontsize="10",style="solid"];
+  Node21 [label="init",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$gmp__desc_8c.html#a4f8948d7c94899bf8ddee4721114d593",tooltip=" "];
+  Node21 -> Node22 [color="midnightblue",fontsize="10",style="solid"];
+  Node22 [label="XCALLOC",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cfg_8h.html#a151dda14cd7acae31eaf1102b0cc0685",tooltip=" "];
+  Node20 -> Node23 [color="midnightblue",fontsize="10",style="solid"];
+  Node23 [label="XFREE",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cfg_8h.html#a260d66fc0690e0502cf3bfe7b5244b75",tooltip=" "];
+  Node20 -> Node24 [color="midnightblue",fontsize="10",style="solid"];
+  Node24 [label="XMALLOC",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cfg_8h.html#af363355f38fbaacdefacf270436ae1c9",tooltip=" "];
+  Node20 -> Node25 [color="midnightblue",fontsize="10",style="solid"];
+  Node25 [label="zeromem",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__misc_8h.html#a63b6e188713790263bfd3612fe8b398f",tooltip="Zero a block of memory."];
+  Node19 -> Node26 [color="midnightblue",fontsize="10",style="solid"];
+  Node26 [label="hmac_init",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$hmac__init_8c.html#a84fb451315a01f33d356ddd1ade0dca9",tooltip="Initialize an HMAC context."];
+  Node26 -> Node18 [color="midnightblue",fontsize="10",style="solid"];
+  Node26 -> Node27 [color="midnightblue",fontsize="10",style="solid"];
+  Node27 [label="hash_memory",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$hash__memory_8c.html#a8672bf28488595ef1519a6754498869c",tooltip="Hash a block of memory and store the digest."];
+  Node27 -> Node18 [color="midnightblue",fontsize="10",style="solid"];
+  Node27 -> Node21 [color="midnightblue",fontsize="10",style="solid"];
+  Node27 -> Node23 [color="midnightblue",fontsize="10",style="solid"];
+  Node27 -> Node24 [color="midnightblue",fontsize="10",style="solid"];
+  Node27 -> Node25 [color="midnightblue",fontsize="10",style="solid"];
+  Node26 -> Node21 [color="midnightblue",fontsize="10",style="solid"];
+  Node26 -> Node23 [color="midnightblue",fontsize="10",style="solid"];
+  Node26 -> Node24 [color="midnightblue",fontsize="10",style="solid"];
+  Node26 -> Node28 [color="midnightblue",fontsize="10",style="solid"];
+  Node28 [label="XMEMCPY",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cfg_8h.html#a7691dd48d60d5fc6daf2fa7ec4c55e12",tooltip=" "];
+  Node26 -> Node25 [color="midnightblue",fontsize="10",style="solid"];
+  Node19 -> Node29 [color="midnightblue",fontsize="10",style="solid"];
+  Node29 [label="hmac_process",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$hmac__process_8c.html#a7d3c1ba3f3238833e4d53be233794907",tooltip="Process data through HMAC."];
+  Node29 -> Node18 [color="midnightblue",fontsize="10",style="solid"];
+  Node19 -> Node23 [color="midnightblue",fontsize="10",style="solid"];
+  Node19 -> Node24 [color="midnightblue",fontsize="10",style="solid"];
+  Node19 -> Node25 [color="midnightblue",fontsize="10",style="solid"];
+  Node17 -> Node23 [color="midnightblue",fontsize="10",style="solid"];
+  Node17 -> Node24 [color="midnightblue",fontsize="10",style="solid"];
+  Node17 -> Node28 [color="midnightblue",fontsize="10",style="solid"];
+  Node17 -> Node25 [color="midnightblue",fontsize="10",style="solid"];
+}

@@ -1,0 +1,72 @@
+\hypertarget{pmac__shift__xor_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/mac/pmac/pmac\+\_\+shift\+\_\+xor.c File Reference}
+\label{pmac__shift__xor_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/mac/pmac/pmac\_shift\_xor.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/mac/pmac/pmac\_shift\_xor.c}}
+
+
+P\+M\+AC implementation, internal function, by Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for pmac\+\_\+shift\+\_\+xor.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{pmac__shift__xor_8c_a934866e986d1638f3e2d198ea4bdfe80}{pmac\+\_\+shift\+\_\+xor}} (pmac\+\_\+state $\ast$pmac)
+\begin{DoxyCompactList}\small\item\em Internal function. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+P\+M\+AC implementation, internal function, by Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{pmac__shift__xor_8c_a934866e986d1638f3e2d198ea4bdfe80}\label{pmac__shift__xor_8c_a934866e986d1638f3e2d198ea4bdfe80}} 
+\index{pmac\_shift\_xor.c@{pmac\_shift\_xor.c}!pmac\_shift\_xor@{pmac\_shift\_xor}}
+\index{pmac\_shift\_xor@{pmac\_shift\_xor}!pmac\_shift\_xor.c@{pmac\_shift\_xor.c}}
+\subsubsection{\texorpdfstring{pmac\_shift\_xor()}{pmac\_shift\_xor()}}
+{\footnotesize\ttfamily void pmac\+\_\+shift\+\_\+xor (\begin{DoxyParamCaption}\item[{pmac\+\_\+state $\ast$}]{pmac }\end{DoxyParamCaption})}
+
+
+
+Internal function. 
+
+Performs the state update (adding correct multiple) 
+\begin{DoxyParams}{Parameters}
+{\em pmac} & The P\+M\+AC state. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 22 of file pmac\+\_\+shift\+\_\+xor.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{23 \{}
+\DoxyCodeLine{24    \textcolor{keywordtype}{int} x, y;}
+\DoxyCodeLine{25    y = \mbox{\hyperlink{pmac__ntz_8c_a12492827ca6ed510fa848dc7d1eaedc5}{pmac\_ntz}}(pmac->block\_index++);}
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#ifdef LTC\_FAST}}
+\DoxyCodeLine{27    \textcolor{keywordflow}{for} (x = 0; x < pmac->block\_len; x += \textcolor{keyword}{sizeof}(LTC\_FAST\_TYPE)) \{}
+\DoxyCodeLine{28        *(LTC\_FAST\_TYPE\_PTR\_CAST((\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *)pmac->Li + x)) \string^=}
+\DoxyCodeLine{29        *(LTC\_FAST\_TYPE\_PTR\_CAST((\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *)pmac->Ls[y] + x));}
+\DoxyCodeLine{30    \}}
+\DoxyCodeLine{31 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{32    \textcolor{keywordflow}{for} (x = 0; x < pmac->block\_len; x++) \{}
+\DoxyCodeLine{33        pmac->Li[x] \string^= pmac->Ls[y][x];}
+\DoxyCodeLine{34    \}}
+\DoxyCodeLine{35 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{36 \}}
+
+\end{DoxyCode}
+
+
+References pmac\+\_\+ntz().
+
+
+
+Referenced by pmac\+\_\+process().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2

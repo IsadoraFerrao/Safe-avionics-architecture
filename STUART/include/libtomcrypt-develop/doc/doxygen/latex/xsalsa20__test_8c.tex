@@ -1,0 +1,131 @@
+\hypertarget{xsalsa20__test_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/stream/salsa20/xsalsa20\+\_\+test.c File Reference}
+\label{xsalsa20__test_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/stream/salsa20/xsalsa20\_test.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/stream/salsa20/xsalsa20\_test.c}}
+{\ttfamily \#include \char`\"{}tomcrypt.\+h\char`\"{}}\newline
+Include dependency graph for xsalsa20\+\_\+test.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{xsalsa20__test_8c_a7fcfbd99a01c14c1da60a10132de39a1}{\+\_\+sha256}} (unsigned char $\ast$hash, const unsigned char $\ast$data, const int datalen)
+\item 
+int \mbox{\hyperlink{xsalsa20__test_8c_a3a6ef542e6adb8439f75d3ac042ac0e5}{xsalsa20\+\_\+test}} (void)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{xsalsa20__test_8c_a7fcfbd99a01c14c1da60a10132de39a1}\label{xsalsa20__test_8c_a7fcfbd99a01c14c1da60a10132de39a1}} 
+\index{xsalsa20\_test.c@{xsalsa20\_test.c}!\_sha256@{\_sha256}}
+\index{\_sha256@{\_sha256}!xsalsa20\_test.c@{xsalsa20\_test.c}}
+\subsubsection{\texorpdfstring{\_sha256()}{\_sha256()}}
+{\footnotesize\ttfamily static int \+\_\+sha256 (\begin{DoxyParamCaption}\item[{unsigned char $\ast$}]{hash,  }\item[{const unsigned char $\ast$}]{data,  }\item[{const int}]{datalen }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 22 of file xsalsa20\+\_\+test.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{22                                                                                       \{}
+\DoxyCodeLine{23    \mbox{\hyperlink{unionHash__state}{hash\_state}} md;}
+\DoxyCodeLine{24    \mbox{\hyperlink{sha256_8c_a6290ad544b02c822c2ca6c30b8d1ee07}{sha256\_init}}(\&md);}
+\DoxyCodeLine{25    \mbox{\hyperlink{sha256_8c_a8b983a80c9edd5d997a3937963ae7856}{sha256\_process}}(\&md, data, datalen);}
+\DoxyCodeLine{26    \mbox{\hyperlink{sha256_8c_a53db56f3eb9f35c59b134533be31c301}{sha256\_done}}(\&md, hash);}
+\DoxyCodeLine{27    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{28 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, sha256\+\_\+done(), sha256\+\_\+init(), and sha256\+\_\+process().
+
+
+
+Referenced by xsalsa20\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2
+\mbox{\Hypertarget{xsalsa20__test_8c_a3a6ef542e6adb8439f75d3ac042ac0e5}\label{xsalsa20__test_8c_a3a6ef542e6adb8439f75d3ac042ac0e5}} 
+\index{xsalsa20\_test.c@{xsalsa20\_test.c}!xsalsa20\_test@{xsalsa20\_test}}
+\index{xsalsa20\_test@{xsalsa20\_test}!xsalsa20\_test.c@{xsalsa20\_test.c}}
+\subsubsection{\texorpdfstring{xsalsa20\_test()}{xsalsa20\_test()}}
+{\footnotesize\ttfamily int xsalsa20\+\_\+test (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 31 of file xsalsa20\+\_\+test.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{32 \{}
+\DoxyCodeLine{33 \textcolor{preprocessor}{\#ifndef LTC\_TEST}}
+\DoxyCodeLine{34    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cac43a7799c7fd5f515172da6cfc0f9cf5}{CRYPT\_NOP}};}
+\DoxyCodeLine{35 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37     \textcolor{comment}{/***************************************************************************}}
+\DoxyCodeLine{38 \textcolor{comment}{     * verify a round trip:}}
+\DoxyCodeLine{39 \textcolor{comment}{     */}}
+\DoxyCodeLine{40     \{}
+\DoxyCodeLine{41         \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} key[]   = \{0x1b,0x27,0x55,0x64,0x73,0xe9,0x85,0xd4,0x62,0xcd,0x51,0x19,0x7a,0x9a,0x46,0xc7,0x60,0x09,0x54,0x9e,0xac,0x64,0x74,0xf2,0x06,0xc4,0xee,0x08,0x44,0xf6,0x83,0x89\};}
+\DoxyCodeLine{42         \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} nonce[] = \{0x69,0x69,0x6e,0xe9,0x55,0xb6,0x2b,0x73,0xcd,0x62,0xbd,0xa8,0x75,0xfc,0x73,0xd6,0x82,0x19,0xe0,0x03,0x6b,0x7a,0x0b,0x37\};}
+\DoxyCodeLine{43         \textcolor{keyword}{const} \textcolor{keywordtype}{void} *msg             = \textcolor{stringliteral}{"Kilroy was here!"};}
+\DoxyCodeLine{44         \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} msglen = 17;                  \textcolor{comment}{/* includes trailing NULL */}}
+\DoxyCodeLine{45         \textcolor{keywordtype}{int} \mbox{\hyperlink{kseed_8c_a51da46362a22c8107683876e9c12ec82}{rounds}} = 20;}
+\DoxyCodeLine{46         \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} ciphertext[17];}
+\DoxyCodeLine{47         \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} msg2[17];}
+\DoxyCodeLine{48         salsa20\_state st;}
+\DoxyCodeLine{49         \textcolor{keywordtype}{int} err;}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{51         \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{xsalsa20__setup_8c_a974b021979b425374d24f4ce4304ee8c}{xsalsa20\_setup}}(\&st, key, 32, nonce, 24, \mbox{\hyperlink{kseed_8c_a51da46362a22c8107683876e9c12ec82}{rounds}})) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})  \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{52         \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{salsa20__crypt_8c_ac9983b8790b277b19ac0e6efcd5bc298}{salsa20\_crypt}}(\&st, msg, msglen, ciphertext))     != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})  \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{53         \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{salsa20__done_8c_a465c34bbeed87ae78733565f8c2c698c}{salsa20\_done}}(\&st))                               != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})  \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55         \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{xsalsa20__setup_8c_a974b021979b425374d24f4ce4304ee8c}{xsalsa20\_setup}}(\&st, key, 32, nonce, 24, \mbox{\hyperlink{kseed_8c_a51da46362a22c8107683876e9c12ec82}{rounds}})) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})  \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{56         \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{salsa20__crypt_8c_ac9983b8790b277b19ac0e6efcd5bc298}{salsa20\_crypt}}(\&st, ciphertext, msglen, msg2))    != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})  \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{57         \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{salsa20__done_8c_a465c34bbeed87ae78733565f8c2c698c}{salsa20\_done}}(\&st))                               != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})  \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{59         \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(msg, msglen, msg2, msglen, \textcolor{stringliteral}{"XSALSA20-TV1"}, 1))  \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{61 }
+\DoxyCodeLine{62         \textcolor{comment}{/* round trip with two single function calls */}}
+\DoxyCodeLine{63         \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{xsalsa20__memory_8c_a07c4bf65051eaa8738b55b2e1238be10}{xsalsa20\_memory}}(key, \textcolor{keyword}{sizeof}(key), 20, nonce, \textcolor{keyword}{sizeof}(nonce), msg, msglen, ciphertext))  != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{64         \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{xsalsa20__memory_8c_a07c4bf65051eaa8738b55b2e1238be10}{xsalsa20\_memory}}(key, \textcolor{keyword}{sizeof}(key), 20, nonce, \textcolor{keyword}{sizeof}(nonce), ciphertext, msglen, msg2)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{65         \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(msg, msglen, msg2, msglen, \textcolor{stringliteral}{"XSALSA20-TV2"}, 1))  \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{66     \}}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{68 \textcolor{preprocessor}{\#ifdef LTC\_SHA256}}
+\DoxyCodeLine{69    \textcolor{comment}{/***************************************************************************}}
+\DoxyCodeLine{70 \textcolor{comment}{    * verify correct generation of a keystream}}
+\DoxyCodeLine{71 \textcolor{comment}{    */}}
+\DoxyCodeLine{72    \{}
+\DoxyCodeLine{73        \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} key[]        = \{0x1b,0x27,0x55,0x64,0x73,0xe9,0x85,0xd4,0x62,0xcd,0x51,0x19,0x7a,0x9a,0x46,0xc7,0x60,0x09,0x54,0x9e,0xac,0x64,0x74,0xf2,0x06,0xc4,0xee,0x08,0x44,0xf6,0x83,0x89\};}
+\DoxyCodeLine{74        \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} nonce[]      = \{0x69,0x69,0x6e,0xe9,0x55,0xb6,0x2b,0x73,0xcd,0x62,0xbd,0xa8,0x75,0xfc,0x73,0xd6,0x82,0x19,0xe0,0x03,0x6b,0x7a,0x0b,0x37\};}
+\DoxyCodeLine{75        \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} expecthash[] = \{0x6a,0x60,0x57,0x65,0x27,0xe0,0x00,0x51,0x6d,0xb0,0xda,0x60,0x46,0x20,0xf6,0xd0,0x95,0x65,0x45,0x39,0xf4,0x86,0x83,0x43,0x64,0xdf,0xd9,0x5a,0x6f,0x3f,0xbe,0xb7\};}
+\DoxyCodeLine{76        \textcolor{keywordtype}{int} \mbox{\hyperlink{kseed_8c_a51da46362a22c8107683876e9c12ec82}{rounds}} = 20;}
+\DoxyCodeLine{77        \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} keystream[91101];}
+\DoxyCodeLine{78        \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} keystreamlen = 91101;}
+\DoxyCodeLine{79        \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} hash[32];}
+\DoxyCodeLine{80        salsa20\_state st;}
+\DoxyCodeLine{81        \textcolor{keywordtype}{int} err;}
+\DoxyCodeLine{82 }
+\DoxyCodeLine{83        \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{xsalsa20__setup_8c_a974b021979b425374d24f4ce4304ee8c}{xsalsa20\_setup}}(\&st, key, 32, nonce, 24, \mbox{\hyperlink{kseed_8c_a51da46362a22c8107683876e9c12ec82}{rounds}}))   != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})  \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{84        \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{salsa20__keystream_8c_a748ea714271d7ecbdc75ff94eae0c15d}{salsa20\_keystream}}(\&st, keystream, keystreamlen))   != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})  \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{85        \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{salsa20__done_8c_a465c34bbeed87ae78733565f8c2c698c}{salsa20\_done}}(\&st))                                 != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})  \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{86        \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{xsalsa20__test_8c_a7fcfbd99a01c14c1da60a10132de39a1}{\_sha256}}(hash, keystream, keystreamlen))            != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})  \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{87        \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(hash, \textcolor{keyword}{sizeof}(hash), expecthash, \textcolor{keyword}{sizeof}(expecthash),   \textcolor{stringliteral}{"XSALSA20-TV3"}, 1))  \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{88    \}}
+\DoxyCodeLine{89 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{90 }
+\DoxyCodeLine{91    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{92 }
+\DoxyCodeLine{93 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{94 \}}
+
+\end{DoxyCode}
+
+
+References \+\_\+sha256(), compare\+\_\+testvector(), C\+R\+Y\+P\+T\+\_\+\+F\+A\+I\+L\+\_\+\+T\+E\+S\+T\+V\+E\+C\+T\+OR, C\+R\+Y\+P\+T\+\_\+\+N\+OP, C\+R\+Y\+P\+T\+\_\+\+OK, rounds(), salsa20\+\_\+crypt(), salsa20\+\_\+done(), salsa20\+\_\+keystream(), xsalsa20\+\_\+memory(), and xsalsa20\+\_\+setup().
+
+Here is the call graph for this function\+:
+% FIG 3

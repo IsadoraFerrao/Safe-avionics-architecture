@@ -1,0 +1,117 @@
+\hypertarget{rng__make__prng_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/prngs/rng\+\_\+make\+\_\+prng.c File Reference}
+\label{rng__make__prng_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/prngs/rng\_make\_prng.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/prngs/rng\_make\_prng.c}}
+
+
+portable way to get secure random bits to feed a P\+R\+NG (Tom St Denis)  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for rng\+\_\+make\+\_\+prng.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{rng__make__prng_8c_a97e605483ea5f5f9ea4067dafae5801b}{rng\+\_\+make\+\_\+prng}} (int bits, int wprng, \mbox{\hyperlink{structprng__state}{prng\+\_\+state}} $\ast$prng, void($\ast$callback)(void))
+\begin{DoxyCompactList}\small\item\em Create a P\+R\+NG from a R\+NG. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+portable way to get secure random bits to feed a P\+R\+NG (Tom St Denis) 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{rng__make__prng_8c_a97e605483ea5f5f9ea4067dafae5801b}\label{rng__make__prng_8c_a97e605483ea5f5f9ea4067dafae5801b}} 
+\index{rng\_make\_prng.c@{rng\_make\_prng.c}!rng\_make\_prng@{rng\_make\_prng}}
+\index{rng\_make\_prng@{rng\_make\_prng}!rng\_make\_prng.c@{rng\_make\_prng.c}}
+\subsubsection{\texorpdfstring{rng\_make\_prng()}{rng\_make\_prng()}}
+{\footnotesize\ttfamily int rng\+\_\+make\+\_\+prng (\begin{DoxyParamCaption}\item[{int}]{bits,  }\item[{int}]{wprng,  }\item[{\mbox{\hyperlink{structprng__state}{prng\+\_\+state}} $\ast$}]{prng,  }\item[{void($\ast$)(void)}]{callback }\end{DoxyParamCaption})}
+
+
+
+Create a P\+R\+NG from a R\+NG. 
+
+In case you pass bits as \textquotesingle{}-\/1\textquotesingle{} the P\+R\+NG will be setup as if the export/import functionality has been used, but the imported data comes directly from the R\+NG.
+
+
+\begin{DoxyParams}{Parameters}
+{\em bits} & Number of bits of entropy desired (-\/1 or 64 ... 1024) \\
+\hline
+{\em wprng} & Index of which P\+R\+NG to setup \\
+\hline
+{\em prng} & \mbox{[}out\mbox{]} P\+R\+NG state to initialize \\
+\hline
+{\em callback} & A pointer to a void function for when the R\+NG is slow, this can be N\+U\+LL \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 30 of file rng\+\_\+make\+\_\+prng.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{32 \{}
+\DoxyCodeLine{33    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}* buf;}
+\DoxyCodeLine{34    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} bytes;}
+\DoxyCodeLine{35    \textcolor{keywordtype}{int} err;}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(prng != NULL);}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39    \textcolor{comment}{/* check parameter */}}
+\DoxyCodeLine{40    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__prng_8h_a7e4a212c1a29a3b8bb4f8d5a34676a1e}{prng\_is\_valid}}(wprng)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{41       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{42    \}}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44    \textcolor{keywordflow}{if} (bits == -1) \{}
+\DoxyCodeLine{45       bytes = \mbox{\hyperlink{tomcrypt__prng_8h_ac03ee9f603bf966f3afb3f6be156239b}{prng\_descriptor}}[wprng].\mbox{\hyperlink{structltc__prng__descriptor_a41ef184ab75b213366392faabcde420c}{export\_size}};}
+\DoxyCodeLine{46    \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (bits < 64 || bits > 1024) \{}
+\DoxyCodeLine{47       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cac0b40f0b62c40baa800489c75940b0a1}{CRYPT\_INVALID\_PRNGSIZE}};}
+\DoxyCodeLine{48    \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{49       bytes = (\textcolor{keywordtype}{unsigned} long)((bits+7)/8) * 2;}
+\DoxyCodeLine{50    \}}
+\DoxyCodeLine{51 }
+\DoxyCodeLine{52    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__prng_8h_ac03ee9f603bf966f3afb3f6be156239b}{prng\_descriptor}}[wprng].\mbox{\hyperlink{structedge_ac8d50f8cbdc126000b0836cacfa19d73}{start}}(prng)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{53       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{54    \}}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{56    buf = \mbox{\hyperlink{tomcrypt__cfg_8h_af363355f38fbaacdefacf270436ae1c9}{XMALLOC}}(bytes);}
+\DoxyCodeLine{57    \textcolor{keywordflow}{if} (buf == NULL) \{}
+\DoxyCodeLine{58       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca0ce0d27adc7ea10b74b7ea904b8bfa82}{CRYPT\_MEM}};}
+\DoxyCodeLine{59    \}}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{61    \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__prng_8h_ace80a0f11a76e7ebd59c2188b2ec2520}{rng\_get\_bytes}}(buf, bytes, callback) != bytes) \{}
+\DoxyCodeLine{62       err = \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca68eea82b3b71f23031cd94b10c920bf3}{CRYPT\_ERROR\_READPRNG}};}
+\DoxyCodeLine{63       \textcolor{keywordflow}{goto} LBL\_ERR;}
+\DoxyCodeLine{64    \}}
+\DoxyCodeLine{65 }
+\DoxyCodeLine{66    \textcolor{keywordflow}{if} (bits == -1) \{}
+\DoxyCodeLine{67       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__prng_8h_ac03ee9f603bf966f3afb3f6be156239b}{prng\_descriptor}}[wprng].pimport(buf, bytes, prng)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{68          \textcolor{keywordflow}{goto} LBL\_ERR;}
+\DoxyCodeLine{69       \}}
+\DoxyCodeLine{70    \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{71       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__prng_8h_ac03ee9f603bf966f3afb3f6be156239b}{prng\_descriptor}}[wprng].add\_entropy(buf, bytes, prng)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{72          \textcolor{keywordflow}{goto} LBL\_ERR;}
+\DoxyCodeLine{73       \}}
+\DoxyCodeLine{74    \}}
+\DoxyCodeLine{75    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__prng_8h_ac03ee9f603bf966f3afb3f6be156239b}{prng\_descriptor}}[wprng].ready(prng)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{76       \textcolor{keywordflow}{goto} LBL\_ERR;}
+\DoxyCodeLine{77    \}}
+\DoxyCodeLine{78 }
+\DoxyCodeLine{79 LBL\_ERR:}
+\DoxyCodeLine{80 \textcolor{preprocessor}{   \#ifdef LTC\_CLEAN\_STACK}}
+\DoxyCodeLine{81    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(buf, bytes);}
+\DoxyCodeLine{82 \textcolor{preprocessor}{   \#endif}}
+\DoxyCodeLine{83    \mbox{\hyperlink{tomcrypt__cfg_8h_a260d66fc0690e0502cf3bfe7b5244b75}{XFREE}}(buf);}
+\DoxyCodeLine{84    \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{85 \}}
+
+\end{DoxyCode}
+
+
+References ltc\+\_\+prng\+\_\+descriptor\+::add\+\_\+entropy, C\+R\+Y\+P\+T\+\_\+\+E\+R\+R\+O\+R\+\_\+\+R\+E\+A\+D\+P\+R\+NG, C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+P\+R\+N\+G\+S\+I\+ZE, C\+R\+Y\+P\+T\+\_\+\+M\+EM, C\+R\+Y\+P\+T\+\_\+\+OK, ltc\+\_\+prng\+\_\+descriptor\+::export\+\_\+size, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, ltc\+\_\+prng\+\_\+descriptor\+::pimport, prng\+\_\+descriptor, prng\+\_\+is\+\_\+valid(), ltc\+\_\+prng\+\_\+descriptor\+::ready, rng\+\_\+get\+\_\+bytes(), ltc\+\_\+prng\+\_\+descriptor\+::start, X\+F\+R\+E\+E(), X\+M\+A\+L\+L\+O\+C(), and zeromem().
+
+Here is the call graph for this function\+:
+% FIG 1

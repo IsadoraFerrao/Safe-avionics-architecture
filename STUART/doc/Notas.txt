@@ -1,0 +1,35 @@
+
+Considerações sobre o projeto:
+
+FORMAÇÃO CENTRALIZADA E MÚLTIPLAS INTERFACES: É possível o mesmo VANT ter que se autenticar em duas SEs?
+(Assim, a super entity é na entidade ou pode ser para cada uma das interfaces? O que acontece quando o VANT estiver em mais de uma rede?)
+--- Se for por interface, Toda vez que precisar da SE eu terei que:
+    1. Varrer as interfaces e ver se são do tipo ENTITY<->ENTITY
+    2. Ver se é centralizada --- aqui a configuração de rede também ficara dependente da interface, o que pode gerar muitos problemas.
+    3. Me autenticar na SE
+
+MESSAGE WATCH --- Do jeito que está, eu não consigo esperar pela mesma mensagem de dois IDs diferentes. 
+Terei que mudar a implementação disso depois. A chave do map<> tem que ser o par <codigo, uuid>.
+Tentar fazer isso em um projeto separado primeiro.
+
+ESTRUTURAS DE DADOS: Verificar se o set() não é mais apropriado pra isso.
+• A set is a collection in which elements are sorted according to their own values. Each element
+may occur only once, so duplicates are not allowed.
+• A multiset is the same as a set except that duplicates are allowed. Thus, a multiset may contain
+multiple elements that have the same value.
+• A map contains elements that are key/value pairs. Each element has a key that is the basis for the
+sorting criterion and a value. Each key may occur only once, so duplicate keys are not allowed.
+A map can also be used as an associative array, an array that has an arbitrary index type.
+All these associative container classes have an optional template argument for the sorting criterion.
+The default sorting criterion is the operator <. The sorting criterion is also used as the test for
+equivalence;7 that is, two elements are duplicates if neither of their values/keys is less than the other.
+The major advantage of associative containers is that finding an element with a specific value
+is rather fast because it has logarithmic complexity (in all sequence containers, you have linear
+complexity)
+
+automatic sorting also imposes an important constraint on sets and multisets: You may
+not change the value of an element directly, because doing so might compromise the correct order
+Therefore, to modify the value of an element, you must remove the element having the old value and
+insert a new element that has the new value
+
+Se considerar isso, é melhor que não tenha mesmo, porque 

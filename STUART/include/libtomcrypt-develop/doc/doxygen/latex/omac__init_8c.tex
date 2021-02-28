@@ -1,0 +1,133 @@
+\hypertarget{omac__init_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/mac/omac/omac\+\_\+init.c File Reference}
+\label{omac__init_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/mac/omac/omac\_init.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/mac/omac/omac\_init.c}}
+
+
+O\+M\+A\+C1 support, initialize state, by Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for omac\+\_\+init.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{omac__init_8c_a54f34070eb08f0037eb0efab37207794}{omac\+\_\+init}} (omac\+\_\+state $\ast$omac, int cipher, const unsigned char $\ast$key, unsigned long keylen)
+\begin{DoxyCompactList}\small\item\em Initialize an O\+M\+AC state. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+O\+M\+A\+C1 support, initialize state, by Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{omac__init_8c_a54f34070eb08f0037eb0efab37207794}\label{omac__init_8c_a54f34070eb08f0037eb0efab37207794}} 
+\index{omac\_init.c@{omac\_init.c}!omac\_init@{omac\_init}}
+\index{omac\_init@{omac\_init}!omac\_init.c@{omac\_init.c}}
+\subsubsection{\texorpdfstring{omac\_init()}{omac\_init()}}
+{\footnotesize\ttfamily int omac\+\_\+init (\begin{DoxyParamCaption}\item[{omac\+\_\+state $\ast$}]{omac,  }\item[{int}]{cipher,  }\item[{const unsigned char $\ast$}]{key,  }\item[{unsigned long}]{keylen }\end{DoxyParamCaption})}
+
+
+
+Initialize an O\+M\+AC state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em omac} & The O\+M\+AC state to initialize \\
+\hline
+{\em cipher} & The index of the desired cipher \\
+\hline
+{\em key} & The secret key \\
+\hline
+{\em keylen} & The length of the secret key (octets) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 27 of file omac\+\_\+init.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{28 \{}
+\DoxyCodeLine{29    \textcolor{keywordtype}{int} err, x, y, \mbox{\hyperlink{gcm__gf__mult_8c_a3a2325b458f400e186d773b14e6c1ed9}{mask}}, msb, \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}};}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(omac != NULL);}
+\DoxyCodeLine{32    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(key  != NULL);}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34    \textcolor{comment}{/* schedule the key */}}
+\DoxyCodeLine{35    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_ac30eb68934c4ca07205344dc9d159221}{cipher\_is\_valid}}(cipher)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{36       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{37    \}}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39 \textcolor{preprocessor}{\#ifdef LTC\_FAST}}
+\DoxyCodeLine{40    \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[cipher].block\_length \% \textcolor{keyword}{sizeof}(LTC\_FAST\_TYPE)) \{}
+\DoxyCodeLine{41        \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{42    \}}
+\DoxyCodeLine{43 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45    \textcolor{comment}{/* now setup the system */}}
+\DoxyCodeLine{46    \textcolor{keywordflow}{switch} (\mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[cipher].block\_length) \{}
+\DoxyCodeLine{47        \textcolor{keywordflow}{case} 8:  \mbox{\hyperlink{gcm__gf__mult_8c_a3a2325b458f400e186d773b14e6c1ed9}{mask}} = 0x1B;}
+\DoxyCodeLine{48                 \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}  = 8;}
+\DoxyCodeLine{49                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{50        \textcolor{keywordflow}{case} 16: \mbox{\hyperlink{gcm__gf__mult_8c_a3a2325b458f400e186d773b14e6c1ed9}{mask}} = 0x87;}
+\DoxyCodeLine{51                 \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}  = 16;}
+\DoxyCodeLine{52                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{53        \textcolor{keywordflow}{default}: \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{54    \}}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{56    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[cipher].\mbox{\hyperlink{multi2_8c_ad0625943f7d847668b869ed827c51d47}{setup}}(key, keylen, 0, \&omac->key)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{57       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{58    \}}
+\DoxyCodeLine{59 }
+\DoxyCodeLine{60    \textcolor{comment}{/* ok now we need Lu and Lu\string^2 [calc one from the other] */}}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{62    \textcolor{comment}{/* first calc L which is Ek(0) */}}
+\DoxyCodeLine{63    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(omac->Lu[0], \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[cipher].\mbox{\hyperlink{structltc__cipher__descriptor_afa2af7325fd3a834910dd92e8c9acf49}{block\_length}});}
+\DoxyCodeLine{64    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[cipher].\mbox{\hyperlink{ecb__encrypt_8c_affdcc93fca272998e2545fcabac4e7f0}{ecb\_encrypt}}(omac->Lu[0], omac->Lu[0], \&omac->key)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{65       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{66    \}}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{68    \textcolor{comment}{/* now do the mults, whoopy! */}}
+\DoxyCodeLine{69    \textcolor{keywordflow}{for} (x = 0; x < 2; x++) \{}
+\DoxyCodeLine{70        \textcolor{comment}{/* if msb(L * u\string^(x+1)) = 0 then just shift, otherwise shift and xor constant mask */}}
+\DoxyCodeLine{71        msb = omac->Lu[x][0] >> 7;}
+\DoxyCodeLine{72 }
+\DoxyCodeLine{73        \textcolor{comment}{/* shift left */}}
+\DoxyCodeLine{74        \textcolor{keywordflow}{for} (y = 0; y < (\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}} - 1); y++) \{}
+\DoxyCodeLine{75            omac->Lu[x][y] = ((omac->Lu[x][y] << 1) | (omac->Lu[x][y+1] >> 7)) \& 255;}
+\DoxyCodeLine{76        \}}
+\DoxyCodeLine{77        omac->Lu[x][\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}} - 1] = ((omac->Lu[x][\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}} - 1] << 1) \string^ (msb ? \mbox{\hyperlink{gcm__gf__mult_8c_a3a2325b458f400e186d773b14e6c1ed9}{mask}} : 0)) \& 255;}
+\DoxyCodeLine{78 }
+\DoxyCodeLine{79        \textcolor{comment}{/* copy up as require */}}
+\DoxyCodeLine{80        \textcolor{keywordflow}{if} (x == 0) \{}
+\DoxyCodeLine{81           \mbox{\hyperlink{tomcrypt__cfg_8h_a7691dd48d60d5fc6daf2fa7ec4c55e12}{XMEMCPY}}(omac->Lu[1], omac->Lu[0], \textcolor{keyword}{sizeof}(omac->Lu[0]));}
+\DoxyCodeLine{82        \}}
+\DoxyCodeLine{83    \}}
+\DoxyCodeLine{84 }
+\DoxyCodeLine{85    \textcolor{comment}{/* setup state */}}
+\DoxyCodeLine{86    omac->cipher\_idx = cipher;}
+\DoxyCodeLine{87    omac->buflen     = 0;}
+\DoxyCodeLine{88    omac->blklen     = \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}};}
+\DoxyCodeLine{89    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(omac->prev,  \textcolor{keyword}{sizeof}(omac->prev));}
+\DoxyCodeLine{90    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(omac->block, \textcolor{keyword}{sizeof}(omac->block));}
+\DoxyCodeLine{91 }
+\DoxyCodeLine{92    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{93 \}}
+
+\end{DoxyCode}
+
+
+References ltc\+\_\+cipher\+\_\+descriptor\+::block\+\_\+length, cipher\+\_\+descriptor, cipher\+\_\+is\+\_\+valid(), C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+A\+RG, C\+R\+Y\+P\+T\+\_\+\+OK, ecb\+\_\+encrypt(), len, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, mask, setup(), X\+M\+E\+M\+C\+P\+Y(), and zeromem().
+
+
+
+Referenced by eax\+\_\+init(), omac\+\_\+file(), omac\+\_\+memory(), and omac\+\_\+memory\+\_\+multi().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2

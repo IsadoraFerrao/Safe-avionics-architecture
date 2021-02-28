@@ -1,0 +1,106 @@
+\hypertarget{ecc__ssh__ecdsa__encode__name_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/pk/ecc/ecc\+\_\+ssh\+\_\+ecdsa\+\_\+encode\+\_\+name.c File Reference}
+\label{ecc__ssh__ecdsa__encode__name_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/ecc/ecc\_ssh\_ecdsa\_encode\_name.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/ecc/ecc\_ssh\_ecdsa\_encode\_name.c}}
+
+
+Curve/\+O\+ID to S\+S\+H+\+E\+C\+D\+SA name string mapping per R\+F\+C5656 Russ Williams.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for ecc\+\_\+ssh\+\_\+ecdsa\+\_\+encode\+\_\+name.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{ecc__ssh__ecdsa__encode__name_8c_a5921e9a5a19d09bc948281baf09ea128}{ecc\+\_\+ssh\+\_\+ecdsa\+\_\+encode\+\_\+name}} (char $\ast$buffer, unsigned long $\ast$buflen, const ecc\+\_\+key $\ast$key)
+\begin{DoxyCompactList}\small\item\em Curve/\+O\+ID to S\+S\+H+\+E\+C\+D\+SA name string mapping. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Curve/\+O\+ID to S\+S\+H+\+E\+C\+D\+SA name string mapping per R\+F\+C5656 Russ Williams. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{ecc__ssh__ecdsa__encode__name_8c_a5921e9a5a19d09bc948281baf09ea128}\label{ecc__ssh__ecdsa__encode__name_8c_a5921e9a5a19d09bc948281baf09ea128}} 
+\index{ecc\_ssh\_ecdsa\_encode\_name.c@{ecc\_ssh\_ecdsa\_encode\_name.c}!ecc\_ssh\_ecdsa\_encode\_name@{ecc\_ssh\_ecdsa\_encode\_name}}
+\index{ecc\_ssh\_ecdsa\_encode\_name@{ecc\_ssh\_ecdsa\_encode\_name}!ecc\_ssh\_ecdsa\_encode\_name.c@{ecc\_ssh\_ecdsa\_encode\_name.c}}
+\subsubsection{\texorpdfstring{ecc\_ssh\_ecdsa\_encode\_name()}{ecc\_ssh\_ecdsa\_encode\_name()}}
+{\footnotesize\ttfamily int ecc\+\_\+ssh\+\_\+ecdsa\+\_\+encode\+\_\+name (\begin{DoxyParamCaption}\item[{char $\ast$}]{buffer,  }\item[{unsigned long $\ast$}]{buflen,  }\item[{const ecc\+\_\+key $\ast$}]{key }\end{DoxyParamCaption})}
+
+
+
+Curve/\+O\+ID to S\+S\+H+\+E\+C\+D\+SA name string mapping. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em buffer} & \mbox{[}out\mbox{]} The destination for the name \\
+\hline
+{\em buflen} & \mbox{[}in/out\mbox{]} The max size and resulting size (including terminator) of the name \\
+\hline
+{\em key} & A public or private E\+CC key \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 24 of file ecc\+\_\+ssh\+\_\+ecdsa\+\_\+encode\+\_\+name.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{25 \{}
+\DoxyCodeLine{26    \textcolor{keywordtype}{char} oidstr[64];}
+\DoxyCodeLine{27    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} oidlen = \textcolor{keyword}{sizeof}(oidstr);}
+\DoxyCodeLine{28    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} \mbox{\hyperlink{structedge_a64bdc14a16193c014f1ef50be358441d}{size}} = 0;}
+\DoxyCodeLine{29    \textcolor{keywordtype}{int} err;}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(buffer != NULL);}
+\DoxyCodeLine{32    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(buflen != NULL);}
+\DoxyCodeLine{33    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(key != NULL);}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35    \textcolor{comment}{/* Get the OID of the curve */}}
+\DoxyCodeLine{36    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{ecc__get__oid__str_8c_a55d2be4c5b58f6a22c780f10063d2217}{ecc\_get\_oid\_str}}(oidstr, \&oidlen, key)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \textcolor{keywordflow}{goto} error;}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{38    \textcolor{comment}{/* Check for three named curves: nistp256, nistp384, nistp521 */}}
+\DoxyCodeLine{39    \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__cfg_8h_a5d6e3d69e1d3f54de008b963bba3c6b3}{XSTRCMP}}(\textcolor{stringliteral}{"1.2.840.10045.3.1.7"}, oidstr) == 0) \{}
+\DoxyCodeLine{40       \textcolor{comment}{/* nistp256 - secp256r1 - OID 1.2.840.10045.3.1.7 */}}
+\DoxyCodeLine{41       \mbox{\hyperlink{structedge_a64bdc14a16193c014f1ef50be358441d}{size}} = snprintf(buffer, *buflen, \textcolor{stringliteral}{"ecdsa-sha2-nistp256"});}
+\DoxyCodeLine{42    \}}
+\DoxyCodeLine{43    \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__cfg_8h_a5d6e3d69e1d3f54de008b963bba3c6b3}{XSTRCMP}}(\textcolor{stringliteral}{"1.3.132.0.34"}, oidstr) == 0) \{}
+\DoxyCodeLine{44       \textcolor{comment}{/* nistp384 - secp384r1 - OID 1.3.132.0.34 */}}
+\DoxyCodeLine{45       \mbox{\hyperlink{structedge_a64bdc14a16193c014f1ef50be358441d}{size}} = snprintf(buffer, *buflen, \textcolor{stringliteral}{"ecdsa-sha2-nistp384"});}
+\DoxyCodeLine{46    \}}
+\DoxyCodeLine{47    \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__cfg_8h_a5d6e3d69e1d3f54de008b963bba3c6b3}{XSTRCMP}}(\textcolor{stringliteral}{"1.3.132.0.35"}, oidstr) == 0) \{}
+\DoxyCodeLine{48       \textcolor{comment}{/* nistp521 - secp521r1 - OID 1.3.132.0.35 */}}
+\DoxyCodeLine{49       \mbox{\hyperlink{structedge_a64bdc14a16193c014f1ef50be358441d}{size}} = snprintf(buffer, *buflen, \textcolor{stringliteral}{"ecdsa-sha2-nistp521"});}
+\DoxyCodeLine{50    \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{51       \textcolor{comment}{/* Otherwise we use the OID... */}}
+\DoxyCodeLine{52       \mbox{\hyperlink{structedge_a64bdc14a16193c014f1ef50be358441d}{size}} = snprintf(buffer, *buflen, \textcolor{stringliteral}{"ecdsa-sha2-\%s"}, oidstr);}
+\DoxyCodeLine{53    \}}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55    \textcolor{comment}{/* snprintf returns size that would have been written, but limits to buflen-1 chars plus terminator */}}
+\DoxyCodeLine{56    \textcolor{keywordflow}{if} (\mbox{\hyperlink{structedge_a64bdc14a16193c014f1ef50be358441d}{size}} >= *buflen) \{}
+\DoxyCodeLine{57       err = \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caccd878f5599f3036ffe759dbe1a1ac16}{CRYPT\_BUFFER\_OVERFLOW}};}
+\DoxyCodeLine{58    \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{59       err = \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{60    \}}
+\DoxyCodeLine{61    *buflen = \mbox{\hyperlink{structedge_a64bdc14a16193c014f1ef50be358441d}{size}} + 1; \textcolor{comment}{/* the string length + NUL byte */}}
+\DoxyCodeLine{62 }
+\DoxyCodeLine{63 error:}
+\DoxyCodeLine{64    \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{65 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+O\+V\+E\+R\+F\+L\+OW, C\+R\+Y\+P\+T\+\_\+\+OK, ecc\+\_\+get\+\_\+oid\+\_\+str(), L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, and X\+S\+T\+R\+C\+M\+P().
+
+
+
+Referenced by ecc\+\_\+recover\+\_\+key(), ecc\+\_\+sign\+\_\+hash\+\_\+ex(), and ecc\+\_\+verify\+\_\+hash\+\_\+ex().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2

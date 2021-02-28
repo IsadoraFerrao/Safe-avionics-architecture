@@ -1,0 +1,576 @@
+\hypertarget{idea_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/ciphers/idea.c File Reference}
+\label{idea_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/ciphers/idea.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/ciphers/idea.c}}
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for idea.\+c\+:
+% FIG 0
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{idea_8c_a16a6d039c0e906a8523da0027292f8fa}{\+\_\+\+L\+O\+W16}}(x)~((x)\&0xffff)  /$\ast$ compiler should be able to optimize this away if x is 16 bits $\ast$/
+\item 
+\#define \mbox{\hyperlink{idea_8c_a84aa425123b2c5f9b6b55155e5650d79}{\+\_\+\+H\+I\+G\+H16}}(x)~((x)$>$$>$16)
+\item 
+\#define \mbox{\hyperlink{idea_8c_a32fdc6ec02210b9eca2cf1e7e3498f75}{\+\_\+\+M\+UL}}(a,  b)
+\item 
+\#define \mbox{\hyperlink{idea_8c_afbe26707437636521ae9cb52d72ad017}{\+\_\+\+S\+T\+O\+R\+E16}}(x,  y)~\{ (y)\mbox{[}0\mbox{]} = (unsigned char)(((x)$>$$>$8)\&255); (y)\mbox{[}1\mbox{]} = (unsigned char)((x)\&255); \}
+\item 
+\#define \mbox{\hyperlink{idea_8c_ad6680efb352d50c59f055ba4410f607f}{\+\_\+\+L\+O\+A\+D16}}(x,  y)~\{ x = ((\mbox{\hyperlink{idea_8c_ae24436f8f5887647cd403352f8786887}{ushort16}})((y)\mbox{[}0\mbox{]} \& 255)$<$$<$8) $\vert$ ((\mbox{\hyperlink{idea_8c_ae24436f8f5887647cd403352f8786887}{ushort16}})((y)\mbox{[}1\mbox{]} \& 255)); \}
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef unsigned short int \mbox{\hyperlink{idea_8c_ae24436f8f5887647cd403352f8786887}{ushort16}}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{idea_8c_ae24436f8f5887647cd403352f8786887}{ushort16}} \mbox{\hyperlink{idea_8c_a8a41a9e690afb81c7e094ceb74f29c89}{\+\_\+mul\+\_\+inv}} (\mbox{\hyperlink{idea_8c_ae24436f8f5887647cd403352f8786887}{ushort16}} x)
+\item 
+static \mbox{\hyperlink{idea_8c_ae24436f8f5887647cd403352f8786887}{ushort16}} \mbox{\hyperlink{idea_8c_a2283ef6e27b0fb7d3263facf2a19e450}{\+\_\+add\+\_\+inv}} (\mbox{\hyperlink{idea_8c_ae24436f8f5887647cd403352f8786887}{ushort16}} x)
+\item 
+static int \mbox{\hyperlink{idea_8c_a774d69e04dcfc0def5903f910e74433e}{\+\_\+setup\+\_\+key}} (const unsigned char $\ast$key, \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)
+\item 
+static int \mbox{\hyperlink{idea_8c_a2bb6c83939cff2c1fd802a5d2f5c1d97}{\+\_\+process\+\_\+block}} (const unsigned char $\ast$in, unsigned char $\ast$out, const \mbox{\hyperlink{idea_8c_ae24436f8f5887647cd403352f8786887}{ushort16}} $\ast$m\+\_\+key)
+\item 
+int \mbox{\hyperlink{idea_8c_a86bb338185b8878c1d1d9981d0673cd2}{idea\+\_\+setup}} (const unsigned char $\ast$key, int keylen, int num\+\_\+rounds, \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)
+\item 
+int \mbox{\hyperlink{idea_8c_aa107ed890451e182e4b97a8316227f03}{idea\+\_\+ecb\+\_\+encrypt}} (const unsigned char $\ast$pt, unsigned char $\ast$ct, const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)
+\item 
+int \mbox{\hyperlink{idea_8c_add641467cf266ad9baf4869eb2c9aa5c}{idea\+\_\+ecb\+\_\+decrypt}} (const unsigned char $\ast$ct, unsigned char $\ast$pt, const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)
+\item 
+void \mbox{\hyperlink{idea_8c_a8bc819d43a17428d76dccfdd8dc501d9}{idea\+\_\+done}} (\mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)
+\item 
+int \mbox{\hyperlink{idea_8c_a963a35e52e3150e040cf4c7c8f2413d2}{idea\+\_\+keysize}} (int $\ast$keysize)
+\item 
+int \mbox{\hyperlink{idea_8c_ad92e9322772754b8d6f1d62d093ed022}{idea\+\_\+test}} (void)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const struct \mbox{\hyperlink{structltc__cipher__descriptor}{ltc\+\_\+cipher\+\_\+descriptor}} \mbox{\hyperlink{idea_8c_ab86cc28faab2395bdfc121bde0c170a2}{idea\+\_\+desc}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{idea_8c_a84aa425123b2c5f9b6b55155e5650d79}\label{idea_8c_a84aa425123b2c5f9b6b55155e5650d79}} 
+\index{idea.c@{idea.c}!\_HIGH16@{\_HIGH16}}
+\index{\_HIGH16@{\_HIGH16}!idea.c@{idea.c}}
+\subsubsection{\texorpdfstring{\_HIGH16}{\_HIGH16}}
+{\footnotesize\ttfamily \#define \+\_\+\+H\+I\+G\+H16(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~((x)$>$$>$16)}
+
+
+
+Definition at line 45 of file idea.\+c.
+
+\mbox{\Hypertarget{idea_8c_ad6680efb352d50c59f055ba4410f607f}\label{idea_8c_ad6680efb352d50c59f055ba4410f607f}} 
+\index{idea.c@{idea.c}!\_LOAD16@{\_LOAD16}}
+\index{\_LOAD16@{\_LOAD16}!idea.c@{idea.c}}
+\subsubsection{\texorpdfstring{\_LOAD16}{\_LOAD16}}
+{\footnotesize\ttfamily \#define \+\_\+\+L\+O\+A\+D16(\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{y }\end{DoxyParamCaption})~\{ x = ((\mbox{\hyperlink{idea_8c_ae24436f8f5887647cd403352f8786887}{ushort16}})((y)\mbox{[}0\mbox{]} \& 255)$<$$<$8) $\vert$ ((\mbox{\hyperlink{idea_8c_ae24436f8f5887647cd403352f8786887}{ushort16}})((y)\mbox{[}1\mbox{]} \& 255)); \}}
+
+
+
+Definition at line 56 of file idea.\+c.
+
+\mbox{\Hypertarget{idea_8c_a16a6d039c0e906a8523da0027292f8fa}\label{idea_8c_a16a6d039c0e906a8523da0027292f8fa}} 
+\index{idea.c@{idea.c}!\_LOW16@{\_LOW16}}
+\index{\_LOW16@{\_LOW16}!idea.c@{idea.c}}
+\subsubsection{\texorpdfstring{\_LOW16}{\_LOW16}}
+{\footnotesize\ttfamily \#define \+\_\+\+L\+O\+W16(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~((x)\&0xffff)  /$\ast$ compiler should be able to optimize this away if x is 16 bits $\ast$/}
+
+
+
+Definition at line 44 of file idea.\+c.
+
+\mbox{\Hypertarget{idea_8c_a32fdc6ec02210b9eca2cf1e7e3498f75}\label{idea_8c_a32fdc6ec02210b9eca2cf1e7e3498f75}} 
+\index{idea.c@{idea.c}!\_MUL@{\_MUL}}
+\index{\_MUL@{\_MUL}!idea.c@{idea.c}}
+\subsubsection{\texorpdfstring{\_MUL}{\_MUL}}
+{\footnotesize\ttfamily \#define \+\_\+\+M\+UL(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{b }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{                                               \(\backslash\)}
+\DoxyCodeLine{                         ulong32 p = (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})\mbox{\hyperlink{idea_8c_a16a6d039c0e906a8523da0027292f8fa}{\_LOW16}}(a) * b;          \(\backslash\)}
+\DoxyCodeLine{                         if (p) \{                                     \(\backslash\)}
+\DoxyCodeLine{                            p = \mbox{\hyperlink{idea_8c_a16a6d039c0e906a8523da0027292f8fa}{\_LOW16}}(p) - \mbox{\hyperlink{idea_8c_a84aa425123b2c5f9b6b55155e5650d79}{\_HIGH16}}(p);               \(\backslash\)}
+\DoxyCodeLine{                            a = (\mbox{\hyperlink{idea_8c_ae24436f8f5887647cd403352f8786887}{ushort16}})p - (\mbox{\hyperlink{idea_8c_ae24436f8f5887647cd403352f8786887}{ushort16}})\mbox{\hyperlink{idea_8c_a84aa425123b2c5f9b6b55155e5650d79}{\_HIGH16}}(p);   \(\backslash\)}
+\DoxyCodeLine{                         \}                                            \(\backslash\)}
+\DoxyCodeLine{                         else                                         \(\backslash\)}
+\DoxyCodeLine{                            a = 1 - a - b;                            \(\backslash\)}
+\DoxyCodeLine{                      \}}
+
+\end{DoxyCode}
+
+
+Definition at line 46 of file idea.\+c.
+
+\mbox{\Hypertarget{idea_8c_afbe26707437636521ae9cb52d72ad017}\label{idea_8c_afbe26707437636521ae9cb52d72ad017}} 
+\index{idea.c@{idea.c}!\_STORE16@{\_STORE16}}
+\index{\_STORE16@{\_STORE16}!idea.c@{idea.c}}
+\subsubsection{\texorpdfstring{\_STORE16}{\_STORE16}}
+{\footnotesize\ttfamily \#define \+\_\+\+S\+T\+O\+R\+E16(\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{y }\end{DoxyParamCaption})~\{ (y)\mbox{[}0\mbox{]} = (unsigned char)(((x)$>$$>$8)\&255); (y)\mbox{[}1\mbox{]} = (unsigned char)((x)\&255); \}}
+
+
+
+Definition at line 55 of file idea.\+c.
+
+
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{idea_8c_ae24436f8f5887647cd403352f8786887}\label{idea_8c_ae24436f8f5887647cd403352f8786887}} 
+\index{idea.c@{idea.c}!ushort16@{ushort16}}
+\index{ushort16@{ushort16}!idea.c@{idea.c}}
+\subsubsection{\texorpdfstring{ushort16}{ushort16}}
+{\footnotesize\ttfamily typedef unsigned short int \mbox{\hyperlink{idea_8c_ae24436f8f5887647cd403352f8786887}{ushort16}}}
+
+
+
+Definition at line 42 of file idea.\+c.
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{idea_8c_a2283ef6e27b0fb7d3263facf2a19e450}\label{idea_8c_a2283ef6e27b0fb7d3263facf2a19e450}} 
+\index{idea.c@{idea.c}!\_add\_inv@{\_add\_inv}}
+\index{\_add\_inv@{\_add\_inv}!idea.c@{idea.c}}
+\subsubsection{\texorpdfstring{\_add\_inv()}{\_add\_inv()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{idea_8c_ae24436f8f5887647cd403352f8786887}{ushort16}} \+\_\+add\+\_\+inv (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{idea_8c_ae24436f8f5887647cd403352f8786887}{ushort16}}}]{x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 70 of file idea.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{71 \{}
+\DoxyCodeLine{72    \textcolor{keywordflow}{return} \mbox{\hyperlink{idea_8c_a16a6d039c0e906a8523da0027292f8fa}{\_LOW16}}(0 - x);}
+\DoxyCodeLine{73 \}}
+
+\end{DoxyCode}
+
+
+References \+\_\+\+L\+O\+W16.
+
+
+
+Referenced by \+\_\+setup\+\_\+key().
+
+Here is the caller graph for this function\+:
+% FIG 1
+\mbox{\Hypertarget{idea_8c_a8a41a9e690afb81c7e094ceb74f29c89}\label{idea_8c_a8a41a9e690afb81c7e094ceb74f29c89}} 
+\index{idea.c@{idea.c}!\_mul\_inv@{\_mul\_inv}}
+\index{\_mul\_inv@{\_mul\_inv}!idea.c@{idea.c}}
+\subsubsection{\texorpdfstring{\_mul\_inv()}{\_mul\_inv()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{idea_8c_ae24436f8f5887647cd403352f8786887}{ushort16}} \+\_\+mul\+\_\+inv (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{idea_8c_ae24436f8f5887647cd403352f8786887}{ushort16}}}]{x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 58 of file idea.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{59 \{}
+\DoxyCodeLine{60    \mbox{\hyperlink{idea_8c_ae24436f8f5887647cd403352f8786887}{ushort16}} y = x;}
+\DoxyCodeLine{61    \textcolor{keywordtype}{unsigned} i;}
+\DoxyCodeLine{62 }
+\DoxyCodeLine{63    \textcolor{keywordflow}{for} (i = 0; i < 15; i++) \{}
+\DoxyCodeLine{64       \mbox{\hyperlink{idea_8c_a32fdc6ec02210b9eca2cf1e7e3498f75}{\_MUL}}(y, \mbox{\hyperlink{idea_8c_a16a6d039c0e906a8523da0027292f8fa}{\_LOW16}}(y));}
+\DoxyCodeLine{65       \mbox{\hyperlink{idea_8c_a32fdc6ec02210b9eca2cf1e7e3498f75}{\_MUL}}(y, x);}
+\DoxyCodeLine{66    \}}
+\DoxyCodeLine{67    \textcolor{keywordflow}{return} \mbox{\hyperlink{idea_8c_a16a6d039c0e906a8523da0027292f8fa}{\_LOW16}}(y);}
+\DoxyCodeLine{68 \}}
+
+\end{DoxyCode}
+
+
+References \+\_\+\+L\+O\+W16, and \+\_\+\+M\+UL.
+
+
+
+Referenced by \+\_\+setup\+\_\+key().
+
+Here is the caller graph for this function\+:
+% FIG 2
+\mbox{\Hypertarget{idea_8c_a2bb6c83939cff2c1fd802a5d2f5c1d97}\label{idea_8c_a2bb6c83939cff2c1fd802a5d2f5c1d97}} 
+\index{idea.c@{idea.c}!\_process\_block@{\_process\_block}}
+\index{\_process\_block@{\_process\_block}!idea.c@{idea.c}}
+\subsubsection{\texorpdfstring{\_process\_block()}{\_process\_block()}}
+{\footnotesize\ttfamily static int \+\_\+process\+\_\+block (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{in,  }\item[{unsigned char $\ast$}]{out,  }\item[{const \mbox{\hyperlink{idea_8c_ae24436f8f5887647cd403352f8786887}{ushort16}} $\ast$}]{m\+\_\+key }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 107 of file idea.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{108 \{}
+\DoxyCodeLine{109    \textcolor{keywordtype}{int} i;}
+\DoxyCodeLine{110    \mbox{\hyperlink{idea_8c_ae24436f8f5887647cd403352f8786887}{ushort16}} x0, x1, x2, x3, t0, \mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}};}
+\DoxyCodeLine{111 }
+\DoxyCodeLine{112    \mbox{\hyperlink{idea_8c_ad6680efb352d50c59f055ba4410f607f}{\_LOAD16}}(x0, in + 0);}
+\DoxyCodeLine{113    \mbox{\hyperlink{idea_8c_ad6680efb352d50c59f055ba4410f607f}{\_LOAD16}}(x1, in + 2);}
+\DoxyCodeLine{114    \mbox{\hyperlink{idea_8c_ad6680efb352d50c59f055ba4410f607f}{\_LOAD16}}(x2, in + 4);}
+\DoxyCodeLine{115    \mbox{\hyperlink{idea_8c_ad6680efb352d50c59f055ba4410f607f}{\_LOAD16}}(x3, in + 6);}
+\DoxyCodeLine{116 }
+\DoxyCodeLine{117    \textcolor{keywordflow}{for} (i = 0; i < LTC\_IDEA\_ROUNDS; i++) \{}
+\DoxyCodeLine{118       \mbox{\hyperlink{idea_8c_a32fdc6ec02210b9eca2cf1e7e3498f75}{\_MUL}}(x0, m\_key[i*6+0]);}
+\DoxyCodeLine{119       x1 += m\_key[i*6+1];}
+\DoxyCodeLine{120       x2 += m\_key[i*6+2];}
+\DoxyCodeLine{121       \mbox{\hyperlink{idea_8c_a32fdc6ec02210b9eca2cf1e7e3498f75}{\_MUL}}(x3, m\_key[i*6+3]);}
+\DoxyCodeLine{122       t0 = x0\string^x2;}
+\DoxyCodeLine{123       \mbox{\hyperlink{idea_8c_a32fdc6ec02210b9eca2cf1e7e3498f75}{\_MUL}}(t0, m\_key[i*6+4]);}
+\DoxyCodeLine{124       \mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}} = t0 + (x1\string^x3);}
+\DoxyCodeLine{125       \mbox{\hyperlink{idea_8c_a32fdc6ec02210b9eca2cf1e7e3498f75}{\_MUL}}(\mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}}, m\_key[i*6+5]);}
+\DoxyCodeLine{126       t0 += \mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}};}
+\DoxyCodeLine{127       x0 \string^= \mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}};}
+\DoxyCodeLine{128       x3 \string^= t0;}
+\DoxyCodeLine{129       t0 \string^= x1;}
+\DoxyCodeLine{130       x1 = x2\string^\mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}};}
+\DoxyCodeLine{131       x2 = t0;}
+\DoxyCodeLine{132    \}}
+\DoxyCodeLine{133 }
+\DoxyCodeLine{134    \mbox{\hyperlink{idea_8c_a32fdc6ec02210b9eca2cf1e7e3498f75}{\_MUL}}(x0, m\_key[LTC\_IDEA\_ROUNDS*6+0]);}
+\DoxyCodeLine{135    x2 += m\_key[LTC\_IDEA\_ROUNDS*6+1];}
+\DoxyCodeLine{136    x1 += m\_key[LTC\_IDEA\_ROUNDS*6+2];}
+\DoxyCodeLine{137    \mbox{\hyperlink{idea_8c_a32fdc6ec02210b9eca2cf1e7e3498f75}{\_MUL}}(x3, m\_key[LTC\_IDEA\_ROUNDS*6+3]);}
+\DoxyCodeLine{138 }
+\DoxyCodeLine{139    \mbox{\hyperlink{idea_8c_afbe26707437636521ae9cb52d72ad017}{\_STORE16}}(x0, out + 0);}
+\DoxyCodeLine{140    \mbox{\hyperlink{idea_8c_afbe26707437636521ae9cb52d72ad017}{\_STORE16}}(x2, out + 2);}
+\DoxyCodeLine{141    \mbox{\hyperlink{idea_8c_afbe26707437636521ae9cb52d72ad017}{\_STORE16}}(x1, out + 4);}
+\DoxyCodeLine{142    \mbox{\hyperlink{idea_8c_afbe26707437636521ae9cb52d72ad017}{\_STORE16}}(x3, out + 6);}
+\DoxyCodeLine{143 }
+\DoxyCodeLine{144    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{145 \}}
+
+\end{DoxyCode}
+
+
+References \+\_\+\+L\+O\+A\+D16, \+\_\+\+M\+UL, \+\_\+\+S\+T\+O\+R\+E16, C\+R\+Y\+P\+T\+\_\+\+OK, and t1.
+
+
+
+Referenced by idea\+\_\+ecb\+\_\+decrypt(), and idea\+\_\+ecb\+\_\+encrypt().
+
+Here is the caller graph for this function\+:
+% FIG 3
+\mbox{\Hypertarget{idea_8c_a774d69e04dcfc0def5903f910e74433e}\label{idea_8c_a774d69e04dcfc0def5903f910e74433e}} 
+\index{idea.c@{idea.c}!\_setup\_key@{\_setup\_key}}
+\index{\_setup\_key@{\_setup\_key}!idea.c@{idea.c}}
+\subsubsection{\texorpdfstring{\_setup\_key()}{\_setup\_key()}}
+{\footnotesize\ttfamily static int \+\_\+setup\+\_\+key (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{key,  }\item[{\mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$}]{skey }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 75 of file idea.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{76 \{}
+\DoxyCodeLine{77    \textcolor{keywordtype}{int} i, j;}
+\DoxyCodeLine{78    \mbox{\hyperlink{idea_8c_ae24436f8f5887647cd403352f8786887}{ushort16}} *e\_key = skey->idea.ek;}
+\DoxyCodeLine{79    \mbox{\hyperlink{idea_8c_ae24436f8f5887647cd403352f8786887}{ushort16}} *d\_key = skey->idea.dk;}
+\DoxyCodeLine{80 }
+\DoxyCodeLine{81    \textcolor{comment}{/* prepare enc key */}}
+\DoxyCodeLine{82    \textcolor{keywordflow}{for} (i = 0; i < 8; i++) \{}
+\DoxyCodeLine{83       \mbox{\hyperlink{idea_8c_ad6680efb352d50c59f055ba4410f607f}{\_LOAD16}}(e\_key[i], key + 2 * i);}
+\DoxyCodeLine{84    \}}
+\DoxyCodeLine{85    \textcolor{keywordflow}{for} (; i < LTC\_IDEA\_KEYLEN; i++) \{}
+\DoxyCodeLine{86       j = (i - i \% 8) - 8;}
+\DoxyCodeLine{87       e\_key[i] = \mbox{\hyperlink{idea_8c_a16a6d039c0e906a8523da0027292f8fa}{\_LOW16}}((e\_key[j+(i+1)\%8] << 9) | (e\_key[j+(i+2)\%8] >> 7));}
+\DoxyCodeLine{88    \}}
+\DoxyCodeLine{89 }
+\DoxyCodeLine{90    \textcolor{comment}{/* prepare dec key */}}
+\DoxyCodeLine{91    \textcolor{keywordflow}{for} (i = 0; i < LTC\_IDEA\_ROUNDS; i++) \{}
+\DoxyCodeLine{92       d\_key[i*6+0] = \mbox{\hyperlink{idea_8c_a8a41a9e690afb81c7e094ceb74f29c89}{\_mul\_inv}}(e\_key[(LTC\_IDEA\_ROUNDS-i)*6+0]);}
+\DoxyCodeLine{93       d\_key[i*6+1] = \mbox{\hyperlink{idea_8c_a2283ef6e27b0fb7d3263facf2a19e450}{\_add\_inv}}(e\_key[(LTC\_IDEA\_ROUNDS-i)*6+1+(i>0 ? 1 : 0)]);}
+\DoxyCodeLine{94       d\_key[i*6+2] = \mbox{\hyperlink{idea_8c_a2283ef6e27b0fb7d3263facf2a19e450}{\_add\_inv}}(e\_key[(LTC\_IDEA\_ROUNDS-i)*6+2-(i>0 ? 1 : 0)]);}
+\DoxyCodeLine{95       d\_key[i*6+3] = \mbox{\hyperlink{idea_8c_a8a41a9e690afb81c7e094ceb74f29c89}{\_mul\_inv}}(e\_key[(LTC\_IDEA\_ROUNDS-i)*6+3]);}
+\DoxyCodeLine{96       d\_key[i*6+4] =          e\_key[(LTC\_IDEA\_ROUNDS-1-i)*6+4];}
+\DoxyCodeLine{97       d\_key[i*6+5] =          e\_key[(LTC\_IDEA\_ROUNDS-1-i)*6+5];}
+\DoxyCodeLine{98    \}}
+\DoxyCodeLine{99    d\_key[i*6+0] = \mbox{\hyperlink{idea_8c_a8a41a9e690afb81c7e094ceb74f29c89}{\_mul\_inv}}(e\_key[(LTC\_IDEA\_ROUNDS-i)*6+0]);}
+\DoxyCodeLine{100    d\_key[i*6+1] = \mbox{\hyperlink{idea_8c_a2283ef6e27b0fb7d3263facf2a19e450}{\_add\_inv}}(e\_key[(LTC\_IDEA\_ROUNDS-i)*6+1]);}
+\DoxyCodeLine{101    d\_key[i*6+2] = \mbox{\hyperlink{idea_8c_a2283ef6e27b0fb7d3263facf2a19e450}{\_add\_inv}}(e\_key[(LTC\_IDEA\_ROUNDS-i)*6+2]);}
+\DoxyCodeLine{102    d\_key[i*6+3] = \mbox{\hyperlink{idea_8c_a8a41a9e690afb81c7e094ceb74f29c89}{\_mul\_inv}}(e\_key[(LTC\_IDEA\_ROUNDS-i)*6+3]);}
+\DoxyCodeLine{103 }
+\DoxyCodeLine{104    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{105 \}}
+
+\end{DoxyCode}
+
+
+References \+\_\+add\+\_\+inv(), \+\_\+\+L\+O\+A\+D16, \+\_\+\+L\+O\+W16, \+\_\+mul\+\_\+inv(), and C\+R\+Y\+P\+T\+\_\+\+OK.
+
+
+
+Referenced by idea\+\_\+setup().
+
+Here is the call graph for this function\+:
+% FIG 4
+Here is the caller graph for this function\+:
+% FIG 5
+\mbox{\Hypertarget{idea_8c_a8bc819d43a17428d76dccfdd8dc501d9}\label{idea_8c_a8bc819d43a17428d76dccfdd8dc501d9}} 
+\index{idea.c@{idea.c}!idea\_done@{idea\_done}}
+\index{idea\_done@{idea\_done}!idea.c@{idea.c}}
+\subsubsection{\texorpdfstring{idea\_done()}{idea\_done()}}
+{\footnotesize\ttfamily void idea\+\_\+done (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$}]{skey }\end{DoxyParamCaption})}
+
+
+
+Definition at line 176 of file idea.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{177 \{}
+\DoxyCodeLine{178    \mbox{\hyperlink{tomcrypt__macros_8h_accde4b007facd646a8327f8e64b2d1e0}{LTC\_UNUSED\_PARAM}}(skey);}
+\DoxyCodeLine{179 \}}
+
+\end{DoxyCode}
+
+
+References L\+T\+C\+\_\+\+U\+N\+U\+S\+E\+D\+\_\+\+P\+A\+R\+AM.
+
+\mbox{\Hypertarget{idea_8c_add641467cf266ad9baf4869eb2c9aa5c}\label{idea_8c_add641467cf266ad9baf4869eb2c9aa5c}} 
+\index{idea.c@{idea.c}!idea\_ecb\_decrypt@{idea\_ecb\_decrypt}}
+\index{idea\_ecb\_decrypt@{idea\_ecb\_decrypt}!idea.c@{idea.c}}
+\subsubsection{\texorpdfstring{idea\_ecb\_decrypt()}{idea\_ecb\_decrypt()}}
+{\footnotesize\ttfamily int idea\+\_\+ecb\+\_\+decrypt (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{ct,  }\item[{unsigned char $\ast$}]{pt,  }\item[{const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$}]{skey }\end{DoxyParamCaption})}
+
+
+
+Definition at line 167 of file idea.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{168 \{}
+\DoxyCodeLine{169    \textcolor{keywordtype}{int} err = \mbox{\hyperlink{idea_8c_a2bb6c83939cff2c1fd802a5d2f5c1d97}{\_process\_block}}(ct, pt, skey->idea.dk);}
+\DoxyCodeLine{170 \textcolor{preprocessor}{\#ifdef LTC\_CLEAN\_STACK}}
+\DoxyCodeLine{171    \mbox{\hyperlink{tomcrypt__misc_8h_aea4187c8bba7b6cd9a358041089680ac}{burn\_stack}}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{idea_8c_ae24436f8f5887647cd403352f8786887}{ushort16}}) * 6 + \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{int}));}
+\DoxyCodeLine{172 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{173    \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{174 \}}
+
+\end{DoxyCode}
+
+
+References \+\_\+process\+\_\+block(), and burn\+\_\+stack().
+
+
+
+Referenced by idea\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 6
+Here is the caller graph for this function\+:
+% FIG 7
+\mbox{\Hypertarget{idea_8c_aa107ed890451e182e4b97a8316227f03}\label{idea_8c_aa107ed890451e182e4b97a8316227f03}} 
+\index{idea.c@{idea.c}!idea\_ecb\_encrypt@{idea\_ecb\_encrypt}}
+\index{idea\_ecb\_encrypt@{idea\_ecb\_encrypt}!idea.c@{idea.c}}
+\subsubsection{\texorpdfstring{idea\_ecb\_encrypt()}{idea\_ecb\_encrypt()}}
+{\footnotesize\ttfamily int idea\+\_\+ecb\+\_\+encrypt (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{pt,  }\item[{unsigned char $\ast$}]{ct,  }\item[{const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$}]{skey }\end{DoxyParamCaption})}
+
+
+
+Definition at line 158 of file idea.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{159 \{}
+\DoxyCodeLine{160    \textcolor{keywordtype}{int} err = \mbox{\hyperlink{idea_8c_a2bb6c83939cff2c1fd802a5d2f5c1d97}{\_process\_block}}(pt, ct, skey->idea.ek);}
+\DoxyCodeLine{161 \textcolor{preprocessor}{\#ifdef LTC\_CLEAN\_STACK}}
+\DoxyCodeLine{162    \mbox{\hyperlink{tomcrypt__misc_8h_aea4187c8bba7b6cd9a358041089680ac}{burn\_stack}}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{idea_8c_ae24436f8f5887647cd403352f8786887}{ushort16}}) * 6 + \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{int}));}
+\DoxyCodeLine{163 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{164    \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{165 \}}
+
+\end{DoxyCode}
+
+
+References \+\_\+process\+\_\+block(), and burn\+\_\+stack().
+
+
+
+Referenced by idea\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 8
+Here is the caller graph for this function\+:
+% FIG 9
+\mbox{\Hypertarget{idea_8c_a963a35e52e3150e040cf4c7c8f2413d2}\label{idea_8c_a963a35e52e3150e040cf4c7c8f2413d2}} 
+\index{idea.c@{idea.c}!idea\_keysize@{idea\_keysize}}
+\index{idea\_keysize@{idea\_keysize}!idea.c@{idea.c}}
+\subsubsection{\texorpdfstring{idea\_keysize()}{idea\_keysize()}}
+{\footnotesize\ttfamily int idea\+\_\+keysize (\begin{DoxyParamCaption}\item[{int $\ast$}]{keysize }\end{DoxyParamCaption})}
+
+
+
+Definition at line 181 of file idea.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{182 \{}
+\DoxyCodeLine{183    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(keysize != NULL);}
+\DoxyCodeLine{184    \textcolor{keywordflow}{if} (*keysize < 16) \{}
+\DoxyCodeLine{185       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caafed43f3b625e72191e08e65b4bb5e02}{CRYPT\_INVALID\_KEYSIZE}};}
+\DoxyCodeLine{186    \}}
+\DoxyCodeLine{187    *keysize = 16;}
+\DoxyCodeLine{188    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{189 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+K\+E\+Y\+S\+I\+ZE, C\+R\+Y\+P\+T\+\_\+\+OK, ltc\+\_\+cipher\+\_\+descriptor\+::keysize, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+\mbox{\Hypertarget{idea_8c_a86bb338185b8878c1d1d9981d0673cd2}\label{idea_8c_a86bb338185b8878c1d1d9981d0673cd2}} 
+\index{idea.c@{idea.c}!idea\_setup@{idea\_setup}}
+\index{idea\_setup@{idea\_setup}!idea.c@{idea.c}}
+\subsubsection{\texorpdfstring{idea\_setup()}{idea\_setup()}}
+{\footnotesize\ttfamily int idea\+\_\+setup (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{key,  }\item[{int}]{keylen,  }\item[{int}]{num\+\_\+rounds,  }\item[{\mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$}]{skey }\end{DoxyParamCaption})}
+
+
+
+Definition at line 147 of file idea.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{148 \{}
+\DoxyCodeLine{149    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(key  != NULL);}
+\DoxyCodeLine{150    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(skey != NULL);}
+\DoxyCodeLine{151 }
+\DoxyCodeLine{152    \textcolor{keywordflow}{if} (num\_rounds != 0 \&\& num\_rounds != 8) \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca69aff0280b5845d03130f8700009caf5}{CRYPT\_INVALID\_ROUNDS}};}
+\DoxyCodeLine{153    \textcolor{keywordflow}{if} (keylen != 16) \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caafed43f3b625e72191e08e65b4bb5e02}{CRYPT\_INVALID\_KEYSIZE}};}
+\DoxyCodeLine{154 }
+\DoxyCodeLine{155    \textcolor{keywordflow}{return} \mbox{\hyperlink{idea_8c_a774d69e04dcfc0def5903f910e74433e}{\_setup\_key}}(key, skey);}
+\DoxyCodeLine{156 \}}
+
+\end{DoxyCode}
+
+
+References \+\_\+setup\+\_\+key(), C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+K\+E\+Y\+S\+I\+ZE, C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+R\+O\+U\+N\+DS, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+
+
+Referenced by idea\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 10
+Here is the caller graph for this function\+:
+% FIG 11
+\mbox{\Hypertarget{idea_8c_ad92e9322772754b8d6f1d62d093ed022}\label{idea_8c_ad92e9322772754b8d6f1d62d093ed022}} 
+\index{idea.c@{idea.c}!idea\_test@{idea\_test}}
+\index{idea\_test@{idea\_test}!idea.c@{idea.c}}
+\subsubsection{\texorpdfstring{idea\_test()}{idea\_test()}}
+{\footnotesize\ttfamily int idea\+\_\+test (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 191 of file idea.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{192 \{}
+\DoxyCodeLine{193 \textcolor{preprocessor}{\#ifndef LTC\_TEST}}
+\DoxyCodeLine{194    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cac43a7799c7fd5f515172da6cfc0f9cf5}{CRYPT\_NOP}};}
+\DoxyCodeLine{195 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{196    \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{197       \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} key[16], pt[8], ct[8];}
+\DoxyCodeLine{198    \} tests[] = \{}
+\DoxyCodeLine{199       \{}
+\DoxyCodeLine{200          \textcolor{comment}{/* key */} \{ 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{201          \textcolor{comment}{/* pt  */} \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{202          \textcolor{comment}{/* ct  */} \{ 0xB1, 0xF5, 0xF7, 0xF8, 0x79, 0x01, 0x37, 0x0F \}}
+\DoxyCodeLine{203       \},}
+\DoxyCodeLine{204       \{}
+\DoxyCodeLine{205          \textcolor{comment}{/* key */} \{ 0x40, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{206          \textcolor{comment}{/* pt  */} \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{207          \textcolor{comment}{/* ct  */} \{ 0xB3, 0x92, 0x7D, 0xFF, 0xB6, 0x35, 0x86, 0x26 \}}
+\DoxyCodeLine{208       \},}
+\DoxyCodeLine{209       \{}
+\DoxyCodeLine{210          \textcolor{comment}{/* key */} \{ 0x20, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{211          \textcolor{comment}{/* pt  */} \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{212          \textcolor{comment}{/* ct  */} \{ 0xE9, 0x87, 0xE0, 0x02, 0x9F, 0xB9, 0x97, 0x85 \}}
+\DoxyCodeLine{213       \},}
+\DoxyCodeLine{214       \{}
+\DoxyCodeLine{215          \textcolor{comment}{/* key */} \{ 0x10, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{216          \textcolor{comment}{/* pt  */} \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{217          \textcolor{comment}{/* ct  */} \{ 0x75, 0x4A, 0x03, 0xCE, 0x08, 0xDB, 0x7D, 0xAA \}}
+\DoxyCodeLine{218       \},}
+\DoxyCodeLine{219       \{}
+\DoxyCodeLine{220          \textcolor{comment}{/* key */} \{ 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{221          \textcolor{comment}{/* pt  */} \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \},}
+\DoxyCodeLine{222          \textcolor{comment}{/* ct  */} \{ 0xF0, 0x15, 0xF9, 0xFB, 0x0C, 0xFC, 0x7E, 0x1C \}}
+\DoxyCodeLine{223       \},}
+\DoxyCodeLine{224    \};}
+\DoxyCodeLine{225 }
+\DoxyCodeLine{226    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} buf[2][8];}
+\DoxyCodeLine{227    \mbox{\hyperlink{unionSymmetric__key}{symmetric\_key}} key;}
+\DoxyCodeLine{228    \textcolor{keywordtype}{int} err, x;}
+\DoxyCodeLine{229 }
+\DoxyCodeLine{230    \textcolor{keywordflow}{if} (\textcolor{keyword}{sizeof}(\mbox{\hyperlink{idea_8c_ae24436f8f5887647cd403352f8786887}{ushort16}}) != 2) \{}
+\DoxyCodeLine{231       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{232    \}}
+\DoxyCodeLine{233 }
+\DoxyCodeLine{234    \textcolor{keywordflow}{for} (x = 0; x < (int)(\textcolor{keyword}{sizeof}(tests)/\textcolor{keyword}{sizeof}(tests[0])); x++) \{}
+\DoxyCodeLine{235       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{idea_8c_a86bb338185b8878c1d1d9981d0673cd2}{idea\_setup}}(tests[x].key, 16, 8, \&key)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{236          \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{237       \}}
+\DoxyCodeLine{238       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{idea_8c_aa107ed890451e182e4b97a8316227f03}{idea\_ecb\_encrypt}}(tests[x].pt, buf[0], \&key)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{239          \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{240       \}}
+\DoxyCodeLine{241       \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(buf[0], 8, tests[x].ct, 8, \textcolor{stringliteral}{"IDEA Encrypt"}, x)) \{}
+\DoxyCodeLine{242          \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{243       \}}
+\DoxyCodeLine{244       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{idea_8c_add641467cf266ad9baf4869eb2c9aa5c}{idea\_ecb\_decrypt}}(tests[x].ct, buf[1], \&key)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{245          \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{246       \}}
+\DoxyCodeLine{247       \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(buf[1], 8, tests[x].pt, 8, \textcolor{stringliteral}{"IDEA Decrypt"}, x)) \{}
+\DoxyCodeLine{248          \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{249       \}}
+\DoxyCodeLine{250    \}}
+\DoxyCodeLine{251 }
+\DoxyCodeLine{252    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{253 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{254 \}}
+
+\end{DoxyCode}
+
+
+References compare\+\_\+testvector(), C\+R\+Y\+P\+T\+\_\+\+F\+A\+I\+L\+\_\+\+T\+E\+S\+T\+V\+E\+C\+T\+OR, C\+R\+Y\+P\+T\+\_\+\+N\+OP, C\+R\+Y\+P\+T\+\_\+\+OK, idea\+\_\+ecb\+\_\+decrypt(), idea\+\_\+ecb\+\_\+encrypt(), and idea\+\_\+setup().
+
+Here is the call graph for this function\+:
+% FIG 12
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{idea_8c_ab86cc28faab2395bdfc121bde0c170a2}\label{idea_8c_ab86cc28faab2395bdfc121bde0c170a2}} 
+\index{idea.c@{idea.c}!idea\_desc@{idea\_desc}}
+\index{idea\_desc@{idea\_desc}!idea.c@{idea.c}}
+\subsubsection{\texorpdfstring{idea\_desc}{idea\_desc}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structltc__cipher__descriptor}{ltc\+\_\+cipher\+\_\+descriptor}} idea\+\_\+desc}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{   \textcolor{stringliteral}{"idea"},}
+\DoxyCodeLine{   24,                  }
+\DoxyCodeLine{   16, 16, 8, 8,        }
+\DoxyCodeLine{   \&\mbox{\hyperlink{idea_8c_a86bb338185b8878c1d1d9981d0673cd2}{idea\_setup}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{idea_8c_aa107ed890451e182e4b97a8316227f03}{idea\_ecb\_encrypt}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{idea_8c_add641467cf266ad9baf4869eb2c9aa5c}{idea\_ecb\_decrypt}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{idea_8c_ad92e9322772754b8d6f1d62d093ed022}{idea\_test}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{idea_8c_a8bc819d43a17428d76dccfdd8dc501d9}{idea\_done}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{idea_8c_a963a35e52e3150e040cf4c7c8f2413d2}{idea\_keysize}},}
+\DoxyCodeLine{   NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line 29 of file idea.\+c.
+
+
+
+Referenced by register\+\_\+all\+\_\+ciphers().
+

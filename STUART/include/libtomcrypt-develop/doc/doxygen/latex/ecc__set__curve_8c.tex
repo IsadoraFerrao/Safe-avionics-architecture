@@ -1,0 +1,135 @@
+\hypertarget{ecc__set__curve_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/pk/ecc/ecc\+\_\+set\+\_\+curve.c File Reference}
+\label{ecc__set__curve_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/ecc/ecc\_set\_curve.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/ecc/ecc\_set\_curve.c}}
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for ecc\+\_\+set\+\_\+curve.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{ecc__set__curve_8c_ae59e3d6f85b87d050df0ece7c6f5c661}{ecc\+\_\+set\+\_\+curve}} (const ltc\+\_\+ecc\+\_\+curve $\ast$cu, ecc\+\_\+key $\ast$key)
+\item 
+int \mbox{\hyperlink{ecc__set__curve_8c_ae380263c82c1fe0cde8dc08e89f7940c}{ecc\+\_\+set\+\_\+curve\+\_\+by\+\_\+size}} (int size, ecc\+\_\+key $\ast$key)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{ecc__set__curve_8c_ae59e3d6f85b87d050df0ece7c6f5c661}\label{ecc__set__curve_8c_ae59e3d6f85b87d050df0ece7c6f5c661}} 
+\index{ecc\_set\_curve.c@{ecc\_set\_curve.c}!ecc\_set\_curve@{ecc\_set\_curve}}
+\index{ecc\_set\_curve@{ecc\_set\_curve}!ecc\_set\_curve.c@{ecc\_set\_curve.c}}
+\subsubsection{\texorpdfstring{ecc\_set\_curve()}{ecc\_set\_curve()}}
+{\footnotesize\ttfamily int ecc\+\_\+set\+\_\+curve (\begin{DoxyParamCaption}\item[{const ltc\+\_\+ecc\+\_\+curve $\ast$}]{cu,  }\item[{ecc\+\_\+key $\ast$}]{key }\end{DoxyParamCaption})}
+
+
+
+Definition at line 14 of file ecc\+\_\+set\+\_\+curve.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{15 \{}
+\DoxyCodeLine{16    \textcolor{keywordtype}{int} err;}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(key != NULL);}
+\DoxyCodeLine{19    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(cu != NULL);}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_adb6322247b1a4f0347219acab3120bd3}{mp\_init\_multi}}(\&key->dp.prime, \&key->dp.order, \&key->dp.A, \&key->dp.B,}
+\DoxyCodeLine{22                             \&key->dp.base.x, \&key->dp.base.y, \&key->dp.base.z,}
+\DoxyCodeLine{23                             \&key->pubkey.x, \&key->pubkey.y, \&key->pubkey.z, \&key->k,}
+\DoxyCodeLine{24                             NULL)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{25       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{26    \}}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28    \textcolor{comment}{/* A, B, order, prime, Gx, Gy */}}
+\DoxyCodeLine{29    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a12263d4d7da068c2a630d2ffc0c8bc1b}{mp\_read\_radix}}(key->dp.prime, cu->prime, 16)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{ \textcolor{keywordflow}{goto} error; \}}
+\DoxyCodeLine{30    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a12263d4d7da068c2a630d2ffc0c8bc1b}{mp\_read\_radix}}(key->dp.order, cu->order, 16)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{ \textcolor{keywordflow}{goto} error; \}}
+\DoxyCodeLine{31    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a12263d4d7da068c2a630d2ffc0c8bc1b}{mp\_read\_radix}}(key->dp.A, cu->A, 16)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})         \{ \textcolor{keywordflow}{goto} error; \}}
+\DoxyCodeLine{32    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a12263d4d7da068c2a630d2ffc0c8bc1b}{mp\_read\_radix}}(key->dp.B, cu->B, 16)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})         \{ \textcolor{keywordflow}{goto} error; \}}
+\DoxyCodeLine{33    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a12263d4d7da068c2a630d2ffc0c8bc1b}{mp\_read\_radix}}(key->dp.base.x, cu->Gx, 16)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})   \{ \textcolor{keywordflow}{goto} error; \}}
+\DoxyCodeLine{34    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a12263d4d7da068c2a630d2ffc0c8bc1b}{mp\_read\_radix}}(key->dp.base.y, cu->Gy, 16)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})   \{ \textcolor{keywordflow}{goto} error; \}}
+\DoxyCodeLine{35    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a000b0542ef4ecf639ff69895490fdb8f}{mp\_set}}(key->dp.base.z, 1)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                   \{ \textcolor{keywordflow}{goto} error; \}}
+\DoxyCodeLine{36    \textcolor{comment}{/* cofactor \& size */}}
+\DoxyCodeLine{37    key->dp.cofactor = cu->cofactor;}
+\DoxyCodeLine{38    key->dp.size = \mbox{\hyperlink{tomcrypt__private_8h_ad301148bb24f43a8c7003a6976dfaa5a}{mp\_unsigned\_bin\_size}}(key->dp.prime);}
+\DoxyCodeLine{39    \textcolor{comment}{/* OID string >> unsigned long oid[16] + oidlen */}}
+\DoxyCodeLine{40    key->dp.oidlen = 16;}
+\DoxyCodeLine{41    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_ad99c87d19f50f703708d36a931fe5df6}{pk\_oid\_str\_to\_num}}(cu->OID, key->dp.oid, \&key->dp.oidlen)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{ \textcolor{keywordflow}{goto} error; \}}
+\DoxyCodeLine{42    \textcolor{comment}{/* success */}}
+\DoxyCodeLine{43    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45 error:}
+\DoxyCodeLine{46    \mbox{\hyperlink{ecc__free_8c_a73cd81ea7d3b24f2d9ef309c4b22e3b7}{ecc\_free}}(key);}
+\DoxyCodeLine{47    \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{48 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, ecc\+\_\+free(), L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, mp\+\_\+init\+\_\+multi, mp\+\_\+read\+\_\+radix, mp\+\_\+set, mp\+\_\+unsigned\+\_\+bin\+\_\+size, and pk\+\_\+oid\+\_\+str\+\_\+to\+\_\+num().
+
+
+
+Referenced by \+\_\+ecc\+\_\+import\+\_\+private\+\_\+with\+\_\+oid(), \+\_\+ecc\+\_\+import\+\_\+x509\+\_\+with\+\_\+oid(), ecc\+\_\+ansi\+\_\+x963\+\_\+import\+\_\+ex(), ecc\+\_\+import\+\_\+ex(), ecc\+\_\+import\+\_\+pkcs8(), ecc\+\_\+make\+\_\+key\+\_\+ex(), and ecc\+\_\+set\+\_\+curve\+\_\+by\+\_\+size().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2
+\mbox{\Hypertarget{ecc__set__curve_8c_ae380263c82c1fe0cde8dc08e89f7940c}\label{ecc__set__curve_8c_ae380263c82c1fe0cde8dc08e89f7940c}} 
+\index{ecc\_set\_curve.c@{ecc\_set\_curve.c}!ecc\_set\_curve\_by\_size@{ecc\_set\_curve\_by\_size}}
+\index{ecc\_set\_curve\_by\_size@{ecc\_set\_curve\_by\_size}!ecc\_set\_curve.c@{ecc\_set\_curve.c}}
+\subsubsection{\texorpdfstring{ecc\_set\_curve\_by\_size()}{ecc\_set\_curve\_by\_size()}}
+{\footnotesize\ttfamily int ecc\+\_\+set\+\_\+curve\+\_\+by\+\_\+size (\begin{DoxyParamCaption}\item[{int}]{size,  }\item[{ecc\+\_\+key $\ast$}]{key }\end{DoxyParamCaption})}
+
+
+
+Definition at line 50 of file ecc\+\_\+set\+\_\+curve.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{51 \{}
+\DoxyCodeLine{52    \textcolor{keyword}{const} ltc\_ecc\_curve *cu = NULL;}
+\DoxyCodeLine{53    \textcolor{keywordtype}{int} err = \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca03c22220d7538be04455cd2aa6ddf9da}{CRYPT\_ERROR}};}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55    \textcolor{comment}{/* for compatibility with libtomcrypt-1.17 the sizes below must match the specific curves */}}
+\DoxyCodeLine{56    \textcolor{keywordflow}{if} (\mbox{\hyperlink{structedge_a64bdc14a16193c014f1ef50be358441d}{size}} <= 14) \{}
+\DoxyCodeLine{57       err = \mbox{\hyperlink{ecc__find__curve_8c_ad928083861ba212cb0c270bcf10b0403}{ecc\_find\_curve}}(\textcolor{stringliteral}{"SECP112R1"}, \&cu);}
+\DoxyCodeLine{58    \}}
+\DoxyCodeLine{59    \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (\mbox{\hyperlink{structedge_a64bdc14a16193c014f1ef50be358441d}{size}} <= 16) \{}
+\DoxyCodeLine{60       err = \mbox{\hyperlink{ecc__find__curve_8c_ad928083861ba212cb0c270bcf10b0403}{ecc\_find\_curve}}(\textcolor{stringliteral}{"SECP128R1"}, \&cu);}
+\DoxyCodeLine{61    \}}
+\DoxyCodeLine{62    \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (\mbox{\hyperlink{structedge_a64bdc14a16193c014f1ef50be358441d}{size}} <= 20) \{}
+\DoxyCodeLine{63       err = \mbox{\hyperlink{ecc__find__curve_8c_ad928083861ba212cb0c270bcf10b0403}{ecc\_find\_curve}}(\textcolor{stringliteral}{"SECP160R1"}, \&cu);}
+\DoxyCodeLine{64    \}}
+\DoxyCodeLine{65    \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (\mbox{\hyperlink{structedge_a64bdc14a16193c014f1ef50be358441d}{size}} <= 24) \{}
+\DoxyCodeLine{66       err = \mbox{\hyperlink{ecc__find__curve_8c_ad928083861ba212cb0c270bcf10b0403}{ecc\_find\_curve}}(\textcolor{stringliteral}{"SECP192R1"}, \&cu);}
+\DoxyCodeLine{67    \}}
+\DoxyCodeLine{68    \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (\mbox{\hyperlink{structedge_a64bdc14a16193c014f1ef50be358441d}{size}} <= 28) \{}
+\DoxyCodeLine{69       err = \mbox{\hyperlink{ecc__find__curve_8c_ad928083861ba212cb0c270bcf10b0403}{ecc\_find\_curve}}(\textcolor{stringliteral}{"SECP224R1"}, \&cu);}
+\DoxyCodeLine{70    \}}
+\DoxyCodeLine{71    \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (\mbox{\hyperlink{structedge_a64bdc14a16193c014f1ef50be358441d}{size}} <= 32) \{}
+\DoxyCodeLine{72       err = \mbox{\hyperlink{ecc__find__curve_8c_ad928083861ba212cb0c270bcf10b0403}{ecc\_find\_curve}}(\textcolor{stringliteral}{"SECP256R1"}, \&cu);}
+\DoxyCodeLine{73    \}}
+\DoxyCodeLine{74    \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (\mbox{\hyperlink{structedge_a64bdc14a16193c014f1ef50be358441d}{size}} <= 48) \{}
+\DoxyCodeLine{75       err = \mbox{\hyperlink{ecc__find__curve_8c_ad928083861ba212cb0c270bcf10b0403}{ecc\_find\_curve}}(\textcolor{stringliteral}{"SECP384R1"}, \&cu);}
+\DoxyCodeLine{76    \}}
+\DoxyCodeLine{77    \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (\mbox{\hyperlink{structedge_a64bdc14a16193c014f1ef50be358441d}{size}} <= 66) \{}
+\DoxyCodeLine{78       err = \mbox{\hyperlink{ecc__find__curve_8c_ad928083861ba212cb0c270bcf10b0403}{ecc\_find\_curve}}(\textcolor{stringliteral}{"SECP521R1"}, \&cu);}
+\DoxyCodeLine{79    \}}
+\DoxyCodeLine{80 }
+\DoxyCodeLine{81    \textcolor{keywordflow}{if} (err == \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}} \&\& cu != NULL) \textcolor{keywordflow}{return} \mbox{\hyperlink{ecc__set__curve_8c_ae59e3d6f85b87d050df0ece7c6f5c661}{ecc\_set\_curve}}(cu, key);}
+\DoxyCodeLine{82 }
+\DoxyCodeLine{83    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{84 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+E\+R\+R\+OR, C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+A\+RG, C\+R\+Y\+P\+T\+\_\+\+OK, ecc\+\_\+find\+\_\+curve(), and ecc\+\_\+set\+\_\+curve().
+
+
+
+Referenced by ecc\+\_\+ansi\+\_\+x963\+\_\+import\+\_\+ex(), ecc\+\_\+import\+\_\+ex(), and ecc\+\_\+make\+\_\+key().
+
+Here is the call graph for this function\+:
+% FIG 3
+Here is the caller graph for this function\+:
+% FIG 4

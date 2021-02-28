@@ -1,0 +1,1877 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="100">
+  <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <logicalFolder name="f3" displayName="doc" projectFiles="true">
+      <logicalFolder name="f1" displayName="images" projectFiles="true">
+        <itemPath>doc/images/HAMSTER-versions.eps</itemPath>
+        <itemPath>doc/images/HAMSTER-versions.pdf</itemPath>
+        <itemPath>doc/images/HAMSTER-versions.svg</itemPath>
+        <itemPath>doc/images/SPHERE_Conceptual_Platforms_Brief.pdf</itemPath>
+        <itemPath>doc/images/SPHERE_Conceptual_Platforms_Brief.svg</itemPath>
+        <itemPath>doc/images/SPHERE_Conceptual_Platforms_Detail.pdf</itemPath>
+        <itemPath>doc/images/SPHERE_Conceptual_Platforms_Detail.svg</itemPath>
+      </logicalFolder>
+      <itemPath>doc/Bibliography.bib</itemPath>
+      <itemPath>doc/Cenarios.dox</itemPath>
+      <itemPath>doc/HAMSTERMessages.dox</itemPath>
+      <itemPath>doc/Mainpage.dox</itemPath>
+      <itemPath>doc/Notas.txt</itemPath>
+      <itemPath>license.txt</itemPath>
+    </logicalFolder>
+    <logicalFolder name="f1" displayName="include" projectFiles="true">
+      <logicalFolder name="f1" displayName="hamster" projectFiles="true">
+        <logicalFolder name="f3" displayName="comm" projectFiles="true">
+          <logicalFolder name="f3" displayName="cryptography" projectFiles="true">
+            <logicalFolder name="f2" displayName="AES" projectFiles="true">
+            </logicalFolder>
+            <itemPath>include/hamster/comm/cryptography/CRYPTOGRAPHY_ALGORITMS.h</itemPath>
+            <itemPath>src/hamster/comm/cryptography/CryptographyAlgorithm.cc</itemPath>
+            <itemPath>include/hamster/comm/cryptography/CryptographyAlgorithm.h</itemPath>
+            <itemPath>src/hamster/comm/cryptography/CryptographyHandler.cc</itemPath>
+            <itemPath>include/hamster/comm/cryptography/CryptographyHandler.h</itemPath>
+            <itemPath>src/hamster/comm/cryptography/KeyInfo.cc</itemPath>
+            <itemPath>include/hamster/comm/cryptography/KeyInfo.h</itemPath>
+          </logicalFolder>
+          <logicalFolder name="f1" displayName="interface" projectFiles="true">
+            <logicalFolder name="f1" displayName="inet_socket" projectFiles="true">
+              <itemPath>src/hamster/comm/interface/socket/INETSocketAcceptor.cpp</itemPath>
+              <itemPath>include/hamster/comm/interface/socket/INETSocketAcceptor.h</itemPath>
+              <itemPath>src/hamster/comm/interface/socket/INETSocketAddressInfo.cpp</itemPath>
+              <itemPath>include/hamster/comm/interface/socket/INETSocketAddressInfo.h</itemPath>
+              <itemPath>src/hamster/comm/interface/socket/INETSocketConnector.cpp</itemPath>
+              <itemPath>include/hamster/comm/interface/socket/INETSocketConnector.h</itemPath>
+              <itemPath>src/hamster/comm/interface/socket/INETSocketHandler.cpp</itemPath>
+              <itemPath>include/hamster/comm/interface/socket/INETSocketHandler.h</itemPath>
+              <itemPath>src/hamster/comm/interface/socket/INETSocketInterface.cpp</itemPath>
+              <itemPath>include/hamster/comm/interface/socket/INETSocketInterface.h</itemPath>
+            </logicalFolder>
+            <itemPath>src/hamster/comm/interface/Acceptor.cc</itemPath>
+            <itemPath>include/hamster/comm/interface/Acceptor.h</itemPath>
+            <itemPath>include/hamster/comm/interface/AcceptorConn.h</itemPath>
+            <itemPath>src/hamster/comm/interface/AddressInfo.cc</itemPath>
+            <itemPath>include/hamster/comm/interface/AddressInfo.h</itemPath>
+            <itemPath>include/hamster/comm/interface/CommInterface.h</itemPath>
+            <itemPath>include/hamster/comm/interface/ConnectionHandler.h</itemPath>
+            <itemPath>include/hamster/comm/interface/Connector.h</itemPath>
+            <itemPath>src/hamster/comm/interface/Listener.cc</itemPath>
+            <itemPath>include/hamster/comm/interface/Listener.h</itemPath>
+          </logicalFolder>
+          <logicalFolder name="f2" displayName="messaging" projectFiles="true">
+            <itemPath>include/hamster/comm/messaging/HAMSTERMessage.h</itemPath>
+            <itemPath>include/hamster/comm/messaging/HAMSTER_MESSAGE_CODE.h</itemPath>
+            <itemPath>include/hamster/comm/messaging/MessageField.h</itemPath>
+            <itemPath>src/hamster/comm/messaging/MessageLock.cc</itemPath>
+            <itemPath>include/hamster/comm/messaging/MessageLock.h</itemPath>
+          </logicalFolder>
+          <itemPath>include/hamster/comm/CommBroker.h</itemPath>
+          <itemPath>src/hamster/comm/ConnectionlessDispatcher.cc</itemPath>
+          <itemPath>include/hamster/comm/ConnectionlessDispatcher.h</itemPath>
+          <itemPath>src/hamster/comm/HAMSTERObjectPeer.cc</itemPath>
+          <itemPath>include/hamster/comm/HAMSTERObjectPeer.h</itemPath>
+          <itemPath>include/hamster/comm/HAMSTERPeer.h</itemPath>
+          <itemPath>include/hamster/comm/HAMSTERQueue.h</itemPath>
+          <itemPath>src/hamster/comm/MessagePooler.cc</itemPath>
+          <itemPath>include/hamster/comm/MessagePooler.h</itemPath>
+        </logicalFolder>
+        <logicalFolder name="f8" displayName="identification" projectFiles="true">
+          <itemPath>src/hamster/identification/HAMSTERID.cc</itemPath>
+          <itemPath>include/hamster/identification/HAMSTERID.h</itemPath>
+          <itemPath>src/hamster/identification/Registerer.cc</itemPath>
+          <itemPath>include/hamster/identification/Registerer.h</itemPath>
+          <itemPath>src/hamster/identification/RegistrationStrategy.cc</itemPath>
+          <itemPath>include/hamster/identification/RegistrationStrategy.h</itemPath>
+        </logicalFolder>
+        <logicalFolder name="f4" displayName="nci" projectFiles="true">
+          <itemPath>include/hamster/nci/NCI.h</itemPath>
+          <itemPath>src/hamster/nci/NCICluster.cpp</itemPath>
+          <itemPath>include/hamster/nci/NCICluster.h</itemPath>
+          <itemPath>include/hamster/nci/NCIEntity.h</itemPath>
+          <itemPath>src/hamster/nci/NCIModule.cpp</itemPath>
+          <itemPath>include/hamster/nci/NCIModule.h</itemPath>
+        </logicalFolder>
+        <logicalFolder name="f6" displayName="nimble" projectFiles="true">
+          <itemPath>include/hamster/nimble/NIMBLE.h</itemPath>
+        </logicalFolder>
+        <logicalFolder name="f5" displayName="np" projectFiles="true">
+          <itemPath>src/hamster/np/ComponentBehaviour.cc</itemPath>
+          <itemPath>include/hamster/np/ComponentBehaviour.h</itemPath>
+          <itemPath>src/hamster/np/Mission.cc</itemPath>
+          <itemPath>include/hamster/np/Mission.h</itemPath>
+          <itemPath>src/hamster/np/NPAgent.cpp</itemPath>
+          <itemPath>include/hamster/np/NPAgent.h</itemPath>
+          <itemPath>include/hamster/np/NPManager.h</itemPath>
+          <itemPath>include/hamster/np/NPUnit.h</itemPath>
+          <itemPath>src/hamster/np/NavigationPhase.cc</itemPath>
+          <itemPath>include/hamster/np/NavigationPhase.h</itemPath>
+          <itemPath>src/hamster/np/PhaseBehaviour.cc</itemPath>
+          <itemPath>include/hamster/np/PhaseBehaviour.h</itemPath>
+        </logicalFolder>
+        <logicalFolder name="f7" displayName="sample" projectFiles="true">
+          <logicalFolder name="f2" displayName="JINT2018" projectFiles="true">
+            <itemPath>src/hamster/sample/FlightData.cc</itemPath>
+            <itemPath>include/hamster/sample/FlightData.h</itemPath>
+            <itemPath>src/hamster/sample/MQTTSubscriber.cc</itemPath>
+            <itemPath>include/hamster/sample/MQTTSubscriber.h</itemPath>
+            <itemPath>src/hamster/sample/StationJINT.cc</itemPath>
+            <itemPath>include/hamster/sample/StationJINT.h</itemPath>
+            <itemPath>src/hamster/sample/UAVJINT.cc</itemPath>
+            <itemPath>include/hamster/sample/UAVJINT.h</itemPath>
+          </logicalFolder>
+          <logicalFolder name="f1" displayName="NP_Sample" projectFiles="true">
+            <itemPath>src/hamster/sample/AutoPilot.cpp</itemPath>
+            <itemPath>include/hamster/sample/Autopilot.h</itemPath>
+            <itemPath>src/hamster/sample/MultispectralCamera.cpp</itemPath>
+            <itemPath>include/hamster/sample/MultispectralCamera.h</itemPath>
+            <itemPath>src/hamster/sample/RGBCamera.cpp</itemPath>
+            <itemPath>include/hamster/sample/RGBCamera.h</itemPath>
+          </logicalFolder>
+          <logicalFolder name="f3" displayName="registratoin" projectFiles="true">
+            <itemPath>src/hamster/sample/FarashRegistraton.cc</itemPath>
+            <itemPath>include/hamster/sample/FarashRegistraton.h</itemPath>
+          </logicalFolder>
+          <itemPath>include/hamster/sample/MissionPlanner.h</itemPath>
+          <itemPath>src/hamster/sample/SensorUnit.cc</itemPath>
+          <itemPath>include/hamster/sample/SensorUnit.h</itemPath>
+          <itemPath>src/hamster/sample/Station.cc</itemPath>
+          <itemPath>include/hamster/sample/Station.h</itemPath>
+          <itemPath>src/hamster/sample/UAV.cpp</itemPath>
+          <itemPath>include/hamster/sample/UAV.h</itemPath>
+        </logicalFolder>
+        <logicalFolder name="f1" displayName="sphere" projectFiles="true">
+          <logicalFolder name="f1" displayName="csu" projectFiles="true">
+            <itemPath>include/hamster/sphere/csu/CSU.h</itemPath>
+            <itemPath>include/hamster/sphere/csu/CentralCSU.h</itemPath>
+            <itemPath>src/hamster/sphere/csu/LocalCSU.cpp</itemPath>
+            <itemPath>include/hamster/sphere/csu/LocalCSU.h</itemPath>
+            <itemPath>src/hamster/sphere/csu/SuperCSU.cpp</itemPath>
+            <itemPath>include/hamster/sphere/csu/SuperCSU.h</itemPath>
+          </logicalFolder>
+          <logicalFolder name="f4" displayName="NCI" projectFiles="true">
+            <itemPath>include/hamster/sphere/NCI/CentralNCI.h</itemPath>
+            <itemPath>src/hamster/sphere/NCI/LocalNCI.cpp</itemPath>
+            <itemPath>include/hamster/sphere/NCI/LocalNCI.h</itemPath>
+            <itemPath>include/hamster/sphere/NCI/NCI.h</itemPath>
+          </logicalFolder>
+          <logicalFolder name="f3" displayName="semu" projectFiles="true">
+            <itemPath>include/hamster/sphere/semu/CentralSEMU.h</itemPath>
+            <itemPath>src/hamster/sphere/semu/LocalSEMU.cpp</itemPath>
+            <itemPath>include/hamster/sphere/semu/LocalSEMU.h</itemPath>
+            <itemPath>include/hamster/sphere/semu/SEMU.h</itemPath>
+          </logicalFolder>
+          <logicalFolder name="f2" displayName="smu" projectFiles="true">
+            <itemPath>include/hamster/sphere/smu/CentralSMU.h</itemPath>
+            <itemPath>src/hamster/sphere/smu/LocalSMU.cpp</itemPath>
+            <itemPath>include/hamster/sphere/smu/LocalSMU.h</itemPath>
+            <itemPath>include/hamster/sphere/smu/SMU.h</itemPath>
+          </logicalFolder>
+          <itemPath>include/hamster/sphere/CentralSPHERE.h</itemPath>
+          <itemPath>src/hamster/sphere/LocalSPHERE.cpp</itemPath>
+          <itemPath>include/hamster/sphere/LocalSPHERE.h</itemPath>
+          <itemPath>include/hamster/sphere/SPHERE.h</itemPath>
+          <itemPath>include/hamster/sphere/SuperSPHERE.h</itemPath>
+        </logicalFolder>
+        <logicalFolder name="f2" displayName="utils" projectFiles="true">
+          <logicalFolder name="f1" displayName="logger" projectFiles="true">
+            <itemPath>include/hamster/utils/logger/ErrorCodes.h</itemPath>
+            <itemPath>include/hamster/utils/logger/EventCategory.h</itemPath>
+            <itemPath>include/hamster/utils/logger/FileLogger.h</itemPath>
+            <itemPath>include/hamster/utils/logger/HAMSTERLogger.h</itemPath>
+            <itemPath>include/hamster/utils/logger/Logger.h</itemPath>
+            <itemPath>include/hamster/utils/logger/LoggerPolicy.h</itemPath>
+            <itemPath>include/hamster/utils/logger/TerminalLogger.h</itemPath>
+          </logicalFolder>
+          <logicalFolder name="f2" displayName="task" projectFiles="true">
+            <itemPath>src/hamster/utils/task/RunningTask.cc</itemPath>
+            <itemPath>include/hamster/utils/task/RunningTask.h</itemPath>
+          </logicalFolder>
+          <itemPath>src/hamster/utils/CSVReader.cc</itemPath>
+          <itemPath>include/hamster/utils/CSVReader.h</itemPath>
+          <itemPath>include/hamster/utils/Uuid.h</itemPath>
+        </logicalFolder>
+        <itemPath>src/hamster/utils/Configurable.cc</itemPath>
+        <itemPath>include/hamster/utils/Configurable.h</itemPath>
+        <itemPath>include/HAMSTER.h</itemPath>
+        <itemPath>src/hamster/HAMSTERCluster.cc</itemPath>
+        <itemPath>include/hamster/HAMSTERCluster.h</itemPath>
+        <itemPath>include/hamster/HAMSTEREntity.h</itemPath>
+        <itemPath>src/hamster/HAMSTERModule.cc</itemPath>
+        <itemPath>include/hamster/HAMSTERModule.h</itemPath>
+        <itemPath>include/hamster/HAMSTERNode.h</itemPath>
+        <itemPath>include/hamster/HAMSTERObject.h</itemPath>
+        <itemPath>src/hamster/HAMSTERObjectDescriptor.cc</itemPath>
+        <itemPath>include/hamster/HAMSTERObjectDescriptor.h</itemPath>
+        <itemPath>include/hamster/HAMSTEROptions.h</itemPath>
+        <itemPath>include/hamster/HAMSTERPlatform.h</itemPath>
+        <itemPath>include/hamster/HAMSTERSuperEntity.h</itemPath>
+        <itemPath>src/hamster/HAMSTERUVComponent.cc</itemPath>
+        <itemPath>include/hamster/HAMSTERUVComponent.h</itemPath>
+        <itemPath>src/hamster/HAMSTERUnitCommInfo.cpp</itemPath>
+        <itemPath>include/hamster/HAMSTERUnitCommInfo.h</itemPath>
+        <itemPath>src/hamster/HAMSTERUnitDescriptor.cc</itemPath>
+        <itemPath>include/hamster/HAMSTERUnitDescriptor.h</itemPath>
+        <itemPath>src/hamster/HAMSTERUserEntity.cc</itemPath>
+        <itemPath>include/hamster/HAMSTERUserEntity.h</itemPath>
+        <itemPath>include/hamster/HAMSTER_COMPONENT_STATE.h</itemPath>
+        <itemPath>include/hamster/HAMSTER_FUNCTIONAL_CODE.h</itemPath>
+        <itemPath>include/hamster/HAMSTER_UNIT_TYPE.h</itemPath>
+        <itemPath>include/hamster/HAMSTER_all.h</itemPath>
+        <itemPath>include/hamster/Unit.h</itemPath>
+      </logicalFolder>
+      <logicalFolder name="f2" displayName="tinyXML" projectFiles="true">
+        <itemPath>include/tinyXML/tinystr.h</itemPath>
+        <itemPath>include/tinyXML/tinyxml.h</itemPath>
+      </logicalFolder>
+    </logicalFolder>
+    <logicalFolder name="f2" displayName="src" projectFiles="true">
+      <logicalFolder name="f1" displayName="hamster" projectFiles="true">
+        <logicalFolder name="f3" displayName="comm" projectFiles="true">
+          <logicalFolder name="f3" displayName="cryptography" projectFiles="true">
+          </logicalFolder>
+          <logicalFolder name="f1" displayName="interface" projectFiles="true">
+            <logicalFolder name="f1" displayName="socket" projectFiles="true">
+            </logicalFolder>
+            <itemPath>src/hamster/comm/interface/AcceptorConn.cc</itemPath>
+            <itemPath>src/hamster/comm/interface/CommInterface.cc</itemPath>
+            <itemPath>src/hamster/comm/interface/Connector.cpp</itemPath>
+          </logicalFolder>
+          <logicalFolder name="f2" displayName="messaging" projectFiles="true">
+            <itemPath>src/hamster/comm/messaging/HAMSTERMessage.cc</itemPath>
+            <itemPath>src/hamster/comm/messaging/MessageField.cc</itemPath>
+          </logicalFolder>
+          <itemPath>src/hamster/comm/CommBroker.cc</itemPath>
+          <itemPath>src/hamster/comm/HAMSTERPeer.cc</itemPath>
+          <itemPath>src/hamster/comm/HAMSTERQueue.cc</itemPath>
+        </logicalFolder>
+        <logicalFolder name="f8" displayName="identification" projectFiles="true">
+        </logicalFolder>
+        <logicalFolder name="f4" displayName="nci" projectFiles="true">
+          <itemPath>src/hamster/nci/NCIEntity.cc</itemPath>
+        </logicalFolder>
+        <logicalFolder name="f6" displayName="nimble" projectFiles="true">
+          <itemPath>src/hamster/nimble/NIMBLE.cc</itemPath>
+        </logicalFolder>
+        <logicalFolder name="f5" displayName="np" projectFiles="true">
+          <itemPath>src/hamster/np/NPManager.cc</itemPath>
+        </logicalFolder>
+        <logicalFolder name="f7" displayName="sample" projectFiles="true">
+        </logicalFolder>
+        <logicalFolder name="f1" displayName="sphere" projectFiles="true">
+          <logicalFolder name="f1" displayName="csu" projectFiles="true">
+            <itemPath>src/hamster/sphere/csu/CentralCSU.cc</itemPath>
+          </logicalFolder>
+          <logicalFolder name="f4" displayName="NCI" projectFiles="true">
+            <itemPath>src/hamster/sphere/NCI/CentralNCI.cc</itemPath>
+          </logicalFolder>
+          <logicalFolder name="f3" displayName="semu" projectFiles="true">
+            <itemPath>src/hamster/sphere/semu/CentralSEMU.cc</itemPath>
+          </logicalFolder>
+          <logicalFolder name="f2" displayName="smu" projectFiles="true">
+            <itemPath>src/hamster/sphere/smu/CentralSMU.cc</itemPath>
+          </logicalFolder>
+          <itemPath>src/hamster/sphere/CentralSPHERE.cc</itemPath>
+          <itemPath>src/hamster/sphere/SPHERE.cc</itemPath>
+          <itemPath>src/hamster/sphere/SuperSPHERE.cc</itemPath>
+        </logicalFolder>
+        <logicalFolder name="f2" displayName="utils" projectFiles="true">
+          <logicalFolder name="f1" displayName="logger" projectFiles="true">
+            <itemPath>src/hamster/utils/logger/FileLogger.cc</itemPath>
+            <itemPath>src/hamster/utils/logger/HAMSTERLogger.cc</itemPath>
+            <itemPath>src/hamster/utils/logger/TerminalLogger.cc</itemPath>
+          </logicalFolder>
+          <logicalFolder name="f2" displayName="task" projectFiles="true">
+          </logicalFolder>
+          <itemPath>src/hamster/utils/Uuid.cc</itemPath>
+        </logicalFolder>
+        <itemPath>src/hamster/HAMSTERCommon.cc</itemPath>
+        <itemPath>src/hamster/HAMSTEREntity.cc</itemPath>
+        <itemPath>src/hamster/HAMSTERObject.cc</itemPath>
+        <itemPath>src/hamster/HAMSTERSuperEntity.cc</itemPath>
+        <itemPath>src/hamster/Unit.cc</itemPath>
+      </logicalFolder>
+      <logicalFolder name="f2" displayName="tinyXML" projectFiles="true">
+        <itemPath>src/tinyXML/tinystr.cpp</itemPath>
+        <itemPath>src/tinyXML/tinyxml.cpp</itemPath>
+        <itemPath>src/tinyXML/tinyxmlerror.cpp</itemPath>
+        <itemPath>src/tinyXML/tinyxmlparser.cpp</itemPath>
+      </logicalFolder>
+    </logicalFolder>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Arquivos Importantes"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+    </logicalFolder>
+    <itemPath>Makefile</itemPath>
+    <itemPath>newmain.cpp</itemPath>
+  </logicalFolder>
+  <projectmakefile>Makefile</projectmakefile>
+  <confs>
+    <conf name="Debug" type="1">
+      <toolsSet>
+        <compilerSet>Cygwin|Cygwin</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <compileType>
+        <cTool>
+          <stripSymbols>true</stripSymbols>
+          <incDir>
+            <pElem>include</pElem>
+            <pElem>include/hamster</pElem>
+            <pElem>include/hamster/comm</pElem>
+            <pElem>include/hamster/comm/cryptography</pElem>
+            <pElem>include/hamster/comm/interface</pElem>
+            <pElem>include/hamster/comm/interface/socket</pElem>
+            <pElem>include/hamster/comm/messaging</pElem>
+            <pElem>include/hamster/identification</pElem>
+            <pElem>include/hamster/sphere</pElem>
+            <pElem>include/hamster/sphere/csu</pElem>
+            <pElem>include/hamster/sphere/smu</pElem>
+            <pElem>include/hamster/sphere/NCI</pElem>
+            <pElem>include/hamster/sphere/semu</pElem>
+            <pElem>include/hamster/utils</pElem>
+            <pElem>include/hamster/utils/logger</pElem>
+            <pElem>include/hamster/utils/task</pElem>
+            <pElem>include/hamster/utils/tinyXML</pElem>
+            <pElem>include/hamster/nci</pElem>
+            <pElem>include/hamster/nimble</pElem>
+            <pElem>include/hamster/np</pElem>
+            <pElem>include/hamster/sample</pElem>
+            <pElem>include/mqtt-c</pElem>
+            <pElem>include/tinyXML</pElem>
+            <pElem>include/cryptopp810</pElem>
+            <pElem>include/libtomcrypt-develop/src/headers</pElem>
+          </incDir>
+          <warningLevel>3</warningLevel>
+        </cTool>
+        <ccTool>
+          <standard>11</standard>
+          <incDir>
+            <pElem>include</pElem>
+            <pElem>include/hamster</pElem>
+            <pElem>include/hamster/comm</pElem>
+            <pElem>include/hamster/comm/cryptography</pElem>
+            <pElem>include/hamster/comm/interface</pElem>
+            <pElem>include/hamster/comm/interface/socket</pElem>
+            <pElem>include/hamster/comm/messaging</pElem>
+            <pElem>include/hamster/identification</pElem>
+            <pElem>include/hamster/sphere</pElem>
+            <pElem>include/hamster/sphere/csu</pElem>
+            <pElem>include/hamster/sphere/smu</pElem>
+            <pElem>include/hamster/sphere/NCI</pElem>
+            <pElem>include/hamster/sphere/semu</pElem>
+            <pElem>include/hamster/utils</pElem>
+            <pElem>include/hamster/utils/logger</pElem>
+            <pElem>include/hamster/utils/task</pElem>
+            <pElem>include/hamster/utils/tinyXML</pElem>
+            <pElem>include/hamster/nci</pElem>
+            <pElem>include/hamster/nimble</pElem>
+            <pElem>include/hamster/np</pElem>
+            <pElem>include/hamster/sample</pElem>
+            <pElem>include/mqtt-c</pElem>
+            <pElem>include/tinyXML</pElem>
+            <pElem>include/cryptopp810</pElem>
+            <pElem>include/libtomcrypt-develop/src/headers</pElem>
+          </incDir>
+          <warningLevel>3</warningLevel>
+        </ccTool>
+        <linkerTool>
+          <linkerAddLib>
+            <pElem>lib</pElem>
+          </linkerAddLib>
+          <linkerDepDynSerchKind>3</linkerDepDynSerchKind>
+          <linkerLibItems>
+            <linkerLibLibItem>cygrelic</linkerLibLibItem>
+            <linkerLibLibItem>paho-mqtt3a</linkerLibLibItem>
+            <linkerLibLibItem>paho-mqtt3c</linkerLibLibItem>
+            <linkerLibLibItem>tomcrypt</linkerLibLibItem>
+          </linkerLibItems>
+        </linkerTool>
+      </compileType>
+      <item path="Makefile" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="doc/Bibliography.bib" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="doc/Cenarios.dox" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="doc/HAMSTERMessages.dox" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="doc/Mainpage.dox" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="doc/Notas.txt" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="doc/images/HAMSTER-versions.eps" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="doc/images/HAMSTER-versions.pdf" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="doc/images/HAMSTER-versions.svg" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="doc/images/SPHERE_Conceptual_Platforms_Brief.pdf"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="doc/images/SPHERE_Conceptual_Platforms_Brief.svg"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="doc/images/SPHERE_Conceptual_Platforms_Detail.pdf"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="doc/images/SPHERE_Conceptual_Platforms_Detail.svg"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/HAMSTER.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/hamster/HAMSTERCluster.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/hamster/HAMSTEREntity.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/hamster/HAMSTERModule.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/hamster/HAMSTERNode.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/hamster/HAMSTERObject.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/hamster/HAMSTERObjectDescriptor.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/HAMSTEROptions.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/hamster/HAMSTERPlatform.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/hamster/HAMSTERSuperEntity.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/HAMSTERUVComponent.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/HAMSTERUnitCommInfo.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/HAMSTERUnitDescriptor.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/HAMSTERUserEntity.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/HAMSTER_FUNCTIONAL_CODE.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/HAMSTER_UNIT_TYPE.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/HAMSTER_all.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/hamster/Unit.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/hamster/comm/CommBroker.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/hamster/comm/ConnectionlessDispatcher.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/comm/HAMSTERObjectPeer.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/comm/HAMSTERPeer.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/hamster/comm/HAMSTERQueue.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/comm/MessagePooler.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/comm/cryptography/CRYPTOGRAPHY_ALGORITMS.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/comm/cryptography/CryptographyAlgorithm.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/comm/cryptography/CryptographyHandler.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/comm/cryptography/KeyInfo.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/comm/interface/Acceptor.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/comm/interface/AcceptorConn.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/comm/interface/AddressInfo.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/comm/interface/CommInterface.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/comm/interface/ConnectionHandler.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/comm/interface/Connector.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/comm/interface/Listener.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/comm/interface/socket/INETSocketAcceptor.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/comm/interface/socket/INETSocketAddressInfo.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/comm/interface/socket/INETSocketConnector.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/comm/interface/socket/INETSocketHandler.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/comm/interface/socket/INETSocketInterface.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/comm/messaging/HAMSTERMessage.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/comm/messaging/HAMSTER_MESSAGE_CODE.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/comm/messaging/MessageField.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/comm/messaging/MessageLock.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/identification/HAMSTERID.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/identification/Registerer.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/identification/RegistrationStrategy.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/nci/NCI.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/hamster/nci/NCICluster.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/hamster/nci/NCIEntity.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/hamster/nci/NCIModule.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/hamster/nimble/NIMBLE.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/hamster/np/ComponentBehaviour.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/np/Mission.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/hamster/np/NPAgent.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/hamster/np/NPManager.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/hamster/np/NPUnit.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/hamster/np/NavigationPhase.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/np/PhaseBehaviour.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/sample/Autopilot.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/hamster/sample/FarashRegistraton.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/sample/FlightData.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/sample/MQTTSubscriber.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/sample/MissionPlanner.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/sample/MultispectralCamera.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/sample/RGBCamera.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/hamster/sample/SensorUnit.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/sample/Station.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/hamster/sample/StationJINT.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/sample/UAV.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/hamster/sample/UAVJINT.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/hamster/sphere/CentralSPHERE.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/sphere/NCI/CentralNCI.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/sphere/NCI/LocalNCI.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/sphere/NCI/NCI.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/hamster/sphere/SPHERE.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/hamster/sphere/SuperSPHERE.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/sphere/csu/CSU.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/hamster/sphere/csu/CentralCSU.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/sphere/csu/LocalCSU.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/sphere/csu/SuperCSU.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/sphere/semu/CentralSEMU.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/sphere/semu/LocalSEMU.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/sphere/semu/SEMU.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/hamster/sphere/smu/CentralSMU.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/sphere/smu/LocalSMU.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/sphere/smu/SMU.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/hamster/utils/CSVReader.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/hamster/utils/Configurable.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/utils/Uuid.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/hamster/utils/logger/ErrorCodes.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/utils/logger/EventCategory.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/utils/logger/FileLogger.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/utils/logger/HAMSTERLogger.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/utils/logger/Logger.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/utils/logger/LoggerPolicy.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/utils/logger/TerminalLogger.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/utils/task/RunningTask.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/tinyXML/tinystr.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/tinyXML/tinyxml.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="license.txt" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="newmain.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/hamster/HAMSTERCluster.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/hamster/HAMSTERCommon.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/hamster/HAMSTEREntity.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/hamster/HAMSTERModule.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/hamster/HAMSTERObject.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/hamster/HAMSTERObjectDescriptor.cc"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/hamster/HAMSTERSuperEntity.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/hamster/HAMSTERUVComponent.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/hamster/HAMSTERUnitCommInfo.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/hamster/HAMSTERUnitDescriptor.cc"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/hamster/HAMSTERUserEntity.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/hamster/Unit.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/hamster/comm/CommBroker.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/hamster/comm/ConnectionlessDispatcher.cc"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/hamster/comm/HAMSTERObjectPeer.cc"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/hamster/comm/HAMSTERPeer.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/hamster/comm/HAMSTERQueue.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/hamster/comm/MessagePooler.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/hamster/comm/cryptography/CryptographyAlgorithm.cc"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/hamster/comm/cryptography/CryptographyHandler.cc"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/hamster/comm/cryptography/KeyInfo.cc"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/hamster/comm/interface/Acceptor.cc"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/hamster/comm/interface/AcceptorConn.cc"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/hamster/comm/interface/AddressInfo.cc"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/hamster/comm/interface/CommInterface.cc"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/hamster/comm/interface/Connector.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/hamster/comm/interface/Listener.cc"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/hamster/comm/interface/socket/INETSocketAcceptor.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/hamster/comm/interface/socket/INETSocketAddressInfo.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/hamster/comm/interface/socket/INETSocketConnector.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/hamster/comm/interface/socket/INETSocketHandler.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/hamster/comm/interface/socket/INETSocketInterface.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/hamster/comm/messaging/HAMSTERMessage.cc"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/hamster/comm/messaging/MessageField.cc"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/hamster/comm/messaging/MessageLock.cc"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/hamster/identification/HAMSTERID.cc"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/hamster/identification/Registerer.cc"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/hamster/identification/RegistrationStrategy.cc"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/hamster/nci/NCICluster.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/hamster/nci/NCIEntity.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/hamster/nci/NCIModule.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/hamster/nimble/NIMBLE.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/hamster/np/ComponentBehaviour.cc"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/hamster/np/Mission.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/hamster/np/NPAgent.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/hamster/np/NPManager.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/hamster/np/NavigationPhase.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/hamster/np/PhaseBehaviour.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/hamster/sample/AutoPilot.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/hamster/sample/FarashRegistraton.cc"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/hamster/sample/FlightData.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/hamster/sample/MQTTSubscriber.cc"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/hamster/sample/MultispectralCamera.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/hamster/sample/RGBCamera.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/hamster/sample/SensorUnit.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/hamster/sample/Station.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/hamster/sample/StationJINT.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/hamster/sample/UAV.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/hamster/sample/UAVJINT.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/hamster/sphere/CentralSPHERE.cc"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/hamster/sphere/LocalSPHERE.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/hamster/sphere/NCI/CentralNCI.cc"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/hamster/sphere/NCI/LocalNCI.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/hamster/sphere/SPHERE.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/hamster/sphere/SuperSPHERE.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/hamster/sphere/csu/CentralCSU.cc"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/hamster/sphere/csu/LocalCSU.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/hamster/sphere/csu/SuperCSU.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/hamster/sphere/semu/CentralSEMU.cc"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/hamster/sphere/semu/LocalSEMU.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/hamster/sphere/smu/CentralSMU.cc"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/hamster/sphere/smu/LocalSMU.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/hamster/utils/CSVReader.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/hamster/utils/Configurable.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/hamster/utils/Uuid.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/hamster/utils/logger/FileLogger.cc"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/hamster/utils/logger/HAMSTERLogger.cc"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/hamster/utils/logger/TerminalLogger.cc"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/hamster/utils/task/RunningTask.cc"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/tinyXML/tinystr.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/tinyXML/tinyxml.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/tinyXML/tinyxmlerror.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/tinyXML/tinyxmlparser.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+    </conf>
+    <conf name="Release" type="1">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <compileType>
+        <cTool>
+          <developmentMode>5</developmentMode>
+        </cTool>
+        <ccTool>
+          <developmentMode>5</developmentMode>
+        </ccTool>
+        <fortranCompilerTool>
+          <developmentMode>5</developmentMode>
+        </fortranCompilerTool>
+        <asmTool>
+          <developmentMode>5</developmentMode>
+        </asmTool>
+      </compileType>
+      <item path="Makefile" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="doc/Bibliography.bib" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="doc/Cenarios.dox" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="doc/HAMSTERMessages.dox" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="doc/Mainpage.dox" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="doc/Notas.txt" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="doc/images/HAMSTER-versions.eps" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="doc/images/HAMSTER-versions.pdf" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="doc/images/HAMSTER-versions.svg" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="doc/images/SPHERE_Conceptual_Platforms_Brief.pdf"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="doc/images/SPHERE_Conceptual_Platforms_Brief.svg"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="doc/images/SPHERE_Conceptual_Platforms_Detail.pdf"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="doc/images/SPHERE_Conceptual_Platforms_Detail.svg"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/HAMSTER.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/hamster/HAMSTERCluster.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/hamster/HAMSTEREntity.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/hamster/HAMSTERModule.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/hamster/HAMSTERNode.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/hamster/HAMSTERObject.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/hamster/HAMSTERObjectDescriptor.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/HAMSTEROptions.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/hamster/HAMSTERPlatform.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/hamster/HAMSTERSuperEntity.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/HAMSTERUVComponent.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/HAMSTERUnitCommInfo.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/HAMSTERUnitDescriptor.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/HAMSTERUserEntity.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/HAMSTER_FUNCTIONAL_CODE.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/HAMSTER_UNIT_TYPE.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/HAMSTER_all.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/hamster/Unit.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/hamster/comm/CommBroker.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/hamster/comm/ConnectionlessDispatcher.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/comm/HAMSTERObjectPeer.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/comm/HAMSTERPeer.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/hamster/comm/HAMSTERQueue.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/comm/MessagePooler.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/comm/cryptography/CRYPTOGRAPHY_ALGORITMS.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/comm/cryptography/CryptographyAlgorithm.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/comm/cryptography/CryptographyHandler.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/comm/cryptography/KeyInfo.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/comm/interface/Acceptor.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/comm/interface/AcceptorConn.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/comm/interface/AddressInfo.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/comm/interface/CommInterface.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/comm/interface/ConnectionHandler.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/comm/interface/Connector.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/comm/interface/Listener.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/comm/interface/socket/INETSocketAcceptor.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/comm/interface/socket/INETSocketAddressInfo.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/comm/interface/socket/INETSocketConnector.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/comm/interface/socket/INETSocketHandler.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/comm/interface/socket/INETSocketInterface.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/comm/messaging/HAMSTERMessage.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/comm/messaging/HAMSTER_MESSAGE_CODE.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/comm/messaging/MessageField.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/comm/messaging/MessageLock.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/identification/HAMSTERID.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/identification/Registerer.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/identification/RegistrationStrategy.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/nci/NCI.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/hamster/nci/NCICluster.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/hamster/nci/NCIEntity.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/hamster/nci/NCIModule.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/hamster/nimble/NIMBLE.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/hamster/np/ComponentBehaviour.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/np/Mission.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/hamster/np/NPAgent.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/hamster/np/NPManager.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/hamster/np/NPUnit.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/hamster/np/NavigationPhase.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/np/PhaseBehaviour.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/sample/Autopilot.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/hamster/sample/FarashRegistraton.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/sample/FlightData.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/sample/MQTTSubscriber.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/sample/MissionPlanner.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/sample/MultispectralCamera.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/sample/RGBCamera.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/hamster/sample/SensorUnit.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/sample/Station.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/hamster/sample/StationJINT.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/sample/UAV.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/hamster/sample/UAVJINT.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/hamster/sphere/CentralSPHERE.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/sphere/NCI/CentralNCI.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/sphere/NCI/LocalNCI.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/sphere/NCI/NCI.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/hamster/sphere/SPHERE.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/hamster/sphere/SuperSPHERE.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/sphere/csu/CSU.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/hamster/sphere/csu/CentralCSU.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/sphere/csu/LocalCSU.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/sphere/csu/SuperCSU.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/sphere/semu/CentralSEMU.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/sphere/semu/LocalSEMU.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/sphere/semu/SEMU.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/hamster/sphere/smu/CentralSMU.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/sphere/smu/LocalSMU.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/sphere/smu/SMU.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/hamster/utils/CSVReader.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/hamster/utils/Configurable.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/utils/Uuid.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/hamster/utils/logger/ErrorCodes.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/utils/logger/EventCategory.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/utils/logger/FileLogger.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/utils/logger/HAMSTERLogger.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/utils/logger/Logger.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/utils/logger/LoggerPolicy.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/utils/logger/TerminalLogger.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/hamster/utils/task/RunningTask.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="include/tinyXML/tinystr.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/tinyXML/tinyxml.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="license.txt" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="newmain.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/hamster/HAMSTERCluster.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/hamster/HAMSTERCommon.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/hamster/HAMSTEREntity.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/hamster/HAMSTERModule.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/hamster/HAMSTERObject.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/hamster/HAMSTERObjectDescriptor.cc"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/hamster/HAMSTERSuperEntity.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/hamster/HAMSTERUVComponent.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/hamster/HAMSTERUnitCommInfo.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/hamster/HAMSTERUnitDescriptor.cc"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/hamster/HAMSTERUserEntity.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/hamster/Unit.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/hamster/comm/CommBroker.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/hamster/comm/ConnectionlessDispatcher.cc"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/hamster/comm/HAMSTERObjectPeer.cc"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/hamster/comm/HAMSTERPeer.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/hamster/comm/HAMSTERQueue.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/hamster/comm/MessagePooler.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/hamster/comm/cryptography/CryptographyAlgorithm.cc"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/hamster/comm/cryptography/CryptographyHandler.cc"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/hamster/comm/cryptography/KeyInfo.cc"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/hamster/comm/interface/Acceptor.cc"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/hamster/comm/interface/AcceptorConn.cc"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/hamster/comm/interface/AddressInfo.cc"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/hamster/comm/interface/CommInterface.cc"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/hamster/comm/interface/Connector.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/hamster/comm/interface/Listener.cc"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/hamster/comm/interface/socket/INETSocketAcceptor.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/hamster/comm/interface/socket/INETSocketAddressInfo.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/hamster/comm/interface/socket/INETSocketConnector.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/hamster/comm/interface/socket/INETSocketHandler.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/hamster/comm/interface/socket/INETSocketInterface.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/hamster/comm/messaging/HAMSTERMessage.cc"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/hamster/comm/messaging/MessageField.cc"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/hamster/comm/messaging/MessageLock.cc"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/hamster/identification/HAMSTERID.cc"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/hamster/identification/Registerer.cc"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/hamster/identification/RegistrationStrategy.cc"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/hamster/nci/NCICluster.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/hamster/nci/NCIEntity.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/hamster/nci/NCIModule.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/hamster/nimble/NIMBLE.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/hamster/np/ComponentBehaviour.cc"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/hamster/np/Mission.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/hamster/np/NPAgent.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/hamster/np/NPManager.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/hamster/np/NavigationPhase.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/hamster/np/PhaseBehaviour.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/hamster/sample/AutoPilot.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/hamster/sample/FarashRegistraton.cc"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/hamster/sample/FlightData.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/hamster/sample/MQTTSubscriber.cc"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/hamster/sample/MultispectralCamera.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/hamster/sample/RGBCamera.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/hamster/sample/SensorUnit.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/hamster/sample/Station.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/hamster/sample/StationJINT.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/hamster/sample/UAV.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/hamster/sample/UAVJINT.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/hamster/sphere/CentralSPHERE.cc"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/hamster/sphere/LocalSPHERE.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/hamster/sphere/NCI/CentralNCI.cc"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/hamster/sphere/NCI/LocalNCI.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/hamster/sphere/SPHERE.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/hamster/sphere/SuperSPHERE.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/hamster/sphere/csu/CentralCSU.cc"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/hamster/sphere/csu/LocalCSU.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/hamster/sphere/csu/SuperCSU.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/hamster/sphere/semu/CentralSEMU.cc"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/hamster/sphere/semu/LocalSEMU.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/hamster/sphere/smu/CentralSMU.cc"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/hamster/sphere/smu/LocalSMU.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/hamster/utils/CSVReader.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/hamster/utils/Configurable.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/hamster/utils/Uuid.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/hamster/utils/logger/FileLogger.cc"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/hamster/utils/logger/HAMSTERLogger.cc"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/hamster/utils/logger/TerminalLogger.cc"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/hamster/utils/task/RunningTask.cc"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/tinyXML/tinystr.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/tinyXML/tinyxml.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/tinyXML/tinyxmlerror.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/tinyXML/tinyxmlparser.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+    </conf>
+  </confs>
+</configurationDescriptor>

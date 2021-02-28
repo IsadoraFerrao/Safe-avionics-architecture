@@ -1,0 +1,579 @@
+\hypertarget{chc_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/hashes/chc/chc.c File Reference}
+\label{chc_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/hashes/chc/chc.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/hashes/chc/chc.c}}
+
+
+C\+HC support.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for chc.\+c\+:
+% FIG 0
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{chc_8c_a8f972421c2d4f86318058d85c52a4d0f}{U\+N\+D\+E\+F\+E\+D\+\_\+\+H\+A\+SH}}~-\/17
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{chc_8c_a3f5fb5f884cb2e504af6b4d56db93f85}{chc\+\_\+register}} (int cipher)
+\begin{DoxyCompactList}\small\item\em Initialize the C\+HC state with a given cipher. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{chc_8c_aa2b49244a7f42e648b80c07e443b31c7}{chc\+\_\+init}} (\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$md)
+\begin{DoxyCompactList}\small\item\em Initialize the hash state. \end{DoxyCompactList}\item 
+static int \mbox{\hyperlink{chc_8c_ab3ddd709c120ad803c832dd2660dc650}{chc\+\_\+compress}} (\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$md, const unsigned char $\ast$buf)
+\item 
+static int \mbox{\hyperlink{chc_8c_a0ab89793ef966f546a9bb53dce0af51b}{\+\_\+chc\+\_\+process}} (\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$md, const unsigned char $\ast$in, unsigned long inlen)
+\begin{DoxyCompactList}\small\item\em Function for processing blocks. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{chc_8c_a4f153764eb37ed479ab5e362196a57a1}{chc\+\_\+process}} (\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$md, const unsigned char $\ast$in, unsigned long inlen)
+\begin{DoxyCompactList}\small\item\em Process a block of memory though the hash. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{chc_8c_a6c643b9e5929a5ce3426410fd4eceb59}{chc\+\_\+done}} (\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$md, unsigned char $\ast$out)
+\begin{DoxyCompactList}\small\item\em Terminate the hash to get the digest. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{chc_8c_a1467e832993ba079f27160687745fdcd}{chc\+\_\+test}} (void)
+\begin{DoxyCompactList}\small\item\em Self-\/test the hash. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{chc_8c_ac0cc1a31f23f8212fc12bbb46f8585e2}{cipher\+\_\+idx}} = -\/17
+\item 
+static int \mbox{\hyperlink{chc_8c_a29e7512f27e8b4d066b6a7e0a351c24c}{cipher\+\_\+blocksize}}
+\item 
+const struct \mbox{\hyperlink{structltc__hash__descriptor}{ltc\+\_\+hash\+\_\+descriptor}} \mbox{\hyperlink{chc_8c_aef428098fae27aadb653eed38ee249e4}{chc\+\_\+desc}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+C\+HC support. 
+
+(Tom St Denis) 
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{chc_8c_a8f972421c2d4f86318058d85c52a4d0f}\label{chc_8c_a8f972421c2d4f86318058d85c52a4d0f}} 
+\index{chc.c@{chc.c}!UNDEFED\_HASH@{UNDEFED\_HASH}}
+\index{UNDEFED\_HASH@{UNDEFED\_HASH}!chc.c@{chc.c}}
+\subsubsection{\texorpdfstring{UNDEFED\_HASH}{UNDEFED\_HASH}}
+{\footnotesize\ttfamily \#define U\+N\+D\+E\+F\+E\+D\+\_\+\+H\+A\+SH~-\/17}
+
+
+
+Definition at line 19 of file chc.\+c.
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{chc_8c_a0ab89793ef966f546a9bb53dce0af51b}\label{chc_8c_a0ab89793ef966f546a9bb53dce0af51b}} 
+\index{chc.c@{chc.c}!\_chc\_process@{\_chc\_process}}
+\index{\_chc\_process@{\_chc\_process}!chc.c@{chc.c}}
+\subsubsection{\texorpdfstring{\_chc\_process()}{\_chc\_process()}}
+{\footnotesize\ttfamily static int \+\_\+chc\+\_\+process (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$}]{md,  }\item[{const unsigned char $\ast$}]{in,  }\item[{unsigned long}]{inlen }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Function for processing blocks. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em md} & The hash state \\
+\hline
+{\em buf} & The data to hash \\
+\hline
+{\em len} & The length of the data (octets) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 164 of file chc.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{174 \{}
+
+\end{DoxyCode}
+
+
+Referenced by chc\+\_\+process().
+
+Here is the caller graph for this function\+:
+% FIG 1
+\mbox{\Hypertarget{chc_8c_ab3ddd709c120ad803c832dd2660dc650}\label{chc_8c_ab3ddd709c120ad803c832dd2660dc650}} 
+\index{chc.c@{chc.c}!chc\_compress@{chc\_compress}}
+\index{chc\_compress@{chc\_compress}!chc.c@{chc.c}}
+\subsubsection{\texorpdfstring{chc\_compress()}{chc\_compress()}}
+{\footnotesize\ttfamily static int chc\+\_\+compress (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$}]{md,  }\item[{const unsigned char $\ast$}]{buf }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 130 of file chc.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{131 \{}
+\DoxyCodeLine{132    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}  T[2][\mbox{\hyperlink{tomcrypt_8h_ab59933beebb2b857c992b93cf53f0d10}{MAXBLOCKSIZE}}];}
+\DoxyCodeLine{133    \mbox{\hyperlink{unionSymmetric__key}{symmetric\_key}} *key;}
+\DoxyCodeLine{134    \textcolor{keywordtype}{int}            err, x;}
+\DoxyCodeLine{135 }
+\DoxyCodeLine{136    \textcolor{keywordflow}{if} ((key = \mbox{\hyperlink{tomcrypt__cfg_8h_af363355f38fbaacdefacf270436ae1c9}{XMALLOC}}(\textcolor{keyword}{sizeof}(*key))) == NULL) \{}
+\DoxyCodeLine{137       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca0ce0d27adc7ea10b74b7ea904b8bfa82}{CRYPT\_MEM}};}
+\DoxyCodeLine{138    \}}
+\DoxyCodeLine{139    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[\mbox{\hyperlink{chc_8c_ac0cc1a31f23f8212fc12bbb46f8585e2}{cipher\_idx}}].\mbox{\hyperlink{multi2_8c_ad0625943f7d847668b869ed827c51d47}{setup}}(md->chc.state, \mbox{\hyperlink{chc_8c_a29e7512f27e8b4d066b6a7e0a351c24c}{cipher\_blocksize}}, 0, key)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{140       \mbox{\hyperlink{tomcrypt__cfg_8h_a260d66fc0690e0502cf3bfe7b5244b75}{XFREE}}(key);}
+\DoxyCodeLine{141       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{142    \}}
+\DoxyCodeLine{143    \mbox{\hyperlink{tomcrypt__cfg_8h_a7691dd48d60d5fc6daf2fa7ec4c55e12}{XMEMCPY}}(T[1], buf, \mbox{\hyperlink{chc_8c_a29e7512f27e8b4d066b6a7e0a351c24c}{cipher\_blocksize}});}
+\DoxyCodeLine{144    \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[\mbox{\hyperlink{chc_8c_ac0cc1a31f23f8212fc12bbb46f8585e2}{cipher\_idx}}].\mbox{\hyperlink{structltc__cipher__descriptor_a46141d86abe22a7c8d382c62a894dd63}{ecb\_encrypt}}(buf, T[0], key);}
+\DoxyCodeLine{145    \textcolor{keywordflow}{for} (x = 0; x < \mbox{\hyperlink{chc_8c_a29e7512f27e8b4d066b6a7e0a351c24c}{cipher\_blocksize}}; x++) \{}
+\DoxyCodeLine{146        md->chc.state[x] \string^= T[0][x] \string^ T[1][x];}
+\DoxyCodeLine{147    \}}
+\DoxyCodeLine{148 \textcolor{preprocessor}{\#ifdef LTC\_CLEAN\_STACK}}
+\DoxyCodeLine{149    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(T, \textcolor{keyword}{sizeof}(T));}
+\DoxyCodeLine{150    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(key, \textcolor{keyword}{sizeof}(*key));}
+\DoxyCodeLine{151 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{152    \mbox{\hyperlink{tomcrypt__cfg_8h_a260d66fc0690e0502cf3bfe7b5244b75}{XFREE}}(key);}
+\DoxyCodeLine{153    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{154 \}}
+
+\end{DoxyCode}
+
+
+References cipher\+\_\+blocksize, cipher\+\_\+descriptor, cipher\+\_\+idx, C\+R\+Y\+P\+T\+\_\+\+M\+EM, C\+R\+Y\+P\+T\+\_\+\+OK, ltc\+\_\+cipher\+\_\+descriptor\+::ecb\+\_\+encrypt, M\+A\+X\+B\+L\+O\+C\+K\+S\+I\+ZE, setup(), X\+F\+R\+E\+E(), X\+M\+A\+L\+L\+O\+C(), X\+M\+E\+M\+C\+P\+Y(), and zeromem().
+
+
+
+Referenced by chc\+\_\+done().
+
+Here is the call graph for this function\+:
+% FIG 2
+Here is the caller graph for this function\+:
+% FIG 3
+\mbox{\Hypertarget{chc_8c_a6c643b9e5929a5ce3426410fd4eceb59}\label{chc_8c_a6c643b9e5929a5ce3426410fd4eceb59}} 
+\index{chc.c@{chc.c}!chc\_done@{chc\_done}}
+\index{chc\_done@{chc\_done}!chc.c@{chc.c}}
+\subsubsection{\texorpdfstring{chc\_done()}{chc\_done()}}
+{\footnotesize\ttfamily int chc\+\_\+done (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$}]{md,  }\item[{unsigned char $\ast$}]{out }\end{DoxyParamCaption})}
+
+
+
+Terminate the hash to get the digest. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em md} & The hash state \\
+\hline
+{\em out} & \mbox{[}out\mbox{]} The destination of the hash (length of the block size of the block cipher) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 197 of file chc.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{198 \{}
+\DoxyCodeLine{199     \textcolor{keywordtype}{int} err;}
+\DoxyCodeLine{200 }
+\DoxyCodeLine{201     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(md   != NULL);}
+\DoxyCodeLine{202     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(out  != NULL);}
+\DoxyCodeLine{203 }
+\DoxyCodeLine{204     \textcolor{comment}{/* is the cipher valid? */}}
+\DoxyCodeLine{205     \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_ac30eb68934c4ca07205344dc9d159221}{cipher\_is\_valid}}(\mbox{\hyperlink{chc_8c_ac0cc1a31f23f8212fc12bbb46f8585e2}{cipher\_idx}})) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{206        \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{207     \}}
+\DoxyCodeLine{208     \textcolor{keywordflow}{if} (\mbox{\hyperlink{chc_8c_a29e7512f27e8b4d066b6a7e0a351c24c}{cipher\_blocksize}} != \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[\mbox{\hyperlink{chc_8c_ac0cc1a31f23f8212fc12bbb46f8585e2}{cipher\_idx}}].block\_length) \{}
+\DoxyCodeLine{209        \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca302b958f5664adeb427c22f57c9d90a4}{CRYPT\_INVALID\_CIPHER}};}
+\DoxyCodeLine{210     \}}
+\DoxyCodeLine{211 }
+\DoxyCodeLine{212     \textcolor{keywordflow}{if} (md->chc.curlen >= \textcolor{keyword}{sizeof}(md->chc.buf)) \{}
+\DoxyCodeLine{213        \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{214     \}}
+\DoxyCodeLine{215 }
+\DoxyCodeLine{216     \textcolor{comment}{/* increase the length of the message */}}
+\DoxyCodeLine{217     md->chc.length += md->chc.curlen * 8;}
+\DoxyCodeLine{218 }
+\DoxyCodeLine{219     \textcolor{comment}{/* append the '1' bit */}}
+\DoxyCodeLine{220     md->chc.buf[md->chc.curlen++] = (\textcolor{keywordtype}{unsigned} char)0x80;}
+\DoxyCodeLine{221 }
+\DoxyCodeLine{222     \textcolor{comment}{/* if the length is currently above l-8 bytes we append zeros}}
+\DoxyCodeLine{223 \textcolor{comment}{     * then compress.  Then we can fall back to padding zeros and length}}
+\DoxyCodeLine{224 \textcolor{comment}{     * encoding like normal.}}
+\DoxyCodeLine{225 \textcolor{comment}{     */}}
+\DoxyCodeLine{226     \textcolor{keywordflow}{if} (md->chc.curlen > (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long})(\mbox{\hyperlink{chc_8c_a29e7512f27e8b4d066b6a7e0a351c24c}{cipher\_blocksize}} - 8)) \{}
+\DoxyCodeLine{227         \textcolor{keywordflow}{while} (md->chc.curlen < (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long})\mbox{\hyperlink{chc_8c_a29e7512f27e8b4d066b6a7e0a351c24c}{cipher\_blocksize}}) \{}
+\DoxyCodeLine{228             md->chc.buf[md->chc.curlen++] = (\textcolor{keywordtype}{unsigned} char)0;}
+\DoxyCodeLine{229         \}}
+\DoxyCodeLine{230         \mbox{\hyperlink{chc_8c_ab3ddd709c120ad803c832dd2660dc650}{chc\_compress}}(md, md->chc.buf);}
+\DoxyCodeLine{231         md->chc.curlen = 0;}
+\DoxyCodeLine{232     \}}
+\DoxyCodeLine{233 }
+\DoxyCodeLine{234     \textcolor{comment}{/* pad upto l-8 bytes of zeroes */}}
+\DoxyCodeLine{235     \textcolor{keywordflow}{while} (md->chc.curlen < (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long})(\mbox{\hyperlink{chc_8c_a29e7512f27e8b4d066b6a7e0a351c24c}{cipher\_blocksize}} - 8)) \{}
+\DoxyCodeLine{236         md->chc.buf[md->chc.curlen++] = (\textcolor{keywordtype}{unsigned} char)0;}
+\DoxyCodeLine{237     \}}
+\DoxyCodeLine{238 }
+\DoxyCodeLine{239     \textcolor{comment}{/* store length */}}
+\DoxyCodeLine{240     STORE64L(md->chc.length, md->chc.buf+(\mbox{\hyperlink{chc_8c_a29e7512f27e8b4d066b6a7e0a351c24c}{cipher\_blocksize}}-8));}
+\DoxyCodeLine{241     \mbox{\hyperlink{chc_8c_ab3ddd709c120ad803c832dd2660dc650}{chc\_compress}}(md, md->chc.buf);}
+\DoxyCodeLine{242 }
+\DoxyCodeLine{243     \textcolor{comment}{/* copy output */}}
+\DoxyCodeLine{244     \mbox{\hyperlink{tomcrypt__cfg_8h_a7691dd48d60d5fc6daf2fa7ec4c55e12}{XMEMCPY}}(out, md->chc.state, \mbox{\hyperlink{chc_8c_a29e7512f27e8b4d066b6a7e0a351c24c}{cipher\_blocksize}});}
+\DoxyCodeLine{245 }
+\DoxyCodeLine{246 \textcolor{preprocessor}{\#ifdef LTC\_CLEAN\_STACK}}
+\DoxyCodeLine{247     \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(md, \textcolor{keyword}{sizeof}(\mbox{\hyperlink{unionHash__state}{hash\_state}}));}
+\DoxyCodeLine{248 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{249     \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{250 \}}
+
+\end{DoxyCode}
+
+
+References chc\+\_\+compress(), cipher\+\_\+blocksize, cipher\+\_\+descriptor, cipher\+\_\+idx, cipher\+\_\+is\+\_\+valid(), C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+A\+RG, C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+C\+I\+P\+H\+ER, C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, X\+M\+E\+M\+C\+P\+Y(), and zeromem().
+
+
+
+Referenced by chc\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 4
+Here is the caller graph for this function\+:
+% FIG 5
+\mbox{\Hypertarget{chc_8c_aa2b49244a7f42e648b80c07e443b31c7}\label{chc_8c_aa2b49244a7f42e648b80c07e443b31c7}} 
+\index{chc.c@{chc.c}!chc\_init@{chc\_init}}
+\index{chc\_init@{chc\_init}!chc.c@{chc.c}}
+\subsubsection{\texorpdfstring{chc\_init()}{chc\_init()}}
+{\footnotesize\ttfamily int chc\+\_\+init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$}]{md }\end{DoxyParamCaption})}
+
+
+
+Initialize the hash state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em md} & The hash state you wish to initialize \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 85 of file chc.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{86 \{}
+\DoxyCodeLine{87    \mbox{\hyperlink{unionSymmetric__key}{symmetric\_key}} *key;}
+\DoxyCodeLine{88    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}  buf[\mbox{\hyperlink{tomcrypt_8h_ab59933beebb2b857c992b93cf53f0d10}{MAXBLOCKSIZE}}];}
+\DoxyCodeLine{89    \textcolor{keywordtype}{int}            err;}
+\DoxyCodeLine{90 }
+\DoxyCodeLine{91    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(md != NULL);}
+\DoxyCodeLine{92 }
+\DoxyCodeLine{93    \textcolor{comment}{/* is the cipher valid? */}}
+\DoxyCodeLine{94    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_ac30eb68934c4ca07205344dc9d159221}{cipher\_is\_valid}}(\mbox{\hyperlink{chc_8c_ac0cc1a31f23f8212fc12bbb46f8585e2}{cipher\_idx}})) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{95       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{96    \}}
+\DoxyCodeLine{97 }
+\DoxyCodeLine{98    \textcolor{keywordflow}{if} (\mbox{\hyperlink{chc_8c_a29e7512f27e8b4d066b6a7e0a351c24c}{cipher\_blocksize}} != \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[\mbox{\hyperlink{chc_8c_ac0cc1a31f23f8212fc12bbb46f8585e2}{cipher\_idx}}].block\_length) \{}
+\DoxyCodeLine{99       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca302b958f5664adeb427c22f57c9d90a4}{CRYPT\_INVALID\_CIPHER}};}
+\DoxyCodeLine{100    \}}
+\DoxyCodeLine{101 }
+\DoxyCodeLine{102    \textcolor{keywordflow}{if} ((key = \mbox{\hyperlink{tomcrypt__cfg_8h_af363355f38fbaacdefacf270436ae1c9}{XMALLOC}}(\textcolor{keyword}{sizeof}(*key))) == NULL) \{}
+\DoxyCodeLine{103       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca0ce0d27adc7ea10b74b7ea904b8bfa82}{CRYPT\_MEM}};}
+\DoxyCodeLine{104    \}}
+\DoxyCodeLine{105 }
+\DoxyCodeLine{106    \textcolor{comment}{/* zero key and what not */}}
+\DoxyCodeLine{107    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(buf, \mbox{\hyperlink{chc_8c_a29e7512f27e8b4d066b6a7e0a351c24c}{cipher\_blocksize}});}
+\DoxyCodeLine{108    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[\mbox{\hyperlink{chc_8c_ac0cc1a31f23f8212fc12bbb46f8585e2}{cipher\_idx}}].\mbox{\hyperlink{multi2_8c_ad0625943f7d847668b869ed827c51d47}{setup}}(buf, \mbox{\hyperlink{chc_8c_a29e7512f27e8b4d066b6a7e0a351c24c}{cipher\_blocksize}}, 0, key)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{109       \mbox{\hyperlink{tomcrypt__cfg_8h_a260d66fc0690e0502cf3bfe7b5244b75}{XFREE}}(key);}
+\DoxyCodeLine{110       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{111    \}}
+\DoxyCodeLine{112 }
+\DoxyCodeLine{113    \textcolor{comment}{/* encrypt zero block */}}
+\DoxyCodeLine{114    \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[\mbox{\hyperlink{chc_8c_ac0cc1a31f23f8212fc12bbb46f8585e2}{cipher\_idx}}].\mbox{\hyperlink{structltc__cipher__descriptor_a46141d86abe22a7c8d382c62a894dd63}{ecb\_encrypt}}(buf, md->chc.state, key);}
+\DoxyCodeLine{115 }
+\DoxyCodeLine{116    \textcolor{comment}{/* zero other members */}}
+\DoxyCodeLine{117    md->chc.length = 0;}
+\DoxyCodeLine{118    md->chc.curlen = 0;}
+\DoxyCodeLine{119    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(md->chc.buf, \textcolor{keyword}{sizeof}(md->chc.buf));}
+\DoxyCodeLine{120    \mbox{\hyperlink{tomcrypt__cfg_8h_a260d66fc0690e0502cf3bfe7b5244b75}{XFREE}}(key);}
+\DoxyCodeLine{121    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{122 \}}
+
+\end{DoxyCode}
+
+
+References cipher\+\_\+blocksize, cipher\+\_\+descriptor, cipher\+\_\+idx, cipher\+\_\+is\+\_\+valid(), C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+C\+I\+P\+H\+ER, C\+R\+Y\+P\+T\+\_\+\+M\+EM, C\+R\+Y\+P\+T\+\_\+\+OK, ltc\+\_\+cipher\+\_\+descriptor\+::ecb\+\_\+encrypt, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, M\+A\+X\+B\+L\+O\+C\+K\+S\+I\+ZE, setup(), X\+F\+R\+E\+E(), X\+M\+A\+L\+L\+O\+C(), and zeromem().
+
+
+
+Referenced by chc\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 6
+Here is the caller graph for this function\+:
+% FIG 7
+\mbox{\Hypertarget{chc_8c_a4f153764eb37ed479ab5e362196a57a1}\label{chc_8c_a4f153764eb37ed479ab5e362196a57a1}} 
+\index{chc.c@{chc.c}!chc\_process@{chc\_process}}
+\index{chc\_process@{chc\_process}!chc.c@{chc.c}}
+\subsubsection{\texorpdfstring{chc\_process()}{chc\_process()}}
+{\footnotesize\ttfamily int chc\+\_\+process (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$}]{md,  }\item[{const unsigned char $\ast$}]{in,  }\item[{unsigned long}]{inlen }\end{DoxyParamCaption})}
+
+
+
+Process a block of memory though the hash. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em md} & The hash state \\
+\hline
+{\em in} & The data to hash \\
+\hline
+{\em inlen} & The length of the data (octets) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 173 of file chc.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{174 \{}
+\DoxyCodeLine{175    \textcolor{keywordtype}{int} err;}
+\DoxyCodeLine{176 }
+\DoxyCodeLine{177    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(md   != NULL);}
+\DoxyCodeLine{178    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(in  != NULL);}
+\DoxyCodeLine{179 }
+\DoxyCodeLine{180    \textcolor{comment}{/* is the cipher valid? */}}
+\DoxyCodeLine{181    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_ac30eb68934c4ca07205344dc9d159221}{cipher\_is\_valid}}(\mbox{\hyperlink{chc_8c_ac0cc1a31f23f8212fc12bbb46f8585e2}{cipher\_idx}})) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{182       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{183    \}}
+\DoxyCodeLine{184    \textcolor{keywordflow}{if} (\mbox{\hyperlink{chc_8c_a29e7512f27e8b4d066b6a7e0a351c24c}{cipher\_blocksize}} != \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[\mbox{\hyperlink{chc_8c_ac0cc1a31f23f8212fc12bbb46f8585e2}{cipher\_idx}}].block\_length) \{}
+\DoxyCodeLine{185       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca302b958f5664adeb427c22f57c9d90a4}{CRYPT\_INVALID\_CIPHER}};}
+\DoxyCodeLine{186    \}}
+\DoxyCodeLine{187 }
+\DoxyCodeLine{188    \textcolor{keywordflow}{return} \mbox{\hyperlink{chc_8c_a0ab89793ef966f546a9bb53dce0af51b}{\_chc\_process}}(md, in, inlen);}
+\DoxyCodeLine{189 \}}
+
+\end{DoxyCode}
+
+
+References \+\_\+chc\+\_\+process(), cipher\+\_\+blocksize, cipher\+\_\+descriptor, cipher\+\_\+idx, cipher\+\_\+is\+\_\+valid(), C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+C\+I\+P\+H\+ER, C\+R\+Y\+P\+T\+\_\+\+OK, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+
+
+Referenced by chc\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 8
+Here is the caller graph for this function\+:
+% FIG 9
+\mbox{\Hypertarget{chc_8c_a3f5fb5f884cb2e504af6b4d56db93f85}\label{chc_8c_a3f5fb5f884cb2e504af6b4d56db93f85}} 
+\index{chc.c@{chc.c}!chc\_register@{chc\_register}}
+\index{chc\_register@{chc\_register}!chc.c@{chc.c}}
+\subsubsection{\texorpdfstring{chc\_register()}{chc\_register()}}
+{\footnotesize\ttfamily int chc\+\_\+register (\begin{DoxyParamCaption}\item[{int}]{cipher }\end{DoxyParamCaption})}
+
+
+
+Initialize the C\+HC state with a given cipher. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cipher} & The index of the cipher you wish to bind \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 40 of file chc.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{41 \{}
+\DoxyCodeLine{42    \textcolor{keywordtype}{int} err, kl, idx;}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_ac30eb68934c4ca07205344dc9d159221}{cipher\_is\_valid}}(cipher)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{45       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{46    \}}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48    \textcolor{comment}{/* will it be valid? */}}
+\DoxyCodeLine{49    kl = \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[cipher].\mbox{\hyperlink{structltc__cipher__descriptor_afa2af7325fd3a834910dd92e8c9acf49}{block\_length}};}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{51    \textcolor{comment}{/* must be >64 bit block */}}
+\DoxyCodeLine{52    \textcolor{keywordflow}{if} (kl <= 8) \{}
+\DoxyCodeLine{53       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca302b958f5664adeb427c22f57c9d90a4}{CRYPT\_INVALID\_CIPHER}};}
+\DoxyCodeLine{54    \}}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{56    \textcolor{comment}{/* can we use the ideal keysize? */}}
+\DoxyCodeLine{57    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[cipher].keysize(\&kl)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{58       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{59    \}}
+\DoxyCodeLine{60    \textcolor{comment}{/* we require that key size == block size be a valid choice */}}
+\DoxyCodeLine{61    \textcolor{keywordflow}{if} (kl != \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[cipher].block\_length) \{}
+\DoxyCodeLine{62       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca302b958f5664adeb427c22f57c9d90a4}{CRYPT\_INVALID\_CIPHER}};}
+\DoxyCodeLine{63    \}}
+\DoxyCodeLine{64 }
+\DoxyCodeLine{65    \textcolor{comment}{/* determine if chc\_hash has been register\_hash'ed already */}}
+\DoxyCodeLine{66    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__hash_8h_a79647f22bf48bfa7de03fe5fc958c846}{hash\_is\_valid}}(idx = \mbox{\hyperlink{tomcrypt__hash_8h_a1818254b9c8f09047af3b66ea7f5852b}{find\_hash}}(\textcolor{stringliteral}{"chc\_hash"}))) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{67       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{68    \}}
+\DoxyCodeLine{69 }
+\DoxyCodeLine{70    \textcolor{comment}{/* store into descriptor */}}
+\DoxyCodeLine{71    \mbox{\hyperlink{tomcrypt__hash_8h_ab0e4f02e30a47da79baa9240e79cde92}{hash\_descriptor}}[idx].\mbox{\hyperlink{structltc__hash__descriptor_a49bd027653ff21408cb2661748d719ef}{hashsize}}  =}
+\DoxyCodeLine{72    \mbox{\hyperlink{tomcrypt__hash_8h_ab0e4f02e30a47da79baa9240e79cde92}{hash\_descriptor}}[idx].\mbox{\hyperlink{structltc__hash__descriptor_ad0ac47c32e536997b59a5571acae2251}{blocksize}} = \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[cipher].\mbox{\hyperlink{structltc__cipher__descriptor_afa2af7325fd3a834910dd92e8c9acf49}{block\_length}};}
+\DoxyCodeLine{73 }
+\DoxyCodeLine{74    \textcolor{comment}{/* store the idx and block size */}}
+\DoxyCodeLine{75    \mbox{\hyperlink{chc_8c_ac0cc1a31f23f8212fc12bbb46f8585e2}{cipher\_idx}}       = cipher;}
+\DoxyCodeLine{76    \mbox{\hyperlink{chc_8c_a29e7512f27e8b4d066b6a7e0a351c24c}{cipher\_blocksize}} = \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[cipher].\mbox{\hyperlink{structltc__cipher__descriptor_afa2af7325fd3a834910dd92e8c9acf49}{block\_length}};}
+\DoxyCodeLine{77    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{78 \}}
+
+\end{DoxyCode}
+
+
+References ltc\+\_\+cipher\+\_\+descriptor\+::block\+\_\+length, ltc\+\_\+hash\+\_\+descriptor\+::blocksize, cipher\+\_\+blocksize, cipher\+\_\+descriptor, cipher\+\_\+idx, cipher\+\_\+is\+\_\+valid(), C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+C\+I\+P\+H\+ER, C\+R\+Y\+P\+T\+\_\+\+OK, find\+\_\+hash(), hash\+\_\+descriptor, hash\+\_\+is\+\_\+valid(), and ltc\+\_\+hash\+\_\+descriptor\+::hashsize.
+
+
+
+Referenced by chc\+\_\+test(), and register\+\_\+all\+\_\+hashes().
+
+Here is the call graph for this function\+:
+% FIG 10
+Here is the caller graph for this function\+:
+% FIG 11
+\mbox{\Hypertarget{chc_8c_a1467e832993ba079f27160687745fdcd}\label{chc_8c_a1467e832993ba079f27160687745fdcd}} 
+\index{chc.c@{chc.c}!chc\_test@{chc\_test}}
+\index{chc\_test@{chc\_test}!chc.c@{chc.c}}
+\subsubsection{\texorpdfstring{chc\_test()}{chc\_test()}}
+{\footnotesize\ttfamily int chc\+\_\+test (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Self-\/test the hash. 
+
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful, C\+R\+Y\+P\+T\+\_\+\+N\+OP if self-\/tests have been disabled 
+\end{DoxyReturn}
+
+
+Definition at line 256 of file chc.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{257 \{}
+\DoxyCodeLine{258 \textcolor{preprocessor}{\#ifndef LTC\_TEST}}
+\DoxyCodeLine{259    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cac43a7799c7fd5f515172da6cfc0f9cf5}{CRYPT\_NOP}};}
+\DoxyCodeLine{260 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{261    \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{262       \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *msg,}
+\DoxyCodeLine{263                      hash[\mbox{\hyperlink{tomcrypt_8h_ab59933beebb2b857c992b93cf53f0d10}{MAXBLOCKSIZE}}];}
+\DoxyCodeLine{264       \textcolor{keywordtype}{int}            \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}};}
+\DoxyCodeLine{265    \} tests[] = \{}
+\DoxyCodeLine{266 \{}
+\DoxyCodeLine{267    (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *)\textcolor{stringliteral}{"hello world"},}
+\DoxyCodeLine{268    \{ 0xcf, 0x57, 0x9d, 0xc3, 0x0a, 0x0e, 0xea, 0x61,}
+\DoxyCodeLine{269      0x0d, 0x54, 0x47, 0xc4, 0x3c, 0x06, 0xf5, 0x4e \},}
+\DoxyCodeLine{270    16}
+\DoxyCodeLine{271 \}}
+\DoxyCodeLine{272 \};}
+\DoxyCodeLine{273    \textcolor{keywordtype}{int} i, oldhashidx, idx;}
+\DoxyCodeLine{274    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} tmp[\mbox{\hyperlink{tomcrypt_8h_ab59933beebb2b857c992b93cf53f0d10}{MAXBLOCKSIZE}}];}
+\DoxyCodeLine{275    \mbox{\hyperlink{unionHash__state}{hash\_state}} md;}
+\DoxyCodeLine{276 }
+\DoxyCodeLine{277    \textcolor{comment}{/* AES can be under rijndael or aes... try to find it */}}
+\DoxyCodeLine{278    \textcolor{keywordflow}{if} ((idx = \mbox{\hyperlink{tomcrypt__cipher_8h_af5c3882342fd65a17239cd04bfdf44e2}{find\_cipher}}(\textcolor{stringliteral}{"aes"})) == -1) \{}
+\DoxyCodeLine{279       \textcolor{keywordflow}{if} ((idx = \mbox{\hyperlink{tomcrypt__cipher_8h_af5c3882342fd65a17239cd04bfdf44e2}{find\_cipher}}(\textcolor{stringliteral}{"rijndael"})) == -1) \{}
+\DoxyCodeLine{280          \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cac43a7799c7fd5f515172da6cfc0f9cf5}{CRYPT\_NOP}};}
+\DoxyCodeLine{281       \}}
+\DoxyCodeLine{282    \}}
+\DoxyCodeLine{283    oldhashidx = \mbox{\hyperlink{chc_8c_ac0cc1a31f23f8212fc12bbb46f8585e2}{cipher\_idx}};}
+\DoxyCodeLine{284    \mbox{\hyperlink{chc_8c_a3f5fb5f884cb2e504af6b4d56db93f85}{chc\_register}}(idx);}
+\DoxyCodeLine{285 }
+\DoxyCodeLine{286    \textcolor{keywordflow}{for} (i = 0; i < (int)(\textcolor{keyword}{sizeof}(tests)/\textcolor{keyword}{sizeof}(tests[0])); i++) \{}
+\DoxyCodeLine{287        \mbox{\hyperlink{chc_8c_aa2b49244a7f42e648b80c07e443b31c7}{chc\_init}}(\&md);}
+\DoxyCodeLine{288        \mbox{\hyperlink{chc_8c_a4f153764eb37ed479ab5e362196a57a1}{chc\_process}}(\&md, tests[i].msg, strlen((\textcolor{keywordtype}{char} *)tests[i].msg));}
+\DoxyCodeLine{289        \mbox{\hyperlink{chc_8c_a6c643b9e5929a5ce3426410fd4eceb59}{chc\_done}}(\&md, tmp);}
+\DoxyCodeLine{290        \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(tmp, tests[i].\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}, tests[i].hash, tests[i].\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}, \textcolor{stringliteral}{"CHC"}, i)) \{}
+\DoxyCodeLine{291           \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{292        \}}
+\DoxyCodeLine{293    \}}
+\DoxyCodeLine{294    \textcolor{keywordflow}{if} (oldhashidx != \mbox{\hyperlink{chc_8c_a8f972421c2d4f86318058d85c52a4d0f}{UNDEFED\_HASH}}) \{}
+\DoxyCodeLine{295       \mbox{\hyperlink{chc_8c_a3f5fb5f884cb2e504af6b4d56db93f85}{chc\_register}}(oldhashidx);}
+\DoxyCodeLine{296    \}}
+\DoxyCodeLine{297 }
+\DoxyCodeLine{298    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{299 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{300 \}}
+
+\end{DoxyCode}
+
+
+References chc\+\_\+done(), chc\+\_\+init(), chc\+\_\+process(), chc\+\_\+register(), cipher\+\_\+idx, compare\+\_\+testvector(), C\+R\+Y\+P\+T\+\_\+\+F\+A\+I\+L\+\_\+\+T\+E\+S\+T\+V\+E\+C\+T\+OR, C\+R\+Y\+P\+T\+\_\+\+N\+OP, C\+R\+Y\+P\+T\+\_\+\+OK, find\+\_\+cipher(), len, M\+A\+X\+B\+L\+O\+C\+K\+S\+I\+ZE, and U\+N\+D\+E\+F\+E\+D\+\_\+\+H\+A\+SH.
+
+Here is the call graph for this function\+:
+% FIG 12
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{chc_8c_aef428098fae27aadb653eed38ee249e4}\label{chc_8c_aef428098fae27aadb653eed38ee249e4}} 
+\index{chc.c@{chc.c}!chc\_desc@{chc\_desc}}
+\index{chc\_desc@{chc\_desc}!chc.c@{chc.c}}
+\subsubsection{\texorpdfstring{chc\_desc}{chc\_desc}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structltc__hash__descriptor}{ltc\+\_\+hash\+\_\+descriptor}} chc\+\_\+desc}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{   \textcolor{stringliteral}{"chc\_hash"}, 12, 0, 0, \{ 0 \}, 0,}
+\DoxyCodeLine{   \&\mbox{\hyperlink{chc_8c_aa2b49244a7f42e648b80c07e443b31c7}{chc\_init}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{chc_8c_a4f153764eb37ed479ab5e362196a57a1}{chc\_process}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{chc_8c_a6c643b9e5929a5ce3426410fd4eceb59}{chc\_done}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{chc_8c_a1467e832993ba079f27160687745fdcd}{chc\_test}},}
+\DoxyCodeLine{   NULL}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line 26 of file chc.\+c.
+
+
+
+Referenced by register\+\_\+all\+\_\+hashes().
+
+\mbox{\Hypertarget{chc_8c_a29e7512f27e8b4d066b6a7e0a351c24c}\label{chc_8c_a29e7512f27e8b4d066b6a7e0a351c24c}} 
+\index{chc.c@{chc.c}!cipher\_blocksize@{cipher\_blocksize}}
+\index{cipher\_blocksize@{cipher\_blocksize}!chc.c@{chc.c}}
+\subsubsection{\texorpdfstring{cipher\_blocksize}{cipher\_blocksize}}
+{\footnotesize\ttfamily int cipher\+\_\+blocksize\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 22 of file chc.\+c.
+
+
+
+Referenced by chc\+\_\+compress(), chc\+\_\+done(), chc\+\_\+init(), chc\+\_\+process(), and chc\+\_\+register().
+
+\mbox{\Hypertarget{chc_8c_ac0cc1a31f23f8212fc12bbb46f8585e2}\label{chc_8c_ac0cc1a31f23f8212fc12bbb46f8585e2}} 
+\index{chc.c@{chc.c}!cipher\_idx@{cipher\_idx}}
+\index{cipher\_idx@{cipher\_idx}!chc.c@{chc.c}}
+\subsubsection{\texorpdfstring{cipher\_idx}{cipher\_idx}}
+{\footnotesize\ttfamily int cipher\+\_\+idx = -\/17\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 22 of file chc.\+c.
+
+
+
+Referenced by chc\+\_\+compress(), chc\+\_\+done(), chc\+\_\+init(), chc\+\_\+process(), chc\+\_\+register(), and chc\+\_\+test().
+

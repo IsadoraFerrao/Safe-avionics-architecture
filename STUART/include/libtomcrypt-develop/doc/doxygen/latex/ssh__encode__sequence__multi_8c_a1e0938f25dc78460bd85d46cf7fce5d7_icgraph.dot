@@ -1,0 +1,10 @@
+digraph "ssh_encode_sequence_multi"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node1 [label="ssh_encode_sequence\l_multi",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Encode a SSH sequence using a VA list."];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node2 [label="ecc_sign_hash_ex",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ecc__sign__hash_8c.html#a96afaf55b03386145e3061fc42a9636b",tooltip="Sign a message digest."];
+}

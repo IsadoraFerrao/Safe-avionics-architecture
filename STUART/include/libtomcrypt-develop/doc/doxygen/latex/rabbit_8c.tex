@@ -1,0 +1,580 @@
+\hypertarget{rabbit_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/stream/rabbit/rabbit.c File Reference}
+\label{rabbit_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/stream/rabbit/rabbit.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/stream/rabbit/rabbit.c}}
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for rabbit.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} \mbox{\hyperlink{rabbit_8c_abe3d301de5a1b8aace3b7d5e71fabe10}{\+\_\+rabbit\+\_\+g\+\_\+func}} (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} x)
+\item 
+static void \mbox{\hyperlink{rabbit_8c_a84f7be2f4dd286fbda438d0d94d5db8f}{\+\_\+rabbit\+\_\+next\+\_\+state}} (rabbit\+\_\+ctx $\ast$p\+\_\+instance)
+\item 
+static void \mbox{\hyperlink{rabbit_8c_a5908dd91ace42986a5ee525efe536246}{\+\_\+rabbit\+\_\+gen\+\_\+1\+\_\+block}} (rabbit\+\_\+state $\ast$st, unsigned char $\ast$out)
+\item 
+int \mbox{\hyperlink{rabbit_8c_ac522e3bb890d2fe32276a4a596371461}{rabbit\+\_\+setup}} (rabbit\+\_\+state $\ast$st, const unsigned char $\ast$key, unsigned long keylen)
+\item 
+int \mbox{\hyperlink{rabbit_8c_ac6f6bf7b05fa527a8fed39dcae781cec}{rabbit\+\_\+setiv}} (rabbit\+\_\+state $\ast$st, const unsigned char $\ast$iv, unsigned long ivlen)
+\item 
+int \mbox{\hyperlink{rabbit_8c_a5391d40531a20557491ef7d58fb93cda}{rabbit\+\_\+crypt}} (rabbit\+\_\+state $\ast$st, const unsigned char $\ast$in, unsigned long inlen, unsigned char $\ast$out)
+\item 
+int \mbox{\hyperlink{rabbit_8c_a40bafb857ec94e37f6e74bf92cbb5e44}{rabbit\+\_\+keystream}} (rabbit\+\_\+state $\ast$st, unsigned char $\ast$out, unsigned long outlen)
+\item 
+int \mbox{\hyperlink{rabbit_8c_a931b3a1f3f35366a90bc7c7b994cac92}{rabbit\+\_\+done}} (rabbit\+\_\+state $\ast$st)
+\item 
+int \mbox{\hyperlink{rabbit_8c_ab40e398f9527a72a8ae06d7ceb310fe0}{rabbit\+\_\+test}} (void)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{rabbit_8c_abe3d301de5a1b8aace3b7d5e71fabe10}\label{rabbit_8c_abe3d301de5a1b8aace3b7d5e71fabe10}} 
+\index{rabbit.c@{rabbit.c}!\_rabbit\_g\_func@{\_rabbit\_g\_func}}
+\index{\_rabbit\_g\_func@{\_rabbit\_g\_func}!rabbit.c@{rabbit.c}}
+\subsubsection{\texorpdfstring{\_rabbit\_g\_func()}{\_rabbit\_g\_func()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} \+\_\+rabbit\+\_\+g\+\_\+func (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}}}]{x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 78 of file rabbit.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{79 \{}
+\DoxyCodeLine{80    \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} a, b, h, l;}
+\DoxyCodeLine{81 }
+\DoxyCodeLine{82    \textcolor{comment}{/* Construct high and low argument for squaring */}}
+\DoxyCodeLine{83    a = x \&  0xFFFF;}
+\DoxyCodeLine{84    b = x >> 16;}
+\DoxyCodeLine{85 }
+\DoxyCodeLine{86    \textcolor{comment}{/* Calculate high and low result of squaring */}}
+\DoxyCodeLine{87    h = ((((\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})(a*a)>>17) + (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})(a*b))>>15) + b*b;}
+\DoxyCodeLine{88    l = x * x;}
+\DoxyCodeLine{89 }
+\DoxyCodeLine{90    \textcolor{comment}{/* Return high XOR low */}}
+\DoxyCodeLine{91    \textcolor{keywordflow}{return} (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})(h\string^l);}
+\DoxyCodeLine{92 \}}
+
+\end{DoxyCode}
+
+
+Referenced by \+\_\+rabbit\+\_\+next\+\_\+state().
+
+Here is the caller graph for this function\+:
+% FIG 1
+\mbox{\Hypertarget{rabbit_8c_a5908dd91ace42986a5ee525efe536246}\label{rabbit_8c_a5908dd91ace42986a5ee525efe536246}} 
+\index{rabbit.c@{rabbit.c}!\_rabbit\_gen\_1\_block@{\_rabbit\_gen\_1\_block}}
+\index{\_rabbit\_gen\_1\_block@{\_rabbit\_gen\_1\_block}!rabbit.c@{rabbit.c}}
+\subsubsection{\texorpdfstring{\_rabbit\_gen\_1\_block()}{\_rabbit\_gen\_1\_block()}}
+{\footnotesize\ttfamily static void \+\_\+rabbit\+\_\+gen\+\_\+1\+\_\+block (\begin{DoxyParamCaption}\item[{rabbit\+\_\+state $\ast$}]{st,  }\item[{unsigned char $\ast$}]{out }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 135 of file rabbit.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{136 \{}
+\DoxyCodeLine{137     \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} *ptr;}
+\DoxyCodeLine{138 }
+\DoxyCodeLine{139     \textcolor{comment}{/* Iterate the work context once */}}
+\DoxyCodeLine{140     \mbox{\hyperlink{rabbit_8c_a84f7be2f4dd286fbda438d0d94d5db8f}{\_rabbit\_next\_state}}(\&(st->work\_ctx));}
+\DoxyCodeLine{141 }
+\DoxyCodeLine{142     \textcolor{comment}{/* Generate 16 bytes of pseudo-random data */}}
+\DoxyCodeLine{143     ptr = (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}}*)\&(st->work\_ctx.x);}
+\DoxyCodeLine{144     STORE32L((ptr[0] \string^ (ptr[5]>>16) \string^ (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})(ptr[3]<<16)), out+ 0);}
+\DoxyCodeLine{145     STORE32L((ptr[2] \string^ (ptr[7]>>16) \string^ (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})(ptr[5]<<16)), out+ 4);}
+\DoxyCodeLine{146     STORE32L((ptr[4] \string^ (ptr[1]>>16) \string^ (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})(ptr[7]<<16)), out+ 8);}
+\DoxyCodeLine{147     STORE32L((ptr[6] \string^ (ptr[3]>>16) \string^ (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})(ptr[1]<<16)), out+12);}
+\DoxyCodeLine{148 \}}
+
+\end{DoxyCode}
+
+
+References \+\_\+rabbit\+\_\+next\+\_\+state().
+
+
+
+Referenced by rabbit\+\_\+crypt().
+
+Here is the call graph for this function\+:
+% FIG 2
+Here is the caller graph for this function\+:
+% FIG 3
+\mbox{\Hypertarget{rabbit_8c_a84f7be2f4dd286fbda438d0d94d5db8f}\label{rabbit_8c_a84f7be2f4dd286fbda438d0d94d5db8f}} 
+\index{rabbit.c@{rabbit.c}!\_rabbit\_next\_state@{\_rabbit\_next\_state}}
+\index{\_rabbit\_next\_state@{\_rabbit\_next\_state}!rabbit.c@{rabbit.c}}
+\subsubsection{\texorpdfstring{\_rabbit\_next\_state()}{\_rabbit\_next\_state()}}
+{\footnotesize\ttfamily static void \+\_\+rabbit\+\_\+next\+\_\+state (\begin{DoxyParamCaption}\item[{rabbit\+\_\+ctx $\ast$}]{p\+\_\+instance }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 97 of file rabbit.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{98 \{}
+\DoxyCodeLine{99    \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} g[8], c\_old[8], i;}
+\DoxyCodeLine{100 }
+\DoxyCodeLine{101    \textcolor{comment}{/* Save old counter values */}}
+\DoxyCodeLine{102    \textcolor{keywordflow}{for} (i=0; i<8; i++) \{}
+\DoxyCodeLine{103       c\_old[i] = p\_instance->c[i];}
+\DoxyCodeLine{104    \}}
+\DoxyCodeLine{105 }
+\DoxyCodeLine{106    \textcolor{comment}{/* Calculate new counter values */}}
+\DoxyCodeLine{107    p\_instance->c[0] = (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})(p\_instance->c[0] + 0x4D34D34D + p\_instance->carry);}
+\DoxyCodeLine{108    p\_instance->c[1] = (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})(p\_instance->c[1] + 0xD34D34D3 + (p\_instance->c[0] < c\_old[0]));}
+\DoxyCodeLine{109    p\_instance->c[2] = (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})(p\_instance->c[2] + 0x34D34D34 + (p\_instance->c[1] < c\_old[1]));}
+\DoxyCodeLine{110    p\_instance->c[3] = (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})(p\_instance->c[3] + 0x4D34D34D + (p\_instance->c[2] < c\_old[2]));}
+\DoxyCodeLine{111    p\_instance->c[4] = (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})(p\_instance->c[4] + 0xD34D34D3 + (p\_instance->c[3] < c\_old[3]));}
+\DoxyCodeLine{112    p\_instance->c[5] = (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})(p\_instance->c[5] + 0x34D34D34 + (p\_instance->c[4] < c\_old[4]));}
+\DoxyCodeLine{113    p\_instance->c[6] = (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})(p\_instance->c[6] + 0x4D34D34D + (p\_instance->c[5] < c\_old[5]));}
+\DoxyCodeLine{114    p\_instance->c[7] = (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})(p\_instance->c[7] + 0xD34D34D3 + (p\_instance->c[6] < c\_old[6]));}
+\DoxyCodeLine{115    p\_instance->carry = (p\_instance->c[7] < c\_old[7]);}
+\DoxyCodeLine{116 }
+\DoxyCodeLine{117    \textcolor{comment}{/* Calculate the g-values */}}
+\DoxyCodeLine{118    \textcolor{keywordflow}{for} (i=0;i<8;i++) \{}
+\DoxyCodeLine{119       g[i] = \mbox{\hyperlink{rabbit_8c_abe3d301de5a1b8aace3b7d5e71fabe10}{\_rabbit\_g\_func}}((\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})(p\_instance->x[i] + p\_instance->c[i]));}
+\DoxyCodeLine{120    \}}
+\DoxyCodeLine{121 }
+\DoxyCodeLine{122    \textcolor{comment}{/* Calculate new state values */}}
+\DoxyCodeLine{123    p\_instance->x[0] = (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})(g[0] + \mbox{\hyperlink{tomcrypt__macros_8h_a39d625dc0b148466a72c13737e063d86}{ROLc}}(g[7],16) + \mbox{\hyperlink{tomcrypt__macros_8h_a39d625dc0b148466a72c13737e063d86}{ROLc}}(g[6], 16));}
+\DoxyCodeLine{124    p\_instance->x[1] = (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})(g[1] + \mbox{\hyperlink{tomcrypt__macros_8h_a39d625dc0b148466a72c13737e063d86}{ROLc}}(g[0], 8) + g[7]);}
+\DoxyCodeLine{125    p\_instance->x[2] = (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})(g[2] + \mbox{\hyperlink{tomcrypt__macros_8h_a39d625dc0b148466a72c13737e063d86}{ROLc}}(g[1],16) + \mbox{\hyperlink{tomcrypt__macros_8h_a39d625dc0b148466a72c13737e063d86}{ROLc}}(g[0], 16));}
+\DoxyCodeLine{126    p\_instance->x[3] = (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})(g[3] + \mbox{\hyperlink{tomcrypt__macros_8h_a39d625dc0b148466a72c13737e063d86}{ROLc}}(g[2], 8) + g[1]);}
+\DoxyCodeLine{127    p\_instance->x[4] = (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})(g[4] + \mbox{\hyperlink{tomcrypt__macros_8h_a39d625dc0b148466a72c13737e063d86}{ROLc}}(g[3],16) + \mbox{\hyperlink{tomcrypt__macros_8h_a39d625dc0b148466a72c13737e063d86}{ROLc}}(g[2], 16));}
+\DoxyCodeLine{128    p\_instance->x[5] = (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})(g[5] + \mbox{\hyperlink{tomcrypt__macros_8h_a39d625dc0b148466a72c13737e063d86}{ROLc}}(g[4], 8) + g[3]);}
+\DoxyCodeLine{129    p\_instance->x[6] = (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})(g[6] + \mbox{\hyperlink{tomcrypt__macros_8h_a39d625dc0b148466a72c13737e063d86}{ROLc}}(g[5],16) + \mbox{\hyperlink{tomcrypt__macros_8h_a39d625dc0b148466a72c13737e063d86}{ROLc}}(g[4], 16));}
+\DoxyCodeLine{130    p\_instance->x[7] = (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})(g[7] + \mbox{\hyperlink{tomcrypt__macros_8h_a39d625dc0b148466a72c13737e063d86}{ROLc}}(g[6], 8) + g[5]);}
+\DoxyCodeLine{131 \}}
+
+\end{DoxyCode}
+
+
+References \+\_\+rabbit\+\_\+g\+\_\+func(), and R\+O\+Lc.
+
+
+
+Referenced by \+\_\+rabbit\+\_\+gen\+\_\+1\+\_\+block(), rabbit\+\_\+setiv(), and rabbit\+\_\+setup().
+
+Here is the call graph for this function\+:
+% FIG 4
+Here is the caller graph for this function\+:
+% FIG 5
+\mbox{\Hypertarget{rabbit_8c_a5391d40531a20557491ef7d58fb93cda}\label{rabbit_8c_a5391d40531a20557491ef7d58fb93cda}} 
+\index{rabbit.c@{rabbit.c}!rabbit\_crypt@{rabbit\_crypt}}
+\index{rabbit\_crypt@{rabbit\_crypt}!rabbit.c@{rabbit.c}}
+\subsubsection{\texorpdfstring{rabbit\_crypt()}{rabbit\_crypt()}}
+{\footnotesize\ttfamily int rabbit\+\_\+crypt (\begin{DoxyParamCaption}\item[{rabbit\+\_\+state $\ast$}]{st,  }\item[{const unsigned char $\ast$}]{in,  }\item[{unsigned long}]{inlen,  }\item[{unsigned char $\ast$}]{out }\end{DoxyParamCaption})}
+
+
+
+Definition at line 277 of file rabbit.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{278 \{}
+\DoxyCodeLine{279    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} buf[16];}
+\DoxyCodeLine{280    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} i, j;}
+\DoxyCodeLine{281 }
+\DoxyCodeLine{282    \textcolor{keywordflow}{if} (inlen == 0) \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}; \textcolor{comment}{/* nothing to do */}}
+\DoxyCodeLine{283 }
+\DoxyCodeLine{284    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(st        != NULL);}
+\DoxyCodeLine{285    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(in        != NULL);}
+\DoxyCodeLine{286    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(out       != NULL);}
+\DoxyCodeLine{287 }
+\DoxyCodeLine{288    \textcolor{keywordflow}{if} (st->unused > 0) \{}
+\DoxyCodeLine{289       j = \mbox{\hyperlink{tomcrypt__macros_8h_a74e75242132eaabbc1c512488a135926}{MIN}}(st->unused, inlen);}
+\DoxyCodeLine{290       \textcolor{keywordflow}{for} (i = 0; i < j; ++i, st->unused--) out[i] = in[i] \string^ st->block[16 - st->unused];}
+\DoxyCodeLine{291       inlen -= j;}
+\DoxyCodeLine{292       if (inlen == 0) \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{293       out += j;}
+\DoxyCodeLine{294       in  += j;}
+\DoxyCodeLine{295    \}}
+\DoxyCodeLine{296    \textcolor{keywordflow}{for} (;;) \{}
+\DoxyCodeLine{297      \textcolor{comment}{/* gen a block for buf */}}
+\DoxyCodeLine{298      \mbox{\hyperlink{rabbit_8c_a5908dd91ace42986a5ee525efe536246}{\_rabbit\_gen\_1\_block}}(st, buf);}
+\DoxyCodeLine{299      \textcolor{keywordflow}{if} (inlen <= 16) \{}
+\DoxyCodeLine{300        \textcolor{comment}{/* XOR and send to out */}}
+\DoxyCodeLine{301        \textcolor{keywordflow}{for} (i = 0; i < inlen; ++i) out[i] = in[i] \string^ buf[i];}
+\DoxyCodeLine{302        st->unused = 16 - inlen;}
+\DoxyCodeLine{303        \textcolor{comment}{/* copy remainder to block */}}
+\DoxyCodeLine{304        \textcolor{keywordflow}{for} (i = inlen; i < 16; ++i) st->block[i] = buf[i];}
+\DoxyCodeLine{305        \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{306      \}}
+\DoxyCodeLine{307      \textcolor{comment}{/* XOR entire buf and send to out */}}
+\DoxyCodeLine{308      \textcolor{keywordflow}{for} (i = 0; i < 16; ++i) out[i] = in[i] \string^ buf[i];}
+\DoxyCodeLine{309      inlen -= 16;}
+\DoxyCodeLine{310      out += 16;}
+\DoxyCodeLine{311      in  += 16;}
+\DoxyCodeLine{312    \}}
+\DoxyCodeLine{313 \}}
+
+\end{DoxyCode}
+
+
+References \+\_\+rabbit\+\_\+gen\+\_\+1\+\_\+block(), C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, and M\+IN.
+
+
+
+Referenced by rabbit\+\_\+keystream(), rabbit\+\_\+memory(), and rabbit\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 6
+Here is the caller graph for this function\+:
+% FIG 7
+\mbox{\Hypertarget{rabbit_8c_a931b3a1f3f35366a90bc7c7b994cac92}\label{rabbit_8c_a931b3a1f3f35366a90bc7c7b994cac92}} 
+\index{rabbit.c@{rabbit.c}!rabbit\_done@{rabbit\_done}}
+\index{rabbit\_done@{rabbit\_done}!rabbit.c@{rabbit.c}}
+\subsubsection{\texorpdfstring{rabbit\_done()}{rabbit\_done()}}
+{\footnotesize\ttfamily int rabbit\+\_\+done (\begin{DoxyParamCaption}\item[{rabbit\+\_\+state $\ast$}]{st }\end{DoxyParamCaption})}
+
+
+
+Definition at line 329 of file rabbit.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{330 \{}
+\DoxyCodeLine{331    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(st != NULL);}
+\DoxyCodeLine{332 }
+\DoxyCodeLine{333    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(st, \textcolor{keyword}{sizeof}(rabbit\_state));}
+\DoxyCodeLine{334    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{335 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, and zeromem().
+
+
+
+Referenced by rabbit\+\_\+memory(), and rabbit\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 8
+Here is the caller graph for this function\+:
+% FIG 9
+\mbox{\Hypertarget{rabbit_8c_a40bafb857ec94e37f6e74bf92cbb5e44}\label{rabbit_8c_a40bafb857ec94e37f6e74bf92cbb5e44}} 
+\index{rabbit.c@{rabbit.c}!rabbit\_keystream@{rabbit\_keystream}}
+\index{rabbit\_keystream@{rabbit\_keystream}!rabbit.c@{rabbit.c}}
+\subsubsection{\texorpdfstring{rabbit\_keystream()}{rabbit\_keystream()}}
+{\footnotesize\ttfamily int rabbit\+\_\+keystream (\begin{DoxyParamCaption}\item[{rabbit\+\_\+state $\ast$}]{st,  }\item[{unsigned char $\ast$}]{out,  }\item[{unsigned long}]{outlen }\end{DoxyParamCaption})}
+
+
+
+Definition at line 317 of file rabbit.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{318 \{}
+\DoxyCodeLine{319    \textcolor{keywordflow}{if} (outlen == 0) \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}; \textcolor{comment}{/* nothing to do */}}
+\DoxyCodeLine{320 }
+\DoxyCodeLine{321    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(out != NULL);}
+\DoxyCodeLine{322 }
+\DoxyCodeLine{323    \mbox{\hyperlink{tomcrypt__cfg_8h_aa3c34a6f6c61de7da9258b5a30e32c2f}{XMEMSET}}(out, 0, outlen);}
+\DoxyCodeLine{324    \textcolor{keywordflow}{return} \mbox{\hyperlink{rabbit_8c_a5391d40531a20557491ef7d58fb93cda}{rabbit\_crypt}}(st, out, outlen, out);}
+\DoxyCodeLine{325 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, rabbit\+\_\+crypt(), and X\+M\+E\+M\+S\+E\+T().
+
+Here is the call graph for this function\+:
+% FIG 10
+\mbox{\Hypertarget{rabbit_8c_ac6f6bf7b05fa527a8fed39dcae781cec}\label{rabbit_8c_ac6f6bf7b05fa527a8fed39dcae781cec}} 
+\index{rabbit.c@{rabbit.c}!rabbit\_setiv@{rabbit\_setiv}}
+\index{rabbit\_setiv@{rabbit\_setiv}!rabbit.c@{rabbit.c}}
+\subsubsection{\texorpdfstring{rabbit\_setiv()}{rabbit\_setiv()}}
+{\footnotesize\ttfamily int rabbit\+\_\+setiv (\begin{DoxyParamCaption}\item[{rabbit\+\_\+state $\ast$}]{st,  }\item[{const unsigned char $\ast$}]{iv,  }\item[{unsigned long}]{ivlen }\end{DoxyParamCaption})}
+
+
+
+Definition at line 228 of file rabbit.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{229 \{}
+\DoxyCodeLine{230    \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} i0, i1, i2, i3, i;}
+\DoxyCodeLine{231    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}  tmpiv[8] = \{0\};}
+\DoxyCodeLine{232 }
+\DoxyCodeLine{233    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(st != NULL);}
+\DoxyCodeLine{234    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(iv != NULL || ivlen == 0);}
+\DoxyCodeLine{235    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(ivlen <= 8);}
+\DoxyCodeLine{236 }
+\DoxyCodeLine{237    \textcolor{comment}{/* pad iv in tmpiv */}}
+\DoxyCodeLine{238    \textcolor{keywordflow}{if} (iv \&\& ivlen > 0) \mbox{\hyperlink{tomcrypt__cfg_8h_a7691dd48d60d5fc6daf2fa7ec4c55e12}{XMEMCPY}}(tmpiv, iv, ivlen);}
+\DoxyCodeLine{239 }
+\DoxyCodeLine{240    \textcolor{comment}{/* Generate four subvectors */}}
+\DoxyCodeLine{241    LOAD32L(i0, tmpiv+0);}
+\DoxyCodeLine{242    LOAD32L(i2, tmpiv+4);}
+\DoxyCodeLine{243    i1 = (i0>>16) | (i2\&0xFFFF0000);}
+\DoxyCodeLine{244    i3 = (i2<<16) | (i0\&0x0000FFFF);}
+\DoxyCodeLine{245 }
+\DoxyCodeLine{246    \textcolor{comment}{/* Modify counter values */}}
+\DoxyCodeLine{247    st->work\_ctx.c[0] = st->master\_ctx.c[0] \string^ i0;}
+\DoxyCodeLine{248    st->work\_ctx.c[1] = st->master\_ctx.c[1] \string^ i1;}
+\DoxyCodeLine{249    st->work\_ctx.c[2] = st->master\_ctx.c[2] \string^ i2;}
+\DoxyCodeLine{250    st->work\_ctx.c[3] = st->master\_ctx.c[3] \string^ i3;}
+\DoxyCodeLine{251    st->work\_ctx.c[4] = st->master\_ctx.c[4] \string^ i0;}
+\DoxyCodeLine{252    st->work\_ctx.c[5] = st->master\_ctx.c[5] \string^ i1;}
+\DoxyCodeLine{253    st->work\_ctx.c[6] = st->master\_ctx.c[6] \string^ i2;}
+\DoxyCodeLine{254    st->work\_ctx.c[7] = st->master\_ctx.c[7] \string^ i3;}
+\DoxyCodeLine{255 }
+\DoxyCodeLine{256    \textcolor{comment}{/* Copy state variables */}}
+\DoxyCodeLine{257    \textcolor{keywordflow}{for} (i=0; i<8; i++) \{}
+\DoxyCodeLine{258       st->work\_ctx.x[i] = st->master\_ctx.x[i];}
+\DoxyCodeLine{259    \}}
+\DoxyCodeLine{260    st->work\_ctx.carry = st->master\_ctx.carry;}
+\DoxyCodeLine{261 }
+\DoxyCodeLine{262    \textcolor{comment}{/* Iterate the work context four times */}}
+\DoxyCodeLine{263    \textcolor{keywordflow}{for} (i=0; i<4; i++) \{}
+\DoxyCodeLine{264       \mbox{\hyperlink{rabbit_8c_a84f7be2f4dd286fbda438d0d94d5db8f}{\_rabbit\_next\_state}}(\&(st->work\_ctx));}
+\DoxyCodeLine{265    \}}
+\DoxyCodeLine{266 }
+\DoxyCodeLine{267    \textcolor{comment}{/* reset keystream buffer and unused count */}}
+\DoxyCodeLine{268    \mbox{\hyperlink{tomcrypt__cfg_8h_aa3c34a6f6c61de7da9258b5a30e32c2f}{XMEMSET}}(\&(st->block), 0, \textcolor{keyword}{sizeof}(st->block));}
+\DoxyCodeLine{269    st->unused = 0;}
+\DoxyCodeLine{270 }
+\DoxyCodeLine{271    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{272 \}}
+
+\end{DoxyCode}
+
+
+References \+\_\+rabbit\+\_\+next\+\_\+state(), C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, X\+M\+E\+M\+C\+P\+Y(), and X\+M\+E\+M\+S\+E\+T().
+
+
+
+Referenced by rabbit\+\_\+memory(), and rabbit\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 11
+Here is the caller graph for this function\+:
+% FIG 12
+\mbox{\Hypertarget{rabbit_8c_ac522e3bb890d2fe32276a4a596371461}\label{rabbit_8c_ac522e3bb890d2fe32276a4a596371461}} 
+\index{rabbit.c@{rabbit.c}!rabbit\_setup@{rabbit\_setup}}
+\index{rabbit\_setup@{rabbit\_setup}!rabbit.c@{rabbit.c}}
+\subsubsection{\texorpdfstring{rabbit\_setup()}{rabbit\_setup()}}
+{\footnotesize\ttfamily int rabbit\+\_\+setup (\begin{DoxyParamCaption}\item[{rabbit\+\_\+state $\ast$}]{st,  }\item[{const unsigned char $\ast$}]{key,  }\item[{unsigned long}]{keylen }\end{DoxyParamCaption})}
+
+
+
+Definition at line 153 of file rabbit.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{154 \{}
+\DoxyCodeLine{155    \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} k0, k1, k2, k3, i;}
+\DoxyCodeLine{156    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}  tmpkey[16] = \{0\};}
+\DoxyCodeLine{157 }
+\DoxyCodeLine{158    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(st != NULL);}
+\DoxyCodeLine{159    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(key != NULL);}
+\DoxyCodeLine{160    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(keylen <= 16);}
+\DoxyCodeLine{161 }
+\DoxyCodeLine{162    \textcolor{comment}{/* init state */}}
+\DoxyCodeLine{163    \mbox{\hyperlink{tomcrypt__cfg_8h_aa3c34a6f6c61de7da9258b5a30e32c2f}{XMEMSET}}(st, 0, \textcolor{keyword}{sizeof}(rabbit\_state));}
+\DoxyCodeLine{164 }
+\DoxyCodeLine{165    \textcolor{comment}{/* pad key in tmpkey */}}
+\DoxyCodeLine{166    \mbox{\hyperlink{tomcrypt__cfg_8h_a7691dd48d60d5fc6daf2fa7ec4c55e12}{XMEMCPY}}(tmpkey, key, keylen);}
+\DoxyCodeLine{167 }
+\DoxyCodeLine{168    \textcolor{comment}{/* Generate four subkeys */}}
+\DoxyCodeLine{169    LOAD32L(k0, tmpkey+ 0);}
+\DoxyCodeLine{170    LOAD32L(k1, tmpkey+ 4);}
+\DoxyCodeLine{171    LOAD32L(k2, tmpkey+ 8);}
+\DoxyCodeLine{172    LOAD32L(k3, tmpkey+12);}
+\DoxyCodeLine{173 }
+\DoxyCodeLine{174 \textcolor{preprocessor}{\#ifdef LTC\_CLEAN\_STACK}}
+\DoxyCodeLine{175    \textcolor{comment}{/* done with tmpkey, wipe it */}}
+\DoxyCodeLine{176    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(tmpkey, \textcolor{keyword}{sizeof}(tmpkey));}
+\DoxyCodeLine{177 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{178 }
+\DoxyCodeLine{179    \textcolor{comment}{/* Generate initial state variables */}}
+\DoxyCodeLine{180    st->master\_ctx.x[0] = k0;}
+\DoxyCodeLine{181    st->master\_ctx.x[2] = k1;}
+\DoxyCodeLine{182    st->master\_ctx.x[4] = k2;}
+\DoxyCodeLine{183    st->master\_ctx.x[6] = k3;}
+\DoxyCodeLine{184    st->master\_ctx.x[1] = (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})(k3<<16) | (k2>>16);}
+\DoxyCodeLine{185    st->master\_ctx.x[3] = (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})(k0<<16) | (k3>>16);}
+\DoxyCodeLine{186    st->master\_ctx.x[5] = (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})(k1<<16) | (k0>>16);}
+\DoxyCodeLine{187    st->master\_ctx.x[7] = (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})(k2<<16) | (k1>>16);}
+\DoxyCodeLine{188 }
+\DoxyCodeLine{189    \textcolor{comment}{/* Generate initial counter values */}}
+\DoxyCodeLine{190    st->master\_ctx.c[0] = \mbox{\hyperlink{tomcrypt__macros_8h_a39d625dc0b148466a72c13737e063d86}{ROLc}}(k2, 16);}
+\DoxyCodeLine{191    st->master\_ctx.c[2] = \mbox{\hyperlink{tomcrypt__macros_8h_a39d625dc0b148466a72c13737e063d86}{ROLc}}(k3, 16);}
+\DoxyCodeLine{192    st->master\_ctx.c[4] = \mbox{\hyperlink{tomcrypt__macros_8h_a39d625dc0b148466a72c13737e063d86}{ROLc}}(k0, 16);}
+\DoxyCodeLine{193    st->master\_ctx.c[6] = \mbox{\hyperlink{tomcrypt__macros_8h_a39d625dc0b148466a72c13737e063d86}{ROLc}}(k1, 16);}
+\DoxyCodeLine{194    st->master\_ctx.c[1] = (k0\&0xFFFF0000) | (k1\&0xFFFF);}
+\DoxyCodeLine{195    st->master\_ctx.c[3] = (k1\&0xFFFF0000) | (k2\&0xFFFF);}
+\DoxyCodeLine{196    st->master\_ctx.c[5] = (k2\&0xFFFF0000) | (k3\&0xFFFF);}
+\DoxyCodeLine{197    st->master\_ctx.c[7] = (k3\&0xFFFF0000) | (k0\&0xFFFF);}
+\DoxyCodeLine{198 }
+\DoxyCodeLine{199    \textcolor{comment}{/* Clear carry bit */}}
+\DoxyCodeLine{200    st->master\_ctx.carry = 0;}
+\DoxyCodeLine{201 }
+\DoxyCodeLine{202    \textcolor{comment}{/* Iterate the master context four times */}}
+\DoxyCodeLine{203    \textcolor{keywordflow}{for} (i=0; i<4; i++) \{}
+\DoxyCodeLine{204       \mbox{\hyperlink{rabbit_8c_a84f7be2f4dd286fbda438d0d94d5db8f}{\_rabbit\_next\_state}}(\&(st->master\_ctx));}
+\DoxyCodeLine{205    \}}
+\DoxyCodeLine{206 }
+\DoxyCodeLine{207    \textcolor{comment}{/* Modify the counters */}}
+\DoxyCodeLine{208    \textcolor{keywordflow}{for} (i=0; i<8; i++) \{}
+\DoxyCodeLine{209       st->master\_ctx.c[i] \string^= st->master\_ctx.x[(i+4)\&0x7];}
+\DoxyCodeLine{210    \}}
+\DoxyCodeLine{211 }
+\DoxyCodeLine{212    \textcolor{comment}{/* Copy master instance to work instance */}}
+\DoxyCodeLine{213    \textcolor{keywordflow}{for} (i=0; i<8; i++) \{}
+\DoxyCodeLine{214       st->work\_ctx.x[i] = st->master\_ctx.x[i];}
+\DoxyCodeLine{215       st->work\_ctx.c[i] = st->master\_ctx.c[i];}
+\DoxyCodeLine{216    \}}
+\DoxyCodeLine{217    st->work\_ctx.carry = st->master\_ctx.carry;}
+\DoxyCodeLine{218    \textcolor{comment}{/* ...and prepare block for crypt() */}}
+\DoxyCodeLine{219    \mbox{\hyperlink{tomcrypt__cfg_8h_aa3c34a6f6c61de7da9258b5a30e32c2f}{XMEMSET}}(\&(st->block), 0, \textcolor{keyword}{sizeof}(st->block));}
+\DoxyCodeLine{220    st->unused = 0;}
+\DoxyCodeLine{221 }
+\DoxyCodeLine{222    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{223 \}}
+
+\end{DoxyCode}
+
+
+References \+\_\+rabbit\+\_\+next\+\_\+state(), C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, R\+O\+Lc, X\+M\+E\+M\+C\+P\+Y(), X\+M\+E\+M\+S\+E\+T(), and zeromem().
+
+
+
+Referenced by rabbit\+\_\+memory(), and rabbit\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 13
+Here is the caller graph for this function\+:
+% FIG 14
+\mbox{\Hypertarget{rabbit_8c_ab40e398f9527a72a8ae06d7ceb310fe0}\label{rabbit_8c_ab40e398f9527a72a8ae06d7ceb310fe0}} 
+\index{rabbit.c@{rabbit.c}!rabbit\_test@{rabbit\_test}}
+\index{rabbit\_test@{rabbit\_test}!rabbit.c@{rabbit.c}}
+\subsubsection{\texorpdfstring{rabbit\_test()}{rabbit\_test()}}
+{\footnotesize\ttfamily int rabbit\+\_\+test (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 339 of file rabbit.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{340 \{}
+\DoxyCodeLine{341 \textcolor{preprocessor}{\#ifndef LTC\_TEST}}
+\DoxyCodeLine{342    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cac43a7799c7fd5f515172da6cfc0f9cf5}{CRYPT\_NOP}};}
+\DoxyCodeLine{343 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{344    rabbit\_state st;}
+\DoxyCodeLine{345    \textcolor{keywordtype}{int} err;}
+\DoxyCodeLine{346    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} out[1000] = \{ 0 \};}
+\DoxyCodeLine{347    \{}
+\DoxyCodeLine{348       \textcolor{comment}{/* all 3 tests use key and iv fm set 6, vector 3, the last vector in:}}
+\DoxyCodeLine{349 \textcolor{comment}{         http://www.ecrypt.eu.org/stream/svn/viewcvs.cgi/ecrypt/trunk/submissions/rabbit/verified.test-vectors?rev=210\&view=log}}
+\DoxyCodeLine{350 \textcolor{comment}{      */}}
+\DoxyCodeLine{351 }
+\DoxyCodeLine{352       \textcolor{comment}{/* --- Test 1 (generate whole blocks) --------------------------------- */}}
+\DoxyCodeLine{353 }
+\DoxyCodeLine{354       \{}
+\DoxyCodeLine{355          \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} k[]  = \{ 0x0F, 0x62, 0xB5, 0x08, 0x5B, 0xAE, 0x01, 0x54,}
+\DoxyCodeLine{356                                 0xA7, 0xFA, 0x4D, 0xA0, 0xF3, 0x46, 0x99, 0xEC \};}
+\DoxyCodeLine{357          \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} iv[] = \{ 0x28, 0x8F, 0xF6, 0x5D, 0xC4, 0x2B, 0x92, 0xF9 \};}
+\DoxyCodeLine{358          \textcolor{keywordtype}{char} pt[64]        = \{ 0 \};}
+\DoxyCodeLine{359          \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} ct[] = \{ 0x61, 0x3C, 0xB0, 0xBA, 0x96, 0xAF, 0xF6, 0xCA,}
+\DoxyCodeLine{360                                 0xCF, 0x2A, 0x45, 0x9A, 0x10, 0x2A, 0x7F, 0x78,}
+\DoxyCodeLine{361                                 0xCA, 0x98, 0x5C, 0xF8, 0xFD, 0xD1, 0x47, 0x40,}
+\DoxyCodeLine{362                                 0x18, 0x75, 0x8E, 0x36, 0xAE, 0x99, 0x23, 0xF5,}
+\DoxyCodeLine{363                                 0x19, 0xD1, 0x3D, 0x71, 0x8D, 0xAF, 0x8D, 0x7C,}
+\DoxyCodeLine{364                                 0x0C, 0x10, 0x9B, 0x79, 0xD5, 0x74, 0x94, 0x39,}
+\DoxyCodeLine{365                                 0xB7, 0xEF, 0xA4, 0xC4, 0xC9, 0xC8, 0xD2, 0x9D,}
+\DoxyCodeLine{366                                 0xC5, 0xB3, 0x88, 0x83, 0x14, 0xA6, 0x81, 0x6F \};}
+\DoxyCodeLine{367          \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} ptlen = \textcolor{keyword}{sizeof}(pt);}
+\DoxyCodeLine{368 }
+\DoxyCodeLine{369          \textcolor{comment}{/* crypt 64 nulls */}}
+\DoxyCodeLine{370          \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{rabbit_8c_ac522e3bb890d2fe32276a4a596371461}{rabbit\_setup}}(\&st, k, \textcolor{keyword}{sizeof}(k)))                   != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{371          \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{rabbit_8c_ac6f6bf7b05fa527a8fed39dcae781cec}{rabbit\_setiv}}(\&st, iv, \textcolor{keyword}{sizeof}(iv)))                 != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{372          \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{rabbit_8c_a5391d40531a20557491ef7d58fb93cda}{rabbit\_crypt}}(\&st, (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}*)pt, ptlen, out)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{373          \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(out, ptlen, ct, ptlen, \textcolor{stringliteral}{"RABBIT-TV1"}, 1))   \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{374       \}}
+\DoxyCodeLine{375 }
+\DoxyCodeLine{376       \textcolor{comment}{/* --- Test 2 (generate unusual number of bytes each time) ------------ */}}
+\DoxyCodeLine{377 }
+\DoxyCodeLine{378       \{}
+\DoxyCodeLine{379          \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} k[]  = \{ 0x0F, 0x62, 0xB5, 0x08, 0x5B, 0xAE, 0x01, 0x54,}
+\DoxyCodeLine{380                                 0xA7, 0xFA, 0x4D, 0xA0, 0xF3, 0x46, 0x99, 0xEC \};}
+\DoxyCodeLine{381          \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} iv[] = \{ 0x28, 0x8F, 0xF6, 0x5D, 0xC4, 0x2B, 0x92, 0xF9 \};}
+\DoxyCodeLine{382          \textcolor{keywordtype}{char}          pt[39] = \{ 0 \};}
+\DoxyCodeLine{383          \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} ct[] = \{ 0x61, 0x3C, 0xB0, 0xBA,   0x96, 0xAF, 0xF6, 0xCA,}
+\DoxyCodeLine{384                                 0xCF, 0x2A, 0x45, 0x9A,   0x10, 0x2A, 0x7F, 0x78,}
+\DoxyCodeLine{385                                 0xCA, 0x98, 0x5C, 0xF8,   0xFD, 0xD1, 0x47, 0x40,}
+\DoxyCodeLine{386                                 0x18, 0x75, 0x8E, 0x36,   0xAE, 0x99, 0x23, 0xF5,}
+\DoxyCodeLine{387                                 0x19, 0xD1, 0x3D, 0x71,   0x8D, 0xAF, 0x8D \};}
+\DoxyCodeLine{388          \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} ptlen = \textcolor{keyword}{sizeof}(pt);}
+\DoxyCodeLine{389 }
+\DoxyCodeLine{390          \textcolor{comment}{/* crypt piece by piece (hit at least one 16-byte boundary) */}}
+\DoxyCodeLine{391          \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{rabbit_8c_ac522e3bb890d2fe32276a4a596371461}{rabbit\_setup}}(\&st, k, \textcolor{keyword}{sizeof}(k)))                          != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{392          \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{rabbit_8c_ac6f6bf7b05fa527a8fed39dcae781cec}{rabbit\_setiv}}(\&st, iv, \textcolor{keyword}{sizeof}(iv)))                        != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{393          \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{rabbit_8c_a5391d40531a20557491ef7d58fb93cda}{rabbit\_crypt}}(\&st, (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}*)pt,       5, out))      != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{394          \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{rabbit_8c_a5391d40531a20557491ef7d58fb93cda}{rabbit\_crypt}}(\&st, (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}*)pt +  5, 11, out +  5)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{395          \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{rabbit_8c_a5391d40531a20557491ef7d58fb93cda}{rabbit\_crypt}}(\&st, (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}*)pt + 16, 14, out + 16)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{396          \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{rabbit_8c_a5391d40531a20557491ef7d58fb93cda}{rabbit\_crypt}}(\&st, (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}*)pt + 30,  2, out + 30)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{397          \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{rabbit_8c_a5391d40531a20557491ef7d58fb93cda}{rabbit\_crypt}}(\&st, (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}*)pt + 32,  7, out + 32)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{398          \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(out, ptlen, ct, ptlen, \textcolor{stringliteral}{"RABBIT-TV2"}, 1))   \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{399       \}}
+\DoxyCodeLine{400 }
+\DoxyCodeLine{401       \textcolor{comment}{/* --- Test 3 (use non-null data) ------------------------------------- */}}
+\DoxyCodeLine{402 }
+\DoxyCodeLine{403       \{}
+\DoxyCodeLine{404          \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} k[]  = \{ 0x0F, 0x62, 0xB5, 0x08, 0x5B, 0xAE, 0x01, 0x54,}
+\DoxyCodeLine{405                                 0xA7, 0xFA, 0x4D, 0xA0, 0xF3, 0x46, 0x99, 0xEC \};}
+\DoxyCodeLine{406          \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} iv[] = \{ 0x28, 0x8F, 0xF6, 0x5D, 0xC4, 0x2B, 0x92, 0xF9 \};}
+\DoxyCodeLine{407          \textcolor{keywordtype}{char}          pt[] = \textcolor{stringliteral}{"Kilroy was here, there, and everywhere!"};}
+\DoxyCodeLine{408          \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} ct[] = \{ 0x2a, 0x55, 0xdc, 0xc8,   0xf9, 0xd6, 0xd6, 0xbd,}
+\DoxyCodeLine{409                                 0xae, 0x59, 0x65, 0xf2,   0x75, 0x58, 0x1a, 0x54,}
+\DoxyCodeLine{410                                 0xea, 0xec, 0x34, 0x9d,   0x8f, 0xb4, 0x6b, 0x60,}
+\DoxyCodeLine{411                                 0x79, 0x1b, 0xea, 0x16,   0xcb, 0xef, 0x46, 0x87,}
+\DoxyCodeLine{412                                 0x60, 0xa6, 0x55, 0x14,   0xff, 0xca, 0xac \};}
+\DoxyCodeLine{413          \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} ptlen = strlen(pt);}
+\DoxyCodeLine{414          \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} out2[1000] = \{ 0 \};}
+\DoxyCodeLine{415          \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} nulls[1000] = \{ 0 \};}
+\DoxyCodeLine{416 }
+\DoxyCodeLine{417          \textcolor{comment}{/* crypt piece by piece */}}
+\DoxyCodeLine{418          \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{rabbit_8c_ac522e3bb890d2fe32276a4a596371461}{rabbit\_setup}}(\&st, k, \textcolor{keyword}{sizeof}(k)))                          != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{419          \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{rabbit_8c_ac6f6bf7b05fa527a8fed39dcae781cec}{rabbit\_setiv}}(\&st, iv, \textcolor{keyword}{sizeof}(iv)))                        != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{420          \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{rabbit_8c_a5391d40531a20557491ef7d58fb93cda}{rabbit\_crypt}}(\&st, (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}*)pt,       5, out))      != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{421          \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{rabbit_8c_a5391d40531a20557491ef7d58fb93cda}{rabbit\_crypt}}(\&st, (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}*)pt +  5, 29, out +  5)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{422          \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{rabbit_8c_a5391d40531a20557491ef7d58fb93cda}{rabbit\_crypt}}(\&st, (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}*)pt + 34,  5, out + 34)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{423          \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(out, ptlen, ct, ptlen, \textcolor{stringliteral}{"RABBIT-TV3"}, 1))   \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{424 }
+\DoxyCodeLine{425       \textcolor{comment}{/* --- Test 4 (crypt in a single call) ------------------------------------ */}}
+\DoxyCodeLine{426 }
+\DoxyCodeLine{427          \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{rabbit__memory_8c_a10314f2825525c0c69881907d65ab91b}{rabbit\_memory}}(k, \textcolor{keyword}{sizeof}(k), iv, \textcolor{keyword}{sizeof}(iv),}
+\DoxyCodeLine{428                                    (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}*)pt, \textcolor{keyword}{sizeof}(pt), out))      != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{429          \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(out, ptlen, ct, ptlen, \textcolor{stringliteral}{"RABBIT-TV4"}, 1))   \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{430          \textcolor{comment}{/* use 'out' (ciphertext) in the next decryption test */}}
+\DoxyCodeLine{431 }
+\DoxyCodeLine{432       \textcolor{comment}{/* --- Test 5 (decrypt ciphertext) ------------------------------------ */}}
+\DoxyCodeLine{433 }
+\DoxyCodeLine{434          \textcolor{comment}{/* decrypt ct (out) and compare with pt (start with only setiv() to reset) */}}
+\DoxyCodeLine{435          \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{rabbit_8c_ac6f6bf7b05fa527a8fed39dcae781cec}{rabbit\_setiv}}(\&st, iv, \textcolor{keyword}{sizeof}(iv)))                        != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{436          \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{rabbit_8c_a5391d40531a20557491ef7d58fb93cda}{rabbit\_crypt}}(\&st, out, ptlen, out2))                      != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{437          \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(out2, ptlen, pt, ptlen, \textcolor{stringliteral}{"RABBIT-TV5"}, 1))  \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{438 }
+\DoxyCodeLine{439       \textcolor{comment}{/* --- Test 6 (wipe state, incl key) ---------------------------------- */}}
+\DoxyCodeLine{440 }
+\DoxyCodeLine{441          \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{rabbit_8c_a931b3a1f3f35366a90bc7c7b994cac92}{rabbit\_done}}(\&st))                      != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{442          \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(\&st, \textcolor{keyword}{sizeof}(st), nulls, \textcolor{keyword}{sizeof}(st), \textcolor{stringliteral}{"RABBIT-TV6"}, 1))  \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{443 }
+\DoxyCodeLine{444       \}}
+\DoxyCodeLine{445 }
+\DoxyCodeLine{446       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{447    \}}
+\DoxyCodeLine{448 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{449 \}}
+
+\end{DoxyCode}
+
+
+References compare\+\_\+testvector(), C\+R\+Y\+P\+T\+\_\+\+F\+A\+I\+L\+\_\+\+T\+E\+S\+T\+V\+E\+C\+T\+OR, C\+R\+Y\+P\+T\+\_\+\+N\+OP, C\+R\+Y\+P\+T\+\_\+\+OK, rabbit\+\_\+crypt(), rabbit\+\_\+done(), rabbit\+\_\+memory(), rabbit\+\_\+setiv(), and rabbit\+\_\+setup().
+
+Here is the call graph for this function\+:
+% FIG 15

@@ -1,0 +1,26 @@
+digraph "twofish_test"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node37 [label="twofish_test",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Performs a self-test of the Twofish block cipher."];
+  Node37 -> Node38 [color="midnightblue",fontsize="10",style="solid"];
+  Node38 [label="compare_testvector",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__misc_8h.html#a7764a7f27897c6182335752df00b5f8e",tooltip="Compare two test-vectors."];
+  Node38 -> Node39 [color="midnightblue",fontsize="10",style="solid"];
+  Node39 [label="XMEMCMP",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cfg_8h.html#a372b974ec0ac07abcd55297554fe540f",tooltip=" "];
+  Node37 -> Node40 [color="midnightblue",fontsize="10",style="solid"];
+  Node40 [label="twofish_ecb_decrypt",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$twofish_8c.html#a914f4501da8d30f0dc4a884e859605be",tooltip="Decrypts a block of text with Twofish."];
+  Node37 -> Node41 [color="midnightblue",fontsize="10",style="solid"];
+  Node41 [label="twofish_ecb_encrypt",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$twofish_8c.html#abf79befc0f00a6080f661f3819297c26",tooltip="Encrypts a block of text with Twofish."];
+  Node37 -> Node42 [color="midnightblue",fontsize="10",style="solid"];
+  Node42 [label="twofish_setup",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$twofish_8c.html#abd553d986cc2dd70dfc13e44eea72038",tooltip="Initialize the Twofish block cipher."];
+  Node42 -> Node43 [color="midnightblue",fontsize="10",style="solid"];
+  Node43 [label="h_func",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$twofish_8c.html#a68bf5e20c943002d66781398f2409185",tooltip=" "];
+  Node43 -> Node44 [color="midnightblue",fontsize="10",style="solid"];
+  Node44 [label="mds_mult",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$twofish_8c.html#a763a9e4ecf80c1b4ebc325eb99d85ecf",tooltip=" "];
+  Node42 -> Node45 [color="midnightblue",fontsize="10",style="solid"];
+  Node45 [label="rs_mult",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$twofish_8c.html#a7f70548f6884301f7bf4bcaa5f3ae8f5",tooltip=" "];
+  Node45 -> Node46 [color="midnightblue",fontsize="10",style="solid"];
+  Node46 [label="gf_mult",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$twofish_8c.html#a50cb6cae0fa9050493e161c50a750fa2",tooltip=" "];
+}

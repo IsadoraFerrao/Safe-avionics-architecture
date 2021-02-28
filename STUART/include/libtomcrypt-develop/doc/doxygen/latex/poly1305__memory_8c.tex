@@ -1,0 +1,73 @@
+\hypertarget{poly1305__memory_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/mac/poly1305/poly1305\+\_\+memory.c File Reference}
+\label{poly1305__memory_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/mac/poly1305/poly1305\_memory.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/mac/poly1305/poly1305\_memory.c}}
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for poly1305\+\_\+memory.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{poly1305__memory_8c_a47a72f0367bb1f1fc7127c17cbc3f608}{poly1305\+\_\+memory}} (const unsigned char $\ast$key, unsigned long keylen, const unsigned char $\ast$in, unsigned long inlen, unsigned char $\ast$mac, unsigned long $\ast$maclen)
+\begin{DoxyCompactList}\small\item\em P\+O\+L\+Y1305 a block of memory to produce the authentication tag. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{poly1305__memory_8c_a47a72f0367bb1f1fc7127c17cbc3f608}\label{poly1305__memory_8c_a47a72f0367bb1f1fc7127c17cbc3f608}} 
+\index{poly1305\_memory.c@{poly1305\_memory.c}!poly1305\_memory@{poly1305\_memory}}
+\index{poly1305\_memory@{poly1305\_memory}!poly1305\_memory.c@{poly1305\_memory.c}}
+\subsubsection{\texorpdfstring{poly1305\_memory()}{poly1305\_memory()}}
+{\footnotesize\ttfamily int poly1305\+\_\+memory (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{key,  }\item[{unsigned long}]{keylen,  }\item[{const unsigned char $\ast$}]{in,  }\item[{unsigned long}]{inlen,  }\item[{unsigned char $\ast$}]{mac,  }\item[{unsigned long $\ast$}]{maclen }\end{DoxyParamCaption})}
+
+
+
+P\+O\+L\+Y1305 a block of memory to produce the authentication tag. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The secret key \\
+\hline
+{\em keylen} & The length of the secret key (octets) \\
+\hline
+{\em in} & The data to P\+O\+L\+Y1305 \\
+\hline
+{\em inlen} & The length of the data to P\+O\+L\+Y1305 (octets) \\
+\hline
+{\em mac} & \mbox{[}out\mbox{]} Destination of the authentication tag \\
+\hline
+{\em maclen} & \mbox{[}in/out\mbox{]} Max size and resulting size of authentication tag \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 29 of file poly1305\+\_\+memory.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{30 \{}
+\DoxyCodeLine{31    poly1305\_state st;}
+\DoxyCodeLine{32    \textcolor{keywordtype}{int} err;}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(key    != NULL);}
+\DoxyCodeLine{35    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(in     != NULL);}
+\DoxyCodeLine{36    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(mac    != NULL);}
+\DoxyCodeLine{37    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(maclen != NULL);}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{poly1305_8c_a09bc8f3b4b3b4cbd2a2b10c9814a1619}{poly1305\_init}}(\&st, key, keylen))  != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{ \textcolor{keywordflow}{goto} LBL\_ERR; \}}
+\DoxyCodeLine{40    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{poly1305_8c_a44ef0e35cc1f514f942c015c105b9f01}{poly1305\_process}}(\&st, in, inlen)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{ \textcolor{keywordflow}{goto} LBL\_ERR; \}}
+\DoxyCodeLine{41    err = \mbox{\hyperlink{poly1305_8c_af7ae26dde05dcb271ec4f15e6f406f8d}{poly1305\_done}}(\&st, mac, maclen);}
+\DoxyCodeLine{42 LBL\_ERR:}
+\DoxyCodeLine{43 \textcolor{preprocessor}{\#ifdef LTC\_CLEAN\_STACK}}
+\DoxyCodeLine{44    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(\&st, \textcolor{keyword}{sizeof}(poly1305\_state));}
+\DoxyCodeLine{45 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{46    \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{47 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, poly1305\+\_\+done(), poly1305\+\_\+init(), poly1305\+\_\+process(), and zeromem().
+
+Here is the call graph for this function\+:
+% FIG 1

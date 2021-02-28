@@ -1,0 +1,1419 @@
+\hypertarget{gmp__desc_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/math/gmp\+\_\+desc.c File Reference}
+\label{gmp__desc_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/math/gmp\_desc.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/math/gmp\_desc.c}}
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$gmp.\+h$>$}\newline
+Include dependency graph for gmp\+\_\+desc.\+c\+:
+% FIG 0
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{gmp__desc_8c_a7b3f8576103ad3e59839b25a9a7c33da}{D\+E\+S\+C\+\_\+\+D\+E\+F\+\_\+\+O\+N\+LY}}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{gmp__desc_8c_a4f8948d7c94899bf8ddee4721114d593}{init}} (void $\ast$$\ast$a)
+\item 
+static void \mbox{\hyperlink{gmp__desc_8c_a9626887f45edba884c412234edf7d1d6}{deinit}} (void $\ast$a)
+\item 
+static int \mbox{\hyperlink{gmp__desc_8c_adc67bac9fd8e42c930369ddabaa5f2db}{neg}} (void $\ast$a, void $\ast$b)
+\item 
+static int \mbox{\hyperlink{gmp__desc_8c_ad88f68a4e6f0c7334e93eebf7ddbb2d3}{copy}} (void $\ast$a, void $\ast$b)
+\item 
+static int \mbox{\hyperlink{gmp__desc_8c_a9c0dddd7edf258f69ca346540f3da61a}{init\+\_\+copy}} (void $\ast$$\ast$a, void $\ast$b)
+\item 
+static int \mbox{\hyperlink{gmp__desc_8c_a0b4961498876dba1898ece1416698b10}{set\+\_\+int}} (void $\ast$a, \mbox{\hyperlink{tomcrypt__cfg_8h_a4e98fa26a5de0ac87e06af901bad57c4}{ltc\+\_\+mp\+\_\+digit}} b)
+\item 
+static unsigned long \mbox{\hyperlink{gmp__desc_8c_ac31838ab831d4094fe109d327019548c}{get\+\_\+int}} (void $\ast$a)
+\item 
+static \mbox{\hyperlink{tomcrypt__cfg_8h_a4e98fa26a5de0ac87e06af901bad57c4}{ltc\+\_\+mp\+\_\+digit}} \mbox{\hyperlink{gmp__desc_8c_a6171f32e40e45f55caf4a7cb475e866c}{get\+\_\+digit}} (void $\ast$a, int n)
+\item 
+static int \mbox{\hyperlink{gmp__desc_8c_a10c8ab52ee86746d3389aa2400c88ac2}{get\+\_\+digit\+\_\+count}} (void $\ast$a)
+\item 
+static int \mbox{\hyperlink{gmp__desc_8c_aecfc62c80bd6acc7a95d1391ad8252f7}{compare}} (void $\ast$a, void $\ast$b)
+\item 
+static int \mbox{\hyperlink{gmp__desc_8c_aee3f861609cd9406655be85087a7bb06}{compare\+\_\+d}} (void $\ast$a, \mbox{\hyperlink{tomcrypt__cfg_8h_a4e98fa26a5de0ac87e06af901bad57c4}{ltc\+\_\+mp\+\_\+digit}} b)
+\item 
+static int \mbox{\hyperlink{gmp__desc_8c_a55e39d3b1adb176ed84c1211a7123071}{count\+\_\+bits}} (void $\ast$a)
+\item 
+static int \mbox{\hyperlink{gmp__desc_8c_a2506b220df2c67f8b9969f6c627c84a1}{count\+\_\+lsb\+\_\+bits}} (void $\ast$a)
+\item 
+static int \mbox{\hyperlink{gmp__desc_8c_a4f1673caee67fa1b6f8b745661a68eb1}{twoexpt}} (void $\ast$a, int n)
+\item 
+static int \mbox{\hyperlink{gmp__desc_8c_af84d5b7caaf005f40f924afd8ada2380}{read\+\_\+radix}} (void $\ast$a, const char $\ast$b, int radix)
+\item 
+static int \mbox{\hyperlink{gmp__desc_8c_aa40161a29cddd18172c7a64a18b6dc2c}{write\+\_\+radix}} (void $\ast$a, char $\ast$b, int radix)
+\item 
+static unsigned long \mbox{\hyperlink{gmp__desc_8c_adb7e3791a36546ca7550e34344e2cb47}{unsigned\+\_\+size}} (void $\ast$a)
+\item 
+static int \mbox{\hyperlink{gmp__desc_8c_a0f1b2cd32964ecad0001b7169b53f1d1}{unsigned\+\_\+write}} (void $\ast$a, unsigned char $\ast$b)
+\item 
+static int \mbox{\hyperlink{gmp__desc_8c_a39cf7045cbd39dc7ee5ecdf59dbe3313}{unsigned\+\_\+read}} (void $\ast$a, unsigned char $\ast$b, unsigned long \mbox{\hyperlink{pmac__init_8c_afed088663f8704004425cdae2120b9b3}{len}})
+\item 
+static int \mbox{\hyperlink{gmp__desc_8c_a274c97efa9f26a6d22ca17dbcb52e58b}{add}} (void $\ast$a, void $\ast$b, void $\ast$\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}})
+\item 
+static int \mbox{\hyperlink{gmp__desc_8c_a9cce188374e60ab500e0e658738eb0ce}{addi}} (void $\ast$a, \mbox{\hyperlink{tomcrypt__cfg_8h_a4e98fa26a5de0ac87e06af901bad57c4}{ltc\+\_\+mp\+\_\+digit}} b, void $\ast$\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}})
+\item 
+static int \mbox{\hyperlink{gmp__desc_8c_ac1994aaeae47e7ef1b1b6fe723898be0}{sub}} (void $\ast$a, void $\ast$b, void $\ast$\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}})
+\item 
+static int \mbox{\hyperlink{gmp__desc_8c_afa8ec5f7da0f83c1ea1f3da29e9be588}{subi}} (void $\ast$a, \mbox{\hyperlink{tomcrypt__cfg_8h_a4e98fa26a5de0ac87e06af901bad57c4}{ltc\+\_\+mp\+\_\+digit}} b, void $\ast$\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}})
+\item 
+static int \mbox{\hyperlink{gmp__desc_8c_a7050c53d3ede33130b5137ee21872390}{mul}} (void $\ast$a, void $\ast$b, void $\ast$\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}})
+\item 
+static int \mbox{\hyperlink{gmp__desc_8c_a1bde65678f43510d80f8851860e15e34}{muli}} (void $\ast$a, \mbox{\hyperlink{tomcrypt__cfg_8h_a4e98fa26a5de0ac87e06af901bad57c4}{ltc\+\_\+mp\+\_\+digit}} b, void $\ast$\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}})
+\item 
+static int \mbox{\hyperlink{gmp__desc_8c_acb23c57b2c947a4345287b337fa78764}{sqr}} (void $\ast$a, void $\ast$b)
+\item 
+static int \mbox{\hyperlink{gmp__desc_8c_ac08d018624f8e0b85768543f158af3b0}{sqrtmod\+\_\+prime}} (void $\ast$n, void $\ast$prime, void $\ast$ret)
+\item 
+static int \mbox{\hyperlink{gmp__desc_8c_a36b34c5d69a5633af0743db9d4bba718}{divide}} (void $\ast$a, void $\ast$b, void $\ast$\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, void $\ast$d)
+\item 
+static int \mbox{\hyperlink{gmp__desc_8c_a38e564335cd5493b0e02969fda1c73a0}{div\+\_\+2}} (void $\ast$a, void $\ast$b)
+\item 
+static int \mbox{\hyperlink{gmp__desc_8c_a825311b5e56f780acb119b19a3cbdca0}{modi}} (void $\ast$a, \mbox{\hyperlink{tomcrypt__cfg_8h_a4e98fa26a5de0ac87e06af901bad57c4}{ltc\+\_\+mp\+\_\+digit}} b, \mbox{\hyperlink{tomcrypt__cfg_8h_a4e98fa26a5de0ac87e06af901bad57c4}{ltc\+\_\+mp\+\_\+digit}} $\ast$\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}})
+\item 
+static int \mbox{\hyperlink{gmp__desc_8c_afb49bbeaad5528b5afd96667e06c19ef}{gcd}} (void $\ast$a, void $\ast$b, void $\ast$\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}})
+\item 
+static int \mbox{\hyperlink{gmp__desc_8c_ade2a62ec3e6aa65016ad994bdae98424}{lcm}} (void $\ast$a, void $\ast$b, void $\ast$\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}})
+\item 
+static int \mbox{\hyperlink{gmp__desc_8c_a1197b0ad15639bfc3fc66314c2ce8527}{addmod}} (void $\ast$a, void $\ast$b, void $\ast$\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, void $\ast$d)
+\item 
+static int \mbox{\hyperlink{gmp__desc_8c_ac6a3bdd2a041584938590017969f9f76}{submod}} (void $\ast$a, void $\ast$b, void $\ast$\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, void $\ast$d)
+\item 
+static int \mbox{\hyperlink{gmp__desc_8c_a4c6702198a33b0c56f0a886d7c2206c5}{mulmod}} (void $\ast$a, void $\ast$b, void $\ast$\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, void $\ast$d)
+\item 
+static int \mbox{\hyperlink{gmp__desc_8c_a2a2ed54ac95cb81e7a744b060eeb34af}{sqrmod}} (void $\ast$a, void $\ast$b, void $\ast$\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}})
+\item 
+static int \mbox{\hyperlink{gmp__desc_8c_ac982ab06185a4919fdd77d7ab0fd8093}{invmod}} (void $\ast$a, void $\ast$b, void $\ast$\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}})
+\item 
+static int \mbox{\hyperlink{gmp__desc_8c_a771ef8a9d5b1b2633613bfad28b282c2}{montgomery\+\_\+setup}} (void $\ast$a, void $\ast$$\ast$b)
+\item 
+static int \mbox{\hyperlink{gmp__desc_8c_aa047d6197825069c90f4f89a59f5ed6d}{montgomery\+\_\+normalization}} (void $\ast$a, void $\ast$b)
+\item 
+static int \mbox{\hyperlink{gmp__desc_8c_a109a8d07cc14bf2f0bd604a773d7e02c}{montgomery\+\_\+reduce}} (void $\ast$a, void $\ast$b, void $\ast$\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}})
+\item 
+static void \mbox{\hyperlink{gmp__desc_8c_a8d6035f0021cfaf5936a3c37d2cb2427}{montgomery\+\_\+deinit}} (void $\ast$a)
+\item 
+static int \mbox{\hyperlink{gmp__desc_8c_a251a26828a3c68dff4bbe01f54470275}{exptmod}} (void $\ast$a, void $\ast$b, void $\ast$\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, void $\ast$d)
+\item 
+static int \mbox{\hyperlink{gmp__desc_8c_a48fb4f337851176a7ee5b0836e77d7df}{isprime}} (void $\ast$a, int b, int $\ast$\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}})
+\item 
+static int \mbox{\hyperlink{gmp__desc_8c_ae869949eccbe40489d317228125d3e1b}{set\+\_\+rand}} (void $\ast$a, int size)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static const char \mbox{\hyperlink{gmp__desc_8c_afd7cebb2b227ff201c93354f900aadc8}{rmap}} \mbox{[}$\,$\mbox{]} = \char`\"{}0123456789\+A\+B\+C\+D\+E\+F\+G\+H\+I\+J\+K\+L\+M\+N\+O\+P\+Q\+R\+S\+T\+U\+V\+W\+X\+Y\+Zabcdefghijklmnopqrstuvwxyz+/\char`\"{}
+\item 
+const \mbox{\hyperlink{structltc__math__descriptor}{ltc\+\_\+math\+\_\+descriptor}} \mbox{\hyperlink{gmp__desc_8c_a923f2740bf923975ee49f7b150304f9b}{gmp\+\_\+desc}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{gmp__desc_8c_a7b3f8576103ad3e59839b25a9a7c33da}\label{gmp__desc_8c_a7b3f8576103ad3e59839b25a9a7c33da}} 
+\index{gmp\_desc.c@{gmp\_desc.c}!DESC\_DEF\_ONLY@{DESC\_DEF\_ONLY}}
+\index{DESC\_DEF\_ONLY@{DESC\_DEF\_ONLY}!gmp\_desc.c@{gmp\_desc.c}}
+\subsubsection{\texorpdfstring{DESC\_DEF\_ONLY}{DESC\_DEF\_ONLY}}
+{\footnotesize\ttfamily \#define D\+E\+S\+C\+\_\+\+D\+E\+F\+\_\+\+O\+N\+LY}
+
+
+
+Definition at line 10 of file gmp\+\_\+desc.\+c.
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{gmp__desc_8c_a274c97efa9f26a6d22ca17dbcb52e58b}\label{gmp__desc_8c_a274c97efa9f26a6d22ca17dbcb52e58b}} 
+\index{gmp\_desc.c@{gmp\_desc.c}!add@{add}}
+\index{add@{add}!gmp\_desc.c@{gmp\_desc.c}}
+\subsubsection{\texorpdfstring{add()}{add()}}
+{\footnotesize\ttfamily static int add (\begin{DoxyParamCaption}\item[{void $\ast$}]{a,  }\item[{void $\ast$}]{b,  }\item[{void $\ast$}]{c }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 227 of file gmp\+\_\+desc.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{228 \{}
+\DoxyCodeLine{229    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(a != NULL);}
+\DoxyCodeLine{230    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(b != NULL);}
+\DoxyCodeLine{231    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} != NULL);}
+\DoxyCodeLine{232    mpz\_add(\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, a, b);}
+\DoxyCodeLine{233    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{234 \}}
+
+\end{DoxyCode}
+
+
+References c, C\+R\+Y\+P\+T\+\_\+\+OK, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+\mbox{\Hypertarget{gmp__desc_8c_a9cce188374e60ab500e0e658738eb0ce}\label{gmp__desc_8c_a9cce188374e60ab500e0e658738eb0ce}} 
+\index{gmp\_desc.c@{gmp\_desc.c}!addi@{addi}}
+\index{addi@{addi}!gmp\_desc.c@{gmp\_desc.c}}
+\subsubsection{\texorpdfstring{addi()}{addi()}}
+{\footnotesize\ttfamily static int addi (\begin{DoxyParamCaption}\item[{void $\ast$}]{a,  }\item[{\mbox{\hyperlink{tomcrypt__cfg_8h_a4e98fa26a5de0ac87e06af901bad57c4}{ltc\+\_\+mp\+\_\+digit}}}]{b,  }\item[{void $\ast$}]{c }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 236 of file gmp\+\_\+desc.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{237 \{}
+\DoxyCodeLine{238    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(a != NULL);}
+\DoxyCodeLine{239    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} != NULL);}
+\DoxyCodeLine{240    mpz\_add\_ui(\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, a, b);}
+\DoxyCodeLine{241    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{242 \}}
+
+\end{DoxyCode}
+
+
+References c, C\+R\+Y\+P\+T\+\_\+\+OK, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+\mbox{\Hypertarget{gmp__desc_8c_a1197b0ad15639bfc3fc66314c2ce8527}\label{gmp__desc_8c_a1197b0ad15639bfc3fc66314c2ce8527}} 
+\index{gmp\_desc.c@{gmp\_desc.c}!addmod@{addmod}}
+\index{addmod@{addmod}!gmp\_desc.c@{gmp\_desc.c}}
+\subsubsection{\texorpdfstring{addmod()}{addmod()}}
+{\footnotesize\ttfamily static int addmod (\begin{DoxyParamCaption}\item[{void $\ast$}]{a,  }\item[{void $\ast$}]{b,  }\item[{void $\ast$}]{c,  }\item[{void $\ast$}]{d }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 460 of file gmp\+\_\+desc.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{461 \{}
+\DoxyCodeLine{462    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(a != NULL);}
+\DoxyCodeLine{463    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(b != NULL);}
+\DoxyCodeLine{464    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} != NULL);}
+\DoxyCodeLine{465    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(d != NULL);}
+\DoxyCodeLine{466    mpz\_add(d, a, b);}
+\DoxyCodeLine{467    mpz\_mod(d, d, \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}});}
+\DoxyCodeLine{468    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{469 \}}
+
+\end{DoxyCode}
+
+
+References c, C\+R\+Y\+P\+T\+\_\+\+OK, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+\mbox{\Hypertarget{gmp__desc_8c_aecfc62c80bd6acc7a95d1391ad8252f7}\label{gmp__desc_8c_aecfc62c80bd6acc7a95d1391ad8252f7}} 
+\index{gmp\_desc.c@{gmp\_desc.c}!compare@{compare}}
+\index{compare@{compare}!gmp\_desc.c@{gmp\_desc.c}}
+\subsubsection{\texorpdfstring{compare()}{compare()}}
+{\footnotesize\ttfamily static int compare (\begin{DoxyParamCaption}\item[{void $\ast$}]{a,  }\item[{void $\ast$}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 87 of file gmp\+\_\+desc.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{88 \{}
+\DoxyCodeLine{89    \textcolor{keywordtype}{int} ret;}
+\DoxyCodeLine{90    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(a != NULL);}
+\DoxyCodeLine{91    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(b != NULL);}
+\DoxyCodeLine{92    ret = mpz\_cmp(a, b);}
+\DoxyCodeLine{93    \textcolor{keywordflow}{if} (ret < 0) \{}
+\DoxyCodeLine{94       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt__math_8h_a42d0c7d4c09793df79660774d3436db2}{LTC\_MP\_LT}};}
+\DoxyCodeLine{95    \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (ret > 0) \{}
+\DoxyCodeLine{96       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt__math_8h_adff156a960d44f0f5b67b75ef1f1c29b}{LTC\_MP\_GT}};}
+\DoxyCodeLine{97    \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{98       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt__math_8h_a035a31bde4f31419eb259e36e5776607}{LTC\_MP\_EQ}};}
+\DoxyCodeLine{99    \}}
+\DoxyCodeLine{100 \}}
+
+\end{DoxyCode}
+
+
+References L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, L\+T\+C\+\_\+\+M\+P\+\_\+\+EQ, L\+T\+C\+\_\+\+M\+P\+\_\+\+GT, and L\+T\+C\+\_\+\+M\+P\+\_\+\+LT.
+
+\mbox{\Hypertarget{gmp__desc_8c_aee3f861609cd9406655be85087a7bb06}\label{gmp__desc_8c_aee3f861609cd9406655be85087a7bb06}} 
+\index{gmp\_desc.c@{gmp\_desc.c}!compare\_d@{compare\_d}}
+\index{compare\_d@{compare\_d}!gmp\_desc.c@{gmp\_desc.c}}
+\subsubsection{\texorpdfstring{compare\_d()}{compare\_d()}}
+{\footnotesize\ttfamily static int compare\+\_\+d (\begin{DoxyParamCaption}\item[{void $\ast$}]{a,  }\item[{\mbox{\hyperlink{tomcrypt__cfg_8h_a4e98fa26a5de0ac87e06af901bad57c4}{ltc\+\_\+mp\+\_\+digit}}}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 102 of file gmp\+\_\+desc.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{103 \{}
+\DoxyCodeLine{104    \textcolor{keywordtype}{int} ret;}
+\DoxyCodeLine{105    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(a != NULL);}
+\DoxyCodeLine{106    ret = mpz\_cmp\_ui(((\_\_mpz\_struct *)a), b);}
+\DoxyCodeLine{107    \textcolor{keywordflow}{if} (ret < 0) \{}
+\DoxyCodeLine{108       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt__math_8h_a42d0c7d4c09793df79660774d3436db2}{LTC\_MP\_LT}};}
+\DoxyCodeLine{109    \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (ret > 0) \{}
+\DoxyCodeLine{110       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt__math_8h_adff156a960d44f0f5b67b75ef1f1c29b}{LTC\_MP\_GT}};}
+\DoxyCodeLine{111    \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{112       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt__math_8h_a035a31bde4f31419eb259e36e5776607}{LTC\_MP\_EQ}};}
+\DoxyCodeLine{113    \}}
+\DoxyCodeLine{114 \}}
+
+\end{DoxyCode}
+
+
+References L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, L\+T\+C\+\_\+\+M\+P\+\_\+\+EQ, L\+T\+C\+\_\+\+M\+P\+\_\+\+GT, and L\+T\+C\+\_\+\+M\+P\+\_\+\+LT.
+
+\mbox{\Hypertarget{gmp__desc_8c_ad88f68a4e6f0c7334e93eebf7ddbb2d3}\label{gmp__desc_8c_ad88f68a4e6f0c7334e93eebf7ddbb2d3}} 
+\index{gmp\_desc.c@{gmp\_desc.c}!copy@{copy}}
+\index{copy@{copy}!gmp\_desc.c@{gmp\_desc.c}}
+\subsubsection{\texorpdfstring{copy()}{copy()}}
+{\footnotesize\ttfamily static int copy (\begin{DoxyParamCaption}\item[{void $\ast$}]{a,  }\item[{void $\ast$}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 45 of file gmp\+\_\+desc.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{46 \{}
+\DoxyCodeLine{47    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(a != NULL);}
+\DoxyCodeLine{48    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(b != NULL);}
+\DoxyCodeLine{49    mpz\_set(b, a);}
+\DoxyCodeLine{50    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{51 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+
+
+Referenced by der\+\_\+encode\+\_\+set(), and init\+\_\+copy().
+
+Here is the caller graph for this function\+:
+% FIG 1
+\mbox{\Hypertarget{gmp__desc_8c_a55e39d3b1adb176ed84c1211a7123071}\label{gmp__desc_8c_a55e39d3b1adb176ed84c1211a7123071}} 
+\index{gmp\_desc.c@{gmp\_desc.c}!count\_bits@{count\_bits}}
+\index{count\_bits@{count\_bits}!gmp\_desc.c@{gmp\_desc.c}}
+\subsubsection{\texorpdfstring{count\_bits()}{count\_bits()}}
+{\footnotesize\ttfamily static int count\+\_\+bits (\begin{DoxyParamCaption}\item[{void $\ast$}]{a }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 116 of file gmp\+\_\+desc.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{117 \{}
+\DoxyCodeLine{118    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(a != NULL);}
+\DoxyCodeLine{119    \textcolor{keywordflow}{return} mpz\_sizeinbase(a, 2);}
+\DoxyCodeLine{120 \}}
+
+\end{DoxyCode}
+
+
+References L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+\mbox{\Hypertarget{gmp__desc_8c_a2506b220df2c67f8b9969f6c627c84a1}\label{gmp__desc_8c_a2506b220df2c67f8b9969f6c627c84a1}} 
+\index{gmp\_desc.c@{gmp\_desc.c}!count\_lsb\_bits@{count\_lsb\_bits}}
+\index{count\_lsb\_bits@{count\_lsb\_bits}!gmp\_desc.c@{gmp\_desc.c}}
+\subsubsection{\texorpdfstring{count\_lsb\_bits()}{count\_lsb\_bits()}}
+{\footnotesize\ttfamily static int count\+\_\+lsb\+\_\+bits (\begin{DoxyParamCaption}\item[{void $\ast$}]{a }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 122 of file gmp\+\_\+desc.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{123 \{}
+\DoxyCodeLine{124    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(a != NULL);}
+\DoxyCodeLine{125    \textcolor{keywordflow}{return} mpz\_scan1(a, 0);}
+\DoxyCodeLine{126 \}}
+
+\end{DoxyCode}
+
+
+References L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+\mbox{\Hypertarget{gmp__desc_8c_a9626887f45edba884c412234edf7d1d6}\label{gmp__desc_8c_a9626887f45edba884c412234edf7d1d6}} 
+\index{gmp\_desc.c@{gmp\_desc.c}!deinit@{deinit}}
+\index{deinit@{deinit}!gmp\_desc.c@{gmp\_desc.c}}
+\subsubsection{\texorpdfstring{deinit()}{deinit()}}
+{\footnotesize\ttfamily static void deinit (\begin{DoxyParamCaption}\item[{void $\ast$}]{a }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 30 of file gmp\+\_\+desc.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{31 \{}
+\DoxyCodeLine{32    \mbox{\hyperlink{tomcrypt__argchk_8h_a67a6e5d66d0c7d80ddf5c583054608bd}{LTC\_ARGCHKVD}}(a != NULL);}
+\DoxyCodeLine{33    mpz\_clear(a);}
+\DoxyCodeLine{34    \mbox{\hyperlink{tomcrypt__cfg_8h_a260d66fc0690e0502cf3bfe7b5244b75}{XFREE}}(a);}
+\DoxyCodeLine{35 \}}
+
+\end{DoxyCode}
+
+
+References L\+T\+C\+\_\+\+A\+R\+G\+C\+H\+K\+VD, and X\+F\+R\+E\+E().
+
+Here is the call graph for this function\+:
+% FIG 2
+\mbox{\Hypertarget{gmp__desc_8c_a38e564335cd5493b0e02969fda1c73a0}\label{gmp__desc_8c_a38e564335cd5493b0e02969fda1c73a0}} 
+\index{gmp\_desc.c@{gmp\_desc.c}!div\_2@{div\_2}}
+\index{div\_2@{div\_2}!gmp\_desc.c@{gmp\_desc.c}}
+\subsubsection{\texorpdfstring{div\_2()}{div\_2()}}
+{\footnotesize\ttfamily static int div\+\_\+2 (\begin{DoxyParamCaption}\item[{void $\ast$}]{a,  }\item[{void $\ast$}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 422 of file gmp\+\_\+desc.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{423 \{}
+\DoxyCodeLine{424    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(a != NULL);}
+\DoxyCodeLine{425    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(b != NULL);}
+\DoxyCodeLine{426    mpz\_divexact\_ui(b, a, 2);}
+\DoxyCodeLine{427    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{428 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+\mbox{\Hypertarget{gmp__desc_8c_a36b34c5d69a5633af0743db9d4bba718}\label{gmp__desc_8c_a36b34c5d69a5633af0743db9d4bba718}} 
+\index{gmp\_desc.c@{gmp\_desc.c}!divide@{divide}}
+\index{divide@{divide}!gmp\_desc.c@{gmp\_desc.c}}
+\subsubsection{\texorpdfstring{divide()}{divide()}}
+{\footnotesize\ttfamily static int divide (\begin{DoxyParamCaption}\item[{void $\ast$}]{a,  }\item[{void $\ast$}]{b,  }\item[{void $\ast$}]{c,  }\item[{void $\ast$}]{d }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 403 of file gmp\+\_\+desc.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{404 \{}
+\DoxyCodeLine{405    mpz\_t tmp;}
+\DoxyCodeLine{406    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(a != NULL);}
+\DoxyCodeLine{407    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(b != NULL);}
+\DoxyCodeLine{408    \textcolor{keywordflow}{if} (\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} != NULL) \{}
+\DoxyCodeLine{409       mpz\_init(tmp);}
+\DoxyCodeLine{410       mpz\_divexact(tmp, a, b);}
+\DoxyCodeLine{411    \}}
+\DoxyCodeLine{412    \textcolor{keywordflow}{if} (d != NULL) \{}
+\DoxyCodeLine{413       mpz\_mod(d, a, b);}
+\DoxyCodeLine{414    \}}
+\DoxyCodeLine{415    \textcolor{keywordflow}{if} (\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} != NULL) \{}
+\DoxyCodeLine{416       mpz\_set(\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, tmp);}
+\DoxyCodeLine{417       mpz\_clear(tmp);}
+\DoxyCodeLine{418    \}}
+\DoxyCodeLine{419    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{420 \}}
+
+\end{DoxyCode}
+
+
+References c, C\+R\+Y\+P\+T\+\_\+\+OK, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+\mbox{\Hypertarget{gmp__desc_8c_a251a26828a3c68dff4bbe01f54470275}\label{gmp__desc_8c_a251a26828a3c68dff4bbe01f54470275}} 
+\index{gmp\_desc.c@{gmp\_desc.c}!exptmod@{exptmod}}
+\index{exptmod@{exptmod}!gmp\_desc.c@{gmp\_desc.c}}
+\subsubsection{\texorpdfstring{exptmod()}{exptmod()}}
+{\footnotesize\ttfamily static int exptmod (\begin{DoxyParamCaption}\item[{void $\ast$}]{a,  }\item[{void $\ast$}]{b,  }\item[{void $\ast$}]{c,  }\item[{void $\ast$}]{d }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 547 of file gmp\+\_\+desc.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{548 \{}
+\DoxyCodeLine{549    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(a != NULL);}
+\DoxyCodeLine{550    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(b != NULL);}
+\DoxyCodeLine{551    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} != NULL);}
+\DoxyCodeLine{552    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(d != NULL);}
+\DoxyCodeLine{553    mpz\_powm(d, a, b, \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}});}
+\DoxyCodeLine{554    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{555 \}}
+
+\end{DoxyCode}
+
+
+References c, C\+R\+Y\+P\+T\+\_\+\+OK, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+\mbox{\Hypertarget{gmp__desc_8c_afb49bbeaad5528b5afd96667e06c19ef}\label{gmp__desc_8c_afb49bbeaad5528b5afd96667e06c19ef}} 
+\index{gmp\_desc.c@{gmp\_desc.c}!gcd@{gcd}}
+\index{gcd@{gcd}!gmp\_desc.c@{gmp\_desc.c}}
+\subsubsection{\texorpdfstring{gcd()}{gcd()}}
+{\footnotesize\ttfamily static int gcd (\begin{DoxyParamCaption}\item[{void $\ast$}]{a,  }\item[{void $\ast$}]{b,  }\item[{void $\ast$}]{c }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 441 of file gmp\+\_\+desc.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{442 \{}
+\DoxyCodeLine{443    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(a != NULL);}
+\DoxyCodeLine{444    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(b != NULL);}
+\DoxyCodeLine{445    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} != NULL);}
+\DoxyCodeLine{446    mpz\_gcd(\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, a, b);}
+\DoxyCodeLine{447    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{448 \}}
+
+\end{DoxyCode}
+
+
+References c, C\+R\+Y\+P\+T\+\_\+\+OK, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+\mbox{\Hypertarget{gmp__desc_8c_a6171f32e40e45f55caf4a7cb475e866c}\label{gmp__desc_8c_a6171f32e40e45f55caf4a7cb475e866c}} 
+\index{gmp\_desc.c@{gmp\_desc.c}!get\_digit@{get\_digit}}
+\index{get\_digit@{get\_digit}!gmp\_desc.c@{gmp\_desc.c}}
+\subsubsection{\texorpdfstring{get\_digit()}{get\_digit()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{tomcrypt__cfg_8h_a4e98fa26a5de0ac87e06af901bad57c4}{ltc\+\_\+mp\+\_\+digit}} get\+\_\+digit (\begin{DoxyParamCaption}\item[{void $\ast$}]{a,  }\item[{int}]{n }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 75 of file gmp\+\_\+desc.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{76 \{}
+\DoxyCodeLine{77    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(a != NULL);}
+\DoxyCodeLine{78    \textcolor{keywordflow}{return} mpz\_getlimbn(a, n);}
+\DoxyCodeLine{79 \}}
+
+\end{DoxyCode}
+
+
+References L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+\mbox{\Hypertarget{gmp__desc_8c_a10c8ab52ee86746d3389aa2400c88ac2}\label{gmp__desc_8c_a10c8ab52ee86746d3389aa2400c88ac2}} 
+\index{gmp\_desc.c@{gmp\_desc.c}!get\_digit\_count@{get\_digit\_count}}
+\index{get\_digit\_count@{get\_digit\_count}!gmp\_desc.c@{gmp\_desc.c}}
+\subsubsection{\texorpdfstring{get\_digit\_count()}{get\_digit\_count()}}
+{\footnotesize\ttfamily static int get\+\_\+digit\+\_\+count (\begin{DoxyParamCaption}\item[{void $\ast$}]{a }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 81 of file gmp\+\_\+desc.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{82 \{}
+\DoxyCodeLine{83    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(a != NULL);}
+\DoxyCodeLine{84    \textcolor{keywordflow}{return} mpz\_size(a);}
+\DoxyCodeLine{85 \}}
+
+\end{DoxyCode}
+
+
+References L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+\mbox{\Hypertarget{gmp__desc_8c_ac31838ab831d4094fe109d327019548c}\label{gmp__desc_8c_ac31838ab831d4094fe109d327019548c}} 
+\index{gmp\_desc.c@{gmp\_desc.c}!get\_int@{get\_int}}
+\index{get\_int@{get\_int}!gmp\_desc.c@{gmp\_desc.c}}
+\subsubsection{\texorpdfstring{get\_int()}{get\_int()}}
+{\footnotesize\ttfamily static unsigned long get\+\_\+int (\begin{DoxyParamCaption}\item[{void $\ast$}]{a }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 69 of file gmp\+\_\+desc.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{70 \{}
+\DoxyCodeLine{71    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(a != NULL);}
+\DoxyCodeLine{72    \textcolor{keywordflow}{return} mpz\_get\_ui(a);}
+\DoxyCodeLine{73 \}}
+
+\end{DoxyCode}
+
+
+References L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+\mbox{\Hypertarget{gmp__desc_8c_a4f8948d7c94899bf8ddee4721114d593}\label{gmp__desc_8c_a4f8948d7c94899bf8ddee4721114d593}} 
+\index{gmp\_desc.c@{gmp\_desc.c}!init@{init}}
+\index{init@{init}!gmp\_desc.c@{gmp\_desc.c}}
+\subsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily static int init (\begin{DoxyParamCaption}\item[{void $\ast$$\ast$}]{a }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 18 of file gmp\+\_\+desc.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{19 \{}
+\DoxyCodeLine{20    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(a != NULL);}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22    *a = \mbox{\hyperlink{tomcrypt__cfg_8h_a151dda14cd7acae31eaf1102b0cc0685}{XCALLOC}}(1, \textcolor{keyword}{sizeof}(\_\_mpz\_struct));}
+\DoxyCodeLine{23    \textcolor{keywordflow}{if} (*a == NULL) \{}
+\DoxyCodeLine{24       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca0ce0d27adc7ea10b74b7ea904b8bfa82}{CRYPT\_MEM}};}
+\DoxyCodeLine{25    \}}
+\DoxyCodeLine{26    mpz\_init(((\_\_mpz\_struct *)*a));}
+\DoxyCodeLine{27    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{28 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+M\+EM, C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, and X\+C\+A\+L\+L\+O\+C().
+
+
+
+Referenced by \+\_\+pkcs\+\_\+5\+\_\+alg1\+\_\+common(), hash\+\_\+filehandle(), hash\+\_\+memory(), hash\+\_\+memory\+\_\+multi(), hmac\+\_\+done(), hmac\+\_\+init(), init\+\_\+copy(), pkcs\+\_\+1\+\_\+mgf1(), pkcs\+\_\+1\+\_\+pss\+\_\+decode(), and pkcs\+\_\+1\+\_\+pss\+\_\+encode().
+
+Here is the call graph for this function\+:
+% FIG 3
+Here is the caller graph for this function\+:
+% FIG 4
+\mbox{\Hypertarget{gmp__desc_8c_a9c0dddd7edf258f69ca346540f3da61a}\label{gmp__desc_8c_a9c0dddd7edf258f69ca346540f3da61a}} 
+\index{gmp\_desc.c@{gmp\_desc.c}!init\_copy@{init\_copy}}
+\index{init\_copy@{init\_copy}!gmp\_desc.c@{gmp\_desc.c}}
+\subsubsection{\texorpdfstring{init\_copy()}{init\_copy()}}
+{\footnotesize\ttfamily static int init\+\_\+copy (\begin{DoxyParamCaption}\item[{void $\ast$$\ast$}]{a,  }\item[{void $\ast$}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 53 of file gmp\+\_\+desc.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{54 \{}
+\DoxyCodeLine{55    \textcolor{keywordflow}{if} (\mbox{\hyperlink{gmp__desc_8c_a4f8948d7c94899bf8ddee4721114d593}{init}}(a) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{56       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca0ce0d27adc7ea10b74b7ea904b8bfa82}{CRYPT\_MEM}};}
+\DoxyCodeLine{57    \}}
+\DoxyCodeLine{58    \textcolor{keywordflow}{return} \mbox{\hyperlink{gmp__desc_8c_ad88f68a4e6f0c7334e93eebf7ddbb2d3}{copy}}(b, *a);}
+\DoxyCodeLine{59 \}}
+
+\end{DoxyCode}
+
+
+References copy(), C\+R\+Y\+P\+T\+\_\+\+M\+EM, C\+R\+Y\+P\+T\+\_\+\+OK, and init().
+
+Here is the call graph for this function\+:
+% FIG 5
+\mbox{\Hypertarget{gmp__desc_8c_ac982ab06185a4919fdd77d7ab0fd8093}\label{gmp__desc_8c_ac982ab06185a4919fdd77d7ab0fd8093}} 
+\index{gmp\_desc.c@{gmp\_desc.c}!invmod@{invmod}}
+\index{invmod@{invmod}!gmp\_desc.c@{gmp\_desc.c}}
+\subsubsection{\texorpdfstring{invmod()}{invmod()}}
+{\footnotesize\ttfamily static int invmod (\begin{DoxyParamCaption}\item[{void $\ast$}]{a,  }\item[{void $\ast$}]{b,  }\item[{void $\ast$}]{c }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 504 of file gmp\+\_\+desc.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{505 \{}
+\DoxyCodeLine{506    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(a != NULL);}
+\DoxyCodeLine{507    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(b != NULL);}
+\DoxyCodeLine{508    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} != NULL);}
+\DoxyCodeLine{509    mpz\_invert(\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, a, b);}
+\DoxyCodeLine{510    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{511 \}}
+
+\end{DoxyCode}
+
+
+References c, C\+R\+Y\+P\+T\+\_\+\+OK, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+\mbox{\Hypertarget{gmp__desc_8c_a48fb4f337851176a7ee5b0836e77d7df}\label{gmp__desc_8c_a48fb4f337851176a7ee5b0836e77d7df}} 
+\index{gmp\_desc.c@{gmp\_desc.c}!isprime@{isprime}}
+\index{isprime@{isprime}!gmp\_desc.c@{gmp\_desc.c}}
+\subsubsection{\texorpdfstring{isprime()}{isprime()}}
+{\footnotesize\ttfamily static int isprime (\begin{DoxyParamCaption}\item[{void $\ast$}]{a,  }\item[{int}]{b,  }\item[{int $\ast$}]{c }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 557 of file gmp\+\_\+desc.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{558 \{}
+\DoxyCodeLine{559    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(a != NULL);}
+\DoxyCodeLine{560    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} != NULL);}
+\DoxyCodeLine{561    \textcolor{keywordflow}{if} (b == 0) \{}
+\DoxyCodeLine{562        b = \mbox{\hyperlink{tomcrypt__math_8h_a65401cc14826c74ce923beb65bde5bf3}{LTC\_MILLER\_RABIN\_REPS}};}
+\DoxyCodeLine{563    \} \textcolor{comment}{/* if */}}
+\DoxyCodeLine{564    *\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} = mpz\_probab\_prime\_p(a, b) > 0 ? \mbox{\hyperlink{tomcrypt__math_8h_acc2da047f8fb30a3e2b2403aac617fe0}{LTC\_MP\_YES}} : \mbox{\hyperlink{tomcrypt__math_8h_a40f1119339954fb273ecb35e48c1d569}{LTC\_MP\_NO}};}
+\DoxyCodeLine{565    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{566 \}}
+
+\end{DoxyCode}
+
+
+References c, C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, L\+T\+C\+\_\+\+M\+I\+L\+L\+E\+R\+\_\+\+R\+A\+B\+I\+N\+\_\+\+R\+E\+PS, L\+T\+C\+\_\+\+M\+P\+\_\+\+NO, and L\+T\+C\+\_\+\+M\+P\+\_\+\+Y\+ES.
+
+\mbox{\Hypertarget{gmp__desc_8c_ade2a62ec3e6aa65016ad994bdae98424}\label{gmp__desc_8c_ade2a62ec3e6aa65016ad994bdae98424}} 
+\index{gmp\_desc.c@{gmp\_desc.c}!lcm@{lcm}}
+\index{lcm@{lcm}!gmp\_desc.c@{gmp\_desc.c}}
+\subsubsection{\texorpdfstring{lcm()}{lcm()}}
+{\footnotesize\ttfamily static int lcm (\begin{DoxyParamCaption}\item[{void $\ast$}]{a,  }\item[{void $\ast$}]{b,  }\item[{void $\ast$}]{c }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 451 of file gmp\+\_\+desc.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{452 \{}
+\DoxyCodeLine{453    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(a != NULL);}
+\DoxyCodeLine{454    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(b != NULL);}
+\DoxyCodeLine{455    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} != NULL);}
+\DoxyCodeLine{456    mpz\_lcm(\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, a, b);}
+\DoxyCodeLine{457    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{458 \}}
+
+\end{DoxyCode}
+
+
+References c, C\+R\+Y\+P\+T\+\_\+\+OK, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+\mbox{\Hypertarget{gmp__desc_8c_a825311b5e56f780acb119b19a3cbdca0}\label{gmp__desc_8c_a825311b5e56f780acb119b19a3cbdca0}} 
+\index{gmp\_desc.c@{gmp\_desc.c}!modi@{modi}}
+\index{modi@{modi}!gmp\_desc.c@{gmp\_desc.c}}
+\subsubsection{\texorpdfstring{modi()}{modi()}}
+{\footnotesize\ttfamily static int modi (\begin{DoxyParamCaption}\item[{void $\ast$}]{a,  }\item[{\mbox{\hyperlink{tomcrypt__cfg_8h_a4e98fa26a5de0ac87e06af901bad57c4}{ltc\+\_\+mp\+\_\+digit}}}]{b,  }\item[{\mbox{\hyperlink{tomcrypt__cfg_8h_a4e98fa26a5de0ac87e06af901bad57c4}{ltc\+\_\+mp\+\_\+digit}} $\ast$}]{c }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 431 of file gmp\+\_\+desc.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{432 \{}
+\DoxyCodeLine{433    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(a != NULL);}
+\DoxyCodeLine{434    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} != NULL);}
+\DoxyCodeLine{435 }
+\DoxyCodeLine{436    *\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} = mpz\_fdiv\_ui(a, b);}
+\DoxyCodeLine{437    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{438 \}}
+
+\end{DoxyCode}
+
+
+References c, C\+R\+Y\+P\+T\+\_\+\+OK, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+\mbox{\Hypertarget{gmp__desc_8c_a8d6035f0021cfaf5936a3c37d2cb2427}\label{gmp__desc_8c_a8d6035f0021cfaf5936a3c37d2cb2427}} 
+\index{gmp\_desc.c@{gmp\_desc.c}!montgomery\_deinit@{montgomery\_deinit}}
+\index{montgomery\_deinit@{montgomery\_deinit}!gmp\_desc.c@{gmp\_desc.c}}
+\subsubsection{\texorpdfstring{montgomery\_deinit()}{montgomery\_deinit()}}
+{\footnotesize\ttfamily static void montgomery\+\_\+deinit (\begin{DoxyParamCaption}\item[{void $\ast$}]{a }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 542 of file gmp\+\_\+desc.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{543 \{}
+\DoxyCodeLine{544   \mbox{\hyperlink{tomcrypt__macros_8h_accde4b007facd646a8327f8e64b2d1e0}{LTC\_UNUSED\_PARAM}}(a);}
+\DoxyCodeLine{545 \}}
+
+\end{DoxyCode}
+
+
+References L\+T\+C\+\_\+\+U\+N\+U\+S\+E\+D\+\_\+\+P\+A\+R\+AM.
+
+\mbox{\Hypertarget{gmp__desc_8c_aa047d6197825069c90f4f89a59f5ed6d}\label{gmp__desc_8c_aa047d6197825069c90f4f89a59f5ed6d}} 
+\index{gmp\_desc.c@{gmp\_desc.c}!montgomery\_normalization@{montgomery\_normalization}}
+\index{montgomery\_normalization@{montgomery\_normalization}!gmp\_desc.c@{gmp\_desc.c}}
+\subsubsection{\texorpdfstring{montgomery\_normalization()}{montgomery\_normalization()}}
+{\footnotesize\ttfamily static int montgomery\+\_\+normalization (\begin{DoxyParamCaption}\item[{void $\ast$}]{a,  }\item[{void $\ast$}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 523 of file gmp\+\_\+desc.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{524 \{}
+\DoxyCodeLine{525    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(a != NULL);}
+\DoxyCodeLine{526    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(b != NULL);}
+\DoxyCodeLine{527    mpz\_set\_ui(a, 1);}
+\DoxyCodeLine{528    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{529 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+\mbox{\Hypertarget{gmp__desc_8c_a109a8d07cc14bf2f0bd604a773d7e02c}\label{gmp__desc_8c_a109a8d07cc14bf2f0bd604a773d7e02c}} 
+\index{gmp\_desc.c@{gmp\_desc.c}!montgomery\_reduce@{montgomery\_reduce}}
+\index{montgomery\_reduce@{montgomery\_reduce}!gmp\_desc.c@{gmp\_desc.c}}
+\subsubsection{\texorpdfstring{montgomery\_reduce()}{montgomery\_reduce()}}
+{\footnotesize\ttfamily static int montgomery\+\_\+reduce (\begin{DoxyParamCaption}\item[{void $\ast$}]{a,  }\item[{void $\ast$}]{b,  }\item[{void $\ast$}]{c }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 532 of file gmp\+\_\+desc.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{533 \{}
+\DoxyCodeLine{534    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(a != NULL);}
+\DoxyCodeLine{535    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(b != NULL);}
+\DoxyCodeLine{536    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} != NULL);}
+\DoxyCodeLine{537    mpz\_mod(a, a, b);}
+\DoxyCodeLine{538    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{539 \}}
+
+\end{DoxyCode}
+
+
+References c, C\+R\+Y\+P\+T\+\_\+\+OK, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+\mbox{\Hypertarget{gmp__desc_8c_a771ef8a9d5b1b2633613bfad28b282c2}\label{gmp__desc_8c_a771ef8a9d5b1b2633613bfad28b282c2}} 
+\index{gmp\_desc.c@{gmp\_desc.c}!montgomery\_setup@{montgomery\_setup}}
+\index{montgomery\_setup@{montgomery\_setup}!gmp\_desc.c@{gmp\_desc.c}}
+\subsubsection{\texorpdfstring{montgomery\_setup()}{montgomery\_setup()}}
+{\footnotesize\ttfamily static int montgomery\+\_\+setup (\begin{DoxyParamCaption}\item[{void $\ast$}]{a,  }\item[{void $\ast$$\ast$}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 514 of file gmp\+\_\+desc.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{515 \{}
+\DoxyCodeLine{516    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(a != NULL);}
+\DoxyCodeLine{517    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(b != NULL);}
+\DoxyCodeLine{518    *b = (\textcolor{keywordtype}{void} *)1;}
+\DoxyCodeLine{519    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{520 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+\mbox{\Hypertarget{gmp__desc_8c_a7050c53d3ede33130b5137ee21872390}\label{gmp__desc_8c_a7050c53d3ede33130b5137ee21872390}} 
+\index{gmp\_desc.c@{gmp\_desc.c}!mul@{mul}}
+\index{mul@{mul}!gmp\_desc.c@{gmp\_desc.c}}
+\subsubsection{\texorpdfstring{mul()}{mul()}}
+{\footnotesize\ttfamily static int mul (\begin{DoxyParamCaption}\item[{void $\ast$}]{a,  }\item[{void $\ast$}]{b,  }\item[{void $\ast$}]{c }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 263 of file gmp\+\_\+desc.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{264 \{}
+\DoxyCodeLine{265    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(a != NULL);}
+\DoxyCodeLine{266    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(b != NULL);}
+\DoxyCodeLine{267    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} != NULL);}
+\DoxyCodeLine{268    mpz\_mul(\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, a, b);}
+\DoxyCodeLine{269    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{270 \}}
+
+\end{DoxyCode}
+
+
+References c, C\+R\+Y\+P\+T\+\_\+\+OK, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+
+
+Referenced by pass(), and tiger\+\_\+round().
+
+Here is the caller graph for this function\+:
+% FIG 6
+\mbox{\Hypertarget{gmp__desc_8c_a1bde65678f43510d80f8851860e15e34}\label{gmp__desc_8c_a1bde65678f43510d80f8851860e15e34}} 
+\index{gmp\_desc.c@{gmp\_desc.c}!muli@{muli}}
+\index{muli@{muli}!gmp\_desc.c@{gmp\_desc.c}}
+\subsubsection{\texorpdfstring{muli()}{muli()}}
+{\footnotesize\ttfamily static int muli (\begin{DoxyParamCaption}\item[{void $\ast$}]{a,  }\item[{\mbox{\hyperlink{tomcrypt__cfg_8h_a4e98fa26a5de0ac87e06af901bad57c4}{ltc\+\_\+mp\+\_\+digit}}}]{b,  }\item[{void $\ast$}]{c }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 272 of file gmp\+\_\+desc.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{273 \{}
+\DoxyCodeLine{274    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(a != NULL);}
+\DoxyCodeLine{275    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} != NULL);}
+\DoxyCodeLine{276    mpz\_mul\_ui(\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, a, b);}
+\DoxyCodeLine{277    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{278 \}}
+
+\end{DoxyCode}
+
+
+References c, C\+R\+Y\+P\+T\+\_\+\+OK, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+\mbox{\Hypertarget{gmp__desc_8c_a4c6702198a33b0c56f0a886d7c2206c5}\label{gmp__desc_8c_a4c6702198a33b0c56f0a886d7c2206c5}} 
+\index{gmp\_desc.c@{gmp\_desc.c}!mulmod@{mulmod}}
+\index{mulmod@{mulmod}!gmp\_desc.c@{gmp\_desc.c}}
+\subsubsection{\texorpdfstring{mulmod()}{mulmod()}}
+{\footnotesize\ttfamily static int mulmod (\begin{DoxyParamCaption}\item[{void $\ast$}]{a,  }\item[{void $\ast$}]{b,  }\item[{void $\ast$}]{c,  }\item[{void $\ast$}]{d }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 482 of file gmp\+\_\+desc.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{483 \{}
+\DoxyCodeLine{484    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(a != NULL);}
+\DoxyCodeLine{485    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(b != NULL);}
+\DoxyCodeLine{486    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} != NULL);}
+\DoxyCodeLine{487    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(d != NULL);}
+\DoxyCodeLine{488    mpz\_mul(d, a, b);}
+\DoxyCodeLine{489    mpz\_mod(d, d, \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}});}
+\DoxyCodeLine{490    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{491 \}}
+
+\end{DoxyCode}
+
+
+References c, C\+R\+Y\+P\+T\+\_\+\+OK, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+\mbox{\Hypertarget{gmp__desc_8c_adc67bac9fd8e42c930369ddabaa5f2db}\label{gmp__desc_8c_adc67bac9fd8e42c930369ddabaa5f2db}} 
+\index{gmp\_desc.c@{gmp\_desc.c}!neg@{neg}}
+\index{neg@{neg}!gmp\_desc.c@{gmp\_desc.c}}
+\subsubsection{\texorpdfstring{neg()}{neg()}}
+{\footnotesize\ttfamily static int neg (\begin{DoxyParamCaption}\item[{void $\ast$}]{a,  }\item[{void $\ast$}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 37 of file gmp\+\_\+desc.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{38 \{}
+\DoxyCodeLine{39    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(a != NULL);}
+\DoxyCodeLine{40    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(b != NULL);}
+\DoxyCodeLine{41    mpz\_neg(b, a);}
+\DoxyCodeLine{42    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{43 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+\mbox{\Hypertarget{gmp__desc_8c_af84d5b7caaf005f40f924afd8ada2380}\label{gmp__desc_8c_af84d5b7caaf005f40f924afd8ada2380}} 
+\index{gmp\_desc.c@{gmp\_desc.c}!read\_radix@{read\_radix}}
+\index{read\_radix@{read\_radix}!gmp\_desc.c@{gmp\_desc.c}}
+\subsubsection{\texorpdfstring{read\_radix()}{read\_radix()}}
+{\footnotesize\ttfamily static int read\+\_\+radix (\begin{DoxyParamCaption}\item[{void $\ast$}]{a,  }\item[{const char $\ast$}]{b,  }\item[{int}]{radix }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 142 of file gmp\+\_\+desc.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{143 \{}
+\DoxyCodeLine{144    \textcolor{keywordtype}{int} ret;}
+\DoxyCodeLine{145    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(a != NULL);}
+\DoxyCodeLine{146    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(b != NULL);}
+\DoxyCodeLine{147    \textcolor{keywordflow}{if} (radix == 64) \{}
+\DoxyCodeLine{148       \textcolor{comment}{/* Sadly, GMP only supports radixes up to 62, but we need 64.}}
+\DoxyCodeLine{149 \textcolor{comment}{       * So, although this is not the most elegant or efficient way,}}
+\DoxyCodeLine{150 \textcolor{comment}{       * let's just convert the base 64 string (6 bits per digit) to}}
+\DoxyCodeLine{151 \textcolor{comment}{       * an octal string (3 bits per digit) that's twice as long. */}}
+\DoxyCodeLine{152       \textcolor{keywordtype}{char} \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, *tmp, *q;}
+\DoxyCodeLine{153       \textcolor{keyword}{const} \textcolor{keywordtype}{char} *p;}
+\DoxyCodeLine{154       \textcolor{keywordtype}{int} i;}
+\DoxyCodeLine{155       tmp = \mbox{\hyperlink{tomcrypt__cfg_8h_af363355f38fbaacdefacf270436ae1c9}{XMALLOC}} (1 + 2 * strlen (b));}
+\DoxyCodeLine{156       \textcolor{keywordflow}{if} (tmp == NULL) \{}
+\DoxyCodeLine{157          \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca0ce0d27adc7ea10b74b7ea904b8bfa82}{CRYPT\_MEM}};}
+\DoxyCodeLine{158       \}}
+\DoxyCodeLine{159       p = b;}
+\DoxyCodeLine{160       q = tmp;}
+\DoxyCodeLine{161       \textcolor{keywordflow}{while} ((\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} = *p++) != 0) \{}
+\DoxyCodeLine{162          \textcolor{keywordflow}{for} (i = 0; i < 64; i++) \{}
+\DoxyCodeLine{163             \textcolor{keywordflow}{if} (\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} == \mbox{\hyperlink{gmp__desc_8c_afd7cebb2b227ff201c93354f900aadc8}{rmap}}[i])}
+\DoxyCodeLine{164                \textcolor{keywordflow}{break};}
+\DoxyCodeLine{165          \}}
+\DoxyCodeLine{166          \textcolor{keywordflow}{if} (i == 64) \{}
+\DoxyCodeLine{167             \mbox{\hyperlink{tomcrypt__cfg_8h_a260d66fc0690e0502cf3bfe7b5244b75}{XFREE}} (tmp);}
+\DoxyCodeLine{168             \textcolor{comment}{/* printf ("c = '\%c'\(\backslash\)n", c); */}}
+\DoxyCodeLine{169             \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca03c22220d7538be04455cd2aa6ddf9da}{CRYPT\_ERROR}};}
+\DoxyCodeLine{170          \}}
+\DoxyCodeLine{171          *q++ = \textcolor{charliteral}{'0'} + (i / 8);}
+\DoxyCodeLine{172          *q++ = \textcolor{charliteral}{'0'} + (i \% 8);}
+\DoxyCodeLine{173       \}}
+\DoxyCodeLine{174       *q = 0;}
+\DoxyCodeLine{175       ret = mpz\_set\_str(a, tmp, 8);}
+\DoxyCodeLine{176       \textcolor{comment}{/* printf ("ret = \%d for '\%s'\(\backslash\)n", ret, tmp); */}}
+\DoxyCodeLine{177       \mbox{\hyperlink{tomcrypt__cfg_8h_a260d66fc0690e0502cf3bfe7b5244b75}{XFREE}} (tmp);}
+\DoxyCodeLine{178    \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{179       ret = mpz\_set\_str(a, b, radix);}
+\DoxyCodeLine{180    \}}
+\DoxyCodeLine{181    \textcolor{keywordflow}{return} (ret == 0 ? \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}} : \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca03c22220d7538be04455cd2aa6ddf9da}{CRYPT\_ERROR}});}
+\DoxyCodeLine{182 \}}
+
+\end{DoxyCode}
+
+
+References c, C\+R\+Y\+P\+T\+\_\+\+E\+R\+R\+OR, C\+R\+Y\+P\+T\+\_\+\+M\+EM, C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, rmap, X\+F\+R\+E\+E(), and X\+M\+A\+L\+L\+O\+C().
+
+Here is the call graph for this function\+:
+% FIG 7
+\mbox{\Hypertarget{gmp__desc_8c_a0b4961498876dba1898ece1416698b10}\label{gmp__desc_8c_a0b4961498876dba1898ece1416698b10}} 
+\index{gmp\_desc.c@{gmp\_desc.c}!set\_int@{set\_int}}
+\index{set\_int@{set\_int}!gmp\_desc.c@{gmp\_desc.c}}
+\subsubsection{\texorpdfstring{set\_int()}{set\_int()}}
+{\footnotesize\ttfamily static int set\+\_\+int (\begin{DoxyParamCaption}\item[{void $\ast$}]{a,  }\item[{\mbox{\hyperlink{tomcrypt__cfg_8h_a4e98fa26a5de0ac87e06af901bad57c4}{ltc\+\_\+mp\+\_\+digit}}}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 62 of file gmp\+\_\+desc.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{63 \{}
+\DoxyCodeLine{64    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(a != NULL);}
+\DoxyCodeLine{65    mpz\_set\_ui(((\_\_mpz\_struct *)a), b);}
+\DoxyCodeLine{66    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{67 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+\mbox{\Hypertarget{gmp__desc_8c_ae869949eccbe40489d317228125d3e1b}\label{gmp__desc_8c_ae869949eccbe40489d317228125d3e1b}} 
+\index{gmp\_desc.c@{gmp\_desc.c}!set\_rand@{set\_rand}}
+\index{set\_rand@{set\_rand}!gmp\_desc.c@{gmp\_desc.c}}
+\subsubsection{\texorpdfstring{set\_rand()}{set\_rand()}}
+{\footnotesize\ttfamily static int set\+\_\+rand (\begin{DoxyParamCaption}\item[{void $\ast$}]{a,  }\item[{int}]{size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 568 of file gmp\+\_\+desc.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{569 \{}
+\DoxyCodeLine{570    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(a != NULL);}
+\DoxyCodeLine{571    mpz\_random(a, size);}
+\DoxyCodeLine{572    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{573 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+\mbox{\Hypertarget{gmp__desc_8c_acb23c57b2c947a4345287b337fa78764}\label{gmp__desc_8c_acb23c57b2c947a4345287b337fa78764}} 
+\index{gmp\_desc.c@{gmp\_desc.c}!sqr@{sqr}}
+\index{sqr@{sqr}!gmp\_desc.c@{gmp\_desc.c}}
+\subsubsection{\texorpdfstring{sqr()}{sqr()}}
+{\footnotesize\ttfamily static int sqr (\begin{DoxyParamCaption}\item[{void $\ast$}]{a,  }\item[{void $\ast$}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 281 of file gmp\+\_\+desc.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{282 \{}
+\DoxyCodeLine{283    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(a != NULL);}
+\DoxyCodeLine{284    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(b != NULL);}
+\DoxyCodeLine{285    mpz\_mul(b, a, a);}
+\DoxyCodeLine{286    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{287 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+\mbox{\Hypertarget{gmp__desc_8c_a2a2ed54ac95cb81e7a744b060eeb34af}\label{gmp__desc_8c_a2a2ed54ac95cb81e7a744b060eeb34af}} 
+\index{gmp\_desc.c@{gmp\_desc.c}!sqrmod@{sqrmod}}
+\index{sqrmod@{sqrmod}!gmp\_desc.c@{gmp\_desc.c}}
+\subsubsection{\texorpdfstring{sqrmod()}{sqrmod()}}
+{\footnotesize\ttfamily static int sqrmod (\begin{DoxyParamCaption}\item[{void $\ast$}]{a,  }\item[{void $\ast$}]{b,  }\item[{void $\ast$}]{c }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 493 of file gmp\+\_\+desc.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{494 \{}
+\DoxyCodeLine{495    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(a != NULL);}
+\DoxyCodeLine{496    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(b != NULL);}
+\DoxyCodeLine{497    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} != NULL);}
+\DoxyCodeLine{498    mpz\_mul(\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, a, a);}
+\DoxyCodeLine{499    mpz\_mod(\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, b);}
+\DoxyCodeLine{500    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{501 \}}
+
+\end{DoxyCode}
+
+
+References c, C\+R\+Y\+P\+T\+\_\+\+OK, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+\mbox{\Hypertarget{gmp__desc_8c_ac08d018624f8e0b85768543f158af3b0}\label{gmp__desc_8c_ac08d018624f8e0b85768543f158af3b0}} 
+\index{gmp\_desc.c@{gmp\_desc.c}!sqrtmod\_prime@{sqrtmod\_prime}}
+\index{sqrtmod\_prime@{sqrtmod\_prime}!gmp\_desc.c@{gmp\_desc.c}}
+\subsubsection{\texorpdfstring{sqrtmod\_prime()}{sqrtmod\_prime()}}
+{\footnotesize\ttfamily static int sqrtmod\+\_\+prime (\begin{DoxyParamCaption}\item[{void $\ast$}]{n,  }\item[{void $\ast$}]{prime,  }\item[{void $\ast$}]{ret }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 290 of file gmp\+\_\+desc.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{291 \{}
+\DoxyCodeLine{292    \textcolor{keywordtype}{int} res, legendre, i;}
+\DoxyCodeLine{293    mpz\_t \mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}}, C, Q, \mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}, Z, M, T, \mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}}, two;}
+\DoxyCodeLine{294 }
+\DoxyCodeLine{295    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(n     != NULL);}
+\DoxyCodeLine{296    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(prime != NULL);}
+\DoxyCodeLine{297    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(ret   != NULL);}
+\DoxyCodeLine{298 }
+\DoxyCodeLine{299    \textcolor{comment}{/* first handle the simple cases */}}
+\DoxyCodeLine{300    \textcolor{keywordflow}{if} (mpz\_cmp\_ui(((\_\_mpz\_struct *)n), 0) == 0) \{}
+\DoxyCodeLine{301       mpz\_set\_ui(ret, 0);}
+\DoxyCodeLine{302       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{303    \}}
+\DoxyCodeLine{304    \textcolor{keywordflow}{if} (mpz\_cmp\_ui(((\_\_mpz\_struct *)prime), 2) == 0)     \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca03c22220d7538be04455cd2aa6ddf9da}{CRYPT\_ERROR}}; \textcolor{comment}{/* prime must be odd */}}
+\DoxyCodeLine{305    legendre = mpz\_legendre(n, prime);}
+\DoxyCodeLine{306    \textcolor{keywordflow}{if} (legendre == -1)                                  \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca03c22220d7538be04455cd2aa6ddf9da}{CRYPT\_ERROR}}; \textcolor{comment}{/* quadratic non-residue mod prime */}}
+\DoxyCodeLine{307 }
+\DoxyCodeLine{308    mpz\_init(\mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}}); mpz\_init(C); mpz\_init(Q);}
+\DoxyCodeLine{309    mpz\_init(\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}});  mpz\_init(Z); mpz\_init(M);}
+\DoxyCodeLine{310    mpz\_init(T);  mpz\_init(\mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}}); mpz\_init(two);}
+\DoxyCodeLine{311 }
+\DoxyCodeLine{312    \textcolor{comment}{/* SPECIAL CASE: if prime mod 4 == 3}}
+\DoxyCodeLine{313 \textcolor{comment}{    * compute directly: res = n\string^(prime+1)/4 mod prime}}
+\DoxyCodeLine{314 \textcolor{comment}{    * Handbook of Applied Cryptography algorithm 3.36}}
+\DoxyCodeLine{315 \textcolor{comment}{    */}}
+\DoxyCodeLine{316    i = mpz\_mod\_ui(\mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}}, prime, 4); \textcolor{comment}{/* t1 is ignored here */}}
+\DoxyCodeLine{317    \textcolor{keywordflow}{if} (i == 3) \{}
+\DoxyCodeLine{318       mpz\_add\_ui(\mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}}, prime, 1);}
+\DoxyCodeLine{319       mpz\_fdiv\_q\_2exp(\mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}}, \mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}}, 2);}
+\DoxyCodeLine{320       mpz\_powm(ret, n, \mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}}, prime);}
+\DoxyCodeLine{321       res = \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{322       \textcolor{keywordflow}{goto} cleanup;}
+\DoxyCodeLine{323    \}}
+\DoxyCodeLine{324 }
+\DoxyCodeLine{325    \textcolor{comment}{/* NOW: Tonelli-Shanks algorithm */}}
+\DoxyCodeLine{326 }
+\DoxyCodeLine{327    \textcolor{comment}{/* factor out powers of 2 from prime-1, defining Q and S as: prime-1 = Q*2\string^S */}}
+\DoxyCodeLine{328    mpz\_set(Q, prime);}
+\DoxyCodeLine{329    mpz\_sub\_ui(Q, Q, 1);}
+\DoxyCodeLine{330    \textcolor{comment}{/* Q = prime - 1 */}}
+\DoxyCodeLine{331    mpz\_set\_ui(\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}, 0);}
+\DoxyCodeLine{332    \textcolor{comment}{/* S = 0 */}}
+\DoxyCodeLine{333    \textcolor{keywordflow}{while} (mpz\_even\_p(Q)) \{}
+\DoxyCodeLine{334       mpz\_fdiv\_q\_2exp(Q, Q, 1);}
+\DoxyCodeLine{335       \textcolor{comment}{/* Q = Q / 2 */}}
+\DoxyCodeLine{336       mpz\_add\_ui(\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}, \mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}}, 1);}
+\DoxyCodeLine{337       \textcolor{comment}{/* S = S + 1 */}}
+\DoxyCodeLine{338    \}}
+\DoxyCodeLine{339 }
+\DoxyCodeLine{340    \textcolor{comment}{/* find a Z such that the Legendre symbol (Z|prime) == -1 */}}
+\DoxyCodeLine{341    mpz\_set\_ui(Z, 2);}
+\DoxyCodeLine{342    \textcolor{comment}{/* Z = 2 */}}
+\DoxyCodeLine{343    \textcolor{keywordflow}{while}(1) \{}
+\DoxyCodeLine{344       legendre = mpz\_legendre(Z, prime);}
+\DoxyCodeLine{345       \textcolor{keywordflow}{if} (legendre == -1) \textcolor{keywordflow}{break};}
+\DoxyCodeLine{346       mpz\_add\_ui(Z, Z, 1);}
+\DoxyCodeLine{347       \textcolor{comment}{/* Z = Z + 1 */}}
+\DoxyCodeLine{348    \}}
+\DoxyCodeLine{349 }
+\DoxyCodeLine{350    mpz\_powm(C, Z, Q, prime);}
+\DoxyCodeLine{351    \textcolor{comment}{/* C = Z \string^ Q mod prime */}}
+\DoxyCodeLine{352    mpz\_add\_ui(\mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}}, Q, 1);}
+\DoxyCodeLine{353    mpz\_fdiv\_q\_2exp(\mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}}, \mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}}, 1);}
+\DoxyCodeLine{354    \textcolor{comment}{/* t1 = (Q + 1) / 2 */}}
+\DoxyCodeLine{355    mpz\_powm(\mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}}, n, \mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}}, prime);}
+\DoxyCodeLine{356    \textcolor{comment}{/* R = n \string^ ((Q + 1) / 2) mod prime */}}
+\DoxyCodeLine{357    mpz\_powm(T, n, Q, prime);}
+\DoxyCodeLine{358    \textcolor{comment}{/* T = n \string^ Q mod prime */}}
+\DoxyCodeLine{359    mpz\_set(M, \mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}});}
+\DoxyCodeLine{360    \textcolor{comment}{/* M = S */}}
+\DoxyCodeLine{361    mpz\_set\_ui(two, 2);}
+\DoxyCodeLine{362 }
+\DoxyCodeLine{363    \textcolor{keywordflow}{while} (1) \{}
+\DoxyCodeLine{364       mpz\_set(\mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}}, T);}
+\DoxyCodeLine{365       i = 0;}
+\DoxyCodeLine{366       \textcolor{keywordflow}{while} (1) \{}
+\DoxyCodeLine{367          \textcolor{keywordflow}{if} (mpz\_cmp\_ui(((\_\_mpz\_struct *)\mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}}), 1) == 0) \textcolor{keywordflow}{break};}
+\DoxyCodeLine{368          mpz\_powm(\mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}}, \mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}}, two, prime);}
+\DoxyCodeLine{369          i++;}
+\DoxyCodeLine{370       \}}
+\DoxyCodeLine{371       \textcolor{keywordflow}{if} (i == 0) \{}
+\DoxyCodeLine{372          mpz\_set(ret, \mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}});}
+\DoxyCodeLine{373          res = \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{374          \textcolor{keywordflow}{goto} cleanup;}
+\DoxyCodeLine{375       \}}
+\DoxyCodeLine{376       mpz\_sub\_ui(\mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}}, M, i);}
+\DoxyCodeLine{377       mpz\_sub\_ui(\mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}}, \mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}}, 1);}
+\DoxyCodeLine{378       mpz\_powm(\mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}}, two, \mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}}, prime);}
+\DoxyCodeLine{379       \textcolor{comment}{/* t1 = 2 \string^ (M - i - 1) */}}
+\DoxyCodeLine{380       mpz\_powm(\mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}}, C, \mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}}, prime);}
+\DoxyCodeLine{381       \textcolor{comment}{/* t1 = C \string^ (2 \string^ (M - i - 1)) mod prime */}}
+\DoxyCodeLine{382       mpz\_mul(C, \mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}}, \mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}});}
+\DoxyCodeLine{383       mpz\_mod(C, C, prime);}
+\DoxyCodeLine{384       \textcolor{comment}{/* C = (t1 * t1) mod prime */}}
+\DoxyCodeLine{385       mpz\_mul(\mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}}, \mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}}, \mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}});}
+\DoxyCodeLine{386       mpz\_mod(\mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}}, \mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}}, prime);}
+\DoxyCodeLine{387       \textcolor{comment}{/* R = (R * t1) mod prime */}}
+\DoxyCodeLine{388       mpz\_mul(T, T, C);}
+\DoxyCodeLine{389       mpz\_mod(T, T, prime);}
+\DoxyCodeLine{390       \textcolor{comment}{/* T = (T * C) mod prime */}}
+\DoxyCodeLine{391       mpz\_set\_ui(M, i);}
+\DoxyCodeLine{392       \textcolor{comment}{/* M = i */}}
+\DoxyCodeLine{393    \}}
+\DoxyCodeLine{394 }
+\DoxyCodeLine{395 cleanup:}
+\DoxyCodeLine{396    mpz\_clear(\mbox{\hyperlink{tiger_8c_a65f7891fccbfcf7d08964555630773b3}{t1}}); mpz\_clear(C); mpz\_clear(Q);}
+\DoxyCodeLine{397    mpz\_clear(\mbox{\hyperlink{sha256_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}});  mpz\_clear(Z); mpz\_clear(M);}
+\DoxyCodeLine{398    mpz\_clear(T);  mpz\_clear(\mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}}); mpz\_clear(two);}
+\DoxyCodeLine{399    \textcolor{keywordflow}{return} res;}
+\DoxyCodeLine{400 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+E\+R\+R\+OR, C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, R, S, and t1.
+
+\mbox{\Hypertarget{gmp__desc_8c_ac1994aaeae47e7ef1b1b6fe723898be0}\label{gmp__desc_8c_ac1994aaeae47e7ef1b1b6fe723898be0}} 
+\index{gmp\_desc.c@{gmp\_desc.c}!sub@{sub}}
+\index{sub@{sub}!gmp\_desc.c@{gmp\_desc.c}}
+\subsubsection{\texorpdfstring{sub()}{sub()}}
+{\footnotesize\ttfamily static int sub (\begin{DoxyParamCaption}\item[{void $\ast$}]{a,  }\item[{void $\ast$}]{b,  }\item[{void $\ast$}]{c }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 245 of file gmp\+\_\+desc.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{246 \{}
+\DoxyCodeLine{247    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(a != NULL);}
+\DoxyCodeLine{248    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(b != NULL);}
+\DoxyCodeLine{249    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} != NULL);}
+\DoxyCodeLine{250    mpz\_sub(\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, a, b);}
+\DoxyCodeLine{251    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{252 \}}
+
+\end{DoxyCode}
+
+
+References c, C\+R\+Y\+P\+T\+\_\+\+OK, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+\mbox{\Hypertarget{gmp__desc_8c_afa8ec5f7da0f83c1ea1f3da29e9be588}\label{gmp__desc_8c_afa8ec5f7da0f83c1ea1f3da29e9be588}} 
+\index{gmp\_desc.c@{gmp\_desc.c}!subi@{subi}}
+\index{subi@{subi}!gmp\_desc.c@{gmp\_desc.c}}
+\subsubsection{\texorpdfstring{subi()}{subi()}}
+{\footnotesize\ttfamily static int subi (\begin{DoxyParamCaption}\item[{void $\ast$}]{a,  }\item[{\mbox{\hyperlink{tomcrypt__cfg_8h_a4e98fa26a5de0ac87e06af901bad57c4}{ltc\+\_\+mp\+\_\+digit}}}]{b,  }\item[{void $\ast$}]{c }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 254 of file gmp\+\_\+desc.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{255 \{}
+\DoxyCodeLine{256    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(a != NULL);}
+\DoxyCodeLine{257    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} != NULL);}
+\DoxyCodeLine{258    mpz\_sub\_ui(\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, a, b);}
+\DoxyCodeLine{259    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{260 \}}
+
+\end{DoxyCode}
+
+
+References c, C\+R\+Y\+P\+T\+\_\+\+OK, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+\mbox{\Hypertarget{gmp__desc_8c_ac6a3bdd2a041584938590017969f9f76}\label{gmp__desc_8c_ac6a3bdd2a041584938590017969f9f76}} 
+\index{gmp\_desc.c@{gmp\_desc.c}!submod@{submod}}
+\index{submod@{submod}!gmp\_desc.c@{gmp\_desc.c}}
+\subsubsection{\texorpdfstring{submod()}{submod()}}
+{\footnotesize\ttfamily static int submod (\begin{DoxyParamCaption}\item[{void $\ast$}]{a,  }\item[{void $\ast$}]{b,  }\item[{void $\ast$}]{c,  }\item[{void $\ast$}]{d }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 471 of file gmp\+\_\+desc.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{472 \{}
+\DoxyCodeLine{473    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(a != NULL);}
+\DoxyCodeLine{474    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(b != NULL);}
+\DoxyCodeLine{475    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} != NULL);}
+\DoxyCodeLine{476    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(d != NULL);}
+\DoxyCodeLine{477    mpz\_sub(d, a, b);}
+\DoxyCodeLine{478    mpz\_mod(d, d, \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}});}
+\DoxyCodeLine{479    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{480 \}}
+
+\end{DoxyCode}
+
+
+References c, C\+R\+Y\+P\+T\+\_\+\+OK, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+\mbox{\Hypertarget{gmp__desc_8c_a4f1673caee67fa1b6f8b745661a68eb1}\label{gmp__desc_8c_a4f1673caee67fa1b6f8b745661a68eb1}} 
+\index{gmp\_desc.c@{gmp\_desc.c}!twoexpt@{twoexpt}}
+\index{twoexpt@{twoexpt}!gmp\_desc.c@{gmp\_desc.c}}
+\subsubsection{\texorpdfstring{twoexpt()}{twoexpt()}}
+{\footnotesize\ttfamily static int twoexpt (\begin{DoxyParamCaption}\item[{void $\ast$}]{a,  }\item[{int}]{n }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 129 of file gmp\+\_\+desc.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{130 \{}
+\DoxyCodeLine{131    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(a != NULL);}
+\DoxyCodeLine{132    mpz\_set\_ui(a, 0);}
+\DoxyCodeLine{133    mpz\_setbit(a, n);}
+\DoxyCodeLine{134    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{135 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+\mbox{\Hypertarget{gmp__desc_8c_a39cf7045cbd39dc7ee5ecdf59dbe3313}\label{gmp__desc_8c_a39cf7045cbd39dc7ee5ecdf59dbe3313}} 
+\index{gmp\_desc.c@{gmp\_desc.c}!unsigned\_read@{unsigned\_read}}
+\index{unsigned\_read@{unsigned\_read}!gmp\_desc.c@{gmp\_desc.c}}
+\subsubsection{\texorpdfstring{unsigned\_read()}{unsigned\_read()}}
+{\footnotesize\ttfamily static int unsigned\+\_\+read (\begin{DoxyParamCaption}\item[{void $\ast$}]{a,  }\item[{unsigned char $\ast$}]{b,  }\item[{unsigned long}]{len }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 218 of file gmp\+\_\+desc.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{219 \{}
+\DoxyCodeLine{220    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(a != NULL);}
+\DoxyCodeLine{221    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(b != NULL);}
+\DoxyCodeLine{222    mpz\_import(a, \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}, 1, 1, 1, 0, b);}
+\DoxyCodeLine{223    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{224 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, len, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+\mbox{\Hypertarget{gmp__desc_8c_adb7e3791a36546ca7550e34344e2cb47}\label{gmp__desc_8c_adb7e3791a36546ca7550e34344e2cb47}} 
+\index{gmp\_desc.c@{gmp\_desc.c}!unsigned\_size@{unsigned\_size}}
+\index{unsigned\_size@{unsigned\_size}!gmp\_desc.c@{gmp\_desc.c}}
+\subsubsection{\texorpdfstring{unsigned\_size()}{unsigned\_size()}}
+{\footnotesize\ttfamily static unsigned long unsigned\+\_\+size (\begin{DoxyParamCaption}\item[{void $\ast$}]{a }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 199 of file gmp\+\_\+desc.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{200 \{}
+\DoxyCodeLine{201    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} t;}
+\DoxyCodeLine{202    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(a != NULL);}
+\DoxyCodeLine{203    t = mpz\_sizeinbase(a, 2);}
+\DoxyCodeLine{204    \textcolor{keywordflow}{if} (mpz\_cmp\_ui(((\_\_mpz\_struct *)a), 0) == 0) \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{205    \textcolor{keywordflow}{return} (t>>3) + ((t\&7)?1:0);}
+\DoxyCodeLine{206 \}}
+
+\end{DoxyCode}
+
+
+References L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+\mbox{\Hypertarget{gmp__desc_8c_a0f1b2cd32964ecad0001b7169b53f1d1}\label{gmp__desc_8c_a0f1b2cd32964ecad0001b7169b53f1d1}} 
+\index{gmp\_desc.c@{gmp\_desc.c}!unsigned\_write@{unsigned\_write}}
+\index{unsigned\_write@{unsigned\_write}!gmp\_desc.c@{gmp\_desc.c}}
+\subsubsection{\texorpdfstring{unsigned\_write()}{unsigned\_write()}}
+{\footnotesize\ttfamily static int unsigned\+\_\+write (\begin{DoxyParamCaption}\item[{void $\ast$}]{a,  }\item[{unsigned char $\ast$}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 209 of file gmp\+\_\+desc.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{210 \{}
+\DoxyCodeLine{211    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(a != NULL);}
+\DoxyCodeLine{212    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(b != NULL);}
+\DoxyCodeLine{213    mpz\_export(b, NULL, 1, 1, 1, 0, ((\_\_mpz\_struct*)a));}
+\DoxyCodeLine{214    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{215 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+\mbox{\Hypertarget{gmp__desc_8c_aa40161a29cddd18172c7a64a18b6dc2c}\label{gmp__desc_8c_aa40161a29cddd18172c7a64a18b6dc2c}} 
+\index{gmp\_desc.c@{gmp\_desc.c}!write\_radix@{write\_radix}}
+\index{write\_radix@{write\_radix}!gmp\_desc.c@{gmp\_desc.c}}
+\subsubsection{\texorpdfstring{write\_radix()}{write\_radix()}}
+{\footnotesize\ttfamily static int write\+\_\+radix (\begin{DoxyParamCaption}\item[{void $\ast$}]{a,  }\item[{char $\ast$}]{b,  }\item[{int}]{radix }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 185 of file gmp\+\_\+desc.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{186 \{}
+\DoxyCodeLine{187    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(a != NULL);}
+\DoxyCodeLine{188    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(b != NULL);}
+\DoxyCodeLine{189    \textcolor{keywordflow}{if} (radix >= 11 \&\& radix <= 36)}
+\DoxyCodeLine{190       \textcolor{comment}{/* If radix is positive, GMP uses lowercase, and if negative, uppercase.}}
+\DoxyCodeLine{191 \textcolor{comment}{       * We want it to use uppercase, to match the test vectors (presumably}}
+\DoxyCodeLine{192 \textcolor{comment}{       * generated with LibTomMath). */}}
+\DoxyCodeLine{193       radix = -radix;}
+\DoxyCodeLine{194    mpz\_get\_str(b, radix, a);}
+\DoxyCodeLine{195    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{196 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{gmp__desc_8c_a923f2740bf923975ee49f7b150304f9b}\label{gmp__desc_8c_a923f2740bf923975ee49f7b150304f9b}} 
+\index{gmp\_desc.c@{gmp\_desc.c}!gmp\_desc@{gmp\_desc}}
+\index{gmp\_desc@{gmp\_desc}!gmp\_desc.c@{gmp\_desc.c}}
+\subsubsection{\texorpdfstring{gmp\_desc}{gmp\_desc}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{structltc__math__descriptor}{ltc\+\_\+math\+\_\+descriptor}} gmp\+\_\+desc}
+
+
+
+Definition at line 575 of file gmp\+\_\+desc.\+c.
+
+
+
+Referenced by crypt\+\_\+mp\+\_\+init(), and init\+\_\+\+G\+M\+P().
+
+\mbox{\Hypertarget{gmp__desc_8c_afd7cebb2b227ff201c93354f900aadc8}\label{gmp__desc_8c_afd7cebb2b227ff201c93354f900aadc8}} 
+\index{gmp\_desc.c@{gmp\_desc.c}!rmap@{rmap}}
+\index{rmap@{rmap}!gmp\_desc.c@{gmp\_desc.c}}
+\subsubsection{\texorpdfstring{rmap}{rmap}}
+{\footnotesize\ttfamily const char rmap\mbox{[}$\,$\mbox{]} = \char`\"{}0123456789\+A\+B\+C\+D\+E\+F\+G\+H\+I\+J\+K\+L\+M\+N\+O\+P\+Q\+R\+S\+T\+U\+V\+W\+X\+Y\+Zabcdefghijklmnopqrstuvwxyz+/\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 139 of file gmp\+\_\+desc.\+c.
+
+
+
+Referenced by read\+\_\+radix().
+

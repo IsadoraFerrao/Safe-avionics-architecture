@@ -1,0 +1,10 @@
+digraph "rmd320_init"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node10 [label="rmd320_init",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Initialize the hash state."];
+  Node10 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node11 [label="rmd320_test",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rmd320_8c.html#ae7fa86511a89154467c5b08feb0a222c",tooltip="Self-test the hash."];
+}

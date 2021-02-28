@@ -1,0 +1,16 @@
+digraph "chacha20poly1305_setiv"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node10 [label="chacha20poly1305_setiv",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Set IV + counter data to the ChaCha20Poly1305 state and reset the context."];
+  Node10 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node11 [label="chacha20poly1305_memory",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$chacha20poly1305__memory_8c.html#a1ad9f37fe4a4ac32fad1a1ab97f99d30",tooltip="Process an entire GCM packet in one call."];
+  Node11 -> Node12 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node12 [label="chacha20poly1305_test",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$chacha20poly1305__test_8c.html#a3ed16a3fd7fc440bc9137936ddb99793",tooltip=" "];
+  Node10 -> Node13 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node13 [label="chacha20poly1305_setiv\l_rfc7905",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$chacha20poly1305__setiv__rfc7905_8c.html#aa113643ea24d7f6a06a993ef52eef37b",tooltip="Set IV + counter data (with RFC7905-magic) to the ChaCha20Poly1305 state and reset the context."];
+  Node13 -> Node12 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node10 -> Node12 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+}

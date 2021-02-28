@@ -1,0 +1,244 @@
+\hypertarget{adler32_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/misc/adler32.c File Reference}
+\label{adler32_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/misc/adler32.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/misc/adler32.c}}
+
+
+Adler-\/32 checksum algorithm Written and placed in the public domain by Wei Dai Adapted for libtomcrypt by Steffen Jaeckel.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for adler32.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{adler32_8c_a9bd87d7c0d57ec143f7f96af2c7ad952}{adler32\+\_\+init}} (adler32\+\_\+state $\ast$ctx)
+\item 
+void \mbox{\hyperlink{adler32_8c_a2e4f35b56ff4dadf781ae1dd08941c9e}{adler32\+\_\+update}} (adler32\+\_\+state $\ast$ctx, const unsigned char $\ast$input, unsigned long length)
+\item 
+void \mbox{\hyperlink{adler32_8c_a231cc3cc58a7eba10fad7221d8521bb7}{adler32\+\_\+finish}} (const adler32\+\_\+state $\ast$ctx, void $\ast$hash, unsigned long size)
+\item 
+int \mbox{\hyperlink{adler32_8c_a37ebe3c0e697b8078762307f981d8c18}{adler32\+\_\+test}} (void)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static const unsigned long \mbox{\hyperlink{adler32_8c_a64fa56dff39261e3817c27eaa1c9c419}{\+\_\+adler32\+\_\+base}} = 65521
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Adler-\/32 checksum algorithm Written and placed in the public domain by Wei Dai Adapted for libtomcrypt by Steffen Jaeckel. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{adler32_8c_a231cc3cc58a7eba10fad7221d8521bb7}\label{adler32_8c_a231cc3cc58a7eba10fad7221d8521bb7}} 
+\index{adler32.c@{adler32.c}!adler32\_finish@{adler32\_finish}}
+\index{adler32\_finish@{adler32\_finish}!adler32.c@{adler32.c}}
+\subsubsection{\texorpdfstring{adler32\_finish()}{adler32\_finish()}}
+{\footnotesize\ttfamily void adler32\+\_\+finish (\begin{DoxyParamCaption}\item[{const adler32\+\_\+state $\ast$}]{ctx,  }\item[{void $\ast$}]{hash,  }\item[{unsigned long}]{size }\end{DoxyParamCaption})}
+
+
+
+Definition at line 84 of file adler32.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{85 \{}
+\DoxyCodeLine{86    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}* h;}
+\DoxyCodeLine{87 }
+\DoxyCodeLine{88    \mbox{\hyperlink{tomcrypt__argchk_8h_a67a6e5d66d0c7d80ddf5c583054608bd}{LTC\_ARGCHKVD}}(ctx != NULL);}
+\DoxyCodeLine{89    \mbox{\hyperlink{tomcrypt__argchk_8h_a67a6e5d66d0c7d80ddf5c583054608bd}{LTC\_ARGCHKVD}}(hash != NULL);}
+\DoxyCodeLine{90 }
+\DoxyCodeLine{91    h = hash;}
+\DoxyCodeLine{92 }
+\DoxyCodeLine{93    \textcolor{keywordflow}{switch} (size) \{}
+\DoxyCodeLine{94       \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{95          h[3] = ctx->s[0] \& 0x0ff;}
+\DoxyCodeLine{96          \textcolor{comment}{/* FALLTHROUGH */}}
+\DoxyCodeLine{97       \textcolor{keywordflow}{case} 3:}
+\DoxyCodeLine{98          h[2] = (ctx->s[0] >> 8) \& 0x0ff;}
+\DoxyCodeLine{99          \textcolor{comment}{/* FALLTHROUGH */}}
+\DoxyCodeLine{100       \textcolor{keywordflow}{case} 2:}
+\DoxyCodeLine{101          h[1] = ctx->s[1] \& 0x0ff;}
+\DoxyCodeLine{102          \textcolor{comment}{/* FALLTHROUGH */}}
+\DoxyCodeLine{103       \textcolor{keywordflow}{case} 1:}
+\DoxyCodeLine{104          h[0] = (ctx->s[1] >> 8) \& 0x0ff;}
+\DoxyCodeLine{105          \textcolor{comment}{/* FALLTHROUGH */}}
+\DoxyCodeLine{106       \textcolor{keywordflow}{case} 0:}
+\DoxyCodeLine{107          ;}
+\DoxyCodeLine{108    \}}
+\DoxyCodeLine{109 \}}
+
+\end{DoxyCode}
+
+
+References L\+T\+C\+\_\+\+A\+R\+G\+C\+H\+K\+VD.
+
+
+
+Referenced by adler32\+\_\+test().
+
+Here is the caller graph for this function\+:
+% FIG 1
+\mbox{\Hypertarget{adler32_8c_a9bd87d7c0d57ec143f7f96af2c7ad952}\label{adler32_8c_a9bd87d7c0d57ec143f7f96af2c7ad952}} 
+\index{adler32.c@{adler32.c}!adler32\_init@{adler32\_init}}
+\index{adler32\_init@{adler32\_init}!adler32.c@{adler32.c}}
+\subsubsection{\texorpdfstring{adler32\_init()}{adler32\_init()}}
+{\footnotesize\ttfamily void adler32\+\_\+init (\begin{DoxyParamCaption}\item[{adler32\+\_\+state $\ast$}]{ctx }\end{DoxyParamCaption})}
+
+
+
+Definition at line 21 of file adler32.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{22 \{}
+\DoxyCodeLine{23    \mbox{\hyperlink{tomcrypt__argchk_8h_a67a6e5d66d0c7d80ddf5c583054608bd}{LTC\_ARGCHKVD}}(ctx != NULL);}
+\DoxyCodeLine{24    ctx->s[0] = 1;}
+\DoxyCodeLine{25    ctx->s[1] = 0;}
+\DoxyCodeLine{26 \}}
+
+\end{DoxyCode}
+
+
+References L\+T\+C\+\_\+\+A\+R\+G\+C\+H\+K\+VD.
+
+
+
+Referenced by adler32\+\_\+test().
+
+Here is the caller graph for this function\+:
+% FIG 2
+\mbox{\Hypertarget{adler32_8c_a37ebe3c0e697b8078762307f981d8c18}\label{adler32_8c_a37ebe3c0e697b8078762307f981d8c18}} 
+\index{adler32.c@{adler32.c}!adler32\_test@{adler32\_test}}
+\index{adler32\_test@{adler32\_test}!adler32.c@{adler32.c}}
+\subsubsection{\texorpdfstring{adler32\_test()}{adler32\_test()}}
+{\footnotesize\ttfamily int adler32\+\_\+test (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 111 of file adler32.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{112 \{}
+\DoxyCodeLine{113 \textcolor{preprocessor}{\#ifndef LTC\_TEST}}
+\DoxyCodeLine{114    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cac43a7799c7fd5f515172da6cfc0f9cf5}{CRYPT\_NOP}};}
+\DoxyCodeLine{115 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{116    \textcolor{keyword}{const} \textcolor{keywordtype}{void}* in = \textcolor{stringliteral}{"libtomcrypt"};}
+\DoxyCodeLine{117    \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} adler32[] = \{ 0x1b, 0xe8, 0x04, 0xba \};}
+\DoxyCodeLine{118    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} out[4];}
+\DoxyCodeLine{119    adler32\_state ctx;}
+\DoxyCodeLine{120    \mbox{\hyperlink{adler32_8c_a9bd87d7c0d57ec143f7f96af2c7ad952}{adler32\_init}}(\&ctx);}
+\DoxyCodeLine{121    \mbox{\hyperlink{adler32_8c_a2e4f35b56ff4dadf781ae1dd08941c9e}{adler32\_update}}(\&ctx, in, strlen(in));}
+\DoxyCodeLine{122    \mbox{\hyperlink{adler32_8c_a231cc3cc58a7eba10fad7221d8521bb7}{adler32\_finish}}(\&ctx, out, 4);}
+\DoxyCodeLine{123    \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(adler32, 4, out, 4, \textcolor{stringliteral}{"adler32"}, 0)) \{}
+\DoxyCodeLine{124       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{125    \}}
+\DoxyCodeLine{126    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{127 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{128 \}}
+
+\end{DoxyCode}
+
+
+References adler32\+\_\+finish(), adler32\+\_\+init(), adler32\+\_\+update(), compare\+\_\+testvector(), C\+R\+Y\+P\+T\+\_\+\+F\+A\+I\+L\+\_\+\+T\+E\+S\+T\+V\+E\+C\+T\+OR, C\+R\+Y\+P\+T\+\_\+\+N\+OP, and C\+R\+Y\+P\+T\+\_\+\+OK.
+
+Here is the call graph for this function\+:
+% FIG 3
+\mbox{\Hypertarget{adler32_8c_a2e4f35b56ff4dadf781ae1dd08941c9e}\label{adler32_8c_a2e4f35b56ff4dadf781ae1dd08941c9e}} 
+\index{adler32.c@{adler32.c}!adler32\_update@{adler32\_update}}
+\index{adler32\_update@{adler32\_update}!adler32.c@{adler32.c}}
+\subsubsection{\texorpdfstring{adler32\_update()}{adler32\_update()}}
+{\footnotesize\ttfamily void adler32\+\_\+update (\begin{DoxyParamCaption}\item[{adler32\+\_\+state $\ast$}]{ctx,  }\item[{const unsigned char $\ast$}]{input,  }\item[{unsigned long}]{length }\end{DoxyParamCaption})}
+
+
+
+Definition at line 28 of file adler32.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{29 \{}
+\DoxyCodeLine{30    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} s1, s2;}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32    \mbox{\hyperlink{tomcrypt__argchk_8h_a67a6e5d66d0c7d80ddf5c583054608bd}{LTC\_ARGCHKVD}}(ctx != NULL);}
+\DoxyCodeLine{33    \mbox{\hyperlink{tomcrypt__argchk_8h_a67a6e5d66d0c7d80ddf5c583054608bd}{LTC\_ARGCHKVD}}(input != NULL);}
+\DoxyCodeLine{34    s1 = ctx->s[0];}
+\DoxyCodeLine{35    s2 = ctx->s[1];}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37    \textcolor{keywordflow}{if} (length \% 8 != 0) \{}
+\DoxyCodeLine{38       \textcolor{keywordflow}{do} \{}
+\DoxyCodeLine{39          s1 += *input++;}
+\DoxyCodeLine{40          s2 += s1;}
+\DoxyCodeLine{41          length--;}
+\DoxyCodeLine{42       \} \textcolor{keywordflow}{while} (length \% 8 != 0);}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44       \textcolor{keywordflow}{if} (s1 >= \mbox{\hyperlink{adler32_8c_a64fa56dff39261e3817c27eaa1c9c419}{\_adler32\_base}}) \{}
+\DoxyCodeLine{45          s1 -= \mbox{\hyperlink{adler32_8c_a64fa56dff39261e3817c27eaa1c9c419}{\_adler32\_base}};}
+\DoxyCodeLine{46       \}}
+\DoxyCodeLine{47       s2 \%= \mbox{\hyperlink{adler32_8c_a64fa56dff39261e3817c27eaa1c9c419}{\_adler32\_base}};}
+\DoxyCodeLine{48    \}}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{50    \textcolor{keywordflow}{while} (length > 0) \{}
+\DoxyCodeLine{51       s1 += input[0];}
+\DoxyCodeLine{52       s2 += s1;}
+\DoxyCodeLine{53       s1 += input[1];}
+\DoxyCodeLine{54       s2 += s1;}
+\DoxyCodeLine{55       s1 += input[2];}
+\DoxyCodeLine{56       s2 += s1;}
+\DoxyCodeLine{57       s1 += input[3];}
+\DoxyCodeLine{58       s2 += s1;}
+\DoxyCodeLine{59       s1 += input[4];}
+\DoxyCodeLine{60       s2 += s1;}
+\DoxyCodeLine{61       s1 += input[5];}
+\DoxyCodeLine{62       s2 += s1;}
+\DoxyCodeLine{63       s1 += input[6];}
+\DoxyCodeLine{64       s2 += s1;}
+\DoxyCodeLine{65       s1 += input[7];}
+\DoxyCodeLine{66       s2 += s1;}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{68       length -= 8;}
+\DoxyCodeLine{69       input += 8;}
+\DoxyCodeLine{70 }
+\DoxyCodeLine{71       \textcolor{keywordflow}{if} (s1 >= \mbox{\hyperlink{adler32_8c_a64fa56dff39261e3817c27eaa1c9c419}{\_adler32\_base}}) \{}
+\DoxyCodeLine{72          s1 -= \mbox{\hyperlink{adler32_8c_a64fa56dff39261e3817c27eaa1c9c419}{\_adler32\_base}};}
+\DoxyCodeLine{73       \}}
+\DoxyCodeLine{74       s2 \%= \mbox{\hyperlink{adler32_8c_a64fa56dff39261e3817c27eaa1c9c419}{\_adler32\_base}};}
+\DoxyCodeLine{75    \}}
+\DoxyCodeLine{76 }
+\DoxyCodeLine{77    \mbox{\hyperlink{tomcrypt__argchk_8h_a67a6e5d66d0c7d80ddf5c583054608bd}{LTC\_ARGCHKVD}}(s1 < \mbox{\hyperlink{adler32_8c_a64fa56dff39261e3817c27eaa1c9c419}{\_adler32\_base}});}
+\DoxyCodeLine{78    \mbox{\hyperlink{tomcrypt__argchk_8h_a67a6e5d66d0c7d80ddf5c583054608bd}{LTC\_ARGCHKVD}}(s2 < \mbox{\hyperlink{adler32_8c_a64fa56dff39261e3817c27eaa1c9c419}{\_adler32\_base}});}
+\DoxyCodeLine{79 }
+\DoxyCodeLine{80    ctx->s[0] = (\textcolor{keywordtype}{unsigned} short)s1;}
+\DoxyCodeLine{81    ctx->s[1] = (\textcolor{keywordtype}{unsigned} short)s2;}
+\DoxyCodeLine{82 \}}
+
+\end{DoxyCode}
+
+
+References \+\_\+adler32\+\_\+base, and L\+T\+C\+\_\+\+A\+R\+G\+C\+H\+K\+VD.
+
+
+
+Referenced by adler32\+\_\+test().
+
+Here is the caller graph for this function\+:
+% FIG 4
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{adler32_8c_a64fa56dff39261e3817c27eaa1c9c419}\label{adler32_8c_a64fa56dff39261e3817c27eaa1c9c419}} 
+\index{adler32.c@{adler32.c}!\_adler32\_base@{\_adler32\_base}}
+\index{\_adler32\_base@{\_adler32\_base}!adler32.c@{adler32.c}}
+\subsubsection{\texorpdfstring{\_adler32\_base}{\_adler32\_base}}
+{\footnotesize\ttfamily const unsigned long \+\_\+adler32\+\_\+base = 65521\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 19 of file adler32.\+c.
+
+
+
+Referenced by adler32\+\_\+update().
+

@@ -1,0 +1,555 @@
+\hypertarget{kseed_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/ciphers/kseed.c File Reference}
+\label{kseed_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/ciphers/kseed.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/ciphers/kseed.c}}
+
+
+seed implementation of S\+E\+ED derived from R\+F\+C4269 Tom St Denis  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for kseed.\+c\+:
+% FIG 0
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{kseed_8c_a542b12af0d18d79eddffd5d5cd08617d}{G}}(x)~(\mbox{\hyperlink{kseed_8c_a2719db553a32e0635b1f9df5efa29877}{S\+S3}}\mbox{[}((x)$>$$>$24)\&255\mbox{]} $^\wedge$ \mbox{\hyperlink{kseed_8c_a09e22bbfd45d3b769a4a68fdc723b059}{S\+S2}}\mbox{[}((x)$>$$>$16)\&255\mbox{]} $^\wedge$ \mbox{\hyperlink{kseed_8c_a28006796f93463ef96c09c1e2aebfdf0}{S\+S1}}\mbox{[}((x)$>$$>$8)\&255\mbox{]} $^\wedge$ \mbox{\hyperlink{kseed_8c_aa20d5e780edbf91dec9f7aafc3e2fff3}{S\+S0}}\mbox{[}(x)\&255\mbox{]})
+\item 
+\#define \mbox{\hyperlink{kseed_8c_a21bec50935eb667fa25b103a4eac7902}{F}}(L1,  L2,  R1,  R2,  K1,  K2)
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{kseed_8c_aef4ec3be5d026f20fba47f2626f8eebd}{kseed\+\_\+setup}} (const unsigned char $\ast$key, int keylen, int num\+\_\+rounds, \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)
+\begin{DoxyCompactList}\small\item\em Initialize the S\+E\+ED block cipher. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{kseed_8c_a51da46362a22c8107683876e9c12ec82}{rounds}} (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} $\ast$P, const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} $\ast$\mbox{\hyperlink{sha512_8c_a2d167a3caf30de6442abc69780199a52}{K}})
+\item 
+int \mbox{\hyperlink{kseed_8c_ac81961e6d45f7a12086f62b67b0f95d9}{kseed\+\_\+ecb\+\_\+encrypt}} (const unsigned char $\ast$pt, unsigned char $\ast$ct, const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)
+\begin{DoxyCompactList}\small\item\em Encrypts a block of text with S\+E\+ED. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{kseed_8c_a80835f0c80afe2c000faab4743e7ed51}{kseed\+\_\+ecb\+\_\+decrypt}} (const unsigned char $\ast$ct, unsigned char $\ast$pt, const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)
+\begin{DoxyCompactList}\small\item\em Decrypts a block of text with S\+E\+ED. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{kseed_8c_a77aaa44c8dc8874ffe213c26da9ce1d2}{kseed\+\_\+done}} (\mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)
+\begin{DoxyCompactList}\small\item\em Terminate the context. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{kseed_8c_a522767874d3a7d4d89a4207df47476ce}{kseed\+\_\+test}} (void)
+\begin{DoxyCompactList}\small\item\em Performs a self-\/test of the S\+E\+ED block cipher. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{kseed_8c_aac68c2b2e5d6e2d77823f86ea7d54e99}{kseed\+\_\+keysize}} (int $\ast$keysize)
+\begin{DoxyCompactList}\small\item\em Gets suitable key size. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const struct \mbox{\hyperlink{structltc__cipher__descriptor}{ltc\+\_\+cipher\+\_\+descriptor}} \mbox{\hyperlink{kseed_8c_abb75fd3d7465d0109cb6577b350b7b07}{kseed\+\_\+desc}}
+\item 
+static const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} \mbox{\hyperlink{kseed_8c_aa20d5e780edbf91dec9f7aafc3e2fff3}{S\+S0}} \mbox{[}256\mbox{]}
+\item 
+static const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} \mbox{\hyperlink{kseed_8c_a28006796f93463ef96c09c1e2aebfdf0}{S\+S1}} \mbox{[}256\mbox{]}
+\item 
+static const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} \mbox{\hyperlink{kseed_8c_a09e22bbfd45d3b769a4a68fdc723b059}{S\+S2}} \mbox{[}256\mbox{]}
+\item 
+static const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} \mbox{\hyperlink{kseed_8c_a2719db553a32e0635b1f9df5efa29877}{S\+S3}} \mbox{[}256\mbox{]}
+\item 
+static const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} \mbox{\hyperlink{kseed_8c_ad69a99703c3a94ebe6257b29c899ae2e}{K\+Ci}} \mbox{[}16\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+seed implementation of S\+E\+ED derived from R\+F\+C4269 Tom St Denis 
+
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{kseed_8c_a21bec50935eb667fa25b103a4eac7902}\label{kseed_8c_a21bec50935eb667fa25b103a4eac7902}} 
+\index{kseed.c@{kseed.c}!F@{F}}
+\index{F@{F}!kseed.c@{kseed.c}}
+\subsubsection{\texorpdfstring{F}{F}}
+{\footnotesize\ttfamily \#define F(\begin{DoxyParamCaption}\item[{}]{L1,  }\item[{}]{L2,  }\item[{}]{R1,  }\item[{}]{R2,  }\item[{}]{K1,  }\item[{}]{K2 }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{anubis_8c_a8823785065c27a65d92554e3b1db5f6f}{T2}} = \mbox{\hyperlink{kseed_8c_a542b12af0d18d79eddffd5d5cd08617d}{G}}((R1 \string^ K1) \string^ (R2 \string^ K2)); \(\backslash\)}
+\DoxyCodeLine{   T = \mbox{\hyperlink{kseed_8c_a542b12af0d18d79eddffd5d5cd08617d}{G}}( \mbox{\hyperlink{kseed_8c_a542b12af0d18d79eddffd5d5cd08617d}{G}}(\mbox{\hyperlink{anubis_8c_a8823785065c27a65d92554e3b1db5f6f}{T2}} + (R1 \string^ K1)) + \mbox{\hyperlink{anubis_8c_a8823785065c27a65d92554e3b1db5f6f}{T2}}); \(\backslash\)}
+\DoxyCodeLine{   L2 \string^= T; \(\backslash\)}
+\DoxyCodeLine{   L1 \string^= (T + \mbox{\hyperlink{kseed_8c_a542b12af0d18d79eddffd5d5cd08617d}{G}}(\mbox{\hyperlink{anubis_8c_a8823785065c27a65d92554e3b1db5f6f}{T2}} + (R1 \string^ K1))); \(\backslash\)}
+
+\end{DoxyCode}
+
+
+Definition at line 186 of file kseed.\+c.
+
+\mbox{\Hypertarget{kseed_8c_a542b12af0d18d79eddffd5d5cd08617d}\label{kseed_8c_a542b12af0d18d79eddffd5d5cd08617d}} 
+\index{kseed.c@{kseed.c}!G@{G}}
+\index{G@{G}!kseed.c@{kseed.c}}
+\subsubsection{\texorpdfstring{G}{G}}
+{\footnotesize\ttfamily \#define G(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~(\mbox{\hyperlink{kseed_8c_a2719db553a32e0635b1f9df5efa29877}{S\+S3}}\mbox{[}((x)$>$$>$24)\&255\mbox{]} $^\wedge$ \mbox{\hyperlink{kseed_8c_a09e22bbfd45d3b769a4a68fdc723b059}{S\+S2}}\mbox{[}((x)$>$$>$16)\&255\mbox{]} $^\wedge$ \mbox{\hyperlink{kseed_8c_a28006796f93463ef96c09c1e2aebfdf0}{S\+S1}}\mbox{[}((x)$>$$>$8)\&255\mbox{]} $^\wedge$ \mbox{\hyperlink{kseed_8c_aa20d5e780edbf91dec9f7aafc3e2fff3}{S\+S0}}\mbox{[}(x)\&255\mbox{]})}
+
+
+
+Definition at line 184 of file kseed.\+c.
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{kseed_8c_a77aaa44c8dc8874ffe213c26da9ce1d2}\label{kseed_8c_a77aaa44c8dc8874ffe213c26da9ce1d2}} 
+\index{kseed.c@{kseed.c}!kseed\_done@{kseed\_done}}
+\index{kseed\_done@{kseed\_done}!kseed.c@{kseed.c}}
+\subsubsection{\texorpdfstring{kseed\_done()}{kseed\_done()}}
+{\footnotesize\ttfamily void kseed\+\_\+done (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$}]{skey }\end{DoxyParamCaption})}
+
+
+
+Terminate the context. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em skey} & The scheduled key \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 297 of file kseed.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{298 \{}
+\DoxyCodeLine{299   \mbox{\hyperlink{tomcrypt__macros_8h_accde4b007facd646a8327f8e64b2d1e0}{LTC\_UNUSED\_PARAM}}(skey);}
+\DoxyCodeLine{300 \}}
+
+\end{DoxyCode}
+
+
+References L\+T\+C\+\_\+\+U\+N\+U\+S\+E\+D\+\_\+\+P\+A\+R\+AM.
+
+\mbox{\Hypertarget{kseed_8c_a80835f0c80afe2c000faab4743e7ed51}\label{kseed_8c_a80835f0c80afe2c000faab4743e7ed51}} 
+\index{kseed.c@{kseed.c}!kseed\_ecb\_decrypt@{kseed\_ecb\_decrypt}}
+\index{kseed\_ecb\_decrypt@{kseed\_ecb\_decrypt}!kseed.c@{kseed.c}}
+\subsubsection{\texorpdfstring{kseed\_ecb\_decrypt()}{kseed\_ecb\_decrypt()}}
+{\footnotesize\ttfamily int kseed\+\_\+ecb\+\_\+decrypt (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{ct,  }\item[{unsigned char $\ast$}]{pt,  }\item[{const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$}]{skey }\end{DoxyParamCaption})}
+
+
+
+Decrypts a block of text with S\+E\+ED. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ct} & The input ciphertext (16 bytes) \\
+\hline
+{\em pt} & The output plaintext (16 bytes) \\
+\hline
+{\em skey} & The key as scheduled \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 279 of file kseed.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{280 \{}
+\DoxyCodeLine{281    \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} P[4];}
+\DoxyCodeLine{282    LOAD32H(P[0], ct);}
+\DoxyCodeLine{283    LOAD32H(P[1], ct+4);}
+\DoxyCodeLine{284    LOAD32H(P[2], ct+8);}
+\DoxyCodeLine{285    LOAD32H(P[3], ct+12);}
+\DoxyCodeLine{286    \mbox{\hyperlink{kseed_8c_a51da46362a22c8107683876e9c12ec82}{rounds}}(P, skey->kseed.dK);}
+\DoxyCodeLine{287    STORE32H(P[2], pt);}
+\DoxyCodeLine{288    STORE32H(P[3], pt+4);}
+\DoxyCodeLine{289    STORE32H(P[0], pt+8);}
+\DoxyCodeLine{290    STORE32H(P[1], pt+12);}
+\DoxyCodeLine{291    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{292 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, and rounds().
+
+
+
+Referenced by kseed\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2
+\mbox{\Hypertarget{kseed_8c_ac81961e6d45f7a12086f62b67b0f95d9}\label{kseed_8c_ac81961e6d45f7a12086f62b67b0f95d9}} 
+\index{kseed.c@{kseed.c}!kseed\_ecb\_encrypt@{kseed\_ecb\_encrypt}}
+\index{kseed\_ecb\_encrypt@{kseed\_ecb\_encrypt}!kseed.c@{kseed.c}}
+\subsubsection{\texorpdfstring{kseed\_ecb\_encrypt()}{kseed\_ecb\_encrypt()}}
+{\footnotesize\ttfamily int kseed\+\_\+ecb\+\_\+encrypt (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{pt,  }\item[{unsigned char $\ast$}]{ct,  }\item[{const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$}]{skey }\end{DoxyParamCaption})}
+
+
+
+Encrypts a block of text with S\+E\+ED. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pt} & The input plaintext (16 bytes) \\
+\hline
+{\em ct} & The output ciphertext (16 bytes) \\
+\hline
+{\em skey} & The key as scheduled \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 257 of file kseed.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{258 \{}
+\DoxyCodeLine{259    \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} P[4];}
+\DoxyCodeLine{260    LOAD32H(P[0], pt);}
+\DoxyCodeLine{261    LOAD32H(P[1], pt+4);}
+\DoxyCodeLine{262    LOAD32H(P[2], pt+8);}
+\DoxyCodeLine{263    LOAD32H(P[3], pt+12);}
+\DoxyCodeLine{264    \mbox{\hyperlink{kseed_8c_a51da46362a22c8107683876e9c12ec82}{rounds}}(P, skey->kseed.K);}
+\DoxyCodeLine{265    STORE32H(P[2], ct);}
+\DoxyCodeLine{266    STORE32H(P[3], ct+4);}
+\DoxyCodeLine{267    STORE32H(P[0], ct+8);}
+\DoxyCodeLine{268    STORE32H(P[1], ct+12);}
+\DoxyCodeLine{269    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{270 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, and rounds().
+
+
+
+Referenced by kseed\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 3
+Here is the caller graph for this function\+:
+% FIG 4
+\mbox{\Hypertarget{kseed_8c_aac68c2b2e5d6e2d77823f86ea7d54e99}\label{kseed_8c_aac68c2b2e5d6e2d77823f86ea7d54e99}} 
+\index{kseed.c@{kseed.c}!kseed\_keysize@{kseed\_keysize}}
+\index{kseed\_keysize@{kseed\_keysize}!kseed.c@{kseed.c}}
+\subsubsection{\texorpdfstring{kseed\_keysize()}{kseed\_keysize()}}
+{\footnotesize\ttfamily int kseed\+\_\+keysize (\begin{DoxyParamCaption}\item[{int $\ast$}]{keysize }\end{DoxyParamCaption})}
+
+
+
+Gets suitable key size. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em keysize} & \mbox{[}in/out\mbox{]} The length of the recommended key (in bytes). This function will store the suitable size back in this variable. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if the input key size is acceptable. 
+\end{DoxyReturn}
+
+
+Definition at line 361 of file kseed.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{362 \{}
+\DoxyCodeLine{363    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(keysize != NULL);}
+\DoxyCodeLine{364    \textcolor{keywordflow}{if} (*keysize >= 16) \{}
+\DoxyCodeLine{365       *keysize = 16;}
+\DoxyCodeLine{366    \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{367       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caafed43f3b625e72191e08e65b4bb5e02}{CRYPT\_INVALID\_KEYSIZE}};}
+\DoxyCodeLine{368    \}}
+\DoxyCodeLine{369    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{370 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+K\+E\+Y\+S\+I\+ZE, C\+R\+Y\+P\+T\+\_\+\+OK, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+\mbox{\Hypertarget{kseed_8c_aef4ec3be5d026f20fba47f2626f8eebd}\label{kseed_8c_aef4ec3be5d026f20fba47f2626f8eebd}} 
+\index{kseed.c@{kseed.c}!kseed\_setup@{kseed\_setup}}
+\index{kseed\_setup@{kseed\_setup}!kseed.c@{kseed.c}}
+\subsubsection{\texorpdfstring{kseed\_setup()}{kseed\_setup()}}
+{\footnotesize\ttfamily int kseed\+\_\+setup (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{key,  }\item[{int}]{keylen,  }\item[{int}]{num\+\_\+rounds,  }\item[{\mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$}]{skey }\end{DoxyParamCaption})}
+
+
+
+Initialize the S\+E\+ED block cipher. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The symmetric key you wish to pass \\
+\hline
+{\em keylen} & The key length in bytes \\
+\hline
+{\em num\+\_\+rounds} & The number of rounds desired (0 for default) \\
+\hline
+{\em skey} & The key in as scheduled by this function. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 200 of file kseed.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{201 \{}
+\DoxyCodeLine{202    \textcolor{keywordtype}{int}     i;}
+\DoxyCodeLine{203    \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} tmp, k1, k2, k3, k4;}
+\DoxyCodeLine{204 }
+\DoxyCodeLine{205    \textcolor{keywordflow}{if} (keylen != 16) \{}
+\DoxyCodeLine{206       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caafed43f3b625e72191e08e65b4bb5e02}{CRYPT\_INVALID\_KEYSIZE}};}
+\DoxyCodeLine{207    \}}
+\DoxyCodeLine{208 }
+\DoxyCodeLine{209    \textcolor{keywordflow}{if} (num\_rounds != 16 \&\& num\_rounds != 0) \{}
+\DoxyCodeLine{210       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca69aff0280b5845d03130f8700009caf5}{CRYPT\_INVALID\_ROUNDS}};}
+\DoxyCodeLine{211    \}}
+\DoxyCodeLine{212 }
+\DoxyCodeLine{213    \textcolor{comment}{/* load key */}}
+\DoxyCodeLine{214    LOAD32H(k1, key);}
+\DoxyCodeLine{215    LOAD32H(k2, key+4);}
+\DoxyCodeLine{216    LOAD32H(k3, key+8);}
+\DoxyCodeLine{217    LOAD32H(k4, key+12);}
+\DoxyCodeLine{218 }
+\DoxyCodeLine{219    \textcolor{keywordflow}{for} (i = 0; i < 16; i++) \{}
+\DoxyCodeLine{220       skey->kseed.K[2*i+0] = \mbox{\hyperlink{kseed_8c_a542b12af0d18d79eddffd5d5cd08617d}{G}}(k1 + k3 - \mbox{\hyperlink{kseed_8c_ad69a99703c3a94ebe6257b29c899ae2e}{KCi}}[i]);}
+\DoxyCodeLine{221       skey->kseed.K[2*i+1] = \mbox{\hyperlink{kseed_8c_a542b12af0d18d79eddffd5d5cd08617d}{G}}(k2 - k4 + \mbox{\hyperlink{kseed_8c_ad69a99703c3a94ebe6257b29c899ae2e}{KCi}}[i]);}
+\DoxyCodeLine{222       \textcolor{keywordflow}{if} (i\&1) \{}
+\DoxyCodeLine{223          tmp = k3;}
+\DoxyCodeLine{224          k3 = ((k3 << 8) | (k4 >> 24)) \& 0xFFFFFFFF;}
+\DoxyCodeLine{225          k4 = ((k4 << 8) | (tmp >> 24)) \& 0xFFFFFFFF;}
+\DoxyCodeLine{226       \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{227          tmp = k1;}
+\DoxyCodeLine{228          k1 = ((k1 >> 8) | (k2 << 24)) \& 0xFFFFFFFF;}
+\DoxyCodeLine{229          k2 = ((k2 >> 8) | (tmp << 24)) \& 0xFFFFFFFF;}
+\DoxyCodeLine{230       \}}
+\DoxyCodeLine{231       \textcolor{comment}{/* reverse keys for decrypt */}}
+\DoxyCodeLine{232       skey->kseed.dK[2*(15-i)+0] = skey->kseed.K[2*i+0];}
+\DoxyCodeLine{233       skey->kseed.dK[2*(15-i)+1] = skey->kseed.K[2*i+1];}
+\DoxyCodeLine{234    \}}
+\DoxyCodeLine{235 }
+\DoxyCodeLine{236    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{237 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+K\+E\+Y\+S\+I\+ZE, C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+R\+O\+U\+N\+DS, C\+R\+Y\+P\+T\+\_\+\+OK, G, and K\+Ci.
+
+
+
+Referenced by kseed\+\_\+test().
+
+Here is the caller graph for this function\+:
+% FIG 5
+\mbox{\Hypertarget{kseed_8c_a522767874d3a7d4d89a4207df47476ce}\label{kseed_8c_a522767874d3a7d4d89a4207df47476ce}} 
+\index{kseed.c@{kseed.c}!kseed\_test@{kseed\_test}}
+\index{kseed\_test@{kseed\_test}!kseed.c@{kseed.c}}
+\subsubsection{\texorpdfstring{kseed\_test()}{kseed\_test()}}
+{\footnotesize\ttfamily int kseed\+\_\+test (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Performs a self-\/test of the S\+E\+ED block cipher. 
+
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if functional, C\+R\+Y\+P\+T\+\_\+\+N\+OP if self-\/test has been disabled 
+\end{DoxyReturn}
+
+
+Definition at line 306 of file kseed.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{307 \{}
+\DoxyCodeLine{308 \textcolor{preprocessor}{\#if !defined(LTC\_TEST)}}
+\DoxyCodeLine{309   \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cac43a7799c7fd5f515172da6cfc0f9cf5}{CRYPT\_NOP}};}
+\DoxyCodeLine{310 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{311   \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keyword}{struct }test \{}
+\DoxyCodeLine{312      \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} pt[16], ct[16], key[16];}
+\DoxyCodeLine{313   \} tests[] = \{}
+\DoxyCodeLine{314 }
+\DoxyCodeLine{315 \{}
+\DoxyCodeLine{316   \{ 0x00,0x01,0x02,0x03,0x04,0x05,0x06,0x07,0x08,0x09,0x0A,0x0B,0x0C,0x0D,0x0E,0x0F \},}
+\DoxyCodeLine{317   \{ 0x5E,0xBA,0xC6,0xE0,0x05,0x4E,0x16,0x68,0x19,0xAF,0xF1,0xCC,0x6D,0x34,0x6C,0xDB \},}
+\DoxyCodeLine{318   \{ 0 \},}
+\DoxyCodeLine{319 \},}
+\DoxyCodeLine{320 }
+\DoxyCodeLine{321 \{}
+\DoxyCodeLine{322   \{ 0 \},}
+\DoxyCodeLine{323   \{ 0xC1,0x1F,0x22,0xF2,0x01,0x40,0x50,0x50,0x84,0x48,0x35,0x97,0xE4,0x37,0x0F,0x43 \},}
+\DoxyCodeLine{324   \{ 0x00,0x01,0x02,0x03,0x04,0x05,0x06,0x07,0x08,0x09,0x0A,0x0B,0x0C,0x0D,0x0E,0x0F \},}
+\DoxyCodeLine{325 \},}
+\DoxyCodeLine{326 }
+\DoxyCodeLine{327 \{}
+\DoxyCodeLine{328   \{ 0x83,0xA2,0xF8,0xA2,0x88,0x64,0x1F,0xB9,0xA4,0xE9,0xA5,0xCC,0x2F,0x13,0x1C,0x7D \},}
+\DoxyCodeLine{329   \{ 0xEE,0x54,0xD1,0x3E,0xBC,0xAE,0x70,0x6D,0x22,0x6B,0xC3,0x14,0x2C,0xD4,0x0D,0x4A \},}
+\DoxyCodeLine{330   \{ 0x47,0x06,0x48,0x08,0x51,0xE6,0x1B,0xE8,0x5D,0x74,0xBF,0xB3,0xFD,0x95,0x61,0x85 \},}
+\DoxyCodeLine{331 \},}
+\DoxyCodeLine{332 }
+\DoxyCodeLine{333 \{}
+\DoxyCodeLine{334   \{ 0xB4,0x1E,0x6B,0xE2,0xEB,0xA8,0x4A,0x14,0x8E,0x2E,0xED,0x84,0x59,0x3C,0x5E,0xC7 \},}
+\DoxyCodeLine{335   \{ 0x9B,0x9B,0x7B,0xFC,0xD1,0x81,0x3C,0xB9,0x5D,0x0B,0x36,0x18,0xF4,0x0F,0x51,0x22 \},}
+\DoxyCodeLine{336   \{ 0x28,0xDB,0xC3,0xBC,0x49,0xFF,0xD8,0x7D,0xCF,0xA5,0x09,0xB1,0x1D,0x42,0x2B,0xE7 \},}
+\DoxyCodeLine{337 \}}
+\DoxyCodeLine{338 \};}
+\DoxyCodeLine{339    \textcolor{keywordtype}{int} x;}
+\DoxyCodeLine{340    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} buf[2][16];}
+\DoxyCodeLine{341    \mbox{\hyperlink{unionSymmetric__key}{symmetric\_key}} skey;}
+\DoxyCodeLine{342 }
+\DoxyCodeLine{343    \textcolor{keywordflow}{for} (x = 0; x < (int)(\textcolor{keyword}{sizeof}(tests)/\textcolor{keyword}{sizeof}(tests[0])); x++) \{}
+\DoxyCodeLine{344        \mbox{\hyperlink{kseed_8c_aef4ec3be5d026f20fba47f2626f8eebd}{kseed\_setup}}(tests[x].key, 16, 0, \&skey);}
+\DoxyCodeLine{345        \mbox{\hyperlink{kseed_8c_ac81961e6d45f7a12086f62b67b0f95d9}{kseed\_ecb\_encrypt}}(tests[x].pt, buf[0], \&skey);}
+\DoxyCodeLine{346        \mbox{\hyperlink{kseed_8c_a80835f0c80afe2c000faab4743e7ed51}{kseed\_ecb\_decrypt}}(buf[0], buf[1], \&skey);}
+\DoxyCodeLine{347        \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(buf[0], 16, tests[x].ct, 16, \textcolor{stringliteral}{"KSEED Encrypt"}, x) ||}
+\DoxyCodeLine{348              \mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(buf[1], 16, tests[x].pt, 16, \textcolor{stringliteral}{"KSEED Decrypt"}, x)) \{}
+\DoxyCodeLine{349           \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{350        \}}
+\DoxyCodeLine{351    \}}
+\DoxyCodeLine{352    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{353 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{354 \}}
+
+\end{DoxyCode}
+
+
+References compare\+\_\+testvector(), C\+R\+Y\+P\+T\+\_\+\+F\+A\+I\+L\+\_\+\+T\+E\+S\+T\+V\+E\+C\+T\+OR, C\+R\+Y\+P\+T\+\_\+\+N\+OP, C\+R\+Y\+P\+T\+\_\+\+OK, kseed\+\_\+ecb\+\_\+decrypt(), kseed\+\_\+ecb\+\_\+encrypt(), and kseed\+\_\+setup().
+
+Here is the call graph for this function\+:
+% FIG 6
+\mbox{\Hypertarget{kseed_8c_a51da46362a22c8107683876e9c12ec82}\label{kseed_8c_a51da46362a22c8107683876e9c12ec82}} 
+\index{kseed.c@{kseed.c}!rounds@{rounds}}
+\index{rounds@{rounds}!kseed.c@{kseed.c}}
+\subsubsection{\texorpdfstring{rounds()}{rounds()}}
+{\footnotesize\ttfamily static void rounds (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} $\ast$}]{P,  }\item[{const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} $\ast$}]{K }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 239 of file kseed.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{240 \{}
+\DoxyCodeLine{241    \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} T, \mbox{\hyperlink{anubis_8c_a8823785065c27a65d92554e3b1db5f6f}{T2}};}
+\DoxyCodeLine{242    \textcolor{keywordtype}{int}     i;}
+\DoxyCodeLine{243    \textcolor{keywordflow}{for} (i = 0; i < 16; i += 2) \{}
+\DoxyCodeLine{244      \mbox{\hyperlink{kseed_8c_a21bec50935eb667fa25b103a4eac7902}{F}}(P[0], P[1], P[2], P[3], \mbox{\hyperlink{sha512_8c_a2d167a3caf30de6442abc69780199a52}{K}}[0], \mbox{\hyperlink{sha512_8c_a2d167a3caf30de6442abc69780199a52}{K}}[1]);}
+\DoxyCodeLine{245      \mbox{\hyperlink{kseed_8c_a21bec50935eb667fa25b103a4eac7902}{F}}(P[2], P[3], P[0], P[1], \mbox{\hyperlink{sha512_8c_a2d167a3caf30de6442abc69780199a52}{K}}[2], \mbox{\hyperlink{sha512_8c_a2d167a3caf30de6442abc69780199a52}{K}}[3]);}
+\DoxyCodeLine{246      \mbox{\hyperlink{sha512_8c_a2d167a3caf30de6442abc69780199a52}{K}} += 4;}
+\DoxyCodeLine{247    \}}
+\DoxyCodeLine{248 \}}
+
+\end{DoxyCode}
+
+
+References F, K, and T2.
+
+
+
+Referenced by \+\_\+chacha\+\_\+block(), \+\_\+salsa20\+\_\+block(), \+\_\+setup\+\_\+key(), \+\_\+xsalsa20\+\_\+doubleround(), chacha\+\_\+memory(), chacha\+\_\+setup(), kseed\+\_\+ecb\+\_\+decrypt(), kseed\+\_\+ecb\+\_\+encrypt(), multi2\+\_\+test(), saferp\+\_\+setup(), salsa20\+\_\+memory(), salsa20\+\_\+setup(), salsa20\+\_\+test(), xsalsa20\+\_\+memory(), xsalsa20\+\_\+setup(), and xsalsa20\+\_\+test().
+
+Here is the caller graph for this function\+:
+% FIG 7
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{kseed_8c_ad69a99703c3a94ebe6257b29c899ae2e}\label{kseed_8c_ad69a99703c3a94ebe6257b29c899ae2e}} 
+\index{kseed.c@{kseed.c}!KCi@{KCi}}
+\index{KCi@{KCi}!kseed.c@{kseed.c}}
+\subsubsection{\texorpdfstring{KCi}{KCi}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} K\+Ci\mbox{[}16\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{0x9E3779B9,0x3C6EF373,}
+\DoxyCodeLine{0x78DDE6E6,0xF1BBCDCC,}
+\DoxyCodeLine{0xE3779B99,0xC6EF3733,}
+\DoxyCodeLine{0x8DDE6E67,0x1BBCDCCF,}
+\DoxyCodeLine{0x3779B99E,0x6EF3733C,}
+\DoxyCodeLine{0xDDE6E678,0xBBCDCCF1,}
+\DoxyCodeLine{0x779B99E3,0xEF3733C6,}
+\DoxyCodeLine{0xDE6E678D,0xBCDCCF1B}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line 173 of file kseed.\+c.
+
+
+
+Referenced by kseed\+\_\+setup().
+
+\mbox{\Hypertarget{kseed_8c_abb75fd3d7465d0109cb6577b350b7b07}\label{kseed_8c_abb75fd3d7465d0109cb6577b350b7b07}} 
+\index{kseed.c@{kseed.c}!kseed\_desc@{kseed\_desc}}
+\index{kseed\_desc@{kseed\_desc}!kseed.c@{kseed.c}}
+\subsubsection{\texorpdfstring{kseed\_desc}{kseed\_desc}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structltc__cipher__descriptor}{ltc\+\_\+cipher\+\_\+descriptor}} kseed\+\_\+desc}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{   \textcolor{stringliteral}{"seed"},}
+\DoxyCodeLine{   20,}
+\DoxyCodeLine{   16, 16, 16, 16,}
+\DoxyCodeLine{   \&\mbox{\hyperlink{kseed_8c_aef4ec3be5d026f20fba47f2626f8eebd}{kseed\_setup}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{kseed_8c_ac81961e6d45f7a12086f62b67b0f95d9}{kseed\_ecb\_encrypt}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{kseed_8c_a80835f0c80afe2c000faab4743e7ed51}{kseed\_ecb\_decrypt}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{kseed_8c_a522767874d3a7d4d89a4207df47476ce}{kseed\_test}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{kseed_8c_a77aaa44c8dc8874ffe213c26da9ce1d2}{kseed\_done}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{kseed_8c_aac68c2b2e5d6e2d77823f86ea7d54e99}{kseed\_keysize}},}
+\DoxyCodeLine{   NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line 20 of file kseed.\+c.
+
+
+
+Referenced by register\+\_\+all\+\_\+ciphers(), and yarrow\+\_\+start().
+
+\mbox{\Hypertarget{kseed_8c_aa20d5e780edbf91dec9f7aafc3e2fff3}\label{kseed_8c_aa20d5e780edbf91dec9f7aafc3e2fff3}} 
+\index{kseed.c@{kseed.c}!SS0@{SS0}}
+\index{SS0@{SS0}!kseed.c@{kseed.c}}
+\subsubsection{\texorpdfstring{SS0}{SS0}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} S\+S0\mbox{[}256\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 33 of file kseed.\+c.
+
+\mbox{\Hypertarget{kseed_8c_a28006796f93463ef96c09c1e2aebfdf0}\label{kseed_8c_a28006796f93463ef96c09c1e2aebfdf0}} 
+\index{kseed.c@{kseed.c}!SS1@{SS1}}
+\index{SS1@{SS1}!kseed.c@{kseed.c}}
+\subsubsection{\texorpdfstring{SS1}{SS1}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} S\+S1\mbox{[}256\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 68 of file kseed.\+c.
+
+\mbox{\Hypertarget{kseed_8c_a09e22bbfd45d3b769a4a68fdc723b059}\label{kseed_8c_a09e22bbfd45d3b769a4a68fdc723b059}} 
+\index{kseed.c@{kseed.c}!SS2@{SS2}}
+\index{SS2@{SS2}!kseed.c@{kseed.c}}
+\subsubsection{\texorpdfstring{SS2}{SS2}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} S\+S2\mbox{[}256\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 103 of file kseed.\+c.
+
+\mbox{\Hypertarget{kseed_8c_a2719db553a32e0635b1f9df5efa29877}\label{kseed_8c_a2719db553a32e0635b1f9df5efa29877}} 
+\index{kseed.c@{kseed.c}!SS3@{SS3}}
+\index{SS3@{SS3}!kseed.c@{kseed.c}}
+\subsubsection{\texorpdfstring{SS3}{SS3}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} S\+S3\mbox{[}256\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 138 of file kseed.\+c.
+

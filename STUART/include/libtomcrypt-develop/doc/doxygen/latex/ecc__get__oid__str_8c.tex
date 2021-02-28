@@ -1,0 +1,57 @@
+\hypertarget{ecc__get__oid__str_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/pk/ecc/ecc\+\_\+get\+\_\+oid\+\_\+str.c File Reference}
+\label{ecc__get__oid__str_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/ecc/ecc\_get\_oid\_str.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/ecc/ecc\_get\_oid\_str.c}}
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for ecc\+\_\+get\+\_\+oid\+\_\+str.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{ecc__get__oid__str_8c_a55d2be4c5b58f6a22c780f10063d2217}{ecc\+\_\+get\+\_\+oid\+\_\+str}} (char $\ast$out, unsigned long $\ast$outlen, const ecc\+\_\+key $\ast$key)
+\begin{DoxyCompactList}\small\item\em Extract O\+ID as a string from E\+CC key. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{ecc__get__oid__str_8c_a55d2be4c5b58f6a22c780f10063d2217}\label{ecc__get__oid__str_8c_a55d2be4c5b58f6a22c780f10063d2217}} 
+\index{ecc\_get\_oid\_str.c@{ecc\_get\_oid\_str.c}!ecc\_get\_oid\_str@{ecc\_get\_oid\_str}}
+\index{ecc\_get\_oid\_str@{ecc\_get\_oid\_str}!ecc\_get\_oid\_str.c@{ecc\_get\_oid\_str.c}}
+\subsubsection{\texorpdfstring{ecc\_get\_oid\_str()}{ecc\_get\_oid\_str()}}
+{\footnotesize\ttfamily int ecc\+\_\+get\+\_\+oid\+\_\+str (\begin{DoxyParamCaption}\item[{char $\ast$}]{out,  }\item[{unsigned long $\ast$}]{outlen,  }\item[{const ecc\+\_\+key $\ast$}]{key }\end{DoxyParamCaption})}
+
+
+
+Extract O\+ID as a string from E\+CC key. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em out} & \mbox{[}out\mbox{]} destination buffer \\
+\hline
+{\em outlen} & \mbox{[}in/out\mbox{]} Length of destination buffer and final output size (without terminating N\+UL byte) \\
+\hline
+{\em key} & The E\+CC key Return C\+R\+Y\+P\+T\+\_\+\+OK on success \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 21 of file ecc\+\_\+get\+\_\+oid\+\_\+str.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{22 \{}
+\DoxyCodeLine{23    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(key != NULL);}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt__private_8h_a5ead1435fcad3d1f1842a6419079f036}{pk\_oid\_num\_to\_str}}(key->dp.oid, key->dp.oidlen, out, outlen);}
+\DoxyCodeLine{26 \}}
+
+\end{DoxyCode}
+
+
+References L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, and pk\+\_\+oid\+\_\+num\+\_\+to\+\_\+str().
+
+
+
+Referenced by ecc\+\_\+ssh\+\_\+ecdsa\+\_\+encode\+\_\+name().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2

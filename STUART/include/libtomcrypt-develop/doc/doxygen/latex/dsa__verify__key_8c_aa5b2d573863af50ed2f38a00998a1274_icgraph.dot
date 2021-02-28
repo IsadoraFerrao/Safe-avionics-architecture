@@ -1,0 +1,14 @@
+digraph "dsa_int_validate_xy"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node10 [label="dsa_int_validate_xy",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Validation of a DSA key (x and y values)"];
+  Node10 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node11 [label="dsa_import",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dsa__import_8c.html#ab814d8871b40e7f60c3ed6a16990dac2",tooltip="Import a DSA key."];
+  Node10 -> Node12 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node12 [label="dsa_set_key",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dsa__set_8c.html#af1f523bcd186e0fbb8ed127a80aba531",tooltip="Import DSA public or private key-part from raw numbers."];
+  Node10 -> Node13 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node13 [label="dsa_verify_key",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dsa__verify__key_8c.html#ab33288a9b242958a7ef81c677ffff516",tooltip="Validate a DSA key."];
+}

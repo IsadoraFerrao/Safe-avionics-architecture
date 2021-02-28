@@ -1,0 +1,75 @@
+\hypertarget{rsa__sign__saltlen__get_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/pk/rsa/rsa\+\_\+sign\+\_\+saltlen\+\_\+get.c File Reference}
+\label{rsa__sign__saltlen__get_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/rsa/rsa\_sign\_saltlen\_get.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/rsa/rsa\_sign\_saltlen\_get.c}}
+
+
+Retrieve the maximum size of the salt, Steffen Jaeckel.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for rsa\+\_\+sign\+\_\+saltlen\+\_\+get.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{rsa__sign__saltlen__get_8c_a9bb25e838b15eaede46aafee5d69dbed}{rsa\+\_\+sign\+\_\+saltlen\+\_\+get\+\_\+max\+\_\+ex}} (int padding, int hash\+\_\+idx, const \mbox{\hyperlink{tomcrypt__math_8h_a99eca413acdcc914993162bd18cba437}{rsa\+\_\+key}} $\ast$key)
+\begin{DoxyCompactList}\small\item\em Retrieve the maximum possible size of the salt when creating a P\+K\+CS\#1 P\+SS signature. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Retrieve the maximum size of the salt, Steffen Jaeckel. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{rsa__sign__saltlen__get_8c_a9bb25e838b15eaede46aafee5d69dbed}\label{rsa__sign__saltlen__get_8c_a9bb25e838b15eaede46aafee5d69dbed}} 
+\index{rsa\_sign\_saltlen\_get.c@{rsa\_sign\_saltlen\_get.c}!rsa\_sign\_saltlen\_get\_max\_ex@{rsa\_sign\_saltlen\_get\_max\_ex}}
+\index{rsa\_sign\_saltlen\_get\_max\_ex@{rsa\_sign\_saltlen\_get\_max\_ex}!rsa\_sign\_saltlen\_get.c@{rsa\_sign\_saltlen\_get.c}}
+\subsubsection{\texorpdfstring{rsa\_sign\_saltlen\_get\_max\_ex()}{rsa\_sign\_saltlen\_get\_max\_ex()}}
+{\footnotesize\ttfamily int rsa\+\_\+sign\+\_\+saltlen\+\_\+get\+\_\+max\+\_\+ex (\begin{DoxyParamCaption}\item[{int}]{padding,  }\item[{int}]{hash\+\_\+idx,  }\item[{const \mbox{\hyperlink{tomcrypt__math_8h_a99eca413acdcc914993162bd18cba437}{rsa\+\_\+key}} $\ast$}]{key }\end{DoxyParamCaption})}
+
+
+
+Retrieve the maximum possible size of the salt when creating a P\+K\+CS\#1 P\+SS signature. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em padding} & Type of padding (L\+T\+C\+\_\+\+P\+K\+C\+S\+\_\+1\+\_\+\+P\+SS only) \\
+\hline
+{\em hash\+\_\+idx} & The index of the desired hash \\
+\hline
+{\em key} & The R\+SA key \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The maximum salt length in bytes or I\+N\+T\+\_\+\+M\+AX on error. 
+\end{DoxyReturn}
+
+
+Definition at line 25 of file rsa\+\_\+sign\+\_\+saltlen\+\_\+get.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{26 \{}
+\DoxyCodeLine{27   \textcolor{keywordtype}{int} ret = INT\_MAX;}
+\DoxyCodeLine{28   \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(key != NULL);}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30   \textcolor{keywordflow}{if} ((\mbox{\hyperlink{tomcrypt__hash_8h_a79647f22bf48bfa7de03fe5fc958c846}{hash\_is\_valid}}(hash\_idx) == \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \&\&}
+\DoxyCodeLine{31       (padding == LTC\_PKCS\_1\_PSS))}
+\DoxyCodeLine{32   \{}
+\DoxyCodeLine{33     ret = \mbox{\hyperlink{rsa__get__size_8c_ad7ad738cc78bfcec9377fd3373bd4c13}{rsa\_get\_size}}(key);}
+\DoxyCodeLine{34     \textcolor{keywordflow}{if} (ret < INT\_MAX)}
+\DoxyCodeLine{35     \{}
+\DoxyCodeLine{36       ret -= (\mbox{\hyperlink{tomcrypt__hash_8h_ab0e4f02e30a47da79baa9240e79cde92}{hash\_descriptor}}[hash\_idx].\mbox{\hyperlink{structltc__hash__descriptor_a49bd027653ff21408cb2661748d719ef}{hashsize}} + 2);}
+\DoxyCodeLine{37     \} \textcolor{comment}{/* if */}}
+\DoxyCodeLine{38   \} \textcolor{comment}{/* if */}}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{40   \textcolor{keywordflow}{return} ret;}
+\DoxyCodeLine{41 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, hash\+\_\+descriptor, hash\+\_\+is\+\_\+valid(), ltc\+\_\+hash\+\_\+descriptor\+::hashsize, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, and rsa\+\_\+get\+\_\+size().
+
+Here is the call graph for this function\+:
+% FIG 1

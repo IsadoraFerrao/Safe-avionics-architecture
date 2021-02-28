@@ -1,0 +1,141 @@
+\hypertarget{base32__decode_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/misc/base32/base32\+\_\+decode.c File Reference}
+\label{base32__decode_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/misc/base32/base32\_decode.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/misc/base32/base32\_decode.c}}
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for base32\+\_\+decode.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{base32__decode_8c_ad28a36f59dc075d178266f106ca074c2}{base32\+\_\+decode}} (const char $\ast$in, unsigned long inlen, unsigned char $\ast$out, unsigned long $\ast$outlen, base32\+\_\+alphabet id)
+\begin{DoxyCompactList}\small\item\em Base32 decode a buffer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{base32__decode_8c_ad28a36f59dc075d178266f106ca074c2}\label{base32__decode_8c_ad28a36f59dc075d178266f106ca074c2}} 
+\index{base32\_decode.c@{base32\_decode.c}!base32\_decode@{base32\_decode}}
+\index{base32\_decode@{base32\_decode}!base32\_decode.c@{base32\_decode.c}}
+\subsubsection{\texorpdfstring{base32\_decode()}{base32\_decode()}}
+{\footnotesize\ttfamily int base32\+\_\+decode (\begin{DoxyParamCaption}\item[{const char $\ast$}]{in,  }\item[{unsigned long}]{inlen,  }\item[{unsigned char $\ast$}]{out,  }\item[{unsigned long $\ast$}]{outlen,  }\item[{base32\+\_\+alphabet}]{id }\end{DoxyParamCaption})}
+
+
+
+Base32 decode a buffer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em in} & The Base32 data to decode \\
+\hline
+{\em inlen} & The length of the Base32 data \\
+\hline
+{\em out} & \mbox{[}out\mbox{]} The destination of the binary decoded data \\
+\hline
+{\em outlen} & \mbox{[}in/out\mbox{]} The max size and resulting size of the decoded data \\
+\hline
+{\em id} & Alphabet to use B\+A\+S\+E32\+\_\+\+R\+F\+C4648, B\+A\+S\+E32\+\_\+\+B\+A\+S\+E32\+H\+EX, B\+A\+S\+E32\+\_\+\+Z\+B\+A\+S\+E32 or B\+A\+S\+E32\+\_\+\+C\+R\+O\+C\+K\+F\+O\+RD \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 23 of file base32\+\_\+decode.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{26 \{}
+\DoxyCodeLine{27    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} x;}
+\DoxyCodeLine{28    \textcolor{keywordtype}{int} y = 0;}
+\DoxyCodeLine{29    \mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}} t = 0;}
+\DoxyCodeLine{30    \textcolor{keywordtype}{char} \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}};}
+\DoxyCodeLine{31    \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *map;}
+\DoxyCodeLine{32    \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} tables[4][43] = \{}
+\DoxyCodeLine{33       \{  \textcolor{comment}{/* id = BASE32\_RFC4648 : ABCDEFGHIJKLMNOPQRSTUVWXYZ234567 */}}
+\DoxyCodeLine{34          99\textcolor{comment}{/*0*/},99\textcolor{comment}{/*1*/},26\textcolor{comment}{/*2*/},27\textcolor{comment}{/*3*/},28\textcolor{comment}{/*4*/},29\textcolor{comment}{/*5*/},30\textcolor{comment}{/*6*/},31\textcolor{comment}{/*7*/},99\textcolor{comment}{/*8*/},99\textcolor{comment}{/*9*/},}
+\DoxyCodeLine{35          99\textcolor{comment}{/*:*/},99\textcolor{comment}{/*;*/},99\textcolor{comment}{/*<*/},99\textcolor{comment}{/*=*/},99\textcolor{comment}{/*>*/},99\textcolor{comment}{/*?*/},99\textcolor{comment}{/*@*/},}
+\DoxyCodeLine{36           0\textcolor{comment}{/*A*/}, 1\textcolor{comment}{/*B*/}, 2\textcolor{comment}{/*C*/}, 3\textcolor{comment}{/*D*/}, 4\textcolor{comment}{/*E*/}, 5\textcolor{comment}{/*F*/}, 6\textcolor{comment}{/*G*/}, 7\textcolor{comment}{/*H*/}, 8\textcolor{comment}{/*I*/}, 9\textcolor{comment}{/*J*/},10\textcolor{comment}{/*K*/},11\textcolor{comment}{/*L*/},12\textcolor{comment}{/*M*/},}
+\DoxyCodeLine{37          13\textcolor{comment}{/*N*/},14\textcolor{comment}{/*O*/},15\textcolor{comment}{/*P*/},16\textcolor{comment}{/*Q*/},17\textcolor{comment}{/*R*/},18\textcolor{comment}{/*S*/},19\textcolor{comment}{/*T*/},20\textcolor{comment}{/*U*/},21\textcolor{comment}{/*V*/},22\textcolor{comment}{/*W*/},23\textcolor{comment}{/*X*/},24\textcolor{comment}{/*Y*/},25\textcolor{comment}{/*Z*/}}
+\DoxyCodeLine{38       \},}
+\DoxyCodeLine{39       \{  \textcolor{comment}{/* id = BASE32\_BASE32HEX : 0123456789ABCDEFGHIJKLMNOPQRSTUV */}}
+\DoxyCodeLine{40            0\textcolor{comment}{/*0*/}, 1\textcolor{comment}{/*1*/}, 2\textcolor{comment}{/*2*/}, 3\textcolor{comment}{/*3*/}, 4\textcolor{comment}{/*4*/}, 5\textcolor{comment}{/*5*/}, 6\textcolor{comment}{/*6*/}, 7\textcolor{comment}{/*7*/}, 8\textcolor{comment}{/*8*/}, 9\textcolor{comment}{/*9*/},}
+\DoxyCodeLine{41           99\textcolor{comment}{/*:*/},99\textcolor{comment}{/*;*/},99\textcolor{comment}{/*<*/},99\textcolor{comment}{/*=*/},99\textcolor{comment}{/*>*/},99\textcolor{comment}{/*?*/},99\textcolor{comment}{/*@*/},}
+\DoxyCodeLine{42           10\textcolor{comment}{/*A*/},11\textcolor{comment}{/*B*/},12\textcolor{comment}{/*C*/},13\textcolor{comment}{/*D*/},14\textcolor{comment}{/*E*/},15\textcolor{comment}{/*F*/},16\textcolor{comment}{/*G*/},17\textcolor{comment}{/*H*/},18\textcolor{comment}{/*I*/},19\textcolor{comment}{/*J*/},20\textcolor{comment}{/*K*/},21\textcolor{comment}{/*L*/},22\textcolor{comment}{/*M*/},}
+\DoxyCodeLine{43           23\textcolor{comment}{/*N*/},24\textcolor{comment}{/*O*/},25\textcolor{comment}{/*P*/},26\textcolor{comment}{/*Q*/},27\textcolor{comment}{/*R*/},28\textcolor{comment}{/*S*/},29\textcolor{comment}{/*T*/},30\textcolor{comment}{/*U*/},31\textcolor{comment}{/*V*/},99\textcolor{comment}{/*W*/},99\textcolor{comment}{/*X*/},99\textcolor{comment}{/*Y*/},99\textcolor{comment}{/*Z*/}}
+\DoxyCodeLine{44       \},}
+\DoxyCodeLine{45       \{  \textcolor{comment}{/* id = BASE32\_ZBASE32 : YBNDRFG8EJKMCPQXOT1UWISZA345H769 */}}
+\DoxyCodeLine{46          99\textcolor{comment}{/*0*/},18\textcolor{comment}{/*1*/},99\textcolor{comment}{/*2*/},25\textcolor{comment}{/*3*/},26\textcolor{comment}{/*4*/},27\textcolor{comment}{/*5*/},30\textcolor{comment}{/*6*/},29\textcolor{comment}{/*7*/}, 7\textcolor{comment}{/*8*/},31\textcolor{comment}{/*9*/},}
+\DoxyCodeLine{47          99\textcolor{comment}{/*:*/},99\textcolor{comment}{/*;*/},99\textcolor{comment}{/*<*/},99\textcolor{comment}{/*=*/},99\textcolor{comment}{/*>*/},99\textcolor{comment}{/*?*/},99\textcolor{comment}{/*@*/},}
+\DoxyCodeLine{48          24\textcolor{comment}{/*A*/}, 1\textcolor{comment}{/*B*/},12\textcolor{comment}{/*C*/}, 3\textcolor{comment}{/*D*/}, 8\textcolor{comment}{/*E*/}, 5\textcolor{comment}{/*F*/}, 6\textcolor{comment}{/*G*/},28\textcolor{comment}{/*H*/},21\textcolor{comment}{/*I*/}, 9\textcolor{comment}{/*J*/},10\textcolor{comment}{/*K*/},99\textcolor{comment}{/*L*/},11\textcolor{comment}{/*M*/},}
+\DoxyCodeLine{49           2\textcolor{comment}{/*N*/},16\textcolor{comment}{/*O*/},13\textcolor{comment}{/*P*/},14\textcolor{comment}{/*Q*/}, 4\textcolor{comment}{/*R*/},22\textcolor{comment}{/*S*/},17\textcolor{comment}{/*T*/},19\textcolor{comment}{/*U*/},99\textcolor{comment}{/*V*/},20\textcolor{comment}{/*W*/},15\textcolor{comment}{/*X*/}, 0\textcolor{comment}{/*Y*/},23\textcolor{comment}{/*Z*/}}
+\DoxyCodeLine{50       \},}
+\DoxyCodeLine{51       \{  \textcolor{comment}{/* id = BASE32\_CROCKFORD : 0123456789ABCDEFGHJKMNPQRSTVWXYZ + O=>0 + IL=>1 */}}
+\DoxyCodeLine{52           0\textcolor{comment}{/*0*/}, 1\textcolor{comment}{/*1*/}, 2\textcolor{comment}{/*2*/}, 3\textcolor{comment}{/*3*/}, 4\textcolor{comment}{/*4*/}, 5\textcolor{comment}{/*5*/}, 6\textcolor{comment}{/*6*/}, 7\textcolor{comment}{/*7*/}, 8\textcolor{comment}{/*8*/}, 9\textcolor{comment}{/*9*/},}
+\DoxyCodeLine{53          99\textcolor{comment}{/*:*/},99\textcolor{comment}{/*;*/},99\textcolor{comment}{/*<*/},99\textcolor{comment}{/*=*/},99\textcolor{comment}{/*>*/},99\textcolor{comment}{/*?*/},99\textcolor{comment}{/*@*/},}
+\DoxyCodeLine{54          10\textcolor{comment}{/*A*/},11\textcolor{comment}{/*B*/},12\textcolor{comment}{/*C*/},13\textcolor{comment}{/*D*/},14\textcolor{comment}{/*E*/},15\textcolor{comment}{/*F*/},16\textcolor{comment}{/*G*/},17\textcolor{comment}{/*H*/}, 1\textcolor{comment}{/*I*/},18\textcolor{comment}{/*J*/},19\textcolor{comment}{/*K*/}, 1\textcolor{comment}{/*L*/},20\textcolor{comment}{/*M*/},}
+\DoxyCodeLine{55          21\textcolor{comment}{/*N*/}, 0\textcolor{comment}{/*O*/},22\textcolor{comment}{/*P*/},23\textcolor{comment}{/*Q*/},24\textcolor{comment}{/*R*/},25\textcolor{comment}{/*S*/},26\textcolor{comment}{/*T*/},99\textcolor{comment}{/*U*/},27\textcolor{comment}{/*V*/},28\textcolor{comment}{/*W*/},29\textcolor{comment}{/*X*/},30\textcolor{comment}{/*Y*/},31\textcolor{comment}{/*Z*/}}
+\DoxyCodeLine{56       \}}
+\DoxyCodeLine{57    \};}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{59    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(in     != NULL);}
+\DoxyCodeLine{60    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(out    != NULL);}
+\DoxyCodeLine{61    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(outlen != NULL);}
+\DoxyCodeLine{62    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(\textcolor{keywordtype}{id} >= BASE32\_RFC4648);}
+\DoxyCodeLine{63    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(\textcolor{keywordtype}{id} <= BASE32\_CROCKFORD);}
+\DoxyCodeLine{64 }
+\DoxyCodeLine{65    \textcolor{comment}{/* ignore all trailing = */}}
+\DoxyCodeLine{66    \textcolor{keywordflow}{while} (inlen > 0 \&\& in[inlen-1] == \textcolor{charliteral}{'='}) inlen--;}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{68    \textcolor{comment}{/* no input, nothing to do */}}
+\DoxyCodeLine{69    \textcolor{keywordflow}{if} (inlen == 0) \{}
+\DoxyCodeLine{70       *outlen = 0;}
+\DoxyCodeLine{71       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{72    \}}
+\DoxyCodeLine{73 }
+\DoxyCodeLine{74    \textcolor{comment}{/* check the size of output buffer */}}
+\DoxyCodeLine{75    x = (inlen * 5) / 8;}
+\DoxyCodeLine{76    \textcolor{keywordflow}{if} (*outlen < x) \{}
+\DoxyCodeLine{77       *outlen = x;}
+\DoxyCodeLine{78       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caccd878f5599f3036ffe759dbe1a1ac16}{CRYPT\_BUFFER\_OVERFLOW}};}
+\DoxyCodeLine{79    \}}
+\DoxyCodeLine{80    *outlen = x;}
+\DoxyCodeLine{81 }
+\DoxyCodeLine{82    \textcolor{comment}{/* check input data length */}}
+\DoxyCodeLine{83    x = inlen \% 8;}
+\DoxyCodeLine{84    \textcolor{keywordflow}{if} (x == 1 || x == 3 || x == 6) \{}
+\DoxyCodeLine{85       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca980088f10ffe9009aec286038a9e79da}{CRYPT\_INVALID\_PACKET}};}
+\DoxyCodeLine{86    \}}
+\DoxyCodeLine{87 }
+\DoxyCodeLine{88    map = tables[id];}
+\DoxyCodeLine{89    \textcolor{keywordflow}{for} (x = 0; x < inlen; x++) \{}
+\DoxyCodeLine{90       \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} = in[x];}
+\DoxyCodeLine{91       \textcolor{comment}{/* convert to upper case */}}
+\DoxyCodeLine{92       \textcolor{keywordflow}{if} ((\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} >= \textcolor{charliteral}{'a'}) \&\& (\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} <= \textcolor{charliteral}{'z'})) \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} -= 32;}
+\DoxyCodeLine{93       \textcolor{keywordflow}{if} (c < '0' || c > \textcolor{charliteral}{'Z'} || map[\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}-\textcolor{charliteral}{'0'}] > 31) \{}
+\DoxyCodeLine{94          \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca980088f10ffe9009aec286038a9e79da}{CRYPT\_INVALID\_PACKET}};}
+\DoxyCodeLine{95       \}}
+\DoxyCodeLine{96       t = (t<<5) | map[\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}-\textcolor{charliteral}{'0'}];}
+\DoxyCodeLine{97       \textcolor{keywordflow}{if} (++y == 8) \{}
+\DoxyCodeLine{98          *out++ = (\textcolor{keywordtype}{unsigned} char)((t>>32) \& 255);}
+\DoxyCodeLine{99          *out++ = (\textcolor{keywordtype}{unsigned} char)((t>>24) \& 255);}
+\DoxyCodeLine{100          *out++ = (\textcolor{keywordtype}{unsigned} char)((t>>16) \& 255);}
+\DoxyCodeLine{101          *out++ = (\textcolor{keywordtype}{unsigned} char)((t>> 8) \& 255);}
+\DoxyCodeLine{102          *out++ = (\textcolor{keywordtype}{unsigned} char)( t      \& 255);}
+\DoxyCodeLine{103          y = 0;}
+\DoxyCodeLine{104          t = 0;}
+\DoxyCodeLine{105       \}}
+\DoxyCodeLine{106    \}}
+\DoxyCodeLine{107    \textcolor{keywordflow}{if} (y > 0) \{}
+\DoxyCodeLine{108       t = t << (5 * (8 - y));}
+\DoxyCodeLine{109       \textcolor{keywordflow}{if} (y >= 2) *out++ = (\textcolor{keywordtype}{unsigned} char)((t>>32) \& 255);}
+\DoxyCodeLine{110       \textcolor{keywordflow}{if} (y >= 4) *out++ = (\textcolor{keywordtype}{unsigned} char)((t>>24) \& 255);}
+\DoxyCodeLine{111       \textcolor{keywordflow}{if} (y >= 5) *out++ = (\textcolor{keywordtype}{unsigned} char)((t>>16) \& 255);}
+\DoxyCodeLine{112       \textcolor{keywordflow}{if} (y >= 7) *out++ = (\textcolor{keywordtype}{unsigned} char)((t>> 8) \& 255);}
+\DoxyCodeLine{113    \}}
+\DoxyCodeLine{114    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{115 \}}
+
+\end{DoxyCode}
+
+
+References c, C\+R\+Y\+P\+T\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+O\+V\+E\+R\+F\+L\+OW, C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+P\+A\+C\+K\+ET, C\+R\+Y\+P\+T\+\_\+\+OK, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+

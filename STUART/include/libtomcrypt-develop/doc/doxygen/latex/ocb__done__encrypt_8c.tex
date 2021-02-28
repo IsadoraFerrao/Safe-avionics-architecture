@@ -1,0 +1,79 @@
+\hypertarget{ocb__done__encrypt_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/encauth/ocb/ocb\+\_\+done\+\_\+encrypt.c File Reference}
+\label{ocb__done__encrypt_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/encauth/ocb/ocb\_done\_encrypt.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/encauth/ocb/ocb\_done\_encrypt.c}}
+
+
+O\+CB implementation, terminate encryption, by Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for ocb\+\_\+done\+\_\+encrypt.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{ocb__done__encrypt_8c_aab90ede8c55c4f4a167a26dd2095556e}{ocb\+\_\+done\+\_\+encrypt}} (ocb\+\_\+state $\ast$ocb, const unsigned char $\ast$pt, unsigned long ptlen, unsigned char $\ast$ct, unsigned char $\ast$tag, unsigned long $\ast$taglen)
+\begin{DoxyCompactList}\small\item\em Terminate an encryption O\+CB state. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+O\+CB implementation, terminate encryption, by Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{ocb__done__encrypt_8c_aab90ede8c55c4f4a167a26dd2095556e}\label{ocb__done__encrypt_8c_aab90ede8c55c4f4a167a26dd2095556e}} 
+\index{ocb\_done\_encrypt.c@{ocb\_done\_encrypt.c}!ocb\_done\_encrypt@{ocb\_done\_encrypt}}
+\index{ocb\_done\_encrypt@{ocb\_done\_encrypt}!ocb\_done\_encrypt.c@{ocb\_done\_encrypt.c}}
+\subsubsection{\texorpdfstring{ocb\_done\_encrypt()}{ocb\_done\_encrypt()}}
+{\footnotesize\ttfamily int ocb\+\_\+done\+\_\+encrypt (\begin{DoxyParamCaption}\item[{ocb\+\_\+state $\ast$}]{ocb,  }\item[{const unsigned char $\ast$}]{pt,  }\item[{unsigned long}]{ptlen,  }\item[{unsigned char $\ast$}]{ct,  }\item[{unsigned char $\ast$}]{tag,  }\item[{unsigned long $\ast$}]{taglen }\end{DoxyParamCaption})}
+
+
+
+Terminate an encryption O\+CB state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ocb} & The O\+CB state \\
+\hline
+{\em pt} & Remaining plaintext (if any) \\
+\hline
+{\em ptlen} & The length of the plaintext (octets) \\
+\hline
+{\em ct} & \mbox{[}out\mbox{]} The ciphertext (if any) \\
+\hline
+{\em tag} & \mbox{[}out\mbox{]} The tag for the O\+CB stream \\
+\hline
+{\em taglen} & \mbox{[}in/out\mbox{]} The max size and resulting size of the tag \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 28 of file ocb\+\_\+done\+\_\+encrypt.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{30 \{}
+\DoxyCodeLine{31    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(ocb    != NULL);}
+\DoxyCodeLine{32    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(pt     != NULL);}
+\DoxyCodeLine{33    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(ct     != NULL);}
+\DoxyCodeLine{34    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(tag    != NULL);}
+\DoxyCodeLine{35    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(taglen != NULL);}
+\DoxyCodeLine{36    \textcolor{keywordflow}{return} \mbox{\hyperlink{s__ocb__done_8c_a0e6dd21746be44a0949d16b9e1ac796d}{s\_ocb\_done}}(ocb, pt, ptlen, ct, tag, taglen, 0);}
+\DoxyCodeLine{37 \}}
+
+\end{DoxyCode}
+
+
+References L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, and s\+\_\+ocb\+\_\+done().
+
+
+
+Referenced by ocb\+\_\+encrypt\+\_\+authenticate\+\_\+memory().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2

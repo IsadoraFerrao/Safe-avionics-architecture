@@ -1,0 +1,1203 @@
+\hypertarget{sosemanuk_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/stream/sosemanuk/sosemanuk.c File Reference}
+\label{sosemanuk_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/stream/sosemanuk/sosemanuk.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/stream/sosemanuk/sosemanuk.c}}
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for sosemanuk.\+c\+:
+% FIG 0
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{sosemanuk_8c_a9f52a9d9145a1f027fd1a79070a49e4b}{T32}}(x)~((x) \& (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})0x\+F\+F\+F\+F\+F\+F\+F\+F)
+\item 
+\#define \mbox{\hyperlink{sosemanuk_8c_ad6d69eb37bd8c4b959db2daefc0e280c}{S0}}(r0,  r1,  r2,  r3,  r4)
+\item 
+\#define \mbox{\hyperlink{sosemanuk_8c_ab9578ef02669318f0403f120bc0280d7}{S1}}(r0,  r1,  r2,  r3,  r4)
+\item 
+\#define \mbox{\hyperlink{sosemanuk_8c_a6bedac3e63cf44ab1b3091a78d21e297}{S2}}(r0,  r1,  r2,  r3,  r4)
+\item 
+\#define \mbox{\hyperlink{sosemanuk_8c_a6d22d6fb54f8c3cb615bf66829a94a13}{S3}}(r0,  r1,  r2,  r3,  r4)
+\item 
+\#define \mbox{\hyperlink{sosemanuk_8c_a57b2a1dee95346d5a213ec826d787186}{S4}}(r0,  r1,  r2,  r3,  r4)
+\item 
+\#define \mbox{\hyperlink{sosemanuk_8c_a2af9efc99cfe7b49c325edc7aae34ab0}{S5}}(r0,  r1,  r2,  r3,  r4)
+\item 
+\#define \mbox{\hyperlink{sosemanuk_8c_af83a6fe4bc11173100000f33ada1f0b5}{S6}}(r0,  r1,  r2,  r3,  r4)
+\item 
+\#define \mbox{\hyperlink{sosemanuk_8c_ac2e57256dd691d5825a889a7ba2a9952}{S7}}(r0,  r1,  r2,  r3,  r4)
+\item 
+\#define \mbox{\hyperlink{sosemanuk_8c_a9b93fe727295a1110f3228b44f062f9e}{S\+E\+R\+P\+E\+N\+T\+\_\+\+LT}}(x0,  x1,  x2,  x3)
+\item 
+\#define \mbox{\hyperlink{sosemanuk_8c_a192ba6ecee06cf912b267872f7838f59}{S\+KS}}(\mbox{\hyperlink{sha512_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}},  o0,  o1,  o2,  o3,  d0,  d1,  d2,  d3)
+\item 
+\#define \mbox{\hyperlink{sosemanuk_8c_a80b38602000348fe623bd1354f01fc3f}{S\+K\+S0}}~\mbox{\hyperlink{sosemanuk_8c_a192ba6ecee06cf912b267872f7838f59}{S\+KS}}(\mbox{\hyperlink{sosemanuk_8c_ad6d69eb37bd8c4b959db2daefc0e280c}{S0}}, 4, 5, 6, 7, 1, 4, 2, 0)
+\item 
+\#define \mbox{\hyperlink{sosemanuk_8c_a17452ad01db751019f34a26aab8df392}{S\+K\+S1}}~\mbox{\hyperlink{sosemanuk_8c_a192ba6ecee06cf912b267872f7838f59}{S\+KS}}(\mbox{\hyperlink{cast5_8c_ac5ae33c73384e98f5e5d584fc265113b}{S1}}, 0, 1, 2, 3, 2, 0, 3, 1)
+\item 
+\#define \mbox{\hyperlink{sosemanuk_8c_a25b457a1269d84306284459cfe2c94bd}{S\+K\+S2}}~\mbox{\hyperlink{sosemanuk_8c_a192ba6ecee06cf912b267872f7838f59}{S\+KS}}(\mbox{\hyperlink{cast5_8c_a0dbb0f93665db2dab6bd396393a28e89}{S2}}, 4, 5, 6, 7, 2, 3, 1, 4)
+\item 
+\#define \mbox{\hyperlink{sosemanuk_8c_a6e25bcd1a11f806d42d6390d7d83a0ef}{S\+K\+S3}}~\mbox{\hyperlink{sosemanuk_8c_a192ba6ecee06cf912b267872f7838f59}{S\+KS}}(\mbox{\hyperlink{cast5_8c_a998f1fda39497e5dd85c5317a757fd68}{S3}}, 0, 1, 2, 3, 1, 2, 3, 4)
+\item 
+\#define \mbox{\hyperlink{sosemanuk_8c_a2c5a2057dcd95c853dd75659db7cb5af}{S\+K\+S4}}~\mbox{\hyperlink{sosemanuk_8c_a192ba6ecee06cf912b267872f7838f59}{S\+KS}}(\mbox{\hyperlink{cast5_8c_a8957c7e73629e51b04170d187cdfe2b5}{S4}}, 4, 5, 6, 7, 1, 4, 0, 3)
+\item 
+\#define \mbox{\hyperlink{sosemanuk_8c_ae6021e8c8fa3269ede04d5696ce4b964}{S\+K\+S5}}~\mbox{\hyperlink{sosemanuk_8c_a192ba6ecee06cf912b267872f7838f59}{S\+KS}}(\mbox{\hyperlink{cast5_8c_a75475127d54e85b906b49be76fc7545d}{S5}}, 0, 1, 2, 3, 1, 3, 0, 2)
+\item 
+\#define \mbox{\hyperlink{sosemanuk_8c_abcb783e92319fc1600a81ca4663bd521}{S\+K\+S6}}~\mbox{\hyperlink{sosemanuk_8c_a192ba6ecee06cf912b267872f7838f59}{S\+KS}}(\mbox{\hyperlink{cast5_8c_a2b897b677383e550872e8a004baee4b2}{S6}}, 4, 5, 6, 7, 0, 1, 4, 2)
+\item 
+\#define \mbox{\hyperlink{sosemanuk_8c_a4ce461c78eb8e3d92817dcf9c157f8f9}{S\+K\+S7}}~\mbox{\hyperlink{sosemanuk_8c_a192ba6ecee06cf912b267872f7838f59}{S\+KS}}(\mbox{\hyperlink{cast5_8c_a4d5f92aab8361e5e410f5b813317f284}{S7}}, 0, 1, 2, 3, 4, 3, 1, 0)
+\item 
+\#define \mbox{\hyperlink{sosemanuk_8c_ac5cae2b9ea8344c387eb71217823b361}{W\+UP}}(wi,  wi5,  wi3,  wi1,  cc)
+\item 
+\#define \mbox{\hyperlink{sosemanuk_8c_a159585331bd7912597531107584f67f1}{W\+U\+P0}}(cc)
+\item 
+\#define \mbox{\hyperlink{sosemanuk_8c_ad3478a8081a7e0217c6a272504df44e4}{W\+U\+P1}}(cc)
+\item 
+\#define \mbox{\hyperlink{sosemanuk_8c_a40fad8b706d9378f8ac60afa3850dce5}{KA}}(zc,  x0,  x1,  x2,  x3)
+\item 
+\#define \mbox{\hyperlink{sosemanuk_8c_a7a50b97a8baa27e30798c60c89eaf094}{F\+SS}}(zc,  \mbox{\hyperlink{sha512_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}},  i0,  i1,  i2,  i3,  i4,  o0,  o1,  o2,  o3)
+\item 
+\#define \mbox{\hyperlink{sosemanuk_8c_ac004f9569aa8addaadfcc527dfcff4bb}{F\+SF}}(zc,  \mbox{\hyperlink{sha512_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}},  i0,  i1,  i2,  i3,  i4,  o0,  o1,  o2,  o3)
+\item 
+\#define \mbox{\hyperlink{sosemanuk_8c_ad5ae3d53d7d31d346d12c3ef7c7869cc}{M\+U\+L\+\_\+A}}(x)~(\mbox{\hyperlink{sosemanuk_8c_a9f52a9d9145a1f027fd1a79070a49e4b}{T32}}((x) $<$$<$ 8) $^\wedge$ \mbox{\hyperlink{sosemanuk_8c_a52c63ef7165b1936dd6dc9d0635a1fc4}{mul\+\_\+a}}\mbox{[}(x) $>$$>$ 24\mbox{]})
+\item 
+\#define \mbox{\hyperlink{sosemanuk_8c_a8f840308fd195a36c7ecb4ab02aa9ec8}{M\+U\+L\+\_\+G}}(x)~(((x) $>$$>$ 8) $^\wedge$ \mbox{\hyperlink{sosemanuk_8c_ac48b73cdade67d363621e8cb302ac203}{mul\+\_\+ia}}\mbox{[}(x) \& 0x\+F\+F\mbox{]})
+\item 
+\#define \mbox{\hyperlink{sosemanuk_8c_a7e08255491d0d5637052ab1cac0fa19e}{X\+M\+UX}}(\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},  x,  y)~(((\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}) \& 0x1) ? ((x) $^\wedge$ (y)) \+: (x))
+\item 
+\#define \mbox{\hyperlink{sosemanuk_8c_a9bae732ff66c7e8c519f6896d95f4e63}{F\+SM}}(x0,  x1,  x2,  x3,  x4,  x5,  x6,  x7,  x8,  x9)
+\item 
+\#define \mbox{\hyperlink{sosemanuk_8c_aa5408e639de3669bc17d7a3d5e694f71}{L\+RU}}(x0,  x1,  x2,  x3,  x4,  x5,  x6,  x7,  x8,  x9,  dd)
+\item 
+\#define \mbox{\hyperlink{sosemanuk_8c_af31a4dc8e5051acfd0b6d3ed34d69769}{C\+C1}}(x0,  x1,  x2,  x3,  x4,  x5,  x6,  x7,  x8,  x9,  ee)
+\item 
+\#define \mbox{\hyperlink{sosemanuk_8c_a88db4597248911aff1db830d19e9270c}{S\+T\+EP}}(x0,  x1,  x2,  x3,  x4,  x5,  x6,  x7,  x8,  x9,  dd,  ee)
+\item 
+\#define \mbox{\hyperlink{sosemanuk_8c_a2dea2cec553f0912bd2bdd4ba0e1ec5c}{S\+RD}}(\mbox{\hyperlink{sha512_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}},  x0,  x1,  x2,  x3,  ooff)
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{sosemanuk_8c_ae244858ccf7bca175242f8c1b775a9f4}{sosemanuk\+\_\+setup}} (sosemanuk\+\_\+state $\ast$st, const unsigned char $\ast$key, unsigned long keylen)
+\item 
+int \mbox{\hyperlink{sosemanuk_8c_ac24c0c364f5334d8c8e387e900b468d1}{sosemanuk\+\_\+setiv}} (sosemanuk\+\_\+state $\ast$st, const unsigned char $\ast$iv, unsigned long ivlen)
+\item 
+static void \mbox{\hyperlink{sosemanuk_8c_a5658cccde993c8eca129036736eb7527}{\+\_\+sosemanuk\+\_\+internal}} (sosemanuk\+\_\+state $\ast$st)
+\item 
+static void \mbox{\hyperlink{sosemanuk_8c_ac769bae0f590a35230b80e113aaee135}{\+\_\+xorbuf}} (const unsigned char $\ast$in1, const unsigned char $\ast$in2, unsigned char $\ast$out, unsigned long datalen)
+\item 
+int \mbox{\hyperlink{sosemanuk_8c_ae473e1b8845f3b37e79e6c099e54247c}{sosemanuk\+\_\+crypt}} (sosemanuk\+\_\+state $\ast$st, const unsigned char $\ast$in, unsigned long inlen, unsigned char $\ast$out)
+\item 
+int \mbox{\hyperlink{sosemanuk_8c_ac9cf23b2cb5a1585248c91498f3dd026}{sosemanuk\+\_\+keystream}} (sosemanuk\+\_\+state $\ast$st, unsigned char $\ast$out, unsigned long outlen)
+\item 
+int \mbox{\hyperlink{sosemanuk_8c_a7ee39bd7ec8f061e89d6fa7c34058200}{sosemanuk\+\_\+done}} (sosemanuk\+\_\+state $\ast$st)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} \mbox{\hyperlink{sosemanuk_8c_a52c63ef7165b1936dd6dc9d0635a1fc4}{mul\+\_\+a}} \mbox{[}$\,$\mbox{]}
+\item 
+static const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} \mbox{\hyperlink{sosemanuk_8c_ac48b73cdade67d363621e8cb302ac203}{mul\+\_\+ia}} \mbox{[}$\,$\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{sosemanuk_8c_af31a4dc8e5051acfd0b6d3ed34d69769}\label{sosemanuk_8c_af31a4dc8e5051acfd0b6d3ed34d69769}} 
+\index{sosemanuk.c@{sosemanuk.c}!CC1@{CC1}}
+\index{CC1@{CC1}!sosemanuk.c@{sosemanuk.c}}
+\subsubsection{\texorpdfstring{CC1}{CC1}}
+{\footnotesize\ttfamily \#define C\+C1(\begin{DoxyParamCaption}\item[{}]{x0,  }\item[{}]{x1,  }\item[{}]{x2,  }\item[{}]{x3,  }\item[{}]{x4,  }\item[{}]{x5,  }\item[{}]{x6,  }\item[{}]{x7,  }\item[{}]{x8,  }\item[{}]{x9,  }\item[{}]{ee }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{ \(\backslash\)}
+\DoxyCodeLine{        ee = \mbox{\hyperlink{sosemanuk_8c_a9f52a9d9145a1f027fd1a79070a49e4b}{T32}}(s \#\# x9 + r1) \string^ r2; \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{sosemanuk_8c_ac004f9569aa8addaadfcc527dfcff4bb}\label{sosemanuk_8c_ac004f9569aa8addaadfcc527dfcff4bb}} 
+\index{sosemanuk.c@{sosemanuk.c}!FSF@{FSF}}
+\index{FSF@{FSF}!sosemanuk.c@{sosemanuk.c}}
+\subsubsection{\texorpdfstring{FSF}{FSF}}
+{\footnotesize\ttfamily \#define F\+SF(\begin{DoxyParamCaption}\item[{}]{zc,  }\item[{}]{\mbox{\hyperlink{sha512_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}},  }\item[{}]{i0,  }\item[{}]{i1,  }\item[{}]{i2,  }\item[{}]{i3,  }\item[{}]{i4,  }\item[{}]{o0,  }\item[{}]{o1,  }\item[{}]{o2,  }\item[{}]{o3 }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{ \(\backslash\)}
+\DoxyCodeLine{        KA(zc, r \#\# i0, r \#\# i1, r \#\# i2, r \#\# i3); \(\backslash\)}
+\DoxyCodeLine{        S(r \#\# i0, r \#\# i1, r \#\# i2, r \#\# i3, r \#\# i4); \(\backslash\)}
+\DoxyCodeLine{        SERPENT\_LT(r \#\# o0, r \#\# o1, r \#\# o2, r \#\# o3); \(\backslash\)}
+\DoxyCodeLine{        KA(zc + 4, r \#\# o0, r \#\# o1, r \#\# o2, r \#\# o3); \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{sosemanuk_8c_a9bae732ff66c7e8c519f6896d95f4e63}\label{sosemanuk_8c_a9bae732ff66c7e8c519f6896d95f4e63}} 
+\index{sosemanuk.c@{sosemanuk.c}!FSM@{FSM}}
+\index{FSM@{FSM}!sosemanuk.c@{sosemanuk.c}}
+\subsubsection{\texorpdfstring{FSM}{FSM}}
+{\footnotesize\ttfamily \#define F\+SM(\begin{DoxyParamCaption}\item[{}]{x0,  }\item[{}]{x1,  }\item[{}]{x2,  }\item[{}]{x3,  }\item[{}]{x4,  }\item[{}]{x5,  }\item[{}]{x6,  }\item[{}]{x7,  }\item[{}]{x8,  }\item[{}]{x9 }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{ \(\backslash\)}
+\DoxyCodeLine{        ulong32 tt, or1; \(\backslash\)}
+\DoxyCodeLine{        tt = \mbox{\hyperlink{sosemanuk_8c_a7e08255491d0d5637052ab1cac0fa19e}{XMUX}}(r1, s \#\# x1, s \#\# x8); \(\backslash\)}
+\DoxyCodeLine{        or1 = r1; \(\backslash\)}
+\DoxyCodeLine{        r1 = \mbox{\hyperlink{sosemanuk_8c_a9f52a9d9145a1f027fd1a79070a49e4b}{T32}}(r2 + tt); \(\backslash\)}
+\DoxyCodeLine{        tt = \mbox{\hyperlink{sosemanuk_8c_a9f52a9d9145a1f027fd1a79070a49e4b}{T32}}(or1 * 0x54655307); \(\backslash\)}
+\DoxyCodeLine{        r2 = \mbox{\hyperlink{tomcrypt__macros_8h_a39d625dc0b148466a72c13737e063d86}{ROLc}}(tt, 7); \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{sosemanuk_8c_a7a50b97a8baa27e30798c60c89eaf094}\label{sosemanuk_8c_a7a50b97a8baa27e30798c60c89eaf094}} 
+\index{sosemanuk.c@{sosemanuk.c}!FSS@{FSS}}
+\index{FSS@{FSS}!sosemanuk.c@{sosemanuk.c}}
+\subsubsection{\texorpdfstring{FSS}{FSS}}
+{\footnotesize\ttfamily \#define F\+SS(\begin{DoxyParamCaption}\item[{}]{zc,  }\item[{}]{\mbox{\hyperlink{sha512_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}},  }\item[{}]{i0,  }\item[{}]{i1,  }\item[{}]{i2,  }\item[{}]{i3,  }\item[{}]{i4,  }\item[{}]{o0,  }\item[{}]{o1,  }\item[{}]{o2,  }\item[{}]{o3 }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{ \(\backslash\)}
+\DoxyCodeLine{        KA(zc, r \#\# i0, r \#\# i1, r \#\# i2, r \#\# i3); \(\backslash\)}
+\DoxyCodeLine{        S(r \#\# i0, r \#\# i1, r \#\# i2, r \#\# i3, r \#\# i4); \(\backslash\)}
+\DoxyCodeLine{        SERPENT\_LT(r \#\# o0, r \#\# o1, r \#\# o2, r \#\# o3); \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{sosemanuk_8c_a40fad8b706d9378f8ac60afa3850dce5}\label{sosemanuk_8c_a40fad8b706d9378f8ac60afa3850dce5}} 
+\index{sosemanuk.c@{sosemanuk.c}!KA@{KA}}
+\index{KA@{KA}!sosemanuk.c@{sosemanuk.c}}
+\subsubsection{\texorpdfstring{KA}{KA}}
+{\footnotesize\ttfamily \#define KA(\begin{DoxyParamCaption}\item[{}]{zc,  }\item[{}]{x0,  }\item[{}]{x1,  }\item[{}]{x2,  }\item[{}]{x3 }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{ \(\backslash\)}
+\DoxyCodeLine{        x0 \string^= st->kc[(zc)]; \(\backslash\)}
+\DoxyCodeLine{        x1 \string^= st->kc[(zc) + 1]; \(\backslash\)}
+\DoxyCodeLine{        x2 \string^= st->kc[(zc) + 2]; \(\backslash\)}
+\DoxyCodeLine{        x3 \string^= st->kc[(zc) + 3]; \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{sosemanuk_8c_aa5408e639de3669bc17d7a3d5e694f71}\label{sosemanuk_8c_aa5408e639de3669bc17d7a3d5e694f71}} 
+\index{sosemanuk.c@{sosemanuk.c}!LRU@{LRU}}
+\index{LRU@{LRU}!sosemanuk.c@{sosemanuk.c}}
+\subsubsection{\texorpdfstring{LRU}{LRU}}
+{\footnotesize\ttfamily \#define L\+RU(\begin{DoxyParamCaption}\item[{}]{x0,  }\item[{}]{x1,  }\item[{}]{x2,  }\item[{}]{x3,  }\item[{}]{x4,  }\item[{}]{x5,  }\item[{}]{x6,  }\item[{}]{x7,  }\item[{}]{x8,  }\item[{}]{x9,  }\item[{}]{dd }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{ \(\backslash\)}
+\DoxyCodeLine{        dd = s \#\# x0; \(\backslash\)}
+\DoxyCodeLine{        s \#\# x0 = \mbox{\hyperlink{sosemanuk_8c_ad5ae3d53d7d31d346d12c3ef7c7869cc}{MUL\_A}}(s \#\# x0) \string^ \mbox{\hyperlink{sosemanuk_8c_a8f840308fd195a36c7ecb4ab02aa9ec8}{MUL\_G}}(s \#\# x3) \string^ s \#\# x9; \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{sosemanuk_8c_ad5ae3d53d7d31d346d12c3ef7c7869cc}\label{sosemanuk_8c_ad5ae3d53d7d31d346d12c3ef7c7869cc}} 
+\index{sosemanuk.c@{sosemanuk.c}!MUL\_A@{MUL\_A}}
+\index{MUL\_A@{MUL\_A}!sosemanuk.c@{sosemanuk.c}}
+\subsubsection{\texorpdfstring{MUL\_A}{MUL\_A}}
+{\footnotesize\ttfamily \#define M\+U\+L\+\_\+A(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~(\mbox{\hyperlink{sosemanuk_8c_a9f52a9d9145a1f027fd1a79070a49e4b}{T32}}((x) $<$$<$ 8) $^\wedge$ \mbox{\hyperlink{sosemanuk_8c_a52c63ef7165b1936dd6dc9d0635a1fc4}{mul\+\_\+a}}\mbox{[}(x) $>$$>$ 24\mbox{]})}
+
+\mbox{\Hypertarget{sosemanuk_8c_a8f840308fd195a36c7ecb4ab02aa9ec8}\label{sosemanuk_8c_a8f840308fd195a36c7ecb4ab02aa9ec8}} 
+\index{sosemanuk.c@{sosemanuk.c}!MUL\_G@{MUL\_G}}
+\index{MUL\_G@{MUL\_G}!sosemanuk.c@{sosemanuk.c}}
+\subsubsection{\texorpdfstring{MUL\_G}{MUL\_G}}
+{\footnotesize\ttfamily \#define M\+U\+L\+\_\+G(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~(((x) $>$$>$ 8) $^\wedge$ \mbox{\hyperlink{sosemanuk_8c_ac48b73cdade67d363621e8cb302ac203}{mul\+\_\+ia}}\mbox{[}(x) \& 0x\+F\+F\mbox{]})}
+
+\mbox{\Hypertarget{sosemanuk_8c_ad6d69eb37bd8c4b959db2daefc0e280c}\label{sosemanuk_8c_ad6d69eb37bd8c4b959db2daefc0e280c}} 
+\index{sosemanuk.c@{sosemanuk.c}!S0@{S0}}
+\index{S0@{S0}!sosemanuk.c@{sosemanuk.c}}
+\subsubsection{\texorpdfstring{S0}{S0}}
+{\footnotesize\ttfamily \#define S0(\begin{DoxyParamCaption}\item[{}]{r0,  }\item[{}]{r1,  }\item[{}]{r2,  }\item[{}]{r3,  }\item[{}]{r4 }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{ \(\backslash\)}
+\DoxyCodeLine{        r3 \string^= r0;  r4  = r1; \(\backslash\)}
+\DoxyCodeLine{        r1 \&= r3;  r4 \string^= r2; \(\backslash\)}
+\DoxyCodeLine{        r1 \string^= r0;  r0 |= r3; \(\backslash\)}
+\DoxyCodeLine{        r0 \string^= r4;  r4 \string^= r3; \(\backslash\)}
+\DoxyCodeLine{        r3 \string^= r2;  r2 |= r1; \(\backslash\)}
+\DoxyCodeLine{        r2 \string^= r4;  r4 = ~r4; \(\backslash\)}
+\DoxyCodeLine{        r4 |= r1;  r1 \string^= r3; \(\backslash\)}
+\DoxyCodeLine{        r1 \string^= r4;  r3 |= r0; \(\backslash\)}
+\DoxyCodeLine{        r1 \string^= r3;  r4 \string^= r3; \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+
+
+Definition at line 76 of file sosemanuk.\+c.
+
+\mbox{\Hypertarget{sosemanuk_8c_ab9578ef02669318f0403f120bc0280d7}\label{sosemanuk_8c_ab9578ef02669318f0403f120bc0280d7}} 
+\index{sosemanuk.c@{sosemanuk.c}!S1@{S1}}
+\index{S1@{S1}!sosemanuk.c@{sosemanuk.c}}
+\subsubsection{\texorpdfstring{S1}{S1}}
+{\footnotesize\ttfamily \#define S1(\begin{DoxyParamCaption}\item[{}]{r0,  }\item[{}]{r1,  }\item[{}]{r2,  }\item[{}]{r3,  }\item[{}]{r4 }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{ \(\backslash\)}
+\DoxyCodeLine{        r0 = ~r0;  r2 = ~r2; \(\backslash\)}
+\DoxyCodeLine{        r4  = r0;  r0 \&= r1; \(\backslash\)}
+\DoxyCodeLine{        r2 \string^= r0;  r0 |= r3; \(\backslash\)}
+\DoxyCodeLine{        r3 \string^= r2;  r1 \string^= r0; \(\backslash\)}
+\DoxyCodeLine{        r0 \string^= r4;  r4 |= r1; \(\backslash\)}
+\DoxyCodeLine{        r1 \string^= r3;  r2 |= r0; \(\backslash\)}
+\DoxyCodeLine{        r2 \&= r4;  r0 \string^= r1; \(\backslash\)}
+\DoxyCodeLine{        r1 \&= r2; \(\backslash\)}
+\DoxyCodeLine{        r1 \string^= r0;  r0 \&= r2; \(\backslash\)}
+\DoxyCodeLine{        r0 \string^= r4; \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+
+
+Definition at line 88 of file sosemanuk.\+c.
+
+\mbox{\Hypertarget{sosemanuk_8c_a6bedac3e63cf44ab1b3091a78d21e297}\label{sosemanuk_8c_a6bedac3e63cf44ab1b3091a78d21e297}} 
+\index{sosemanuk.c@{sosemanuk.c}!S2@{S2}}
+\index{S2@{S2}!sosemanuk.c@{sosemanuk.c}}
+\subsubsection{\texorpdfstring{S2}{S2}}
+{\footnotesize\ttfamily \#define S2(\begin{DoxyParamCaption}\item[{}]{r0,  }\item[{}]{r1,  }\item[{}]{r2,  }\item[{}]{r3,  }\item[{}]{r4 }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{ \(\backslash\)}
+\DoxyCodeLine{        r4  = r0;  r0 \&= r2; \(\backslash\)}
+\DoxyCodeLine{        r0 \string^= r3;  r2 \string^= r1; \(\backslash\)}
+\DoxyCodeLine{        r2 \string^= r0;  r3 |= r4; \(\backslash\)}
+\DoxyCodeLine{        r3 \string^= r1;  r4 \string^= r2; \(\backslash\)}
+\DoxyCodeLine{        r1  = r3;  r3 |= r4; \(\backslash\)}
+\DoxyCodeLine{        r3 \string^= r0;  r0 \&= r1; \(\backslash\)}
+\DoxyCodeLine{        r4 \string^= r0;  r1 \string^= r3; \(\backslash\)}
+\DoxyCodeLine{        r1 \string^= r4;  r4 = ~r4; \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+
+
+Definition at line 101 of file sosemanuk.\+c.
+
+\mbox{\Hypertarget{sosemanuk_8c_a6d22d6fb54f8c3cb615bf66829a94a13}\label{sosemanuk_8c_a6d22d6fb54f8c3cb615bf66829a94a13}} 
+\index{sosemanuk.c@{sosemanuk.c}!S3@{S3}}
+\index{S3@{S3}!sosemanuk.c@{sosemanuk.c}}
+\subsubsection{\texorpdfstring{S3}{S3}}
+{\footnotesize\ttfamily \#define S3(\begin{DoxyParamCaption}\item[{}]{r0,  }\item[{}]{r1,  }\item[{}]{r2,  }\item[{}]{r3,  }\item[{}]{r4 }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{ \(\backslash\)}
+\DoxyCodeLine{        r4  = r0;  r0 |= r3; \(\backslash\)}
+\DoxyCodeLine{        r3 \string^= r1;  r1 \&= r4; \(\backslash\)}
+\DoxyCodeLine{        r4 \string^= r2;  r2 \string^= r3; \(\backslash\)}
+\DoxyCodeLine{        r3 \&= r0;  r4 |= r1; \(\backslash\)}
+\DoxyCodeLine{        r3 \string^= r4;  r0 \string^= r1; \(\backslash\)}
+\DoxyCodeLine{        r4 \&= r0;  r1 \string^= r3; \(\backslash\)}
+\DoxyCodeLine{        r4 \string^= r2;  r1 |= r0; \(\backslash\)}
+\DoxyCodeLine{        r1 \string^= r2;  r0 \string^= r3; \(\backslash\)}
+\DoxyCodeLine{        r2  = r1;  r1 |= r3; \(\backslash\)}
+\DoxyCodeLine{        r1 \string^= r0; \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+
+
+Definition at line 112 of file sosemanuk.\+c.
+
+\mbox{\Hypertarget{sosemanuk_8c_a57b2a1dee95346d5a213ec826d787186}\label{sosemanuk_8c_a57b2a1dee95346d5a213ec826d787186}} 
+\index{sosemanuk.c@{sosemanuk.c}!S4@{S4}}
+\index{S4@{S4}!sosemanuk.c@{sosemanuk.c}}
+\subsubsection{\texorpdfstring{S4}{S4}}
+{\footnotesize\ttfamily \#define S4(\begin{DoxyParamCaption}\item[{}]{r0,  }\item[{}]{r1,  }\item[{}]{r2,  }\item[{}]{r3,  }\item[{}]{r4 }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{ \(\backslash\)}
+\DoxyCodeLine{        r1 \string^= r3;  r3 = ~r3; \(\backslash\)}
+\DoxyCodeLine{        r2 \string^= r3;  r3 \string^= r0; \(\backslash\)}
+\DoxyCodeLine{        r4  = r1;  r1 \&= r3; \(\backslash\)}
+\DoxyCodeLine{        r1 \string^= r2;  r4 \string^= r3; \(\backslash\)}
+\DoxyCodeLine{        r0 \string^= r4;  r2 \&= r4; \(\backslash\)}
+\DoxyCodeLine{        r2 \string^= r0;  r0 \&= r1; \(\backslash\)}
+\DoxyCodeLine{        r3 \string^= r0;  r4 |= r1; \(\backslash\)}
+\DoxyCodeLine{        r4 \string^= r0;  r0 |= r3; \(\backslash\)}
+\DoxyCodeLine{        r0 \string^= r2;  r2 \&= r3; \(\backslash\)}
+\DoxyCodeLine{        r0 = ~r0;  r4 \string^= r2; \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+
+
+Definition at line 125 of file sosemanuk.\+c.
+
+\mbox{\Hypertarget{sosemanuk_8c_a2af9efc99cfe7b49c325edc7aae34ab0}\label{sosemanuk_8c_a2af9efc99cfe7b49c325edc7aae34ab0}} 
+\index{sosemanuk.c@{sosemanuk.c}!S5@{S5}}
+\index{S5@{S5}!sosemanuk.c@{sosemanuk.c}}
+\subsubsection{\texorpdfstring{S5}{S5}}
+{\footnotesize\ttfamily \#define S5(\begin{DoxyParamCaption}\item[{}]{r0,  }\item[{}]{r1,  }\item[{}]{r2,  }\item[{}]{r3,  }\item[{}]{r4 }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{ \(\backslash\)}
+\DoxyCodeLine{        r0 \string^= r1;  r1 \string^= r3; \(\backslash\)}
+\DoxyCodeLine{        r3 = ~r3;  r4  = r1; \(\backslash\)}
+\DoxyCodeLine{        r1 \&= r0;  r2 \string^= r3; \(\backslash\)}
+\DoxyCodeLine{        r1 \string^= r2;  r2 |= r4; \(\backslash\)}
+\DoxyCodeLine{        r4 \string^= r3;  r3 \&= r1; \(\backslash\)}
+\DoxyCodeLine{        r3 \string^= r0;  r4 \string^= r1; \(\backslash\)}
+\DoxyCodeLine{        r4 \string^= r2;  r2 \string^= r0; \(\backslash\)}
+\DoxyCodeLine{        r0 \&= r3;  r2 = ~r2; \(\backslash\)}
+\DoxyCodeLine{        r0 \string^= r4;  r4 |= r3; \(\backslash\)}
+\DoxyCodeLine{        r2 \string^= r4; \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+
+
+Definition at line 138 of file sosemanuk.\+c.
+
+\mbox{\Hypertarget{sosemanuk_8c_af83a6fe4bc11173100000f33ada1f0b5}\label{sosemanuk_8c_af83a6fe4bc11173100000f33ada1f0b5}} 
+\index{sosemanuk.c@{sosemanuk.c}!S6@{S6}}
+\index{S6@{S6}!sosemanuk.c@{sosemanuk.c}}
+\subsubsection{\texorpdfstring{S6}{S6}}
+{\footnotesize\ttfamily \#define S6(\begin{DoxyParamCaption}\item[{}]{r0,  }\item[{}]{r1,  }\item[{}]{r2,  }\item[{}]{r3,  }\item[{}]{r4 }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{ \(\backslash\)}
+\DoxyCodeLine{        r2 = ~r2;  r4  = r3; \(\backslash\)}
+\DoxyCodeLine{        r3 \&= r0;  r0 \string^= r4; \(\backslash\)}
+\DoxyCodeLine{        r3 \string^= r2;  r2 |= r4; \(\backslash\)}
+\DoxyCodeLine{        r1 \string^= r3;  r2 \string^= r0; \(\backslash\)}
+\DoxyCodeLine{        r0 |= r1;  r2 \string^= r1; \(\backslash\)}
+\DoxyCodeLine{        r4 \string^= r0;  r0 |= r3; \(\backslash\)}
+\DoxyCodeLine{        r0 \string^= r2;  r4 \string^= r3; \(\backslash\)}
+\DoxyCodeLine{        r4 \string^= r0;  r3 = ~r3; \(\backslash\)}
+\DoxyCodeLine{        r2 \&= r4; \(\backslash\)}
+\DoxyCodeLine{        r2 \string^= r3; \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+
+
+Definition at line 151 of file sosemanuk.\+c.
+
+\mbox{\Hypertarget{sosemanuk_8c_ac2e57256dd691d5825a889a7ba2a9952}\label{sosemanuk_8c_ac2e57256dd691d5825a889a7ba2a9952}} 
+\index{sosemanuk.c@{sosemanuk.c}!S7@{S7}}
+\index{S7@{S7}!sosemanuk.c@{sosemanuk.c}}
+\subsubsection{\texorpdfstring{S7}{S7}}
+{\footnotesize\ttfamily \#define S7(\begin{DoxyParamCaption}\item[{}]{r0,  }\item[{}]{r1,  }\item[{}]{r2,  }\item[{}]{r3,  }\item[{}]{r4 }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{ \(\backslash\)}
+\DoxyCodeLine{        r4  = r1;  r1 |= r2; \(\backslash\)}
+\DoxyCodeLine{        r1 \string^= r3;  r4 \string^= r2; \(\backslash\)}
+\DoxyCodeLine{        r2 \string^= r1;  r3 |= r4; \(\backslash\)}
+\DoxyCodeLine{        r3 \&= r0;  r4 \string^= r2; \(\backslash\)}
+\DoxyCodeLine{        r3 \string^= r1;  r1 |= r4; \(\backslash\)}
+\DoxyCodeLine{        r1 \string^= r0;  r0 |= r4; \(\backslash\)}
+\DoxyCodeLine{        r0 \string^= r2;  r1 \string^= r4; \(\backslash\)}
+\DoxyCodeLine{        r2 \string^= r1;  r1 \&= r0; \(\backslash\)}
+\DoxyCodeLine{        r1 \string^= r4;  r2 = ~r2; \(\backslash\)}
+\DoxyCodeLine{        r2 |= r0; \(\backslash\)}
+\DoxyCodeLine{        r4 \string^= r2; \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+
+
+Definition at line 164 of file sosemanuk.\+c.
+
+\mbox{\Hypertarget{sosemanuk_8c_a9b93fe727295a1110f3228b44f062f9e}\label{sosemanuk_8c_a9b93fe727295a1110f3228b44f062f9e}} 
+\index{sosemanuk.c@{sosemanuk.c}!SERPENT\_LT@{SERPENT\_LT}}
+\index{SERPENT\_LT@{SERPENT\_LT}!sosemanuk.c@{sosemanuk.c}}
+\subsubsection{\texorpdfstring{SERPENT\_LT}{SERPENT\_LT}}
+{\footnotesize\ttfamily \#define S\+E\+R\+P\+E\+N\+T\+\_\+\+LT(\begin{DoxyParamCaption}\item[{}]{x0,  }\item[{}]{x1,  }\item[{}]{x2,  }\item[{}]{x3 }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{ \(\backslash\)}
+\DoxyCodeLine{        x0 = \mbox{\hyperlink{tomcrypt__macros_8h_a39d625dc0b148466a72c13737e063d86}{ROLc}}(x0, 13); \(\backslash\)}
+\DoxyCodeLine{        x2 = \mbox{\hyperlink{tomcrypt__macros_8h_a39d625dc0b148466a72c13737e063d86}{ROLc}}(x2, 3); \(\backslash\)}
+\DoxyCodeLine{        x1 = x1 \string^ x0 \string^ x2; \(\backslash\)}
+\DoxyCodeLine{        x3 = x3 \string^ x2 \string^ \mbox{\hyperlink{sosemanuk_8c_a9f52a9d9145a1f027fd1a79070a49e4b}{T32}}(x0 << 3); \(\backslash\)}
+\DoxyCodeLine{        x1 = \mbox{\hyperlink{tomcrypt__macros_8h_a39d625dc0b148466a72c13737e063d86}{ROLc}}(x1, 1); \(\backslash\)}
+\DoxyCodeLine{        x3 = \mbox{\hyperlink{tomcrypt__macros_8h_a39d625dc0b148466a72c13737e063d86}{ROLc}}(x3, 7); \(\backslash\)}
+\DoxyCodeLine{        x0 = x0 \string^ x1 \string^ x3; \(\backslash\)}
+\DoxyCodeLine{        x2 = x2 \string^ x3 \string^ \mbox{\hyperlink{sosemanuk_8c_a9f52a9d9145a1f027fd1a79070a49e4b}{T32}}(x1 << 7); \(\backslash\)}
+\DoxyCodeLine{        x0 = \mbox{\hyperlink{tomcrypt__macros_8h_a39d625dc0b148466a72c13737e063d86}{ROLc}}(x0, 5); \(\backslash\)}
+\DoxyCodeLine{        x2 = \mbox{\hyperlink{tomcrypt__macros_8h_a39d625dc0b148466a72c13737e063d86}{ROLc}}(x2, 22); \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+
+
+Definition at line 181 of file sosemanuk.\+c.
+
+\mbox{\Hypertarget{sosemanuk_8c_a192ba6ecee06cf912b267872f7838f59}\label{sosemanuk_8c_a192ba6ecee06cf912b267872f7838f59}} 
+\index{sosemanuk.c@{sosemanuk.c}!SKS@{SKS}}
+\index{SKS@{SKS}!sosemanuk.c@{sosemanuk.c}}
+\subsubsection{\texorpdfstring{SKS}{SKS}}
+{\footnotesize\ttfamily \#define S\+KS(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{sha512_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}},  }\item[{}]{o0,  }\item[{}]{o1,  }\item[{}]{o2,  }\item[{}]{o3,  }\item[{}]{d0,  }\item[{}]{d1,  }\item[{}]{d2,  }\item[{}]{d3 }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{ \(\backslash\)}
+\DoxyCodeLine{        ulong32 r0, r1, r2, r3, r4; \(\backslash\)}
+\DoxyCodeLine{        r0 = w \#\# o0; \(\backslash\)}
+\DoxyCodeLine{        r1 = w \#\# o1; \(\backslash\)}
+\DoxyCodeLine{        r2 = w \#\# o2; \(\backslash\)}
+\DoxyCodeLine{        r3 = w \#\# o3; \(\backslash\)}
+\DoxyCodeLine{        S(r0, r1, r2, r3, r4); \(\backslash\)}
+\DoxyCodeLine{        st->kc[i ++] = r \#\# d0; \(\backslash\)}
+\DoxyCodeLine{        st->kc[i ++] = r \#\# d1; \(\backslash\)}
+\DoxyCodeLine{        st->kc[i ++] = r \#\# d2; \(\backslash\)}
+\DoxyCodeLine{        st->kc[i ++] = r \#\# d3; \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{sosemanuk_8c_a80b38602000348fe623bd1354f01fc3f}\label{sosemanuk_8c_a80b38602000348fe623bd1354f01fc3f}} 
+\index{sosemanuk.c@{sosemanuk.c}!SKS0@{SKS0}}
+\index{SKS0@{SKS0}!sosemanuk.c@{sosemanuk.c}}
+\subsubsection{\texorpdfstring{SKS0}{SKS0}}
+{\footnotesize\ttfamily \#define S\+K\+S0~\mbox{\hyperlink{sosemanuk_8c_a192ba6ecee06cf912b267872f7838f59}{S\+KS}}(\mbox{\hyperlink{sosemanuk_8c_ad6d69eb37bd8c4b959db2daefc0e280c}{S0}}, 4, 5, 6, 7, 1, 4, 2, 0)}
+
+\mbox{\Hypertarget{sosemanuk_8c_a17452ad01db751019f34a26aab8df392}\label{sosemanuk_8c_a17452ad01db751019f34a26aab8df392}} 
+\index{sosemanuk.c@{sosemanuk.c}!SKS1@{SKS1}}
+\index{SKS1@{SKS1}!sosemanuk.c@{sosemanuk.c}}
+\subsubsection{\texorpdfstring{SKS1}{SKS1}}
+{\footnotesize\ttfamily \#define S\+K\+S1~\mbox{\hyperlink{sosemanuk_8c_a192ba6ecee06cf912b267872f7838f59}{S\+KS}}(\mbox{\hyperlink{cast5_8c_ac5ae33c73384e98f5e5d584fc265113b}{S1}}, 0, 1, 2, 3, 2, 0, 3, 1)}
+
+\mbox{\Hypertarget{sosemanuk_8c_a25b457a1269d84306284459cfe2c94bd}\label{sosemanuk_8c_a25b457a1269d84306284459cfe2c94bd}} 
+\index{sosemanuk.c@{sosemanuk.c}!SKS2@{SKS2}}
+\index{SKS2@{SKS2}!sosemanuk.c@{sosemanuk.c}}
+\subsubsection{\texorpdfstring{SKS2}{SKS2}}
+{\footnotesize\ttfamily \#define S\+K\+S2~\mbox{\hyperlink{sosemanuk_8c_a192ba6ecee06cf912b267872f7838f59}{S\+KS}}(\mbox{\hyperlink{cast5_8c_a0dbb0f93665db2dab6bd396393a28e89}{S2}}, 4, 5, 6, 7, 2, 3, 1, 4)}
+
+\mbox{\Hypertarget{sosemanuk_8c_a6e25bcd1a11f806d42d6390d7d83a0ef}\label{sosemanuk_8c_a6e25bcd1a11f806d42d6390d7d83a0ef}} 
+\index{sosemanuk.c@{sosemanuk.c}!SKS3@{SKS3}}
+\index{SKS3@{SKS3}!sosemanuk.c@{sosemanuk.c}}
+\subsubsection{\texorpdfstring{SKS3}{SKS3}}
+{\footnotesize\ttfamily \#define S\+K\+S3~\mbox{\hyperlink{sosemanuk_8c_a192ba6ecee06cf912b267872f7838f59}{S\+KS}}(\mbox{\hyperlink{cast5_8c_a998f1fda39497e5dd85c5317a757fd68}{S3}}, 0, 1, 2, 3, 1, 2, 3, 4)}
+
+\mbox{\Hypertarget{sosemanuk_8c_a2c5a2057dcd95c853dd75659db7cb5af}\label{sosemanuk_8c_a2c5a2057dcd95c853dd75659db7cb5af}} 
+\index{sosemanuk.c@{sosemanuk.c}!SKS4@{SKS4}}
+\index{SKS4@{SKS4}!sosemanuk.c@{sosemanuk.c}}
+\subsubsection{\texorpdfstring{SKS4}{SKS4}}
+{\footnotesize\ttfamily \#define S\+K\+S4~\mbox{\hyperlink{sosemanuk_8c_a192ba6ecee06cf912b267872f7838f59}{S\+KS}}(\mbox{\hyperlink{cast5_8c_a8957c7e73629e51b04170d187cdfe2b5}{S4}}, 4, 5, 6, 7, 1, 4, 0, 3)}
+
+\mbox{\Hypertarget{sosemanuk_8c_ae6021e8c8fa3269ede04d5696ce4b964}\label{sosemanuk_8c_ae6021e8c8fa3269ede04d5696ce4b964}} 
+\index{sosemanuk.c@{sosemanuk.c}!SKS5@{SKS5}}
+\index{SKS5@{SKS5}!sosemanuk.c@{sosemanuk.c}}
+\subsubsection{\texorpdfstring{SKS5}{SKS5}}
+{\footnotesize\ttfamily \#define S\+K\+S5~\mbox{\hyperlink{sosemanuk_8c_a192ba6ecee06cf912b267872f7838f59}{S\+KS}}(\mbox{\hyperlink{cast5_8c_a75475127d54e85b906b49be76fc7545d}{S5}}, 0, 1, 2, 3, 1, 3, 0, 2)}
+
+\mbox{\Hypertarget{sosemanuk_8c_abcb783e92319fc1600a81ca4663bd521}\label{sosemanuk_8c_abcb783e92319fc1600a81ca4663bd521}} 
+\index{sosemanuk.c@{sosemanuk.c}!SKS6@{SKS6}}
+\index{SKS6@{SKS6}!sosemanuk.c@{sosemanuk.c}}
+\subsubsection{\texorpdfstring{SKS6}{SKS6}}
+{\footnotesize\ttfamily \#define S\+K\+S6~\mbox{\hyperlink{sosemanuk_8c_a192ba6ecee06cf912b267872f7838f59}{S\+KS}}(\mbox{\hyperlink{cast5_8c_a2b897b677383e550872e8a004baee4b2}{S6}}, 4, 5, 6, 7, 0, 1, 4, 2)}
+
+\mbox{\Hypertarget{sosemanuk_8c_a4ce461c78eb8e3d92817dcf9c157f8f9}\label{sosemanuk_8c_a4ce461c78eb8e3d92817dcf9c157f8f9}} 
+\index{sosemanuk.c@{sosemanuk.c}!SKS7@{SKS7}}
+\index{SKS7@{SKS7}!sosemanuk.c@{sosemanuk.c}}
+\subsubsection{\texorpdfstring{SKS7}{SKS7}}
+{\footnotesize\ttfamily \#define S\+K\+S7~\mbox{\hyperlink{sosemanuk_8c_a192ba6ecee06cf912b267872f7838f59}{S\+KS}}(\mbox{\hyperlink{cast5_8c_a4d5f92aab8361e5e410f5b813317f284}{S7}}, 0, 1, 2, 3, 4, 3, 1, 0)}
+
+\mbox{\Hypertarget{sosemanuk_8c_a2dea2cec553f0912bd2bdd4ba0e1ec5c}\label{sosemanuk_8c_a2dea2cec553f0912bd2bdd4ba0e1ec5c}} 
+\index{sosemanuk.c@{sosemanuk.c}!SRD@{SRD}}
+\index{SRD@{SRD}!sosemanuk.c@{sosemanuk.c}}
+\subsubsection{\texorpdfstring{SRD}{SRD}}
+{\footnotesize\ttfamily \#define S\+RD(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{sha512_8c_a5a9675d71aad8449f8e4112ce611fd93}{S}},  }\item[{}]{x0,  }\item[{}]{x1,  }\item[{}]{x2,  }\item[{}]{x3,  }\item[{}]{ooff }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{ \(\backslash\)}
+\DoxyCodeLine{        S(u0, u1, u2, u3, u4); \(\backslash\)}
+\DoxyCodeLine{        STORE32L(u \#\# x0 \string^ v0, st->buf + ooff); \(\backslash\)}
+\DoxyCodeLine{        STORE32L(u \#\# x1 \string^ v1, st->buf + ooff +  4); \(\backslash\)}
+\DoxyCodeLine{        STORE32L(u \#\# x2 \string^ v2, st->buf + ooff +  8); \(\backslash\)}
+\DoxyCodeLine{        STORE32L(u \#\# x3 \string^ v3, st->buf + ooff + 12); \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{sosemanuk_8c_a88db4597248911aff1db830d19e9270c}\label{sosemanuk_8c_a88db4597248911aff1db830d19e9270c}} 
+\index{sosemanuk.c@{sosemanuk.c}!STEP@{STEP}}
+\index{STEP@{STEP}!sosemanuk.c@{sosemanuk.c}}
+\subsubsection{\texorpdfstring{STEP}{STEP}}
+{\footnotesize\ttfamily \#define S\+T\+EP(\begin{DoxyParamCaption}\item[{}]{x0,  }\item[{}]{x1,  }\item[{}]{x2,  }\item[{}]{x3,  }\item[{}]{x4,  }\item[{}]{x5,  }\item[{}]{x6,  }\item[{}]{x7,  }\item[{}]{x8,  }\item[{}]{x9,  }\item[{}]{dd,  }\item[{}]{ee }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{ \(\backslash\)}
+\DoxyCodeLine{        FSM(x0, x1, x2, x3, x4, x5, x6, x7, x8, x9); \(\backslash\)}
+\DoxyCodeLine{        LRU(x0, x1, x2, x3, x4, x5, x6, x7, x8, x9, dd); \(\backslash\)}
+\DoxyCodeLine{        CC1(x0, x1, x2, x3, x4, x5, x6, x7, x8, x9, ee); \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{sosemanuk_8c_a9f52a9d9145a1f027fd1a79070a49e4b}\label{sosemanuk_8c_a9f52a9d9145a1f027fd1a79070a49e4b}} 
+\index{sosemanuk.c@{sosemanuk.c}!T32@{T32}}
+\index{T32@{T32}!sosemanuk.c@{sosemanuk.c}}
+\subsubsection{\texorpdfstring{T32}{T32}}
+{\footnotesize\ttfamily \#define T32(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~((x) \& (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})0x\+F\+F\+F\+F\+F\+F\+F\+F)}
+
+
+
+Definition at line 42 of file sosemanuk.\+c.
+
+\mbox{\Hypertarget{sosemanuk_8c_ac5cae2b9ea8344c387eb71217823b361}\label{sosemanuk_8c_ac5cae2b9ea8344c387eb71217823b361}} 
+\index{sosemanuk.c@{sosemanuk.c}!WUP@{WUP}}
+\index{WUP@{WUP}!sosemanuk.c@{sosemanuk.c}}
+\subsubsection{\texorpdfstring{WUP}{WUP}}
+{\footnotesize\ttfamily \#define W\+UP(\begin{DoxyParamCaption}\item[{}]{wi,  }\item[{}]{wi5,  }\item[{}]{wi3,  }\item[{}]{wi1,  }\item[{}]{cc }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{ \(\backslash\)}
+\DoxyCodeLine{        ulong32 tt = (wi) \string^ (wi5) \string^ (wi3) \(\backslash\)}
+\DoxyCodeLine{            \string^ (wi1) \string^ (0x9E3779B9 \string^ (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})(cc)); \(\backslash\)}
+\DoxyCodeLine{        (wi) = \mbox{\hyperlink{tomcrypt__macros_8h_a39d625dc0b148466a72c13737e063d86}{ROLc}}(tt, 11); \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{sosemanuk_8c_a159585331bd7912597531107584f67f1}\label{sosemanuk_8c_a159585331bd7912597531107584f67f1}} 
+\index{sosemanuk.c@{sosemanuk.c}!WUP0@{WUP0}}
+\index{WUP0@{WUP0}!sosemanuk.c@{sosemanuk.c}}
+\subsubsection{\texorpdfstring{WUP0}{WUP0}}
+{\footnotesize\ttfamily \#define W\+U\+P0(\begin{DoxyParamCaption}\item[{}]{cc }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{ \(\backslash\)}
+\DoxyCodeLine{        WUP(w0, w3, w5, w7, cc); \(\backslash\)}
+\DoxyCodeLine{        WUP(w1, w4, w6, w0, cc + 1); \(\backslash\)}
+\DoxyCodeLine{        WUP(w2, w5, w7, w1, cc + 2); \(\backslash\)}
+\DoxyCodeLine{        WUP(w3, w6, w0, w2, cc + 3); \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{sosemanuk_8c_ad3478a8081a7e0217c6a272504df44e4}\label{sosemanuk_8c_ad3478a8081a7e0217c6a272504df44e4}} 
+\index{sosemanuk.c@{sosemanuk.c}!WUP1@{WUP1}}
+\index{WUP1@{WUP1}!sosemanuk.c@{sosemanuk.c}}
+\subsubsection{\texorpdfstring{WUP1}{WUP1}}
+{\footnotesize\ttfamily \#define W\+U\+P1(\begin{DoxyParamCaption}\item[{}]{cc }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{ \(\backslash\)}
+\DoxyCodeLine{        WUP(w4, w7, w1, w3, cc); \(\backslash\)}
+\DoxyCodeLine{        WUP(w5, w0, w2, w4, cc + 1); \(\backslash\)}
+\DoxyCodeLine{        WUP(w6, w1, w3, w5, cc + 2); \(\backslash\)}
+\DoxyCodeLine{        WUP(w7, w2, w4, w6, cc + 3); \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{sosemanuk_8c_a7e08255491d0d5637052ab1cac0fa19e}\label{sosemanuk_8c_a7e08255491d0d5637052ab1cac0fa19e}} 
+\index{sosemanuk.c@{sosemanuk.c}!XMUX@{XMUX}}
+\index{XMUX@{XMUX}!sosemanuk.c@{sosemanuk.c}}
+\subsubsection{\texorpdfstring{XMUX}{XMUX}}
+{\footnotesize\ttfamily \#define X\+M\+UX(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},  }\item[{}]{x,  }\item[{}]{y }\end{DoxyParamCaption})~(((\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}) \& 0x1) ? ((x) $^\wedge$ (y)) \+: (x))}
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{sosemanuk_8c_a5658cccde993c8eca129036736eb7527}\label{sosemanuk_8c_a5658cccde993c8eca129036736eb7527}} 
+\index{sosemanuk.c@{sosemanuk.c}!\_sosemanuk\_internal@{\_sosemanuk\_internal}}
+\index{\_sosemanuk\_internal@{\_sosemanuk\_internal}!sosemanuk.c@{sosemanuk.c}}
+\subsubsection{\texorpdfstring{\_sosemanuk\_internal()}{\_sosemanuk\_internal()}}
+{\footnotesize\ttfamily static void \+\_\+sosemanuk\+\_\+internal (\begin{DoxyParamCaption}\item[{sosemanuk\+\_\+state $\ast$}]{st }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 588 of file sosemanuk.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{589 \{}
+\DoxyCodeLine{590     \textcolor{comment}{/*}}
+\DoxyCodeLine{591 \textcolor{comment}{     * MUL\_A(x) computes alpha * x (in F\_\{2\string^32\}).}}
+\DoxyCodeLine{592 \textcolor{comment}{     * MUL\_G(x) computes 1/alpha * x (in F\_\{2\string^32\}).}}
+\DoxyCodeLine{593 \textcolor{comment}{     */}}
+\DoxyCodeLine{594 \textcolor{preprocessor}{\#define MUL\_A(x)    (T32((x) << 8) \string^ mul\_a[(x) >> 24])}}
+\DoxyCodeLine{595 \textcolor{preprocessor}{\#define MUL\_G(x)    (((x) >> 8) \string^ mul\_ia[(x) \& 0xFF])}}
+\DoxyCodeLine{596 }
+\DoxyCodeLine{597     \textcolor{comment}{/*}}
+\DoxyCodeLine{598 \textcolor{comment}{     * This macro computes the special multiplexer, which chooses}}
+\DoxyCodeLine{599 \textcolor{comment}{     * between "x" and "x xor y", depending on the least significant}}
+\DoxyCodeLine{600 \textcolor{comment}{     * bit of the control word. We use the C "?:" selection operator}}
+\DoxyCodeLine{601 \textcolor{comment}{     * (which most compilers know how to optimise) except for Alpha,}}
+\DoxyCodeLine{602 \textcolor{comment}{     * where the manual sign extension seems to perform equally well}}
+\DoxyCodeLine{603 \textcolor{comment}{     * with DEC/Compaq/HP compiler, and much better with gcc.}}
+\DoxyCodeLine{604 \textcolor{comment}{     */}}
+\DoxyCodeLine{605 \textcolor{preprocessor}{\#ifdef \_\_alpha}}
+\DoxyCodeLine{606 \textcolor{preprocessor}{\#define XMUX(c, x, y)   ((((signed int)((c) << 31) >> 31) \& (y)) \string^ (x))}}
+\DoxyCodeLine{607 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{608 \textcolor{preprocessor}{\#define XMUX(c, x, y)   (((c) \& 0x1) ? ((x) \string^ (y)) : (x))}}
+\DoxyCodeLine{609 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{610 }
+\DoxyCodeLine{611     \textcolor{comment}{/*}}
+\DoxyCodeLine{612 \textcolor{comment}{     * FSM() updates the finite state machine.}}
+\DoxyCodeLine{613 \textcolor{comment}{     */}}
+\DoxyCodeLine{614 \textcolor{preprocessor}{\#define FSM(x0, x1, x2, x3, x4, x5, x6, x7, x8, x9)   do \{ \(\backslash\)}}
+\DoxyCodeLine{615 \textcolor{preprocessor}{        ulong32 tt, or1; \(\backslash\)}}
+\DoxyCodeLine{616 \textcolor{preprocessor}{        tt = XMUX(r1, s \#\# x1, s \#\# x8); \(\backslash\)}}
+\DoxyCodeLine{617 \textcolor{preprocessor}{        or1 = r1; \(\backslash\)}}
+\DoxyCodeLine{618 \textcolor{preprocessor}{        r1 = T32(r2 + tt); \(\backslash\)}}
+\DoxyCodeLine{619 \textcolor{preprocessor}{        tt = T32(or1 * 0x54655307); \(\backslash\)}}
+\DoxyCodeLine{620 \textcolor{preprocessor}{        r2 = ROLc(tt, 7); \(\backslash\)}}
+\DoxyCodeLine{621 \textcolor{preprocessor}{    \} while (0)}}
+\DoxyCodeLine{622 }
+\DoxyCodeLine{623     \textcolor{comment}{/*}}
+\DoxyCodeLine{624 \textcolor{comment}{     * LRU updates the shift register; the dropped value is stored}}
+\DoxyCodeLine{625 \textcolor{comment}{     * in variable "dd".}}
+\DoxyCodeLine{626 \textcolor{comment}{     */}}
+\DoxyCodeLine{627 \textcolor{preprocessor}{\#define LRU(x0, x1, x2, x3, x4, x5, x6, x7, x8, x9, dd)   do \{ \(\backslash\)}}
+\DoxyCodeLine{628 \textcolor{preprocessor}{        dd = s \#\# x0; \(\backslash\)}}
+\DoxyCodeLine{629 \textcolor{preprocessor}{        s \#\# x0 = MUL\_A(s \#\# x0) \string^ MUL\_G(s \#\# x3) \string^ s \#\# x9; \(\backslash\)}}
+\DoxyCodeLine{630 \textcolor{preprocessor}{    \} while (0)}}
+\DoxyCodeLine{631 }
+\DoxyCodeLine{632     \textcolor{comment}{/*}}
+\DoxyCodeLine{633 \textcolor{comment}{     * CC1 stores into variable "ee" the next intermediate word}}
+\DoxyCodeLine{634 \textcolor{comment}{     * (combination of the new states of the LFSR and the FSM).}}
+\DoxyCodeLine{635 \textcolor{comment}{     */}}
+\DoxyCodeLine{636 \textcolor{preprocessor}{\#define CC1(x0, x1, x2, x3, x4, x5, x6, x7, x8, x9, ee)   do \{ \(\backslash\)}}
+\DoxyCodeLine{637 \textcolor{preprocessor}{        ee = T32(s \#\# x9 + r1) \string^ r2; \(\backslash\)}}
+\DoxyCodeLine{638 \textcolor{preprocessor}{    \} while (0)}}
+\DoxyCodeLine{639 }
+\DoxyCodeLine{640     \textcolor{comment}{/*}}
+\DoxyCodeLine{641 \textcolor{comment}{     * STEP computes one internal round. "dd" receives the "s\_t"}}
+\DoxyCodeLine{642 \textcolor{comment}{     * value (dropped from the LFSR) and "ee" gets the value computed}}
+\DoxyCodeLine{643 \textcolor{comment}{     * from the LFSR and FSM.}}
+\DoxyCodeLine{644 \textcolor{comment}{     */}}
+\DoxyCodeLine{645 \textcolor{preprocessor}{\#define STEP(x0, x1, x2, x3, x4, x5, x6, x7, x8, x9, dd, ee)   do \{ \(\backslash\)}}
+\DoxyCodeLine{646 \textcolor{preprocessor}{        FSM(x0, x1, x2, x3, x4, x5, x6, x7, x8, x9); \(\backslash\)}}
+\DoxyCodeLine{647 \textcolor{preprocessor}{        LRU(x0, x1, x2, x3, x4, x5, x6, x7, x8, x9, dd); \(\backslash\)}}
+\DoxyCodeLine{648 \textcolor{preprocessor}{        CC1(x0, x1, x2, x3, x4, x5, x6, x7, x8, x9, ee); \(\backslash\)}}
+\DoxyCodeLine{649 \textcolor{preprocessor}{    \} while (0)}}
+\DoxyCodeLine{650 }
+\DoxyCodeLine{651     \textcolor{comment}{/*}}
+\DoxyCodeLine{652 \textcolor{comment}{     * Apply one Serpent round (with the provided S-box macro), XOR}}
+\DoxyCodeLine{653 \textcolor{comment}{     * the result with the "v" values, and encode the result into}}
+\DoxyCodeLine{654 \textcolor{comment}{     * the destination buffer, at the provided offset. The "x*"}}
+\DoxyCodeLine{655 \textcolor{comment}{     * arguments encode the output permutation of the "S" macro.}}
+\DoxyCodeLine{656 \textcolor{comment}{     */}}
+\DoxyCodeLine{657 \textcolor{preprocessor}{\#define SRD(S, x0, x1, x2, x3, ooff)   do \{ \(\backslash\)}}
+\DoxyCodeLine{658 \textcolor{preprocessor}{        S(u0, u1, u2, u3, u4); \(\backslash\)}}
+\DoxyCodeLine{659 \textcolor{preprocessor}{        STORE32L(u \#\# x0 \string^ v0, st->buf + ooff); \(\backslash\)}}
+\DoxyCodeLine{660 \textcolor{preprocessor}{        STORE32L(u \#\# x1 \string^ v1, st->buf + ooff +  4); \(\backslash\)}}
+\DoxyCodeLine{661 \textcolor{preprocessor}{        STORE32L(u \#\# x2 \string^ v2, st->buf + ooff +  8); \(\backslash\)}}
+\DoxyCodeLine{662 \textcolor{preprocessor}{        STORE32L(u \#\# x3 \string^ v3, st->buf + ooff + 12); \(\backslash\)}}
+\DoxyCodeLine{663 \textcolor{preprocessor}{    \} while (0)}}
+\DoxyCodeLine{664 }
+\DoxyCodeLine{665     \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} s00 = st->s00;}
+\DoxyCodeLine{666     \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} s01 = st->s01;}
+\DoxyCodeLine{667     \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} s02 = st->s02;}
+\DoxyCodeLine{668     \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} s03 = st->s03;}
+\DoxyCodeLine{669     \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} s04 = st->s04;}
+\DoxyCodeLine{670     \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} s05 = st->s05;}
+\DoxyCodeLine{671     \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} s06 = st->s06;}
+\DoxyCodeLine{672     \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} s07 = st->s07;}
+\DoxyCodeLine{673     \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} s08 = st->s08;}
+\DoxyCodeLine{674     \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} s09 = st->s09;}
+\DoxyCodeLine{675     \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} r1 = st->r1;}
+\DoxyCodeLine{676     \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} r2 = st->r2;}
+\DoxyCodeLine{677     \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} u0, u1, u2, u3, u4;}
+\DoxyCodeLine{678     \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} v0, v1, v2, v3;}
+\DoxyCodeLine{679 }
+\DoxyCodeLine{680     \mbox{\hyperlink{sosemanuk_8c_a88db4597248911aff1db830d19e9270c}{STEP}}(00, 01, 02, 03, 04, 05, 06, 07, 08, 09, v0, u0);}
+\DoxyCodeLine{681     \mbox{\hyperlink{sosemanuk_8c_a88db4597248911aff1db830d19e9270c}{STEP}}(01, 02, 03, 04, 05, 06, 07, 08, 09, 00, v1, u1);}
+\DoxyCodeLine{682     \mbox{\hyperlink{sosemanuk_8c_a88db4597248911aff1db830d19e9270c}{STEP}}(02, 03, 04, 05, 06, 07, 08, 09, 00, 01, v2, u2);}
+\DoxyCodeLine{683     \mbox{\hyperlink{sosemanuk_8c_a88db4597248911aff1db830d19e9270c}{STEP}}(03, 04, 05, 06, 07, 08, 09, 00, 01, 02, v3, u3);}
+\DoxyCodeLine{684     \mbox{\hyperlink{sosemanuk_8c_a2dea2cec553f0912bd2bdd4ba0e1ec5c}{SRD}}(\mbox{\hyperlink{sosemanuk_8c_a6bedac3e63cf44ab1b3091a78d21e297}{S2}}, 2, 3, 1, 4, 0);}
+\DoxyCodeLine{685     \mbox{\hyperlink{sosemanuk_8c_a88db4597248911aff1db830d19e9270c}{STEP}}(04, 05, 06, 07, 08, 09, 00, 01, 02, 03, v0, u0);}
+\DoxyCodeLine{686     \mbox{\hyperlink{sosemanuk_8c_a88db4597248911aff1db830d19e9270c}{STEP}}(05, 06, 07, 08, 09, 00, 01, 02, 03, 04, v1, u1);}
+\DoxyCodeLine{687     \mbox{\hyperlink{sosemanuk_8c_a88db4597248911aff1db830d19e9270c}{STEP}}(06, 07, 08, 09, 00, 01, 02, 03, 04, 05, v2, u2);}
+\DoxyCodeLine{688     \mbox{\hyperlink{sosemanuk_8c_a88db4597248911aff1db830d19e9270c}{STEP}}(07, 08, 09, 00, 01, 02, 03, 04, 05, 06, v3, u3);}
+\DoxyCodeLine{689     \mbox{\hyperlink{sosemanuk_8c_a2dea2cec553f0912bd2bdd4ba0e1ec5c}{SRD}}(\mbox{\hyperlink{sosemanuk_8c_a6bedac3e63cf44ab1b3091a78d21e297}{S2}}, 2, 3, 1, 4, 16);}
+\DoxyCodeLine{690     \mbox{\hyperlink{sosemanuk_8c_a88db4597248911aff1db830d19e9270c}{STEP}}(08, 09, 00, 01, 02, 03, 04, 05, 06, 07, v0, u0);}
+\DoxyCodeLine{691     \mbox{\hyperlink{sosemanuk_8c_a88db4597248911aff1db830d19e9270c}{STEP}}(09, 00, 01, 02, 03, 04, 05, 06, 07, 08, v1, u1);}
+\DoxyCodeLine{692     \mbox{\hyperlink{sosemanuk_8c_a88db4597248911aff1db830d19e9270c}{STEP}}(00, 01, 02, 03, 04, 05, 06, 07, 08, 09, v2, u2);}
+\DoxyCodeLine{693     \mbox{\hyperlink{sosemanuk_8c_a88db4597248911aff1db830d19e9270c}{STEP}}(01, 02, 03, 04, 05, 06, 07, 08, 09, 00, v3, u3);}
+\DoxyCodeLine{694     \mbox{\hyperlink{sosemanuk_8c_a2dea2cec553f0912bd2bdd4ba0e1ec5c}{SRD}}(\mbox{\hyperlink{sosemanuk_8c_a6bedac3e63cf44ab1b3091a78d21e297}{S2}}, 2, 3, 1, 4, 32);}
+\DoxyCodeLine{695     \mbox{\hyperlink{sosemanuk_8c_a88db4597248911aff1db830d19e9270c}{STEP}}(02, 03, 04, 05, 06, 07, 08, 09, 00, 01, v0, u0);}
+\DoxyCodeLine{696     \mbox{\hyperlink{sosemanuk_8c_a88db4597248911aff1db830d19e9270c}{STEP}}(03, 04, 05, 06, 07, 08, 09, 00, 01, 02, v1, u1);}
+\DoxyCodeLine{697     \mbox{\hyperlink{sosemanuk_8c_a88db4597248911aff1db830d19e9270c}{STEP}}(04, 05, 06, 07, 08, 09, 00, 01, 02, 03, v2, u2);}
+\DoxyCodeLine{698     \mbox{\hyperlink{sosemanuk_8c_a88db4597248911aff1db830d19e9270c}{STEP}}(05, 06, 07, 08, 09, 00, 01, 02, 03, 04, v3, u3);}
+\DoxyCodeLine{699     \mbox{\hyperlink{sosemanuk_8c_a2dea2cec553f0912bd2bdd4ba0e1ec5c}{SRD}}(\mbox{\hyperlink{sosemanuk_8c_a6bedac3e63cf44ab1b3091a78d21e297}{S2}}, 2, 3, 1, 4, 48);}
+\DoxyCodeLine{700     \mbox{\hyperlink{sosemanuk_8c_a88db4597248911aff1db830d19e9270c}{STEP}}(06, 07, 08, 09, 00, 01, 02, 03, 04, 05, v0, u0);}
+\DoxyCodeLine{701     \mbox{\hyperlink{sosemanuk_8c_a88db4597248911aff1db830d19e9270c}{STEP}}(07, 08, 09, 00, 01, 02, 03, 04, 05, 06, v1, u1);}
+\DoxyCodeLine{702     \mbox{\hyperlink{sosemanuk_8c_a88db4597248911aff1db830d19e9270c}{STEP}}(08, 09, 00, 01, 02, 03, 04, 05, 06, 07, v2, u2);}
+\DoxyCodeLine{703     \mbox{\hyperlink{sosemanuk_8c_a88db4597248911aff1db830d19e9270c}{STEP}}(09, 00, 01, 02, 03, 04, 05, 06, 07, 08, v3, u3);}
+\DoxyCodeLine{704     \mbox{\hyperlink{sosemanuk_8c_a2dea2cec553f0912bd2bdd4ba0e1ec5c}{SRD}}(\mbox{\hyperlink{sosemanuk_8c_a6bedac3e63cf44ab1b3091a78d21e297}{S2}}, 2, 3, 1, 4, 64);}
+\DoxyCodeLine{705 }
+\DoxyCodeLine{706     st->s00 = s00;}
+\DoxyCodeLine{707     st->s01 = s01;}
+\DoxyCodeLine{708     st->s02 = s02;}
+\DoxyCodeLine{709     st->s03 = s03;}
+\DoxyCodeLine{710     st->s04 = s04;}
+\DoxyCodeLine{711     st->s05 = s05;}
+\DoxyCodeLine{712     st->s06 = s06;}
+\DoxyCodeLine{713     st->s07 = s07;}
+\DoxyCodeLine{714     st->s08 = s08;}
+\DoxyCodeLine{715     st->s09 = s09;}
+\DoxyCodeLine{716     st->r1 = r1;}
+\DoxyCodeLine{717     st->r2 = r2;}
+\DoxyCodeLine{718 \}}
+
+\end{DoxyCode}
+
+
+References S2, S\+RD, and S\+T\+EP.
+
+
+
+Referenced by sosemanuk\+\_\+crypt().
+
+Here is the caller graph for this function\+:
+% FIG 1
+\mbox{\Hypertarget{sosemanuk_8c_ac769bae0f590a35230b80e113aaee135}\label{sosemanuk_8c_ac769bae0f590a35230b80e113aaee135}} 
+\index{sosemanuk.c@{sosemanuk.c}!\_xorbuf@{\_xorbuf}}
+\index{\_xorbuf@{\_xorbuf}!sosemanuk.c@{sosemanuk.c}}
+\subsubsection{\texorpdfstring{\_xorbuf()}{\_xorbuf()}}
+{\footnotesize\ttfamily static void \+\_\+xorbuf (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{in1,  }\item[{const unsigned char $\ast$}]{in2,  }\item[{unsigned char $\ast$}]{out,  }\item[{unsigned long}]{datalen }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 726 of file sosemanuk.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{728 \{}
+\DoxyCodeLine{729     \textcolor{keywordflow}{while} (datalen -- > 0) \{}
+\DoxyCodeLine{730         *out ++ = *in1 ++ \string^ *in2 ++;}
+\DoxyCodeLine{731     \}}
+\DoxyCodeLine{732 \}}
+
+\end{DoxyCode}
+
+
+Referenced by sosemanuk\+\_\+crypt().
+
+Here is the caller graph for this function\+:
+% FIG 2
+\mbox{\Hypertarget{sosemanuk_8c_ae473e1b8845f3b37e79e6c099e54247c}\label{sosemanuk_8c_ae473e1b8845f3b37e79e6c099e54247c}} 
+\index{sosemanuk.c@{sosemanuk.c}!sosemanuk\_crypt@{sosemanuk\_crypt}}
+\index{sosemanuk\_crypt@{sosemanuk\_crypt}!sosemanuk.c@{sosemanuk.c}}
+\subsubsection{\texorpdfstring{sosemanuk\_crypt()}{sosemanuk\_crypt()}}
+{\footnotesize\ttfamily int sosemanuk\+\_\+crypt (\begin{DoxyParamCaption}\item[{sosemanuk\+\_\+state $\ast$}]{st,  }\item[{const unsigned char $\ast$}]{in,  }\item[{unsigned long}]{inlen,  }\item[{unsigned char $\ast$}]{out }\end{DoxyParamCaption})}
+
+
+
+Definition at line 746 of file sosemanuk.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{748 \{}
+\DoxyCodeLine{749     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(st  != NULL);}
+\DoxyCodeLine{750     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(in  != NULL);}
+\DoxyCodeLine{751     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(out != NULL);}
+\DoxyCodeLine{752 }
+\DoxyCodeLine{753     \textcolor{keywordflow}{if} (st->ptr < (\textcolor{keyword}{sizeof}(st->buf))) \{}
+\DoxyCodeLine{754         \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} rlen = (\textcolor{keyword}{sizeof}(st->buf)) - st->ptr;}
+\DoxyCodeLine{755 }
+\DoxyCodeLine{756         \textcolor{keywordflow}{if} (rlen > inlen) \{}
+\DoxyCodeLine{757             rlen = inlen;}
+\DoxyCodeLine{758         \}}
+\DoxyCodeLine{759         \mbox{\hyperlink{sosemanuk_8c_ac769bae0f590a35230b80e113aaee135}{\_xorbuf}}(st->buf + st->ptr, in, out, rlen);}
+\DoxyCodeLine{760         in += rlen;}
+\DoxyCodeLine{761         out += rlen;}
+\DoxyCodeLine{762         inlen -= rlen;}
+\DoxyCodeLine{763         st->ptr += rlen;}
+\DoxyCodeLine{764     \}}
+\DoxyCodeLine{765     \textcolor{keywordflow}{while} (inlen > 0) \{}
+\DoxyCodeLine{766         \mbox{\hyperlink{sosemanuk_8c_a5658cccde993c8eca129036736eb7527}{\_sosemanuk\_internal}}(st);}
+\DoxyCodeLine{767         \textcolor{keywordflow}{if} (inlen >= \textcolor{keyword}{sizeof}(st->buf)) \{}
+\DoxyCodeLine{768             \mbox{\hyperlink{sosemanuk_8c_ac769bae0f590a35230b80e113aaee135}{\_xorbuf}}(st->buf, in, out, \textcolor{keyword}{sizeof}(st->buf));}
+\DoxyCodeLine{769             in += \textcolor{keyword}{sizeof}(st->buf);}
+\DoxyCodeLine{770             out += \textcolor{keyword}{sizeof}(st->buf);}
+\DoxyCodeLine{771             inlen -= \textcolor{keyword}{sizeof}(st->buf);}
+\DoxyCodeLine{772         \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{773             \mbox{\hyperlink{sosemanuk_8c_ac769bae0f590a35230b80e113aaee135}{\_xorbuf}}(st->buf, in, out, inlen);}
+\DoxyCodeLine{774             st->ptr = inlen;}
+\DoxyCodeLine{775             inlen = 0;}
+\DoxyCodeLine{776         \}}
+\DoxyCodeLine{777     \}}
+\DoxyCodeLine{778     \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{779 \}}
+
+\end{DoxyCode}
+
+
+References \+\_\+sosemanuk\+\_\+internal(), \+\_\+xorbuf(), C\+R\+Y\+P\+T\+\_\+\+OK, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+
+
+Referenced by sosemanuk\+\_\+keystream(), sosemanuk\+\_\+memory(), and sosemanuk\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 3
+Here is the caller graph for this function\+:
+% FIG 4
+\mbox{\Hypertarget{sosemanuk_8c_a7ee39bd7ec8f061e89d6fa7c34058200}\label{sosemanuk_8c_a7ee39bd7ec8f061e89d6fa7c34058200}} 
+\index{sosemanuk.c@{sosemanuk.c}!sosemanuk\_done@{sosemanuk\_done}}
+\index{sosemanuk\_done@{sosemanuk\_done}!sosemanuk.c@{sosemanuk.c}}
+\subsubsection{\texorpdfstring{sosemanuk\_done()}{sosemanuk\_done()}}
+{\footnotesize\ttfamily int sosemanuk\+\_\+done (\begin{DoxyParamCaption}\item[{sosemanuk\+\_\+state $\ast$}]{st }\end{DoxyParamCaption})}
+
+
+
+Definition at line 805 of file sosemanuk.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{806 \{}
+\DoxyCodeLine{807    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(st != NULL);}
+\DoxyCodeLine{808    \mbox{\hyperlink{tomcrypt__cfg_8h_aa3c34a6f6c61de7da9258b5a30e32c2f}{XMEMSET}}(st, 0, \textcolor{keyword}{sizeof}(sosemanuk\_state));}
+\DoxyCodeLine{809    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{810 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, and X\+M\+E\+M\+S\+E\+T().
+
+
+
+Referenced by sosemanuk\+\_\+memory(), and sosemanuk\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 5
+Here is the caller graph for this function\+:
+% FIG 6
+\mbox{\Hypertarget{sosemanuk_8c_ac9cf23b2cb5a1585248c91498f3dd026}\label{sosemanuk_8c_ac9cf23b2cb5a1585248c91498f3dd026}} 
+\index{sosemanuk.c@{sosemanuk.c}!sosemanuk\_keystream@{sosemanuk\_keystream}}
+\index{sosemanuk\_keystream@{sosemanuk\_keystream}!sosemanuk.c@{sosemanuk.c}}
+\subsubsection{\texorpdfstring{sosemanuk\_keystream()}{sosemanuk\_keystream()}}
+{\footnotesize\ttfamily int sosemanuk\+\_\+keystream (\begin{DoxyParamCaption}\item[{sosemanuk\+\_\+state $\ast$}]{st,  }\item[{unsigned char $\ast$}]{out,  }\item[{unsigned long}]{outlen }\end{DoxyParamCaption})}
+
+
+
+Definition at line 791 of file sosemanuk.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{792 \{}
+\DoxyCodeLine{793    \textcolor{keywordflow}{if} (outlen == 0) \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}; \textcolor{comment}{/* nothing to do */}}
+\DoxyCodeLine{794    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(out != NULL);}
+\DoxyCodeLine{795    \mbox{\hyperlink{tomcrypt__cfg_8h_aa3c34a6f6c61de7da9258b5a30e32c2f}{XMEMSET}}(out, 0, outlen);}
+\DoxyCodeLine{796    \textcolor{keywordflow}{return} \mbox{\hyperlink{sosemanuk_8c_ae473e1b8845f3b37e79e6c099e54247c}{sosemanuk\_crypt}}(st, out, outlen, out);}
+\DoxyCodeLine{797 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, sosemanuk\+\_\+crypt(), and X\+M\+E\+M\+S\+E\+T().
+
+
+
+Referenced by sosemanuk\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 7
+Here is the caller graph for this function\+:
+% FIG 8
+\mbox{\Hypertarget{sosemanuk_8c_ac24c0c364f5334d8c8e387e900b468d1}\label{sosemanuk_8c_ac24c0c364f5334d8c8e387e900b468d1}} 
+\index{sosemanuk.c@{sosemanuk.c}!sosemanuk\_setiv@{sosemanuk\_setiv}}
+\index{sosemanuk\_setiv@{sosemanuk\_setiv}!sosemanuk.c@{sosemanuk.c}}
+\subsubsection{\texorpdfstring{sosemanuk\_setiv()}{sosemanuk\_setiv()}}
+{\footnotesize\ttfamily int sosemanuk\+\_\+setiv (\begin{DoxyParamCaption}\item[{sosemanuk\+\_\+state $\ast$}]{st,  }\item[{const unsigned char $\ast$}]{iv,  }\item[{unsigned long}]{ivlen }\end{DoxyParamCaption})}
+
+
+
+Definition at line 337 of file sosemanuk.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{338 \{}
+\DoxyCodeLine{339 }
+\DoxyCodeLine{340     \textcolor{comment}{/*}}
+\DoxyCodeLine{341 \textcolor{comment}{     * The Serpent key addition step.}}
+\DoxyCodeLine{342 \textcolor{comment}{     */}}
+\DoxyCodeLine{343 \textcolor{preprocessor}{\#define KA(zc, x0, x1, x2, x3)  do \{ \(\backslash\)}}
+\DoxyCodeLine{344 \textcolor{preprocessor}{        x0 \string^= st->kc[(zc)]; \(\backslash\)}}
+\DoxyCodeLine{345 \textcolor{preprocessor}{        x1 \string^= st->kc[(zc) + 1]; \(\backslash\)}}
+\DoxyCodeLine{346 \textcolor{preprocessor}{        x2 \string^= st->kc[(zc) + 2]; \(\backslash\)}}
+\DoxyCodeLine{347 \textcolor{preprocessor}{        x3 \string^= st->kc[(zc) + 3]; \(\backslash\)}}
+\DoxyCodeLine{348 \textcolor{preprocessor}{    \} while (0)}}
+\DoxyCodeLine{349 }
+\DoxyCodeLine{350     \textcolor{comment}{/*}}
+\DoxyCodeLine{351 \textcolor{comment}{     * One Serpent round.}}
+\DoxyCodeLine{352 \textcolor{comment}{     *   zc = current subkey counter}}
+\DoxyCodeLine{353 \textcolor{comment}{     *   S = S-box macro for this round}}
+\DoxyCodeLine{354 \textcolor{comment}{     *   i0 to i4 = input register numbers (the fifth is a scratch register)}}
+\DoxyCodeLine{355 \textcolor{comment}{     *   o0 to o3 = output register numbers}}
+\DoxyCodeLine{356 \textcolor{comment}{     */}}
+\DoxyCodeLine{357 \textcolor{preprocessor}{\#define FSS(zc, S, i0, i1, i2, i3, i4, o0, o1, o2, o3)  do \{ \(\backslash\)}}
+\DoxyCodeLine{358 \textcolor{preprocessor}{        KA(zc, r \#\# i0, r \#\# i1, r \#\# i2, r \#\# i3); \(\backslash\)}}
+\DoxyCodeLine{359 \textcolor{preprocessor}{        S(r \#\# i0, r \#\# i1, r \#\# i2, r \#\# i3, r \#\# i4); \(\backslash\)}}
+\DoxyCodeLine{360 \textcolor{preprocessor}{        SERPENT\_LT(r \#\# o0, r \#\# o1, r \#\# o2, r \#\# o3); \(\backslash\)}}
+\DoxyCodeLine{361 \textcolor{preprocessor}{    \} while (0)}}
+\DoxyCodeLine{362 }
+\DoxyCodeLine{363     \textcolor{comment}{/*}}
+\DoxyCodeLine{364 \textcolor{comment}{     * Last Serpent round. Contrary to the "true" Serpent, we keep}}
+\DoxyCodeLine{365 \textcolor{comment}{     * the linear transformation for that last round.}}
+\DoxyCodeLine{366 \textcolor{comment}{     */}}
+\DoxyCodeLine{367 \textcolor{preprocessor}{\#define FSF(zc, S, i0, i1, i2, i3, i4, o0, o1, o2, o3)  do \{ \(\backslash\)}}
+\DoxyCodeLine{368 \textcolor{preprocessor}{        KA(zc, r \#\# i0, r \#\# i1, r \#\# i2, r \#\# i3); \(\backslash\)}}
+\DoxyCodeLine{369 \textcolor{preprocessor}{        S(r \#\# i0, r \#\# i1, r \#\# i2, r \#\# i3, r \#\# i4); \(\backslash\)}}
+\DoxyCodeLine{370 \textcolor{preprocessor}{        SERPENT\_LT(r \#\# o0, r \#\# o1, r \#\# o2, r \#\# o3); \(\backslash\)}}
+\DoxyCodeLine{371 \textcolor{preprocessor}{        KA(zc + 4, r \#\# o0, r \#\# o1, r \#\# o2, r \#\# o3); \(\backslash\)}}
+\DoxyCodeLine{372 \textcolor{preprocessor}{    \} while (0)}}
+\DoxyCodeLine{373 }
+\DoxyCodeLine{374     \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} r0, r1, r2, r3, r4;}
+\DoxyCodeLine{375     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} ivtmp[16] = \{0\};}
+\DoxyCodeLine{376 }
+\DoxyCodeLine{377     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(st != NULL);}
+\DoxyCodeLine{378     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(ivlen <= 16);}
+\DoxyCodeLine{379     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(iv != NULL || ivlen == 0);}
+\DoxyCodeLine{380 }
+\DoxyCodeLine{381     \textcolor{keywordflow}{if} (ivlen > 0) \mbox{\hyperlink{tomcrypt__cfg_8h_a7691dd48d60d5fc6daf2fa7ec4c55e12}{XMEMCPY}}(ivtmp, iv, ivlen);}
+\DoxyCodeLine{382 }
+\DoxyCodeLine{383     \textcolor{comment}{/*}}
+\DoxyCodeLine{384 \textcolor{comment}{     * Decode IV into four 32-bit words (little-endian).}}
+\DoxyCodeLine{385 \textcolor{comment}{     */}}
+\DoxyCodeLine{386     LOAD32L(r0, ivtmp);}
+\DoxyCodeLine{387     LOAD32L(r1, ivtmp + 4);}
+\DoxyCodeLine{388     LOAD32L(r2, ivtmp + 8);}
+\DoxyCodeLine{389     LOAD32L(r3, ivtmp + 12);}
+\DoxyCodeLine{390 }
+\DoxyCodeLine{391     \textcolor{comment}{/*}}
+\DoxyCodeLine{392 \textcolor{comment}{     * Encrypt IV with Serpent24. Some values are extracted from the}}
+\DoxyCodeLine{393 \textcolor{comment}{     * output of the twelfth, eighteenth and twenty-fourth rounds.}}
+\DoxyCodeLine{394 \textcolor{comment}{     */}}
+\DoxyCodeLine{395     \mbox{\hyperlink{sosemanuk_8c_a7a50b97a8baa27e30798c60c89eaf094}{FSS}}(0, \mbox{\hyperlink{sosemanuk_8c_ad6d69eb37bd8c4b959db2daefc0e280c}{S0}}, 0, 1, 2, 3, 4, 1, 4, 2, 0);}
+\DoxyCodeLine{396     \mbox{\hyperlink{sosemanuk_8c_a7a50b97a8baa27e30798c60c89eaf094}{FSS}}(4, \mbox{\hyperlink{sosemanuk_8c_ab9578ef02669318f0403f120bc0280d7}{S1}}, 1, 4, 2, 0, 3, 2, 1, 0, 4);}
+\DoxyCodeLine{397     \mbox{\hyperlink{sosemanuk_8c_a7a50b97a8baa27e30798c60c89eaf094}{FSS}}(8, \mbox{\hyperlink{sosemanuk_8c_a6bedac3e63cf44ab1b3091a78d21e297}{S2}}, 2, 1, 0, 4, 3, 0, 4, 1, 3);}
+\DoxyCodeLine{398     \mbox{\hyperlink{sosemanuk_8c_a7a50b97a8baa27e30798c60c89eaf094}{FSS}}(12, \mbox{\hyperlink{sosemanuk_8c_a6d22d6fb54f8c3cb615bf66829a94a13}{S3}}, 0, 4, 1, 3, 2, 4, 1, 3, 2);}
+\DoxyCodeLine{399     \mbox{\hyperlink{sosemanuk_8c_a7a50b97a8baa27e30798c60c89eaf094}{FSS}}(16, \mbox{\hyperlink{sosemanuk_8c_a57b2a1dee95346d5a213ec826d787186}{S4}}, 4, 1, 3, 2, 0, 1, 0, 4, 2);}
+\DoxyCodeLine{400     \mbox{\hyperlink{sosemanuk_8c_a7a50b97a8baa27e30798c60c89eaf094}{FSS}}(20, \mbox{\hyperlink{sosemanuk_8c_a2af9efc99cfe7b49c325edc7aae34ab0}{S5}}, 1, 0, 4, 2, 3, 0, 2, 1, 4);}
+\DoxyCodeLine{401     \mbox{\hyperlink{sosemanuk_8c_a7a50b97a8baa27e30798c60c89eaf094}{FSS}}(24, \mbox{\hyperlink{sosemanuk_8c_af83a6fe4bc11173100000f33ada1f0b5}{S6}}, 0, 2, 1, 4, 3, 0, 2, 3, 1);}
+\DoxyCodeLine{402     \mbox{\hyperlink{sosemanuk_8c_a7a50b97a8baa27e30798c60c89eaf094}{FSS}}(28, \mbox{\hyperlink{sosemanuk_8c_ac2e57256dd691d5825a889a7ba2a9952}{S7}}, 0, 2, 3, 1, 4, 4, 1, 2, 0);}
+\DoxyCodeLine{403     \mbox{\hyperlink{sosemanuk_8c_a7a50b97a8baa27e30798c60c89eaf094}{FSS}}(32, \mbox{\hyperlink{sosemanuk_8c_ad6d69eb37bd8c4b959db2daefc0e280c}{S0}}, 4, 1, 2, 0, 3, 1, 3, 2, 4);}
+\DoxyCodeLine{404     \mbox{\hyperlink{sosemanuk_8c_a7a50b97a8baa27e30798c60c89eaf094}{FSS}}(36, \mbox{\hyperlink{sosemanuk_8c_ab9578ef02669318f0403f120bc0280d7}{S1}}, 1, 3, 2, 4, 0, 2, 1, 4, 3);}
+\DoxyCodeLine{405     \mbox{\hyperlink{sosemanuk_8c_a7a50b97a8baa27e30798c60c89eaf094}{FSS}}(40, \mbox{\hyperlink{sosemanuk_8c_a6bedac3e63cf44ab1b3091a78d21e297}{S2}}, 2, 1, 4, 3, 0, 4, 3, 1, 0);}
+\DoxyCodeLine{406     \mbox{\hyperlink{sosemanuk_8c_a7a50b97a8baa27e30798c60c89eaf094}{FSS}}(44, \mbox{\hyperlink{sosemanuk_8c_a6d22d6fb54f8c3cb615bf66829a94a13}{S3}}, 4, 3, 1, 0, 2, 3, 1, 0, 2);}
+\DoxyCodeLine{407     st->s09 = r3;}
+\DoxyCodeLine{408     st->s08 = r1;}
+\DoxyCodeLine{409     st->s07 = r0;}
+\DoxyCodeLine{410     st->s06 = r2;}
+\DoxyCodeLine{411 }
+\DoxyCodeLine{412     \mbox{\hyperlink{sosemanuk_8c_a7a50b97a8baa27e30798c60c89eaf094}{FSS}}(48, \mbox{\hyperlink{sosemanuk_8c_a57b2a1dee95346d5a213ec826d787186}{S4}}, 3, 1, 0, 2, 4, 1, 4, 3, 2);}
+\DoxyCodeLine{413     \mbox{\hyperlink{sosemanuk_8c_a7a50b97a8baa27e30798c60c89eaf094}{FSS}}(52, \mbox{\hyperlink{sosemanuk_8c_a2af9efc99cfe7b49c325edc7aae34ab0}{S5}}, 1, 4, 3, 2, 0, 4, 2, 1, 3);}
+\DoxyCodeLine{414     \mbox{\hyperlink{sosemanuk_8c_a7a50b97a8baa27e30798c60c89eaf094}{FSS}}(56, \mbox{\hyperlink{sosemanuk_8c_af83a6fe4bc11173100000f33ada1f0b5}{S6}}, 4, 2, 1, 3, 0, 4, 2, 0, 1);}
+\DoxyCodeLine{415     \mbox{\hyperlink{sosemanuk_8c_a7a50b97a8baa27e30798c60c89eaf094}{FSS}}(60, \mbox{\hyperlink{sosemanuk_8c_ac2e57256dd691d5825a889a7ba2a9952}{S7}}, 4, 2, 0, 1, 3, 3, 1, 2, 4);}
+\DoxyCodeLine{416     \mbox{\hyperlink{sosemanuk_8c_a7a50b97a8baa27e30798c60c89eaf094}{FSS}}(64, \mbox{\hyperlink{sosemanuk_8c_ad6d69eb37bd8c4b959db2daefc0e280c}{S0}}, 3, 1, 2, 4, 0, 1, 0, 2, 3);}
+\DoxyCodeLine{417     \mbox{\hyperlink{sosemanuk_8c_a7a50b97a8baa27e30798c60c89eaf094}{FSS}}(68, \mbox{\hyperlink{sosemanuk_8c_ab9578ef02669318f0403f120bc0280d7}{S1}}, 1, 0, 2, 3, 4, 2, 1, 3, 0);}
+\DoxyCodeLine{418     st->r1  = r2;}
+\DoxyCodeLine{419     st->s04 = r1;}
+\DoxyCodeLine{420     st->r2  = r3;}
+\DoxyCodeLine{421     st->s05 = r0;}
+\DoxyCodeLine{422 }
+\DoxyCodeLine{423     \mbox{\hyperlink{sosemanuk_8c_a7a50b97a8baa27e30798c60c89eaf094}{FSS}}(72, \mbox{\hyperlink{sosemanuk_8c_a6bedac3e63cf44ab1b3091a78d21e297}{S2}}, 2, 1, 3, 0, 4, 3, 0, 1, 4);}
+\DoxyCodeLine{424     \mbox{\hyperlink{sosemanuk_8c_a7a50b97a8baa27e30798c60c89eaf094}{FSS}}(76, \mbox{\hyperlink{sosemanuk_8c_a6d22d6fb54f8c3cb615bf66829a94a13}{S3}}, 3, 0, 1, 4, 2, 0, 1, 4, 2);}
+\DoxyCodeLine{425     \mbox{\hyperlink{sosemanuk_8c_a7a50b97a8baa27e30798c60c89eaf094}{FSS}}(80, \mbox{\hyperlink{sosemanuk_8c_a57b2a1dee95346d5a213ec826d787186}{S4}}, 0, 1, 4, 2, 3, 1, 3, 0, 2);}
+\DoxyCodeLine{426     \mbox{\hyperlink{sosemanuk_8c_a7a50b97a8baa27e30798c60c89eaf094}{FSS}}(84, \mbox{\hyperlink{sosemanuk_8c_a2af9efc99cfe7b49c325edc7aae34ab0}{S5}}, 1, 3, 0, 2, 4, 3, 2, 1, 0);}
+\DoxyCodeLine{427     \mbox{\hyperlink{sosemanuk_8c_a7a50b97a8baa27e30798c60c89eaf094}{FSS}}(88, \mbox{\hyperlink{sosemanuk_8c_af83a6fe4bc11173100000f33ada1f0b5}{S6}}, 3, 2, 1, 0, 4, 3, 2, 4, 1);}
+\DoxyCodeLine{428     \mbox{\hyperlink{sosemanuk_8c_ac004f9569aa8addaadfcc527dfcff4bb}{FSF}}(92, \mbox{\hyperlink{sosemanuk_8c_ac2e57256dd691d5825a889a7ba2a9952}{S7}}, 3, 2, 4, 1, 0, 0, 1, 2, 3);}
+\DoxyCodeLine{429     st->s03 = r0;}
+\DoxyCodeLine{430     st->s02 = r1;}
+\DoxyCodeLine{431     st->s01 = r2;}
+\DoxyCodeLine{432     st->s00 = r3;}
+\DoxyCodeLine{433 }
+\DoxyCodeLine{434     st->ptr = \textcolor{keyword}{sizeof}(st->buf);}
+\DoxyCodeLine{435 }
+\DoxyCodeLine{436 \textcolor{preprocessor}{\#undef KA}}
+\DoxyCodeLine{437 \textcolor{preprocessor}{\#undef FSS}}
+\DoxyCodeLine{438 \textcolor{preprocessor}{\#undef FSF}}
+\DoxyCodeLine{439 }
+\DoxyCodeLine{440     \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{441 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, F\+SF, F\+SS, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, S0, S1, S2, S3, S4, S5, S6, S7, and X\+M\+E\+M\+C\+P\+Y().
+
+
+
+Referenced by sosemanuk\+\_\+memory(), and sosemanuk\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 9
+Here is the caller graph for this function\+:
+% FIG 10
+\mbox{\Hypertarget{sosemanuk_8c_ae244858ccf7bca175242f8c1b775a9f4}\label{sosemanuk_8c_ae244858ccf7bca175242f8c1b775a9f4}} 
+\index{sosemanuk.c@{sosemanuk.c}!sosemanuk\_setup@{sosemanuk\_setup}}
+\index{sosemanuk\_setup@{sosemanuk\_setup}!sosemanuk.c@{sosemanuk.c}}
+\subsubsection{\texorpdfstring{sosemanuk\_setup()}{sosemanuk\_setup()}}
+{\footnotesize\ttfamily int sosemanuk\+\_\+setup (\begin{DoxyParamCaption}\item[{sosemanuk\+\_\+state $\ast$}]{st,  }\item[{const unsigned char $\ast$}]{key,  }\item[{unsigned long}]{keylen }\end{DoxyParamCaption})}
+
+
+
+Definition at line 204 of file sosemanuk.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{205 \{}
+\DoxyCodeLine{206     \textcolor{comment}{/*}}
+\DoxyCodeLine{207 \textcolor{comment}{     * This key schedule is actually a truncated Serpent key schedule.}}
+\DoxyCodeLine{208 \textcolor{comment}{     * The key-derived words (w\_i) are computed within the eight}}
+\DoxyCodeLine{209 \textcolor{comment}{     * local variables w0 to w7, which are reused again and again.}}
+\DoxyCodeLine{210 \textcolor{comment}{     */}}
+\DoxyCodeLine{211 }
+\DoxyCodeLine{212 \textcolor{preprocessor}{\#define SKS(S, o0, o1, o2, o3, d0, d1, d2, d3)   do \{ \(\backslash\)}}
+\DoxyCodeLine{213 \textcolor{preprocessor}{        ulong32 r0, r1, r2, r3, r4; \(\backslash\)}}
+\DoxyCodeLine{214 \textcolor{preprocessor}{        r0 = w \#\# o0; \(\backslash\)}}
+\DoxyCodeLine{215 \textcolor{preprocessor}{        r1 = w \#\# o1; \(\backslash\)}}
+\DoxyCodeLine{216 \textcolor{preprocessor}{        r2 = w \#\# o2; \(\backslash\)}}
+\DoxyCodeLine{217 \textcolor{preprocessor}{        r3 = w \#\# o3; \(\backslash\)}}
+\DoxyCodeLine{218 \textcolor{preprocessor}{        S(r0, r1, r2, r3, r4); \(\backslash\)}}
+\DoxyCodeLine{219 \textcolor{preprocessor}{        st->kc[i ++] = r \#\# d0; \(\backslash\)}}
+\DoxyCodeLine{220 \textcolor{preprocessor}{        st->kc[i ++] = r \#\# d1; \(\backslash\)}}
+\DoxyCodeLine{221 \textcolor{preprocessor}{        st->kc[i ++] = r \#\# d2; \(\backslash\)}}
+\DoxyCodeLine{222 \textcolor{preprocessor}{        st->kc[i ++] = r \#\# d3; \(\backslash\)}}
+\DoxyCodeLine{223 \textcolor{preprocessor}{    \} while (0)}}
+\DoxyCodeLine{224 }
+\DoxyCodeLine{225 \textcolor{preprocessor}{\#define SKS0    SKS(S0, 4, 5, 6, 7, 1, 4, 2, 0)}}
+\DoxyCodeLine{226 \textcolor{preprocessor}{\#define SKS1    SKS(S1, 0, 1, 2, 3, 2, 0, 3, 1)}}
+\DoxyCodeLine{227 \textcolor{preprocessor}{\#define SKS2    SKS(S2, 4, 5, 6, 7, 2, 3, 1, 4)}}
+\DoxyCodeLine{228 \textcolor{preprocessor}{\#define SKS3    SKS(S3, 0, 1, 2, 3, 1, 2, 3, 4)}}
+\DoxyCodeLine{229 \textcolor{preprocessor}{\#define SKS4    SKS(S4, 4, 5, 6, 7, 1, 4, 0, 3)}}
+\DoxyCodeLine{230 \textcolor{preprocessor}{\#define SKS5    SKS(S5, 0, 1, 2, 3, 1, 3, 0, 2)}}
+\DoxyCodeLine{231 \textcolor{preprocessor}{\#define SKS6    SKS(S6, 4, 5, 6, 7, 0, 1, 4, 2)}}
+\DoxyCodeLine{232 \textcolor{preprocessor}{\#define SKS7    SKS(S7, 0, 1, 2, 3, 4, 3, 1, 0)}}
+\DoxyCodeLine{233 }
+\DoxyCodeLine{234 \textcolor{preprocessor}{\#define WUP(wi, wi5, wi3, wi1, cc)   do \{ \(\backslash\)}}
+\DoxyCodeLine{235 \textcolor{preprocessor}{        ulong32 tt = (wi) \string^ (wi5) \string^ (wi3) \(\backslash\)}}
+\DoxyCodeLine{236 \textcolor{preprocessor}{            \string^ (wi1) \string^ (0x9E3779B9 \string^ (ulong32)(cc)); \(\backslash\)}}
+\DoxyCodeLine{237 \textcolor{preprocessor}{        (wi) = ROLc(tt, 11); \(\backslash\)}}
+\DoxyCodeLine{238 \textcolor{preprocessor}{    \} while (0)}}
+\DoxyCodeLine{239 }
+\DoxyCodeLine{240 \textcolor{preprocessor}{\#define WUP0(cc)   do \{ \(\backslash\)}}
+\DoxyCodeLine{241 \textcolor{preprocessor}{        WUP(w0, w3, w5, w7, cc); \(\backslash\)}}
+\DoxyCodeLine{242 \textcolor{preprocessor}{        WUP(w1, w4, w6, w0, cc + 1); \(\backslash\)}}
+\DoxyCodeLine{243 \textcolor{preprocessor}{        WUP(w2, w5, w7, w1, cc + 2); \(\backslash\)}}
+\DoxyCodeLine{244 \textcolor{preprocessor}{        WUP(w3, w6, w0, w2, cc + 3); \(\backslash\)}}
+\DoxyCodeLine{245 \textcolor{preprocessor}{    \} while (0)}}
+\DoxyCodeLine{246 }
+\DoxyCodeLine{247 \textcolor{preprocessor}{\#define WUP1(cc)   do \{ \(\backslash\)}}
+\DoxyCodeLine{248 \textcolor{preprocessor}{        WUP(w4, w7, w1, w3, cc); \(\backslash\)}}
+\DoxyCodeLine{249 \textcolor{preprocessor}{        WUP(w5, w0, w2, w4, cc + 1); \(\backslash\)}}
+\DoxyCodeLine{250 \textcolor{preprocessor}{        WUP(w6, w1, w3, w5, cc + 2); \(\backslash\)}}
+\DoxyCodeLine{251 \textcolor{preprocessor}{        WUP(w7, w2, w4, w6, cc + 3); \(\backslash\)}}
+\DoxyCodeLine{252 \textcolor{preprocessor}{    \} while (0)}}
+\DoxyCodeLine{253 }
+\DoxyCodeLine{254     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} wbuf[32];}
+\DoxyCodeLine{255     \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} w0, w1, w2, w3, w4, w5, w6, w7;}
+\DoxyCodeLine{256     \textcolor{keywordtype}{int} i = 0;}
+\DoxyCodeLine{257 }
+\DoxyCodeLine{258    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(st  != NULL);}
+\DoxyCodeLine{259    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(key != NULL);}
+\DoxyCodeLine{260    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(keylen > 0 \&\& keylen <= 32);}
+\DoxyCodeLine{261 }
+\DoxyCodeLine{262     \textcolor{comment}{/*}}
+\DoxyCodeLine{263 \textcolor{comment}{     * The key is copied into the wbuf[] buffer and padded to 256 bits}}
+\DoxyCodeLine{264 \textcolor{comment}{     * as described in the Serpent specification.}}
+\DoxyCodeLine{265 \textcolor{comment}{     */}}
+\DoxyCodeLine{266     \mbox{\hyperlink{tomcrypt__cfg_8h_a7691dd48d60d5fc6daf2fa7ec4c55e12}{XMEMCPY}}(wbuf, key, keylen);}
+\DoxyCodeLine{267     \textcolor{keywordflow}{if} (keylen < 32) \{}
+\DoxyCodeLine{268         wbuf[keylen] = 0x01;}
+\DoxyCodeLine{269         \textcolor{keywordflow}{if} (keylen < 31) \{}
+\DoxyCodeLine{270             \mbox{\hyperlink{tomcrypt__cfg_8h_aa3c34a6f6c61de7da9258b5a30e32c2f}{XMEMSET}}(wbuf + keylen + 1, 0, 31 - keylen);}
+\DoxyCodeLine{271         \}}
+\DoxyCodeLine{272     \}}
+\DoxyCodeLine{273 }
+\DoxyCodeLine{274     LOAD32L(w0, wbuf);}
+\DoxyCodeLine{275     LOAD32L(w1, wbuf + 4);}
+\DoxyCodeLine{276     LOAD32L(w2, wbuf + 8);}
+\DoxyCodeLine{277     LOAD32L(w3, wbuf + 12);}
+\DoxyCodeLine{278     LOAD32L(w4, wbuf + 16);}
+\DoxyCodeLine{279     LOAD32L(w5, wbuf + 20);}
+\DoxyCodeLine{280     LOAD32L(w6, wbuf + 24);}
+\DoxyCodeLine{281     LOAD32L(w7, wbuf + 28);}
+\DoxyCodeLine{282 }
+\DoxyCodeLine{283     \mbox{\hyperlink{sosemanuk_8c_a159585331bd7912597531107584f67f1}{WUP0}}(0);   \mbox{\hyperlink{sosemanuk_8c_a6e25bcd1a11f806d42d6390d7d83a0ef}{SKS3}};}
+\DoxyCodeLine{284     \mbox{\hyperlink{sosemanuk_8c_ad3478a8081a7e0217c6a272504df44e4}{WUP1}}(4);   \mbox{\hyperlink{sosemanuk_8c_a25b457a1269d84306284459cfe2c94bd}{SKS2}};}
+\DoxyCodeLine{285     \mbox{\hyperlink{sosemanuk_8c_a159585331bd7912597531107584f67f1}{WUP0}}(8);   \mbox{\hyperlink{sosemanuk_8c_a17452ad01db751019f34a26aab8df392}{SKS1}};}
+\DoxyCodeLine{286     \mbox{\hyperlink{sosemanuk_8c_ad3478a8081a7e0217c6a272504df44e4}{WUP1}}(12);  \mbox{\hyperlink{sosemanuk_8c_a80b38602000348fe623bd1354f01fc3f}{SKS0}};}
+\DoxyCodeLine{287     \mbox{\hyperlink{sosemanuk_8c_a159585331bd7912597531107584f67f1}{WUP0}}(16);  \mbox{\hyperlink{sosemanuk_8c_a4ce461c78eb8e3d92817dcf9c157f8f9}{SKS7}};}
+\DoxyCodeLine{288     \mbox{\hyperlink{sosemanuk_8c_ad3478a8081a7e0217c6a272504df44e4}{WUP1}}(20);  \mbox{\hyperlink{sosemanuk_8c_abcb783e92319fc1600a81ca4663bd521}{SKS6}};}
+\DoxyCodeLine{289     \mbox{\hyperlink{sosemanuk_8c_a159585331bd7912597531107584f67f1}{WUP0}}(24);  \mbox{\hyperlink{sosemanuk_8c_ae6021e8c8fa3269ede04d5696ce4b964}{SKS5}};}
+\DoxyCodeLine{290     \mbox{\hyperlink{sosemanuk_8c_ad3478a8081a7e0217c6a272504df44e4}{WUP1}}(28);  \mbox{\hyperlink{sosemanuk_8c_a2c5a2057dcd95c853dd75659db7cb5af}{SKS4}};}
+\DoxyCodeLine{291     \mbox{\hyperlink{sosemanuk_8c_a159585331bd7912597531107584f67f1}{WUP0}}(32);  \mbox{\hyperlink{sosemanuk_8c_a6e25bcd1a11f806d42d6390d7d83a0ef}{SKS3}};}
+\DoxyCodeLine{292     \mbox{\hyperlink{sosemanuk_8c_ad3478a8081a7e0217c6a272504df44e4}{WUP1}}(36);  \mbox{\hyperlink{sosemanuk_8c_a25b457a1269d84306284459cfe2c94bd}{SKS2}};}
+\DoxyCodeLine{293     \mbox{\hyperlink{sosemanuk_8c_a159585331bd7912597531107584f67f1}{WUP0}}(40);  \mbox{\hyperlink{sosemanuk_8c_a17452ad01db751019f34a26aab8df392}{SKS1}};}
+\DoxyCodeLine{294     \mbox{\hyperlink{sosemanuk_8c_ad3478a8081a7e0217c6a272504df44e4}{WUP1}}(44);  \mbox{\hyperlink{sosemanuk_8c_a80b38602000348fe623bd1354f01fc3f}{SKS0}};}
+\DoxyCodeLine{295     \mbox{\hyperlink{sosemanuk_8c_a159585331bd7912597531107584f67f1}{WUP0}}(48);  \mbox{\hyperlink{sosemanuk_8c_a4ce461c78eb8e3d92817dcf9c157f8f9}{SKS7}};}
+\DoxyCodeLine{296     \mbox{\hyperlink{sosemanuk_8c_ad3478a8081a7e0217c6a272504df44e4}{WUP1}}(52);  \mbox{\hyperlink{sosemanuk_8c_abcb783e92319fc1600a81ca4663bd521}{SKS6}};}
+\DoxyCodeLine{297     \mbox{\hyperlink{sosemanuk_8c_a159585331bd7912597531107584f67f1}{WUP0}}(56);  \mbox{\hyperlink{sosemanuk_8c_ae6021e8c8fa3269ede04d5696ce4b964}{SKS5}};}
+\DoxyCodeLine{298     \mbox{\hyperlink{sosemanuk_8c_ad3478a8081a7e0217c6a272504df44e4}{WUP1}}(60);  \mbox{\hyperlink{sosemanuk_8c_a2c5a2057dcd95c853dd75659db7cb5af}{SKS4}};}
+\DoxyCodeLine{299     \mbox{\hyperlink{sosemanuk_8c_a159585331bd7912597531107584f67f1}{WUP0}}(64);  \mbox{\hyperlink{sosemanuk_8c_a6e25bcd1a11f806d42d6390d7d83a0ef}{SKS3}};}
+\DoxyCodeLine{300     \mbox{\hyperlink{sosemanuk_8c_ad3478a8081a7e0217c6a272504df44e4}{WUP1}}(68);  \mbox{\hyperlink{sosemanuk_8c_a25b457a1269d84306284459cfe2c94bd}{SKS2}};}
+\DoxyCodeLine{301     \mbox{\hyperlink{sosemanuk_8c_a159585331bd7912597531107584f67f1}{WUP0}}(72);  \mbox{\hyperlink{sosemanuk_8c_a17452ad01db751019f34a26aab8df392}{SKS1}};}
+\DoxyCodeLine{302     \mbox{\hyperlink{sosemanuk_8c_ad3478a8081a7e0217c6a272504df44e4}{WUP1}}(76);  \mbox{\hyperlink{sosemanuk_8c_a80b38602000348fe623bd1354f01fc3f}{SKS0}};}
+\DoxyCodeLine{303     \mbox{\hyperlink{sosemanuk_8c_a159585331bd7912597531107584f67f1}{WUP0}}(80);  \mbox{\hyperlink{sosemanuk_8c_a4ce461c78eb8e3d92817dcf9c157f8f9}{SKS7}};}
+\DoxyCodeLine{304     \mbox{\hyperlink{sosemanuk_8c_ad3478a8081a7e0217c6a272504df44e4}{WUP1}}(84);  \mbox{\hyperlink{sosemanuk_8c_abcb783e92319fc1600a81ca4663bd521}{SKS6}};}
+\DoxyCodeLine{305     \mbox{\hyperlink{sosemanuk_8c_a159585331bd7912597531107584f67f1}{WUP0}}(88);  \mbox{\hyperlink{sosemanuk_8c_ae6021e8c8fa3269ede04d5696ce4b964}{SKS5}};}
+\DoxyCodeLine{306     \mbox{\hyperlink{sosemanuk_8c_ad3478a8081a7e0217c6a272504df44e4}{WUP1}}(92);  \mbox{\hyperlink{sosemanuk_8c_a2c5a2057dcd95c853dd75659db7cb5af}{SKS4}};}
+\DoxyCodeLine{307     \mbox{\hyperlink{sosemanuk_8c_a159585331bd7912597531107584f67f1}{WUP0}}(96);  \mbox{\hyperlink{sosemanuk_8c_a6e25bcd1a11f806d42d6390d7d83a0ef}{SKS3}};}
+\DoxyCodeLine{308 }
+\DoxyCodeLine{309 \textcolor{preprocessor}{\#undef SKS}}
+\DoxyCodeLine{310 \textcolor{preprocessor}{\#undef SKS0}}
+\DoxyCodeLine{311 \textcolor{preprocessor}{\#undef SKS1}}
+\DoxyCodeLine{312 \textcolor{preprocessor}{\#undef SKS2}}
+\DoxyCodeLine{313 \textcolor{preprocessor}{\#undef SKS3}}
+\DoxyCodeLine{314 \textcolor{preprocessor}{\#undef SKS4}}
+\DoxyCodeLine{315 \textcolor{preprocessor}{\#undef SKS5}}
+\DoxyCodeLine{316 \textcolor{preprocessor}{\#undef SKS6}}
+\DoxyCodeLine{317 \textcolor{preprocessor}{\#undef SKS7}}
+\DoxyCodeLine{318 \textcolor{preprocessor}{\#undef WUP}}
+\DoxyCodeLine{319 \textcolor{preprocessor}{\#undef WUP0}}
+\DoxyCodeLine{320 \textcolor{preprocessor}{\#undef WUP1}}
+\DoxyCodeLine{321 }
+\DoxyCodeLine{322     \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{323 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, S\+K\+S0, S\+K\+S1, S\+K\+S2, S\+K\+S3, S\+K\+S4, S\+K\+S5, S\+K\+S6, S\+K\+S7, W\+U\+P0, W\+U\+P1, X\+M\+E\+M\+C\+P\+Y(), and X\+M\+E\+M\+S\+E\+T().
+
+
+
+Referenced by sosemanuk\+\_\+memory(), and sosemanuk\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 11
+Here is the caller graph for this function\+:
+% FIG 12
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{sosemanuk_8c_a52c63ef7165b1936dd6dc9d0635a1fc4}\label{sosemanuk_8c_a52c63ef7165b1936dd6dc9d0635a1fc4}} 
+\index{sosemanuk.c@{sosemanuk.c}!mul\_a@{mul\_a}}
+\index{mul\_a@{mul\_a}!sosemanuk.c@{sosemanuk.c}}
+\subsubsection{\texorpdfstring{mul\_a}{mul\_a}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} mul\+\_\+a\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 446 of file sosemanuk.\+c.
+
+\mbox{\Hypertarget{sosemanuk_8c_ac48b73cdade67d363621e8cb302ac203}\label{sosemanuk_8c_ac48b73cdade67d363621e8cb302ac203}} 
+\index{sosemanuk.c@{sosemanuk.c}!mul\_ia@{mul\_ia}}
+\index{mul\_ia@{mul\_ia}!sosemanuk.c@{sosemanuk.c}}
+\subsubsection{\texorpdfstring{mul\_ia}{mul\_ia}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} mul\+\_\+ia\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 516 of file sosemanuk.\+c.
+

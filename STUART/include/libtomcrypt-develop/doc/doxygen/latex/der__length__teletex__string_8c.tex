@@ -1,0 +1,208 @@
+\hypertarget{der__length__teletex__string_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/pk/asn1/der/teletex\+\_\+string/der\+\_\+length\+\_\+teletex\+\_\+string.c File Reference}
+\label{der__length__teletex__string_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/asn1/der/teletex\_string/der\_length\_teletex\_string.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/asn1/der/teletex\_string/der\_length\_teletex\_string.c}}
+
+
+A\+S\+N.\+1 D\+ER, get length of teletex S\+T\+R\+I\+NG.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for der\+\_\+length\+\_\+teletex\+\_\+string.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{der__length__teletex__string_8c_ae8e05b29e9cd248f6a81450eefd22163}{der\+\_\+teletex\+\_\+char\+\_\+encode}} (int \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}})
+\item 
+int \mbox{\hyperlink{der__length__teletex__string_8c_ab300884b978bd66022a4003ef5a1f2a1}{der\+\_\+teletex\+\_\+value\+\_\+decode}} (int v)
+\item 
+int \mbox{\hyperlink{der__length__teletex__string_8c_a2b3c8aa9d2c26839f9100fdc0286cd93}{der\+\_\+length\+\_\+teletex\+\_\+string}} (const unsigned char $\ast$octets, unsigned long noctets, unsigned long $\ast$outlen)
+\begin{DoxyCompactList}\small\item\em Gets length of D\+ER encoding of teletex S\+T\+R\+I\+NG. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+struct \{\\
+\>int \mbox{\hyperlink{der__length__teletex__string_8c_a45a5b7c00a796a23f01673cef1dbe0a9}{code}}\\
+\>int \mbox{\hyperlink{der__length__teletex__string_8c_ac4f474c82e82cbb89ca7c36dd52be0ed}{value}}\\
+\} \mbox{\hyperlink{der__length__teletex__string_8c_a997fea032cb14c722ed96f405c3447ff}{teletex\_table}} \mbox{[}$\,$\mbox{]}\\
+
+\end{tabbing}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A\+S\+N.\+1 D\+ER, get length of teletex S\+T\+R\+I\+NG. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{der__length__teletex__string_8c_a2b3c8aa9d2c26839f9100fdc0286cd93}\label{der__length__teletex__string_8c_a2b3c8aa9d2c26839f9100fdc0286cd93}} 
+\index{der\_length\_teletex\_string.c@{der\_length\_teletex\_string.c}!der\_length\_teletex\_string@{der\_length\_teletex\_string}}
+\index{der\_length\_teletex\_string@{der\_length\_teletex\_string}!der\_length\_teletex\_string.c@{der\_length\_teletex\_string.c}}
+\subsubsection{\texorpdfstring{der\_length\_teletex\_string()}{der\_length\_teletex\_string()}}
+{\footnotesize\ttfamily int der\+\_\+length\+\_\+teletex\+\_\+string (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{octets,  }\item[{unsigned long}]{noctets,  }\item[{unsigned long $\ast$}]{outlen }\end{DoxyParamCaption})}
+
+
+
+Gets length of D\+ER encoding of teletex S\+T\+R\+I\+NG. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em octets} & The values you want to encode \\
+\hline
+{\em noctets} & The number of octets in the string to encode \\
+\hline
+{\em outlen} & \mbox{[}out\mbox{]} The length of the D\+ER encoding for the given string \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 170 of file der\+\_\+length\+\_\+teletex\+\_\+string.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{171 \{}
+\DoxyCodeLine{172    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} x;}
+\DoxyCodeLine{173    \textcolor{keywordtype}{int} err;}
+\DoxyCodeLine{174 }
+\DoxyCodeLine{175    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(outlen != NULL);}
+\DoxyCodeLine{176    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(octets != NULL);}
+\DoxyCodeLine{177 }
+\DoxyCodeLine{178    \textcolor{comment}{/* scan string for validity */}}
+\DoxyCodeLine{179    \textcolor{keywordflow}{for} (x = 0; x < noctets; x++) \{}
+\DoxyCodeLine{180        \textcolor{keywordflow}{if} (\mbox{\hyperlink{der__length__teletex__string_8c_ae8e05b29e9cd248f6a81450eefd22163}{der\_teletex\_char\_encode}}(octets[x]) == -1) \{}
+\DoxyCodeLine{181           \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{182        \}}
+\DoxyCodeLine{183    \}}
+\DoxyCodeLine{184 }
+\DoxyCodeLine{185    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a8999e23c66cda0d777570e54f3a5c795}{der\_length\_asn1\_length}}(noctets, \&x)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{186       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{187    \}}
+\DoxyCodeLine{188    *outlen = 1 + x + noctets;}
+\DoxyCodeLine{189 }
+\DoxyCodeLine{190    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{191 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+A\+RG, C\+R\+Y\+P\+T\+\_\+\+OK, der\+\_\+length\+\_\+asn1\+\_\+length(), der\+\_\+teletex\+\_\+char\+\_\+encode(), and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+
+
+Referenced by der\+\_\+decode\+\_\+choice(), der\+\_\+decode\+\_\+custom\+\_\+type\+\_\+ex(), der\+\_\+decode\+\_\+sequence\+\_\+flexi(), der\+\_\+length\+\_\+custom\+\_\+type(), and der\+\_\+length\+\_\+sequence\+\_\+ex().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2
+\mbox{\Hypertarget{der__length__teletex__string_8c_ae8e05b29e9cd248f6a81450eefd22163}\label{der__length__teletex__string_8c_ae8e05b29e9cd248f6a81450eefd22163}} 
+\index{der\_length\_teletex\_string.c@{der\_length\_teletex\_string.c}!der\_teletex\_char\_encode@{der\_teletex\_char\_encode}}
+\index{der\_teletex\_char\_encode@{der\_teletex\_char\_encode}!der\_length\_teletex\_string.c@{der\_length\_teletex\_string.c}}
+\subsubsection{\texorpdfstring{der\_teletex\_char\_encode()}{der\_teletex\_char\_encode()}}
+{\footnotesize\ttfamily int der\+\_\+teletex\+\_\+char\+\_\+encode (\begin{DoxyParamCaption}\item[{int}]{c }\end{DoxyParamCaption})}
+
+
+
+Definition at line 141 of file der\+\_\+length\+\_\+teletex\+\_\+string.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{142 \{}
+\DoxyCodeLine{143    \textcolor{keywordtype}{int} x;}
+\DoxyCodeLine{144    \textcolor{keywordflow}{for} (x = 0; x < (int)(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{der__length__teletex__string_8c_a997fea032cb14c722ed96f405c3447ff}{teletex\_table}})/\textcolor{keyword}{sizeof}(\mbox{\hyperlink{der__length__teletex__string_8c_a997fea032cb14c722ed96f405c3447ff}{teletex\_table}}[0])); x++) \{}
+\DoxyCodeLine{145        \textcolor{keywordflow}{if} (\mbox{\hyperlink{der__length__teletex__string_8c_a997fea032cb14c722ed96f405c3447ff}{teletex\_table}}[x].\mbox{\hyperlink{der__length__teletex__string_8c_a45a5b7c00a796a23f01673cef1dbe0a9}{code}} == \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}) \{}
+\DoxyCodeLine{146           \textcolor{keywordflow}{return} \mbox{\hyperlink{der__length__teletex__string_8c_a997fea032cb14c722ed96f405c3447ff}{teletex\_table}}[x].value;}
+\DoxyCodeLine{147        \}}
+\DoxyCodeLine{148    \}}
+\DoxyCodeLine{149    \textcolor{keywordflow}{return} -1;}
+\DoxyCodeLine{150 \}}
+
+\end{DoxyCode}
+
+
+References c, code, and teletex\+\_\+table.
+
+
+
+Referenced by der\+\_\+length\+\_\+teletex\+\_\+string().
+
+Here is the caller graph for this function\+:
+% FIG 3
+\mbox{\Hypertarget{der__length__teletex__string_8c_ab300884b978bd66022a4003ef5a1f2a1}\label{der__length__teletex__string_8c_ab300884b978bd66022a4003ef5a1f2a1}} 
+\index{der\_length\_teletex\_string.c@{der\_length\_teletex\_string.c}!der\_teletex\_value\_decode@{der\_teletex\_value\_decode}}
+\index{der\_teletex\_value\_decode@{der\_teletex\_value\_decode}!der\_length\_teletex\_string.c@{der\_length\_teletex\_string.c}}
+\subsubsection{\texorpdfstring{der\_teletex\_value\_decode()}{der\_teletex\_value\_decode()}}
+{\footnotesize\ttfamily int der\+\_\+teletex\+\_\+value\+\_\+decode (\begin{DoxyParamCaption}\item[{int}]{v }\end{DoxyParamCaption})}
+
+
+
+Definition at line 152 of file der\+\_\+length\+\_\+teletex\+\_\+string.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{153 \{}
+\DoxyCodeLine{154    \textcolor{keywordtype}{int} x;}
+\DoxyCodeLine{155    \textcolor{keywordflow}{for} (x = 0; x < (int)(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{der__length__teletex__string_8c_a997fea032cb14c722ed96f405c3447ff}{teletex\_table}})/\textcolor{keyword}{sizeof}(\mbox{\hyperlink{der__length__teletex__string_8c_a997fea032cb14c722ed96f405c3447ff}{teletex\_table}}[0])); x++) \{}
+\DoxyCodeLine{156        \textcolor{keywordflow}{if} (\mbox{\hyperlink{der__length__teletex__string_8c_a997fea032cb14c722ed96f405c3447ff}{teletex\_table}}[x].\mbox{\hyperlink{der__length__teletex__string_8c_ac4f474c82e82cbb89ca7c36dd52be0ed}{value}} == v) \{}
+\DoxyCodeLine{157           \textcolor{keywordflow}{return} \mbox{\hyperlink{der__length__teletex__string_8c_a997fea032cb14c722ed96f405c3447ff}{teletex\_table}}[x].code;}
+\DoxyCodeLine{158        \}}
+\DoxyCodeLine{159    \}}
+\DoxyCodeLine{160    \textcolor{keywordflow}{return} -1;}
+\DoxyCodeLine{161 \}}
+
+\end{DoxyCode}
+
+
+References teletex\+\_\+table, and value.
+
+
+
+Referenced by der\+\_\+decode\+\_\+teletex\+\_\+string().
+
+Here is the caller graph for this function\+:
+% FIG 4
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{der__length__teletex__string_8c_a45a5b7c00a796a23f01673cef1dbe0a9}\label{der__length__teletex__string_8c_a45a5b7c00a796a23f01673cef1dbe0a9}} 
+\index{der\_length\_teletex\_string.c@{der\_length\_teletex\_string.c}!code@{code}}
+\index{code@{code}!der\_length\_teletex\_string.c@{der\_length\_teletex\_string.c}}
+\subsubsection{\texorpdfstring{code}{code}}
+{\footnotesize\ttfamily int code}
+
+
+
+Definition at line 19 of file der\+\_\+length\+\_\+teletex\+\_\+string.\+c.
+
+
+
+Referenced by der\+\_\+teletex\+\_\+char\+\_\+encode().
+
+\mbox{\Hypertarget{der__length__teletex__string_8c_a997fea032cb14c722ed96f405c3447ff}\label{der__length__teletex__string_8c_a997fea032cb14c722ed96f405c3447ff}} 
+\index{der\_length\_teletex\_string.c@{der\_length\_teletex\_string.c}!teletex\_table@{teletex\_table}}
+\index{teletex\_table@{teletex\_table}!der\_length\_teletex\_string.c@{der\_length\_teletex\_string.c}}
+\subsubsection{\texorpdfstring{teletex\_table}{teletex\_table}}
+{\footnotesize\ttfamily const \{ ... \}   teletex\+\_\+table\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Referenced by der\+\_\+teletex\+\_\+char\+\_\+encode(), and der\+\_\+teletex\+\_\+value\+\_\+decode().
+
+\mbox{\Hypertarget{der__length__teletex__string_8c_ac4f474c82e82cbb89ca7c36dd52be0ed}\label{der__length__teletex__string_8c_ac4f474c82e82cbb89ca7c36dd52be0ed}} 
+\index{der\_length\_teletex\_string.c@{der\_length\_teletex\_string.c}!value@{value}}
+\index{value@{value}!der\_length\_teletex\_string.c@{der\_length\_teletex\_string.c}}
+\subsubsection{\texorpdfstring{value}{value}}
+{\footnotesize\ttfamily int value}
+
+
+
+Definition at line 19 of file der\+\_\+length\+\_\+teletex\+\_\+string.\+c.
+
+
+
+Referenced by der\+\_\+teletex\+\_\+value\+\_\+decode().
+

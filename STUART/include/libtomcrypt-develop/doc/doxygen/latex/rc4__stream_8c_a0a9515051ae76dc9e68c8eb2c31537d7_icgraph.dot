@@ -1,0 +1,28 @@
+digraph "rc4_stream_crypt"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node1 [label="rc4_stream_crypt",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Encrypt (or decrypt) bytes of ciphertext (or plaintext) with RC4."];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node2 [label="rc4_stream_keystream",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rc4__stream_8c.html#a51958ea4c995703c6f9596af8507c136",tooltip="Generate a stream of random bytes via RC4."];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node3 [label="rc4_add_entropy",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rc4_8c.html#a4f610c15f71bd7133905ba8c42b25085",tooltip="Add entropy to the PRNG state."];
+  Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node4 [label="rc4_import",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rc4_8c.html#ad11a03b9a6aabff43cb59d46d1eef7ce",tooltip="Import a PRNG state."];
+  Node4 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node5 [label="rc4_test",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rc4_8c.html#ad8af7083fd45b4c39ec2720455518560",tooltip="PRNG self-test."];
+  Node3 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node2 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node6 [label="rc4_ready",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rc4_8c.html#a2736422ebc97697aacbc3fd53ce82da6",tooltip="Make the PRNG ready to read from."];
+  Node6 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node2 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node7 [label="rc4_read",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rc4_8c.html#a672bb35f2b7ef86d24499ef90ea2676a",tooltip="Read from the PRNG."];
+  Node7 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node1 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node8 [label="rc4_stream_memory",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rc4__stream__memory_8c.html#a3d744655eede094f61a105587ddf5fba",tooltip="Encrypt (or decrypt) bytes of ciphertext (or plaintext) with RC4."];
+  Node8 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node9 [label="rc4_stream_test",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rc4__test_8c.html#a3ac84750a90eadf1320f534b3c8a7e3a",tooltip=" "];
+  Node1 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+}

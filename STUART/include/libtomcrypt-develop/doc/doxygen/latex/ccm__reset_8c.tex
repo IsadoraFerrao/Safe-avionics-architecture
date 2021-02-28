@@ -1,0 +1,56 @@
+\hypertarget{ccm__reset_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/encauth/ccm/ccm\+\_\+reset.c File Reference}
+\label{ccm__reset_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/encauth/ccm/ccm\_reset.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/encauth/ccm/ccm\_reset.c}}
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for ccm\+\_\+reset.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{ccm__reset_8c_abac05743e99552a3d1591e728b6fe034}{ccm\+\_\+reset}} (ccm\+\_\+state $\ast$ccm)
+\begin{DoxyCompactList}\small\item\em Reset a C\+CM state to as if you just called \mbox{\hyperlink{ccm__init_8c_a23e25e4c7b06cafb883ffc6ea4217a31}{ccm\+\_\+init()}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{ccm__reset_8c_abac05743e99552a3d1591e728b6fe034}\label{ccm__reset_8c_abac05743e99552a3d1591e728b6fe034}} 
+\index{ccm\_reset.c@{ccm\_reset.c}!ccm\_reset@{ccm\_reset}}
+\index{ccm\_reset@{ccm\_reset}!ccm\_reset.c@{ccm\_reset.c}}
+\subsubsection{\texorpdfstring{ccm\_reset()}{ccm\_reset()}}
+{\footnotesize\ttfamily int ccm\+\_\+reset (\begin{DoxyParamCaption}\item[{ccm\+\_\+state $\ast$}]{ccm }\end{DoxyParamCaption})}
+
+
+
+Reset a C\+CM state to as if you just called \mbox{\hyperlink{ccm__init_8c_a23e25e4c7b06cafb883ffc6ea4217a31}{ccm\+\_\+init()}}. 
+
+This saves the initialization time. 
+\begin{DoxyParams}{Parameters}
+{\em ccm} & The C\+CM state to reset \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK on success 
+\end{DoxyReturn}
+
+
+Definition at line 18 of file ccm\+\_\+reset.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{19 \{}
+\DoxyCodeLine{20    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(ccm != NULL);}
+\DoxyCodeLine{21    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(ccm->PAD, \textcolor{keyword}{sizeof}(ccm->PAD));}
+\DoxyCodeLine{22    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(ccm->ctr, \textcolor{keyword}{sizeof}(ccm->ctr));}
+\DoxyCodeLine{23    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(ccm->CTRPAD, \textcolor{keyword}{sizeof}(ccm->CTRPAD));}
+\DoxyCodeLine{24    ccm->CTRlen = 0;}
+\DoxyCodeLine{25    ccm->current\_ptlen = 0;}
+\DoxyCodeLine{26    ccm->current\_aadlen = 0;}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{29 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, and zeromem().
+
+Here is the call graph for this function\+:
+% FIG 1

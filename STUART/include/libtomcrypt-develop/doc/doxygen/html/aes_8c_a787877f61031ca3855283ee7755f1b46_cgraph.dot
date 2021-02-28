@@ -1,0 +1,22 @@
+digraph "rijndael_test"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node23 [label="rijndael_test",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Performs a self-test of the AES block cipher."];
+  Node23 -> Node24 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node24 [label="compare_testvector",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__misc_8h.html#a7764a7f27897c6182335752df00b5f8e",tooltip="Compare two test-vectors."];
+  Node24 -> Node25 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node25 [label="XMEMCMP",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cfg_8h.html#a372b974ec0ac07abcd55297554fe540f",tooltip=" "];
+  Node23 -> Node26 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node26 [label="rijndael_ecb_decrypt",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$aes_8c.html#ae65612757c3cd403fd41ca38f7e2d7d0",tooltip="Decrypts a block of text with AES."];
+  Node23 -> Node27 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node27 [label="rijndael_ecb_encrypt",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$aes_8c.html#acd7dbcdfa46b39fa19932a0658676047",tooltip="Encrypts a block of text with AES."];
+  Node23 -> Node28 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node28 [label="rijndael_setup",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$aes_8c.html#a3b2fab908c22514c91332a5c9a3d7166",tooltip="Initialize the AES (Rijndael) block cipher."];
+  Node28 -> Node29 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node29 [label="setup_mix",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$aes_8c.html#a523ac00c3bbdb4656024ab0ad32f571f",tooltip=" "];
+  Node23 -> Node30 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node30 [label="zeromem",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__misc_8h.html#a63b6e188713790263bfd3612fe8b398f",tooltip="Zero a block of memory."];
+}

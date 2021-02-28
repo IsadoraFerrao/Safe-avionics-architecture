@@ -1,0 +1,64 @@
+\hypertarget{eax__addheader_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/encauth/eax/eax\+\_\+addheader.c File Reference}
+\label{eax__addheader_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/encauth/eax/eax\_addheader.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/encauth/eax/eax\_addheader.c}}
+
+
+E\+AX implementation, add meta-\/data, by Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for eax\+\_\+addheader.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{eax__addheader_8c_a9c7c268f074f11ae9189341965454ecf}{eax\+\_\+addheader}} (eax\+\_\+state $\ast$eax, const unsigned char $\ast$header, unsigned long length)
+\begin{DoxyCompactList}\small\item\em add header (metadata) to the stream \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+E\+AX implementation, add meta-\/data, by Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{eax__addheader_8c_a9c7c268f074f11ae9189341965454ecf}\label{eax__addheader_8c_a9c7c268f074f11ae9189341965454ecf}} 
+\index{eax\_addheader.c@{eax\_addheader.c}!eax\_addheader@{eax\_addheader}}
+\index{eax\_addheader@{eax\_addheader}!eax\_addheader.c@{eax\_addheader.c}}
+\subsubsection{\texorpdfstring{eax\_addheader()}{eax\_addheader()}}
+{\footnotesize\ttfamily int eax\+\_\+addheader (\begin{DoxyParamCaption}\item[{eax\+\_\+state $\ast$}]{eax,  }\item[{const unsigned char $\ast$}]{header,  }\item[{unsigned long}]{length }\end{DoxyParamCaption})}
+
+
+
+add header (metadata) to the stream 
+
+
+\begin{DoxyParams}{Parameters}
+{\em eax} & The current E\+AX state \\
+\hline
+{\em header} & The header (meta-\/data) data you wish to add to the state \\
+\hline
+{\em length} & The length of the header data \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 24 of file eax\+\_\+addheader.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{26 \{}
+\DoxyCodeLine{27    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(eax    != NULL);}
+\DoxyCodeLine{28    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(header != NULL);}
+\DoxyCodeLine{29    \textcolor{keywordflow}{return} \mbox{\hyperlink{omac__process_8c_a7d42bf0deb0f7dbdd1637c3f7c21f93e}{omac\_process}}(\&eax->headeromac, header, length);}
+\DoxyCodeLine{30 \}}
+
+\end{DoxyCode}
+
+
+References L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, and omac\+\_\+process().
+
+Here is the call graph for this function\+:
+% FIG 1

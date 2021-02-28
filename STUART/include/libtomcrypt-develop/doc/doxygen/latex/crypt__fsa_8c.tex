@@ -1,0 +1,77 @@
+\hypertarget{crypt__fsa_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/misc/crypt/crypt\+\_\+fsa.c File Reference}
+\label{crypt__fsa_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/misc/crypt/crypt\_fsa.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/misc/crypt/crypt\_fsa.c}}
+
+
+Lib\+Tom\+Crypt F\+U\+LL S\+P\+E\+ED A\+H\+E\+A\+D!, Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdarg.\+h$>$}\newline
+Include dependency graph for crypt\+\_\+fsa.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{crypt__fsa_8c_aefa03a9ea8721b2d7c4ec148f3124c03}{crypt\+\_\+fsa}} (void $\ast$mp,...)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Lib\+Tom\+Crypt F\+U\+LL S\+P\+E\+ED A\+H\+E\+A\+D!, Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{crypt__fsa_8c_aefa03a9ea8721b2d7c4ec148f3124c03}\label{crypt__fsa_8c_aefa03a9ea8721b2d7c4ec148f3124c03}} 
+\index{crypt\_fsa.c@{crypt\_fsa.c}!crypt\_fsa@{crypt\_fsa}}
+\index{crypt\_fsa@{crypt\_fsa}!crypt\_fsa.c@{crypt\_fsa.c}}
+\subsubsection{\texorpdfstring{crypt\_fsa()}{crypt\_fsa()}}
+{\footnotesize\ttfamily int crypt\+\_\+fsa (\begin{DoxyParamCaption}\item[{void $\ast$}]{mp,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+
+
+Definition at line 18 of file crypt\+\_\+fsa.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{19 \{}
+\DoxyCodeLine{20    va\_list  args;}
+\DoxyCodeLine{21    \textcolor{keywordtype}{void}     *p;}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23    va\_start(args, mp);}
+\DoxyCodeLine{24    \textcolor{keywordflow}{if} (mp != NULL) \{}
+\DoxyCodeLine{25       \mbox{\hyperlink{tomcrypt__cfg_8h_a7691dd48d60d5fc6daf2fa7ec4c55e12}{XMEMCPY}}(\&\mbox{\hyperlink{tomcrypt__math_8h_a3d38c44518c63b7a8abd0938f3d41c65}{ltc\_mp}}, mp, \textcolor{keyword}{sizeof}(\mbox{\hyperlink{tomcrypt__math_8h_a3d38c44518c63b7a8abd0938f3d41c65}{ltc\_mp}}));}
+\DoxyCodeLine{26    \}}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28    \textcolor{keywordflow}{while} ((p = va\_arg(args, \textcolor{keywordtype}{void}*)) != NULL) \{}
+\DoxyCodeLine{29       \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__cipher_8h_a61ac42bfbce4e88791a80140e8854a72}{register\_cipher}}(p) == -1) \{}
+\DoxyCodeLine{30          va\_end(args);}
+\DoxyCodeLine{31          \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca302b958f5664adeb427c22f57c9d90a4}{CRYPT\_INVALID\_CIPHER}};}
+\DoxyCodeLine{32       \}}
+\DoxyCodeLine{33    \}}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35    \textcolor{keywordflow}{while} ((p = va\_arg(args, \textcolor{keywordtype}{void}*)) != NULL) \{}
+\DoxyCodeLine{36       \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__hash_8h_a675b9eda0e8cf146aca2cc89ea5ad571}{register\_hash}}(p) == -1) \{}
+\DoxyCodeLine{37          va\_end(args);}
+\DoxyCodeLine{38          \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cae729ddc4864ea7e12e9865bf6264642d}{CRYPT\_INVALID\_HASH}};}
+\DoxyCodeLine{39       \}}
+\DoxyCodeLine{40    \}}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{42    \textcolor{keywordflow}{while} ((p = va\_arg(args, \textcolor{keywordtype}{void}*)) != NULL) \{}
+\DoxyCodeLine{43       \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__prng_8h_a075b0025b7c09b69bb5cb1b9ff32dfee}{register\_prng}}(p) == -1) \{}
+\DoxyCodeLine{44          va\_end(args);}
+\DoxyCodeLine{45          \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca6228a32cdab04099a1ef0f956312f532}{CRYPT\_INVALID\_PRNG}};}
+\DoxyCodeLine{46       \}}
+\DoxyCodeLine{47    \}}
+\DoxyCodeLine{48 }
+\DoxyCodeLine{49    va\_end(args);}
+\DoxyCodeLine{50    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{51 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+C\+I\+P\+H\+ER, C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+H\+A\+SH, C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+P\+R\+NG, C\+R\+Y\+P\+T\+\_\+\+OK, ltc\+\_\+mp, register\+\_\+cipher(), register\+\_\+hash(), register\+\_\+prng(), and X\+M\+E\+M\+C\+P\+Y().
+
+Here is the call graph for this function\+:
+% FIG 1

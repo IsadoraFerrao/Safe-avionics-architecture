@@ -1,0 +1,23 @@
+digraph "sober128_stream_setup"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node127 [label="sober128_stream_setup",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Initialize an Sober128 context (only the key)"];
+  Node127 -> Node128 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node128 [label="sober128_add_entropy",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sober128_8c.html#a477d801a7eb2e66db6c4c3d7f2db3827",tooltip="Add entropy to the PRNG state."];
+  Node128 -> Node129 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node129 [label="sober128_import",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sober128_8c.html#abd0bdcc3d2a0436f74ab10b0c68fcbca",tooltip="Import a PRNG state."];
+  Node129 -> Node130 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node130 [label="sober128_test",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sober128_8c.html#ae89334392b56e0cb75d493a5bdba60b7",tooltip="PRNG self-test."];
+  Node128 -> Node130 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node127 -> Node131 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node131 [label="sober128_ready",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sober128_8c.html#a61687a8a822a53f6bc48a79b40f48e04",tooltip="Make the PRNG ready to read from."];
+  Node131 -> Node130 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node127 -> Node132 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node132 [label="sober128_stream_memory",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sober128__stream__memory_8c.html#a81dcb5a025f5672c4866d6d7cc906910",tooltip="Encrypt (or decrypt) bytes of ciphertext (or plaintext) with SOBER128."];
+  Node132 -> Node133 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node133 [label="sober128_stream_test",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sober128__test_8c.html#a8e3db22bfcfb2f1aab3756833983d15b",tooltip=" "];
+  Node127 -> Node133 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}

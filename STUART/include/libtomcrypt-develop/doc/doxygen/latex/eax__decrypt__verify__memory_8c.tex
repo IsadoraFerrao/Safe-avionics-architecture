@@ -1,0 +1,146 @@
+\hypertarget{eax__decrypt__verify__memory_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/encauth/eax/eax\+\_\+decrypt\+\_\+verify\+\_\+memory.c File Reference}
+\label{eax__decrypt__verify__memory_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/encauth/eax/eax\_decrypt\_verify\_memory.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/encauth/eax/eax\_decrypt\_verify\_memory.c}}
+
+
+E\+AX implementation, decrypt block of memory, by Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for eax\+\_\+decrypt\+\_\+verify\+\_\+memory.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{eax__decrypt__verify__memory_8c_ab4d3f7a8561cc2cbce16949a1ee0d00c}{eax\+\_\+decrypt\+\_\+verify\+\_\+memory}} (int cipher, const unsigned char $\ast$key, unsigned long keylen, const unsigned char $\ast$nonce, unsigned long noncelen, const unsigned char $\ast$header, unsigned long headerlen, const unsigned char $\ast$ct, unsigned long ctlen, unsigned char $\ast$pt, const unsigned char $\ast$tag, unsigned long taglen, int $\ast$stat)
+\begin{DoxyCompactList}\small\item\em Decrypt a block of memory and verify the provided M\+AC tag with E\+AX. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+E\+AX implementation, decrypt block of memory, by Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{eax__decrypt__verify__memory_8c_ab4d3f7a8561cc2cbce16949a1ee0d00c}\label{eax__decrypt__verify__memory_8c_ab4d3f7a8561cc2cbce16949a1ee0d00c}} 
+\index{eax\_decrypt\_verify\_memory.c@{eax\_decrypt\_verify\_memory.c}!eax\_decrypt\_verify\_memory@{eax\_decrypt\_verify\_memory}}
+\index{eax\_decrypt\_verify\_memory@{eax\_decrypt\_verify\_memory}!eax\_decrypt\_verify\_memory.c@{eax\_decrypt\_verify\_memory.c}}
+\subsubsection{\texorpdfstring{eax\_decrypt\_verify\_memory()}{eax\_decrypt\_verify\_memory()}}
+{\footnotesize\ttfamily int eax\+\_\+decrypt\+\_\+verify\+\_\+memory (\begin{DoxyParamCaption}\item[{int}]{cipher,  }\item[{const unsigned char $\ast$}]{key,  }\item[{unsigned long}]{keylen,  }\item[{const unsigned char $\ast$}]{nonce,  }\item[{unsigned long}]{noncelen,  }\item[{const unsigned char $\ast$}]{header,  }\item[{unsigned long}]{headerlen,  }\item[{const unsigned char $\ast$}]{ct,  }\item[{unsigned long}]{ctlen,  }\item[{unsigned char $\ast$}]{pt,  }\item[{const unsigned char $\ast$}]{tag,  }\item[{unsigned long}]{taglen,  }\item[{int $\ast$}]{stat }\end{DoxyParamCaption})}
+
+
+
+Decrypt a block of memory and verify the provided M\+AC tag with E\+AX. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cipher} & The index of the cipher desired \\
+\hline
+{\em key} & The secret key \\
+\hline
+{\em keylen} & The length of the key (octets) \\
+\hline
+{\em nonce} & The nonce data (use once) for the session \\
+\hline
+{\em noncelen} & The length of the nonce data. \\
+\hline
+{\em header} & The session header data \\
+\hline
+{\em headerlen} & The length of the header (octets) \\
+\hline
+{\em ct} & The ciphertext \\
+\hline
+{\em ctlen} & The length of the ciphertext (octets) \\
+\hline
+{\em pt} & \mbox{[}out\mbox{]} The plaintext \\
+\hline
+{\em tag} & The authentication tag provided by the encoder \\
+\hline
+{\em taglen} & \mbox{[}in/out\mbox{]} The length of the tag (octets) \\
+\hline
+{\em stat} & \mbox{[}out\mbox{]} The result of the decryption (1==valid tag, 0==invalid) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful regardless of the resulting tag comparison 
+\end{DoxyReturn}
+
+
+Definition at line 35 of file eax\+\_\+decrypt\+\_\+verify\+\_\+memory.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{43 \{}
+\DoxyCodeLine{44    \textcolor{keywordtype}{int}            err;}
+\DoxyCodeLine{45    eax\_state     *eax;}
+\DoxyCodeLine{46    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *buf;}
+\DoxyCodeLine{47    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long}  buflen;}
+\DoxyCodeLine{48 }
+\DoxyCodeLine{49    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(stat != NULL);}
+\DoxyCodeLine{50    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(key  != NULL);}
+\DoxyCodeLine{51    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(pt   != NULL);}
+\DoxyCodeLine{52    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(ct   != NULL);}
+\DoxyCodeLine{53    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(tag  != NULL);}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55    \textcolor{comment}{/* default to zero */}}
+\DoxyCodeLine{56    *stat = 0;}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{58    \textcolor{comment}{/* limit taglen */}}
+\DoxyCodeLine{59    taglen = \mbox{\hyperlink{tomcrypt__macros_8h_a74e75242132eaabbc1c512488a135926}{MIN}}(taglen, \mbox{\hyperlink{tomcrypt_8h_ab59933beebb2b857c992b93cf53f0d10}{MAXBLOCKSIZE}});}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{61    \textcolor{comment}{/* allocate ram */}}
+\DoxyCodeLine{62    buf = \mbox{\hyperlink{tomcrypt__cfg_8h_af363355f38fbaacdefacf270436ae1c9}{XMALLOC}}(taglen);}
+\DoxyCodeLine{63    eax = \mbox{\hyperlink{tomcrypt__cfg_8h_af363355f38fbaacdefacf270436ae1c9}{XMALLOC}}(\textcolor{keyword}{sizeof}(*eax));}
+\DoxyCodeLine{64    \textcolor{keywordflow}{if} (eax == NULL || buf == NULL) \{}
+\DoxyCodeLine{65       \textcolor{keywordflow}{if} (eax != NULL) \{}
+\DoxyCodeLine{66          \mbox{\hyperlink{tomcrypt__cfg_8h_a260d66fc0690e0502cf3bfe7b5244b75}{XFREE}}(eax);}
+\DoxyCodeLine{67       \}}
+\DoxyCodeLine{68       \textcolor{keywordflow}{if} (buf != NULL) \{}
+\DoxyCodeLine{69          \mbox{\hyperlink{tomcrypt__cfg_8h_a260d66fc0690e0502cf3bfe7b5244b75}{XFREE}}(buf);}
+\DoxyCodeLine{70       \}}
+\DoxyCodeLine{71       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca0ce0d27adc7ea10b74b7ea904b8bfa82}{CRYPT\_MEM}};}
+\DoxyCodeLine{72    \}}
+\DoxyCodeLine{73 }
+\DoxyCodeLine{74    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{eax__init_8c_ac35fd0cc9f76c2e8052efb3c22f1559c}{eax\_init}}(eax, cipher, key, keylen, nonce, noncelen, header, headerlen)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{75       \textcolor{keywordflow}{goto} LBL\_ERR;}
+\DoxyCodeLine{76    \}}
+\DoxyCodeLine{77 }
+\DoxyCodeLine{78    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{eax__decrypt_8c_a7127cf7831b1dc9709d63c026a078b6a}{eax\_decrypt}}(eax, ct, pt, ctlen)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{79       \textcolor{keywordflow}{goto} LBL\_ERR;}
+\DoxyCodeLine{80    \}}
+\DoxyCodeLine{81 }
+\DoxyCodeLine{82    buflen = taglen;}
+\DoxyCodeLine{83    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{eax__done_8c_ad8e287fe7144dae9e4eac1e755d973cf}{eax\_done}}(eax, buf, \&buflen)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{84       \textcolor{keywordflow}{goto} LBL\_ERR;}
+\DoxyCodeLine{85    \}}
+\DoxyCodeLine{86 }
+\DoxyCodeLine{87    \textcolor{comment}{/* compare tags */}}
+\DoxyCodeLine{88    \textcolor{keywordflow}{if} (buflen >= taglen \&\& \mbox{\hyperlink{tomcrypt__custom_8h_a22bba7b26be62fc532bd7927a23c5a91}{XMEM\_NEQ}}(buf, tag, taglen) == 0) \{}
+\DoxyCodeLine{89       *stat = 1;}
+\DoxyCodeLine{90    \}}
+\DoxyCodeLine{91 }
+\DoxyCodeLine{92    err = \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{93 LBL\_ERR:}
+\DoxyCodeLine{94 \textcolor{preprocessor}{\#ifdef LTC\_CLEAN\_STACK}}
+\DoxyCodeLine{95    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(buf, taglen);}
+\DoxyCodeLine{96    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(eax, \textcolor{keyword}{sizeof}(*eax));}
+\DoxyCodeLine{97 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{98 }
+\DoxyCodeLine{99    \mbox{\hyperlink{tomcrypt__cfg_8h_a260d66fc0690e0502cf3bfe7b5244b75}{XFREE}}(eax);}
+\DoxyCodeLine{100    \mbox{\hyperlink{tomcrypt__cfg_8h_a260d66fc0690e0502cf3bfe7b5244b75}{XFREE}}(buf);}
+\DoxyCodeLine{101 }
+\DoxyCodeLine{102    \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{103 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+M\+EM, C\+R\+Y\+P\+T\+\_\+\+OK, eax\+\_\+decrypt(), eax\+\_\+done(), eax\+\_\+init(), L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, M\+A\+X\+B\+L\+O\+C\+K\+S\+I\+ZE, M\+IN, X\+F\+R\+E\+E(), X\+M\+A\+L\+L\+O\+C(), X\+M\+E\+M\+\_\+\+N\+EQ, and zeromem().
+
+
+
+Referenced by eax\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2

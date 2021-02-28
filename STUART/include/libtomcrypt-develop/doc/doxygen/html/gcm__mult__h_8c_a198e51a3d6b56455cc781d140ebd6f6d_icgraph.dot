@@ -1,0 +1,28 @@
+digraph "gcm_mult_h"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node5 [label="gcm_mult_h",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="GCM multiply by H."];
+  Node5 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="gcm_add_aad",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$gcm__add__aad_8c.html#ab9e6297b575f465e9fac3846f22a2bbd",tooltip="Add AAD to the GCM state."];
+  Node6 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="gcm_done",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$gcm__done_8c.html#a802604cf97f0f3103881fc43bdc060f3",tooltip="Terminate a GCM stream."];
+  Node7 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="gcm_memory",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$gcm__memory_8c.html#a43d9862e1013606d01bab2c57fef74f5",tooltip="Process an entire GCM packet in one call."];
+  Node8 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="gcm_test",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$gcm__test_8c.html#ae36c8eb6c2964df7e386f5f73bded5e7",tooltip="Test the GCM code."];
+  Node7 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="gcm_process",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$gcm__process_8c.html#a9de6ff96ed00a8296355d52b9a2e1ba0",tooltip="Process plaintext/ciphertext through GCM."];
+  Node10 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 [label="gcm_add_iv",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$gcm__add__iv_8c.html#a05c018a26305857461c773ce2e458fc5",tooltip="Add IV data to the GCM state."];
+  Node11 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}

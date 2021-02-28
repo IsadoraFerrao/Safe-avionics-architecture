@@ -1,0 +1,459 @@
+\hypertarget{md2_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/hashes/md2.c File Reference}
+\label{md2_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/hashes/md2.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/hashes/md2.c}}
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for md2.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{md2_8c_a215a0050a839f7f6f133c77ea4a23374}{md2\+\_\+update\+\_\+chksum}} (\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$md)
+\item 
+static void \mbox{\hyperlink{md2_8c_a5ab162d9809574a466bdc390e8b96473}{md2\+\_\+compress}} (\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$md)
+\item 
+int \mbox{\hyperlink{md2_8c_a6fe90cffa940e6c644f94b60ce2a0208}{md2\+\_\+init}} (\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$md)
+\begin{DoxyCompactList}\small\item\em Initialize the hash state. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{md2_8c_a3d02956023772aa634ebf79543a04edf}{md2\+\_\+process}} (\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$md, const unsigned char $\ast$in, unsigned long inlen)
+\begin{DoxyCompactList}\small\item\em Process a block of memory though the hash. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{md2_8c_a4bd9b171ae5fd817c88abd1050924e83}{md2\+\_\+done}} (\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$md, unsigned char $\ast$out)
+\begin{DoxyCompactList}\small\item\em Terminate the hash to get the digest. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{md2_8c_a19f63336fd915d311a395eec0426a46b}{md2\+\_\+test}} (void)
+\begin{DoxyCompactList}\small\item\em Self-\/test the hash. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const struct \mbox{\hyperlink{structltc__hash__descriptor}{ltc\+\_\+hash\+\_\+descriptor}} \mbox{\hyperlink{md2_8c_ae32433d72cdc0cb99d8c45998acf3efc}{md2\+\_\+desc}}
+\item 
+static const unsigned char \mbox{\hyperlink{md2_8c_a398bb0c829aa93b7fa94b535dd68e17d}{P\+I\+\_\+\+S\+U\+B\+ST}} \mbox{[}256\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{md2_8c_a5ab162d9809574a466bdc390e8b96473}\label{md2_8c_a5ab162d9809574a466bdc390e8b96473}} 
+\index{md2.c@{md2.c}!md2\_compress@{md2\_compress}}
+\index{md2\_compress@{md2\_compress}!md2.c@{md2.c}}
+\subsubsection{\texorpdfstring{md2\_compress()}{md2\_compress()}}
+{\footnotesize\ttfamily static void md2\+\_\+compress (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$}]{md }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 72 of file md2.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{73 \{}
+\DoxyCodeLine{74    \textcolor{keywordtype}{int} j, k;}
+\DoxyCodeLine{75    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} t;}
+\DoxyCodeLine{76 }
+\DoxyCodeLine{77    \textcolor{comment}{/* copy block */}}
+\DoxyCodeLine{78    \textcolor{keywordflow}{for} (j = 0; j < 16; j++) \{}
+\DoxyCodeLine{79        md->md2.X[16+j] = md->md2.buf[j];}
+\DoxyCodeLine{80        md->md2.X[32+j] = md->md2.X[j] \string^ md->md2.X[16+j];}
+\DoxyCodeLine{81    \}}
+\DoxyCodeLine{82 }
+\DoxyCodeLine{83    t = (\textcolor{keywordtype}{unsigned} char)0;}
+\DoxyCodeLine{84 }
+\DoxyCodeLine{85    \textcolor{comment}{/* do 18 rounds */}}
+\DoxyCodeLine{86    \textcolor{keywordflow}{for} (j = 0; j < 18; j++) \{}
+\DoxyCodeLine{87        \textcolor{keywordflow}{for} (k = 0; k < 48; k++) \{}
+\DoxyCodeLine{88            t = (md->md2.X[k] \string^= \mbox{\hyperlink{md2_8c_a398bb0c829aa93b7fa94b535dd68e17d}{PI\_SUBST}}[(int)(t \& 255)]);}
+\DoxyCodeLine{89        \}}
+\DoxyCodeLine{90        t = (t + (\textcolor{keywordtype}{unsigned} char)j) \& 255;}
+\DoxyCodeLine{91    \}}
+\DoxyCodeLine{92 \}}
+
+\end{DoxyCode}
+
+
+References P\+I\+\_\+\+S\+U\+B\+ST.
+
+
+
+Referenced by md2\+\_\+done(), and md2\+\_\+process().
+
+Here is the caller graph for this function\+:
+% FIG 1
+\mbox{\Hypertarget{md2_8c_a4bd9b171ae5fd817c88abd1050924e83}\label{md2_8c_a4bd9b171ae5fd817c88abd1050924e83}} 
+\index{md2.c@{md2.c}!md2\_done@{md2\_done}}
+\index{md2\_done@{md2\_done}!md2.c@{md2.c}}
+\subsubsection{\texorpdfstring{md2\_done()}{md2\_done()}}
+{\footnotesize\ttfamily int md2\+\_\+done (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$}]{md,  }\item[{unsigned char $\ast$}]{out }\end{DoxyParamCaption})}
+
+
+
+Terminate the hash to get the digest. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em md} & The hash state \\
+\hline
+{\em out} & \mbox{[}out\mbox{]} The destination of the hash (16 bytes) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 149 of file md2.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{150 \{}
+\DoxyCodeLine{151     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} i, k;}
+\DoxyCodeLine{152 }
+\DoxyCodeLine{153     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(md  != NULL);}
+\DoxyCodeLine{154     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(out != NULL);}
+\DoxyCodeLine{155 }
+\DoxyCodeLine{156     \textcolor{keywordflow}{if} (md->md2.curlen >= \textcolor{keyword}{sizeof}(md->md2.buf)) \{}
+\DoxyCodeLine{157        \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{158     \}}
+\DoxyCodeLine{159 }
+\DoxyCodeLine{160 }
+\DoxyCodeLine{161     \textcolor{comment}{/* pad the message */}}
+\DoxyCodeLine{162     k = 16 - md->md2.curlen;}
+\DoxyCodeLine{163     \textcolor{keywordflow}{for} (i = md->md2.curlen; i < 16; i++) \{}
+\DoxyCodeLine{164         md->md2.buf[i] = (\textcolor{keywordtype}{unsigned} char)k;}
+\DoxyCodeLine{165     \}}
+\DoxyCodeLine{166 }
+\DoxyCodeLine{167     \textcolor{comment}{/* hash and update */}}
+\DoxyCodeLine{168     \mbox{\hyperlink{md2_8c_a5ab162d9809574a466bdc390e8b96473}{md2\_compress}}(md);}
+\DoxyCodeLine{169     \mbox{\hyperlink{md2_8c_a215a0050a839f7f6f133c77ea4a23374}{md2\_update\_chksum}}(md);}
+\DoxyCodeLine{170 }
+\DoxyCodeLine{171     \textcolor{comment}{/* hash checksum */}}
+\DoxyCodeLine{172     \mbox{\hyperlink{tomcrypt__cfg_8h_a7691dd48d60d5fc6daf2fa7ec4c55e12}{XMEMCPY}}(md->md2.buf, md->md2.chksum, 16);}
+\DoxyCodeLine{173     \mbox{\hyperlink{md2_8c_a5ab162d9809574a466bdc390e8b96473}{md2\_compress}}(md);}
+\DoxyCodeLine{174 }
+\DoxyCodeLine{175     \textcolor{comment}{/* output is lower 16 bytes of X */}}
+\DoxyCodeLine{176     \mbox{\hyperlink{tomcrypt__cfg_8h_a7691dd48d60d5fc6daf2fa7ec4c55e12}{XMEMCPY}}(out, md->md2.X, 16);}
+\DoxyCodeLine{177 }
+\DoxyCodeLine{178 \textcolor{preprocessor}{\#ifdef LTC\_CLEAN\_STACK}}
+\DoxyCodeLine{179     \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(md, \textcolor{keyword}{sizeof}(\mbox{\hyperlink{unionHash__state}{hash\_state}}));}
+\DoxyCodeLine{180 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{181     \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{182 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+A\+RG, C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, md2\+\_\+compress(), md2\+\_\+update\+\_\+chksum(), X\+M\+E\+M\+C\+P\+Y(), and zeromem().
+
+
+
+Referenced by md2\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 2
+Here is the caller graph for this function\+:
+% FIG 3
+\mbox{\Hypertarget{md2_8c_a6fe90cffa940e6c644f94b60ce2a0208}\label{md2_8c_a6fe90cffa940e6c644f94b60ce2a0208}} 
+\index{md2.c@{md2.c}!md2\_init@{md2\_init}}
+\index{md2\_init@{md2\_init}!md2.c@{md2.c}}
+\subsubsection{\texorpdfstring{md2\_init()}{md2\_init()}}
+{\footnotesize\ttfamily int md2\+\_\+init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$}]{md }\end{DoxyParamCaption})}
+
+
+
+Initialize the hash state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em md} & The hash state you wish to initialize \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 99 of file md2.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{100 \{}
+\DoxyCodeLine{101    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(md != NULL);}
+\DoxyCodeLine{102 }
+\DoxyCodeLine{103    \textcolor{comment}{/* LTC\_MD2 uses a zero'ed state... */}}
+\DoxyCodeLine{104    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(md->md2.X, \textcolor{keyword}{sizeof}(md->md2.X));}
+\DoxyCodeLine{105    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(md->md2.chksum, \textcolor{keyword}{sizeof}(md->md2.chksum));}
+\DoxyCodeLine{106    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(md->md2.buf, \textcolor{keyword}{sizeof}(md->md2.buf));}
+\DoxyCodeLine{107    md->md2.curlen = 0;}
+\DoxyCodeLine{108    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{109 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, and zeromem().
+
+
+
+Referenced by md2\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 4
+Here is the caller graph for this function\+:
+% FIG 5
+\mbox{\Hypertarget{md2_8c_a3d02956023772aa634ebf79543a04edf}\label{md2_8c_a3d02956023772aa634ebf79543a04edf}} 
+\index{md2.c@{md2.c}!md2\_process@{md2\_process}}
+\index{md2\_process@{md2\_process}!md2.c@{md2.c}}
+\subsubsection{\texorpdfstring{md2\_process()}{md2\_process()}}
+{\footnotesize\ttfamily int md2\+\_\+process (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$}]{md,  }\item[{const unsigned char $\ast$}]{in,  }\item[{unsigned long}]{inlen }\end{DoxyParamCaption})}
+
+
+
+Process a block of memory though the hash. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em md} & The hash state \\
+\hline
+{\em in} & The data to hash \\
+\hline
+{\em inlen} & The length of the data (octets) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 118 of file md2.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{119 \{}
+\DoxyCodeLine{120     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} n;}
+\DoxyCodeLine{121     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(md != NULL);}
+\DoxyCodeLine{122     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(in != NULL);}
+\DoxyCodeLine{123     \textcolor{keywordflow}{if} (md-> md2 .curlen > \textcolor{keyword}{sizeof}(md-> md2 .buf)) \{}
+\DoxyCodeLine{124        \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{125     \}}
+\DoxyCodeLine{126     \textcolor{keywordflow}{while} (inlen > 0) \{}
+\DoxyCodeLine{127         n = \mbox{\hyperlink{tomcrypt__macros_8h_a74e75242132eaabbc1c512488a135926}{MIN}}(inlen, (16 - md->md2.curlen));}
+\DoxyCodeLine{128         \mbox{\hyperlink{tomcrypt__cfg_8h_a7691dd48d60d5fc6daf2fa7ec4c55e12}{XMEMCPY}}(md->md2.buf + md->md2.curlen, in, (\textcolor{keywordtype}{size\_t})n);}
+\DoxyCodeLine{129         md->md2.curlen += n;}
+\DoxyCodeLine{130         in             += n;}
+\DoxyCodeLine{131         inlen          -= n;}
+\DoxyCodeLine{132 }
+\DoxyCodeLine{133         \textcolor{comment}{/* is 16 bytes full? */}}
+\DoxyCodeLine{134         \textcolor{keywordflow}{if} (md->md2.curlen == 16) \{}
+\DoxyCodeLine{135             \mbox{\hyperlink{md2_8c_a5ab162d9809574a466bdc390e8b96473}{md2\_compress}}(md);}
+\DoxyCodeLine{136             \mbox{\hyperlink{md2_8c_a215a0050a839f7f6f133c77ea4a23374}{md2\_update\_chksum}}(md);}
+\DoxyCodeLine{137             md->md2.curlen = 0;}
+\DoxyCodeLine{138         \}}
+\DoxyCodeLine{139     \}}
+\DoxyCodeLine{140     \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{141 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+A\+RG, C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, md2\+\_\+compress(), md2\+\_\+update\+\_\+chksum(), M\+IN, and X\+M\+E\+M\+C\+P\+Y().
+
+
+
+Referenced by md2\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 6
+Here is the caller graph for this function\+:
+% FIG 7
+\mbox{\Hypertarget{md2_8c_a19f63336fd915d311a395eec0426a46b}\label{md2_8c_a19f63336fd915d311a395eec0426a46b}} 
+\index{md2.c@{md2.c}!md2\_test@{md2\_test}}
+\index{md2\_test@{md2\_test}!md2.c@{md2.c}}
+\subsubsection{\texorpdfstring{md2\_test()}{md2\_test()}}
+{\footnotesize\ttfamily int md2\+\_\+test (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Self-\/test the hash. 
+
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful, C\+R\+Y\+P\+T\+\_\+\+N\+OP if self-\/tests have been disabled 
+\end{DoxyReturn}
+
+
+Definition at line 188 of file md2.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{189 \{}
+\DoxyCodeLine{190 \textcolor{preprocessor}{ \#ifndef LTC\_TEST}}
+\DoxyCodeLine{191     \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cac43a7799c7fd5f515172da6cfc0f9cf5}{CRYPT\_NOP}};}
+\DoxyCodeLine{192 \textcolor{preprocessor}{ \#else}}
+\DoxyCodeLine{193    \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{194         \textcolor{keyword}{const} \textcolor{keywordtype}{char} *msg;}
+\DoxyCodeLine{195         \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} hash[16];}
+\DoxyCodeLine{196    \} tests[] = \{}
+\DoxyCodeLine{197       \{ \textcolor{stringliteral}{""},}
+\DoxyCodeLine{198         \{0x83,0x50,0xe5,0xa3,0xe2,0x4c,0x15,0x3d,}
+\DoxyCodeLine{199          0xf2,0x27,0x5c,0x9f,0x80,0x69,0x27,0x73}
+\DoxyCodeLine{200         \}}
+\DoxyCodeLine{201       \},}
+\DoxyCodeLine{202       \{ \textcolor{stringliteral}{"a"},}
+\DoxyCodeLine{203         \{0x32,0xec,0x01,0xec,0x4a,0x6d,0xac,0x72,}
+\DoxyCodeLine{204          0xc0,0xab,0x96,0xfb,0x34,0xc0,0xb5,0xd1}
+\DoxyCodeLine{205         \}}
+\DoxyCodeLine{206       \},}
+\DoxyCodeLine{207       \{ \textcolor{stringliteral}{"message digest"},}
+\DoxyCodeLine{208         \{0xab,0x4f,0x49,0x6b,0xfb,0x2a,0x53,0x0b,}
+\DoxyCodeLine{209          0x21,0x9f,0xf3,0x30,0x31,0xfe,0x06,0xb0}
+\DoxyCodeLine{210         \}}
+\DoxyCodeLine{211       \},}
+\DoxyCodeLine{212       \{ \textcolor{stringliteral}{"abcdefghijklmnopqrstuvwxyz"},}
+\DoxyCodeLine{213         \{0x4e,0x8d,0xdf,0xf3,0x65,0x02,0x92,0xab,}
+\DoxyCodeLine{214          0x5a,0x41,0x08,0xc3,0xaa,0x47,0x94,0x0b}
+\DoxyCodeLine{215         \}}
+\DoxyCodeLine{216       \},}
+\DoxyCodeLine{217       \{ \textcolor{stringliteral}{"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"},}
+\DoxyCodeLine{218         \{0xda,0x33,0xde,0xf2,0xa4,0x2d,0xf1,0x39,}
+\DoxyCodeLine{219          0x75,0x35,0x28,0x46,0xc3,0x03,0x38,0xcd}
+\DoxyCodeLine{220         \}}
+\DoxyCodeLine{221       \},}
+\DoxyCodeLine{222       \{ \textcolor{stringliteral}{"12345678901234567890123456789012345678901234567890123456789012345678901234567890"},}
+\DoxyCodeLine{223         \{0xd5,0x97,0x6f,0x79,0xd8,0x3d,0x3a,0x0d,}
+\DoxyCodeLine{224          0xc9,0x80,0x6c,0x3c,0x66,0xf3,0xef,0xd8}
+\DoxyCodeLine{225         \}}
+\DoxyCodeLine{226       \}}
+\DoxyCodeLine{227    \};}
+\DoxyCodeLine{228 }
+\DoxyCodeLine{229    \textcolor{keywordtype}{int} i;}
+\DoxyCodeLine{230    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} tmp[16];}
+\DoxyCodeLine{231    \mbox{\hyperlink{unionHash__state}{hash\_state}} md;}
+\DoxyCodeLine{232 }
+\DoxyCodeLine{233    \textcolor{keywordflow}{for} (i = 0; i < (int)(\textcolor{keyword}{sizeof}(tests) / \textcolor{keyword}{sizeof}(tests[0])); i++) \{}
+\DoxyCodeLine{234        \mbox{\hyperlink{md2_8c_a6fe90cffa940e6c644f94b60ce2a0208}{md2\_init}}(\&md);}
+\DoxyCodeLine{235        \mbox{\hyperlink{md2_8c_a3d02956023772aa634ebf79543a04edf}{md2\_process}}(\&md, (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}*)tests[i].msg, (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long})strlen(tests[i].msg));}
+\DoxyCodeLine{236        \mbox{\hyperlink{md2_8c_a4bd9b171ae5fd817c88abd1050924e83}{md2\_done}}(\&md, tmp);}
+\DoxyCodeLine{237        \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(tmp, \textcolor{keyword}{sizeof}(tmp), tests[i].hash, \textcolor{keyword}{sizeof}(tests[i].hash), \textcolor{stringliteral}{"MD2"}, i)) \{}
+\DoxyCodeLine{238           \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{239        \}}
+\DoxyCodeLine{240    \}}
+\DoxyCodeLine{241    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{242 \textcolor{preprocessor}{  \#endif}}
+\DoxyCodeLine{243 \}}
+
+\end{DoxyCode}
+
+
+References compare\+\_\+testvector(), C\+R\+Y\+P\+T\+\_\+\+F\+A\+I\+L\+\_\+\+T\+E\+S\+T\+V\+E\+C\+T\+OR, C\+R\+Y\+P\+T\+\_\+\+N\+OP, C\+R\+Y\+P\+T\+\_\+\+OK, md2\+\_\+done(), md2\+\_\+init(), and md2\+\_\+process().
+
+Here is the call graph for this function\+:
+% FIG 8
+\mbox{\Hypertarget{md2_8c_a215a0050a839f7f6f133c77ea4a23374}\label{md2_8c_a215a0050a839f7f6f133c77ea4a23374}} 
+\index{md2.c@{md2.c}!md2\_update\_chksum@{md2\_update\_chksum}}
+\index{md2\_update\_chksum@{md2\_update\_chksum}!md2.c@{md2.c}}
+\subsubsection{\texorpdfstring{md2\_update\_chksum()}{md2\_update\_chksum()}}
+{\footnotesize\ttfamily static void md2\+\_\+update\+\_\+chksum (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__hash_8h_af5d2e619794bf148fceb9332d3fcece6}{hash\+\_\+state}} $\ast$}]{md }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 58 of file md2.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{59 \{}
+\DoxyCodeLine{60    \textcolor{keywordtype}{int} j;}
+\DoxyCodeLine{61    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} L;}
+\DoxyCodeLine{62    L = md->md2.chksum[15];}
+\DoxyCodeLine{63    \textcolor{keywordflow}{for} (j = 0; j < 16; j++) \{}
+\DoxyCodeLine{64 }
+\DoxyCodeLine{65 \textcolor{comment}{/* caution, the RFC says its "C[j] = S[M[i*16+j] xor L]" but the reference source code [and test vectors] say}}
+\DoxyCodeLine{66 \textcolor{comment}{   otherwise.}}
+\DoxyCodeLine{67 \textcolor{comment}{*/}}
+\DoxyCodeLine{68        L = (md->md2.chksum[j] \string^= \mbox{\hyperlink{md2_8c_a398bb0c829aa93b7fa94b535dd68e17d}{PI\_SUBST}}[(int)(md->md2.buf[j] \string^ L)] \& 255);}
+\DoxyCodeLine{69    \}}
+\DoxyCodeLine{70 \}}
+
+\end{DoxyCode}
+
+
+References P\+I\+\_\+\+S\+U\+B\+ST.
+
+
+
+Referenced by md2\+\_\+done(), and md2\+\_\+process().
+
+Here is the caller graph for this function\+:
+% FIG 9
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{md2_8c_ae32433d72cdc0cb99d8c45998acf3efc}\label{md2_8c_ae32433d72cdc0cb99d8c45998acf3efc}} 
+\index{md2.c@{md2.c}!md2\_desc@{md2\_desc}}
+\index{md2\_desc@{md2\_desc}!md2.c@{md2.c}}
+\subsubsection{\texorpdfstring{md2\_desc}{md2\_desc}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structltc__hash__descriptor}{ltc\+\_\+hash\+\_\+descriptor}} md2\+\_\+desc}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    \textcolor{stringliteral}{"md2"},}
+\DoxyCodeLine{    7,}
+\DoxyCodeLine{    16,}
+\DoxyCodeLine{    16,}
+\DoxyCodeLine{}
+\DoxyCodeLine{    }
+\DoxyCodeLine{   \{ 1, 2, 840, 113549, 2, 2,  \},}
+\DoxyCodeLine{   6,}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \&\mbox{\hyperlink{md2_8c_a6fe90cffa940e6c644f94b60ce2a0208}{md2\_init}},}
+\DoxyCodeLine{    \&\mbox{\hyperlink{md2_8c_a3d02956023772aa634ebf79543a04edf}{md2\_process}},}
+\DoxyCodeLine{    \&\mbox{\hyperlink{md2_8c_a4bd9b171ae5fd817c88abd1050924e83}{md2\_done}},}
+\DoxyCodeLine{    \&\mbox{\hyperlink{md2_8c_a19f63336fd915d311a395eec0426a46b}{md2\_test}},}
+\DoxyCodeLine{    NULL}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+\begin{DoxyParams}{Parameters}
+{\em md2.\+c} & L\+T\+C\+\_\+\+M\+D2 (R\+FC 1319) hash function implementation by Tom St Denis \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 18 of file md2.\+c.
+
+
+
+Referenced by register\+\_\+all\+\_\+hashes(), and yarrow\+\_\+start().
+
+\mbox{\Hypertarget{md2_8c_a398bb0c829aa93b7fa94b535dd68e17d}\label{md2_8c_a398bb0c829aa93b7fa94b535dd68e17d}} 
+\index{md2.c@{md2.c}!PI\_SUBST@{PI\_SUBST}}
+\index{PI\_SUBST@{PI\_SUBST}!md2.c@{md2.c}}
+\subsubsection{\texorpdfstring{PI\_SUBST}{PI\_SUBST}}
+{\footnotesize\ttfamily const unsigned char P\+I\+\_\+\+S\+U\+B\+ST\mbox{[}256\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{  41, 46, 67, 201, 162, 216, 124, 1, 61, 54, 84, 161, 236, 240, 6,}
+\DoxyCodeLine{  19, 98, 167, 5, 243, 192, 199, 115, 140, 152, 147, 43, 217, 188,}
+\DoxyCodeLine{  76, 130, 202, 30, 155, 87, 60, 253, 212, 224, 22, 103, 66, 111, 24,}
+\DoxyCodeLine{  138, 23, 229, 18, 190, 78, 196, 214, 218, 158, 222, 73, 160, 251,}
+\DoxyCodeLine{  245, 142, 187, 47, 238, 122, 169, 104, 121, 145, 21, 178, 7, 63,}
+\DoxyCodeLine{  148, 194, 16, 137, 11, 34, 95, 33, 128, 127, 93, 154, 90, 144, 50,}
+\DoxyCodeLine{  39, 53, 62, 204, 231, 191, 247, 151, 3, 255, 25, 48, 179, 72, 165,}
+\DoxyCodeLine{  181, 209, 215, 94, 146, 42, 172, 86, 170, 198, 79, 184, 56, 210,}
+\DoxyCodeLine{  150, 164, 125, 182, 118, 252, 107, 226, 156, 116, 4, 241, 69, 157,}
+\DoxyCodeLine{  112, 89, 100, 113, 135, 32, 134, 91, 207, 101, 230, 45, 168, 2, 27,}
+\DoxyCodeLine{  96, 37, 173, 174, 176, 185, 246, 28, 70, 97, 105, 52, 64, 126, 15,}
+\DoxyCodeLine{  85, 71, 163, 35, 221, 81, 175, 58, 195, 92, 249, 206, 186, 197,}
+\DoxyCodeLine{  234, 38, 44, 83, 13, 110, 133, 40, 132, 9, 211, 223, 205, 244, 65,}
+\DoxyCodeLine{  129, 77, 82, 106, 220, 55, 200, 108, 193, 171, 250, 36, 225, 123,}
+\DoxyCodeLine{  8, 12, 189, 177, 74, 120, 136, 149, 139, 227, 99, 232, 109, 233,}
+\DoxyCodeLine{  203, 213, 254, 59, 0, 29, 57, 242, 239, 183, 14, 102, 88, 208, 228,}
+\DoxyCodeLine{  166, 119, 114, 248, 235, 117, 75, 10, 49, 68, 80, 180, 143, 237,}
+\DoxyCodeLine{  31, 26, 219, 153, 141, 51, 159, 17, 131, 20}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line 36 of file md2.\+c.
+
+
+
+Referenced by md2\+\_\+compress(), and md2\+\_\+update\+\_\+chksum().
+

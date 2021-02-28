@@ -1,0 +1,116 @@
+\hypertarget{der__decode__printable__string_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/pk/asn1/der/printable\+\_\+string/der\+\_\+decode\+\_\+printable\+\_\+string.c File Reference}
+\label{der__decode__printable__string_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/asn1/der/printable\_string/der\_decode\_printable\_string.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/asn1/der/printable\_string/der\_decode\_printable\_string.c}}
+
+
+A\+S\+N.\+1 D\+ER, encode a printable S\+T\+R\+I\+NG, Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for der\+\_\+decode\+\_\+printable\+\_\+string.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{der__decode__printable__string_8c_a0967e5db58c3ce6b0971b5c5097c0d9f}{der\+\_\+decode\+\_\+printable\+\_\+string}} (const unsigned char $\ast$in, unsigned long inlen, unsigned char $\ast$out, unsigned long $\ast$outlen)
+\begin{DoxyCompactList}\small\item\em Store a printable S\+T\+R\+I\+NG. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A\+S\+N.\+1 D\+ER, encode a printable S\+T\+R\+I\+NG, Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{der__decode__printable__string_8c_a0967e5db58c3ce6b0971b5c5097c0d9f}\label{der__decode__printable__string_8c_a0967e5db58c3ce6b0971b5c5097c0d9f}} 
+\index{der\_decode\_printable\_string.c@{der\_decode\_printable\_string.c}!der\_decode\_printable\_string@{der\_decode\_printable\_string}}
+\index{der\_decode\_printable\_string@{der\_decode\_printable\_string}!der\_decode\_printable\_string.c@{der\_decode\_printable\_string.c}}
+\subsubsection{\texorpdfstring{der\_decode\_printable\_string()}{der\_decode\_printable\_string()}}
+{\footnotesize\ttfamily int der\+\_\+decode\+\_\+printable\+\_\+string (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{in,  }\item[{unsigned long}]{inlen,  }\item[{unsigned char $\ast$}]{out,  }\item[{unsigned long $\ast$}]{outlen }\end{DoxyParamCaption})}
+
+
+
+Store a printable S\+T\+R\+I\+NG. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em in} & The D\+ER encoded printable S\+T\+R\+I\+NG \\
+\hline
+{\em inlen} & The size of the D\+ER printable S\+T\+R\+I\+NG \\
+\hline
+{\em out} & \mbox{[}out\mbox{]} The array of octets stored (one per char) \\
+\hline
+{\em outlen} & \mbox{[}in/out\mbox{]} The number of octets stored \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 27 of file der\+\_\+decode\+\_\+printable\+\_\+string.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{29 \{}
+\DoxyCodeLine{30    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} x, y, \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}};}
+\DoxyCodeLine{31    \textcolor{keywordtype}{int}           t, err;}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(in     != NULL);}
+\DoxyCodeLine{34    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(out    != NULL);}
+\DoxyCodeLine{35    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(outlen != NULL);}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37    \textcolor{comment}{/* must have header at least */}}
+\DoxyCodeLine{38    \textcolor{keywordflow}{if} (inlen < 2) \{}
+\DoxyCodeLine{39       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca980088f10ffe9009aec286038a9e79da}{CRYPT\_INVALID\_PACKET}};}
+\DoxyCodeLine{40    \}}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{42    \textcolor{comment}{/* check for 0x13 */}}
+\DoxyCodeLine{43    \textcolor{keywordflow}{if} ((in[0] \& 0x1F) != 0x13) \{}
+\DoxyCodeLine{44       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca980088f10ffe9009aec286038a9e79da}{CRYPT\_INVALID\_PACKET}};}
+\DoxyCodeLine{45    \}}
+\DoxyCodeLine{46    x = 1;}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48    \textcolor{comment}{/* get the length of the data */}}
+\DoxyCodeLine{49    y = inlen - x;}
+\DoxyCodeLine{50    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_af90423764098b8876368d0984d96053a}{der\_decode\_asn1\_length}}(in + x, \&y, \&\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}})) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{51       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{52    \}}
+\DoxyCodeLine{53    x += y;}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55    \textcolor{comment}{/* is it too long? */}}
+\DoxyCodeLine{56    \textcolor{keywordflow}{if} (\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}} > *outlen) \{}
+\DoxyCodeLine{57       *outlen = \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}};}
+\DoxyCodeLine{58       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caccd878f5599f3036ffe759dbe1a1ac16}{CRYPT\_BUFFER\_OVERFLOW}};}
+\DoxyCodeLine{59    \}}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{61    \textcolor{keywordflow}{if} (\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}} > (inlen - x)) \{}
+\DoxyCodeLine{62       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca980088f10ffe9009aec286038a9e79da}{CRYPT\_INVALID\_PACKET}};}
+\DoxyCodeLine{63    \}}
+\DoxyCodeLine{64 }
+\DoxyCodeLine{65    \textcolor{comment}{/* read the data */}}
+\DoxyCodeLine{66    \textcolor{keywordflow}{for} (y = 0; y < \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}; y++) \{}
+\DoxyCodeLine{67        t = \mbox{\hyperlink{der__length__printable__string_8c_a40a13d8a1afe59dda039bc8fc1140ef2}{der\_printable\_value\_decode}}(in[x++]);}
+\DoxyCodeLine{68        \textcolor{keywordflow}{if} (t == -1) \{}
+\DoxyCodeLine{69            \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{70        \}}
+\DoxyCodeLine{71        out[y] = t;}
+\DoxyCodeLine{72    \}}
+\DoxyCodeLine{73 }
+\DoxyCodeLine{74    *outlen = y;}
+\DoxyCodeLine{75 }
+\DoxyCodeLine{76    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{77 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+O\+V\+E\+R\+F\+L\+OW, C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+A\+RG, C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+P\+A\+C\+K\+ET, C\+R\+Y\+P\+T\+\_\+\+OK, der\+\_\+decode\+\_\+asn1\+\_\+length(), der\+\_\+printable\+\_\+value\+\_\+decode(), len, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+
+
+Referenced by der\+\_\+decode\+\_\+choice(), der\+\_\+decode\+\_\+custom\+\_\+type\+\_\+ex(), and der\+\_\+decode\+\_\+sequence\+\_\+flexi().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2

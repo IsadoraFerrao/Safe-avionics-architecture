@@ -1,0 +1,103 @@
+\hypertarget{sosemanuk__test_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/stream/sosemanuk/sosemanuk\+\_\+test.c File Reference}
+\label{sosemanuk__test_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/stream/sosemanuk/sosemanuk\_test.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/stream/sosemanuk/sosemanuk\_test.c}}
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for sosemanuk\+\_\+test.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{sosemanuk__test_8c_a56d20dc99a9bd776ac8f303c19e8c15b}{sosemanuk\+\_\+test}} (void)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{sosemanuk__test_8c_a56d20dc99a9bd776ac8f303c19e8c15b}\label{sosemanuk__test_8c_a56d20dc99a9bd776ac8f303c19e8c15b}} 
+\index{sosemanuk\_test.c@{sosemanuk\_test.c}!sosemanuk\_test@{sosemanuk\_test}}
+\index{sosemanuk\_test@{sosemanuk\_test}!sosemanuk\_test.c@{sosemanuk\_test.c}}
+\subsubsection{\texorpdfstring{sosemanuk\_test()}{sosemanuk\_test()}}
+{\footnotesize\ttfamily int sosemanuk\+\_\+test (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 13 of file sosemanuk\+\_\+test.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{14 \{}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#ifndef LTC\_TEST}}
+\DoxyCodeLine{16    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cac43a7799c7fd5f515172da6cfc0f9cf5}{CRYPT\_NOP}};}
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{18    sosemanuk\_state st;}
+\DoxyCodeLine{19    \textcolor{keywordtype}{int} err;}
+\DoxyCodeLine{20    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} out[1000];}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22    \{}
+\DoxyCodeLine{23        \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} k[]  = \{ 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f,}
+\DoxyCodeLine{24                               0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17, 0x18, 0x19, 0x1a, 0x1b, 0x1c, 0x1d, 0x1e, 0x1f \};}
+\DoxyCodeLine{25        \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} n[]  = \{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x4a, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 \};}
+\DoxyCodeLine{26        \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} ct[] = \{ 0x7e, 0xfe, 0x2e, 0x6f, 0x8f, 0x77, 0x15, 0x72, 0x6a, 0x88, 0x14, 0xa6, 0x56, 0x88, 0x29, 0x9a,}
+\DoxyCodeLine{27                               0x86, 0x32, 0x7f, 0x14, 0xd6, 0xb1, 0x94, 0x90, 0x25, 0xbc, 0x73, 0xfd, 0x02, 0x6c, 0x6a, 0xb8,}
+\DoxyCodeLine{28                               0xda, 0x8e, 0x7f, 0x61, 0x70, 0x81, 0xe3, 0xbb, 0x99, 0xaf, 0x19, 0x9f, 0x20, 0x45 \};}
+\DoxyCodeLine{29        \textcolor{keywordtype}{char} pt[]          = \textcolor{stringliteral}{"Kilroy was here, and there. ...and everywhere!"};    \textcolor{comment}{/* len = 46 bytes */}}
+\DoxyCodeLine{30        \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}};}
+\DoxyCodeLine{31        \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}} = strlen(pt);}
+\DoxyCodeLine{32        \textcolor{comment}{/* crypt piece by piece */}}
+\DoxyCodeLine{33        \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{sosemanuk_8c_ae244858ccf7bca175242f8c1b775a9f4}{sosemanuk\_setup}}(\&st, k, \textcolor{keyword}{sizeof}(k)))                                != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{34        \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{sosemanuk_8c_ac24c0c364f5334d8c8e387e900b468d1}{sosemanuk\_setiv}}(\&st, n, \textcolor{keyword}{sizeof}(n)))                                != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{35        \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{sosemanuk_8c_ae473e1b8845f3b37e79e6c099e54247c}{sosemanuk\_crypt}}(\&st, (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}*)pt,       5,       out))      != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{36        \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{sosemanuk_8c_ae473e1b8845f3b37e79e6c099e54247c}{sosemanuk\_crypt}}(\&st, (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}*)pt +  5, 25,       out +  5)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{37        \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{sosemanuk_8c_ae473e1b8845f3b37e79e6c099e54247c}{sosemanuk\_crypt}}(\&st, (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}*)pt + 30, 10,       out + 30)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{38        \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{sosemanuk_8c_ae473e1b8845f3b37e79e6c099e54247c}{sosemanuk\_crypt}}(\&st, (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}*)pt + 40, \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}} - 40, out + 40)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{39        \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(out, \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}, ct, \textcolor{keyword}{sizeof}(ct), \textcolor{stringliteral}{"SOSEMANUK-TV1"}, 1))                      \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41        \textcolor{comment}{/* crypt in one go - using sosemanuk\_ivctr64() */}}
+\DoxyCodeLine{42        \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{sosemanuk_8c_ae244858ccf7bca175242f8c1b775a9f4}{sosemanuk\_setup}}(\&st, k, \textcolor{keyword}{sizeof}(k)))                 != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{43        \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{sosemanuk_8c_ac24c0c364f5334d8c8e387e900b468d1}{sosemanuk\_setiv}}(\&st, n, \textcolor{keyword}{sizeof}(n)))                 != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{44        \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{sosemanuk_8c_ae473e1b8845f3b37e79e6c099e54247c}{sosemanuk\_crypt}}(\&st, (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}*)pt, \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}, out)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{45        \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(out, \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}, ct, \textcolor{keyword}{sizeof}(ct), \textcolor{stringliteral}{"SOSEMANUK-TV2"}, 1))       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{46 }
+\DoxyCodeLine{47        \textcolor{comment}{/* crypt in a single call */}}
+\DoxyCodeLine{48        \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{sosemanuk__memory_8c_af5bb4d327884d7b137ddf18366f8d47d}{sosemanuk\_memory}}(k, \textcolor{keyword}{sizeof}(k), n, \textcolor{keyword}{sizeof}(n),}
+\DoxyCodeLine{49                                        (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}*)pt, \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}, out)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{50        \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(out, \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}, ct, \textcolor{keyword}{sizeof}(ct), \textcolor{stringliteral}{"SOSEMANUK-TV3"}, 1))       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{51 }
+\DoxyCodeLine{52    \}}
+\DoxyCodeLine{53    \{}
+\DoxyCodeLine{54        \textcolor{comment}{/* keystream}}
+\DoxyCodeLine{55 \textcolor{comment}{        * http://www.ecrypt.eu.org/stream/svn/viewcvs.cgi/ecrypt/trunk/submissions/sosemanuk/unverified.test-vectors?rev=210\&view=auto}}
+\DoxyCodeLine{56 \textcolor{comment}{        * Set 6, vector 0}}
+\DoxyCodeLine{57 \textcolor{comment}{        *                key = 0053A6F94C9FF24598EB3E91E4378ADD}}
+\DoxyCodeLine{58 \textcolor{comment}{        *                      3083D6297CCF2275C81B6EC11467BA0D}}
+\DoxyCodeLine{59 \textcolor{comment}{        *                 IV = 0D74DB42A91077DE45AC137AE148AF16}}
+\DoxyCodeLine{60 \textcolor{comment}{        *      stream[0..63] = 55EB8D174C2E0351E5A53C90E84740EB}}
+\DoxyCodeLine{61 \textcolor{comment}{        *                      0F5A24AAFEC8E0C9F9D2CE48B2ADB0A3}}
+\DoxyCodeLine{62 \textcolor{comment}{        *                      4D2E8C4E016102607368FFA43A0F9155}}
+\DoxyCodeLine{63 \textcolor{comment}{        *                      0706E3548AD9E5EA15A53EB6F0EDE9DC}}
+\DoxyCodeLine{64 \textcolor{comment}{        *}}
+\DoxyCodeLine{65 \textcolor{comment}{        */}}
+\DoxyCodeLine{66 }
+\DoxyCodeLine{67        \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} k3[]  = \{ 0x00, 0x53, 0xA6, 0xF9, 0x4C, 0x9F, 0xF2, 0x45, 0x98, 0xEB, 0x3E, 0x91, 0xE4, 0x37, 0x8A, 0xDD,}
+\DoxyCodeLine{68                                0x30, 0x83, 0xD6, 0x29, 0x7C, 0xCF, 0x22, 0x75, 0xC8, 0x1B, 0x6E, 0xC1, 0x14, 0x67, 0xBA, 0x0D \};}
+\DoxyCodeLine{69        \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} n3[]  = \{ 0x0D, 0x74, 0xDB, 0x42, 0xA9, 0x10, 0x77, 0xDE, 0x45, 0xAC, 0x13, 0x7A, 0xE1, 0x48, 0xAF, 0x16 \};}
+\DoxyCodeLine{70        \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} ct3[] = \{ 0x55, 0xEB, 0x8D, 0x17, 0x4C, 0x2E, 0x03, 0x51, 0xE5, 0xA5, 0x3C, 0x90, 0xE8, 0x47, 0x40, 0xEB,}
+\DoxyCodeLine{71                                0x0F, 0x5A, 0x24, 0xAA, 0xFE, 0xC8, 0xE0, 0xC9, 0xF9, 0xD2, 0xCE, 0x48, 0xB2, 0xAD, 0xB0, 0xA3,}
+\DoxyCodeLine{72                                0x4D, 0x2E, 0x8C, 0x4E, 0x01, 0x61, 0x02, 0x60, 0x73, 0x68, 0xFF, 0xA4, 0x3A, 0x0F, 0x91, 0x55,}
+\DoxyCodeLine{73                                0x07, 0x06, 0xE3, 0x54, 0x8A, 0xD9, 0xE5, 0xEA, 0x15, 0xA5, 0x3E, 0xB6, 0xF0, 0xED, 0xE9, 0xDC \};}
+\DoxyCodeLine{74        \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{sosemanuk_8c_ae244858ccf7bca175242f8c1b775a9f4}{sosemanuk\_setup}}(\&st, k3, \textcolor{keyword}{sizeof}(k3)))      != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})     \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{75        \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{sosemanuk_8c_ac24c0c364f5334d8c8e387e900b468d1}{sosemanuk\_setiv}}(\&st, n3, \textcolor{keyword}{sizeof}(n3)))      != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})     \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{76        \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{sosemanuk_8c_ac9cf23b2cb5a1585248c91498f3dd026}{sosemanuk\_keystream}}(\&st, out, 64))         != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})     \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{77        \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{sosemanuk_8c_a7ee39bd7ec8f061e89d6fa7c34058200}{sosemanuk\_done}}(\&st))                       != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})     \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{78        \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(out, 64, ct3, \textcolor{keyword}{sizeof}(ct3), \textcolor{stringliteral}{"SOSEMANUK-TV4"}, 1)) \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{79    \}}
+\DoxyCodeLine{80 }
+\DoxyCodeLine{81    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{82 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{83 \}}
+
+\end{DoxyCode}
+
+
+References compare\+\_\+testvector(), C\+R\+Y\+P\+T\+\_\+\+F\+A\+I\+L\+\_\+\+T\+E\+S\+T\+V\+E\+C\+T\+OR, C\+R\+Y\+P\+T\+\_\+\+N\+OP, C\+R\+Y\+P\+T\+\_\+\+OK, len, sosemanuk\+\_\+crypt(), sosemanuk\+\_\+done(), sosemanuk\+\_\+keystream(), sosemanuk\+\_\+memory(), sosemanuk\+\_\+setiv(), and sosemanuk\+\_\+setup().
+
+Here is the call graph for this function\+:
+% FIG 1

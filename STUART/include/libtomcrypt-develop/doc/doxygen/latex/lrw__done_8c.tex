@@ -1,0 +1,73 @@
+\hypertarget{lrw__done_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/modes/lrw/lrw\+\_\+done.c File Reference}
+\label{lrw__done_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/modes/lrw/lrw\_done.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/modes/lrw/lrw\_done.c}}
+
+
+L\+R\+W\+\_\+\+M\+O\+DE implementation, Free resources, Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for lrw\+\_\+done.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{lrw__done_8c_aab448c0de2b0a300f318e64077f10a00}{lrw\+\_\+done}} (symmetric\+\_\+\+L\+RW $\ast$lrw)
+\begin{DoxyCompactList}\small\item\em Terminate a L\+RW state. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+L\+R\+W\+\_\+\+M\+O\+DE implementation, Free resources, Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{lrw__done_8c_aab448c0de2b0a300f318e64077f10a00}\label{lrw__done_8c_aab448c0de2b0a300f318e64077f10a00}} 
+\index{lrw\_done.c@{lrw\_done.c}!lrw\_done@{lrw\_done}}
+\index{lrw\_done@{lrw\_done}!lrw\_done.c@{lrw\_done.c}}
+\subsubsection{\texorpdfstring{lrw\_done()}{lrw\_done()}}
+{\footnotesize\ttfamily int lrw\+\_\+done (\begin{DoxyParamCaption}\item[{symmetric\+\_\+\+L\+RW $\ast$}]{lrw }\end{DoxyParamCaption})}
+
+
+
+Terminate a L\+RW state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em lrw} & The state to terminate \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 23 of file lrw\+\_\+done.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{24 \{}
+\DoxyCodeLine{25    \textcolor{keywordtype}{int} err;}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(lrw != NULL);}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_ac30eb68934c4ca07205344dc9d159221}{cipher\_is\_valid}}(lrw->cipher)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{30       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{31    \}}
+\DoxyCodeLine{32    \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[lrw->cipher].\mbox{\hyperlink{structltc__cipher__descriptor_a0ad1c101005c70a69e40fded0e606191}{done}}(\&lrw->key);}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{35 \}}
+
+\end{DoxyCode}
+
+
+References cipher\+\_\+descriptor, cipher\+\_\+is\+\_\+valid(), C\+R\+Y\+P\+T\+\_\+\+OK, ltc\+\_\+cipher\+\_\+descriptor\+::done, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+
+
+Referenced by lrw\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2

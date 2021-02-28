@@ -1,0 +1,208 @@
+\hypertarget{crc32_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/misc/crc32.c File Reference}
+\label{crc32_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/misc/crc32.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/misc/crc32.c}}
+
+
+C\+R\+C-\/32 checksum algorithm Written and placed in the public domain by Wei Dai Adapted for libtomcrypt by Steffen Jaeckel.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for crc32.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{crc32_8c_abea909f225fd782316c90e0497b0ea23}{crc32\+\_\+init}} (crc32\+\_\+state $\ast$ctx)
+\item 
+void \mbox{\hyperlink{crc32_8c_a7c5fba8fff6dfb25a4d4c992b50a6bca}{crc32\+\_\+update}} (crc32\+\_\+state $\ast$ctx, const unsigned char $\ast$input, unsigned long length)
+\item 
+void \mbox{\hyperlink{crc32_8c_a30f82c05a121042b7f98fa0c34b0b387}{crc32\+\_\+finish}} (const crc32\+\_\+state $\ast$ctx, void $\ast$hash, unsigned long size)
+\item 
+int \mbox{\hyperlink{crc32_8c_ae6fec40543b4430049a2fa9d9ff2f3ef}{crc32\+\_\+test}} (void)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} \mbox{\hyperlink{crc32_8c_a078ccee21dbec22647e6912393c00366}{\+\_\+\+C\+R\+C32\+\_\+\+N\+E\+GL}} = 0xffffffff\+UL
+\item 
+static const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} \mbox{\hyperlink{crc32_8c_ae47f6b96c16ba6237a2fcf562238f1ac}{crc32\+\_\+m\+\_\+tab}} \mbox{[}$\,$\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+C\+R\+C-\/32 checksum algorithm Written and placed in the public domain by Wei Dai Adapted for libtomcrypt by Steffen Jaeckel. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{crc32_8c_a30f82c05a121042b7f98fa0c34b0b387}\label{crc32_8c_a30f82c05a121042b7f98fa0c34b0b387}} 
+\index{crc32.c@{crc32.c}!crc32\_finish@{crc32\_finish}}
+\index{crc32\_finish@{crc32\_finish}!crc32.c@{crc32.c}}
+\subsubsection{\texorpdfstring{crc32\_finish()}{crc32\_finish()}}
+{\footnotesize\ttfamily void crc32\+\_\+finish (\begin{DoxyParamCaption}\item[{const crc32\+\_\+state $\ast$}]{ctx,  }\item[{void $\ast$}]{hash,  }\item[{unsigned long}]{size }\end{DoxyParamCaption})}
+
+
+
+Definition at line 163 of file crc32.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{164 \{}
+\DoxyCodeLine{165    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} i;}
+\DoxyCodeLine{166    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}* h;}
+\DoxyCodeLine{167    \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} crc;}
+\DoxyCodeLine{168    \mbox{\hyperlink{tomcrypt__argchk_8h_a67a6e5d66d0c7d80ddf5c583054608bd}{LTC\_ARGCHKVD}}(ctx != NULL);}
+\DoxyCodeLine{169    \mbox{\hyperlink{tomcrypt__argchk_8h_a67a6e5d66d0c7d80ddf5c583054608bd}{LTC\_ARGCHKVD}}(hash != NULL);}
+\DoxyCodeLine{170 }
+\DoxyCodeLine{171    h = hash;}
+\DoxyCodeLine{172    crc = ctx->crc;}
+\DoxyCodeLine{173    crc \string^= \mbox{\hyperlink{crc32_8c_a078ccee21dbec22647e6912393c00366}{\_CRC32\_NEGL}};}
+\DoxyCodeLine{174 }
+\DoxyCodeLine{175    \textcolor{keywordflow}{if} (size > 4) size = 4;}
+\DoxyCodeLine{176    \textcolor{keywordflow}{for} (i = 0; i < size; i++) \{}
+\DoxyCodeLine{177       h[i] = ((\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}*)\&(crc))[size-i-1];}
+\DoxyCodeLine{178    \}}
+\DoxyCodeLine{179 \}}
+
+\end{DoxyCode}
+
+
+References \+\_\+\+C\+R\+C32\+\_\+\+N\+E\+GL, and L\+T\+C\+\_\+\+A\+R\+G\+C\+H\+K\+VD.
+
+
+
+Referenced by crc32\+\_\+test().
+
+Here is the caller graph for this function\+:
+% FIG 1
+\mbox{\Hypertarget{crc32_8c_abea909f225fd782316c90e0497b0ea23}\label{crc32_8c_abea909f225fd782316c90e0497b0ea23}} 
+\index{crc32.c@{crc32.c}!crc32\_init@{crc32\_init}}
+\index{crc32\_init@{crc32\_init}!crc32.c@{crc32.c}}
+\subsubsection{\texorpdfstring{crc32\_init()}{crc32\_init()}}
+{\footnotesize\ttfamily void crc32\+\_\+init (\begin{DoxyParamCaption}\item[{crc32\+\_\+state $\ast$}]{ctx }\end{DoxyParamCaption})}
+
+
+
+Definition at line 143 of file crc32.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{144 \{}
+\DoxyCodeLine{145    \mbox{\hyperlink{tomcrypt__argchk_8h_a67a6e5d66d0c7d80ddf5c583054608bd}{LTC\_ARGCHKVD}}(ctx != NULL);}
+\DoxyCodeLine{146    ctx->crc = \mbox{\hyperlink{crc32_8c_a078ccee21dbec22647e6912393c00366}{\_CRC32\_NEGL}};}
+\DoxyCodeLine{147 \}}
+
+\end{DoxyCode}
+
+
+References \+\_\+\+C\+R\+C32\+\_\+\+N\+E\+GL, and L\+T\+C\+\_\+\+A\+R\+G\+C\+H\+K\+VD.
+
+
+
+Referenced by crc32\+\_\+test().
+
+Here is the caller graph for this function\+:
+% FIG 2
+\mbox{\Hypertarget{crc32_8c_ae6fec40543b4430049a2fa9d9ff2f3ef}\label{crc32_8c_ae6fec40543b4430049a2fa9d9ff2f3ef}} 
+\index{crc32.c@{crc32.c}!crc32\_test@{crc32\_test}}
+\index{crc32\_test@{crc32\_test}!crc32.c@{crc32.c}}
+\subsubsection{\texorpdfstring{crc32\_test()}{crc32\_test()}}
+{\footnotesize\ttfamily int crc32\+\_\+test (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 181 of file crc32.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{182 \{}
+\DoxyCodeLine{183 \textcolor{preprocessor}{\#ifndef LTC\_TEST}}
+\DoxyCodeLine{184    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cac43a7799c7fd5f515172da6cfc0f9cf5}{CRYPT\_NOP}};}
+\DoxyCodeLine{185 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{186    \textcolor{keyword}{const} \textcolor{keywordtype}{void}* in = \textcolor{stringliteral}{"libtomcrypt"};}
+\DoxyCodeLine{187    \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} crc32[] = \{ 0xb3, 0x73, 0x76, 0xef \};}
+\DoxyCodeLine{188    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} out[4];}
+\DoxyCodeLine{189    crc32\_state ctx;}
+\DoxyCodeLine{190    \mbox{\hyperlink{crc32_8c_abea909f225fd782316c90e0497b0ea23}{crc32\_init}}(\&ctx);}
+\DoxyCodeLine{191    \mbox{\hyperlink{crc32_8c_a7c5fba8fff6dfb25a4d4c992b50a6bca}{crc32\_update}}(\&ctx, in, strlen(in));}
+\DoxyCodeLine{192    \mbox{\hyperlink{crc32_8c_a30f82c05a121042b7f98fa0c34b0b387}{crc32\_finish}}(\&ctx, out, 4);}
+\DoxyCodeLine{193    \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(crc32, 4, out, 4, \textcolor{stringliteral}{"CRC32"}, 0)) \{}
+\DoxyCodeLine{194       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{195    \}}
+\DoxyCodeLine{196    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{197 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{198 \}}
+
+\end{DoxyCode}
+
+
+References compare\+\_\+testvector(), crc32\+\_\+finish(), crc32\+\_\+init(), crc32\+\_\+update(), C\+R\+Y\+P\+T\+\_\+\+F\+A\+I\+L\+\_\+\+T\+E\+S\+T\+V\+E\+C\+T\+OR, C\+R\+Y\+P\+T\+\_\+\+N\+OP, and C\+R\+Y\+P\+T\+\_\+\+OK.
+
+Here is the call graph for this function\+:
+% FIG 3
+\mbox{\Hypertarget{crc32_8c_a7c5fba8fff6dfb25a4d4c992b50a6bca}\label{crc32_8c_a7c5fba8fff6dfb25a4d4c992b50a6bca}} 
+\index{crc32.c@{crc32.c}!crc32\_update@{crc32\_update}}
+\index{crc32\_update@{crc32\_update}!crc32.c@{crc32.c}}
+\subsubsection{\texorpdfstring{crc32\_update()}{crc32\_update()}}
+{\footnotesize\ttfamily void crc32\+\_\+update (\begin{DoxyParamCaption}\item[{crc32\+\_\+state $\ast$}]{ctx,  }\item[{const unsigned char $\ast$}]{input,  }\item[{unsigned long}]{length }\end{DoxyParamCaption})}
+
+
+
+Definition at line 149 of file crc32.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{150 \{}
+\DoxyCodeLine{151    \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} crc;}
+\DoxyCodeLine{152    \mbox{\hyperlink{tomcrypt__argchk_8h_a67a6e5d66d0c7d80ddf5c583054608bd}{LTC\_ARGCHKVD}}(ctx != NULL);}
+\DoxyCodeLine{153    \mbox{\hyperlink{tomcrypt__argchk_8h_a67a6e5d66d0c7d80ddf5c583054608bd}{LTC\_ARGCHKVD}}(input != NULL);}
+\DoxyCodeLine{154    crc = ctx->crc;}
+\DoxyCodeLine{155 }
+\DoxyCodeLine{156    \textcolor{keywordflow}{while} (length--) \{}
+\DoxyCodeLine{157       crc = \mbox{\hyperlink{crc32_8c_ae47f6b96c16ba6237a2fcf562238f1ac}{crc32\_m\_tab}}[CRC32\_INDEX(crc) \string^ *input++] \string^ CRC32\_SHIFTED(crc);}
+\DoxyCodeLine{158    \}}
+\DoxyCodeLine{159 }
+\DoxyCodeLine{160    ctx->crc = crc;}
+\DoxyCodeLine{161 \}}
+
+\end{DoxyCode}
+
+
+References crc32\+\_\+m\+\_\+tab, and L\+T\+C\+\_\+\+A\+R\+G\+C\+H\+K\+VD.
+
+
+
+Referenced by crc32\+\_\+test().
+
+Here is the caller graph for this function\+:
+% FIG 4
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{crc32_8c_a078ccee21dbec22647e6912393c00366}\label{crc32_8c_a078ccee21dbec22647e6912393c00366}} 
+\index{crc32.c@{crc32.c}!\_CRC32\_NEGL@{\_CRC32\_NEGL}}
+\index{\_CRC32\_NEGL@{\_CRC32\_NEGL}!crc32.c@{crc32.c}}
+\subsubsection{\texorpdfstring{\_CRC32\_NEGL}{\_CRC32\_NEGL}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} \+\_\+\+C\+R\+C32\+\_\+\+N\+E\+GL = 0xffffffff\+UL\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 19 of file crc32.\+c.
+
+
+
+Referenced by crc32\+\_\+finish(), and crc32\+\_\+init().
+
+\mbox{\Hypertarget{crc32_8c_ae47f6b96c16ba6237a2fcf562238f1ac}\label{crc32_8c_ae47f6b96c16ba6237a2fcf562238f1ac}} 
+\index{crc32.c@{crc32.c}!crc32\_m\_tab@{crc32\_m\_tab}}
+\index{crc32\_m\_tab@{crc32\_m\_tab}!crc32.c@{crc32.c}}
+\subsubsection{\texorpdfstring{crc32\_m\_tab}{crc32\_m\_tab}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} crc32\+\_\+m\+\_\+tab\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 32 of file crc32.\+c.
+
+
+
+Referenced by crc32\+\_\+update().
+

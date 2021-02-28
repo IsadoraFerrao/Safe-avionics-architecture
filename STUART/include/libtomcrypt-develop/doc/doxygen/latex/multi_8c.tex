@@ -1,0 +1,124 @@
+\hypertarget{multi_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/math/multi.c File Reference}
+\label{multi_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/math/multi.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/math/multi.c}}
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdarg.\+h$>$}\newline
+Include dependency graph for multi.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{multi_8c_a327161b10428b234d74713b8a08acb2a}{ltc\+\_\+init\+\_\+multi}} (void $\ast$$\ast$a,...)
+\item 
+void \mbox{\hyperlink{multi_8c_abcb92ed327d5fcf9bf9bcff2a6a3107a}{ltc\+\_\+deinit\+\_\+multi}} (void $\ast$a,...)
+\item 
+void \mbox{\hyperlink{multi_8c_a53eb69feb3f6ec63778a845a07771762}{ltc\+\_\+cleanup\+\_\+multi}} (void $\ast$$\ast$a,...)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{multi_8c_a53eb69feb3f6ec63778a845a07771762}\label{multi_8c_a53eb69feb3f6ec63778a845a07771762}} 
+\index{multi.c@{multi.c}!ltc\_cleanup\_multi@{ltc\_cleanup\_multi}}
+\index{ltc\_cleanup\_multi@{ltc\_cleanup\_multi}!multi.c@{multi.c}}
+\subsubsection{\texorpdfstring{ltc\_cleanup\_multi()}{ltc\_cleanup\_multi()}}
+{\footnotesize\ttfamily void ltc\+\_\+cleanup\+\_\+multi (\begin{DoxyParamCaption}\item[{void $\ast$$\ast$}]{a,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+
+
+Definition at line 56 of file multi.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{57 \{}
+\DoxyCodeLine{58    \textcolor{keywordtype}{void} **cur = a;}
+\DoxyCodeLine{59    va\_list args;}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{61    va\_start(args, a);}
+\DoxyCodeLine{62    \textcolor{keywordflow}{while} (cur != NULL) \{}
+\DoxyCodeLine{63       \textcolor{keywordflow}{if} (*cur != NULL) \{}
+\DoxyCodeLine{64          \mbox{\hyperlink{tomcrypt__private_8h_ab05b6b59fa182b81f5f990d5621229f6}{mp\_clear}}(*cur);}
+\DoxyCodeLine{65          *cur = NULL;}
+\DoxyCodeLine{66       \}}
+\DoxyCodeLine{67       cur = va\_arg(args, \textcolor{keywordtype}{void}**);}
+\DoxyCodeLine{68    \}}
+\DoxyCodeLine{69    va\_end(args);}
+\DoxyCodeLine{70 \}}
+
+\end{DoxyCode}
+
+
+References mp\+\_\+clear.
+
+\mbox{\Hypertarget{multi_8c_abcb92ed327d5fcf9bf9bcff2a6a3107a}\label{multi_8c_abcb92ed327d5fcf9bf9bcff2a6a3107a}} 
+\index{multi.c@{multi.c}!ltc\_deinit\_multi@{ltc\_deinit\_multi}}
+\index{ltc\_deinit\_multi@{ltc\_deinit\_multi}!multi.c@{multi.c}}
+\subsubsection{\texorpdfstring{ltc\_deinit\_multi()}{ltc\_deinit\_multi()}}
+{\footnotesize\ttfamily void ltc\+\_\+deinit\+\_\+multi (\begin{DoxyParamCaption}\item[{void $\ast$}]{a,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+
+
+Definition at line 43 of file multi.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{44 \{}
+\DoxyCodeLine{45    \textcolor{keywordtype}{void}     *cur = a;}
+\DoxyCodeLine{46    va\_list   args;}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48    va\_start(args, a);}
+\DoxyCodeLine{49    \textcolor{keywordflow}{while} (cur != NULL) \{}
+\DoxyCodeLine{50        \mbox{\hyperlink{tomcrypt__private_8h_ab05b6b59fa182b81f5f990d5621229f6}{mp\_clear}}(cur);}
+\DoxyCodeLine{51        cur = va\_arg(args, \textcolor{keywordtype}{void} *);}
+\DoxyCodeLine{52    \}}
+\DoxyCodeLine{53    va\_end(args);}
+\DoxyCodeLine{54 \}}
+
+\end{DoxyCode}
+
+
+References mp\+\_\+clear.
+
+\mbox{\Hypertarget{multi_8c_a327161b10428b234d74713b8a08acb2a}\label{multi_8c_a327161b10428b234d74713b8a08acb2a}} 
+\index{multi.c@{multi.c}!ltc\_init\_multi@{ltc\_init\_multi}}
+\index{ltc\_init\_multi@{ltc\_init\_multi}!multi.c@{multi.c}}
+\subsubsection{\texorpdfstring{ltc\_init\_multi()}{ltc\_init\_multi()}}
+{\footnotesize\ttfamily int ltc\+\_\+init\+\_\+multi (\begin{DoxyParamCaption}\item[{void $\ast$$\ast$}]{a,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+
+
+Definition at line 14 of file multi.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{15 \{}
+\DoxyCodeLine{16    \textcolor{keywordtype}{void}    **cur = a;}
+\DoxyCodeLine{17    \textcolor{keywordtype}{int}       np  = 0;}
+\DoxyCodeLine{18    va\_list   args;}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{20    va\_start(args, a);}
+\DoxyCodeLine{21    \textcolor{keywordflow}{while} (cur != NULL) \{}
+\DoxyCodeLine{22        \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__private_8h_aff03c4f22c68d651747055048c509cf3}{mp\_init}}(cur) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{23           \textcolor{comment}{/* failed */}}
+\DoxyCodeLine{24           va\_list clean\_list;}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26           va\_start(clean\_list, a);}
+\DoxyCodeLine{27           cur = a;}
+\DoxyCodeLine{28           \textcolor{keywordflow}{while} (np--) \{}
+\DoxyCodeLine{29               \mbox{\hyperlink{tomcrypt__private_8h_ab05b6b59fa182b81f5f990d5621229f6}{mp\_clear}}(*cur);}
+\DoxyCodeLine{30               cur = va\_arg(clean\_list, \textcolor{keywordtype}{void}**);}
+\DoxyCodeLine{31           \}}
+\DoxyCodeLine{32           va\_end(clean\_list);}
+\DoxyCodeLine{33           va\_end(args);}
+\DoxyCodeLine{34           \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca0ce0d27adc7ea10b74b7ea904b8bfa82}{CRYPT\_MEM}};}
+\DoxyCodeLine{35        \}}
+\DoxyCodeLine{36        ++np;}
+\DoxyCodeLine{37        cur = va\_arg(args, \textcolor{keywordtype}{void}**);}
+\DoxyCodeLine{38    \}}
+\DoxyCodeLine{39    va\_end(args);}
+\DoxyCodeLine{40    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{41 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+M\+EM, C\+R\+Y\+P\+T\+\_\+\+OK, mp\+\_\+clear, and mp\+\_\+init.
+

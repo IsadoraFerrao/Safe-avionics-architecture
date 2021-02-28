@@ -1,0 +1,86 @@
+\hypertarget{xts__init_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/modes/xts/xts\+\_\+init.c File Reference}
+\label{xts__init_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/modes/xts/xts\_init.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/modes/xts/xts\_init.c}}
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for xts\+\_\+init.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{xts__init_8c_a3ada94de8100acc3921ad9b1855647bb}{xts\+\_\+start}} (int cipher, const unsigned char $\ast$key1, const unsigned char $\ast$key2, unsigned long keylen, int num\+\_\+rounds, symmetric\+\_\+xts $\ast$xts)
+\begin{DoxyCompactList}\small\item\em Source donated by Elliptic Semiconductor Inc (www.\+ellipticsemi.\+com) to the Lib\+Tom Projects. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{xts__init_8c_a3ada94de8100acc3921ad9b1855647bb}\label{xts__init_8c_a3ada94de8100acc3921ad9b1855647bb}} 
+\index{xts\_init.c@{xts\_init.c}!xts\_start@{xts\_start}}
+\index{xts\_start@{xts\_start}!xts\_init.c@{xts\_init.c}}
+\subsubsection{\texorpdfstring{xts\_start()}{xts\_start()}}
+{\footnotesize\ttfamily int xts\+\_\+start (\begin{DoxyParamCaption}\item[{int}]{cipher,  }\item[{const unsigned char $\ast$}]{key1,  }\item[{const unsigned char $\ast$}]{key2,  }\item[{unsigned long}]{keylen,  }\item[{int}]{num\+\_\+rounds,  }\item[{symmetric\+\_\+xts $\ast$}]{xts }\end{DoxyParamCaption})}
+
+
+
+Source donated by Elliptic Semiconductor Inc (www.\+ellipticsemi.\+com) to the Lib\+Tom Projects. 
+
+Start X\+TS mode 
+\begin{DoxyParams}{Parameters}
+{\em cipher} & The index of the cipher to use \\
+\hline
+{\em key1} & The encrypt key \\
+\hline
+{\em key2} & The tweak encrypt key \\
+\hline
+{\em keylen} & The length of the keys (each) in octets \\
+\hline
+{\em num\+\_\+rounds} & The number of rounds for the cipher (0 == default) \\
+\hline
+{\em xts} & \mbox{[}out\mbox{]} X\+TS structure Returns C\+R\+Y\+P\+T\+\_\+\+OK upon success. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 26 of file xts\+\_\+init.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{28 \{}
+\DoxyCodeLine{29    \textcolor{keywordtype}{int} err;}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31    \textcolor{comment}{/* check inputs */}}
+\DoxyCodeLine{32    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(key1 != NULL);}
+\DoxyCodeLine{33    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(key2 != NULL);}
+\DoxyCodeLine{34    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(xts != NULL);}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36    \textcolor{comment}{/* check if valid */}}
+\DoxyCodeLine{37    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_ac30eb68934c4ca07205344dc9d159221}{cipher\_is\_valid}}(cipher)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{38       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{39    \}}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41    \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[cipher].block\_length != 16) \{}
+\DoxyCodeLine{42       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{43    \}}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45    \textcolor{comment}{/* schedule the two ciphers */}}
+\DoxyCodeLine{46    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[cipher].\mbox{\hyperlink{multi2_8c_ad0625943f7d847668b869ed827c51d47}{setup}}(key1, keylen, num\_rounds, \&xts->key1)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{47       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{48    \}}
+\DoxyCodeLine{49    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[cipher].\mbox{\hyperlink{multi2_8c_ad0625943f7d847668b869ed827c51d47}{setup}}(key2, keylen, num\_rounds, \&xts->key2)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{50       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{51    \}}
+\DoxyCodeLine{52    xts->cipher = cipher;}
+\DoxyCodeLine{53 }
+\DoxyCodeLine{54    \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{55 \}}
+
+\end{DoxyCode}
+
+
+References cipher\+\_\+descriptor, cipher\+\_\+is\+\_\+valid(), C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+A\+RG, C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, and setup().
+
+
+
+Referenced by xts\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2

@@ -1,0 +1,18 @@
+digraph "skipjack_test"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node17 [label="skipjack_test",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Performs a self-test of the Skipjack block cipher."];
+  Node17 -> Node18 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node18 [label="compare_testvector",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__misc_8h.html#a7764a7f27897c6182335752df00b5f8e",tooltip="Compare two test-vectors."];
+  Node18 -> Node19 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node19 [label="XMEMCMP",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cfg_8h.html#a372b974ec0ac07abcd55297554fe540f",tooltip=" "];
+  Node17 -> Node20 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node20 [label="skipjack_ecb_decrypt",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$skipjack_8c.html#a8a41ed6e0aa006b445b6793568600541",tooltip="Decrypts a block of text with Skipjack."];
+  Node17 -> Node21 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node21 [label="skipjack_ecb_encrypt",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$skipjack_8c.html#a86ca265f2f0190f0d60fa5f6f9ddefdf",tooltip="Encrypts a block of text with Skipjack."];
+  Node17 -> Node22 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node22 [label="skipjack_setup",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$skipjack_8c.html#a54947ca21c229acf88db02d31020e703",tooltip="Initialize the Skipjack block cipher."];
+}

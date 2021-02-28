@@ -1,0 +1,26 @@
+digraph "sprng_test"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node23 [label="sprng_test",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="PRNG self-test."];
+  Node23 -> Node24 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node24 [label="sprng_add_entropy",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sprng_8c.html#aaf26361df8392bf5047e457808161fdb",tooltip="Add entropy to the PRNG state."];
+  Node23 -> Node25 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node25 [label="sprng_done",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sprng_8c.html#a501a669ea04b63e3e6b23c44112979c5",tooltip="Terminate the PRNG."];
+  Node23 -> Node26 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node26 [label="sprng_read",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sprng_8c.html#aa1d27aff270d1c3257568390ca7ead5a",tooltip="Read from the PRNG."];
+  Node26 -> Node27 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node27 [label="rng_get_bytes",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__prng_8h.html#ace80a0f11a76e7ebd59c2188b2ec2520",tooltip="Read the system RNG."];
+  Node27 -> Node28 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node28 [label="_rng_ansic",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rng__get__bytes_8c.html#af779fc65e3d8cffba45aa4ca3e6e1ace",tooltip=" "];
+  Node28 -> Node29 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node29 [label="XCLOCK",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cfg_8h.html#a87093d90435a60f5cbb14bcca6191c76",tooltip=" "];
+  Node27 -> Node30 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node30 [label="_rng_nix",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rng__get__bytes_8c.html#a1384ad1a46527e2b6f22c85bdcc7f2fa",tooltip=" "];
+  Node23 -> Node31 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node31 [label="sprng_ready",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sprng_8c.html#a570e08cf06055f8ad01742e0ac9fd3e4",tooltip="Make the PRNG ready to read from."];
+  Node23 -> Node32 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node32 [label="sprng_start",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sprng_8c.html#ab34510dfa75b737fdff32d0c76062308",tooltip="Start the PRNG."];
+}

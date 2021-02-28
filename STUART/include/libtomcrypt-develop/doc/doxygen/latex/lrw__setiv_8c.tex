@@ -1,0 +1,111 @@
+\hypertarget{lrw__setiv_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/modes/lrw/lrw\+\_\+setiv.c File Reference}
+\label{lrw__setiv_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/modes/lrw/lrw\_setiv.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/modes/lrw/lrw\_setiv.c}}
+
+
+L\+R\+W\+\_\+\+M\+O\+DE implementation, Set the current IV, Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for lrw\+\_\+setiv.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{lrw__setiv_8c_a68082c7057772abce580c72a12eb4f79}{lrw\+\_\+setiv}} (const unsigned char $\ast$IV, unsigned long \mbox{\hyperlink{pmac__init_8c_afed088663f8704004425cdae2120b9b3}{len}}, symmetric\+\_\+\+L\+RW $\ast$lrw)
+\begin{DoxyCompactList}\small\item\em Set the IV for L\+RW. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+L\+R\+W\+\_\+\+M\+O\+DE implementation, Set the current IV, Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{lrw__setiv_8c_a68082c7057772abce580c72a12eb4f79}\label{lrw__setiv_8c_a68082c7057772abce580c72a12eb4f79}} 
+\index{lrw\_setiv.c@{lrw\_setiv.c}!lrw\_setiv@{lrw\_setiv}}
+\index{lrw\_setiv@{lrw\_setiv}!lrw\_setiv.c@{lrw\_setiv.c}}
+\subsubsection{\texorpdfstring{lrw\_setiv()}{lrw\_setiv()}}
+{\footnotesize\ttfamily int lrw\+\_\+setiv (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{IV,  }\item[{unsigned long}]{len,  }\item[{symmetric\+\_\+\+L\+RW $\ast$}]{lrw }\end{DoxyParamCaption})}
+
+
+
+Set the IV for L\+RW. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em IV} & The IV, must be 16 octets \\
+\hline
+{\em len} & Length ... must be 16 \+:-\/) \\
+\hline
+{\em lrw} & The L\+RW state to update \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 25 of file lrw\+\_\+setiv.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{26 \{}
+\DoxyCodeLine{27    \textcolor{keywordtype}{int}           err;}
+\DoxyCodeLine{28 \textcolor{preprocessor}{\#ifdef LTC\_LRW\_TABLES}}
+\DoxyCodeLine{29    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} T[16];}
+\DoxyCodeLine{30    \textcolor{keywordtype}{int}           x, y;}
+\DoxyCodeLine{31 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{32    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(IV != NULL);}
+\DoxyCodeLine{33    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(lrw != NULL);}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35    \textcolor{keywordflow}{if} (\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}} != 16) \{}
+\DoxyCodeLine{36       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{37    \}}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_ac30eb68934c4ca07205344dc9d159221}{cipher\_is\_valid}}(lrw->cipher)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{40       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{41    \}}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{43    \textcolor{comment}{/* copy the IV */}}
+\DoxyCodeLine{44    \mbox{\hyperlink{tomcrypt__cfg_8h_a7691dd48d60d5fc6daf2fa7ec4c55e12}{XMEMCPY}}(lrw->IV, IV, 16);}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46    \textcolor{comment}{/* check if we have to actually do work */}}
+\DoxyCodeLine{47    \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[lrw->cipher].\mbox{\hyperlink{structltc__cipher__descriptor_afdd0e85b2d837faac7d4e50a8109cc77}{accel\_lrw\_encrypt}} != NULL \&\& \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[lrw->cipher].\mbox{\hyperlink{structltc__cipher__descriptor_a5fbfc5078761bc53d297e9a599884c1e}{accel\_lrw\_decrypt}} != NULL) \{}
+\DoxyCodeLine{48        \textcolor{comment}{/* we have accelerators, let's bail since they don't use lrw->pad anyways */}}
+\DoxyCodeLine{49        \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{50    \}}
+\DoxyCodeLine{51 }
+\DoxyCodeLine{52 \textcolor{preprocessor}{\#ifdef LTC\_LRW\_TABLES}}
+\DoxyCodeLine{53    \mbox{\hyperlink{tomcrypt__cfg_8h_a7691dd48d60d5fc6daf2fa7ec4c55e12}{XMEMCPY}}(T, \&lrw->PC[0][IV[0]][0], 16);}
+\DoxyCodeLine{54    \textcolor{keywordflow}{for} (x = 1; x < 16; x++) \{}
+\DoxyCodeLine{55 \textcolor{preprocessor}{\#ifdef LTC\_FAST}}
+\DoxyCodeLine{56        \textcolor{keywordflow}{for} (y = 0; y < 16; y += \textcolor{keyword}{sizeof}(LTC\_FAST\_TYPE)) \{}
+\DoxyCodeLine{57            *(LTC\_FAST\_TYPE\_PTR\_CAST(T + y)) \string^= *(LTC\_FAST\_TYPE\_PTR\_CAST(\&lrw->PC[x][IV[x]][y]));}
+\DoxyCodeLine{58        \}}
+\DoxyCodeLine{59 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{60        \textcolor{keywordflow}{for} (y = 0; y < 16; y++) \{}
+\DoxyCodeLine{61            T[y] \string^= lrw->PC[x][IV[x]][y];}
+\DoxyCodeLine{62        \}}
+\DoxyCodeLine{63 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{64    \}}
+\DoxyCodeLine{65    \mbox{\hyperlink{tomcrypt__cfg_8h_a7691dd48d60d5fc6daf2fa7ec4c55e12}{XMEMCPY}}(lrw->pad, T, 16);}
+\DoxyCodeLine{66 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{67    \mbox{\hyperlink{gcm__gf__mult_8c_af64448959cfcae8b0a774822f2219f47}{gcm\_gf\_mult}}(lrw->tweak, IV, lrw->pad);}
+\DoxyCodeLine{68 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{69 }
+\DoxyCodeLine{70    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{71 \}}
+
+\end{DoxyCode}
+
+
+References ltc\+\_\+cipher\+\_\+descriptor\+::accel\+\_\+lrw\+\_\+decrypt, ltc\+\_\+cipher\+\_\+descriptor\+::accel\+\_\+lrw\+\_\+encrypt, cipher\+\_\+descriptor, cipher\+\_\+is\+\_\+valid(), C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+A\+RG, C\+R\+Y\+P\+T\+\_\+\+OK, gcm\+\_\+gf\+\_\+mult(), len, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, and X\+M\+E\+M\+C\+P\+Y().
+
+
+
+Referenced by lrw\+\_\+start(), and lrw\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2

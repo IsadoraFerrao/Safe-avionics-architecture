@@ -1,0 +1,118 @@
+\hypertarget{der__encode__utf8__string_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/pk/asn1/der/utf8/der\+\_\+encode\+\_\+utf8\+\_\+string.c File Reference}
+\label{der__encode__utf8__string_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/asn1/der/utf8/der\_encode\_utf8\_string.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/asn1/der/utf8/der\_encode\_utf8\_string.c}}
+
+
+A\+S\+N.\+1 D\+ER, encode a U\+T\+F8 S\+T\+R\+I\+NG, Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for der\+\_\+encode\+\_\+utf8\+\_\+string.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{der__encode__utf8__string_8c_a45bc247126732c6f78858a0637f9ce7a}{der\+\_\+encode\+\_\+utf8\+\_\+string}} (const wchar\+\_\+t $\ast$in, unsigned long inlen, unsigned char $\ast$out, unsigned long $\ast$outlen)
+\begin{DoxyCompactList}\small\item\em Store an U\+T\+F8 S\+T\+R\+I\+NG. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A\+S\+N.\+1 D\+ER, encode a U\+T\+F8 S\+T\+R\+I\+NG, Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{der__encode__utf8__string_8c_a45bc247126732c6f78858a0637f9ce7a}\label{der__encode__utf8__string_8c_a45bc247126732c6f78858a0637f9ce7a}} 
+\index{der\_encode\_utf8\_string.c@{der\_encode\_utf8\_string.c}!der\_encode\_utf8\_string@{der\_encode\_utf8\_string}}
+\index{der\_encode\_utf8\_string@{der\_encode\_utf8\_string}!der\_encode\_utf8\_string.c@{der\_encode\_utf8\_string.c}}
+\subsubsection{\texorpdfstring{der\_encode\_utf8\_string()}{der\_encode\_utf8\_string()}}
+{\footnotesize\ttfamily int der\+\_\+encode\+\_\+utf8\+\_\+string (\begin{DoxyParamCaption}\item[{const wchar\+\_\+t $\ast$}]{in,  }\item[{unsigned long}]{inlen,  }\item[{unsigned char $\ast$}]{out,  }\item[{unsigned long $\ast$}]{outlen }\end{DoxyParamCaption})}
+
+
+
+Store an U\+T\+F8 S\+T\+R\+I\+NG. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em in} & The array of U\+T\+F8 to store (one per wchar\+\_\+t) \\
+\hline
+{\em inlen} & The number of U\+T\+F8 to store \\
+\hline
+{\em out} & \mbox{[}out\mbox{]} The destination for the D\+ER encoded U\+T\+F8 S\+T\+R\+I\+NG \\
+\hline
+{\em outlen} & \mbox{[}in/out\mbox{]} The max size and resulting size of the D\+ER U\+T\+F8 S\+T\+R\+I\+NG \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 27 of file der\+\_\+encode\+\_\+utf8\+\_\+string.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{29 \{}
+\DoxyCodeLine{30    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} x, y, \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}};}
+\DoxyCodeLine{31    \textcolor{keywordtype}{int} err;}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(in     != NULL);}
+\DoxyCodeLine{34    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(out    != NULL);}
+\DoxyCodeLine{35    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(outlen != NULL);}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37    \textcolor{comment}{/* get the size */}}
+\DoxyCodeLine{38    \textcolor{keywordflow}{for} (x = \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}} = 0; x < inlen; x++) \{}
+\DoxyCodeLine{39        \textcolor{keywordflow}{if} (!\mbox{\hyperlink{tomcrypt__private_8h_a400ea59efe4834eac94e65230dd59822}{der\_utf8\_valid\_char}}(in[x])) \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{40        \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}} += \mbox{\hyperlink{der__length__utf8__string_8c_acc54e796874f1b01e2f9dd101da4c2a9}{der\_utf8\_charsize}}(in[x]);}
+\DoxyCodeLine{41    \}}
+\DoxyCodeLine{42    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a8999e23c66cda0d777570e54f3a5c795}{der\_length\_asn1\_length}}(\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}, \&x)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{43       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{44    \}}
+\DoxyCodeLine{45    x += \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}} + 1;}
+\DoxyCodeLine{46 }
+\DoxyCodeLine{47    \textcolor{comment}{/* too big? */}}
+\DoxyCodeLine{48    \textcolor{keywordflow}{if} (x > *outlen) \{}
+\DoxyCodeLine{49       *outlen = x;}
+\DoxyCodeLine{50       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caccd878f5599f3036ffe759dbe1a1ac16}{CRYPT\_BUFFER\_OVERFLOW}};}
+\DoxyCodeLine{51    \}}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{53    \textcolor{comment}{/* encode the header+len */}}
+\DoxyCodeLine{54    x = 0;}
+\DoxyCodeLine{55    out[x++] = 0x0C;}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{57    y = *outlen - x;}
+\DoxyCodeLine{58    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_ae0b6c1f1188a5aa201aa84de9a659550}{der\_encode\_asn1\_length}}(\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}, out + x, \&y)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{59       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{60    \}}
+\DoxyCodeLine{61    x += y;}
+\DoxyCodeLine{62 }
+\DoxyCodeLine{63    \textcolor{comment}{/* store UTF8 */}}
+\DoxyCodeLine{64    \textcolor{keywordflow}{for} (y = 0; y < inlen; y++) \{}
+\DoxyCodeLine{65        \textcolor{keywordflow}{switch} (\mbox{\hyperlink{der__length__utf8__string_8c_acc54e796874f1b01e2f9dd101da4c2a9}{der\_utf8\_charsize}}(in[y])) \{}
+\DoxyCodeLine{66           \textcolor{keywordflow}{case} 1: out[x++] = (\textcolor{keywordtype}{unsigned} char)in[y]; \textcolor{keywordflow}{break};}
+\DoxyCodeLine{67           \textcolor{keywordflow}{case} 2: out[x++] = 0xC0 | ((in[y] >> 6) \& 0x1F);  out[x++] = 0x80 | (in[y] \& 0x3F); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{68           \textcolor{keywordflow}{case} 3: out[x++] = 0xE0 | ((in[y] >> 12) \& 0x0F); out[x++] = 0x80 | ((in[y] >> 6) \& 0x3F); out[x++] = 0x80 | (in[y] \& 0x3F); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{69 \textcolor{preprocessor}{\#if !defined(LTC\_WCHAR\_MAX) || LTC\_WCHAR\_MAX > 0xFFFF}}
+\DoxyCodeLine{70           \textcolor{keywordflow}{case} 4: out[x++] = 0xF0 | ((in[y] >> 18) \& 0x07); out[x++] = 0x80 | ((in[y] >> 12) \& 0x3F); out[x++] = 0x80 | ((in[y] >> 6) \& 0x3F); out[x++] = 0x80 | (in[y] \& 0x3F); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{71 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{72        \}}
+\DoxyCodeLine{73    \}}
+\DoxyCodeLine{74 }
+\DoxyCodeLine{75    \textcolor{comment}{/* return length */}}
+\DoxyCodeLine{76    *outlen = x;}
+\DoxyCodeLine{77 }
+\DoxyCodeLine{78    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{79 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+O\+V\+E\+R\+F\+L\+OW, C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+A\+RG, C\+R\+Y\+P\+T\+\_\+\+OK, der\+\_\+encode\+\_\+asn1\+\_\+length(), der\+\_\+length\+\_\+asn1\+\_\+length(), der\+\_\+utf8\+\_\+charsize(), der\+\_\+utf8\+\_\+valid\+\_\+char(), len, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+
+
+Referenced by der\+\_\+encode\+\_\+custom\+\_\+type(), and der\+\_\+encode\+\_\+sequence\+\_\+ex().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2

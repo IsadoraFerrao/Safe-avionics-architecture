@@ -1,0 +1,164 @@
+\hypertarget{dsa__set_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/pk/dsa/dsa\+\_\+set.c File Reference}
+\label{dsa__set_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/dsa/dsa\_set.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/dsa/dsa\_set.c}}
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for dsa\+\_\+set.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{dsa__set_8c_a1a72e590daa4df8e866ad2b9d96b3cfb}{dsa\+\_\+set\+\_\+pqg}} (const unsigned char $\ast$p, unsigned long plen, const unsigned char $\ast$q, unsigned long qlen, const unsigned char $\ast$g, unsigned long glen, dsa\+\_\+key $\ast$key)
+\begin{DoxyCompactList}\small\item\em Import D\+SA\textquotesingle{}s p, q \& g from raw numbers. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{dsa__set_8c_af1f523bcd186e0fbb8ed127a80aba531}{dsa\+\_\+set\+\_\+key}} (const unsigned char $\ast$in, unsigned long inlen, int type, dsa\+\_\+key $\ast$key)
+\begin{DoxyCompactList}\small\item\em Import D\+SA public or private key-\/part from raw numbers. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{dsa__set_8c_af1f523bcd186e0fbb8ed127a80aba531}\label{dsa__set_8c_af1f523bcd186e0fbb8ed127a80aba531}} 
+\index{dsa\_set.c@{dsa\_set.c}!dsa\_set\_key@{dsa\_set\_key}}
+\index{dsa\_set\_key@{dsa\_set\_key}!dsa\_set.c@{dsa\_set.c}}
+\subsubsection{\texorpdfstring{dsa\_set\_key()}{dsa\_set\_key()}}
+{\footnotesize\ttfamily int dsa\+\_\+set\+\_\+key (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{in,  }\item[{unsigned long}]{inlen,  }\item[{int}]{type,  }\item[{dsa\+\_\+key $\ast$}]{key }\end{DoxyParamCaption})}
+
+
+
+Import D\+SA public or private key-\/part from raw numbers. 
+
+NB\+: The p, q \& g parts must be set beforehand
+
+
+\begin{DoxyParams}{Parameters}
+{\em in} & The key-\/part to import, either public or private. \\
+\hline
+{\em inlen} & The key-\/part\textquotesingle{}s length \\
+\hline
+{\em type} & Which type of key (P\+K\+\_\+\+P\+R\+I\+V\+A\+TE or P\+K\+\_\+\+P\+U\+B\+L\+IC) \\
+\hline
+{\em key} & \mbox{[}out\mbox{]} the destination for the imported key \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful. 
+\end{DoxyReturn}
+
+
+Definition at line 73 of file dsa\+\_\+set.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{74 \{}
+\DoxyCodeLine{75    \textcolor{keywordtype}{int} err, stat = 0;}
+\DoxyCodeLine{76 }
+\DoxyCodeLine{77    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(key         != NULL);}
+\DoxyCodeLine{78    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(key->x      != NULL);}
+\DoxyCodeLine{79    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(key->y      != NULL);}
+\DoxyCodeLine{80    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(key->p      != NULL);}
+\DoxyCodeLine{81    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(key->g      != NULL);}
+\DoxyCodeLine{82    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(key->q      != NULL);}
+\DoxyCodeLine{83    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(\mbox{\hyperlink{tomcrypt__math_8h_a3d38c44518c63b7a8abd0938f3d41c65}{ltc\_mp}}.\mbox{\hyperlink{structltc__math__descriptor_a8838126de4a27e382f91096e369a2728}{name}} != NULL);}
+\DoxyCodeLine{84 }
+\DoxyCodeLine{85    \textcolor{keywordflow}{if} (type == \mbox{\hyperlink{tomcrypt__pk_8h_afb69d121a43f5ae8b47e6b83611d9272a7295b3dea2c5277912c6e040e1c96649}{PK\_PRIVATE}}) \{}
+\DoxyCodeLine{86       key->type = \mbox{\hyperlink{tomcrypt__pk_8h_afb69d121a43f5ae8b47e6b83611d9272a7295b3dea2c5277912c6e040e1c96649}{PK\_PRIVATE}};}
+\DoxyCodeLine{87       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a9e20e2044bb5a279e27512d1e1b65754}{mp\_read\_unsigned\_bin}}(key->x, (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *)in, inlen)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{ \textcolor{keywordflow}{goto} LBL\_ERR; \}}
+\DoxyCodeLine{88       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a4fb1221fbef91bf8163390e3cfb82085}{mp\_exptmod}}(key->g, key->x, key->p, key->y)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})               \{ \textcolor{keywordflow}{goto} LBL\_ERR; \}}
+\DoxyCodeLine{89    \}}
+\DoxyCodeLine{90    \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{91       key->type = \mbox{\hyperlink{tomcrypt__pk_8h_afb69d121a43f5ae8b47e6b83611d9272a77f8a3a3339971a6b937140f6333d465}{PK\_PUBLIC}};}
+\DoxyCodeLine{92       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a9e20e2044bb5a279e27512d1e1b65754}{mp\_read\_unsigned\_bin}}(key->y, (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *)in, inlen)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{ \textcolor{keywordflow}{goto} LBL\_ERR; \}}
+\DoxyCodeLine{93    \}}
+\DoxyCodeLine{94 }
+\DoxyCodeLine{95    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_aa5b2d573863af50ed2f38a00998a1274}{dsa\_int\_validate\_xy}}(key, \&stat)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                             \{ \textcolor{keywordflow}{goto} LBL\_ERR; \}}
+\DoxyCodeLine{96    \textcolor{keywordflow}{if} (stat == 0) \{}
+\DoxyCodeLine{97       err = \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca980088f10ffe9009aec286038a9e79da}{CRYPT\_INVALID\_PACKET}};}
+\DoxyCodeLine{98       \textcolor{keywordflow}{goto} LBL\_ERR;}
+\DoxyCodeLine{99    \}}
+\DoxyCodeLine{100 }
+\DoxyCodeLine{101    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{102 }
+\DoxyCodeLine{103 LBL\_ERR:}
+\DoxyCodeLine{104    \mbox{\hyperlink{dsa__free_8c_aa303a866d72fa5c2967b7d26410ec69c}{dsa\_free}}(key);}
+\DoxyCodeLine{105    \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{106 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+P\+A\+C\+K\+ET, C\+R\+Y\+P\+T\+\_\+\+OK, dsa\+\_\+free(), dsa\+\_\+int\+\_\+validate\+\_\+xy(), L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, ltc\+\_\+mp, mp\+\_\+exptmod, mp\+\_\+read\+\_\+unsigned\+\_\+bin, ltc\+\_\+math\+\_\+descriptor\+::name, P\+K\+\_\+\+P\+R\+I\+V\+A\+TE, and P\+K\+\_\+\+P\+U\+B\+L\+IC.
+
+Here is the call graph for this function\+:
+% FIG 1
+\mbox{\Hypertarget{dsa__set_8c_a1a72e590daa4df8e866ad2b9d96b3cfb}\label{dsa__set_8c_a1a72e590daa4df8e866ad2b9d96b3cfb}} 
+\index{dsa\_set.c@{dsa\_set.c}!dsa\_set\_pqg@{dsa\_set\_pqg}}
+\index{dsa\_set\_pqg@{dsa\_set\_pqg}!dsa\_set.c@{dsa\_set.c}}
+\subsubsection{\texorpdfstring{dsa\_set\_pqg()}{dsa\_set\_pqg()}}
+{\footnotesize\ttfamily int dsa\+\_\+set\+\_\+pqg (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{p,  }\item[{unsigned long}]{plen,  }\item[{const unsigned char $\ast$}]{q,  }\item[{unsigned long}]{qlen,  }\item[{const unsigned char $\ast$}]{g,  }\item[{unsigned long}]{glen,  }\item[{dsa\+\_\+key $\ast$}]{key }\end{DoxyParamCaption})}
+
+
+
+Import D\+SA\textquotesingle{}s p, q \& g from raw numbers. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p} & D\+SA\textquotesingle{}s p in binary representation \\
+\hline
+{\em plen} & The length of p \\
+\hline
+{\em q} & D\+SA\textquotesingle{}s q in binary representation \\
+\hline
+{\em qlen} & The length of q \\
+\hline
+{\em g} & D\+SA\textquotesingle{}s g in binary representation \\
+\hline
+{\em glen} & The length of g \\
+\hline
+{\em key} & \mbox{[}out\mbox{]} the destination for the imported key \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful. 
+\end{DoxyReturn}
+
+
+Definition at line 25 of file dsa\+\_\+set.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{29 \{}
+\DoxyCodeLine{30    \textcolor{keywordtype}{int} err, stat;}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(p           != NULL);}
+\DoxyCodeLine{33    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(q           != NULL);}
+\DoxyCodeLine{34    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(g           != NULL);}
+\DoxyCodeLine{35    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(key         != NULL);}
+\DoxyCodeLine{36    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(\mbox{\hyperlink{tomcrypt__math_8h_a3d38c44518c63b7a8abd0938f3d41c65}{ltc\_mp}}.\mbox{\hyperlink{structltc__math__descriptor_a8838126de4a27e382f91096e369a2728}{name}} != NULL);}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{38    \textcolor{comment}{/* init key */}}
+\DoxyCodeLine{39    err = \mbox{\hyperlink{tomcrypt__private_8h_adb6322247b1a4f0347219acab3120bd3}{mp\_init\_multi}}(\&key->p, \&key->g, \&key->q, \&key->x, \&key->y, NULL);}
+\DoxyCodeLine{40    \textcolor{keywordflow}{if} (err != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{42    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a9e20e2044bb5a279e27512d1e1b65754}{mp\_read\_unsigned\_bin}}(key->p, (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *)p , plen)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{ \textcolor{keywordflow}{goto} LBL\_ERR; \}}
+\DoxyCodeLine{43    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a9e20e2044bb5a279e27512d1e1b65754}{mp\_read\_unsigned\_bin}}(key->g, (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *)g , glen)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{ \textcolor{keywordflow}{goto} LBL\_ERR; \}}
+\DoxyCodeLine{44    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a9e20e2044bb5a279e27512d1e1b65754}{mp\_read\_unsigned\_bin}}(key->q, (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *)q , qlen)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{ \textcolor{keywordflow}{goto} LBL\_ERR; \}}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46    key->qord = \mbox{\hyperlink{tomcrypt__private_8h_ad301148bb24f43a8c7003a6976dfaa5a}{mp\_unsigned\_bin\_size}}(key->q);}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48    \textcolor{comment}{/* do only a quick validation, without primality testing */}}
+\DoxyCodeLine{49    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a78787aeedd134c0e586d4a42a83c89c2}{dsa\_int\_validate\_pqg}}(key, \&stat)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                        \{ \textcolor{keywordflow}{goto} LBL\_ERR; \}}
+\DoxyCodeLine{50    \textcolor{keywordflow}{if} (stat == 0) \{}
+\DoxyCodeLine{51       err = \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca980088f10ffe9009aec286038a9e79da}{CRYPT\_INVALID\_PACKET}};}
+\DoxyCodeLine{52       \textcolor{keywordflow}{goto} LBL\_ERR;}
+\DoxyCodeLine{53    \}}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{57 LBL\_ERR:}
+\DoxyCodeLine{58    \mbox{\hyperlink{dsa__free_8c_aa303a866d72fa5c2967b7d26410ec69c}{dsa\_free}}(key);}
+\DoxyCodeLine{59    \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{60 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+P\+A\+C\+K\+ET, C\+R\+Y\+P\+T\+\_\+\+OK, dsa\+\_\+free(), dsa\+\_\+int\+\_\+validate\+\_\+pqg(), L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, ltc\+\_\+mp, mp\+\_\+init\+\_\+multi, mp\+\_\+read\+\_\+unsigned\+\_\+bin, mp\+\_\+unsigned\+\_\+bin\+\_\+size, and ltc\+\_\+math\+\_\+descriptor\+::name.
+
+Here is the call graph for this function\+:
+% FIG 2

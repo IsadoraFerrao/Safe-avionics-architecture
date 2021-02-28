@@ -1,0 +1,87 @@
+\hypertarget{ofb__start_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/modes/ofb/ofb\+\_\+start.c File Reference}
+\label{ofb__start_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/modes/ofb/ofb\_start.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/modes/ofb/ofb\_start.c}}
+
+
+O\+FB implementation, start chain, Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for ofb\+\_\+start.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{ofb__start_8c_a64ea65881038cf8642aa80fdf37083b2}{ofb\+\_\+start}} (int cipher, const unsigned char $\ast$IV, const unsigned char $\ast$key, int keylen, int num\+\_\+rounds, symmetric\+\_\+\+O\+FB $\ast$ofb)
+\begin{DoxyCompactList}\small\item\em Initialize a O\+FB context. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+O\+FB implementation, start chain, Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{ofb__start_8c_a64ea65881038cf8642aa80fdf37083b2}\label{ofb__start_8c_a64ea65881038cf8642aa80fdf37083b2}} 
+\index{ofb\_start.c@{ofb\_start.c}!ofb\_start@{ofb\_start}}
+\index{ofb\_start@{ofb\_start}!ofb\_start.c@{ofb\_start.c}}
+\subsubsection{\texorpdfstring{ofb\_start()}{ofb\_start()}}
+{\footnotesize\ttfamily int ofb\+\_\+start (\begin{DoxyParamCaption}\item[{int}]{cipher,  }\item[{const unsigned char $\ast$}]{IV,  }\item[{const unsigned char $\ast$}]{key,  }\item[{int}]{keylen,  }\item[{int}]{num\+\_\+rounds,  }\item[{symmetric\+\_\+\+O\+FB $\ast$}]{ofb }\end{DoxyParamCaption})}
+
+
+
+Initialize a O\+FB context. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cipher} & The index of the cipher desired \\
+\hline
+{\em IV} & The initialization vector \\
+\hline
+{\em key} & The secret key \\
+\hline
+{\em keylen} & The length of the secret key (octets) \\
+\hline
+{\em num\+\_\+rounds} & Number of rounds in the cipher desired (0 for default) \\
+\hline
+{\em ofb} & The O\+FB state to initialize \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 29 of file ofb\+\_\+start.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{31 \{}
+\DoxyCodeLine{32    \textcolor{keywordtype}{int} x, err;}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(IV != NULL);}
+\DoxyCodeLine{35    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(key != NULL);}
+\DoxyCodeLine{36    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(ofb != NULL);}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{38    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_ac30eb68934c4ca07205344dc9d159221}{cipher\_is\_valid}}(cipher)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{39       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{40    \}}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{42    \textcolor{comment}{/* copy details */}}
+\DoxyCodeLine{43    ofb->cipher = cipher;}
+\DoxyCodeLine{44    ofb->blocklen = \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[cipher].\mbox{\hyperlink{structltc__cipher__descriptor_afa2af7325fd3a834910dd92e8c9acf49}{block\_length}};}
+\DoxyCodeLine{45    \textcolor{keywordflow}{for} (x = 0; x < ofb->blocklen; x++) \{}
+\DoxyCodeLine{46        ofb->IV[x] = IV[x];}
+\DoxyCodeLine{47    \}}
+\DoxyCodeLine{48 }
+\DoxyCodeLine{49    \textcolor{comment}{/* init the cipher */}}
+\DoxyCodeLine{50    ofb->padlen = ofb->blocklen;}
+\DoxyCodeLine{51    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[cipher].\mbox{\hyperlink{structltc__cipher__descriptor_a2f6a2e251c83c5d3b6bd62674a82d602}{setup}}(key, keylen, num\_rounds, \&ofb->key);}
+\DoxyCodeLine{52 \}}
+
+\end{DoxyCode}
+
+
+References ltc\+\_\+cipher\+\_\+descriptor\+::block\+\_\+length, cipher\+\_\+descriptor, cipher\+\_\+is\+\_\+valid(), C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, and ltc\+\_\+cipher\+\_\+descriptor\+::setup.
+
+Here is the call graph for this function\+:
+% FIG 1

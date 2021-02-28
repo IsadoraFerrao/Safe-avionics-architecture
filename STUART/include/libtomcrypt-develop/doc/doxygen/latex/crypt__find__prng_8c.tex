@@ -1,0 +1,68 @@
+\hypertarget{crypt__find__prng_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/misc/crypt/crypt\+\_\+find\+\_\+prng.c File Reference}
+\label{crypt__find__prng_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/misc/crypt/crypt\_find\_prng.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/misc/crypt/crypt\_find\_prng.c}}
+
+
+Find a P\+R\+NG, Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for crypt\+\_\+find\+\_\+prng.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{crypt__find__prng_8c_a53cfb5c7551b314e634a08e8be20a69c}{find\+\_\+prng}} (const char $\ast$name)
+\begin{DoxyCompactList}\small\item\em Find a registered P\+R\+NG by name. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Find a P\+R\+NG, Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{crypt__find__prng_8c_a53cfb5c7551b314e634a08e8be20a69c}\label{crypt__find__prng_8c_a53cfb5c7551b314e634a08e8be20a69c}} 
+\index{crypt\_find\_prng.c@{crypt\_find\_prng.c}!find\_prng@{find\_prng}}
+\index{find\_prng@{find\_prng}!crypt\_find\_prng.c@{crypt\_find\_prng.c}}
+\subsubsection{\texorpdfstring{find\_prng()}{find\_prng()}}
+{\footnotesize\ttfamily int find\+\_\+prng (\begin{DoxyParamCaption}\item[{const char $\ast$}]{name }\end{DoxyParamCaption})}
+
+
+
+Find a registered P\+R\+NG by name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the P\+R\+NG to look for \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+$>$= 0 if found, -\/1 if not present 
+\end{DoxyReturn}
+
+
+Definition at line 21 of file crypt\+\_\+find\+\_\+prng.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{22 \{}
+\DoxyCodeLine{23    \textcolor{keywordtype}{int} x;}
+\DoxyCodeLine{24    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(name != NULL);}
+\DoxyCodeLine{25    \mbox{\hyperlink{tomcrypt__custom_8h_a427a107414e4d775fbf23f4a499f4a31}{LTC\_MUTEX\_LOCK}}(\&ltc\_prng\_mutex);}
+\DoxyCodeLine{26    \textcolor{keywordflow}{for} (x = 0; x < \mbox{\hyperlink{tomcrypt_8h_a9ad1b4a1e4f7381611cfd2ae6620a727}{TAB\_SIZE}}; x++) \{}
+\DoxyCodeLine{27        \textcolor{keywordflow}{if} ((\mbox{\hyperlink{tomcrypt__prng_8h_ac03ee9f603bf966f3afb3f6be156239b}{prng\_descriptor}}[x].name != NULL) \&\& \mbox{\hyperlink{tomcrypt__cfg_8h_a5d6e3d69e1d3f54de008b963bba3c6b3}{XSTRCMP}}(\mbox{\hyperlink{tomcrypt__prng_8h_ac03ee9f603bf966f3afb3f6be156239b}{prng\_descriptor}}[x].name, name) == 0) \{}
+\DoxyCodeLine{28           \mbox{\hyperlink{tomcrypt__custom_8h_acdf267be91b178b4fafe8f992d57a7f1}{LTC\_MUTEX\_UNLOCK}}(\&ltc\_prng\_mutex);}
+\DoxyCodeLine{29           \textcolor{keywordflow}{return} x;}
+\DoxyCodeLine{30        \}}
+\DoxyCodeLine{31    \}}
+\DoxyCodeLine{32    \mbox{\hyperlink{tomcrypt__custom_8h_acdf267be91b178b4fafe8f992d57a7f1}{LTC\_MUTEX\_UNLOCK}}(\&ltc\_prng\_mutex);}
+\DoxyCodeLine{33    \textcolor{keywordflow}{return} -1;}
+\DoxyCodeLine{34 \}}
+
+\end{DoxyCode}
+
+
+References L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, L\+T\+C\+\_\+\+M\+U\+T\+E\+X\+\_\+\+L\+O\+CK, L\+T\+C\+\_\+\+M\+U\+T\+E\+X\+\_\+\+U\+N\+L\+O\+CK, prng\+\_\+descriptor, T\+A\+B\+\_\+\+S\+I\+ZE, and X\+S\+T\+R\+C\+M\+P().
+
+Here is the call graph for this function\+:
+% FIG 1

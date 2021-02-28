@@ -1,0 +1,254 @@
+\hypertarget{base64__encode_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/misc/base64/base64\+\_\+encode.c File Reference}
+\label{base64__encode_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/misc/base64/base64\_encode.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/misc/base64/base64\_encode.c}}
+
+
+Compliant base64 encoder donated by Wayne Scott (\href{mailto:wscott@bitmover.com}{\texttt{ wscott@bitmover.\+com}}) base64 U\+RL Safe variant (R\+FC 4648 section 5) by Karel Miko.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for base64\+\_\+encode.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{base64__encode_8c_a96cb29e3eba4fdb5c143db9eff7fe216}{\+\_\+base64\+\_\+encode\+\_\+internal}} (const unsigned char $\ast$in, unsigned long inlen, char $\ast$out, unsigned long $\ast$outlen, const char $\ast$codes, int pad)
+\item 
+int \mbox{\hyperlink{base64__encode_8c_a3a6b73af9e8e3c9e42b7bbd67bb5b701}{base64\+\_\+encode}} (const unsigned char $\ast$in, unsigned long inlen, char $\ast$out, unsigned long $\ast$outlen)
+\begin{DoxyCompactList}\small\item\em base64 Encode a buffer (N\+UL terminated) \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{base64__encode_8c_ac34c3c70fd3cd00d0904d83022c9d347}{base64url\+\_\+encode}} (const unsigned char $\ast$in, unsigned long inlen, char $\ast$out, unsigned long $\ast$outlen)
+\begin{DoxyCompactList}\small\item\em base64 (U\+RL Safe, R\+FC 4648 section 5) Encode a buffer (N\+UL terminated) \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{base64__encode_8c_ab89aa701b89c1b8ba6c38041220e9392}{base64url\+\_\+strict\+\_\+encode}} (const unsigned char $\ast$in, unsigned long inlen, char $\ast$out, unsigned long $\ast$outlen)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static const char $\ast$const \mbox{\hyperlink{base64__encode_8c_abf1f5433c45fe15b94f2da76903fd986}{codes\+\_\+base64}}
+\item 
+static const char $\ast$const \mbox{\hyperlink{base64__encode_8c_a09cb4ee1c66546bc7dcfe9fce31082e4}{codes\+\_\+base64url}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Compliant base64 encoder donated by Wayne Scott (\href{mailto:wscott@bitmover.com}{\texttt{ wscott@bitmover.\+com}}) base64 U\+RL Safe variant (R\+FC 4648 section 5) by Karel Miko. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{base64__encode_8c_a96cb29e3eba4fdb5c143db9eff7fe216}\label{base64__encode_8c_a96cb29e3eba4fdb5c143db9eff7fe216}} 
+\index{base64\_encode.c@{base64\_encode.c}!\_base64\_encode\_internal@{\_base64\_encode\_internal}}
+\index{\_base64\_encode\_internal@{\_base64\_encode\_internal}!base64\_encode.c@{base64\_encode.c}}
+\subsubsection{\texorpdfstring{\_base64\_encode\_internal()}{\_base64\_encode\_internal()}}
+{\footnotesize\ttfamily static int \+\_\+base64\+\_\+encode\+\_\+internal (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{in,  }\item[{unsigned long}]{inlen,  }\item[{char $\ast$}]{out,  }\item[{unsigned long $\ast$}]{outlen,  }\item[{const char $\ast$}]{codes,  }\item[{int}]{pad }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 30 of file base64\+\_\+encode.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{33 \{}
+\DoxyCodeLine{34    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} i, len2, leven;}
+\DoxyCodeLine{35    \textcolor{keywordtype}{char} *p;}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(in     != NULL);}
+\DoxyCodeLine{38    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(out    != NULL);}
+\DoxyCodeLine{39    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(outlen != NULL);}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41    \textcolor{comment}{/* valid output size ? */}}
+\DoxyCodeLine{42    len2 = 4 * ((inlen + 2) / 3);}
+\DoxyCodeLine{43    \textcolor{keywordflow}{if} (*outlen < len2 + 1) \{}
+\DoxyCodeLine{44       *outlen = len2 + 1;}
+\DoxyCodeLine{45       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caccd878f5599f3036ffe759dbe1a1ac16}{CRYPT\_BUFFER\_OVERFLOW}};}
+\DoxyCodeLine{46    \}}
+\DoxyCodeLine{47    p = out;}
+\DoxyCodeLine{48    leven = 3*(inlen / 3);}
+\DoxyCodeLine{49    \textcolor{keywordflow}{for} (i = 0; i < leven; i += 3) \{}
+\DoxyCodeLine{50        *p++ = codes[(in[0] >> 2) \& 0x3F];}
+\DoxyCodeLine{51        *p++ = codes[(((in[0] \& 3) << 4) + (in[1] >> 4)) \& 0x3F];}
+\DoxyCodeLine{52        *p++ = codes[(((in[1] \& 0xf) << 2) + (in[2] >> 6)) \& 0x3F];}
+\DoxyCodeLine{53        *p++ = codes[in[2] \& 0x3F];}
+\DoxyCodeLine{54        in += 3;}
+\DoxyCodeLine{55    \}}
+\DoxyCodeLine{56    \textcolor{comment}{/* Pad it if necessary...  */}}
+\DoxyCodeLine{57    \textcolor{keywordflow}{if} (i < inlen) \{}
+\DoxyCodeLine{58        \textcolor{keywordtype}{unsigned} a = in[0];}
+\DoxyCodeLine{59        \textcolor{keywordtype}{unsigned} b = (i+1 < inlen) ? in[1] : 0;}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{61        *p++ = codes[(a >> 2) \& 0x3F];}
+\DoxyCodeLine{62        *p++ = codes[(((a \& 3) << 4) + (b >> 4)) \& 0x3F];}
+\DoxyCodeLine{63        \textcolor{keywordflow}{if} (pad) \{}
+\DoxyCodeLine{64          *p++ = (i+1 < inlen) ? codes[(((b \& 0xf) << 2)) \& 0x3F] : \textcolor{charliteral}{'='};}
+\DoxyCodeLine{65          *p++ = \textcolor{charliteral}{'='};}
+\DoxyCodeLine{66        \}}
+\DoxyCodeLine{67        \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{68          \textcolor{keywordflow}{if} (i+1 < inlen) *p++ = codes[(((b \& 0xf) << 2)) \& 0x3F];}
+\DoxyCodeLine{69        \}}
+\DoxyCodeLine{70    \}}
+\DoxyCodeLine{71 }
+\DoxyCodeLine{72    \textcolor{comment}{/* append a NULL byte */}}
+\DoxyCodeLine{73    *p = \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{74 }
+\DoxyCodeLine{75    \textcolor{comment}{/* return ok */}}
+\DoxyCodeLine{76    *outlen = (\textcolor{keywordtype}{unsigned} long)(p - out); \textcolor{comment}{/* the length without terminating NUL */}}
+\DoxyCodeLine{77    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{78 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+O\+V\+E\+R\+F\+L\+OW, C\+R\+Y\+P\+T\+\_\+\+OK, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+
+
+Referenced by base64\+\_\+encode(), base64url\+\_\+encode(), and base64url\+\_\+strict\+\_\+encode().
+
+Here is the caller graph for this function\+:
+% FIG 1
+\mbox{\Hypertarget{base64__encode_8c_a3a6b73af9e8e3c9e42b7bbd67bb5b701}\label{base64__encode_8c_a3a6b73af9e8e3c9e42b7bbd67bb5b701}} 
+\index{base64\_encode.c@{base64\_encode.c}!base64\_encode@{base64\_encode}}
+\index{base64\_encode@{base64\_encode}!base64\_encode.c@{base64\_encode.c}}
+\subsubsection{\texorpdfstring{base64\_encode()}{base64\_encode()}}
+{\footnotesize\ttfamily int base64\+\_\+encode (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{in,  }\item[{unsigned long}]{inlen,  }\item[{char $\ast$}]{out,  }\item[{unsigned long $\ast$}]{outlen }\end{DoxyParamCaption})}
+
+
+
+base64 Encode a buffer (N\+UL terminated) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em in} & The input buffer to encode \\
+\hline
+{\em inlen} & The length of the input buffer \\
+\hline
+{\em out} & \mbox{[}out\mbox{]} The destination of the base64 encoded data \\
+\hline
+{\em outlen} & \mbox{[}in/out\mbox{]} The max size and resulting size \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 89 of file base64\+\_\+encode.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{91 \{}
+\DoxyCodeLine{92     \textcolor{keywordflow}{return} \mbox{\hyperlink{base64__encode_8c_a96cb29e3eba4fdb5c143db9eff7fe216}{\_base64\_encode\_internal}}(in, inlen, out, outlen, \mbox{\hyperlink{base64__encode_8c_abf1f5433c45fe15b94f2da76903fd986}{codes\_base64}}, 1);}
+\DoxyCodeLine{93 \}}
+
+\end{DoxyCode}
+
+
+References \+\_\+base64\+\_\+encode\+\_\+internal(), and codes\+\_\+base64.
+
+Here is the call graph for this function\+:
+% FIG 2
+\mbox{\Hypertarget{base64__encode_8c_ac34c3c70fd3cd00d0904d83022c9d347}\label{base64__encode_8c_ac34c3c70fd3cd00d0904d83022c9d347}} 
+\index{base64\_encode.c@{base64\_encode.c}!base64url\_encode@{base64url\_encode}}
+\index{base64url\_encode@{base64url\_encode}!base64\_encode.c@{base64\_encode.c}}
+\subsubsection{\texorpdfstring{base64url\_encode()}{base64url\_encode()}}
+{\footnotesize\ttfamily int base64url\+\_\+encode (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{in,  }\item[{unsigned long}]{inlen,  }\item[{char $\ast$}]{out,  }\item[{unsigned long $\ast$}]{outlen }\end{DoxyParamCaption})}
+
+
+
+base64 (U\+RL Safe, R\+FC 4648 section 5) Encode a buffer (N\+UL terminated) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em in} & The input buffer to encode \\
+\hline
+{\em inlen} & The length of the input buffer \\
+\hline
+{\em out} & \mbox{[}out\mbox{]} The destination of the base64 encoded data \\
+\hline
+{\em outlen} & \mbox{[}in/out\mbox{]} The max size and resulting size \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 106 of file base64\+\_\+encode.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{108 \{}
+\DoxyCodeLine{109     \textcolor{keywordflow}{return} \mbox{\hyperlink{base64__encode_8c_a96cb29e3eba4fdb5c143db9eff7fe216}{\_base64\_encode\_internal}}(in, inlen, out, outlen, \mbox{\hyperlink{base64__encode_8c_a09cb4ee1c66546bc7dcfe9fce31082e4}{codes\_base64url}}, 0);}
+\DoxyCodeLine{110 \}}
+
+\end{DoxyCode}
+
+
+References \+\_\+base64\+\_\+encode\+\_\+internal(), and codes\+\_\+base64url.
+
+Here is the call graph for this function\+:
+% FIG 3
+\mbox{\Hypertarget{base64__encode_8c_ab89aa701b89c1b8ba6c38041220e9392}\label{base64__encode_8c_ab89aa701b89c1b8ba6c38041220e9392}} 
+\index{base64\_encode.c@{base64\_encode.c}!base64url\_strict\_encode@{base64url\_strict\_encode}}
+\index{base64url\_strict\_encode@{base64url\_strict\_encode}!base64\_encode.c@{base64\_encode.c}}
+\subsubsection{\texorpdfstring{base64url\_strict\_encode()}{base64url\_strict\_encode()}}
+{\footnotesize\ttfamily int base64url\+\_\+strict\+\_\+encode (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{in,  }\item[{unsigned long}]{inlen,  }\item[{char $\ast$}]{out,  }\item[{unsigned long $\ast$}]{outlen }\end{DoxyParamCaption})}
+
+
+
+Definition at line 112 of file base64\+\_\+encode.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{114 \{}
+\DoxyCodeLine{115     \textcolor{keywordflow}{return} \mbox{\hyperlink{base64__encode_8c_a96cb29e3eba4fdb5c143db9eff7fe216}{\_base64\_encode\_internal}}(in, inlen, out, outlen, \mbox{\hyperlink{base64__encode_8c_a09cb4ee1c66546bc7dcfe9fce31082e4}{codes\_base64url}}, 1);}
+\DoxyCodeLine{116 \}}
+
+\end{DoxyCode}
+
+
+References \+\_\+base64\+\_\+encode\+\_\+internal(), and codes\+\_\+base64url.
+
+Here is the call graph for this function\+:
+% FIG 4
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{base64__encode_8c_abf1f5433c45fe15b94f2da76903fd986}\label{base64__encode_8c_abf1f5433c45fe15b94f2da76903fd986}} 
+\index{base64\_encode.c@{base64\_encode.c}!codes\_base64@{codes\_base64}}
+\index{codes\_base64@{codes\_base64}!base64\_encode.c@{base64\_encode.c}}
+\subsubsection{\texorpdfstring{codes\_base64}{codes\_base64}}
+{\footnotesize\ttfamily const char$\ast$ const codes\+\_\+base64\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\textcolor{stringliteral}{"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"}}
+
+\end{DoxyCode}
+
+
+Definition at line 21 of file base64\+\_\+encode.\+c.
+
+
+
+Referenced by base64\+\_\+encode().
+
+\mbox{\Hypertarget{base64__encode_8c_a09cb4ee1c66546bc7dcfe9fce31082e4}\label{base64__encode_8c_a09cb4ee1c66546bc7dcfe9fce31082e4}} 
+\index{base64\_encode.c@{base64\_encode.c}!codes\_base64url@{codes\_base64url}}
+\index{codes\_base64url@{codes\_base64url}!base64\_encode.c@{base64\_encode.c}}
+\subsubsection{\texorpdfstring{codes\_base64url}{codes\_base64url}}
+{\footnotesize\ttfamily const char$\ast$ const codes\+\_\+base64url\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\textcolor{stringliteral}{"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-\_"}}
+
+\end{DoxyCode}
+
+
+Definition at line 26 of file base64\+\_\+encode.\+c.
+
+
+
+Referenced by base64url\+\_\+encode(), and base64url\+\_\+strict\+\_\+encode().
+

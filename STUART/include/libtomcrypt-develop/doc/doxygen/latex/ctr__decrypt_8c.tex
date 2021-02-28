@@ -1,0 +1,74 @@
+\hypertarget{ctr__decrypt_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/modes/ctr/ctr\+\_\+decrypt.c File Reference}
+\label{ctr__decrypt_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/modes/ctr/ctr\_decrypt.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/modes/ctr/ctr\_decrypt.c}}
+
+
+C\+TR implementation, decrypt data, Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for ctr\+\_\+decrypt.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{ctr__decrypt_8c_a3c4d6f741fd106ec8abd6e0bd1594e43}{ctr\+\_\+decrypt}} (const unsigned char $\ast$ct, unsigned char $\ast$pt, unsigned long \mbox{\hyperlink{pmac__init_8c_afed088663f8704004425cdae2120b9b3}{len}}, symmetric\+\_\+\+C\+TR $\ast$ctr)
+\begin{DoxyCompactList}\small\item\em C\+TR decrypt. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+C\+TR implementation, decrypt data, Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{ctr__decrypt_8c_a3c4d6f741fd106ec8abd6e0bd1594e43}\label{ctr__decrypt_8c_a3c4d6f741fd106ec8abd6e0bd1594e43}} 
+\index{ctr\_decrypt.c@{ctr\_decrypt.c}!ctr\_decrypt@{ctr\_decrypt}}
+\index{ctr\_decrypt@{ctr\_decrypt}!ctr\_decrypt.c@{ctr\_decrypt.c}}
+\subsubsection{\texorpdfstring{ctr\_decrypt()}{ctr\_decrypt()}}
+{\footnotesize\ttfamily int ctr\+\_\+decrypt (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{ct,  }\item[{unsigned char $\ast$}]{pt,  }\item[{unsigned long}]{len,  }\item[{symmetric\+\_\+\+C\+TR $\ast$}]{ctr }\end{DoxyParamCaption})}
+
+
+
+C\+TR decrypt. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ct} & Ciphertext \\
+\hline
+{\em pt} & \mbox{[}out\mbox{]} Plaintext \\
+\hline
+{\em len} & Length of ciphertext (octets) \\
+\hline
+{\em ctr} & C\+TR state \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 26 of file ctr\+\_\+decrypt.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{27 \{}
+\DoxyCodeLine{28    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(pt != NULL);}
+\DoxyCodeLine{29    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(ct != NULL);}
+\DoxyCodeLine{30    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(ctr != NULL);}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32    \textcolor{keywordflow}{return} \mbox{\hyperlink{ctr__encrypt_8c_af42c91e4fb7f9aa679399e44e632ae44}{ctr\_encrypt}}(ct, pt, \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}, ctr);}
+\DoxyCodeLine{33 \}}
+
+\end{DoxyCode}
+
+
+References ctr\+\_\+encrypt(), len, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+
+
+Referenced by eax\+\_\+decrypt().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2

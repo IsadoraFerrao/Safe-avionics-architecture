@@ -1,0 +1,61 @@
+\hypertarget{salsa20__keystream_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/stream/salsa20/salsa20\+\_\+keystream.c File Reference}
+\label{salsa20__keystream_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/stream/salsa20/salsa20\_keystream.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/stream/salsa20/salsa20\_keystream.c}}
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for salsa20\+\_\+keystream.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{salsa20__keystream_8c_a748ea714271d7ecbdc75ff94eae0c15d}{salsa20\+\_\+keystream}} (salsa20\+\_\+state $\ast$st, unsigned char $\ast$out, unsigned long outlen)
+\begin{DoxyCompactList}\small\item\em Generate a stream of random bytes via Salsa20. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{salsa20__keystream_8c_a748ea714271d7ecbdc75ff94eae0c15d}\label{salsa20__keystream_8c_a748ea714271d7ecbdc75ff94eae0c15d}} 
+\index{salsa20\_keystream.c@{salsa20\_keystream.c}!salsa20\_keystream@{salsa20\_keystream}}
+\index{salsa20\_keystream@{salsa20\_keystream}!salsa20\_keystream.c@{salsa20\_keystream.c}}
+\subsubsection{\texorpdfstring{salsa20\_keystream()}{salsa20\_keystream()}}
+{\footnotesize\ttfamily int salsa20\+\_\+keystream (\begin{DoxyParamCaption}\item[{salsa20\+\_\+state $\ast$}]{st,  }\item[{unsigned char $\ast$}]{out,  }\item[{unsigned long}]{outlen }\end{DoxyParamCaption})}
+
+
+
+Generate a stream of random bytes via Salsa20. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em st} & The Salsa20 state \\
+\hline
+{\em out} & \mbox{[}out\mbox{]} The output buffer \\
+\hline
+{\em outlen} & The output length \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK on success 
+\end{DoxyReturn}
+
+
+Definition at line 27 of file salsa20\+\_\+keystream.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{28 \{}
+\DoxyCodeLine{29    \textcolor{keywordflow}{if} (outlen == 0) \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}; \textcolor{comment}{/* nothing to do */}}
+\DoxyCodeLine{30    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(out != NULL);}
+\DoxyCodeLine{31    \mbox{\hyperlink{tomcrypt__cfg_8h_aa3c34a6f6c61de7da9258b5a30e32c2f}{XMEMSET}}(out, 0, outlen);}
+\DoxyCodeLine{32    \textcolor{keywordflow}{return} \mbox{\hyperlink{salsa20__crypt_8c_ac9983b8790b277b19ac0e6efcd5bc298}{salsa20\_crypt}}(st, out, outlen, out);}
+\DoxyCodeLine{33 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, salsa20\+\_\+crypt(), and X\+M\+E\+M\+S\+E\+T().
+
+
+
+Referenced by salsa20\+\_\+test(), and xsalsa20\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2

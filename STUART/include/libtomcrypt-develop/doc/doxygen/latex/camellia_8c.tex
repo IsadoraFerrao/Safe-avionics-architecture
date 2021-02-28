@@ -1,0 +1,890 @@
+\hypertarget{camellia_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/ciphers/camellia.c File Reference}
+\label{camellia_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/ciphers/camellia.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/ciphers/camellia.c}}
+
+
+Implementation by Tom St Denis of Elliptic Semiconductor.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for camellia.\+c\+:
+% FIG 0
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{camellia_8c_ac3c71f047da86ba32a445112c4b3ca63}{loc}}(i)~((8-\/i)$\ast$8)
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}} \mbox{\hyperlink{camellia_8c_aa64e124c7480791e82c5254ab4f24269}{F}} (\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}} x)
+\item 
+static void \mbox{\hyperlink{camellia_8c_ae6c81ba6235f122b26dc9a9d64705167}{rot\+\_\+128}} (const unsigned char $\ast$in, unsigned count, unsigned char $\ast$out)
+\item 
+int \mbox{\hyperlink{camellia_8c_a74770275e140160c3bb4b89e7b5d3e88}{camellia\+\_\+setup}} (const unsigned char $\ast$key, int keylen, int num\+\_\+rounds, \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)
+\item 
+int \mbox{\hyperlink{camellia_8c_af8d2418cb96a06564119207d21e3db20}{camellia\+\_\+ecb\+\_\+encrypt}} (const unsigned char $\ast$pt, unsigned char $\ast$ct, const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)
+\item 
+int \mbox{\hyperlink{camellia_8c_aea19af8e03ef94a0778611279141164c}{camellia\+\_\+ecb\+\_\+decrypt}} (const unsigned char $\ast$ct, unsigned char $\ast$pt, const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)
+\item 
+int \mbox{\hyperlink{camellia_8c_a2af9ab6e44a83ed8fa753deece2c6749}{camellia\+\_\+test}} (void)
+\item 
+void \mbox{\hyperlink{camellia_8c_a94b1aaf8f9675b369ecf5eea9affd840}{camellia\+\_\+done}} (\mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$skey)
+\item 
+int \mbox{\hyperlink{camellia_8c_a28dafc511978eb360349b2d6c04e60a1}{camellia\+\_\+keysize}} (int $\ast$keysize)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const struct \mbox{\hyperlink{structltc__cipher__descriptor}{ltc\+\_\+cipher\+\_\+descriptor}} \mbox{\hyperlink{camellia_8c_a10d3fccfb54d69182deb1c6ed8c699db}{camellia\+\_\+desc}}
+\item 
+static const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} \mbox{\hyperlink{camellia_8c_aaad3b25567d77659b7436ea7a23dc32c}{S\+P1110}} \mbox{[}$\,$\mbox{]}
+\item 
+static const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} \mbox{\hyperlink{camellia_8c_a049140cd8441b71f7f5b6ccc008d28fe}{S\+P0222}} \mbox{[}$\,$\mbox{]}
+\item 
+static const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} \mbox{\hyperlink{camellia_8c_a13d1edb63923e63fec6770b0e5b80555}{S\+P3033}} \mbox{[}$\,$\mbox{]}
+\item 
+static const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} \mbox{\hyperlink{camellia_8c_a1b1c77e0f598afc732b052a2274c3d59}{S\+P4404}} \mbox{[}$\,$\mbox{]}
+\item 
+static const \mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}} \mbox{\hyperlink{camellia_8c_a0f416bb4ad688858659a59cec7254756}{key\+\_\+sigma}} \mbox{[}$\,$\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Implementation by Tom St Denis of Elliptic Semiconductor. 
+
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{camellia_8c_ac3c71f047da86ba32a445112c4b3ca63}\label{camellia_8c_ac3c71f047da86ba32a445112c4b3ca63}} 
+\index{camellia.c@{camellia.c}!loc@{loc}}
+\index{loc@{loc}!camellia.c@{camellia.c}}
+\subsubsection{\texorpdfstring{loc}{loc}}
+{\footnotesize\ttfamily \#define loc(\begin{DoxyParamCaption}\item[{}]{i }\end{DoxyParamCaption})~((8-\/i)$\ast$8)}
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{camellia_8c_a94b1aaf8f9675b369ecf5eea9affd840}\label{camellia_8c_a94b1aaf8f9675b369ecf5eea9affd840}} 
+\index{camellia.c@{camellia.c}!camellia\_done@{camellia\_done}}
+\index{camellia\_done@{camellia\_done}!camellia.c@{camellia.c}}
+\subsubsection{\texorpdfstring{camellia\_done()}{camellia\_done()}}
+{\footnotesize\ttfamily void camellia\+\_\+done (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$}]{skey }\end{DoxyParamCaption})}
+
+
+
+Definition at line 708 of file camellia.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{709 \{}
+\DoxyCodeLine{710   \mbox{\hyperlink{tomcrypt__macros_8h_accde4b007facd646a8327f8e64b2d1e0}{LTC\_UNUSED\_PARAM}}(skey);}
+\DoxyCodeLine{711 \}}
+
+\end{DoxyCode}
+
+
+References L\+T\+C\+\_\+\+U\+N\+U\+S\+E\+D\+\_\+\+P\+A\+R\+AM.
+
+
+
+Referenced by camellia\+\_\+test().
+
+Here is the caller graph for this function\+:
+% FIG 1
+\mbox{\Hypertarget{camellia_8c_aea19af8e03ef94a0778611279141164c}\label{camellia_8c_aea19af8e03ef94a0778611279141164c}} 
+\index{camellia.c@{camellia.c}!camellia\_ecb\_decrypt@{camellia\_ecb\_decrypt}}
+\index{camellia\_ecb\_decrypt@{camellia\_ecb\_decrypt}!camellia.c@{camellia.c}}
+\subsubsection{\texorpdfstring{camellia\_ecb\_decrypt()}{camellia\_ecb\_decrypt()}}
+{\footnotesize\ttfamily int camellia\+\_\+ecb\+\_\+decrypt (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{ct,  }\item[{unsigned char $\ast$}]{pt,  }\item[{const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$}]{skey }\end{DoxyParamCaption})}
+
+
+
+Definition at line 533 of file camellia.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{534 \{}
+\DoxyCodeLine{535    \mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}} L, \mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}};}
+\DoxyCodeLine{536    \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} a, b;}
+\DoxyCodeLine{537 }
+\DoxyCodeLine{538    LOAD64H(\mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}}, ct+0); LOAD64H(L, ct+8);}
+\DoxyCodeLine{539    L \string^= skey->camellia.kw[3];}
+\DoxyCodeLine{540    \mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}} \string^= skey->camellia.kw[2];}
+\DoxyCodeLine{541 }
+\DoxyCodeLine{542    \textcolor{comment}{/* next FL */}}
+\DoxyCodeLine{543    \textcolor{keywordflow}{if} (skey->camellia.R == 24) \{}
+\DoxyCodeLine{544       \textcolor{comment}{/* fourth 6 rounds */}}
+\DoxyCodeLine{545       L \string^= \mbox{\hyperlink{camellia_8c_aa64e124c7480791e82c5254ab4f24269}{F}}(\mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}} \string^ skey->camellia.k[23]);}
+\DoxyCodeLine{546       \mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}} \string^= \mbox{\hyperlink{camellia_8c_aa64e124c7480791e82c5254ab4f24269}{F}}(L \string^ skey->camellia.k[22]);}
+\DoxyCodeLine{547       L \string^= \mbox{\hyperlink{camellia_8c_aa64e124c7480791e82c5254ab4f24269}{F}}(\mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}} \string^ skey->camellia.k[21]);}
+\DoxyCodeLine{548       \mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}} \string^= \mbox{\hyperlink{camellia_8c_aa64e124c7480791e82c5254ab4f24269}{F}}(L \string^ skey->camellia.k[20]);}
+\DoxyCodeLine{549       L \string^= \mbox{\hyperlink{camellia_8c_aa64e124c7480791e82c5254ab4f24269}{F}}(\mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}} \string^ skey->camellia.k[19]);}
+\DoxyCodeLine{550       \mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}} \string^= \mbox{\hyperlink{camellia_8c_aa64e124c7480791e82c5254ab4f24269}{F}}(L \string^ skey->camellia.k[18]);}
+\DoxyCodeLine{551 }
+\DoxyCodeLine{552       \textcolor{comment}{/* FL */}}
+\DoxyCodeLine{553       a = (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})(L >> 32);}
+\DoxyCodeLine{554       b = (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})(L \& 0xFFFFFFFFUL);}
+\DoxyCodeLine{555       a \string^= b | (skey->camellia.kl[4] \& 0xFFFFFFFFU);}
+\DoxyCodeLine{556       b \string^= \mbox{\hyperlink{tomcrypt__macros_8h_a2e1da5c8810967170c889976d1fe9fa1}{ROL}}((a \& (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})(skey->camellia.kl[4] >> 32)), 1);}
+\DoxyCodeLine{557       L = (((\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}})a) << 32) | b;}
+\DoxyCodeLine{558 }
+\DoxyCodeLine{559       \textcolor{comment}{/* FL\string^-1 */}}
+\DoxyCodeLine{560       a = (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})(\mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}} >> 32);}
+\DoxyCodeLine{561       b = (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})(\mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}} \& 0xFFFFFFFFUL);}
+\DoxyCodeLine{562       b \string^= \mbox{\hyperlink{tomcrypt__macros_8h_a2e1da5c8810967170c889976d1fe9fa1}{ROL}}((a \& (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})(skey->camellia.kl[5] >> 32)), 1);}
+\DoxyCodeLine{563       a \string^= b | (skey->camellia.kl[5] \& 0xFFFFFFFFU);}
+\DoxyCodeLine{564       \mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}} = (((\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}})a) << 32) | b;}
+\DoxyCodeLine{565 }
+\DoxyCodeLine{566    \}}
+\DoxyCodeLine{567 }
+\DoxyCodeLine{568    \textcolor{comment}{/* third 6 rounds */}}
+\DoxyCodeLine{569    L \string^= \mbox{\hyperlink{camellia_8c_aa64e124c7480791e82c5254ab4f24269}{F}}(\mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}} \string^ skey->camellia.k[17]);}
+\DoxyCodeLine{570    \mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}} \string^= \mbox{\hyperlink{camellia_8c_aa64e124c7480791e82c5254ab4f24269}{F}}(L \string^ skey->camellia.k[16]);}
+\DoxyCodeLine{571    L \string^= \mbox{\hyperlink{camellia_8c_aa64e124c7480791e82c5254ab4f24269}{F}}(\mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}} \string^ skey->camellia.k[15]);}
+\DoxyCodeLine{572    \mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}} \string^= \mbox{\hyperlink{camellia_8c_aa64e124c7480791e82c5254ab4f24269}{F}}(L \string^ skey->camellia.k[14]);}
+\DoxyCodeLine{573    L \string^= \mbox{\hyperlink{camellia_8c_aa64e124c7480791e82c5254ab4f24269}{F}}(\mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}} \string^ skey->camellia.k[13]);}
+\DoxyCodeLine{574    \mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}} \string^= \mbox{\hyperlink{camellia_8c_aa64e124c7480791e82c5254ab4f24269}{F}}(L \string^ skey->camellia.k[12]);}
+\DoxyCodeLine{575 }
+\DoxyCodeLine{576    \textcolor{comment}{/* FL */}}
+\DoxyCodeLine{577    a = (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})(L >> 32);}
+\DoxyCodeLine{578    b = (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})(L \& 0xFFFFFFFFUL);}
+\DoxyCodeLine{579    a \string^= b | (skey->camellia.kl[2] \& 0xFFFFFFFFU);}
+\DoxyCodeLine{580    b \string^= \mbox{\hyperlink{tomcrypt__macros_8h_a2e1da5c8810967170c889976d1fe9fa1}{ROL}}((a \& (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})(skey->camellia.kl[2] >> 32)), 1);}
+\DoxyCodeLine{581    L = (((\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}})a) << 32) | b;}
+\DoxyCodeLine{582 }
+\DoxyCodeLine{583    \textcolor{comment}{/* FL\string^-1 */}}
+\DoxyCodeLine{584    a = (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})(\mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}} >> 32);}
+\DoxyCodeLine{585    b = (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})(\mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}} \& 0xFFFFFFFFUL);}
+\DoxyCodeLine{586    b \string^= \mbox{\hyperlink{tomcrypt__macros_8h_a2e1da5c8810967170c889976d1fe9fa1}{ROL}}((a \& (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})(skey->camellia.kl[3] >> 32)), 1);}
+\DoxyCodeLine{587    a \string^= b | (skey->camellia.kl[3] \& 0xFFFFFFFFU);}
+\DoxyCodeLine{588    \mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}} = (((\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}})a) << 32) | b;}
+\DoxyCodeLine{589 }
+\DoxyCodeLine{590    \textcolor{comment}{/* second 6 rounds */}}
+\DoxyCodeLine{591    L \string^= \mbox{\hyperlink{camellia_8c_aa64e124c7480791e82c5254ab4f24269}{F}}(\mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}} \string^ skey->camellia.k[11]);}
+\DoxyCodeLine{592    \mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}} \string^= \mbox{\hyperlink{camellia_8c_aa64e124c7480791e82c5254ab4f24269}{F}}(L \string^ skey->camellia.k[10]);}
+\DoxyCodeLine{593    L \string^= \mbox{\hyperlink{camellia_8c_aa64e124c7480791e82c5254ab4f24269}{F}}(\mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}} \string^ skey->camellia.k[9]);}
+\DoxyCodeLine{594    \mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}} \string^= \mbox{\hyperlink{camellia_8c_aa64e124c7480791e82c5254ab4f24269}{F}}(L \string^ skey->camellia.k[8]);}
+\DoxyCodeLine{595    L \string^= \mbox{\hyperlink{camellia_8c_aa64e124c7480791e82c5254ab4f24269}{F}}(\mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}} \string^ skey->camellia.k[7]);}
+\DoxyCodeLine{596    \mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}} \string^= \mbox{\hyperlink{camellia_8c_aa64e124c7480791e82c5254ab4f24269}{F}}(L \string^ skey->camellia.k[6]);}
+\DoxyCodeLine{597 }
+\DoxyCodeLine{598    \textcolor{comment}{/* FL */}}
+\DoxyCodeLine{599    a = (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})(L >> 32);}
+\DoxyCodeLine{600    b = (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})(L \& 0xFFFFFFFFUL);}
+\DoxyCodeLine{601    a \string^= b | (skey->camellia.kl[0] \& 0xFFFFFFFFU);}
+\DoxyCodeLine{602    b \string^= \mbox{\hyperlink{tomcrypt__macros_8h_a2e1da5c8810967170c889976d1fe9fa1}{ROL}}((a \& (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})(skey->camellia.kl[0] >> 32)), 1);}
+\DoxyCodeLine{603    L = (((\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}})a) << 32) | b;}
+\DoxyCodeLine{604 }
+\DoxyCodeLine{605    \textcolor{comment}{/* FL\string^-1 */}}
+\DoxyCodeLine{606    a = (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})(\mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}} >> 32);}
+\DoxyCodeLine{607    b = (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})(\mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}} \& 0xFFFFFFFFUL);}
+\DoxyCodeLine{608    b \string^= \mbox{\hyperlink{tomcrypt__macros_8h_a2e1da5c8810967170c889976d1fe9fa1}{ROL}}((a \& (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})(skey->camellia.kl[1] >> 32)), 1);}
+\DoxyCodeLine{609    a \string^= b | (skey->camellia.kl[1] \& 0xFFFFFFFFU);}
+\DoxyCodeLine{610    \mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}} = (((\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}})a) << 32) | b;}
+\DoxyCodeLine{611 }
+\DoxyCodeLine{612    \textcolor{comment}{/* first 6 rounds */}}
+\DoxyCodeLine{613    L \string^= \mbox{\hyperlink{camellia_8c_aa64e124c7480791e82c5254ab4f24269}{F}}(\mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}} \string^ skey->camellia.k[5]);}
+\DoxyCodeLine{614    \mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}} \string^= \mbox{\hyperlink{camellia_8c_aa64e124c7480791e82c5254ab4f24269}{F}}(L \string^ skey->camellia.k[4]);}
+\DoxyCodeLine{615    L \string^= \mbox{\hyperlink{camellia_8c_aa64e124c7480791e82c5254ab4f24269}{F}}(\mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}} \string^ skey->camellia.k[3]);}
+\DoxyCodeLine{616    \mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}} \string^= \mbox{\hyperlink{camellia_8c_aa64e124c7480791e82c5254ab4f24269}{F}}(L \string^ skey->camellia.k[2]);}
+\DoxyCodeLine{617    L \string^= \mbox{\hyperlink{camellia_8c_aa64e124c7480791e82c5254ab4f24269}{F}}(\mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}} \string^ skey->camellia.k[1]);}
+\DoxyCodeLine{618    \mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}} \string^= \mbox{\hyperlink{camellia_8c_aa64e124c7480791e82c5254ab4f24269}{F}}(L \string^ skey->camellia.k[0]);}
+\DoxyCodeLine{619 }
+\DoxyCodeLine{620    \mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}} \string^= skey->camellia.kw[1];}
+\DoxyCodeLine{621    L \string^= skey->camellia.kw[0];}
+\DoxyCodeLine{622 }
+\DoxyCodeLine{623    STORE64H(\mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}}, pt+8); STORE64H(L, pt+0);}
+\DoxyCodeLine{624 }
+\DoxyCodeLine{625    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{626 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, F(), R, and R\+OL.
+
+
+
+Referenced by camellia\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 2
+Here is the caller graph for this function\+:
+% FIG 3
+\mbox{\Hypertarget{camellia_8c_af8d2418cb96a06564119207d21e3db20}\label{camellia_8c_af8d2418cb96a06564119207d21e3db20}} 
+\index{camellia.c@{camellia.c}!camellia\_ecb\_encrypt@{camellia\_ecb\_encrypt}}
+\index{camellia\_ecb\_encrypt@{camellia\_ecb\_encrypt}!camellia.c@{camellia.c}}
+\subsubsection{\texorpdfstring{camellia\_ecb\_encrypt()}{camellia\_ecb\_encrypt()}}
+{\footnotesize\ttfamily int camellia\+\_\+ecb\+\_\+encrypt (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{pt,  }\item[{unsigned char $\ast$}]{ct,  }\item[{const \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$}]{skey }\end{DoxyParamCaption})}
+
+
+
+Definition at line 439 of file camellia.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{440 \{}
+\DoxyCodeLine{441    \mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}} L, \mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}};}
+\DoxyCodeLine{442    \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} a, b;}
+\DoxyCodeLine{443 }
+\DoxyCodeLine{444    LOAD64H(L, pt+0); LOAD64H(\mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}}, pt+8);}
+\DoxyCodeLine{445    L \string^= skey->camellia.kw[0];}
+\DoxyCodeLine{446    \mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}} \string^= skey->camellia.kw[1];}
+\DoxyCodeLine{447 }
+\DoxyCodeLine{448    \textcolor{comment}{/* first 6 rounds */}}
+\DoxyCodeLine{449    \mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}} \string^= \mbox{\hyperlink{camellia_8c_aa64e124c7480791e82c5254ab4f24269}{F}}(L \string^ skey->camellia.k[0]);}
+\DoxyCodeLine{450    L \string^= \mbox{\hyperlink{camellia_8c_aa64e124c7480791e82c5254ab4f24269}{F}}(\mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}} \string^ skey->camellia.k[1]);}
+\DoxyCodeLine{451    \mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}} \string^= \mbox{\hyperlink{camellia_8c_aa64e124c7480791e82c5254ab4f24269}{F}}(L \string^ skey->camellia.k[2]);}
+\DoxyCodeLine{452    L \string^= \mbox{\hyperlink{camellia_8c_aa64e124c7480791e82c5254ab4f24269}{F}}(\mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}} \string^ skey->camellia.k[3]);}
+\DoxyCodeLine{453    \mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}} \string^= \mbox{\hyperlink{camellia_8c_aa64e124c7480791e82c5254ab4f24269}{F}}(L \string^ skey->camellia.k[4]);}
+\DoxyCodeLine{454    L \string^= \mbox{\hyperlink{camellia_8c_aa64e124c7480791e82c5254ab4f24269}{F}}(\mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}} \string^ skey->camellia.k[5]);}
+\DoxyCodeLine{455 }
+\DoxyCodeLine{456    \textcolor{comment}{/* FL */}}
+\DoxyCodeLine{457    a = (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})(L >> 32);}
+\DoxyCodeLine{458    b = (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})(L \& 0xFFFFFFFFUL);}
+\DoxyCodeLine{459    b \string^= \mbox{\hyperlink{tomcrypt__macros_8h_a2e1da5c8810967170c889976d1fe9fa1}{ROL}}((a \& (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})(skey->camellia.kl[0] >> 32)), 1);}
+\DoxyCodeLine{460    a \string^= b | (skey->camellia.kl[0] \& 0xFFFFFFFFU);}
+\DoxyCodeLine{461    L = (((\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}})a) << 32) | b;}
+\DoxyCodeLine{462 }
+\DoxyCodeLine{463    \textcolor{comment}{/* FL\string^-1 */}}
+\DoxyCodeLine{464    a = (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})(\mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}} >> 32);}
+\DoxyCodeLine{465    b = (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})(\mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}} \& 0xFFFFFFFFUL);}
+\DoxyCodeLine{466    a \string^= b | (skey->camellia.kl[1] \& 0xFFFFFFFFU);}
+\DoxyCodeLine{467    b \string^= \mbox{\hyperlink{tomcrypt__macros_8h_a2e1da5c8810967170c889976d1fe9fa1}{ROL}}((a \& (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})(skey->camellia.kl[1] >> 32)), 1);}
+\DoxyCodeLine{468    \mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}} = (((\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}})a) << 32) | b;}
+\DoxyCodeLine{469 }
+\DoxyCodeLine{470    \textcolor{comment}{/* second 6 rounds */}}
+\DoxyCodeLine{471    \mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}} \string^= \mbox{\hyperlink{camellia_8c_aa64e124c7480791e82c5254ab4f24269}{F}}(L \string^ skey->camellia.k[6]);}
+\DoxyCodeLine{472    L \string^= \mbox{\hyperlink{camellia_8c_aa64e124c7480791e82c5254ab4f24269}{F}}(\mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}} \string^ skey->camellia.k[7]);}
+\DoxyCodeLine{473    \mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}} \string^= \mbox{\hyperlink{camellia_8c_aa64e124c7480791e82c5254ab4f24269}{F}}(L \string^ skey->camellia.k[8]);}
+\DoxyCodeLine{474    L \string^= \mbox{\hyperlink{camellia_8c_aa64e124c7480791e82c5254ab4f24269}{F}}(\mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}} \string^ skey->camellia.k[9]);}
+\DoxyCodeLine{475    \mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}} \string^= \mbox{\hyperlink{camellia_8c_aa64e124c7480791e82c5254ab4f24269}{F}}(L \string^ skey->camellia.k[10]);}
+\DoxyCodeLine{476    L \string^= \mbox{\hyperlink{camellia_8c_aa64e124c7480791e82c5254ab4f24269}{F}}(\mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}} \string^ skey->camellia.k[11]);}
+\DoxyCodeLine{477 }
+\DoxyCodeLine{478    \textcolor{comment}{/* FL */}}
+\DoxyCodeLine{479    a = (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})(L >> 32);}
+\DoxyCodeLine{480    b = (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})(L \& 0xFFFFFFFFUL);}
+\DoxyCodeLine{481    b \string^= \mbox{\hyperlink{tomcrypt__macros_8h_a2e1da5c8810967170c889976d1fe9fa1}{ROL}}((a \& (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})(skey->camellia.kl[2] >> 32)), 1);}
+\DoxyCodeLine{482    a \string^= b | (skey->camellia.kl[2] \& 0xFFFFFFFFU);}
+\DoxyCodeLine{483    L = (((\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}})a) << 32) | b;}
+\DoxyCodeLine{484 }
+\DoxyCodeLine{485    \textcolor{comment}{/* FL\string^-1 */}}
+\DoxyCodeLine{486    a = (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})(\mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}} >> 32);}
+\DoxyCodeLine{487    b = (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})(\mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}} \& 0xFFFFFFFFUL);}
+\DoxyCodeLine{488    a \string^= b | (skey->camellia.kl[3] \& 0xFFFFFFFFU);}
+\DoxyCodeLine{489    b \string^= \mbox{\hyperlink{tomcrypt__macros_8h_a2e1da5c8810967170c889976d1fe9fa1}{ROL}}((a \& (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})(skey->camellia.kl[3] >> 32)), 1);}
+\DoxyCodeLine{490    \mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}} = (((\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}})a) << 32) | b;}
+\DoxyCodeLine{491 }
+\DoxyCodeLine{492    \textcolor{comment}{/* third 6 rounds */}}
+\DoxyCodeLine{493    \mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}} \string^= \mbox{\hyperlink{camellia_8c_aa64e124c7480791e82c5254ab4f24269}{F}}(L \string^ skey->camellia.k[12]);}
+\DoxyCodeLine{494    L \string^= \mbox{\hyperlink{camellia_8c_aa64e124c7480791e82c5254ab4f24269}{F}}(\mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}} \string^ skey->camellia.k[13]);}
+\DoxyCodeLine{495    \mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}} \string^= \mbox{\hyperlink{camellia_8c_aa64e124c7480791e82c5254ab4f24269}{F}}(L \string^ skey->camellia.k[14]);}
+\DoxyCodeLine{496    L \string^= \mbox{\hyperlink{camellia_8c_aa64e124c7480791e82c5254ab4f24269}{F}}(\mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}} \string^ skey->camellia.k[15]);}
+\DoxyCodeLine{497    \mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}} \string^= \mbox{\hyperlink{camellia_8c_aa64e124c7480791e82c5254ab4f24269}{F}}(L \string^ skey->camellia.k[16]);}
+\DoxyCodeLine{498    L \string^= \mbox{\hyperlink{camellia_8c_aa64e124c7480791e82c5254ab4f24269}{F}}(\mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}} \string^ skey->camellia.k[17]);}
+\DoxyCodeLine{499 }
+\DoxyCodeLine{500    \textcolor{comment}{/* next FL */}}
+\DoxyCodeLine{501    \textcolor{keywordflow}{if} (skey->camellia.R == 24) \{}
+\DoxyCodeLine{502       \textcolor{comment}{/* FL */}}
+\DoxyCodeLine{503       a = (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})(L >> 32);}
+\DoxyCodeLine{504       b = (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})(L \& 0xFFFFFFFFUL);}
+\DoxyCodeLine{505       b \string^= \mbox{\hyperlink{tomcrypt__macros_8h_a2e1da5c8810967170c889976d1fe9fa1}{ROL}}((a \& (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})(skey->camellia.kl[4] >> 32)), 1);}
+\DoxyCodeLine{506       a \string^= b | (skey->camellia.kl[4] \& 0xFFFFFFFFU);}
+\DoxyCodeLine{507       L = (((\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}})a) << 32) | b;}
+\DoxyCodeLine{508 }
+\DoxyCodeLine{509       \textcolor{comment}{/* FL\string^-1 */}}
+\DoxyCodeLine{510       a = (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})(\mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}} >> 32);}
+\DoxyCodeLine{511       b = (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})(\mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}} \& 0xFFFFFFFFUL);}
+\DoxyCodeLine{512       a \string^= b | (skey->camellia.kl[5] \& 0xFFFFFFFFU);}
+\DoxyCodeLine{513       b \string^= \mbox{\hyperlink{tomcrypt__macros_8h_a2e1da5c8810967170c889976d1fe9fa1}{ROL}}((a \& (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})(skey->camellia.kl[5] >> 32)), 1);}
+\DoxyCodeLine{514       \mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}} = (((\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}})a) << 32) | b;}
+\DoxyCodeLine{515 }
+\DoxyCodeLine{516       \textcolor{comment}{/* fourth 6 rounds */}}
+\DoxyCodeLine{517       \mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}} \string^= \mbox{\hyperlink{camellia_8c_aa64e124c7480791e82c5254ab4f24269}{F}}(L \string^ skey->camellia.k[18]);}
+\DoxyCodeLine{518       L \string^= \mbox{\hyperlink{camellia_8c_aa64e124c7480791e82c5254ab4f24269}{F}}(\mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}} \string^ skey->camellia.k[19]);}
+\DoxyCodeLine{519       \mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}} \string^= \mbox{\hyperlink{camellia_8c_aa64e124c7480791e82c5254ab4f24269}{F}}(L \string^ skey->camellia.k[20]);}
+\DoxyCodeLine{520       L \string^= \mbox{\hyperlink{camellia_8c_aa64e124c7480791e82c5254ab4f24269}{F}}(\mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}} \string^ skey->camellia.k[21]);}
+\DoxyCodeLine{521       \mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}} \string^= \mbox{\hyperlink{camellia_8c_aa64e124c7480791e82c5254ab4f24269}{F}}(L \string^ skey->camellia.k[22]);}
+\DoxyCodeLine{522       L \string^= \mbox{\hyperlink{camellia_8c_aa64e124c7480791e82c5254ab4f24269}{F}}(\mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}} \string^ skey->camellia.k[23]);}
+\DoxyCodeLine{523    \}}
+\DoxyCodeLine{524 }
+\DoxyCodeLine{525    L \string^= skey->camellia.kw[3];}
+\DoxyCodeLine{526    \mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}} \string^= skey->camellia.kw[2];}
+\DoxyCodeLine{527 }
+\DoxyCodeLine{528    STORE64H(\mbox{\hyperlink{khazad_8c_a5c71a5e59a53413cd6c270266d63b031}{R}}, ct+0); STORE64H(L, ct+8);}
+\DoxyCodeLine{529 }
+\DoxyCodeLine{530    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{531 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, F(), R, and R\+OL.
+
+
+
+Referenced by camellia\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 4
+Here is the caller graph for this function\+:
+% FIG 5
+\mbox{\Hypertarget{camellia_8c_a28dafc511978eb360349b2d6c04e60a1}\label{camellia_8c_a28dafc511978eb360349b2d6c04e60a1}} 
+\index{camellia.c@{camellia.c}!camellia\_keysize@{camellia\_keysize}}
+\index{camellia\_keysize@{camellia\_keysize}!camellia.c@{camellia.c}}
+\subsubsection{\texorpdfstring{camellia\_keysize()}{camellia\_keysize()}}
+{\footnotesize\ttfamily int camellia\+\_\+keysize (\begin{DoxyParamCaption}\item[{int $\ast$}]{keysize }\end{DoxyParamCaption})}
+
+
+
+Definition at line 713 of file camellia.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{714 \{}
+\DoxyCodeLine{715    \textcolor{keywordflow}{if} (*keysize >= 32) \{ *keysize = 32; \}}
+\DoxyCodeLine{716    \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (*keysize >= 24) \{ *keysize = 24; \}}
+\DoxyCodeLine{717    \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (*keysize >= 16) \{ *keysize = 16; \}}
+\DoxyCodeLine{718    \textcolor{keywordflow}{else} \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caafed43f3b625e72191e08e65b4bb5e02}{CRYPT\_INVALID\_KEYSIZE}};}
+\DoxyCodeLine{719    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{720 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+K\+E\+Y\+S\+I\+ZE, and C\+R\+Y\+P\+T\+\_\+\+OK.
+
+\mbox{\Hypertarget{camellia_8c_a74770275e140160c3bb4b89e7b5d3e88}\label{camellia_8c_a74770275e140160c3bb4b89e7b5d3e88}} 
+\index{camellia.c@{camellia.c}!camellia\_setup@{camellia\_setup}}
+\index{camellia\_setup@{camellia\_setup}!camellia.c@{camellia.c}}
+\subsubsection{\texorpdfstring{camellia\_setup()}{camellia\_setup()}}
+{\footnotesize\ttfamily int camellia\+\_\+setup (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{key,  }\item[{int}]{keylen,  }\item[{int}]{num\+\_\+rounds,  }\item[{\mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$}]{skey }\end{DoxyParamCaption})}
+
+
+
+Definition at line 208 of file camellia.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{209 \{}
+\DoxyCodeLine{210    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} T[48], kA[16], kB[16], kR[16], kL[16];}
+\DoxyCodeLine{211    \textcolor{keywordtype}{int}           x;}
+\DoxyCodeLine{212    \mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}}       A, B;}
+\DoxyCodeLine{213 }
+\DoxyCodeLine{214    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(key  != NULL);}
+\DoxyCodeLine{215    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(skey != NULL);}
+\DoxyCodeLine{216 }
+\DoxyCodeLine{217    \textcolor{comment}{/* Valid sizes (in bytes) are 16, 24, 32 */}}
+\DoxyCodeLine{218    \textcolor{keywordflow}{if} (keylen != 16 \&\& keylen != 24 \&\& keylen != 32) \{}
+\DoxyCodeLine{219       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caafed43f3b625e72191e08e65b4bb5e02}{CRYPT\_INVALID\_KEYSIZE}};}
+\DoxyCodeLine{220    \}}
+\DoxyCodeLine{221 }
+\DoxyCodeLine{222    \textcolor{comment}{/* number of rounds */}}
+\DoxyCodeLine{223    skey->camellia.R = (keylen == 16) ? 18 : 24;}
+\DoxyCodeLine{224 }
+\DoxyCodeLine{225    \textcolor{keywordflow}{if} (num\_rounds != 0 \&\& num\_rounds != skey->camellia.R) \{}
+\DoxyCodeLine{226       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca69aff0280b5845d03130f8700009caf5}{CRYPT\_INVALID\_ROUNDS}};}
+\DoxyCodeLine{227    \}}
+\DoxyCodeLine{228 }
+\DoxyCodeLine{229    \textcolor{comment}{/* expand key */}}
+\DoxyCodeLine{230    \textcolor{keywordflow}{if} (keylen == 16) \{}
+\DoxyCodeLine{231       \textcolor{keywordflow}{for} (x = 0; x < 16; x++) \{}
+\DoxyCodeLine{232           T[x]      = key[x];}
+\DoxyCodeLine{233           T[x + 16] = 0;}
+\DoxyCodeLine{234       \}}
+\DoxyCodeLine{235    \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (keylen == 24) \{}
+\DoxyCodeLine{236       \textcolor{keywordflow}{for} (x = 0; x < 24; x++) \{}
+\DoxyCodeLine{237           T[x]      = key[x];}
+\DoxyCodeLine{238       \}}
+\DoxyCodeLine{239       \textcolor{keywordflow}{for} (x = 24; x < 32; x++) \{}
+\DoxyCodeLine{240           T[x]      = key[x-8] \string^ 0xFF;}
+\DoxyCodeLine{241       \}}
+\DoxyCodeLine{242    \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{243       \textcolor{keywordflow}{for} (x = 0; x < 32; x++) \{}
+\DoxyCodeLine{244           T[x]      = key[x];}
+\DoxyCodeLine{245       \}}
+\DoxyCodeLine{246    \}}
+\DoxyCodeLine{247 }
+\DoxyCodeLine{248    \textcolor{keywordflow}{for} (x = 0; x < 16; x++) \{}
+\DoxyCodeLine{249       kL[x] = T[x];}
+\DoxyCodeLine{250       kR[x] = T[x + 16];}
+\DoxyCodeLine{251    \}}
+\DoxyCodeLine{252 }
+\DoxyCodeLine{253    \textcolor{keywordflow}{for} (x = 32; x < 48; x++) \{}
+\DoxyCodeLine{254       T[x] = T[x - 32] \string^ T[x - 16];}
+\DoxyCodeLine{255    \}}
+\DoxyCodeLine{256 }
+\DoxyCodeLine{257    \textcolor{comment}{/* first two rounds */}}
+\DoxyCodeLine{258    LOAD64H(A, T+32); LOAD64H(B, T+40);}
+\DoxyCodeLine{259    B \string^= \mbox{\hyperlink{camellia_8c_aa64e124c7480791e82c5254ab4f24269}{F}}(A \string^ \mbox{\hyperlink{camellia_8c_a0f416bb4ad688858659a59cec7254756}{key\_sigma}}[0]);}
+\DoxyCodeLine{260    A \string^= \mbox{\hyperlink{camellia_8c_aa64e124c7480791e82c5254ab4f24269}{F}}(B \string^ \mbox{\hyperlink{camellia_8c_a0f416bb4ad688858659a59cec7254756}{key\_sigma}}[1]);}
+\DoxyCodeLine{261    STORE64H(A, T+32); STORE64H(B, T+40);}
+\DoxyCodeLine{262 }
+\DoxyCodeLine{263    \textcolor{comment}{/* xor kL in */}}
+\DoxyCodeLine{264    \textcolor{keywordflow}{for} (x = 0; x < 16; x++) \{ T[x+32] \string^= kL[x]; \}}
+\DoxyCodeLine{265 }
+\DoxyCodeLine{266    \textcolor{comment}{/* next two rounds */}}
+\DoxyCodeLine{267    LOAD64H(A, T+32); LOAD64H(B, T+40);}
+\DoxyCodeLine{268    B \string^= \mbox{\hyperlink{camellia_8c_aa64e124c7480791e82c5254ab4f24269}{F}}(A \string^ \mbox{\hyperlink{camellia_8c_a0f416bb4ad688858659a59cec7254756}{key\_sigma}}[2]);}
+\DoxyCodeLine{269    A \string^= \mbox{\hyperlink{camellia_8c_aa64e124c7480791e82c5254ab4f24269}{F}}(B \string^ \mbox{\hyperlink{camellia_8c_a0f416bb4ad688858659a59cec7254756}{key\_sigma}}[3]);}
+\DoxyCodeLine{270    STORE64H(A, T+32); STORE64H(B, T+40);}
+\DoxyCodeLine{271 }
+\DoxyCodeLine{272    \textcolor{comment}{/* grab KA */}}
+\DoxyCodeLine{273    \textcolor{keywordflow}{for} (x = 0; x < 16; x++) \{ kA[x] = T[x+32]; \}}
+\DoxyCodeLine{274 }
+\DoxyCodeLine{275    \textcolor{comment}{/* xor kR in */}}
+\DoxyCodeLine{276    \textcolor{keywordflow}{for} (x = 0; x < 16; x++) \{ T[x+32] \string^= kR[x]; \}}
+\DoxyCodeLine{277 }
+\DoxyCodeLine{278    \textcolor{keywordflow}{if} (keylen == 16) \{}
+\DoxyCodeLine{279       \textcolor{comment}{/* grab whitening keys kw1 and kw2 */}}
+\DoxyCodeLine{280       LOAD64H(skey->camellia.kw[0], kL);}
+\DoxyCodeLine{281       LOAD64H(skey->camellia.kw[1], kL+8);}
+\DoxyCodeLine{282 }
+\DoxyCodeLine{283       \textcolor{comment}{/* k1-k2 */}}
+\DoxyCodeLine{284       LOAD64H(skey->camellia.k[0], kA);}
+\DoxyCodeLine{285       LOAD64H(skey->camellia.k[1], kA+8);}
+\DoxyCodeLine{286 }
+\DoxyCodeLine{287       \textcolor{comment}{/* rotate kL by 15, k3/k4 */}}
+\DoxyCodeLine{288       \mbox{\hyperlink{camellia_8c_ae6c81ba6235f122b26dc9a9d64705167}{rot\_128}}(kL, 15, T+32);}
+\DoxyCodeLine{289       LOAD64H(skey->camellia.k[2], T+32);}
+\DoxyCodeLine{290       LOAD64H(skey->camellia.k[3], T+40);}
+\DoxyCodeLine{291 }
+\DoxyCodeLine{292       \textcolor{comment}{/* rotate kA by 15, k5/k6 */}}
+\DoxyCodeLine{293       \mbox{\hyperlink{camellia_8c_ae6c81ba6235f122b26dc9a9d64705167}{rot\_128}}(kA, 15, T+32);}
+\DoxyCodeLine{294       LOAD64H(skey->camellia.k[4], T+32);}
+\DoxyCodeLine{295       LOAD64H(skey->camellia.k[5], T+40);}
+\DoxyCodeLine{296 }
+\DoxyCodeLine{297       \textcolor{comment}{/* rotate kA by 30, kl1, kl2 */}}
+\DoxyCodeLine{298       \mbox{\hyperlink{camellia_8c_ae6c81ba6235f122b26dc9a9d64705167}{rot\_128}}(kA, 30, T+32);}
+\DoxyCodeLine{299       LOAD64H(skey->camellia.kl[0], T+32);}
+\DoxyCodeLine{300       LOAD64H(skey->camellia.kl[1], T+40);}
+\DoxyCodeLine{301 }
+\DoxyCodeLine{302       \textcolor{comment}{/* rotate kL by 45, k7/k8 */}}
+\DoxyCodeLine{303       \mbox{\hyperlink{camellia_8c_ae6c81ba6235f122b26dc9a9d64705167}{rot\_128}}(kL, 45, T+32);}
+\DoxyCodeLine{304       LOAD64H(skey->camellia.k[6], T+32);}
+\DoxyCodeLine{305       LOAD64H(skey->camellia.k[7], T+40);}
+\DoxyCodeLine{306 }
+\DoxyCodeLine{307       \textcolor{comment}{/* rotate kA by 45, k9/k10 */}}
+\DoxyCodeLine{308       \mbox{\hyperlink{camellia_8c_ae6c81ba6235f122b26dc9a9d64705167}{rot\_128}}(kA, 45, T+32);}
+\DoxyCodeLine{309       LOAD64H(skey->camellia.k[8], T+32);}
+\DoxyCodeLine{310       \mbox{\hyperlink{camellia_8c_ae6c81ba6235f122b26dc9a9d64705167}{rot\_128}}(kL, 60, T+32);}
+\DoxyCodeLine{311       LOAD64H(skey->camellia.k[9], T+40);}
+\DoxyCodeLine{312 }
+\DoxyCodeLine{313       \textcolor{comment}{/* rotate kA by 60, k11/k12 */}}
+\DoxyCodeLine{314       \mbox{\hyperlink{camellia_8c_ae6c81ba6235f122b26dc9a9d64705167}{rot\_128}}(kA, 60, T+32);}
+\DoxyCodeLine{315       LOAD64H(skey->camellia.k[10], T+32);}
+\DoxyCodeLine{316       LOAD64H(skey->camellia.k[11], T+40);}
+\DoxyCodeLine{317 }
+\DoxyCodeLine{318       \textcolor{comment}{/* rotate kL by 77, kl3, kl4 */}}
+\DoxyCodeLine{319       \mbox{\hyperlink{camellia_8c_ae6c81ba6235f122b26dc9a9d64705167}{rot\_128}}(kL, 77, T+32);}
+\DoxyCodeLine{320       LOAD64H(skey->camellia.kl[2], T+32);}
+\DoxyCodeLine{321       LOAD64H(skey->camellia.kl[3], T+40);}
+\DoxyCodeLine{322 }
+\DoxyCodeLine{323       \textcolor{comment}{/* rotate kL by 94, k13/k14 */}}
+\DoxyCodeLine{324       \mbox{\hyperlink{camellia_8c_ae6c81ba6235f122b26dc9a9d64705167}{rot\_128}}(kL, 94, T+32);}
+\DoxyCodeLine{325       LOAD64H(skey->camellia.k[12], T+32);}
+\DoxyCodeLine{326       LOAD64H(skey->camellia.k[13], T+40);}
+\DoxyCodeLine{327 }
+\DoxyCodeLine{328       \textcolor{comment}{/* rotate kA by 94, k15/k16 */}}
+\DoxyCodeLine{329       \mbox{\hyperlink{camellia_8c_ae6c81ba6235f122b26dc9a9d64705167}{rot\_128}}(kA, 94, T+32);}
+\DoxyCodeLine{330       LOAD64H(skey->camellia.k[14], T+32);}
+\DoxyCodeLine{331       LOAD64H(skey->camellia.k[15], T+40);}
+\DoxyCodeLine{332 }
+\DoxyCodeLine{333       \textcolor{comment}{/* rotate kL by 111, k17/k18 */}}
+\DoxyCodeLine{334       \mbox{\hyperlink{camellia_8c_ae6c81ba6235f122b26dc9a9d64705167}{rot\_128}}(kL, 111, T+32);}
+\DoxyCodeLine{335       LOAD64H(skey->camellia.k[16], T+32);}
+\DoxyCodeLine{336       LOAD64H(skey->camellia.k[17], T+40);}
+\DoxyCodeLine{337 }
+\DoxyCodeLine{338       \textcolor{comment}{/* rotate kA by 111, kw3/kw4 */}}
+\DoxyCodeLine{339       \mbox{\hyperlink{camellia_8c_ae6c81ba6235f122b26dc9a9d64705167}{rot\_128}}(kA, 111, T+32);}
+\DoxyCodeLine{340       LOAD64H(skey->camellia.kw[2], T+32);}
+\DoxyCodeLine{341       LOAD64H(skey->camellia.kw[3], T+40);}
+\DoxyCodeLine{342    \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{343       \textcolor{comment}{/* last two rounds */}}
+\DoxyCodeLine{344       LOAD64H(A, T+32); LOAD64H(B, T+40);}
+\DoxyCodeLine{345       B \string^= \mbox{\hyperlink{camellia_8c_aa64e124c7480791e82c5254ab4f24269}{F}}(A \string^ \mbox{\hyperlink{camellia_8c_a0f416bb4ad688858659a59cec7254756}{key\_sigma}}[4]);}
+\DoxyCodeLine{346       A \string^= \mbox{\hyperlink{camellia_8c_aa64e124c7480791e82c5254ab4f24269}{F}}(B \string^ \mbox{\hyperlink{camellia_8c_a0f416bb4ad688858659a59cec7254756}{key\_sigma}}[5]);}
+\DoxyCodeLine{347       STORE64H(A, T+32); STORE64H(B, T+40);}
+\DoxyCodeLine{348 }
+\DoxyCodeLine{349       \textcolor{comment}{/* grab kB */}}
+\DoxyCodeLine{350       \textcolor{keywordflow}{for} (x = 0; x < 16; x++) \{ kB[x] = T[x+32]; \}}
+\DoxyCodeLine{351 }
+\DoxyCodeLine{352       \textcolor{comment}{/* kw1/2 from kL*/}}
+\DoxyCodeLine{353       LOAD64H(skey->camellia.kw[0], kL);}
+\DoxyCodeLine{354       LOAD64H(skey->camellia.kw[1], kL+8);}
+\DoxyCodeLine{355 }
+\DoxyCodeLine{356       \textcolor{comment}{/* k1/k2 = kB */}}
+\DoxyCodeLine{357       LOAD64H(skey->camellia.k[0], kB);}
+\DoxyCodeLine{358       LOAD64H(skey->camellia.k[1], kB+8);}
+\DoxyCodeLine{359 }
+\DoxyCodeLine{360       \textcolor{comment}{/* k3/k4 = kR by 15 */}}
+\DoxyCodeLine{361       \mbox{\hyperlink{camellia_8c_ae6c81ba6235f122b26dc9a9d64705167}{rot\_128}}(kR, 15, T+32);}
+\DoxyCodeLine{362       LOAD64H(skey->camellia.k[2], T+32);}
+\DoxyCodeLine{363       LOAD64H(skey->camellia.k[3], T+40);}
+\DoxyCodeLine{364 }
+\DoxyCodeLine{365       \textcolor{comment}{/* k5/k7 = kA by 15 */}}
+\DoxyCodeLine{366       \mbox{\hyperlink{camellia_8c_ae6c81ba6235f122b26dc9a9d64705167}{rot\_128}}(kA, 15, T+32);}
+\DoxyCodeLine{367       LOAD64H(skey->camellia.k[4], T+32);}
+\DoxyCodeLine{368       LOAD64H(skey->camellia.k[5], T+40);}
+\DoxyCodeLine{369 }
+\DoxyCodeLine{370       \textcolor{comment}{/* kl1/2 = kR by 30 */}}
+\DoxyCodeLine{371       \mbox{\hyperlink{camellia_8c_ae6c81ba6235f122b26dc9a9d64705167}{rot\_128}}(kR, 30, T+32);}
+\DoxyCodeLine{372       LOAD64H(skey->camellia.kl[0], T+32);}
+\DoxyCodeLine{373       LOAD64H(skey->camellia.kl[1], T+40);}
+\DoxyCodeLine{374 }
+\DoxyCodeLine{375       \textcolor{comment}{/* k7/k8 = kB by 30 */}}
+\DoxyCodeLine{376       \mbox{\hyperlink{camellia_8c_ae6c81ba6235f122b26dc9a9d64705167}{rot\_128}}(kB, 30, T+32);}
+\DoxyCodeLine{377       LOAD64H(skey->camellia.k[6], T+32);}
+\DoxyCodeLine{378       LOAD64H(skey->camellia.k[7], T+40);}
+\DoxyCodeLine{379 }
+\DoxyCodeLine{380       \textcolor{comment}{/* k9/k10 = kL by 45 */}}
+\DoxyCodeLine{381       \mbox{\hyperlink{camellia_8c_ae6c81ba6235f122b26dc9a9d64705167}{rot\_128}}(kL, 45, T+32);}
+\DoxyCodeLine{382       LOAD64H(skey->camellia.k[8], T+32);}
+\DoxyCodeLine{383       LOAD64H(skey->camellia.k[9], T+40);}
+\DoxyCodeLine{384 }
+\DoxyCodeLine{385       \textcolor{comment}{/* k11/k12 = kA by 45 */}}
+\DoxyCodeLine{386       \mbox{\hyperlink{camellia_8c_ae6c81ba6235f122b26dc9a9d64705167}{rot\_128}}(kA, 45, T+32);}
+\DoxyCodeLine{387       LOAD64H(skey->camellia.k[10], T+32);}
+\DoxyCodeLine{388       LOAD64H(skey->camellia.k[11], T+40);}
+\DoxyCodeLine{389 }
+\DoxyCodeLine{390       \textcolor{comment}{/* kl3/4 = kL by 60 */}}
+\DoxyCodeLine{391       \mbox{\hyperlink{camellia_8c_ae6c81ba6235f122b26dc9a9d64705167}{rot\_128}}(kL, 60, T+32);}
+\DoxyCodeLine{392       LOAD64H(skey->camellia.kl[2], T+32);}
+\DoxyCodeLine{393       LOAD64H(skey->camellia.kl[3], T+40);}
+\DoxyCodeLine{394 }
+\DoxyCodeLine{395       \textcolor{comment}{/* k13/k14 = kR by 60 */}}
+\DoxyCodeLine{396       \mbox{\hyperlink{camellia_8c_ae6c81ba6235f122b26dc9a9d64705167}{rot\_128}}(kR, 60, T+32);}
+\DoxyCodeLine{397       LOAD64H(skey->camellia.k[12], T+32);}
+\DoxyCodeLine{398       LOAD64H(skey->camellia.k[13], T+40);}
+\DoxyCodeLine{399 }
+\DoxyCodeLine{400       \textcolor{comment}{/* k15/k16 = kB by 15 */}}
+\DoxyCodeLine{401       \mbox{\hyperlink{camellia_8c_ae6c81ba6235f122b26dc9a9d64705167}{rot\_128}}(kB, 60, T+32);}
+\DoxyCodeLine{402       LOAD64H(skey->camellia.k[14], T+32);}
+\DoxyCodeLine{403       LOAD64H(skey->camellia.k[15], T+40);}
+\DoxyCodeLine{404 }
+\DoxyCodeLine{405       \textcolor{comment}{/* k17/k18 = kL by 77 */}}
+\DoxyCodeLine{406       \mbox{\hyperlink{camellia_8c_ae6c81ba6235f122b26dc9a9d64705167}{rot\_128}}(kL, 77, T+32);}
+\DoxyCodeLine{407       LOAD64H(skey->camellia.k[16], T+32);}
+\DoxyCodeLine{408       LOAD64H(skey->camellia.k[17], T+40);}
+\DoxyCodeLine{409 }
+\DoxyCodeLine{410       \textcolor{comment}{/* kl5/6 = kA by 77  */}}
+\DoxyCodeLine{411       \mbox{\hyperlink{camellia_8c_ae6c81ba6235f122b26dc9a9d64705167}{rot\_128}}(kA, 77, T+32);}
+\DoxyCodeLine{412       LOAD64H(skey->camellia.kl[4], T+32);}
+\DoxyCodeLine{413       LOAD64H(skey->camellia.kl[5], T+40);}
+\DoxyCodeLine{414 }
+\DoxyCodeLine{415       \textcolor{comment}{/* k19/k20 = kR by 94 */}}
+\DoxyCodeLine{416       \mbox{\hyperlink{camellia_8c_ae6c81ba6235f122b26dc9a9d64705167}{rot\_128}}(kR, 94, T+32);}
+\DoxyCodeLine{417       LOAD64H(skey->camellia.k[18], T+32);}
+\DoxyCodeLine{418       LOAD64H(skey->camellia.k[19], T+40);}
+\DoxyCodeLine{419 }
+\DoxyCodeLine{420       \textcolor{comment}{/* k21/k22 = kA by 94 */}}
+\DoxyCodeLine{421       \mbox{\hyperlink{camellia_8c_ae6c81ba6235f122b26dc9a9d64705167}{rot\_128}}(kA, 94, T+32);}
+\DoxyCodeLine{422       LOAD64H(skey->camellia.k[20], T+32);}
+\DoxyCodeLine{423       LOAD64H(skey->camellia.k[21], T+40);}
+\DoxyCodeLine{424 }
+\DoxyCodeLine{425       \textcolor{comment}{/* k23/k24 = kL by 111 */}}
+\DoxyCodeLine{426       \mbox{\hyperlink{camellia_8c_ae6c81ba6235f122b26dc9a9d64705167}{rot\_128}}(kL, 111, T+32);}
+\DoxyCodeLine{427       LOAD64H(skey->camellia.k[22], T+32);}
+\DoxyCodeLine{428       LOAD64H(skey->camellia.k[23], T+40);}
+\DoxyCodeLine{429 }
+\DoxyCodeLine{430       \textcolor{comment}{/* kw2/kw3 = kB by 111 */}}
+\DoxyCodeLine{431       \mbox{\hyperlink{camellia_8c_ae6c81ba6235f122b26dc9a9d64705167}{rot\_128}}(kB, 111, T+32);}
+\DoxyCodeLine{432       LOAD64H(skey->camellia.kw[2], T+32);}
+\DoxyCodeLine{433       LOAD64H(skey->camellia.kw[3], T+40);}
+\DoxyCodeLine{434    \}}
+\DoxyCodeLine{435 }
+\DoxyCodeLine{436    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{437 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+K\+E\+Y\+S\+I\+ZE, C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+R\+O\+U\+N\+DS, C\+R\+Y\+P\+T\+\_\+\+OK, F(), key\+\_\+sigma, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, and rot\+\_\+128().
+
+
+
+Referenced by camellia\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 6
+Here is the caller graph for this function\+:
+% FIG 7
+\mbox{\Hypertarget{camellia_8c_a2af9ab6e44a83ed8fa753deece2c6749}\label{camellia_8c_a2af9ab6e44a83ed8fa753deece2c6749}} 
+\index{camellia.c@{camellia.c}!camellia\_test@{camellia\_test}}
+\index{camellia\_test@{camellia\_test}!camellia.c@{camellia.c}}
+\subsubsection{\texorpdfstring{camellia\_test()}{camellia\_test()}}
+{\footnotesize\ttfamily int camellia\+\_\+test (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 628 of file camellia.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{629 \{}
+\DoxyCodeLine{630    \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{631       \textcolor{keywordtype}{int} keylen;}
+\DoxyCodeLine{632       \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} key[32], pt[16], ct[16];}
+\DoxyCodeLine{633    \} tests[] = \{}
+\DoxyCodeLine{634 }
+\DoxyCodeLine{635 \{}
+\DoxyCodeLine{636    16,}
+\DoxyCodeLine{637    \{ 0x01, 0x23, 0x45, 0x67, 0x89, 0xab, 0xcd, 0xef,}
+\DoxyCodeLine{638      0xfe, 0xdc, 0xba, 0x98, 0x76, 0x54, 0x32, 0x10 \},}
+\DoxyCodeLine{639    \{ 0x01, 0x23, 0x45, 0x67, 0x89, 0xab, 0xcd, 0xef,}
+\DoxyCodeLine{640      0xfe, 0xdc, 0xba, 0x98, 0x76, 0x54, 0x32, 0x10 \},}
+\DoxyCodeLine{641    \{ 0x67, 0x67, 0x31, 0x38, 0x54, 0x96, 0x69, 0x73,}
+\DoxyCodeLine{642      0x08, 0x57, 0x06, 0x56, 0x48, 0xea, 0xbe, 0x43 \}}
+\DoxyCodeLine{643 \},}
+\DoxyCodeLine{644 }
+\DoxyCodeLine{645 \{}
+\DoxyCodeLine{646    24,}
+\DoxyCodeLine{647    \{ 0x01, 0x23, 0x45, 0x67, 0x89, 0xab, 0xcd, 0xef,}
+\DoxyCodeLine{648      0xfe, 0xdc, 0xba, 0x98, 0x76, 0x54, 0x32, 0x10,}
+\DoxyCodeLine{649      0x00, 0x11, 0x22, 0x33, 0x44, 0x55, 0x66, 0x77 \},}
+\DoxyCodeLine{650    \{ 0x01, 0x23, 0x45, 0x67, 0x89, 0xab, 0xcd, 0xef,}
+\DoxyCodeLine{651      0xfe, 0xdc, 0xba, 0x98, 0x76, 0x54, 0x32, 0x10 \},}
+\DoxyCodeLine{652    \{ 0xb4, 0x99, 0x34, 0x01, 0xb3, 0xe9, 0x96, 0xf8,}
+\DoxyCodeLine{653      0x4e, 0xe5, 0xce, 0xe7, 0xd7, 0x9b, 0x09, 0xb9 \}}
+\DoxyCodeLine{654 \},}
+\DoxyCodeLine{655 }
+\DoxyCodeLine{656 }
+\DoxyCodeLine{657 \{}
+\DoxyCodeLine{658    32,}
+\DoxyCodeLine{659    \{ 0x01, 0x23, 0x45, 0x67, 0x89, 0xab, 0xcd, 0xef,}
+\DoxyCodeLine{660      0xfe, 0xdc, 0xba, 0x98, 0x76, 0x54, 0x32, 0x10,}
+\DoxyCodeLine{661      0x00, 0x11, 0x22, 0x33, 0x44, 0x55, 0x66, 0x77,}
+\DoxyCodeLine{662      0x88, 0x99, 0xaa, 0xbb, 0xcc, 0xdd, 0xee, 0xff \},}
+\DoxyCodeLine{663    \{ 0x01, 0x23, 0x45, 0x67, 0x89, 0xab, 0xcd, 0xef,}
+\DoxyCodeLine{664      0xfe, 0xdc, 0xba, 0x98, 0x76, 0x54, 0x32, 0x10 \},}
+\DoxyCodeLine{665    \{ 0x9a, 0xcc, 0x23, 0x7d, 0xff, 0x16, 0xd7, 0x6c,}
+\DoxyCodeLine{666      0x20, 0xef, 0x7c, 0x91, 0x9e, 0x3a, 0x75, 0x09 \}}
+\DoxyCodeLine{667 \},}
+\DoxyCodeLine{668 }
+\DoxyCodeLine{669 \{}
+\DoxyCodeLine{670    32,}
+\DoxyCodeLine{671    \{ 0x60, 0x3D, 0xEB, 0x10, 0x15, 0xCA, 0x71, 0xBE,}
+\DoxyCodeLine{672      0x2B, 0x73, 0xAE, 0xF0, 0x85, 0x7D, 0x77, 0x81,}
+\DoxyCodeLine{673      0x1F, 0x35, 0x2C, 0x07, 0x3B, 0x61, 0x08, 0xD7,}
+\DoxyCodeLine{674      0x2D, 0x98, 0x10, 0xA3, 0x09, 0x14, 0xDF, 0xF4 \},}
+\DoxyCodeLine{675    \{ 0xF6, 0x9F, 0x24, 0x45, 0xDF, 0x4F, 0x9B, 0x17,}
+\DoxyCodeLine{676      0xAD, 0x2B, 0x41, 0x7B, 0xE6, 0x6C, 0x37, 0x10 \},}
+\DoxyCodeLine{677    \{ 0x79, 0x60, 0x10, 0x9F, 0xB6, 0xDC, 0x42, 0x94,}
+\DoxyCodeLine{678      0x7F, 0xCF, 0xE5, 0x9E, 0xA3, 0xC5, 0xEB, 0x6B  \}}
+\DoxyCodeLine{679 \}}
+\DoxyCodeLine{680 \};}
+\DoxyCodeLine{681    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} buf[2][16];}
+\DoxyCodeLine{682    \mbox{\hyperlink{unionSymmetric__key}{symmetric\_key}} skey;}
+\DoxyCodeLine{683    \textcolor{keywordtype}{int} err;}
+\DoxyCodeLine{684    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} x;}
+\DoxyCodeLine{685 }
+\DoxyCodeLine{686    \textcolor{keywordflow}{for} (x = 0; x < \textcolor{keyword}{sizeof}(tests)/\textcolor{keyword}{sizeof}(tests[0]); x++) \{}
+\DoxyCodeLine{687       \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(\&skey, \textcolor{keyword}{sizeof}(skey));}
+\DoxyCodeLine{688       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{camellia_8c_a74770275e140160c3bb4b89e7b5d3e88}{camellia\_setup}}(tests[x].key, tests[x].keylen, 0, \&skey)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{689          \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{690       \}}
+\DoxyCodeLine{691       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{camellia_8c_af8d2418cb96a06564119207d21e3db20}{camellia\_ecb\_encrypt}}(tests[x].pt, buf[0], \&skey)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{692          \mbox{\hyperlink{camellia_8c_a94b1aaf8f9675b369ecf5eea9affd840}{camellia\_done}}(\&skey);}
+\DoxyCodeLine{693          \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{694       \}}
+\DoxyCodeLine{695       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{camellia_8c_aea19af8e03ef94a0778611279141164c}{camellia\_ecb\_decrypt}}(tests[x].ct, buf[1], \&skey)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{696          \mbox{\hyperlink{camellia_8c_a94b1aaf8f9675b369ecf5eea9affd840}{camellia\_done}}(\&skey);}
+\DoxyCodeLine{697          \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{698       \}}
+\DoxyCodeLine{699       \mbox{\hyperlink{camellia_8c_a94b1aaf8f9675b369ecf5eea9affd840}{camellia\_done}}(\&skey);}
+\DoxyCodeLine{700       \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(tests[x].ct, 16, buf[0], 16, \textcolor{stringliteral}{"Camellia Encrypt"}, x) ||}
+\DoxyCodeLine{701             \mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(tests[x].pt, 16, buf[1], 16, \textcolor{stringliteral}{"Camellia Decrypt"}, x)) \{}
+\DoxyCodeLine{702          \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{703       \}}
+\DoxyCodeLine{704    \}}
+\DoxyCodeLine{705    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{706 \}}
+
+\end{DoxyCode}
+
+
+References camellia\+\_\+done(), camellia\+\_\+ecb\+\_\+decrypt(), camellia\+\_\+ecb\+\_\+encrypt(), camellia\+\_\+setup(), compare\+\_\+testvector(), C\+R\+Y\+P\+T\+\_\+\+F\+A\+I\+L\+\_\+\+T\+E\+S\+T\+V\+E\+C\+T\+OR, C\+R\+Y\+P\+T\+\_\+\+OK, and zeromem().
+
+Here is the call graph for this function\+:
+% FIG 8
+\mbox{\Hypertarget{camellia_8c_aa64e124c7480791e82c5254ab4f24269}\label{camellia_8c_aa64e124c7480791e82c5254ab4f24269}} 
+\index{camellia.c@{camellia.c}!F@{F}}
+\index{F@{F}!camellia.c@{camellia.c}}
+\subsubsection{\texorpdfstring{F()}{F()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}} F (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}}}]{x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 181 of file camellia.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{182 \{}
+\DoxyCodeLine{183    \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} D, U;}
+\DoxyCodeLine{184 }
+\DoxyCodeLine{185 \textcolor{preprocessor}{\#define loc(i) ((8-i)*8)}}
+\DoxyCodeLine{186 }
+\DoxyCodeLine{187    D = \mbox{\hyperlink{camellia_8c_aaad3b25567d77659b7436ea7a23dc32c}{SP1110}}[(x >> \mbox{\hyperlink{camellia_8c_ac3c71f047da86ba32a445112c4b3ca63}{loc}}(8)) \& 0xFF] \string^ \mbox{\hyperlink{camellia_8c_a049140cd8441b71f7f5b6ccc008d28fe}{SP0222}}[(x >> \mbox{\hyperlink{camellia_8c_ac3c71f047da86ba32a445112c4b3ca63}{loc}}(5)) \& 0xFF] \string^ \mbox{\hyperlink{camellia_8c_a13d1edb63923e63fec6770b0e5b80555}{SP3033}}[(x >> \mbox{\hyperlink{camellia_8c_ac3c71f047da86ba32a445112c4b3ca63}{loc}}(6)) \& 0xFF] \string^ \mbox{\hyperlink{camellia_8c_a1b1c77e0f598afc732b052a2274c3d59}{SP4404}}[(x >> \mbox{\hyperlink{camellia_8c_ac3c71f047da86ba32a445112c4b3ca63}{loc}}(7)) \& 0xFF];}
+\DoxyCodeLine{188    U = \mbox{\hyperlink{camellia_8c_aaad3b25567d77659b7436ea7a23dc32c}{SP1110}}[(x >> \mbox{\hyperlink{camellia_8c_ac3c71f047da86ba32a445112c4b3ca63}{loc}}(1)) \& 0xFF] \string^ \mbox{\hyperlink{camellia_8c_a049140cd8441b71f7f5b6ccc008d28fe}{SP0222}}[(x >> \mbox{\hyperlink{camellia_8c_ac3c71f047da86ba32a445112c4b3ca63}{loc}}(2)) \& 0xFF] \string^ \mbox{\hyperlink{camellia_8c_a13d1edb63923e63fec6770b0e5b80555}{SP3033}}[(x >> \mbox{\hyperlink{camellia_8c_ac3c71f047da86ba32a445112c4b3ca63}{loc}}(3)) \& 0xFF] \string^ \mbox{\hyperlink{camellia_8c_a1b1c77e0f598afc732b052a2274c3d59}{SP4404}}[(x >> \mbox{\hyperlink{camellia_8c_ac3c71f047da86ba32a445112c4b3ca63}{loc}}(4)) \& 0xFF];}
+\DoxyCodeLine{189 }
+\DoxyCodeLine{190    D \string^= U;}
+\DoxyCodeLine{191    U = D \string^ \mbox{\hyperlink{tomcrypt__macros_8h_adb04fb3f7c1736d29125ad0f179b1068}{RORc}}(U, 8);}
+\DoxyCodeLine{192 }
+\DoxyCodeLine{193    \textcolor{keywordflow}{return} ((\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}})U) | (((\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}})D) << \mbox{\hyperlink{tomcrypt__cfg_8h_a7d8e211582dff82d00fc171834e3dc67}{CONST64}}(32));}
+\DoxyCodeLine{194 \}}
+
+\end{DoxyCode}
+
+
+References C\+O\+N\+S\+T64, loc, R\+O\+Rc, S\+P0222, S\+P1110, S\+P3033, and S\+P4404.
+
+
+
+Referenced by camellia\+\_\+ecb\+\_\+decrypt(), camellia\+\_\+ecb\+\_\+encrypt(), and camellia\+\_\+setup().
+
+Here is the caller graph for this function\+:
+% FIG 9
+\mbox{\Hypertarget{camellia_8c_ae6c81ba6235f122b26dc9a9d64705167}\label{camellia_8c_ae6c81ba6235f122b26dc9a9d64705167}} 
+\index{camellia.c@{camellia.c}!rot\_128@{rot\_128}}
+\index{rot\_128@{rot\_128}!camellia.c@{camellia.c}}
+\subsubsection{\texorpdfstring{rot\_128()}{rot\_128()}}
+{\footnotesize\ttfamily static void rot\+\_\+128 (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{in,  }\item[{unsigned}]{count,  }\item[{unsigned char $\ast$}]{out }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 196 of file camellia.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{197 \{}
+\DoxyCodeLine{198    \textcolor{keywordtype}{unsigned} x, w, b;}
+\DoxyCodeLine{199 }
+\DoxyCodeLine{200    w = count >> 3;}
+\DoxyCodeLine{201    b = count \& 7;}
+\DoxyCodeLine{202 }
+\DoxyCodeLine{203    \textcolor{keywordflow}{for} (x = 0; x < 16; x++) \{}
+\DoxyCodeLine{204       out[x] = (in[(x+w)\&15] << b) | (in[(x+w+1)\&15] >> (8 - b));}
+\DoxyCodeLine{205    \}}
+\DoxyCodeLine{206 \}}
+
+\end{DoxyCode}
+
+
+Referenced by camellia\+\_\+setup().
+
+Here is the caller graph for this function\+:
+% FIG 10
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{camellia_8c_a10d3fccfb54d69182deb1c6ed8c699db}\label{camellia_8c_a10d3fccfb54d69182deb1c6ed8c699db}} 
+\index{camellia.c@{camellia.c}!camellia\_desc@{camellia\_desc}}
+\index{camellia\_desc@{camellia\_desc}!camellia.c@{camellia.c}}
+\subsubsection{\texorpdfstring{camellia\_desc}{camellia\_desc}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structltc__cipher__descriptor}{ltc\+\_\+cipher\+\_\+descriptor}} camellia\+\_\+desc}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{   \textcolor{stringliteral}{"camellia"},}
+\DoxyCodeLine{   23,}
+\DoxyCodeLine{   16, 32, 16, 18,}
+\DoxyCodeLine{   \&\mbox{\hyperlink{camellia_8c_a74770275e140160c3bb4b89e7b5d3e88}{camellia\_setup}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{camellia_8c_af8d2418cb96a06564119207d21e3db20}{camellia\_ecb\_encrypt}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{camellia_8c_aea19af8e03ef94a0778611279141164c}{camellia\_ecb\_decrypt}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{camellia_8c_a2af9ab6e44a83ed8fa753deece2c6749}{camellia\_test}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{camellia_8c_a94b1aaf8f9675b369ecf5eea9affd840}{camellia\_done}},}
+\DoxyCodeLine{   \&\mbox{\hyperlink{camellia_8c_a28dafc511978eb360349b2d6c04e60a1}{camellia\_keysize}},}
+\DoxyCodeLine{   NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line 19 of file camellia.\+c.
+
+
+
+Referenced by register\+\_\+all\+\_\+ciphers().
+
+\mbox{\Hypertarget{camellia_8c_a0f416bb4ad688858659a59cec7254756}\label{camellia_8c_a0f416bb4ad688858659a59cec7254756}} 
+\index{camellia.c@{camellia.c}!key\_sigma@{key\_sigma}}
+\index{key\_sigma@{key\_sigma}!camellia.c@{camellia.c}}
+\subsubsection{\texorpdfstring{key\_sigma}{key\_sigma}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}} key\+\_\+sigma\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    0xA09E667F3BCC908BULL,}
+\DoxyCodeLine{    0xB67AE8584CAA73B2ULL,}
+\DoxyCodeLine{    0xC6EF372FE94F82BEULL,}
+\DoxyCodeLine{    0x54FF53A5F1D36F1CULL,}
+\DoxyCodeLine{    0x10E527FADE682D1DULL,}
+\DoxyCodeLine{    0xB05688C2B3E6C1FDULL}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line 172 of file camellia.\+c.
+
+
+
+Referenced by camellia\+\_\+setup().
+
+\mbox{\Hypertarget{camellia_8c_a049140cd8441b71f7f5b6ccc008d28fe}\label{camellia_8c_a049140cd8441b71f7f5b6ccc008d28fe}} 
+\index{camellia.c@{camellia.c}!SP0222@{SP0222}}
+\index{SP0222@{SP0222}!camellia.c@{camellia.c}}
+\subsubsection{\texorpdfstring{SP0222}{SP0222}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} S\+P0222\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 67 of file camellia.\+c.
+
+
+
+Referenced by F().
+
+\mbox{\Hypertarget{camellia_8c_aaad3b25567d77659b7436ea7a23dc32c}\label{camellia_8c_aaad3b25567d77659b7436ea7a23dc32c}} 
+\index{camellia.c@{camellia.c}!SP1110@{SP1110}}
+\index{SP1110@{SP1110}!camellia.c@{camellia.c}}
+\subsubsection{\texorpdfstring{SP1110}{SP1110}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} S\+P1110\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 32 of file camellia.\+c.
+
+
+
+Referenced by F().
+
+\mbox{\Hypertarget{camellia_8c_a13d1edb63923e63fec6770b0e5b80555}\label{camellia_8c_a13d1edb63923e63fec6770b0e5b80555}} 
+\index{camellia.c@{camellia.c}!SP3033@{SP3033}}
+\index{SP3033@{SP3033}!camellia.c@{camellia.c}}
+\subsubsection{\texorpdfstring{SP3033}{SP3033}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} S\+P3033\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 102 of file camellia.\+c.
+
+
+
+Referenced by F().
+
+\mbox{\Hypertarget{camellia_8c_a1b1c77e0f598afc732b052a2274c3d59}\label{camellia_8c_a1b1c77e0f598afc732b052a2274c3d59}} 
+\index{camellia.c@{camellia.c}!SP4404@{SP4404}}
+\index{SP4404@{SP4404}!camellia.c@{camellia.c}}
+\subsubsection{\texorpdfstring{SP4404}{SP4404}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} S\+P4404\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 137 of file camellia.\+c.
+
+
+
+Referenced by F().
+

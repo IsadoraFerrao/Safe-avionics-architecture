@@ -1,0 +1,22 @@
+digraph "rmd320_test"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node15 [label="rmd320_test",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Self-test the hash."];
+  Node15 -> Node16 [color="midnightblue",fontsize="10",style="solid"];
+  Node16 [label="compare_testvector",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__misc_8h.html#a7764a7f27897c6182335752df00b5f8e",tooltip="Compare two test-vectors."];
+  Node16 -> Node17 [color="midnightblue",fontsize="10",style="solid"];
+  Node17 [label="XMEMCMP",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cfg_8h.html#a372b974ec0ac07abcd55297554fe540f",tooltip=" "];
+  Node15 -> Node18 [color="midnightblue",fontsize="10",style="solid"];
+  Node18 [label="rmd320_done",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rmd320_8c.html#a7dab0391a8e77bb9c3094088d634ea3a",tooltip="Terminate the hash to get the digest."];
+  Node18 -> Node19 [color="midnightblue",fontsize="10",style="solid"];
+  Node19 [label="rmd320_compress",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rmd320_8c.html#ad8758a0686a3904117d723a94bf13c0f",tooltip=" "];
+  Node18 -> Node20 [color="midnightblue",fontsize="10",style="solid"];
+  Node20 [label="zeromem",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__misc_8h.html#a63b6e188713790263bfd3612fe8b398f",tooltip="Zero a block of memory."];
+  Node15 -> Node21 [color="midnightblue",fontsize="10",style="solid"];
+  Node21 [label="rmd320_init",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rmd320_8c.html#afa146e01c380df04f2fce792ebba4b6b",tooltip="Initialize the hash state."];
+  Node15 -> Node22 [color="midnightblue",fontsize="10",style="solid"];
+  Node22 [label="rmd320_process",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rmd320_8c.html#af7af3538b443f75be73dc356b1d382ca",tooltip="Process a block of memory though the hash."];
+}

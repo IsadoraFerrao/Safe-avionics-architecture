@@ -1,0 +1,18 @@
+digraph "crc32_test"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node6 [label="crc32_test",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node6 -> Node7 [color="midnightblue",fontsize="10",style="solid"];
+  Node7 [label="compare_testvector",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__misc_8h.html#a7764a7f27897c6182335752df00b5f8e",tooltip="Compare two test-vectors."];
+  Node7 -> Node8 [color="midnightblue",fontsize="10",style="solid"];
+  Node8 [label="XMEMCMP",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cfg_8h.html#a372b974ec0ac07abcd55297554fe540f",tooltip=" "];
+  Node6 -> Node9 [color="midnightblue",fontsize="10",style="solid"];
+  Node9 [label="crc32_finish",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$crc32_8c.html#a30f82c05a121042b7f98fa0c34b0b387",tooltip=" "];
+  Node6 -> Node10 [color="midnightblue",fontsize="10",style="solid"];
+  Node10 [label="crc32_init",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$crc32_8c.html#abea909f225fd782316c90e0497b0ea23",tooltip=" "];
+  Node6 -> Node11 [color="midnightblue",fontsize="10",style="solid"];
+  Node11 [label="crc32_update",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$crc32_8c.html#a7c5fba8fff6dfb25a4d4c992b50a6bca",tooltip=" "];
+}

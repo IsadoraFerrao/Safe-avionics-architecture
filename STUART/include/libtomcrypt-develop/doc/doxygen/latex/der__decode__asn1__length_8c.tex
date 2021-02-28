@@ -1,0 +1,102 @@
+\hypertarget{der__decode__asn1__length_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/pk/asn1/der/general/der\+\_\+decode\+\_\+asn1\+\_\+length.c File Reference}
+\label{der__decode__asn1__length_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/asn1/der/general/der\_decode\_asn1\_length.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/asn1/der/general/der\_decode\_asn1\_length.c}}
+
+
+A\+S\+N.\+1 D\+ER, decode the A\+S\+N.\+1 Length field, Steffen Jaeckel.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for der\+\_\+decode\+\_\+asn1\+\_\+length.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{der__decode__asn1__length_8c_af90423764098b8876368d0984d96053a}{der\+\_\+decode\+\_\+asn1\+\_\+length}} (const unsigned char $\ast$in, unsigned long $\ast$inlen, unsigned long $\ast$outlen)
+\begin{DoxyCompactList}\small\item\em Decode the A\+S\+N.\+1 Length field. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A\+S\+N.\+1 D\+ER, decode the A\+S\+N.\+1 Length field, Steffen Jaeckel. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{der__decode__asn1__length_8c_af90423764098b8876368d0984d96053a}\label{der__decode__asn1__length_8c_af90423764098b8876368d0984d96053a}} 
+\index{der\_decode\_asn1\_length.c@{der\_decode\_asn1\_length.c}!der\_decode\_asn1\_length@{der\_decode\_asn1\_length}}
+\index{der\_decode\_asn1\_length@{der\_decode\_asn1\_length}!der\_decode\_asn1\_length.c@{der\_decode\_asn1\_length.c}}
+\subsubsection{\texorpdfstring{der\_decode\_asn1\_length()}{der\_decode\_asn1\_length()}}
+{\footnotesize\ttfamily int der\+\_\+decode\+\_\+asn1\+\_\+length (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{in,  }\item[{unsigned long $\ast$}]{inlen,  }\item[{unsigned long $\ast$}]{outlen }\end{DoxyParamCaption})}
+
+
+
+Decode the A\+S\+N.\+1 Length field. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em in} & Where to read the length field from \\
+\hline
+{\em inlen} & \mbox{[}in/out\mbox{]} The size of in available/read \\
+\hline
+{\em outlen} & \mbox{[}out\mbox{]} The decoded A\+S\+N.\+1 length \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 24 of file der\+\_\+decode\+\_\+asn1\+\_\+length.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{25 \{}
+\DoxyCodeLine{26    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} real\_len, decoded\_len, offset, i;}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(in    != NULL);}
+\DoxyCodeLine{29    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(inlen != NULL);}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31    \textcolor{keywordflow}{if} (*inlen < 1) \{}
+\DoxyCodeLine{32       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caccd878f5599f3036ffe759dbe1a1ac16}{CRYPT\_BUFFER\_OVERFLOW}};}
+\DoxyCodeLine{33    \}}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35    real\_len = in[0];}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37    \textcolor{keywordflow}{if} (real\_len < 128) \{}
+\DoxyCodeLine{38       decoded\_len = real\_len;}
+\DoxyCodeLine{39       offset = 1;}
+\DoxyCodeLine{40    \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{41       real\_len \&= 0x7F;}
+\DoxyCodeLine{42       \textcolor{keywordflow}{if} (real\_len == 0) \{}
+\DoxyCodeLine{43          \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca001cb5383cce7c4581790abe472e816f}{CRYPT\_PK\_ASN1\_ERROR}};}
+\DoxyCodeLine{44       \}}
+\DoxyCodeLine{45       \textcolor{keywordflow}{if} (real\_len > \textcolor{keyword}{sizeof}(decoded\_len)) \{}
+\DoxyCodeLine{46          \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca3a147cc0bbea3f8779364ad00c2678b4}{CRYPT\_OVERFLOW}};}
+\DoxyCodeLine{47       \}}
+\DoxyCodeLine{48       \textcolor{keywordflow}{if} (real\_len > (*inlen - 1)) \{}
+\DoxyCodeLine{49          \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caccd878f5599f3036ffe759dbe1a1ac16}{CRYPT\_BUFFER\_OVERFLOW}};}
+\DoxyCodeLine{50       \}}
+\DoxyCodeLine{51       decoded\_len = 0;}
+\DoxyCodeLine{52       offset = 1 + real\_len;}
+\DoxyCodeLine{53       \textcolor{keywordflow}{for} (i = 0; i < real\_len; i++) \{}
+\DoxyCodeLine{54          decoded\_len = (decoded\_len << 8) | in[1 + i];}
+\DoxyCodeLine{55       \}}
+\DoxyCodeLine{56    \}}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{58    \textcolor{keywordflow}{if} (outlen != NULL) *outlen = decoded\_len;}
+\DoxyCodeLine{59    \textcolor{keywordflow}{if} (decoded\_len > (*inlen - offset)) \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca3a147cc0bbea3f8779364ad00c2678b4}{CRYPT\_OVERFLOW}};}
+\DoxyCodeLine{60    *inlen = offset;}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{62    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{63 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+O\+V\+E\+R\+F\+L\+OW, C\+R\+Y\+P\+T\+\_\+\+OK, C\+R\+Y\+P\+T\+\_\+\+O\+V\+E\+R\+F\+L\+OW, C\+R\+Y\+P\+T\+\_\+\+P\+K\+\_\+\+A\+S\+N1\+\_\+\+E\+R\+R\+OR, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+
+
+Referenced by der\+\_\+decode\+\_\+bit\+\_\+string(), der\+\_\+decode\+\_\+custom\+\_\+type\+\_\+ex(), der\+\_\+decode\+\_\+ia5\+\_\+string(), der\+\_\+decode\+\_\+integer(), der\+\_\+decode\+\_\+object\+\_\+identifier(), der\+\_\+decode\+\_\+octet\+\_\+string(), der\+\_\+decode\+\_\+printable\+\_\+string(), der\+\_\+decode\+\_\+raw\+\_\+bit\+\_\+string(), der\+\_\+decode\+\_\+sequence\+\_\+flexi(), der\+\_\+decode\+\_\+teletex\+\_\+string(), and der\+\_\+decode\+\_\+utf8\+\_\+string().
+
+Here is the caller graph for this function\+:
+% FIG 1

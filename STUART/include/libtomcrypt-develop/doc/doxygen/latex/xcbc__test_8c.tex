@@ -1,0 +1,145 @@
+\hypertarget{xcbc__test_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/mac/xcbc/xcbc\+\_\+test.c File Reference}
+\label{xcbc__test_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/mac/xcbc/xcbc\_test.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/mac/xcbc/xcbc\_test.c}}
+
+
+X\+C\+BC Support, Test X\+C\+B\+C-\/\+M\+AC mode.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for xcbc\+\_\+test.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{xcbc__test_8c_a7154e3fde1d58dad1b721962dea2a782}{xcbc\+\_\+test}} (void)
+\begin{DoxyCompactList}\small\item\em Test X\+C\+B\+C-\/\+M\+AC mode Return C\+R\+Y\+P\+T\+\_\+\+OK on succes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+X\+C\+BC Support, Test X\+C\+B\+C-\/\+M\+AC mode. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{xcbc__test_8c_a7154e3fde1d58dad1b721962dea2a782}\label{xcbc__test_8c_a7154e3fde1d58dad1b721962dea2a782}} 
+\index{xcbc\_test.c@{xcbc\_test.c}!xcbc\_test@{xcbc\_test}}
+\index{xcbc\_test@{xcbc\_test}!xcbc\_test.c@{xcbc\_test.c}}
+\subsubsection{\texorpdfstring{xcbc\_test()}{xcbc\_test()}}
+{\footnotesize\ttfamily int xcbc\+\_\+test (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Test X\+C\+B\+C-\/\+M\+AC mode Return C\+R\+Y\+P\+T\+\_\+\+OK on succes. 
+
+
+
+Definition at line 21 of file xcbc\+\_\+test.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{22 \{}
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#ifdef LTC\_NO\_TEST}}
+\DoxyCodeLine{24    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cac43a7799c7fd5f515172da6cfc0f9cf5}{CRYPT\_NOP}};}
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{26    \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{27        \textcolor{keywordtype}{int} msglen;}
+\DoxyCodeLine{28        \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} \mbox{\hyperlink{sha512_8c_a2d167a3caf30de6442abc69780199a52}{K}}[16], M[34], T[16];}
+\DoxyCodeLine{29    \} tests[] = \{}
+\DoxyCodeLine{30 \{}
+\DoxyCodeLine{31    0,}
+\DoxyCodeLine{32    \{ 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07,}
+\DoxyCodeLine{33      0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f \},}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35    \{ 0 \},}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37    \{ 0x75, 0xf0, 0x25, 0x1d, 0x52, 0x8a, 0xc0, 0x1c,}
+\DoxyCodeLine{38      0x45, 0x73, 0xdf, 0xd5, 0x84, 0xd7, 0x9f, 0x29 \}}
+\DoxyCodeLine{39 \},}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41 \{}
+\DoxyCodeLine{42    3,}
+\DoxyCodeLine{43    \{ 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07,}
+\DoxyCodeLine{44      0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f \},}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46    \{ 0x00, 0x01, 0x02 \},}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48    \{ 0x5b, 0x37, 0x65, 0x80, 0xae, 0x2f, 0x19, 0xaf,}
+\DoxyCodeLine{49      0xe7, 0x21, 0x9c, 0xee, 0xf1, 0x72, 0x75, 0x6f \}}
+\DoxyCodeLine{50 \},}
+\DoxyCodeLine{51 }
+\DoxyCodeLine{52 \{}
+\DoxyCodeLine{53    16,}
+\DoxyCodeLine{54    \{ 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07,}
+\DoxyCodeLine{55      0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f \},}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{57    \{ 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07,}
+\DoxyCodeLine{58      0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f \},}
+\DoxyCodeLine{59 }
+\DoxyCodeLine{60    \{ 0xd2, 0xa2, 0x46, 0xfa, 0x34, 0x9b, 0x68, 0xa7,}
+\DoxyCodeLine{61      0x99, 0x98, 0xa4, 0x39, 0x4f, 0xf7, 0xa2, 0x63 \}}
+\DoxyCodeLine{62 \},}
+\DoxyCodeLine{63 }
+\DoxyCodeLine{64 \{}
+\DoxyCodeLine{65    32,}
+\DoxyCodeLine{66    \{ 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07,}
+\DoxyCodeLine{67      0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f \},}
+\DoxyCodeLine{68 }
+\DoxyCodeLine{69    \{ 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07,}
+\DoxyCodeLine{70      0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f,}
+\DoxyCodeLine{71      0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17,}
+\DoxyCodeLine{72      0x18, 0x19, 0x1a, 0x1b, 0x1c, 0x1d, 0x1e, 0x1f \},}
+\DoxyCodeLine{73 }
+\DoxyCodeLine{74    \{ 0xf5, 0x4f, 0x0e, 0xc8, 0xd2, 0xb9, 0xf3, 0xd3,}
+\DoxyCodeLine{75      0x68, 0x07, 0x73, 0x4b, 0xd5, 0x28, 0x3f, 0xd4 \}}
+\DoxyCodeLine{76 \},}
+\DoxyCodeLine{77 }
+\DoxyCodeLine{78 \{}
+\DoxyCodeLine{79    34,}
+\DoxyCodeLine{80    \{ 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07,}
+\DoxyCodeLine{81      0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f \},}
+\DoxyCodeLine{82 }
+\DoxyCodeLine{83    \{ 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07,}
+\DoxyCodeLine{84      0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f,}
+\DoxyCodeLine{85      0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17,}
+\DoxyCodeLine{86      0x18, 0x19, 0x1a, 0x1b, 0x1c, 0x1d, 0x1e, 0x1f,}
+\DoxyCodeLine{87      0x20, 0x21 \},}
+\DoxyCodeLine{88 }
+\DoxyCodeLine{89    \{ 0xbe, 0xcb, 0xb3, 0xbc, 0xcd, 0xb5, 0x18, 0xa3,}
+\DoxyCodeLine{90      0x06, 0x77, 0xd5, 0x48, 0x1f, 0xb6, 0xb4, 0xd8 \},}
+\DoxyCodeLine{91 \},}
+\DoxyCodeLine{92 }
+\DoxyCodeLine{93 }
+\DoxyCodeLine{94 }
+\DoxyCodeLine{95 \};}
+\DoxyCodeLine{96   \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} T[16];}
+\DoxyCodeLine{97   \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} taglen;}
+\DoxyCodeLine{98   \textcolor{keywordtype}{int} err, x, idx;}
+\DoxyCodeLine{99 }
+\DoxyCodeLine{100   \textcolor{comment}{/* AES can be under rijndael or aes... try to find it */}}
+\DoxyCodeLine{101   \textcolor{keywordflow}{if} ((idx = \mbox{\hyperlink{tomcrypt__cipher_8h_af5c3882342fd65a17239cd04bfdf44e2}{find\_cipher}}(\textcolor{stringliteral}{"aes"})) == -1) \{}
+\DoxyCodeLine{102      \textcolor{keywordflow}{if} ((idx = \mbox{\hyperlink{tomcrypt__cipher_8h_af5c3882342fd65a17239cd04bfdf44e2}{find\_cipher}}(\textcolor{stringliteral}{"rijndael"})) == -1) \{}
+\DoxyCodeLine{103         \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cac43a7799c7fd5f515172da6cfc0f9cf5}{CRYPT\_NOP}};}
+\DoxyCodeLine{104      \}}
+\DoxyCodeLine{105   \}}
+\DoxyCodeLine{106 }
+\DoxyCodeLine{107   \textcolor{keywordflow}{for} (x = 0; x < (int)(\textcolor{keyword}{sizeof}(tests)/\textcolor{keyword}{sizeof}(tests[0])); x++) \{}
+\DoxyCodeLine{108      taglen = 16;}
+\DoxyCodeLine{109      \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{xcbc__memory_8c_a5b34b1c0334478c5bf640ecce5b12f42}{xcbc\_memory}}(idx, tests[x].\mbox{\hyperlink{sha512_8c_a2d167a3caf30de6442abc69780199a52}{K}}, 16, tests[x].M, tests[x].msglen, T, \&taglen)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{110         \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{111      \}}
+\DoxyCodeLine{112      \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(T, taglen, tests[x].T, 16, \textcolor{stringliteral}{"XCBC"}, x)) \{}
+\DoxyCodeLine{113         \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{114      \}}
+\DoxyCodeLine{115   \}}
+\DoxyCodeLine{116 }
+\DoxyCodeLine{117   \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{118 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{119 \}}
+
+\end{DoxyCode}
+
+
+References compare\+\_\+testvector(), C\+R\+Y\+P\+T\+\_\+\+F\+A\+I\+L\+\_\+\+T\+E\+S\+T\+V\+E\+C\+T\+OR, C\+R\+Y\+P\+T\+\_\+\+N\+OP, C\+R\+Y\+P\+T\+\_\+\+OK, find\+\_\+cipher(), K, and xcbc\+\_\+memory().
+
+Here is the call graph for this function\+:
+% FIG 1

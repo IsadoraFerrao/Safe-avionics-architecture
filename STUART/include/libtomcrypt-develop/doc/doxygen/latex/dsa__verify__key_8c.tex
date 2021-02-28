@@ -1,0 +1,315 @@
+\hypertarget{dsa__verify__key_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/pk/dsa/dsa\+\_\+verify\+\_\+key.c File Reference}
+\label{dsa__verify__key_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/dsa/dsa\_verify\_key.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/dsa/dsa\_verify\_key.c}}
+
+
+D\+SA implementation, verify a key, Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for dsa\+\_\+verify\+\_\+key.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{dsa__verify__key_8c_ab33288a9b242958a7ef81c677ffff516}{dsa\+\_\+verify\+\_\+key}} (const dsa\+\_\+key $\ast$key, int $\ast$stat)
+\begin{DoxyCompactList}\small\item\em Validate a D\+SA key. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{dsa__verify__key_8c_a78787aeedd134c0e586d4a42a83c89c2}{dsa\+\_\+int\+\_\+validate\+\_\+pqg}} (const dsa\+\_\+key $\ast$key, int $\ast$stat)
+\begin{DoxyCompactList}\small\item\em Non-\/complex part (no primality testing) of the validation of D\+SA params (p, q, g) \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{dsa__verify__key_8c_abdc76d05886a02727e901ad26f2f3e81}{dsa\+\_\+int\+\_\+validate\+\_\+primes}} (const dsa\+\_\+key $\ast$key, int $\ast$stat)
+\begin{DoxyCompactList}\small\item\em Primality testing of D\+SA params p and q. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{dsa__verify__key_8c_aa5b2d573863af50ed2f38a00998a1274}{dsa\+\_\+int\+\_\+validate\+\_\+xy}} (const dsa\+\_\+key $\ast$key, int $\ast$stat)
+\begin{DoxyCompactList}\small\item\em Validation of a D\+SA key (x and y values) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+D\+SA implementation, verify a key, Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{dsa__verify__key_8c_a78787aeedd134c0e586d4a42a83c89c2}\label{dsa__verify__key_8c_a78787aeedd134c0e586d4a42a83c89c2}} 
+\index{dsa\_verify\_key.c@{dsa\_verify\_key.c}!dsa\_int\_validate\_pqg@{dsa\_int\_validate\_pqg}}
+\index{dsa\_int\_validate\_pqg@{dsa\_int\_validate\_pqg}!dsa\_verify\_key.c@{dsa\_verify\_key.c}}
+\subsubsection{\texorpdfstring{dsa\_int\_validate\_pqg()}{dsa\_int\_validate\_pqg()}}
+{\footnotesize\ttfamily int dsa\+\_\+int\+\_\+validate\+\_\+pqg (\begin{DoxyParamCaption}\item[{const dsa\+\_\+key $\ast$}]{key,  }\item[{int $\ast$}]{stat }\end{DoxyParamCaption})}
+
+
+
+Non-\/complex part (no primality testing) of the validation of D\+SA params (p, q, g) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The key to validate \\
+\hline
+{\em stat} & \mbox{[}out\mbox{]} Result of test, 1==valid, 0==invalid \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 50 of file dsa\+\_\+verify\+\_\+key.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{51 \{}
+\DoxyCodeLine{52    \textcolor{keywordtype}{void} *tmp1, *tmp2;}
+\DoxyCodeLine{53    \textcolor{keywordtype}{int}  err;}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(key  != NULL);}
+\DoxyCodeLine{56    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(stat != NULL);}
+\DoxyCodeLine{57    *stat = 0;}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{59    \textcolor{comment}{/* check q-order */}}
+\DoxyCodeLine{60    \textcolor{keywordflow}{if} ( key->qord >= LTC\_MDSA\_MAX\_GROUP || key->qord <= 15 ||}
+\DoxyCodeLine{61         (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long})key->qord >= \mbox{\hyperlink{tomcrypt__private_8h_ad301148bb24f43a8c7003a6976dfaa5a}{mp\_unsigned\_bin\_size}}(key->p) ||}
+\DoxyCodeLine{62         (\mbox{\hyperlink{tomcrypt__private_8h_ad301148bb24f43a8c7003a6976dfaa5a}{mp\_unsigned\_bin\_size}}(key->p) - key->qord) >= LTC\_MDSA\_DELTA ) \{}
+\DoxyCodeLine{63       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{64    \}}
+\DoxyCodeLine{65 }
+\DoxyCodeLine{66    \textcolor{comment}{/* FIPS 186-4 chapter 4.1: 1 < g < p */}}
+\DoxyCodeLine{67    \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__private_8h_a6ce44f2e6f872565a468b67d9a93dc28}{mp\_cmp\_d}}(key->g, 1) != \mbox{\hyperlink{tomcrypt__math_8h_adff156a960d44f0f5b67b75ef1f1c29b}{LTC\_MP\_GT}} || \mbox{\hyperlink{tomcrypt__private_8h_a62ea02fbe7dd2d456e49520264d775ee}{mp\_cmp}}(key->g, key->p) != \mbox{\hyperlink{tomcrypt__math_8h_a42d0c7d4c09793df79660774d3436db2}{LTC\_MP\_LT}}) \{}
+\DoxyCodeLine{68       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{69    \}}
+\DoxyCodeLine{70 }
+\DoxyCodeLine{71    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_adb6322247b1a4f0347219acab3120bd3}{mp\_init\_multi}}(\&tmp1, \&tmp2, NULL)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})        \{ \textcolor{keywordflow}{return} err; \}}
+\DoxyCodeLine{72 }
+\DoxyCodeLine{73    \textcolor{comment}{/* FIPS 186-4 chapter 4.1: q is a divisor of (p - 1) */}}
+\DoxyCodeLine{74    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a4215ff0d6838acb3d959d3e68c923de7}{mp\_sub\_d}}(key->p, 1, tmp1)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})                \{ \textcolor{keywordflow}{goto} error; \}}
+\DoxyCodeLine{75    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a861721ee02d3b5d84328090f3058f7c3}{mp\_div}}(tmp1, key->q, tmp1, tmp2)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})         \{ \textcolor{keywordflow}{goto} error; \}}
+\DoxyCodeLine{76    \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__private_8h_a910040068490f9f6e5185c970ab869c9}{mp\_iszero}}(tmp2) != \mbox{\hyperlink{tomcrypt__math_8h_acc2da047f8fb30a3e2b2403aac617fe0}{LTC\_MP\_YES}}) \{}
+\DoxyCodeLine{77       err = \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{78       \textcolor{keywordflow}{goto} error;}
+\DoxyCodeLine{79    \}}
+\DoxyCodeLine{80 }
+\DoxyCodeLine{81    \textcolor{comment}{/* FIPS 186-4 chapter 4.1: g is a generator of a subgroup of order q in}}
+\DoxyCodeLine{82 \textcolor{comment}{    * the multiplicative group of GF(p) - so we make sure that g\string^q mod p = 1}}
+\DoxyCodeLine{83 \textcolor{comment}{    */}}
+\DoxyCodeLine{84    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a4fb1221fbef91bf8163390e3cfb82085}{mp\_exptmod}}(key->g, key->q, key->p, tmp1)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{ \textcolor{keywordflow}{goto} error; \}}
+\DoxyCodeLine{85    \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__private_8h_a6ce44f2e6f872565a468b67d9a93dc28}{mp\_cmp\_d}}(tmp1, 1) != \mbox{\hyperlink{tomcrypt__math_8h_a035a31bde4f31419eb259e36e5776607}{LTC\_MP\_EQ}}) \{}
+\DoxyCodeLine{86       err = \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{87       \textcolor{keywordflow}{goto} error;}
+\DoxyCodeLine{88    \}}
+\DoxyCodeLine{89 }
+\DoxyCodeLine{90    err   = \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{91    *stat = 1;}
+\DoxyCodeLine{92 error:}
+\DoxyCodeLine{93    \mbox{\hyperlink{tomcrypt__private_8h_aad5c8a3112b3e4613f9efc86692c43cb}{mp\_clear\_multi}}(tmp2, tmp1, NULL);}
+\DoxyCodeLine{94    \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{95 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, L\+T\+C\+\_\+\+M\+P\+\_\+\+EQ, L\+T\+C\+\_\+\+M\+P\+\_\+\+GT, L\+T\+C\+\_\+\+M\+P\+\_\+\+LT, L\+T\+C\+\_\+\+M\+P\+\_\+\+Y\+ES, mp\+\_\+clear\+\_\+multi, mp\+\_\+cmp, mp\+\_\+cmp\+\_\+d, mp\+\_\+div, mp\+\_\+exptmod, mp\+\_\+init\+\_\+multi, mp\+\_\+iszero, mp\+\_\+sub\+\_\+d, and mp\+\_\+unsigned\+\_\+bin\+\_\+size.
+
+
+
+Referenced by dsa\+\_\+import(), dsa\+\_\+set\+\_\+pqg(), dsa\+\_\+set\+\_\+pqg\+\_\+dsaparam(), and dsa\+\_\+verify\+\_\+key().
+
+Here is the caller graph for this function\+:
+% FIG 1
+\mbox{\Hypertarget{dsa__verify__key_8c_abdc76d05886a02727e901ad26f2f3e81}\label{dsa__verify__key_8c_abdc76d05886a02727e901ad26f2f3e81}} 
+\index{dsa\_verify\_key.c@{dsa\_verify\_key.c}!dsa\_int\_validate\_primes@{dsa\_int\_validate\_primes}}
+\index{dsa\_int\_validate\_primes@{dsa\_int\_validate\_primes}!dsa\_verify\_key.c@{dsa\_verify\_key.c}}
+\subsubsection{\texorpdfstring{dsa\_int\_validate\_primes()}{dsa\_int\_validate\_primes()}}
+{\footnotesize\ttfamily int dsa\+\_\+int\+\_\+validate\+\_\+primes (\begin{DoxyParamCaption}\item[{const dsa\+\_\+key $\ast$}]{key,  }\item[{int $\ast$}]{stat }\end{DoxyParamCaption})}
+
+
+
+Primality testing of D\+SA params p and q. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The key to validate \\
+\hline
+{\em stat} & \mbox{[}out\mbox{]} Result of test, 1==valid, 0==invalid \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 104 of file dsa\+\_\+verify\+\_\+key.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{105 \{}
+\DoxyCodeLine{106    \textcolor{keywordtype}{int} err, res;}
+\DoxyCodeLine{107 }
+\DoxyCodeLine{108    *stat = 0;}
+\DoxyCodeLine{109    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(key  != NULL);}
+\DoxyCodeLine{110    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(stat != NULL);}
+\DoxyCodeLine{111 }
+\DoxyCodeLine{112    \textcolor{comment}{/* key->q prime? */}}
+\DoxyCodeLine{113    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_ab3681f96d55cf707b92d6254f58ea3de}{mp\_prime\_is\_prime}}(key->q, \mbox{\hyperlink{tomcrypt__math_8h_a65401cc14826c74ce923beb65bde5bf3}{LTC\_MILLER\_RABIN\_REPS}}, \&res)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{114       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{115    \}}
+\DoxyCodeLine{116    \textcolor{keywordflow}{if} (res == \mbox{\hyperlink{tomcrypt__math_8h_a40f1119339954fb273ecb35e48c1d569}{LTC\_MP\_NO}}) \{}
+\DoxyCodeLine{117       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{118    \}}
+\DoxyCodeLine{119 }
+\DoxyCodeLine{120    \textcolor{comment}{/* key->p prime? */}}
+\DoxyCodeLine{121    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_ab3681f96d55cf707b92d6254f58ea3de}{mp\_prime\_is\_prime}}(key->p, \mbox{\hyperlink{tomcrypt__math_8h_a65401cc14826c74ce923beb65bde5bf3}{LTC\_MILLER\_RABIN\_REPS}}, \&res)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{122       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{123    \}}
+\DoxyCodeLine{124    \textcolor{keywordflow}{if} (res == \mbox{\hyperlink{tomcrypt__math_8h_a40f1119339954fb273ecb35e48c1d569}{LTC\_MP\_NO}}) \{}
+\DoxyCodeLine{125       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{126    \}}
+\DoxyCodeLine{127 }
+\DoxyCodeLine{128    *stat = 1;}
+\DoxyCodeLine{129    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{130 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, L\+T\+C\+\_\+\+M\+I\+L\+L\+E\+R\+\_\+\+R\+A\+B\+I\+N\+\_\+\+R\+E\+PS, L\+T\+C\+\_\+\+M\+P\+\_\+\+NO, and mp\+\_\+prime\+\_\+is\+\_\+prime.
+
+
+
+Referenced by dsa\+\_\+verify\+\_\+key().
+
+Here is the caller graph for this function\+:
+% FIG 2
+\mbox{\Hypertarget{dsa__verify__key_8c_aa5b2d573863af50ed2f38a00998a1274}\label{dsa__verify__key_8c_aa5b2d573863af50ed2f38a00998a1274}} 
+\index{dsa\_verify\_key.c@{dsa\_verify\_key.c}!dsa\_int\_validate\_xy@{dsa\_int\_validate\_xy}}
+\index{dsa\_int\_validate\_xy@{dsa\_int\_validate\_xy}!dsa\_verify\_key.c@{dsa\_verify\_key.c}}
+\subsubsection{\texorpdfstring{dsa\_int\_validate\_xy()}{dsa\_int\_validate\_xy()}}
+{\footnotesize\ttfamily int dsa\+\_\+int\+\_\+validate\+\_\+xy (\begin{DoxyParamCaption}\item[{const dsa\+\_\+key $\ast$}]{key,  }\item[{int $\ast$}]{stat }\end{DoxyParamCaption})}
+
+
+
+Validation of a D\+SA key (x and y values) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The key to validate \\
+\hline
+{\em stat} & \mbox{[}out\mbox{]} Result of test, 1==valid, 0==invalid \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 139 of file dsa\+\_\+verify\+\_\+key.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{140 \{}
+\DoxyCodeLine{141    \textcolor{keywordtype}{void} *tmp;}
+\DoxyCodeLine{142    \textcolor{keywordtype}{int}  err;}
+\DoxyCodeLine{143 }
+\DoxyCodeLine{144    *stat = 0;}
+\DoxyCodeLine{145    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(key  != NULL);}
+\DoxyCodeLine{146    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(stat != NULL);}
+\DoxyCodeLine{147 }
+\DoxyCodeLine{148    \textcolor{comment}{/* 1 < y < p-1 */}}
+\DoxyCodeLine{149    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_aff03c4f22c68d651747055048c509cf3}{mp\_init}}(\&tmp)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{150       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{151    \}}
+\DoxyCodeLine{152    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a4215ff0d6838acb3d959d3e68c923de7}{mp\_sub\_d}}(key->p, 1, tmp)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{153       \textcolor{keywordflow}{goto} error;}
+\DoxyCodeLine{154    \}}
+\DoxyCodeLine{155    \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__private_8h_a6ce44f2e6f872565a468b67d9a93dc28}{mp\_cmp\_d}}(key->y, 1) != \mbox{\hyperlink{tomcrypt__math_8h_adff156a960d44f0f5b67b75ef1f1c29b}{LTC\_MP\_GT}} || \mbox{\hyperlink{tomcrypt__private_8h_a62ea02fbe7dd2d456e49520264d775ee}{mp\_cmp}}(key->y, tmp) != \mbox{\hyperlink{tomcrypt__math_8h_a42d0c7d4c09793df79660774d3436db2}{LTC\_MP\_LT}}) \{}
+\DoxyCodeLine{156       err = \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{157       \textcolor{keywordflow}{goto} error;}
+\DoxyCodeLine{158    \}}
+\DoxyCodeLine{159 }
+\DoxyCodeLine{160    \textcolor{keywordflow}{if} (key->type == \mbox{\hyperlink{tomcrypt__pk_8h_afb69d121a43f5ae8b47e6b83611d9272a7295b3dea2c5277912c6e040e1c96649}{PK\_PRIVATE}}) \{}
+\DoxyCodeLine{161       \textcolor{comment}{/* FIPS 186-4 chapter 4.1: 0 < x < q */}}
+\DoxyCodeLine{162       \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__private_8h_a6ce44f2e6f872565a468b67d9a93dc28}{mp\_cmp\_d}}(key->x, 0) != \mbox{\hyperlink{tomcrypt__math_8h_adff156a960d44f0f5b67b75ef1f1c29b}{LTC\_MP\_GT}} || \mbox{\hyperlink{tomcrypt__private_8h_a62ea02fbe7dd2d456e49520264d775ee}{mp\_cmp}}(key->x, key->q) != \mbox{\hyperlink{tomcrypt__math_8h_a42d0c7d4c09793df79660774d3436db2}{LTC\_MP\_LT}}) \{}
+\DoxyCodeLine{163          err = \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{164          \textcolor{keywordflow}{goto} error;}
+\DoxyCodeLine{165       \}}
+\DoxyCodeLine{166       \textcolor{comment}{/* FIPS 186-4 chapter 4.1: y = g\string^x mod p */}}
+\DoxyCodeLine{167       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a4fb1221fbef91bf8163390e3cfb82085}{mp\_exptmod}}(key->g, key->x, key->p, tmp)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{168          \textcolor{keywordflow}{goto} error;}
+\DoxyCodeLine{169       \}}
+\DoxyCodeLine{170       \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__private_8h_a62ea02fbe7dd2d456e49520264d775ee}{mp\_cmp}}(tmp, key->y) != \mbox{\hyperlink{tomcrypt__math_8h_a035a31bde4f31419eb259e36e5776607}{LTC\_MP\_EQ}}) \{}
+\DoxyCodeLine{171          err = \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{172          \textcolor{keywordflow}{goto} error;}
+\DoxyCodeLine{173       \}}
+\DoxyCodeLine{174    \}}
+\DoxyCodeLine{175    \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{176       \textcolor{comment}{/* with just a public key we cannot test y = g\string^x mod p therefore we}}
+\DoxyCodeLine{177 \textcolor{comment}{       * only test that y\string^q mod p = 1, which makes sure y is in g\string^x mod p}}
+\DoxyCodeLine{178 \textcolor{comment}{       */}}
+\DoxyCodeLine{179       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a4fb1221fbef91bf8163390e3cfb82085}{mp\_exptmod}}(key->y, key->q, key->p, tmp)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{180          \textcolor{keywordflow}{goto} error;}
+\DoxyCodeLine{181       \}}
+\DoxyCodeLine{182       \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__private_8h_a6ce44f2e6f872565a468b67d9a93dc28}{mp\_cmp\_d}}(tmp, 1) != \mbox{\hyperlink{tomcrypt__math_8h_a035a31bde4f31419eb259e36e5776607}{LTC\_MP\_EQ}}) \{}
+\DoxyCodeLine{183          err = \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{184          \textcolor{keywordflow}{goto} error;}
+\DoxyCodeLine{185       \}}
+\DoxyCodeLine{186    \}}
+\DoxyCodeLine{187 }
+\DoxyCodeLine{188    err   = \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{189    *stat = 1;}
+\DoxyCodeLine{190 error:}
+\DoxyCodeLine{191    \mbox{\hyperlink{tomcrypt__private_8h_ab05b6b59fa182b81f5f990d5621229f6}{mp\_clear}}(tmp);}
+\DoxyCodeLine{192    \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{193 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, L\+T\+C\+\_\+\+M\+P\+\_\+\+EQ, L\+T\+C\+\_\+\+M\+P\+\_\+\+GT, L\+T\+C\+\_\+\+M\+P\+\_\+\+LT, mp\+\_\+clear, mp\+\_\+cmp, mp\+\_\+cmp\+\_\+d, mp\+\_\+exptmod, mp\+\_\+init, mp\+\_\+sub\+\_\+d, and P\+K\+\_\+\+P\+R\+I\+V\+A\+TE.
+
+
+
+Referenced by dsa\+\_\+import(), dsa\+\_\+set\+\_\+key(), and dsa\+\_\+verify\+\_\+key().
+
+Here is the caller graph for this function\+:
+% FIG 3
+\mbox{\Hypertarget{dsa__verify__key_8c_ab33288a9b242958a7ef81c677ffff516}\label{dsa__verify__key_8c_ab33288a9b242958a7ef81c677ffff516}} 
+\index{dsa\_verify\_key.c@{dsa\_verify\_key.c}!dsa\_verify\_key@{dsa\_verify\_key}}
+\index{dsa\_verify\_key@{dsa\_verify\_key}!dsa\_verify\_key.c@{dsa\_verify\_key.c}}
+\subsubsection{\texorpdfstring{dsa\_verify\_key()}{dsa\_verify\_key()}}
+{\footnotesize\ttfamily int dsa\+\_\+verify\+\_\+key (\begin{DoxyParamCaption}\item[{const dsa\+\_\+key $\ast$}]{key,  }\item[{int $\ast$}]{stat }\end{DoxyParamCaption})}
+
+
+
+Validate a D\+SA key. 
+
+Yeah, this function should\textquotesingle{}ve been called dsa\+\_\+validate\+\_\+key() in the first place and for compat-\/reasons we keep it as it was (for now).
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The key to validate \\
+\hline
+{\em stat} & \mbox{[}out\mbox{]} Result of test, 1==valid, 0==invalid \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 29 of file dsa\+\_\+verify\+\_\+key.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{30 \{}
+\DoxyCodeLine{31    \textcolor{keywordtype}{int} err;}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33    err = \mbox{\hyperlink{dsa__verify__key_8c_abdc76d05886a02727e901ad26f2f3e81}{dsa\_int\_validate\_primes}}(key, stat);}
+\DoxyCodeLine{34    \textcolor{keywordflow}{if} (err != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}} || *stat == 0) \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36    err = \mbox{\hyperlink{dsa__verify__key_8c_a78787aeedd134c0e586d4a42a83c89c2}{dsa\_int\_validate\_pqg}}(key, stat);}
+\DoxyCodeLine{37    \textcolor{keywordflow}{if} (err != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}} || *stat == 0) \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39    \textcolor{keywordflow}{return} \mbox{\hyperlink{dsa__verify__key_8c_aa5b2d573863af50ed2f38a00998a1274}{dsa\_int\_validate\_xy}}(key, stat);}
+\DoxyCodeLine{40 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, dsa\+\_\+int\+\_\+validate\+\_\+pqg(), dsa\+\_\+int\+\_\+validate\+\_\+primes(), and dsa\+\_\+int\+\_\+validate\+\_\+xy().
+
+Here is the call graph for this function\+:
+% FIG 4

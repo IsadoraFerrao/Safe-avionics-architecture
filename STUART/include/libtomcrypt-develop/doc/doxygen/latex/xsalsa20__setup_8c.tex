@@ -1,0 +1,221 @@
+\hypertarget{xsalsa20__setup_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/stream/salsa20/xsalsa20\+\_\+setup.c File Reference}
+\label{xsalsa20__setup_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/stream/salsa20/xsalsa20\_setup.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/stream/salsa20/xsalsa20\_setup.c}}
+{\ttfamily \#include \char`\"{}tomcrypt.\+h\char`\"{}}\newline
+Include dependency graph for xsalsa20\+\_\+setup.\+c\+:
+% FIG 0
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{xsalsa20__setup_8c_aae524f06f43cef9dde57fb1cecc75d4a}{Q\+U\+A\+R\+T\+E\+R\+R\+O\+U\+ND}}(a,  b,  \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},  d)
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{xsalsa20__setup_8c_a55d9b8c849cdbceb4ef9850dadd47a92}{\+\_\+xsalsa20\+\_\+doubleround}} (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} $\ast$x, int \mbox{\hyperlink{kseed_8c_a51da46362a22c8107683876e9c12ec82}{rounds}})
+\item 
+int \mbox{\hyperlink{xsalsa20__setup_8c_a974b021979b425374d24f4ce4304ee8c}{xsalsa20\+\_\+setup}} (salsa20\+\_\+state $\ast$st, const unsigned char $\ast$key, unsigned long keylen, const unsigned char $\ast$nonce, unsigned long noncelen, int \mbox{\hyperlink{kseed_8c_a51da46362a22c8107683876e9c12ec82}{rounds}})
+\begin{DoxyCompactList}\small\item\em Initialize an X\+Salsa20 context. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static const char $\ast$const \mbox{\hyperlink{xsalsa20__setup_8c_a73154adcaa67df7928473b83b93a205d}{constants}} = \char`\"{}expand 32-\/byte k\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{xsalsa20__setup_8c_aae524f06f43cef9dde57fb1cecc75d4a}\label{xsalsa20__setup_8c_aae524f06f43cef9dde57fb1cecc75d4a}} 
+\index{xsalsa20\_setup.c@{xsalsa20\_setup.c}!QUARTERROUND@{QUARTERROUND}}
+\index{QUARTERROUND@{QUARTERROUND}!xsalsa20\_setup.c@{xsalsa20\_setup.c}}
+\subsubsection{\texorpdfstring{QUARTERROUND}{QUARTERROUND}}
+{\footnotesize\ttfamily \#define Q\+U\+A\+R\+T\+E\+R\+R\+O\+U\+ND(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{b,  }\item[{}]{\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}},  }\item[{}]{d }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{x[b] \string^= (\mbox{\hyperlink{tomcrypt__macros_8h_a2e1da5c8810967170c889976d1fe9fa1}{ROL}}((x[a] + x[d]),  7)); \(\backslash\)}
+\DoxyCodeLine{    x[\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}] \string^= (\mbox{\hyperlink{tomcrypt__macros_8h_a2e1da5c8810967170c889976d1fe9fa1}{ROL}}((x[b] + x[a]),  9)); \(\backslash\)}
+\DoxyCodeLine{    x[d] \string^= (\mbox{\hyperlink{tomcrypt__macros_8h_a2e1da5c8810967170c889976d1fe9fa1}{ROL}}((x[\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}] + x[b]), 13)); \(\backslash\)}
+\DoxyCodeLine{    x[a] \string^= (\mbox{\hyperlink{tomcrypt__macros_8h_a2e1da5c8810967170c889976d1fe9fa1}{ROL}}((x[d] + x[\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}]), 18));}
+
+\end{DoxyCode}
+
+
+Definition at line 23 of file xsalsa20\+\_\+setup.\+c.
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{xsalsa20__setup_8c_a55d9b8c849cdbceb4ef9850dadd47a92}\label{xsalsa20__setup_8c_a55d9b8c849cdbceb4ef9850dadd47a92}} 
+\index{xsalsa20\_setup.c@{xsalsa20\_setup.c}!\_xsalsa20\_doubleround@{\_xsalsa20\_doubleround}}
+\index{\_xsalsa20\_doubleround@{\_xsalsa20\_doubleround}!xsalsa20\_setup.c@{xsalsa20\_setup.c}}
+\subsubsection{\texorpdfstring{\_xsalsa20\_doubleround()}{\_xsalsa20\_doubleround()}}
+{\footnotesize\ttfamily static void \+\_\+xsalsa20\+\_\+doubleround (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} $\ast$}]{x,  }\item[{int}]{rounds }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 30 of file xsalsa20\+\_\+setup.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{31 \{}
+\DoxyCodeLine{32    \textcolor{keywordtype}{int} i;}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34    \textcolor{keywordflow}{for} (i = \mbox{\hyperlink{kseed_8c_a51da46362a22c8107683876e9c12ec82}{rounds}}; i > 0; i -= 2) \{}
+\DoxyCodeLine{35       \textcolor{comment}{/* columnround */}}
+\DoxyCodeLine{36       \mbox{\hyperlink{xsalsa20__setup_8c_aae524f06f43cef9dde57fb1cecc75d4a}{QUARTERROUND}}( 0, 4, 8,12)}
+\DoxyCodeLine{37       \mbox{\hyperlink{xsalsa20__setup_8c_aae524f06f43cef9dde57fb1cecc75d4a}{QUARTERROUND}}( 5, 9,13, 1)}
+\DoxyCodeLine{38       \mbox{\hyperlink{xsalsa20__setup_8c_aae524f06f43cef9dde57fb1cecc75d4a}{QUARTERROUND}}(10,14, 2, 6)}
+\DoxyCodeLine{39       \mbox{\hyperlink{xsalsa20__setup_8c_aae524f06f43cef9dde57fb1cecc75d4a}{QUARTERROUND}}(15, 3, 7,11)}
+\DoxyCodeLine{40       \textcolor{comment}{/* rowround */}}
+\DoxyCodeLine{41       \mbox{\hyperlink{xsalsa20__setup_8c_aae524f06f43cef9dde57fb1cecc75d4a}{QUARTERROUND}}( 0, 1, 2, 3)}
+\DoxyCodeLine{42       \mbox{\hyperlink{xsalsa20__setup_8c_aae524f06f43cef9dde57fb1cecc75d4a}{QUARTERROUND}}( 5, 6, 7, 4)}
+\DoxyCodeLine{43       \mbox{\hyperlink{xsalsa20__setup_8c_aae524f06f43cef9dde57fb1cecc75d4a}{QUARTERROUND}}(10,11, 8, 9)}
+\DoxyCodeLine{44       \mbox{\hyperlink{xsalsa20__setup_8c_aae524f06f43cef9dde57fb1cecc75d4a}{QUARTERROUND}}(15,12,13,14)}
+\DoxyCodeLine{45    \}}
+\DoxyCodeLine{46 \}}
+
+\end{DoxyCode}
+
+
+References Q\+U\+A\+R\+T\+E\+R\+R\+O\+U\+ND, and rounds().
+
+
+
+Referenced by xsalsa20\+\_\+setup().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2
+\mbox{\Hypertarget{xsalsa20__setup_8c_a974b021979b425374d24f4ce4304ee8c}\label{xsalsa20__setup_8c_a974b021979b425374d24f4ce4304ee8c}} 
+\index{xsalsa20\_setup.c@{xsalsa20\_setup.c}!xsalsa20\_setup@{xsalsa20\_setup}}
+\index{xsalsa20\_setup@{xsalsa20\_setup}!xsalsa20\_setup.c@{xsalsa20\_setup.c}}
+\subsubsection{\texorpdfstring{xsalsa20\_setup()}{xsalsa20\_setup()}}
+{\footnotesize\ttfamily int xsalsa20\+\_\+setup (\begin{DoxyParamCaption}\item[{salsa20\+\_\+state $\ast$}]{st,  }\item[{const unsigned char $\ast$}]{key,  }\item[{unsigned long}]{keylen,  }\item[{const unsigned char $\ast$}]{nonce,  }\item[{unsigned long}]{noncelen,  }\item[{int}]{rounds }\end{DoxyParamCaption})}
+
+
+
+Initialize an X\+Salsa20 context. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em st} & \mbox{[}out\mbox{]} The destination of the X\+Salsa20 state \\
+\hline
+{\em key} & The secret key \\
+\hline
+{\em keylen} & The length of the secret key, must be 32 (octets) \\
+\hline
+{\em nonce} & The nonce \\
+\hline
+{\em noncelen} & The length of the nonce, must be 24 (octets) \\
+\hline
+{\em rounds} & Number of rounds (must be evenly divisible by 2, default is 20) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 60 of file xsalsa20\+\_\+setup.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{63 \{}
+\DoxyCodeLine{64    \textcolor{keyword}{const} \textcolor{keywordtype}{int} sti[] = \{0, 5, 10, 15, 6, 7, 8, 9\};  \textcolor{comment}{/* indices used to build subkey fm x */}}
+\DoxyCodeLine{65    \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}}       x[64];                           \textcolor{comment}{/* input to \& output fm doubleround */}}
+\DoxyCodeLine{66    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} subkey[32];}
+\DoxyCodeLine{67    \textcolor{keywordtype}{int} i;}
+\DoxyCodeLine{68 }
+\DoxyCodeLine{69    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(st        != NULL);}
+\DoxyCodeLine{70    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(key       != NULL);}
+\DoxyCodeLine{71    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(keylen    == 32);}
+\DoxyCodeLine{72    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(nonce     != NULL);}
+\DoxyCodeLine{73    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(noncelen  == 24);}
+\DoxyCodeLine{74    \textcolor{keywordflow}{if} (\mbox{\hyperlink{kseed_8c_a51da46362a22c8107683876e9c12ec82}{rounds}} == 0) \mbox{\hyperlink{kseed_8c_a51da46362a22c8107683876e9c12ec82}{rounds}} = 20;}
+\DoxyCodeLine{75    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(\mbox{\hyperlink{kseed_8c_a51da46362a22c8107683876e9c12ec82}{rounds}} \% 2 == 0);     \textcolor{comment}{/* number of rounds must be evenly divisible by 2 */}}
+\DoxyCodeLine{76 }
+\DoxyCodeLine{77    \textcolor{comment}{/* load the state to "hash" the key */}}
+\DoxyCodeLine{78    LOAD32L(x[ 0], \mbox{\hyperlink{xsalsa20__setup_8c_a73154adcaa67df7928473b83b93a205d}{constants}} +  0);}
+\DoxyCodeLine{79    LOAD32L(x[ 5], \mbox{\hyperlink{xsalsa20__setup_8c_a73154adcaa67df7928473b83b93a205d}{constants}} +  4);}
+\DoxyCodeLine{80    LOAD32L(x[10], \mbox{\hyperlink{xsalsa20__setup_8c_a73154adcaa67df7928473b83b93a205d}{constants}} +  8);}
+\DoxyCodeLine{81    LOAD32L(x[15], \mbox{\hyperlink{xsalsa20__setup_8c_a73154adcaa67df7928473b83b93a205d}{constants}} + 12);}
+\DoxyCodeLine{82    LOAD32L(x[ 1], key +  0);}
+\DoxyCodeLine{83    LOAD32L(x[ 2], key +  4);}
+\DoxyCodeLine{84    LOAD32L(x[ 3], key +  8);}
+\DoxyCodeLine{85    LOAD32L(x[ 4], key + 12);}
+\DoxyCodeLine{86    LOAD32L(x[11], key + 16);}
+\DoxyCodeLine{87    LOAD32L(x[12], key + 20);}
+\DoxyCodeLine{88    LOAD32L(x[13], key + 24);}
+\DoxyCodeLine{89    LOAD32L(x[14], key + 28);}
+\DoxyCodeLine{90    LOAD32L(x[ 6], nonce +  0);}
+\DoxyCodeLine{91    LOAD32L(x[ 7], nonce +  4);}
+\DoxyCodeLine{92    LOAD32L(x[ 8], nonce +  8);}
+\DoxyCodeLine{93    LOAD32L(x[ 9], nonce + 12);}
+\DoxyCodeLine{94 }
+\DoxyCodeLine{95    \textcolor{comment}{/* use modified salsa20 doubleround (no final addition) */}}
+\DoxyCodeLine{96    \mbox{\hyperlink{xsalsa20__setup_8c_a55d9b8c849cdbceb4ef9850dadd47a92}{\_xsalsa20\_doubleround}}(x, \mbox{\hyperlink{kseed_8c_a51da46362a22c8107683876e9c12ec82}{rounds}});}
+\DoxyCodeLine{97 }
+\DoxyCodeLine{98    \textcolor{comment}{/* extract the subkey */}}
+\DoxyCodeLine{99    \textcolor{keywordflow}{for} (i = 0; i < 8; ++i) \{}
+\DoxyCodeLine{100      STORE32L(x[sti[i]], subkey + 4 * i);}
+\DoxyCodeLine{101    \}}
+\DoxyCodeLine{102 }
+\DoxyCodeLine{103    \textcolor{comment}{/* load the final initial state */}}
+\DoxyCodeLine{104    LOAD32L(st->input[ 0], \mbox{\hyperlink{xsalsa20__setup_8c_a73154adcaa67df7928473b83b93a205d}{constants}} +  0);}
+\DoxyCodeLine{105    LOAD32L(st->input[ 5], \mbox{\hyperlink{xsalsa20__setup_8c_a73154adcaa67df7928473b83b93a205d}{constants}} +  4);}
+\DoxyCodeLine{106    LOAD32L(st->input[10], \mbox{\hyperlink{xsalsa20__setup_8c_a73154adcaa67df7928473b83b93a205d}{constants}} +  8);}
+\DoxyCodeLine{107    LOAD32L(st->input[15], \mbox{\hyperlink{xsalsa20__setup_8c_a73154adcaa67df7928473b83b93a205d}{constants}} + 12);}
+\DoxyCodeLine{108    LOAD32L(st->input[ 1], subkey +  0);}
+\DoxyCodeLine{109    LOAD32L(st->input[ 2], subkey +  4);}
+\DoxyCodeLine{110    LOAD32L(st->input[ 3], subkey +  8);}
+\DoxyCodeLine{111    LOAD32L(st->input[ 4], subkey + 12);}
+\DoxyCodeLine{112    LOAD32L(st->input[11], subkey + 16);}
+\DoxyCodeLine{113    LOAD32L(st->input[12], subkey + 20);}
+\DoxyCodeLine{114    LOAD32L(st->input[13], subkey + 24);}
+\DoxyCodeLine{115    LOAD32L(st->input[14], subkey + 28);}
+\DoxyCodeLine{116    LOAD32L(st->input[ 6], \&(nonce[16]) + 0);}
+\DoxyCodeLine{117    LOAD32L(st->input[ 7], \&(nonce[16]) + 4);}
+\DoxyCodeLine{118    st->input[ 8] = 0;}
+\DoxyCodeLine{119    st->input[ 9] = 0;}
+\DoxyCodeLine{120    st->rounds = \mbox{\hyperlink{kseed_8c_a51da46362a22c8107683876e9c12ec82}{rounds}};}
+\DoxyCodeLine{121    st->ksleft = 0;}
+\DoxyCodeLine{122    st->ivlen  = 24;           \textcolor{comment}{/* set switch to say nonce/IV has been loaded */}}
+\DoxyCodeLine{123 }
+\DoxyCodeLine{124 \textcolor{preprocessor}{\#ifdef LTC\_CLEAN\_STACK}}
+\DoxyCodeLine{125    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(x, \textcolor{keyword}{sizeof}(x));}
+\DoxyCodeLine{126    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(subkey, \textcolor{keyword}{sizeof}(subkey));}
+\DoxyCodeLine{127 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{128 }
+\DoxyCodeLine{129    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{130 \}}
+
+\end{DoxyCode}
+
+
+References \+\_\+xsalsa20\+\_\+doubleround(), constants, C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, rounds(), and zeromem().
+
+
+
+Referenced by xsalsa20\+\_\+memory(), and xsalsa20\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 3
+Here is the caller graph for this function\+:
+% FIG 4
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{xsalsa20__setup_8c_a73154adcaa67df7928473b83b93a205d}\label{xsalsa20__setup_8c_a73154adcaa67df7928473b83b93a205d}} 
+\index{xsalsa20\_setup.c@{xsalsa20\_setup.c}!constants@{constants}}
+\index{constants@{constants}!xsalsa20\_setup.c@{xsalsa20\_setup.c}}
+\subsubsection{\texorpdfstring{constants}{constants}}
+{\footnotesize\ttfamily const char$\ast$ const constants = \char`\"{}expand 32-\/byte k\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 21 of file xsalsa20\+\_\+setup.\+c.
+
+
+
+Referenced by chacha\+\_\+setup(), salsa20\+\_\+setup(), and xsalsa20\+\_\+setup().
+

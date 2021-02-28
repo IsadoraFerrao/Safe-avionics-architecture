@@ -1,0 +1,98 @@
+\hypertarget{base16__decode_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/misc/base16/base16\+\_\+decode.c File Reference}
+\label{base16__decode_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/misc/base16/base16\_decode.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/misc/base16/base16\_decode.c}}
+
+
+Base16/\+Hex decode a string.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for base16\+\_\+decode.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{base16__decode_8c_a92a7e50f4a1b5a0b058985b575baa410}{base16\+\_\+decode}} (const char $\ast$in, unsigned long inlen, unsigned char $\ast$out, unsigned long $\ast$outlen)
+\begin{DoxyCompactList}\small\item\em Base16 decode a string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Base16/\+Hex decode a string. 
+
+Based on \href{https://stackoverflow.com/a/23898449}{\texttt{ https\+://stackoverflow.\+com/a/23898449}} Adapted for libtomcrypt by Steffen Jaeckel 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{base16__decode_8c_a92a7e50f4a1b5a0b058985b575baa410}\label{base16__decode_8c_a92a7e50f4a1b5a0b058985b575baa410}} 
+\index{base16\_decode.c@{base16\_decode.c}!base16\_decode@{base16\_decode}}
+\index{base16\_decode@{base16\_decode}!base16\_decode.c@{base16\_decode.c}}
+\subsubsection{\texorpdfstring{base16\_decode()}{base16\_decode()}}
+{\footnotesize\ttfamily int base16\+\_\+decode (\begin{DoxyParamCaption}\item[{const char $\ast$}]{in,  }\item[{unsigned long}]{inlen,  }\item[{unsigned char $\ast$}]{out,  }\item[{unsigned long $\ast$}]{outlen }\end{DoxyParamCaption})}
+
+
+
+Base16 decode a string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em in} & The Base16 string to decode \\
+\hline
+{\em inlen} & The length of the Base16 data \\
+\hline
+{\em out} & \mbox{[}out\mbox{]} The destination of the binary decoded data \\
+\hline
+{\em outlen} & \mbox{[}in/out\mbox{]} The max size and resulting size of the decoded data \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 29 of file base16\+\_\+decode.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{31 \{}
+\DoxyCodeLine{32    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} pos, out\_len;}
+\DoxyCodeLine{33    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} idx0, idx1;}
+\DoxyCodeLine{34    \textcolor{keywordtype}{char} in0, in1;}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36    \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} hashmap[] = \{}
+\DoxyCodeLine{37          0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, \textcolor{comment}{/* 01234567 */}}
+\DoxyCodeLine{38          0x08, 0x09, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, \textcolor{comment}{/* 89:;<=>? */}}
+\DoxyCodeLine{39          0xff, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f, 0xff, \textcolor{comment}{/* @ABCDEFG */}}
+\DoxyCodeLine{40          0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, \textcolor{comment}{/* HIJKLMNO */}}
+\DoxyCodeLine{41          0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, \textcolor{comment}{/* PQRSTUVW */}}
+\DoxyCodeLine{42          0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, \textcolor{comment}{/* XYZ[\(\backslash\)]\string^\_ */}}
+\DoxyCodeLine{43          0xff, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f, 0xff, \textcolor{comment}{/* `abcdefg */}}
+\DoxyCodeLine{44    \};}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(in     != NULL);}
+\DoxyCodeLine{47    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(out    != NULL);}
+\DoxyCodeLine{48    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(outlen != NULL);}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{50    \textcolor{keywordflow}{if} ((inlen \% 2) == 1) \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca980088f10ffe9009aec286038a9e79da}{CRYPT\_INVALID\_PACKET}};}
+\DoxyCodeLine{51    out\_len = *outlen * 2;}
+\DoxyCodeLine{52    \textcolor{keywordflow}{for} (pos = 0; ((pos + 1 < out\_len) \&\& (pos + 1 < inlen)); pos += 2) \{}
+\DoxyCodeLine{53       in0 = in[pos + 0];}
+\DoxyCodeLine{54       in1 = in[pos + 1];}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{56       \textcolor{keywordflow}{if} ((in0 < \textcolor{charliteral}{'0'}) || (in0 > \textcolor{charliteral}{'g'})) \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca980088f10ffe9009aec286038a9e79da}{CRYPT\_INVALID\_PACKET}};}
+\DoxyCodeLine{57       \textcolor{keywordflow}{if} ((in1 < \textcolor{charliteral}{'0'}) || (in1 > \textcolor{charliteral}{'g'})) \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca980088f10ffe9009aec286038a9e79da}{CRYPT\_INVALID\_PACKET}};}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{59       idx0 = (\textcolor{keywordtype}{unsigned} char) (in0 \& 0x1F) \string^ 0x10;}
+\DoxyCodeLine{60       idx1 = (\textcolor{keywordtype}{unsigned} char) (in1 \& 0x1F) \string^ 0x10;}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{62       \textcolor{keywordflow}{if} (hashmap[idx0] == 0xff) \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca980088f10ffe9009aec286038a9e79da}{CRYPT\_INVALID\_PACKET}};}
+\DoxyCodeLine{63       \textcolor{keywordflow}{if} (hashmap[idx1] == 0xff) \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca980088f10ffe9009aec286038a9e79da}{CRYPT\_INVALID\_PACKET}};}
+\DoxyCodeLine{64 }
+\DoxyCodeLine{65       out[pos / 2] = (\textcolor{keywordtype}{unsigned} char) (hashmap[idx0] << 4) | hashmap[idx1];}
+\DoxyCodeLine{66    \}}
+\DoxyCodeLine{67    *outlen = pos / 2;}
+\DoxyCodeLine{68    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{69 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+P\+A\+C\+K\+ET, C\+R\+Y\+P\+T\+\_\+\+OK, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+

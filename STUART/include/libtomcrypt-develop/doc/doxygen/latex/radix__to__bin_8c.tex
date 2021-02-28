@@ -1,0 +1,89 @@
+\hypertarget{radix__to__bin_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/math/radix\+\_\+to\+\_\+bin.c File Reference}
+\label{radix__to__bin_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/math/radix\_to\_bin.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/math/radix\_to\_bin.c}}
+
+
+Convert data from a specific radix to binary.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for radix\+\_\+to\+\_\+bin.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{radix__to__bin_8c_a36cbaa55bb3ce4caebc01e8179b32cda}{radix\+\_\+to\+\_\+bin}} (const void $\ast$in, int radix, void $\ast$out, unsigned long $\ast$\mbox{\hyperlink{pmac__init_8c_afed088663f8704004425cdae2120b9b3}{len}})
+\begin{DoxyCompactList}\small\item\em Convert data from a specific radix to binary. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Convert data from a specific radix to binary. 
+
+Steffen Jaeckel 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{radix__to__bin_8c_a36cbaa55bb3ce4caebc01e8179b32cda}\label{radix__to__bin_8c_a36cbaa55bb3ce4caebc01e8179b32cda}} 
+\index{radix\_to\_bin.c@{radix\_to\_bin.c}!radix\_to\_bin@{radix\_to\_bin}}
+\index{radix\_to\_bin@{radix\_to\_bin}!radix\_to\_bin.c@{radix\_to\_bin.c}}
+\subsubsection{\texorpdfstring{radix\_to\_bin()}{radix\_to\_bin()}}
+{\footnotesize\ttfamily int radix\+\_\+to\+\_\+bin (\begin{DoxyParamCaption}\item[{const void $\ast$}]{in,  }\item[{int}]{radix,  }\item[{void $\ast$}]{out,  }\item[{unsigned long $\ast$}]{len }\end{DoxyParamCaption})}
+
+
+
+Convert data from a specific radix to binary. 
+
+The default M\+PI descriptors \mbox{\hyperlink{ltm__desc_8c_afe891d73619b608bf983d9079e410c9d}{ltm\+\_\+desc}}, \mbox{\hyperlink{tfm__desc_8c_a131e0ca0f71f66455b888ee883b062a2}{tfm\+\_\+desc}} and \mbox{\hyperlink{gmp__desc_8c_a923f2740bf923975ee49f7b150304f9b}{gmp\+\_\+desc}} have the following restrictions on parameters\+:
+
+{\ttfamily in} -\/ N\+U\+L-\/terminated char buffer
+
+{\ttfamily radix} -\/ 2..64
+
+
+\begin{DoxyParams}{Parameters}
+{\em in} & The input \\
+\hline
+{\em radix} & The radix of the input \\
+\hline
+{\em out} & The output buffer \\
+\hline
+{\em len} & \mbox{[}in/out\mbox{]} The length of the output buffer\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK on success. 
+\end{DoxyReturn}
+
+
+Definition at line 34 of file radix\+\_\+to\+\_\+bin.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{35 \{}
+\DoxyCodeLine{36    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} l;}
+\DoxyCodeLine{37    \textcolor{keywordtype}{void}* mpi;}
+\DoxyCodeLine{38    \textcolor{keywordtype}{int} err;}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{40    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(in  != NULL);}
+\DoxyCodeLine{41    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}} != NULL);}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{43    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_aff03c4f22c68d651747055048c509cf3}{mp\_init}}(\&mpi)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{44    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a12263d4d7da068c2a630d2ffc0c8bc1b}{mp\_read\_radix}}(mpi, in, radix)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \textcolor{keywordflow}{goto} LBL\_ERR;}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46    \textcolor{keywordflow}{if} ((l = \mbox{\hyperlink{tomcrypt__private_8h_ad301148bb24f43a8c7003a6976dfaa5a}{mp\_unsigned\_bin\_size}}(mpi)) > *\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}) \{}
+\DoxyCodeLine{47       *\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}} = l;}
+\DoxyCodeLine{48       err = \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caccd878f5599f3036ffe759dbe1a1ac16}{CRYPT\_BUFFER\_OVERFLOW}};}
+\DoxyCodeLine{49       \textcolor{keywordflow}{goto} LBL\_ERR;}
+\DoxyCodeLine{50    \}}
+\DoxyCodeLine{51    *\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}} = l;}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{53    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a376a4d31dcfeb65c069db0485b9602f8}{mp\_to\_unsigned\_bin}}(mpi, out)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \textcolor{keywordflow}{goto} LBL\_ERR;}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55 LBL\_ERR:}
+\DoxyCodeLine{56    \mbox{\hyperlink{tomcrypt__private_8h_ab05b6b59fa182b81f5f990d5621229f6}{mp\_clear}}(mpi);}
+\DoxyCodeLine{57    \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{58 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+O\+V\+E\+R\+F\+L\+OW, C\+R\+Y\+P\+T\+\_\+\+OK, len, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, mp\+\_\+clear, mp\+\_\+init, mp\+\_\+read\+\_\+radix, mp\+\_\+to\+\_\+unsigned\+\_\+bin, and mp\+\_\+unsigned\+\_\+bin\+\_\+size.
+

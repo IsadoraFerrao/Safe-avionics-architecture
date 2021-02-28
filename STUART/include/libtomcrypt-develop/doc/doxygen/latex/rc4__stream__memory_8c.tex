@@ -1,0 +1,69 @@
+\hypertarget{rc4__stream__memory_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/stream/rc4/rc4\+\_\+stream\+\_\+memory.c File Reference}
+\label{rc4__stream__memory_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/stream/rc4/rc4\_stream\_memory.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/stream/rc4/rc4\_stream\_memory.c}}
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for rc4\+\_\+stream\+\_\+memory.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{rc4__stream__memory_8c_a3d744655eede094f61a105587ddf5fba}{rc4\+\_\+stream\+\_\+memory}} (const unsigned char $\ast$key, unsigned long keylen, const unsigned char $\ast$datain, unsigned long datalen, unsigned char $\ast$dataout)
+\begin{DoxyCompactList}\small\item\em Encrypt (or decrypt) bytes of ciphertext (or plaintext) with R\+C4. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{rc4__stream__memory_8c_a3d744655eede094f61a105587ddf5fba}\label{rc4__stream__memory_8c_a3d744655eede094f61a105587ddf5fba}} 
+\index{rc4\_stream\_memory.c@{rc4\_stream\_memory.c}!rc4\_stream\_memory@{rc4\_stream\_memory}}
+\index{rc4\_stream\_memory@{rc4\_stream\_memory}!rc4\_stream\_memory.c@{rc4\_stream\_memory.c}}
+\subsubsection{\texorpdfstring{rc4\_stream\_memory()}{rc4\_stream\_memory()}}
+{\footnotesize\ttfamily int rc4\+\_\+stream\+\_\+memory (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{key,  }\item[{unsigned long}]{keylen,  }\item[{const unsigned char $\ast$}]{datain,  }\item[{unsigned long}]{datalen,  }\item[{unsigned char $\ast$}]{dataout }\end{DoxyParamCaption})}
+
+
+
+Encrypt (or decrypt) bytes of ciphertext (or plaintext) with R\+C4. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The key \\
+\hline
+{\em keylen} & The key length \\
+\hline
+{\em datain} & The plaintext (or ciphertext) \\
+\hline
+{\em datalen} & The length of the input and output (octets) \\
+\hline
+{\em dataout} & \mbox{[}out\mbox{]} The ciphertext (or plaintext) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 23 of file rc4\+\_\+stream\+\_\+memory.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{26 \{}
+\DoxyCodeLine{27    rc4\_state st;}
+\DoxyCodeLine{28    \textcolor{keywordtype}{int} err;}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{rc4__stream_8c_a4f9ba9106b0ee28cffced552636662a2}{rc4\_stream\_setup}}(\&st, key, keylen)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \textcolor{keywordflow}{goto} WIPE\_KEY;}
+\DoxyCodeLine{31    err = \mbox{\hyperlink{rc4__stream_8c_a0a9515051ae76dc9e68c8eb2c31537d7}{rc4\_stream\_crypt}}(\&st, datain, datalen, dataout);}
+\DoxyCodeLine{32 WIPE\_KEY:}
+\DoxyCodeLine{33    \mbox{\hyperlink{rc4__stream_8c_ade109a0be5199381ba2f0b9627d0a9f6}{rc4\_stream\_done}}(\&st);}
+\DoxyCodeLine{34    \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{35 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, rc4\+\_\+stream\+\_\+crypt(), rc4\+\_\+stream\+\_\+done(), and rc4\+\_\+stream\+\_\+setup().
+
+
+
+Referenced by rc4\+\_\+stream\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2

@@ -1,0 +1,95 @@
+\hypertarget{der__length__short__integer_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/pk/asn1/der/short\+\_\+integer/der\+\_\+length\+\_\+short\+\_\+integer.c File Reference}
+\label{der__length__short__integer_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/asn1/der/short\_integer/der\_length\_short\_integer.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/asn1/der/short\_integer/der\_length\_short\_integer.c}}
+
+
+A\+S\+N.\+1 D\+ER, get length of encoding, Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for der\+\_\+length\+\_\+short\+\_\+integer.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{der__length__short__integer_8c_aa3bac08094cc8142ac313d818cf73fb0}{der\+\_\+length\+\_\+short\+\_\+integer}} (unsigned long num, unsigned long $\ast$outlen)
+\begin{DoxyCompactList}\small\item\em Gets length of D\+ER encoding of num. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A\+S\+N.\+1 D\+ER, get length of encoding, Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{der__length__short__integer_8c_aa3bac08094cc8142ac313d818cf73fb0}\label{der__length__short__integer_8c_aa3bac08094cc8142ac313d818cf73fb0}} 
+\index{der\_length\_short\_integer.c@{der\_length\_short\_integer.c}!der\_length\_short\_integer@{der\_length\_short\_integer}}
+\index{der\_length\_short\_integer@{der\_length\_short\_integer}!der\_length\_short\_integer.c@{der\_length\_short\_integer.c}}
+\subsubsection{\texorpdfstring{der\_length\_short\_integer()}{der\_length\_short\_integer()}}
+{\footnotesize\ttfamily int der\+\_\+length\+\_\+short\+\_\+integer (\begin{DoxyParamCaption}\item[{unsigned long}]{num,  }\item[{unsigned long $\ast$}]{outlen }\end{DoxyParamCaption})}
+
+
+
+Gets length of D\+ER encoding of num. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em num} & The integer to get the size of \\
+\hline
+{\em outlen} & \mbox{[}out\mbox{]} The length of the D\+ER encoding for the given integer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 24 of file der\+\_\+length\+\_\+short\+\_\+integer.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{25 \{}
+\DoxyCodeLine{26    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} z, y;}
+\DoxyCodeLine{27    \textcolor{keywordtype}{int} err;}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(outlen  != NULL);}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31    \textcolor{comment}{/* force to 32 bits */}}
+\DoxyCodeLine{32    num \&= 0xFFFFFFFFUL;}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34    \textcolor{comment}{/* get the number of bytes */}}
+\DoxyCodeLine{35    z = 0;}
+\DoxyCodeLine{36    y = num;}
+\DoxyCodeLine{37    \textcolor{keywordflow}{while} (y) \{}
+\DoxyCodeLine{38      ++z;}
+\DoxyCodeLine{39      y >>= 8;}
+\DoxyCodeLine{40    \}}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{42    \textcolor{comment}{/* handle zero */}}
+\DoxyCodeLine{43    \textcolor{keywordflow}{if} (z == 0) \{}
+\DoxyCodeLine{44       z = 1;}
+\DoxyCodeLine{45    \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} ((num\&(1UL<<((z<<3) - 1))) != 0) \{}
+\DoxyCodeLine{46       \textcolor{comment}{/* in case msb is set */}}
+\DoxyCodeLine{47       ++z;}
+\DoxyCodeLine{48    \}}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{50    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_a8999e23c66cda0d777570e54f3a5c795}{der\_length\_asn1\_length}}(z, \&y)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{51       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{52    \}}
+\DoxyCodeLine{53    *outlen = 1 + y + z;}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{56 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, der\+\_\+length\+\_\+asn1\+\_\+length(), and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+
+
+Referenced by der\+\_\+decode\+\_\+choice(), der\+\_\+decode\+\_\+custom\+\_\+type\+\_\+ex(), der\+\_\+encode\+\_\+short\+\_\+integer(), der\+\_\+length\+\_\+custom\+\_\+type(), and der\+\_\+length\+\_\+sequence\+\_\+ex().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2

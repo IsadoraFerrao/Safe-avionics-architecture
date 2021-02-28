@@ -1,0 +1,25 @@
+digraph "sha3_shake_test"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node76 [label="sha3_shake_test",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node76 -> Node77 [color="midnightblue",fontsize="10",style="solid"];
+  Node77 [label="compare_testvector",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__misc_8h.html#a7764a7f27897c6182335752df00b5f8e",tooltip="Compare two test-vectors."];
+  Node77 -> Node78 [color="midnightblue",fontsize="10",style="solid"];
+  Node78 [label="XMEMCMP",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cfg_8h.html#a372b974ec0ac07abcd55297554fe540f",tooltip=" "];
+  Node76 -> Node79 [color="midnightblue",fontsize="10",style="solid"];
+  Node79 [label="sha3_shake_done",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sha3_8c.html#a28a11ba4ab2b4ab690d50af5a192ee22",tooltip=" "];
+  Node79 -> Node80 [color="midnightblue",fontsize="10",style="solid"];
+  Node80 [label="keccakf",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sha3_8c.html#a7fd78116706c35ac94b8fb5553220678",tooltip=" "];
+  Node76 -> Node81 [color="midnightblue",fontsize="10",style="solid"];
+  Node81 [label="sha3_shake_init",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sha3_8c.html#af50f8a0f885a2483d8123b44e80176cf",tooltip=" "];
+  Node81 -> Node82 [color="midnightblue",fontsize="10",style="solid"];
+  Node82 [label="XMEMSET",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cfg_8h.html#aa3c34a6f6c61de7da9258b5a30e32c2f",tooltip=" "];
+  Node76 -> Node83 [color="midnightblue",fontsize="10",style="solid"];
+  Node83 [label="sha3_shake_memory",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sha3_8c.html#a7de1578a754c0ec8629d465bab3cd55c",tooltip=" "];
+  Node83 -> Node79 [color="midnightblue",fontsize="10",style="solid"];
+  Node83 -> Node81 [color="midnightblue",fontsize="10",style="solid"];
+  Node76 -> Node82 [color="midnightblue",fontsize="10",style="solid"];
+}

@@ -1,0 +1,10 @@
+digraph "eax_encrypt_authenticate_memory"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node22 [label="eax_encrypt_authenticate\l_memory",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="EAX encrypt and produce an authentication tag."];
+  Node22 -> Node23 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node23 [label="eax_test",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$eax__test_8c.html#a9e708c531b1c375a3d086f43a192c455",tooltip="Test the EAX implementation."];
+}

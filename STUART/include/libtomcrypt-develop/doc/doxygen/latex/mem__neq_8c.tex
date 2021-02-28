@@ -1,0 +1,85 @@
+\hypertarget{mem__neq_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/misc/mem\+\_\+neq.c File Reference}
+\label{mem__neq_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/misc/mem\_neq.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/misc/mem\_neq.c}}
+
+
+Compare two blocks of memory for inequality in constant time.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for mem\+\_\+neq.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{mem__neq_8c_a3733102f1f5f0fef112e2a2e79f647f9}{mem\+\_\+neq}} (const void $\ast$a, const void $\ast$b, size\+\_\+t \mbox{\hyperlink{pmac__init_8c_afed088663f8704004425cdae2120b9b3}{len}})
+\begin{DoxyCompactList}\small\item\em Compare two blocks of memory for inequality in constant time. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Compare two blocks of memory for inequality in constant time. 
+
+Steffen Jaeckel 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{mem__neq_8c_a3733102f1f5f0fef112e2a2e79f647f9}\label{mem__neq_8c_a3733102f1f5f0fef112e2a2e79f647f9}} 
+\index{mem\_neq.c@{mem\_neq.c}!mem\_neq@{mem\_neq}}
+\index{mem\_neq@{mem\_neq}!mem\_neq.c@{mem\_neq.c}}
+\subsubsection{\texorpdfstring{mem\_neq()}{mem\_neq()}}
+{\footnotesize\ttfamily int mem\+\_\+neq (\begin{DoxyParamCaption}\item[{const void $\ast$}]{a,  }\item[{const void $\ast$}]{b,  }\item[{size\+\_\+t}]{len }\end{DoxyParamCaption})}
+
+
+
+Compare two blocks of memory for inequality in constant time. 
+
+The usage is similar to that of standard memcmp, but you can only test if the memory is equal or not -\/ you can not determine by how much the first different byte differs.
+
+This function shall be used to compare results of cryptographic operations where inequality means most likely usage of a wrong key. The execution time has therefore to be constant as otherwise timing attacks could be possible.
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & The first memory region \\
+\hline
+{\em b} & The second memory region \\
+\hline
+{\em len} & The length of the area to compare (octets)\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 when a and b are equal for len bytes, 1 they are not equal. 
+\end{DoxyReturn}
+
+
+Definition at line 35 of file mem\+\_\+neq.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{36 \{}
+\DoxyCodeLine{37    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} ret = 0;}
+\DoxyCodeLine{38    \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}* pa;}
+\DoxyCodeLine{39    \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}* pb;}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(a != NULL);}
+\DoxyCodeLine{42    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(b != NULL);}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44    pa = a;}
+\DoxyCodeLine{45    pb = b;}
+\DoxyCodeLine{46 }
+\DoxyCodeLine{47    \textcolor{keywordflow}{while} (\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}-- > 0) \{}
+\DoxyCodeLine{48       ret |= *pa \string^ *pb;}
+\DoxyCodeLine{49       ++pa;}
+\DoxyCodeLine{50       ++pb;}
+\DoxyCodeLine{51    \}}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{53    ret |= ret >> 4;}
+\DoxyCodeLine{54    ret |= ret >> 2;}
+\DoxyCodeLine{55    ret |= ret >> 1;}
+\DoxyCodeLine{56    ret \&= 1;}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{58    \textcolor{keywordflow}{return} ret;}
+\DoxyCodeLine{59 \}}
+
+\end{DoxyCode}
+
+
+References len, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+

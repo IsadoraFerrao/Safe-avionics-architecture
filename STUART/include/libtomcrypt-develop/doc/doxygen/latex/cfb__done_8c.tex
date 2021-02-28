@@ -1,0 +1,65 @@
+\hypertarget{cfb__done_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/modes/cfb/cfb\+\_\+done.c File Reference}
+\label{cfb__done_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/modes/cfb/cfb\_done.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/modes/cfb/cfb\_done.c}}
+
+
+C\+FB implementation, finish chain, Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for cfb\+\_\+done.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{cfb__done_8c_a4baee96cc4fb6fb17510e25b3156a73b}{cfb\+\_\+done}} (symmetric\+\_\+\+C\+FB $\ast$cfb)
+\begin{DoxyCompactList}\small\item\em Terminate the chain. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+C\+FB implementation, finish chain, Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{cfb__done_8c_a4baee96cc4fb6fb17510e25b3156a73b}\label{cfb__done_8c_a4baee96cc4fb6fb17510e25b3156a73b}} 
+\index{cfb\_done.c@{cfb\_done.c}!cfb\_done@{cfb\_done}}
+\index{cfb\_done@{cfb\_done}!cfb\_done.c@{cfb\_done.c}}
+\subsubsection{\texorpdfstring{cfb\_done()}{cfb\_done()}}
+{\footnotesize\ttfamily int cfb\+\_\+done (\begin{DoxyParamCaption}\item[{symmetric\+\_\+\+C\+FB $\ast$}]{cfb }\end{DoxyParamCaption})}
+
+
+
+Terminate the chain. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cfb} & The C\+FB chain to terminate \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK on success 
+\end{DoxyReturn}
+
+
+Definition at line 22 of file cfb\+\_\+done.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{23 \{}
+\DoxyCodeLine{24    \textcolor{keywordtype}{int} err;}
+\DoxyCodeLine{25    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(cfb != NULL);}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_ac30eb68934c4ca07205344dc9d159221}{cipher\_is\_valid}}(cfb->cipher)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{28       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{29    \}}
+\DoxyCodeLine{30    \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[cfb->cipher].\mbox{\hyperlink{structltc__cipher__descriptor_a0ad1c101005c70a69e40fded0e606191}{done}}(\&cfb->key);}
+\DoxyCodeLine{31    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{32 \}}
+
+\end{DoxyCode}
+
+
+References cipher\+\_\+descriptor, cipher\+\_\+is\+\_\+valid(), C\+R\+Y\+P\+T\+\_\+\+OK, ltc\+\_\+cipher\+\_\+descriptor\+::done, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+Here is the call graph for this function\+:
+% FIG 1

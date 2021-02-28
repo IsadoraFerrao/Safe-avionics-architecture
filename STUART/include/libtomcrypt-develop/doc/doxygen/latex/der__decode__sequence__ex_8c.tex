@@ -1,0 +1,72 @@
+\hypertarget{der__decode__sequence__ex_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/pk/asn1/der/sequence/der\+\_\+decode\+\_\+sequence\+\_\+ex.c File Reference}
+\label{der__decode__sequence__ex_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/asn1/der/sequence/der\_decode\_sequence\_ex.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/asn1/der/sequence/der\_decode\_sequence\_ex.c}}
+
+
+A\+S\+N.\+1 D\+ER, decode a S\+E\+Q\+U\+E\+N\+CE, Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for der\+\_\+decode\+\_\+sequence\+\_\+ex.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{der__decode__sequence__ex_8c_a388cbc3f5c404637bc51f9dfb2d4f677}{der\+\_\+decode\+\_\+sequence\+\_\+ex}} (const unsigned char $\ast$in, unsigned long inlen, ltc\+\_\+asn1\+\_\+list $\ast$list, unsigned long outlen, unsigned int flags)
+\begin{DoxyCompactList}\small\item\em Decode a S\+E\+Q\+U\+E\+N\+CE. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A\+S\+N.\+1 D\+ER, decode a S\+E\+Q\+U\+E\+N\+CE, Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{der__decode__sequence__ex_8c_a388cbc3f5c404637bc51f9dfb2d4f677}\label{der__decode__sequence__ex_8c_a388cbc3f5c404637bc51f9dfb2d4f677}} 
+\index{der\_decode\_sequence\_ex.c@{der\_decode\_sequence\_ex.c}!der\_decode\_sequence\_ex@{der\_decode\_sequence\_ex}}
+\index{der\_decode\_sequence\_ex@{der\_decode\_sequence\_ex}!der\_decode\_sequence\_ex.c@{der\_decode\_sequence\_ex.c}}
+\subsubsection{\texorpdfstring{der\_decode\_sequence\_ex()}{der\_decode\_sequence\_ex()}}
+{\footnotesize\ttfamily int der\+\_\+decode\+\_\+sequence\+\_\+ex (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{in,  }\item[{unsigned long}]{inlen,  }\item[{ltc\+\_\+asn1\+\_\+list $\ast$}]{list,  }\item[{unsigned long}]{outlen,  }\item[{unsigned int}]{flags }\end{DoxyParamCaption})}
+
+
+
+Decode a S\+E\+Q\+U\+E\+N\+CE. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em in} & The D\+ER encoded input \\
+\hline
+{\em inlen} & The size of the input \\
+\hline
+{\em list} & The list of items to decode \\
+\hline
+{\em outlen} & The number of items in the list \\
+\hline
+{\em flags} & c.\+f. enum ltc\+\_\+der\+\_\+seq \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK on success 
+\end{DoxyReturn}
+
+
+Definition at line 28 of file der\+\_\+decode\+\_\+sequence\+\_\+ex.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{30 \{}
+\DoxyCodeLine{31    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt__private_8h_aaa3acc13042e5d9244ac279a354775fe}{der\_decode\_custom\_type\_ex}}(in, inlen, NULL, list, outlen, flags);}
+\DoxyCodeLine{32 \}}
+
+\end{DoxyCode}
+
+
+References der\+\_\+decode\+\_\+custom\+\_\+type\+\_\+ex().
+
+
+
+Referenced by \+\_\+der\+\_\+decode\+\_\+sequence\+\_\+va(), and der\+\_\+decode\+\_\+custom\+\_\+type\+\_\+ex().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2

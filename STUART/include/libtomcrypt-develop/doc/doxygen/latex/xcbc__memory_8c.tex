@@ -1,0 +1,92 @@
+\hypertarget{xcbc__memory_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/mac/xcbc/xcbc\+\_\+memory.c File Reference}
+\label{xcbc__memory_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/mac/xcbc/xcbc\_memory.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/mac/xcbc/xcbc\_memory.c}}
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for xcbc\+\_\+memory.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{xcbc__memory_8c_a5b34b1c0334478c5bf640ecce5b12f42}{xcbc\+\_\+memory}} (int cipher, const unsigned char $\ast$key, unsigned long keylen, const unsigned char $\ast$in, unsigned long inlen, unsigned char $\ast$out, unsigned long $\ast$outlen)
+\begin{DoxyCompactList}\small\item\em X\+C\+B\+C-\/\+M\+AC a block of memory. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{xcbc__memory_8c_a5b34b1c0334478c5bf640ecce5b12f42}\label{xcbc__memory_8c_a5b34b1c0334478c5bf640ecce5b12f42}} 
+\index{xcbc\_memory.c@{xcbc\_memory.c}!xcbc\_memory@{xcbc\_memory}}
+\index{xcbc\_memory@{xcbc\_memory}!xcbc\_memory.c@{xcbc\_memory.c}}
+\subsubsection{\texorpdfstring{xcbc\_memory()}{xcbc\_memory()}}
+{\footnotesize\ttfamily int xcbc\+\_\+memory (\begin{DoxyParamCaption}\item[{int}]{cipher,  }\item[{const unsigned char $\ast$}]{key,  }\item[{unsigned long}]{keylen,  }\item[{const unsigned char $\ast$}]{in,  }\item[{unsigned long}]{inlen,  }\item[{unsigned char $\ast$}]{out,  }\item[{unsigned long $\ast$}]{outlen }\end{DoxyParamCaption})}
+
+
+
+X\+C\+B\+C-\/\+M\+AC a block of memory. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cipher} & Index of cipher to use \\
+\hline
+{\em key} & \mbox{[}in\mbox{]} Secret key \\
+\hline
+{\em keylen} & Length of key in octets \\
+\hline
+{\em in} & \mbox{[}in\mbox{]} Message to M\+AC \\
+\hline
+{\em inlen} & Length of input in octets \\
+\hline
+{\em out} & \mbox{[}out\mbox{]} Destination for the M\+AC tag \\
+\hline
+{\em outlen} & \mbox{[}in/out\mbox{]} Output size and final tag size Return C\+R\+Y\+P\+T\+\_\+\+OK on success. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 28 of file xcbc\+\_\+memory.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{32 \{}
+\DoxyCodeLine{33    xcbc\_state *xcbc;}
+\DoxyCodeLine{34    \textcolor{keywordtype}{int}         err;}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36    \textcolor{comment}{/* is the cipher valid? */}}
+\DoxyCodeLine{37    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_ac30eb68934c4ca07205344dc9d159221}{cipher\_is\_valid}}(cipher)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{38       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{39    \}}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41    \textcolor{comment}{/* Use accelerator if found */}}
+\DoxyCodeLine{42    \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[cipher].\mbox{\hyperlink{xcbc__memory_8c_a5b34b1c0334478c5bf640ecce5b12f42}{xcbc\_memory}} != NULL) \{}
+\DoxyCodeLine{43       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[cipher].\mbox{\hyperlink{structltc__cipher__descriptor_aa4cd54490d5900e4e49580fecff8c318}{xcbc\_memory}}(key, keylen, in, inlen, out, outlen);}
+\DoxyCodeLine{44    \}}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46    xcbc = \mbox{\hyperlink{tomcrypt__cfg_8h_a151dda14cd7acae31eaf1102b0cc0685}{XCALLOC}}(1, \textcolor{keyword}{sizeof}(*xcbc));}
+\DoxyCodeLine{47    \textcolor{keywordflow}{if} (xcbc == NULL) \{}
+\DoxyCodeLine{48       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca0ce0d27adc7ea10b74b7ea904b8bfa82}{CRYPT\_MEM}};}
+\DoxyCodeLine{49    \}}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{51    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{xcbc__init_8c_a7b787dca2813eeaae1e2ebfd1b601d6d}{xcbc\_init}}(xcbc, cipher, key, keylen)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{52      \textcolor{keywordflow}{goto} done;}
+\DoxyCodeLine{53    \}}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{xcbc__process_8c_a9f08ee1fd99fd672009fb6beb8cea142}{xcbc\_process}}(xcbc, in, inlen)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{56      \textcolor{keywordflow}{goto} done;}
+\DoxyCodeLine{57    \}}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{59    err = \mbox{\hyperlink{xcbc__done_8c_a396b96e5257706bdbc462d17eb3c4276}{xcbc\_done}}(xcbc, out, outlen);}
+\DoxyCodeLine{60 done:}
+\DoxyCodeLine{61    \mbox{\hyperlink{tomcrypt__cfg_8h_a260d66fc0690e0502cf3bfe7b5244b75}{XFREE}}(xcbc);}
+\DoxyCodeLine{62    \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{63 \}}
+
+\end{DoxyCode}
+
+
+References cipher\+\_\+descriptor, cipher\+\_\+is\+\_\+valid(), C\+R\+Y\+P\+T\+\_\+\+M\+EM, C\+R\+Y\+P\+T\+\_\+\+OK, X\+C\+A\+L\+L\+O\+C(), xcbc\+\_\+done(), xcbc\+\_\+init(), ltc\+\_\+cipher\+\_\+descriptor\+::xcbc\+\_\+memory, xcbc\+\_\+process(), and X\+F\+R\+E\+E().
+
+
+
+Referenced by xcbc\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2

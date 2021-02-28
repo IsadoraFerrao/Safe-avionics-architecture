@@ -1,0 +1,382 @@
+\hypertarget{poly1305_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/mac/poly1305/poly1305.c File Reference}
+\label{poly1305_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/mac/poly1305/poly1305.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/mac/poly1305/poly1305.c}}
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for poly1305.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{poly1305_8c_af2b454846eb0342729e1d878e31c5cf6}{\+\_\+poly1305\+\_\+block}} (poly1305\+\_\+state $\ast$st, const unsigned char $\ast$in, unsigned long inlen)
+\item 
+int \mbox{\hyperlink{poly1305_8c_a09bc8f3b4b3b4cbd2a2b10c9814a1619}{poly1305\+\_\+init}} (poly1305\+\_\+state $\ast$st, const unsigned char $\ast$key, unsigned long keylen)
+\begin{DoxyCompactList}\small\item\em Initialize an P\+O\+L\+Y1305 context. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{poly1305_8c_a44ef0e35cc1f514f942c015c105b9f01}{poly1305\+\_\+process}} (poly1305\+\_\+state $\ast$st, const unsigned char $\ast$in, unsigned long inlen)
+\begin{DoxyCompactList}\small\item\em Process data through P\+O\+L\+Y1305. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{poly1305_8c_af7ae26dde05dcb271ec4f15e6f406f8d}{poly1305\+\_\+done}} (poly1305\+\_\+state $\ast$st, unsigned char $\ast$mac, unsigned long $\ast$maclen)
+\begin{DoxyCompactList}\small\item\em Terminate a P\+O\+L\+Y1305 session. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{poly1305_8c_af2b454846eb0342729e1d878e31c5cf6}\label{poly1305_8c_af2b454846eb0342729e1d878e31c5cf6}} 
+\index{poly1305.c@{poly1305.c}!\_poly1305\_block@{\_poly1305\_block}}
+\index{\_poly1305\_block@{\_poly1305\_block}!poly1305.c@{poly1305.c}}
+\subsubsection{\texorpdfstring{\_poly1305\_block()}{\_poly1305\_block()}}
+{\footnotesize\ttfamily static void \+\_\+poly1305\+\_\+block (\begin{DoxyParamCaption}\item[{poly1305\+\_\+state $\ast$}]{st,  }\item[{const unsigned char $\ast$}]{in,  }\item[{unsigned long}]{inlen }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 20 of file poly1305.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{21 \{}
+\DoxyCodeLine{22    \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} hibit = (st->final) ? 0 : (1UL << 24); \textcolor{comment}{/* 1 << 128 */}}
+\DoxyCodeLine{23    \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} r0,r1,r2,r3,r4;}
+\DoxyCodeLine{24    \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} s1,s2,s3,s4;}
+\DoxyCodeLine{25    \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} h0,h1,h2,h3,h4;}
+\DoxyCodeLine{26    \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} tmp;}
+\DoxyCodeLine{27    \mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}} d0,d1,d2,d3,d4;}
+\DoxyCodeLine{28    \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}};}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30    r0 = st->r[0];}
+\DoxyCodeLine{31    r1 = st->r[1];}
+\DoxyCodeLine{32    r2 = st->r[2];}
+\DoxyCodeLine{33    r3 = st->r[3];}
+\DoxyCodeLine{34    r4 = st->r[4];}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36    s1 = r1 * 5;}
+\DoxyCodeLine{37    s2 = r2 * 5;}
+\DoxyCodeLine{38    s3 = r3 * 5;}
+\DoxyCodeLine{39    s4 = r4 * 5;}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41    h0 = st->h[0];}
+\DoxyCodeLine{42    h1 = st->h[1];}
+\DoxyCodeLine{43    h2 = st->h[2];}
+\DoxyCodeLine{44    h3 = st->h[3];}
+\DoxyCodeLine{45    h4 = st->h[4];}
+\DoxyCodeLine{46 }
+\DoxyCodeLine{47    \textcolor{keywordflow}{while} (inlen >= 16) \{}
+\DoxyCodeLine{48       \textcolor{comment}{/* h += in[i] */}}
+\DoxyCodeLine{49       LOAD32L(tmp, in+ 0); h0 += (tmp     ) \& 0x3ffffff;}
+\DoxyCodeLine{50       LOAD32L(tmp, in+ 3); h1 += (tmp >> 2) \& 0x3ffffff;}
+\DoxyCodeLine{51       LOAD32L(tmp, in+ 6); h2 += (tmp >> 4) \& 0x3ffffff;}
+\DoxyCodeLine{52       LOAD32L(tmp, in+ 9); h3 += (tmp >> 6) \& 0x3ffffff;}
+\DoxyCodeLine{53       LOAD32L(tmp, in+12); h4 += (tmp >> 8) | hibit;}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55       \textcolor{comment}{/* h *= r */}}
+\DoxyCodeLine{56       d0 = ((\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}})h0 * r0) + ((\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}})h1 * s4) + ((\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}})h2 * s3) + ((\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}})h3 * s2) + ((\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}})h4 * s1);}
+\DoxyCodeLine{57       d1 = ((\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}})h0 * r1) + ((\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}})h1 * r0) + ((\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}})h2 * s4) + ((\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}})h3 * s3) + ((\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}})h4 * s2);}
+\DoxyCodeLine{58       d2 = ((\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}})h0 * r2) + ((\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}})h1 * r1) + ((\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}})h2 * r0) + ((\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}})h3 * s4) + ((\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}})h4 * s3);}
+\DoxyCodeLine{59       d3 = ((\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}})h0 * r3) + ((\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}})h1 * r2) + ((\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}})h2 * r1) + ((\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}})h3 * r0) + ((\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}})h4 * s4);}
+\DoxyCodeLine{60       d4 = ((\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}})h0 * r4) + ((\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}})h1 * r3) + ((\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}})h2 * r2) + ((\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}})h3 * r1) + ((\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}})h4 * r0);}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{62       \textcolor{comment}{/* (partial) h \%= p */}}
+\DoxyCodeLine{63                     \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} = (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})(d0 >> 26); h0 = (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})d0 \& 0x3ffffff;}
+\DoxyCodeLine{64       d1 += \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}};      \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} = (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})(d1 >> 26); h1 = (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})d1 \& 0x3ffffff;}
+\DoxyCodeLine{65       d2 += \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}};      \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} = (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})(d2 >> 26); h2 = (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})d2 \& 0x3ffffff;}
+\DoxyCodeLine{66       d3 += \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}};      \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} = (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})(d3 >> 26); h3 = (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})d3 \& 0x3ffffff;}
+\DoxyCodeLine{67       d4 += \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}};      \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} = (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})(d4 >> 26); h4 = (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})d4 \& 0x3ffffff;}
+\DoxyCodeLine{68       h0 += \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} * 5;  \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} =          (h0 >> 26); h0 =          h0 \& 0x3ffffff;}
+\DoxyCodeLine{69       h1 += \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}};}
+\DoxyCodeLine{70 }
+\DoxyCodeLine{71       in += 16;}
+\DoxyCodeLine{72       inlen -= 16;}
+\DoxyCodeLine{73    \}}
+\DoxyCodeLine{74 }
+\DoxyCodeLine{75    st->h[0] = h0;}
+\DoxyCodeLine{76    st->h[1] = h1;}
+\DoxyCodeLine{77    st->h[2] = h2;}
+\DoxyCodeLine{78    st->h[3] = h3;}
+\DoxyCodeLine{79    st->h[4] = h4;}
+\DoxyCodeLine{80 \}}
+
+\end{DoxyCode}
+
+
+References c.
+
+
+
+Referenced by poly1305\+\_\+done(), and poly1305\+\_\+process().
+
+Here is the caller graph for this function\+:
+% FIG 1
+\mbox{\Hypertarget{poly1305_8c_af7ae26dde05dcb271ec4f15e6f406f8d}\label{poly1305_8c_af7ae26dde05dcb271ec4f15e6f406f8d}} 
+\index{poly1305.c@{poly1305.c}!poly1305\_done@{poly1305\_done}}
+\index{poly1305\_done@{poly1305\_done}!poly1305.c@{poly1305.c}}
+\subsubsection{\texorpdfstring{poly1305\_done()}{poly1305\_done()}}
+{\footnotesize\ttfamily int poly1305\+\_\+done (\begin{DoxyParamCaption}\item[{poly1305\+\_\+state $\ast$}]{st,  }\item[{unsigned char $\ast$}]{mac,  }\item[{unsigned long $\ast$}]{maclen }\end{DoxyParamCaption})}
+
+
+
+Terminate a P\+O\+L\+Y1305 session. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em st} & The P\+O\+L\+Y1305 state \\
+\hline
+{\em mac} & \mbox{[}out\mbox{]} The destination of the P\+O\+L\+Y1305 authentication tag \\
+\hline
+{\em maclen} & \mbox{[}in/out\mbox{]} The max size and resulting size of the P\+O\+L\+Y1305 authentication tag \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 171 of file poly1305.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{172 \{}
+\DoxyCodeLine{173    \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} h0,h1,h2,h3,h4,\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}};}
+\DoxyCodeLine{174    \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} g0,g1,g2,g3,g4;}
+\DoxyCodeLine{175    \mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}} f;}
+\DoxyCodeLine{176    \mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}} \mbox{\hyperlink{gcm__gf__mult_8c_a3a2325b458f400e186d773b14e6c1ed9}{mask}};}
+\DoxyCodeLine{177 }
+\DoxyCodeLine{178    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(st     != NULL);}
+\DoxyCodeLine{179    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(mac    != NULL);}
+\DoxyCodeLine{180    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(maclen != NULL);}
+\DoxyCodeLine{181    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(*maclen >= 16);}
+\DoxyCodeLine{182 }
+\DoxyCodeLine{183    \textcolor{comment}{/* process the remaining block */}}
+\DoxyCodeLine{184    \textcolor{keywordflow}{if} (st->leftover) \{}
+\DoxyCodeLine{185       \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} i = st->leftover;}
+\DoxyCodeLine{186       st->buffer[i++] = 1;}
+\DoxyCodeLine{187       \textcolor{keywordflow}{for} (; i < 16; i++) st->buffer[i] = 0;}
+\DoxyCodeLine{188       st->final = 1;}
+\DoxyCodeLine{189       \mbox{\hyperlink{poly1305_8c_af2b454846eb0342729e1d878e31c5cf6}{\_poly1305\_block}}(st, st->buffer, 16);}
+\DoxyCodeLine{190    \}}
+\DoxyCodeLine{191 }
+\DoxyCodeLine{192    \textcolor{comment}{/* fully carry h */}}
+\DoxyCodeLine{193    h0 = st->h[0];}
+\DoxyCodeLine{194    h1 = st->h[1];}
+\DoxyCodeLine{195    h2 = st->h[2];}
+\DoxyCodeLine{196    h3 = st->h[3];}
+\DoxyCodeLine{197    h4 = st->h[4];}
+\DoxyCodeLine{198 }
+\DoxyCodeLine{199                 \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} = h1 >> 26; h1 = h1 \& 0x3ffffff;}
+\DoxyCodeLine{200    h2 +=     \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}; \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} = h2 >> 26; h2 = h2 \& 0x3ffffff;}
+\DoxyCodeLine{201    h3 +=     \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}; \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} = h3 >> 26; h3 = h3 \& 0x3ffffff;}
+\DoxyCodeLine{202    h4 +=     \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}; \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} = h4 >> 26; h4 = h4 \& 0x3ffffff;}
+\DoxyCodeLine{203    h0 += \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} * 5; \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} = h0 >> 26; h0 = h0 \& 0x3ffffff;}
+\DoxyCodeLine{204    h1 +=     \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}};}
+\DoxyCodeLine{205 }
+\DoxyCodeLine{206    \textcolor{comment}{/* compute h + -p */}}
+\DoxyCodeLine{207    g0 = h0 + 5; \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} = g0 >> 26; g0 \&= 0x3ffffff;}
+\DoxyCodeLine{208    g1 = h1 + \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}; \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} = g1 >> 26; g1 \&= 0x3ffffff;}
+\DoxyCodeLine{209    g2 = h2 + \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}; \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} = g2 >> 26; g2 \&= 0x3ffffff;}
+\DoxyCodeLine{210    g3 = h3 + \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}; \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} = g3 >> 26; g3 \&= 0x3ffffff;}
+\DoxyCodeLine{211    g4 = h4 + \mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}} - (1UL << 26);}
+\DoxyCodeLine{212 }
+\DoxyCodeLine{213    \textcolor{comment}{/* select h if h < p, or h + -p if h >= p */}}
+\DoxyCodeLine{214    \mbox{\hyperlink{gcm__gf__mult_8c_a3a2325b458f400e186d773b14e6c1ed9}{mask}} = (g4 >> 31) - 1;}
+\DoxyCodeLine{215    g0 \&= \mbox{\hyperlink{gcm__gf__mult_8c_a3a2325b458f400e186d773b14e6c1ed9}{mask}};}
+\DoxyCodeLine{216    g1 \&= \mbox{\hyperlink{gcm__gf__mult_8c_a3a2325b458f400e186d773b14e6c1ed9}{mask}};}
+\DoxyCodeLine{217    g2 \&= \mbox{\hyperlink{gcm__gf__mult_8c_a3a2325b458f400e186d773b14e6c1ed9}{mask}};}
+\DoxyCodeLine{218    g3 \&= \mbox{\hyperlink{gcm__gf__mult_8c_a3a2325b458f400e186d773b14e6c1ed9}{mask}};}
+\DoxyCodeLine{219    g4 \&= \mbox{\hyperlink{gcm__gf__mult_8c_a3a2325b458f400e186d773b14e6c1ed9}{mask}};}
+\DoxyCodeLine{220    \mbox{\hyperlink{gcm__gf__mult_8c_a3a2325b458f400e186d773b14e6c1ed9}{mask}} = ~\mbox{\hyperlink{gcm__gf__mult_8c_a3a2325b458f400e186d773b14e6c1ed9}{mask}};}
+\DoxyCodeLine{221    h0 = (h0 \& \mbox{\hyperlink{gcm__gf__mult_8c_a3a2325b458f400e186d773b14e6c1ed9}{mask}}) | g0;}
+\DoxyCodeLine{222    h1 = (h1 \& \mbox{\hyperlink{gcm__gf__mult_8c_a3a2325b458f400e186d773b14e6c1ed9}{mask}}) | g1;}
+\DoxyCodeLine{223    h2 = (h2 \& \mbox{\hyperlink{gcm__gf__mult_8c_a3a2325b458f400e186d773b14e6c1ed9}{mask}}) | g2;}
+\DoxyCodeLine{224    h3 = (h3 \& \mbox{\hyperlink{gcm__gf__mult_8c_a3a2325b458f400e186d773b14e6c1ed9}{mask}}) | g3;}
+\DoxyCodeLine{225    h4 = (h4 \& \mbox{\hyperlink{gcm__gf__mult_8c_a3a2325b458f400e186d773b14e6c1ed9}{mask}}) | g4;}
+\DoxyCodeLine{226 }
+\DoxyCodeLine{227    \textcolor{comment}{/* h = h \% (2\string^128) */}}
+\DoxyCodeLine{228    h0 = ((h0      ) | (h1 << 26)) \& 0xffffffff;}
+\DoxyCodeLine{229    h1 = ((h1 >>  6) | (h2 << 20)) \& 0xffffffff;}
+\DoxyCodeLine{230    h2 = ((h2 >> 12) | (h3 << 14)) \& 0xffffffff;}
+\DoxyCodeLine{231    h3 = ((h3 >> 18) | (h4 <<  8)) \& 0xffffffff;}
+\DoxyCodeLine{232 }
+\DoxyCodeLine{233    \textcolor{comment}{/* mac = (h + pad) \% (2\string^128) */}}
+\DoxyCodeLine{234    f = (\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}})h0 + st->pad[0]            ; h0 = (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})f;}
+\DoxyCodeLine{235    f = (\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}})h1 + st->pad[1] + (f >> 32); h1 = (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})f;}
+\DoxyCodeLine{236    f = (\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}})h2 + st->pad[2] + (f >> 32); h2 = (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})f;}
+\DoxyCodeLine{237    f = (\mbox{\hyperlink{tomcrypt__cfg_8h_ab4afaf24b39288a7be6fd03fe8345f61}{ulong64}})h3 + st->pad[3] + (f >> 32); h3 = (\mbox{\hyperlink{tomcrypt__cfg_8h_a1f20274bb048d3c8a916b261dfff9567}{ulong32}})f;}
+\DoxyCodeLine{238 }
+\DoxyCodeLine{239    STORE32L(h0, mac +  0);}
+\DoxyCodeLine{240    STORE32L(h1, mac +  4);}
+\DoxyCodeLine{241    STORE32L(h2, mac +  8);}
+\DoxyCodeLine{242    STORE32L(h3, mac + 12);}
+\DoxyCodeLine{243 }
+\DoxyCodeLine{244    \textcolor{comment}{/* zero out the state */}}
+\DoxyCodeLine{245    st->h[0] = 0;}
+\DoxyCodeLine{246    st->h[1] = 0;}
+\DoxyCodeLine{247    st->h[2] = 0;}
+\DoxyCodeLine{248    st->h[3] = 0;}
+\DoxyCodeLine{249    st->h[4] = 0;}
+\DoxyCodeLine{250    st->r[0] = 0;}
+\DoxyCodeLine{251    st->r[1] = 0;}
+\DoxyCodeLine{252    st->r[2] = 0;}
+\DoxyCodeLine{253    st->r[3] = 0;}
+\DoxyCodeLine{254    st->r[4] = 0;}
+\DoxyCodeLine{255    st->pad[0] = 0;}
+\DoxyCodeLine{256    st->pad[1] = 0;}
+\DoxyCodeLine{257    st->pad[2] = 0;}
+\DoxyCodeLine{258    st->pad[3] = 0;}
+\DoxyCodeLine{259 }
+\DoxyCodeLine{260    *maclen = 16;}
+\DoxyCodeLine{261    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{262 \}}
+
+\end{DoxyCode}
+
+
+References \+\_\+poly1305\+\_\+block(), c, C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, and mask.
+
+
+
+Referenced by chacha20poly1305\+\_\+done(), poly1305\+\_\+file(), poly1305\+\_\+memory(), poly1305\+\_\+memory\+\_\+multi(), and poly1305\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 2
+Here is the caller graph for this function\+:
+% FIG 3
+\mbox{\Hypertarget{poly1305_8c_a09bc8f3b4b3b4cbd2a2b10c9814a1619}\label{poly1305_8c_a09bc8f3b4b3b4cbd2a2b10c9814a1619}} 
+\index{poly1305.c@{poly1305.c}!poly1305\_init@{poly1305\_init}}
+\index{poly1305\_init@{poly1305\_init}!poly1305.c@{poly1305.c}}
+\subsubsection{\texorpdfstring{poly1305\_init()}{poly1305\_init()}}
+{\footnotesize\ttfamily int poly1305\+\_\+init (\begin{DoxyParamCaption}\item[{poly1305\+\_\+state $\ast$}]{st,  }\item[{const unsigned char $\ast$}]{key,  }\item[{unsigned long}]{keylen }\end{DoxyParamCaption})}
+
+
+
+Initialize an P\+O\+L\+Y1305 context. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em st} & The P\+O\+L\+Y1305 state \\
+\hline
+{\em key} & The secret key \\
+\hline
+{\em keylen} & The length of the secret key (octets) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 89 of file poly1305.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{90 \{}
+\DoxyCodeLine{91    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(st  != NULL);}
+\DoxyCodeLine{92    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(key != NULL);}
+\DoxyCodeLine{93    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(keylen == 32);}
+\DoxyCodeLine{94 }
+\DoxyCodeLine{95    \textcolor{comment}{/* r \&= 0xffffffc0ffffffc0ffffffc0fffffff */}}
+\DoxyCodeLine{96    LOAD32L(st->r[0], key +  0); st->r[0] = (st->r[0]     ) \& 0x3ffffff;}
+\DoxyCodeLine{97    LOAD32L(st->r[1], key +  3); st->r[1] = (st->r[1] >> 2) \& 0x3ffff03;}
+\DoxyCodeLine{98    LOAD32L(st->r[2], key +  6); st->r[2] = (st->r[2] >> 4) \& 0x3ffc0ff;}
+\DoxyCodeLine{99    LOAD32L(st->r[3], key +  9); st->r[3] = (st->r[3] >> 6) \& 0x3f03fff;}
+\DoxyCodeLine{100    LOAD32L(st->r[4], key + 12); st->r[4] = (st->r[4] >> 8) \& 0x00fffff;}
+\DoxyCodeLine{101 }
+\DoxyCodeLine{102    \textcolor{comment}{/* h = 0 */}}
+\DoxyCodeLine{103    st->h[0] = 0;}
+\DoxyCodeLine{104    st->h[1] = 0;}
+\DoxyCodeLine{105    st->h[2] = 0;}
+\DoxyCodeLine{106    st->h[3] = 0;}
+\DoxyCodeLine{107    st->h[4] = 0;}
+\DoxyCodeLine{108 }
+\DoxyCodeLine{109    \textcolor{comment}{/* save pad for later */}}
+\DoxyCodeLine{110    LOAD32L(st->pad[0], key + 16);}
+\DoxyCodeLine{111    LOAD32L(st->pad[1], key + 20);}
+\DoxyCodeLine{112    LOAD32L(st->pad[2], key + 24);}
+\DoxyCodeLine{113    LOAD32L(st->pad[3], key + 28);}
+\DoxyCodeLine{114 }
+\DoxyCodeLine{115    st->leftover = 0;}
+\DoxyCodeLine{116    st->final = 0;}
+\DoxyCodeLine{117    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{118 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+
+
+Referenced by chacha20poly1305\+\_\+setiv(), poly1305\+\_\+file(), poly1305\+\_\+memory(), poly1305\+\_\+memory\+\_\+multi(), and poly1305\+\_\+test().
+
+Here is the caller graph for this function\+:
+% FIG 4
+\mbox{\Hypertarget{poly1305_8c_a44ef0e35cc1f514f942c015c105b9f01}\label{poly1305_8c_a44ef0e35cc1f514f942c015c105b9f01}} 
+\index{poly1305.c@{poly1305.c}!poly1305\_process@{poly1305\_process}}
+\index{poly1305\_process@{poly1305\_process}!poly1305.c@{poly1305.c}}
+\subsubsection{\texorpdfstring{poly1305\_process()}{poly1305\_process()}}
+{\footnotesize\ttfamily int poly1305\+\_\+process (\begin{DoxyParamCaption}\item[{poly1305\+\_\+state $\ast$}]{st,  }\item[{const unsigned char $\ast$}]{in,  }\item[{unsigned long}]{inlen }\end{DoxyParamCaption})}
+
+
+
+Process data through P\+O\+L\+Y1305. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em st} & The P\+O\+L\+Y1305 state \\
+\hline
+{\em in} & The data to send through H\+M\+AC \\
+\hline
+{\em inlen} & The length of the data to H\+M\+AC (octets) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 127 of file poly1305.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{128 \{}
+\DoxyCodeLine{129    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} i;}
+\DoxyCodeLine{130 }
+\DoxyCodeLine{131    \textcolor{keywordflow}{if} (inlen == 0) \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}; \textcolor{comment}{/* nothing to do */}}
+\DoxyCodeLine{132    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(st != NULL);}
+\DoxyCodeLine{133    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(in != NULL);}
+\DoxyCodeLine{134 }
+\DoxyCodeLine{135    \textcolor{comment}{/* handle leftover */}}
+\DoxyCodeLine{136    \textcolor{keywordflow}{if} (st->leftover) \{}
+\DoxyCodeLine{137       \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} want = (16 - st->leftover);}
+\DoxyCodeLine{138       \textcolor{keywordflow}{if} (want > inlen) want = inlen;}
+\DoxyCodeLine{139       \textcolor{keywordflow}{for} (i = 0; i < want; i++) st->buffer[st->leftover + i] = in[i];}
+\DoxyCodeLine{140       inlen -= want;}
+\DoxyCodeLine{141       in += want;}
+\DoxyCodeLine{142       st->leftover += want;}
+\DoxyCodeLine{143       if (st->leftover < 16) \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{144       \mbox{\hyperlink{poly1305_8c_af2b454846eb0342729e1d878e31c5cf6}{\_poly1305\_block}}(st, st->buffer, 16);}
+\DoxyCodeLine{145       st->leftover = 0;}
+\DoxyCodeLine{146    \}}
+\DoxyCodeLine{147 }
+\DoxyCodeLine{148    \textcolor{comment}{/* process full blocks */}}
+\DoxyCodeLine{149    \textcolor{keywordflow}{if} (inlen >= 16) \{}
+\DoxyCodeLine{150       \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} want = (inlen \& ~(16 - 1));}
+\DoxyCodeLine{151       \mbox{\hyperlink{poly1305_8c_af2b454846eb0342729e1d878e31c5cf6}{\_poly1305\_block}}(st, in, want);}
+\DoxyCodeLine{152       in += want;}
+\DoxyCodeLine{153       inlen -= want;}
+\DoxyCodeLine{154    \}}
+\DoxyCodeLine{155 }
+\DoxyCodeLine{156    \textcolor{comment}{/* store leftover */}}
+\DoxyCodeLine{157    \textcolor{keywordflow}{if} (inlen) \{}
+\DoxyCodeLine{158       \textcolor{keywordflow}{for} (i = 0; i < inlen; i++) st->buffer[st->leftover + i] = in[i];}
+\DoxyCodeLine{159       st->leftover += inlen;}
+\DoxyCodeLine{160    \}}
+\DoxyCodeLine{161    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{162 \}}
+
+\end{DoxyCode}
+
+
+References \+\_\+poly1305\+\_\+block(), C\+R\+Y\+P\+T\+\_\+\+OK, and L\+T\+C\+\_\+\+A\+R\+G\+C\+HK.
+
+
+
+Referenced by chacha20poly1305\+\_\+add\+\_\+aad(), chacha20poly1305\+\_\+decrypt(), chacha20poly1305\+\_\+done(), chacha20poly1305\+\_\+encrypt(), poly1305\+\_\+file(), poly1305\+\_\+memory(), poly1305\+\_\+memory\+\_\+multi(), and poly1305\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 5
+Here is the caller graph for this function\+:
+% FIG 6

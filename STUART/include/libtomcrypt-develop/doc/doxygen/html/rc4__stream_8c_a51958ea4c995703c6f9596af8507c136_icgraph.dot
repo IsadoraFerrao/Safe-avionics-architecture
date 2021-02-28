@@ -1,0 +1,21 @@
+digraph "rc4_stream_keystream"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node20 [label="rc4_stream_keystream",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Generate a stream of random bytes via RC4."];
+  Node20 -> Node21 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node21 [label="rc4_add_entropy",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rc4_8c.html#a4f610c15f71bd7133905ba8c42b25085",tooltip="Add entropy to the PRNG state."];
+  Node21 -> Node22 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node22 [label="rc4_import",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rc4_8c.html#ad11a03b9a6aabff43cb59d46d1eef7ce",tooltip="Import a PRNG state."];
+  Node22 -> Node23 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node23 [label="rc4_test",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rc4_8c.html#ad8af7083fd45b4c39ec2720455518560",tooltip="PRNG self-test."];
+  Node21 -> Node23 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node20 -> Node24 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node24 [label="rc4_read",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rc4_8c.html#a672bb35f2b7ef86d24499ef90ea2676a",tooltip="Read from the PRNG."];
+  Node24 -> Node23 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node20 -> Node25 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node25 [label="rc4_ready",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rc4_8c.html#a2736422ebc97697aacbc3fd53ce82da6",tooltip="Make the PRNG ready to read from."];
+  Node25 -> Node23 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}

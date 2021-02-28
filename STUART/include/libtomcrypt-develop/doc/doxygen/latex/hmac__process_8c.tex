@@ -1,0 +1,74 @@
+\hypertarget{hmac__process_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/mac/hmac/hmac\+\_\+process.c File Reference}
+\label{hmac__process_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/mac/hmac/hmac\_process.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/mac/hmac/hmac\_process.c}}
+
+
+H\+M\+AC support, process data, Tom St Denis/\+Dobes Vandermeer.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for hmac\+\_\+process.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{hmac__process_8c_a7d3c1ba3f3238833e4d53be233794907}{hmac\+\_\+process}} (hmac\+\_\+state $\ast$hmac, const unsigned char $\ast$in, unsigned long inlen)
+\begin{DoxyCompactList}\small\item\em Process data through H\+M\+AC. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+H\+M\+AC support, process data, Tom St Denis/\+Dobes Vandermeer. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{hmac__process_8c_a7d3c1ba3f3238833e4d53be233794907}\label{hmac__process_8c_a7d3c1ba3f3238833e4d53be233794907}} 
+\index{hmac\_process.c@{hmac\_process.c}!hmac\_process@{hmac\_process}}
+\index{hmac\_process@{hmac\_process}!hmac\_process.c@{hmac\_process.c}}
+\subsubsection{\texorpdfstring{hmac\_process()}{hmac\_process()}}
+{\footnotesize\ttfamily int hmac\+\_\+process (\begin{DoxyParamCaption}\item[{hmac\+\_\+state $\ast$}]{hmac,  }\item[{const unsigned char $\ast$}]{in,  }\item[{unsigned long}]{inlen }\end{DoxyParamCaption})}
+
+
+
+Process data through H\+M\+AC. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em hmac} & The hmac state \\
+\hline
+{\em in} & The data to send through H\+M\+AC \\
+\hline
+{\em inlen} & The length of the data to H\+M\+AC (octets) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 25 of file hmac\+\_\+process.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{26 \{}
+\DoxyCodeLine{27     \textcolor{keywordtype}{int} err;}
+\DoxyCodeLine{28     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(hmac != NULL);}
+\DoxyCodeLine{29     \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(in != NULL);}
+\DoxyCodeLine{30     \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__hash_8h_a79647f22bf48bfa7de03fe5fc958c846}{hash\_is\_valid}}(hmac->hash)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{31         \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{32     \}}
+\DoxyCodeLine{33     \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt__hash_8h_ab0e4f02e30a47da79baa9240e79cde92}{hash\_descriptor}}[hmac->hash].\mbox{\hyperlink{structltc__hash__descriptor_a19f2fbd2b17d1fbe2e5497c54f70d52e}{process}}(\&hmac->md, in, inlen);}
+\DoxyCodeLine{34 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, hash\+\_\+descriptor, hash\+\_\+is\+\_\+valid(), L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, and ltc\+\_\+hash\+\_\+descriptor\+::process.
+
+
+
+Referenced by hmac\+\_\+file(), hmac\+\_\+memory(), hmac\+\_\+memory\+\_\+multi(), and pkcs\+\_\+5\+\_\+alg2().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2

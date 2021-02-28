@@ -1,0 +1,163 @@
+\hypertarget{gcm__gf__mult_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/encauth/gcm/gcm\+\_\+gf\+\_\+mult.c File Reference}
+\label{gcm__gf__mult_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/encauth/gcm/gcm\_gf\_mult.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/encauth/gcm/gcm\_gf\_mult.c}}
+
+
+G\+CM implementation, do the GF mult, by Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for gcm\+\_\+gf\+\_\+mult.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{gcm__gf__mult_8c_abf44db599e40033f4320e5fbc9ffd93c}{\+\_\+gcm\+\_\+rightshift}} (unsigned char $\ast$a)
+\item 
+void \mbox{\hyperlink{gcm__gf__mult_8c_af64448959cfcae8b0a774822f2219f47}{gcm\+\_\+gf\+\_\+mult}} (const unsigned char $\ast$a, const unsigned char $\ast$b, unsigned char $\ast$\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}})
+\begin{DoxyCompactList}\small\item\em G\+CM GF multiplier (internal use only) bitserial. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const unsigned char \mbox{\hyperlink{gcm__gf__mult_8c_afed0599464ad3983ee906b9e7364425f}{gcm\+\_\+shift\+\_\+table}} \mbox{[}256 $\ast$2\mbox{]}
+\item 
+static const unsigned char \mbox{\hyperlink{gcm__gf__mult_8c_a3a2325b458f400e186d773b14e6c1ed9}{mask}} \mbox{[}$\,$\mbox{]} = \{ 0x80, 0x40, 0x20, 0x10, 0x08, 0x04, 0x02, 0x01 \}
+\item 
+static const unsigned char \mbox{\hyperlink{gcm__gf__mult_8c_ae7cb7582a0d3b2ec78b665193cbac9ae}{poly}} \mbox{[}$\,$\mbox{]} = \{ 0x00, 0x\+E1 \}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+G\+CM implementation, do the GF mult, by Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{gcm__gf__mult_8c_abf44db599e40033f4320e5fbc9ffd93c}\label{gcm__gf__mult_8c_abf44db599e40033f4320e5fbc9ffd93c}} 
+\index{gcm\_gf\_mult.c@{gcm\_gf\_mult.c}!\_gcm\_rightshift@{\_gcm\_rightshift}}
+\index{\_gcm\_rightshift@{\_gcm\_rightshift}!gcm\_gf\_mult.c@{gcm\_gf\_mult.c}}
+\subsubsection{\texorpdfstring{\_gcm\_rightshift()}{\_gcm\_rightshift()}}
+{\footnotesize\ttfamily static void \+\_\+gcm\+\_\+rightshift (\begin{DoxyParamCaption}\item[{unsigned char $\ast$}]{a }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 61 of file gcm\+\_\+gf\+\_\+mult.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{62 \{}
+\DoxyCodeLine{63    \textcolor{keywordtype}{int} x;}
+\DoxyCodeLine{64    \textcolor{keywordflow}{for} (x = 15; x > 0; x--) \{}
+\DoxyCodeLine{65        a[x] = (a[x]>>1) | ((a[x-1]<<7)\&0x80);}
+\DoxyCodeLine{66    \}}
+\DoxyCodeLine{67    a[0] >>= 1;}
+\DoxyCodeLine{68 \}}
+
+\end{DoxyCode}
+
+
+Referenced by gcm\+\_\+gf\+\_\+mult().
+
+Here is the caller graph for this function\+:
+% FIG 1
+\mbox{\Hypertarget{gcm__gf__mult_8c_af64448959cfcae8b0a774822f2219f47}\label{gcm__gf__mult_8c_af64448959cfcae8b0a774822f2219f47}} 
+\index{gcm\_gf\_mult.c@{gcm\_gf\_mult.c}!gcm\_gf\_mult@{gcm\_gf\_mult}}
+\index{gcm\_gf\_mult@{gcm\_gf\_mult}!gcm\_gf\_mult.c@{gcm\_gf\_mult.c}}
+\subsubsection{\texorpdfstring{gcm\_gf\_mult()}{gcm\_gf\_mult()}}
+{\footnotesize\ttfamily void gcm\+\_\+gf\+\_\+mult (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{a,  }\item[{const unsigned char $\ast$}]{b,  }\item[{unsigned char $\ast$}]{c }\end{DoxyParamCaption})}
+
+
+
+G\+CM GF multiplier (internal use only) bitserial. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & First value \\
+\hline
+{\em b} & Second value \\
+\hline
+{\em c} & Destination for a $\ast$ b \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 81 of file gcm\+\_\+gf\+\_\+mult.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{82 \{}
+\DoxyCodeLine{83    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} Z[16], V[16];}
+\DoxyCodeLine{84    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} x, y, z;}
+\DoxyCodeLine{85 }
+\DoxyCodeLine{86    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(Z, 16);}
+\DoxyCodeLine{87    \mbox{\hyperlink{tomcrypt__cfg_8h_a7691dd48d60d5fc6daf2fa7ec4c55e12}{XMEMCPY}}(V, a, 16);}
+\DoxyCodeLine{88    \textcolor{keywordflow}{for} (x = 0; x < 128; x++) \{}
+\DoxyCodeLine{89        \textcolor{keywordflow}{if} (b[x>>3] \& \mbox{\hyperlink{gcm__gf__mult_8c_a3a2325b458f400e186d773b14e6c1ed9}{mask}}[x\&7]) \{}
+\DoxyCodeLine{90           \textcolor{keywordflow}{for} (y = 0; y < 16; y++) \{}
+\DoxyCodeLine{91               Z[y] \string^= V[y];}
+\DoxyCodeLine{92           \}}
+\DoxyCodeLine{93        \}}
+\DoxyCodeLine{94        z     = V[15] \& 0x01;}
+\DoxyCodeLine{95        \mbox{\hyperlink{gcm__gf__mult_8c_abf44db599e40033f4320e5fbc9ffd93c}{\_gcm\_rightshift}}(V);}
+\DoxyCodeLine{96        V[0] \string^= \mbox{\hyperlink{gcm__gf__mult_8c_ae7cb7582a0d3b2ec78b665193cbac9ae}{poly}}[z];}
+\DoxyCodeLine{97    \}}
+\DoxyCodeLine{98    \mbox{\hyperlink{tomcrypt__cfg_8h_a7691dd48d60d5fc6daf2fa7ec4c55e12}{XMEMCPY}}(\mbox{\hyperlink{khazad_8c_a86ea50de5a3e0ae87762f4298d35284c}{c}}, Z, 16);}
+\DoxyCodeLine{99 \}}
+
+\end{DoxyCode}
+
+
+References \+\_\+gcm\+\_\+rightshift(), c, mask, poly, X\+M\+E\+M\+C\+P\+Y(), and zeromem().
+
+
+
+Referenced by gcm\+\_\+init(), gcm\+\_\+mult\+\_\+h(), lrw\+\_\+process(), lrw\+\_\+setiv(), and lrw\+\_\+start().
+
+Here is the call graph for this function\+:
+% FIG 2
+Here is the caller graph for this function\+:
+% FIG 3
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{gcm__gf__mult_8c_afed0599464ad3983ee906b9e7364425f}\label{gcm__gf__mult_8c_afed0599464ad3983ee906b9e7364425f}} 
+\index{gcm\_gf\_mult.c@{gcm\_gf\_mult.c}!gcm\_shift\_table@{gcm\_shift\_table}}
+\index{gcm\_shift\_table@{gcm\_shift\_table}!gcm\_gf\_mult.c@{gcm\_gf\_mult.c}}
+\subsubsection{\texorpdfstring{gcm\_shift\_table}{gcm\_shift\_table}}
+{\footnotesize\ttfamily const unsigned char gcm\+\_\+shift\+\_\+table\mbox{[}256 $\ast$2\mbox{]}}
+
+
+
+Definition at line 20 of file gcm\+\_\+gf\+\_\+mult.\+c.
+
+
+
+Referenced by gcm\+\_\+init(), and lrw\+\_\+start().
+
+\mbox{\Hypertarget{gcm__gf__mult_8c_a3a2325b458f400e186d773b14e6c1ed9}\label{gcm__gf__mult_8c_a3a2325b458f400e186d773b14e6c1ed9}} 
+\index{gcm\_gf\_mult.c@{gcm\_gf\_mult.c}!mask@{mask}}
+\index{mask@{mask}!gcm\_gf\_mult.c@{gcm\_gf\_mult.c}}
+\subsubsection{\texorpdfstring{mask}{mask}}
+{\footnotesize\ttfamily const unsigned char mask\mbox{[}$\,$\mbox{]} = \{ 0x80, 0x40, 0x20, 0x10, 0x08, 0x04, 0x02, 0x01 \}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 71 of file gcm\+\_\+gf\+\_\+mult.\+c.
+
+
+
+Referenced by copy\+\_\+or\+\_\+zeromem(), der\+\_\+encode\+\_\+object\+\_\+identifier(), gcm\+\_\+gf\+\_\+mult(), omac\+\_\+init(), pkcs\+\_\+1\+\_\+mgf1(), pkcs\+\_\+1\+\_\+oaep\+\_\+decode(), pkcs\+\_\+1\+\_\+oaep\+\_\+encode(), pkcs\+\_\+1\+\_\+pss\+\_\+decode(), pkcs\+\_\+1\+\_\+pss\+\_\+encode(), poly1305\+\_\+done(), and rand\+\_\+bn\+\_\+bits().
+
+\mbox{\Hypertarget{gcm__gf__mult_8c_ae7cb7582a0d3b2ec78b665193cbac9ae}\label{gcm__gf__mult_8c_ae7cb7582a0d3b2ec78b665193cbac9ae}} 
+\index{gcm\_gf\_mult.c@{gcm\_gf\_mult.c}!poly@{poly}}
+\index{poly@{poly}!gcm\_gf\_mult.c@{gcm\_gf\_mult.c}}
+\subsubsection{\texorpdfstring{poly}{poly}}
+{\footnotesize\ttfamily const unsigned char poly\mbox{[}$\,$\mbox{]} = \{ 0x00, 0x\+E1 \}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 72 of file gcm\+\_\+gf\+\_\+mult.\+c.
+
+
+
+Referenced by gcm\+\_\+gf\+\_\+mult(), ocb3\+\_\+init(), ocb\+\_\+init(), and pmac\+\_\+init().
+

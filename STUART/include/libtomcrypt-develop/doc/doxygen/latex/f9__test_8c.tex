@@ -1,0 +1,95 @@
+\hypertarget{f9__test_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/mac/f9/f9\+\_\+test.c File Reference}
+\label{f9__test_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/mac/f9/f9\_test.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/mac/f9/f9\_test.c}}
+
+
+f9 Support, Test F9 mode  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for f9\+\_\+test.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{f9__test_8c_a4457afc1800916455c35efd9b1acd142}{f9\+\_\+test}} (void)
+\begin{DoxyCompactList}\small\item\em Test f9-\/\+M\+AC mode Return C\+R\+Y\+P\+T\+\_\+\+OK on succes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+f9 Support, Test F9 mode 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{f9__test_8c_a4457afc1800916455c35efd9b1acd142}\label{f9__test_8c_a4457afc1800916455c35efd9b1acd142}} 
+\index{f9\_test.c@{f9\_test.c}!f9\_test@{f9\_test}}
+\index{f9\_test@{f9\_test}!f9\_test.c@{f9\_test.c}}
+\subsubsection{\texorpdfstring{f9\_test()}{f9\_test()}}
+{\footnotesize\ttfamily int f9\+\_\+test (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Test f9-\/\+M\+AC mode Return C\+R\+Y\+P\+T\+\_\+\+OK on succes. 
+
+
+
+Definition at line 21 of file f9\+\_\+test.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{22 \{}
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#ifdef LTC\_NO\_TEST}}
+\DoxyCodeLine{24    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cac43a7799c7fd5f515172da6cfc0f9cf5}{CRYPT\_NOP}};}
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{26    \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{27        \textcolor{keywordtype}{int} msglen;}
+\DoxyCodeLine{28        \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} \mbox{\hyperlink{sha512_8c_a2d167a3caf30de6442abc69780199a52}{K}}[16], M[128], T[4];}
+\DoxyCodeLine{29    \} tests[] = \{}
+\DoxyCodeLine{30 \{}
+\DoxyCodeLine{31    20,}
+\DoxyCodeLine{32    \{ 0x2B, 0xD6, 0x45, 0x9F, 0x82, 0xC5, 0xB3, 0x00, 0x95, 0x2C, 0x49, 0x10, 0x48, 0x81, 0xFF, 0x48 \},}
+\DoxyCodeLine{33    \{ 0x38, 0xA6, 0xF0, 0x56, 0xB8, 0xAE, 0xFD, 0xA9, 0x33, 0x32, 0x34, 0x62, 0x63, 0x39, 0x38, 0x61, 0x37, 0x34, 0x79, 0x40 \},}
+\DoxyCodeLine{34    \{ 0x46, 0xE0, 0x0D, 0x4B \}}
+\DoxyCodeLine{35 \},}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37 \{}
+\DoxyCodeLine{38    105,}
+\DoxyCodeLine{39    \{ 0x83, 0xFD, 0x23, 0xA2, 0x44, 0xA7, 0x4C, 0xF3, 0x58, 0xDA, 0x30, 0x19, 0xF1, 0x72, 0x26, 0x35 \},}
+\DoxyCodeLine{40    \{ 0x36, 0xAF, 0x61, 0x44, 0x4F, 0x30, 0x2A, 0xD2,}
+\DoxyCodeLine{41      0x35, 0xC6, 0x87, 0x16, 0x63, 0x3C, 0x66, 0xFB, 0x75, 0x0C, 0x26, 0x68, 0x65, 0xD5, 0x3C, 0x11, 0xEA, 0x05, 0xB1, 0xE9, 0xFA, 0x49, 0xC8, 0x39, 0x8D, 0x48, 0xE1, 0xEF, 0xA5, 0x90, 0x9D, 0x39,}
+\DoxyCodeLine{42      0x47, 0x90, 0x28, 0x37, 0xF5, 0xAE, 0x96, 0xD5, 0xA0, 0x5B, 0xC8, 0xD6, 0x1C, 0xA8, 0xDB, 0xEF, 0x1B, 0x13, 0xA4, 0xB4, 0xAB, 0xFE, 0x4F, 0xB1, 0x00, 0x60, 0x45, 0xB6, 0x74, 0xBB, 0x54, 0x72,}
+\DoxyCodeLine{43      0x93, 0x04, 0xC3, 0x82, 0xBE, 0x53, 0xA5, 0xAF, 0x05, 0x55, 0x61, 0x76, 0xF6, 0xEA, 0xA2, 0xEF, 0x1D, 0x05, 0xE4, 0xB0, 0x83, 0x18, 0x1E, 0xE6, 0x74, 0xCD, 0xA5, 0xA4, 0x85, 0xF7, 0x4D, 0x7A,}
+\DoxyCodeLine{44      0x40|0x80 \},}
+\DoxyCodeLine{45    \{ 0x95, 0xAE, 0x41, 0xBA \},}
+\DoxyCodeLine{46 \}}
+\DoxyCodeLine{47 \};}
+\DoxyCodeLine{48   \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} T[16];}
+\DoxyCodeLine{49   \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} taglen;}
+\DoxyCodeLine{50   \textcolor{keywordtype}{int} err, x, idx;}
+\DoxyCodeLine{51 }
+\DoxyCodeLine{52   \textcolor{comment}{/* find kasumi */}}
+\DoxyCodeLine{53   \textcolor{keywordflow}{if} ((idx = \mbox{\hyperlink{tomcrypt__cipher_8h_af5c3882342fd65a17239cd04bfdf44e2}{find\_cipher}}(\textcolor{stringliteral}{"kasumi"})) == -1) \{}
+\DoxyCodeLine{54      \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cac43a7799c7fd5f515172da6cfc0f9cf5}{CRYPT\_NOP}};}
+\DoxyCodeLine{55   \}}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{57   \textcolor{keywordflow}{for} (x = 0; x < (int)(\textcolor{keyword}{sizeof}(tests)/\textcolor{keyword}{sizeof}(tests[0])); x++) \{}
+\DoxyCodeLine{58      taglen = 4;}
+\DoxyCodeLine{59      \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{f9__memory_8c_a8d8a8a7f9014e8b36484d2c992e9eb10}{f9\_memory}}(idx, tests[x].\mbox{\hyperlink{sha512_8c_a2d167a3caf30de6442abc69780199a52}{K}}, 16, tests[x].M, tests[x].msglen, T, \&taglen)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{60         \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{61      \}}
+\DoxyCodeLine{62      \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__misc_8h_a7764a7f27897c6182335752df00b5f8e}{compare\_testvector}}(T, taglen, tests[x].T, 4, \textcolor{stringliteral}{"F9"}, x)) \{}
+\DoxyCodeLine{63         \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caf98a132fdf93633389677f31f9bb39ca}{CRYPT\_FAIL\_TESTVECTOR}};}
+\DoxyCodeLine{64      \}}
+\DoxyCodeLine{65   \}}
+\DoxyCodeLine{66 }
+\DoxyCodeLine{67   \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{68 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{69 \}}
+
+\end{DoxyCode}
+
+
+References compare\+\_\+testvector(), C\+R\+Y\+P\+T\+\_\+\+F\+A\+I\+L\+\_\+\+T\+E\+S\+T\+V\+E\+C\+T\+OR, C\+R\+Y\+P\+T\+\_\+\+N\+OP, C\+R\+Y\+P\+T\+\_\+\+OK, f9\+\_\+memory(), find\+\_\+cipher(), and K.
+
+Here is the call graph for this function\+:
+% FIG 1

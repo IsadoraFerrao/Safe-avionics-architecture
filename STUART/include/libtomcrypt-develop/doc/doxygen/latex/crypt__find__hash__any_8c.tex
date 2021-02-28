@@ -1,0 +1,79 @@
+\hypertarget{crypt__find__hash__any_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/misc/crypt/crypt\+\_\+find\+\_\+hash\+\_\+any.c File Reference}
+\label{crypt__find__hash__any_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/misc/crypt/crypt\_find\_hash\_any.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/misc/crypt/crypt\_find\_hash\_any.c}}
+
+
+Find a hash, Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for crypt\+\_\+find\+\_\+hash\+\_\+any.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{crypt__find__hash__any_8c_aafc80fde01cce7cd1d0f6d0aa1eeb651}{find\+\_\+hash\+\_\+any}} (const char $\ast$name, int digestlen)
+\begin{DoxyCompactList}\small\item\em Find a hash flexibly. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Find a hash, Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{crypt__find__hash__any_8c_aafc80fde01cce7cd1d0f6d0aa1eeb651}\label{crypt__find__hash__any_8c_aafc80fde01cce7cd1d0f6d0aa1eeb651}} 
+\index{crypt\_find\_hash\_any.c@{crypt\_find\_hash\_any.c}!find\_hash\_any@{find\_hash\_any}}
+\index{find\_hash\_any@{find\_hash\_any}!crypt\_find\_hash\_any.c@{crypt\_find\_hash\_any.c}}
+\subsubsection{\texorpdfstring{find\_hash\_any()}{find\_hash\_any()}}
+{\footnotesize\ttfamily int find\+\_\+hash\+\_\+any (\begin{DoxyParamCaption}\item[{const char $\ast$}]{name,  }\item[{int}]{digestlen }\end{DoxyParamCaption})}
+
+
+
+Find a hash flexibly. 
+
+First by name then if not present by digest size 
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the hash desired \\
+\hline
+{\em digestlen} & The minimum length of the digest size (octets) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+$>$= 0 if found, -\/1 if not present 
+\end{DoxyReturn}
+
+
+Definition at line 21 of file crypt\+\_\+find\+\_\+hash\+\_\+any.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{22 \{}
+\DoxyCodeLine{23    \textcolor{keywordtype}{int} x, y, z;}
+\DoxyCodeLine{24    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(name != NULL);}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26    x = \mbox{\hyperlink{tomcrypt__hash_8h_a1818254b9c8f09047af3b66ea7f5852b}{find\_hash}}(name);}
+\DoxyCodeLine{27    \textcolor{keywordflow}{if} (x != -1) \textcolor{keywordflow}{return} x;}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29    \mbox{\hyperlink{tomcrypt__custom_8h_a427a107414e4d775fbf23f4a499f4a31}{LTC\_MUTEX\_LOCK}}(\&ltc\_hash\_mutex);}
+\DoxyCodeLine{30    y = \mbox{\hyperlink{tomcrypt_8h_ab59933beebb2b857c992b93cf53f0d10}{MAXBLOCKSIZE}}+1;}
+\DoxyCodeLine{31    z = -1;}
+\DoxyCodeLine{32    \textcolor{keywordflow}{for} (x = 0; x < \mbox{\hyperlink{tomcrypt_8h_a9ad1b4a1e4f7381611cfd2ae6620a727}{TAB\_SIZE}}; x++) \{}
+\DoxyCodeLine{33        \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__hash_8h_ab0e4f02e30a47da79baa9240e79cde92}{hash\_descriptor}}[x].name == NULL) \{}
+\DoxyCodeLine{34           \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{35        \}}
+\DoxyCodeLine{36        \textcolor{keywordflow}{if} ((\textcolor{keywordtype}{int})\mbox{\hyperlink{tomcrypt__hash_8h_ab0e4f02e30a47da79baa9240e79cde92}{hash\_descriptor}}[x].hashsize >= digestlen \&\& (\textcolor{keywordtype}{int})\mbox{\hyperlink{tomcrypt__hash_8h_ab0e4f02e30a47da79baa9240e79cde92}{hash\_descriptor}}[x].hashsize < y) \{}
+\DoxyCodeLine{37           z = x;}
+\DoxyCodeLine{38           y = \mbox{\hyperlink{tomcrypt__hash_8h_ab0e4f02e30a47da79baa9240e79cde92}{hash\_descriptor}}[x].\mbox{\hyperlink{structltc__hash__descriptor_a49bd027653ff21408cb2661748d719ef}{hashsize}};}
+\DoxyCodeLine{39        \}}
+\DoxyCodeLine{40    \}}
+\DoxyCodeLine{41    \mbox{\hyperlink{tomcrypt__custom_8h_acdf267be91b178b4fafe8f992d57a7f1}{LTC\_MUTEX\_UNLOCK}}(\&ltc\_hash\_mutex);}
+\DoxyCodeLine{42    \textcolor{keywordflow}{return} z;}
+\DoxyCodeLine{43 \}}
+
+\end{DoxyCode}
+
+
+References find\+\_\+hash(), hash\+\_\+descriptor, ltc\+\_\+hash\+\_\+descriptor\+::hashsize, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, L\+T\+C\+\_\+\+M\+U\+T\+E\+X\+\_\+\+L\+O\+CK, L\+T\+C\+\_\+\+M\+U\+T\+E\+X\+\_\+\+U\+N\+L\+O\+CK, M\+A\+X\+B\+L\+O\+C\+K\+S\+I\+ZE, and T\+A\+B\+\_\+\+S\+I\+ZE.
+
+Here is the call graph for this function\+:
+% FIG 1

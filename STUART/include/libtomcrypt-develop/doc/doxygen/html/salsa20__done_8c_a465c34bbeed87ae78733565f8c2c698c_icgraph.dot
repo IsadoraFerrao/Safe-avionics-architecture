@@ -1,0 +1,18 @@
+digraph "salsa20_done"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node2 [label="salsa20_done",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Terminate and clear Salsa20 state."];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="salsa20_memory",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$salsa20__memory_8c.html#a5f1eb225450c6f7ccd042dbce38db56a",tooltip="Encrypt (or decrypt) bytes of ciphertext (or plaintext) with Salsa20."];
+  Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="salsa20_test",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$salsa20__test_8c.html#a502decc5b83b4208d744ea2a21aeb366",tooltip=" "];
+  Node2 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="xsalsa20_memory",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$xsalsa20__memory_8c.html#a07c4bf65051eaa8738b55b2e1238be10",tooltip="Encrypt (or decrypt) bytes of ciphertext (or plaintext) with XSalsa20."];
+  Node5 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="xsalsa20_test",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$xsalsa20__test_8c.html#a3a6ef542e6adb8439f75d3ac042ac0e5",tooltip=" "];
+  Node2 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}

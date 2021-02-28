@@ -1,0 +1,38 @@
+digraph "ctr_test"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node0 [label="ctr_test",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node0 -> Node1 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 [label="compare_testvector",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__misc_8h.html#a7764a7f27897c6182335752df00b5f8e",tooltip="Compare two test-vectors."];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="XMEMCMP",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cfg_8h.html#a372b974ec0ac07abcd55297554fe540f",tooltip=" "];
+  Node0 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="ctr_done",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ctr__done_8c.html#aa8082f961208812c0c203fdd8d75de96",tooltip="Terminate the chain."];
+  Node3 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="cipher_is_valid",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cipher_8h.html#ac30eb68934c4ca07205344dc9d159221",tooltip=" "];
+  Node0 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="ctr_encrypt",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ctr__encrypt_8c.html#af42c91e4fb7f9aa679399e44e632ae44",tooltip="CTR encrypt."];
+  Node5 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="_ctr_encrypt",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ctr__encrypt_8c.html#aca5924a516a14d699de77712474f1d0a",tooltip="CTR encrypt software implementation."];
+  Node5 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node0 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="ctr_start",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ctr__start_8c.html#a8663bae8fb1af7659b5d8e9190fc189f",tooltip="Initialize a CTR context."];
+  Node7 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 -> Node8 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="setup",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$multi2_8c.html#ad0625943f7d847668b869ed827c51d47",tooltip=" "];
+  Node8 -> Node9 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="pi1",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$multi2_8c.html#aa6e28a79517b509154714e51c2c1dc3b",tooltip=" "];
+  Node8 -> Node10 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="pi2",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$multi2_8c.html#a37c4b6b09dd5493456b3c765914b1481",tooltip=" "];
+  Node8 -> Node11 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 [label="pi3",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$multi2_8c.html#a3e3c386a25d0f6950651f1fa5277c147",tooltip=" "];
+  Node8 -> Node12 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node12 [label="pi4",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$multi2_8c.html#ad94b543f7f2133e851ecb20bd9324e12",tooltip=" "];
+  Node0 -> Node13 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node13 [label="find_cipher",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cipher_8h.html#af5c3882342fd65a17239cd04bfdf44e2",tooltip="Find a registered cipher by name."];
+  Node13 -> Node14 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node14 [label="XSTRCMP",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tomcrypt__cfg_8h.html#a5d6e3d69e1d3f54de008b963bba3c6b3",tooltip=" "];
+}

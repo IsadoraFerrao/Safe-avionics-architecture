@@ -1,0 +1,210 @@
+\hypertarget{xts__decrypt_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/modes/xts/xts\+\_\+decrypt.c File Reference}
+\label{xts__decrypt_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/modes/xts/xts\_decrypt.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/modes/xts/xts\_decrypt.c}}
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for xts\+\_\+decrypt.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{xts__decrypt_8c_ad9d070c5891cb45f341ccb19db2637d2}{\+\_\+tweak\+\_\+uncrypt}} (const unsigned char $\ast$C, unsigned char $\ast$P, unsigned char $\ast$T, const symmetric\+\_\+xts $\ast$xts)
+\begin{DoxyCompactList}\small\item\em Source donated by Elliptic Semiconductor Inc (www.\+ellipticsemi.\+com) to the Lib\+Tom Projects. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{xts__decrypt_8c_aeabcddf932f82ff9724fe82c44bb4b7d}{xts\+\_\+decrypt}} (const unsigned char $\ast$ct, unsigned long ptlen, unsigned char $\ast$pt, unsigned char $\ast$tweak, const symmetric\+\_\+xts $\ast$xts)
+\begin{DoxyCompactList}\small\item\em X\+TS Decryption. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{xts__decrypt_8c_ad9d070c5891cb45f341ccb19db2637d2}\label{xts__decrypt_8c_ad9d070c5891cb45f341ccb19db2637d2}} 
+\index{xts\_decrypt.c@{xts\_decrypt.c}!\_tweak\_uncrypt@{\_tweak\_uncrypt}}
+\index{\_tweak\_uncrypt@{\_tweak\_uncrypt}!xts\_decrypt.c@{xts\_decrypt.c}}
+\subsubsection{\texorpdfstring{\_tweak\_uncrypt()}{\_tweak\_uncrypt()}}
+{\footnotesize\ttfamily static int \+\_\+tweak\+\_\+uncrypt (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{C,  }\item[{unsigned char $\ast$}]{P,  }\item[{unsigned char $\ast$}]{T,  }\item[{const symmetric\+\_\+xts $\ast$}]{xts }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Source donated by Elliptic Semiconductor Inc (www.\+ellipticsemi.\+com) to the Lib\+Tom Projects. 
+
+
+
+Definition at line 17 of file xts\+\_\+decrypt.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{18 \{}
+\DoxyCodeLine{19    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} x;}
+\DoxyCodeLine{20    \textcolor{keywordtype}{int} err;}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22    \textcolor{comment}{/* tweak encrypt block i */}}
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#ifdef LTC\_FAST}}
+\DoxyCodeLine{24    \textcolor{keywordflow}{for} (x = 0; x < 16; x += \textcolor{keyword}{sizeof}(LTC\_FAST\_TYPE)) \{}
+\DoxyCodeLine{25       *(LTC\_FAST\_TYPE\_PTR\_CAST(\&P[x])) = *(LTC\_FAST\_TYPE\_PTR\_CAST(\&C[x])) \string^ *(LTC\_FAST\_TYPE\_PTR\_CAST(\&T[x]));}
+\DoxyCodeLine{26    \}}
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{28    \textcolor{keywordflow}{for} (x = 0; x < 16; x++) \{}
+\DoxyCodeLine{29       P[x] = C[x] \string^ T[x];}
+\DoxyCodeLine{30    \}}
+\DoxyCodeLine{31 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33    err = \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[xts->cipher].\mbox{\hyperlink{structltc__cipher__descriptor_a812d7f58f347982989dc3eace19aba27}{ecb\_decrypt}}(P, P, \&xts->key1);}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35 \textcolor{preprocessor}{\#ifdef LTC\_FAST}}
+\DoxyCodeLine{36    \textcolor{keywordflow}{for} (x = 0; x < 16; x += \textcolor{keyword}{sizeof}(LTC\_FAST\_TYPE)) \{}
+\DoxyCodeLine{37       *(LTC\_FAST\_TYPE\_PTR\_CAST(\&P[x])) \string^= *(LTC\_FAST\_TYPE\_PTR\_CAST(\&T[x]));}
+\DoxyCodeLine{38    \}}
+\DoxyCodeLine{39 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{40    \textcolor{keywordflow}{for} (x = 0; x < 16; x++) \{}
+\DoxyCodeLine{41       P[x] = P[x] \string^ T[x];}
+\DoxyCodeLine{42    \}}
+\DoxyCodeLine{43 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45    \textcolor{comment}{/* LFSR the tweak */}}
+\DoxyCodeLine{46    \mbox{\hyperlink{xts__mult__x_8c_a38849a290b62d5e253db21468c0449a4}{xts\_mult\_x}}(T);}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48    \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{49 \}}
+
+\end{DoxyCode}
+
+
+References cipher\+\_\+descriptor, ltc\+\_\+cipher\+\_\+descriptor\+::ecb\+\_\+decrypt, and xts\+\_\+mult\+\_\+x().
+
+
+
+Referenced by xts\+\_\+decrypt().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2
+\mbox{\Hypertarget{xts__decrypt_8c_aeabcddf932f82ff9724fe82c44bb4b7d}\label{xts__decrypt_8c_aeabcddf932f82ff9724fe82c44bb4b7d}} 
+\index{xts\_decrypt.c@{xts\_decrypt.c}!xts\_decrypt@{xts\_decrypt}}
+\index{xts\_decrypt@{xts\_decrypt}!xts\_decrypt.c@{xts\_decrypt.c}}
+\subsubsection{\texorpdfstring{xts\_decrypt()}{xts\_decrypt()}}
+{\footnotesize\ttfamily int xts\+\_\+decrypt (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{ct,  }\item[{unsigned long}]{ptlen,  }\item[{unsigned char $\ast$}]{pt,  }\item[{unsigned char $\ast$}]{tweak,  }\item[{const symmetric\+\_\+xts $\ast$}]{xts }\end{DoxyParamCaption})}
+
+
+
+X\+TS Decryption. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ct} & \mbox{[}in\mbox{]} Ciphertext \\
+\hline
+{\em ptlen} & Length of plaintext (and ciphertext) \\
+\hline
+{\em pt} & \mbox{[}out\mbox{]} Plaintext \\
+\hline
+{\em tweak} & \mbox{[}in\mbox{]} The 128--bit encryption tweak (e.\+g. sector number) \\
+\hline
+{\em xts} & The X\+TS structure Returns C\+R\+Y\+P\+T\+\_\+\+OK upon success \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 59 of file xts\+\_\+decrypt.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{61 \{}
+\DoxyCodeLine{62    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} PP[16], CC[16], T[16];}
+\DoxyCodeLine{63    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} i, m, mo, lim;}
+\DoxyCodeLine{64    \textcolor{keywordtype}{int} err;}
+\DoxyCodeLine{65 }
+\DoxyCodeLine{66    \textcolor{comment}{/* check inputs */}}
+\DoxyCodeLine{67    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(pt != NULL);}
+\DoxyCodeLine{68    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(ct != NULL);}
+\DoxyCodeLine{69    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(tweak != NULL);}
+\DoxyCodeLine{70    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(xts != NULL);}
+\DoxyCodeLine{71 }
+\DoxyCodeLine{72    \textcolor{comment}{/* check if valid */}}
+\DoxyCodeLine{73    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_ac30eb68934c4ca07205344dc9d159221}{cipher\_is\_valid}}(xts->cipher)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{74       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{75    \}}
+\DoxyCodeLine{76 }
+\DoxyCodeLine{77    \textcolor{comment}{/* get number of blocks */}}
+\DoxyCodeLine{78    m = ptlen >> 4;}
+\DoxyCodeLine{79    mo = ptlen \& 15;}
+\DoxyCodeLine{80 }
+\DoxyCodeLine{81    \textcolor{comment}{/* must have at least one full block */}}
+\DoxyCodeLine{82    \textcolor{keywordflow}{if} (m == 0) \{}
+\DoxyCodeLine{83       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{84    \}}
+\DoxyCodeLine{85 }
+\DoxyCodeLine{86    \textcolor{keywordflow}{if} (mo == 0) \{}
+\DoxyCodeLine{87       lim = m;}
+\DoxyCodeLine{88    \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{89       lim = m - 1;}
+\DoxyCodeLine{90    \}}
+\DoxyCodeLine{91 }
+\DoxyCodeLine{92    \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[xts->cipher].\mbox{\hyperlink{structltc__cipher__descriptor_afc98a5dedcb756fb765403942728b2d4}{accel\_xts\_decrypt}} \&\& lim > 0) \{}
+\DoxyCodeLine{93 }
+\DoxyCodeLine{94       \textcolor{comment}{/* use accelerated decryption for whole blocks */}}
+\DoxyCodeLine{95       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[xts->cipher].\mbox{\hyperlink{structltc__cipher__descriptor_afc98a5dedcb756fb765403942728b2d4}{accel\_xts\_decrypt}}(ct, pt, lim, tweak, \&xts->key1, \&xts->key2)) !=}
+\DoxyCodeLine{96                  \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{97          \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{98       \}}
+\DoxyCodeLine{99       ct += lim * 16;}
+\DoxyCodeLine{100       pt += lim * 16;}
+\DoxyCodeLine{101 }
+\DoxyCodeLine{102       \textcolor{comment}{/* tweak is encrypted on output */}}
+\DoxyCodeLine{103       \mbox{\hyperlink{tomcrypt__cfg_8h_a7691dd48d60d5fc6daf2fa7ec4c55e12}{XMEMCPY}}(T, tweak, \textcolor{keyword}{sizeof}(T));}
+\DoxyCodeLine{104    \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{105       \textcolor{comment}{/* encrypt the tweak */}}
+\DoxyCodeLine{106       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[xts->cipher].\mbox{\hyperlink{structltc__cipher__descriptor_a46141d86abe22a7c8d382c62a894dd63}{ecb\_encrypt}}(tweak, T, \&xts->key2)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{107          \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{108       \}}
+\DoxyCodeLine{109 }
+\DoxyCodeLine{110       \textcolor{keywordflow}{for} (i = 0; i < lim; i++) \{}
+\DoxyCodeLine{111          \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{xts__decrypt_8c_ad9d070c5891cb45f341ccb19db2637d2}{\_tweak\_uncrypt}}(ct, pt, T, xts)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{112             \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{113          \}}
+\DoxyCodeLine{114          ct += 16;}
+\DoxyCodeLine{115          pt += 16;}
+\DoxyCodeLine{116       \}}
+\DoxyCodeLine{117    \}}
+\DoxyCodeLine{118 }
+\DoxyCodeLine{119    \textcolor{comment}{/* if ptlen not divide 16 then */}}
+\DoxyCodeLine{120    \textcolor{keywordflow}{if} (mo > 0) \{}
+\DoxyCodeLine{121       \mbox{\hyperlink{tomcrypt__cfg_8h_a7691dd48d60d5fc6daf2fa7ec4c55e12}{XMEMCPY}}(CC, T, 16);}
+\DoxyCodeLine{122       \mbox{\hyperlink{xts__mult__x_8c_a38849a290b62d5e253db21468c0449a4}{xts\_mult\_x}}(CC);}
+\DoxyCodeLine{123 }
+\DoxyCodeLine{124       \textcolor{comment}{/* PP = tweak decrypt block m-1 */}}
+\DoxyCodeLine{125       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{xts__decrypt_8c_ad9d070c5891cb45f341ccb19db2637d2}{\_tweak\_uncrypt}}(ct, PP, CC, xts)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{126          \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{127       \}}
+\DoxyCodeLine{128 }
+\DoxyCodeLine{129       \textcolor{comment}{/* Pm = first ptlen \% 16 bytes of PP */}}
+\DoxyCodeLine{130       \textcolor{keywordflow}{for} (i = 0; i < mo; i++) \{}
+\DoxyCodeLine{131          CC[i] = ct[16 + i];}
+\DoxyCodeLine{132          pt[16 + i] = PP[i];}
+\DoxyCodeLine{133       \}}
+\DoxyCodeLine{134       \textcolor{keywordflow}{for} (; i < 16; i++) \{}
+\DoxyCodeLine{135          CC[i] = PP[i];}
+\DoxyCodeLine{136       \}}
+\DoxyCodeLine{137 }
+\DoxyCodeLine{138       \textcolor{comment}{/* Pm-1 = Tweak uncrypt CC */}}
+\DoxyCodeLine{139       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{xts__decrypt_8c_ad9d070c5891cb45f341ccb19db2637d2}{\_tweak\_uncrypt}}(CC, pt, T, xts)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{140          \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{141       \}}
+\DoxyCodeLine{142    \}}
+\DoxyCodeLine{143 }
+\DoxyCodeLine{144    \textcolor{comment}{/* Decrypt the tweak back */}}
+\DoxyCodeLine{145    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[xts->cipher].\mbox{\hyperlink{structltc__cipher__descriptor_a812d7f58f347982989dc3eace19aba27}{ecb\_decrypt}}(T, tweak, \&xts->key2)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{146       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{147    \}}
+\DoxyCodeLine{148 }
+\DoxyCodeLine{149    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{150 \}}
+
+\end{DoxyCode}
+
+
+References \+\_\+tweak\+\_\+uncrypt(), ltc\+\_\+cipher\+\_\+descriptor\+::accel\+\_\+xts\+\_\+decrypt, cipher\+\_\+descriptor, cipher\+\_\+is\+\_\+valid(), C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+A\+RG, C\+R\+Y\+P\+T\+\_\+\+OK, ltc\+\_\+cipher\+\_\+descriptor\+::ecb\+\_\+decrypt, ltc\+\_\+cipher\+\_\+descriptor\+::ecb\+\_\+encrypt, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, X\+M\+E\+M\+C\+P\+Y(), and xts\+\_\+mult\+\_\+x().
+
+
+
+Referenced by \+\_\+xts\+\_\+test\+\_\+accel\+\_\+xts\+\_\+decrypt(), and xts\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 3
+Here is the caller graph for this function\+:
+% FIG 4

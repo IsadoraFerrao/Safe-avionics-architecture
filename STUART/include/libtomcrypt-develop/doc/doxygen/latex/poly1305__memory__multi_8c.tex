@@ -1,0 +1,88 @@
+\hypertarget{poly1305__memory__multi_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/mac/poly1305/poly1305\+\_\+memory\+\_\+multi.c File Reference}
+\label{poly1305__memory__multi_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/mac/poly1305/poly1305\_memory\_multi.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/mac/poly1305/poly1305\_memory\_multi.c}}
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdarg.\+h$>$}\newline
+Include dependency graph for poly1305\+\_\+memory\+\_\+multi.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{poly1305__memory__multi_8c_a6cb8a0f7f61b0494d7f024c162683980}{poly1305\+\_\+memory\+\_\+multi}} (const unsigned char $\ast$key, unsigned long keylen, unsigned char $\ast$mac, unsigned long $\ast$maclen, const unsigned char $\ast$in, unsigned long inlen,...)
+\begin{DoxyCompactList}\small\item\em P\+O\+L\+Y1305 multiple blocks of memory to produce the authentication tag. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{poly1305__memory__multi_8c_a6cb8a0f7f61b0494d7f024c162683980}\label{poly1305__memory__multi_8c_a6cb8a0f7f61b0494d7f024c162683980}} 
+\index{poly1305\_memory\_multi.c@{poly1305\_memory\_multi.c}!poly1305\_memory\_multi@{poly1305\_memory\_multi}}
+\index{poly1305\_memory\_multi@{poly1305\_memory\_multi}!poly1305\_memory\_multi.c@{poly1305\_memory\_multi.c}}
+\subsubsection{\texorpdfstring{poly1305\_memory\_multi()}{poly1305\_memory\_multi()}}
+{\footnotesize\ttfamily int poly1305\+\_\+memory\+\_\+multi (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{key,  }\item[{unsigned long}]{keylen,  }\item[{unsigned char $\ast$}]{mac,  }\item[{unsigned long $\ast$}]{maclen,  }\item[{const unsigned char $\ast$}]{in,  }\item[{unsigned long}]{inlen,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+
+
+P\+O\+L\+Y1305 multiple blocks of memory to produce the authentication tag. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The secret key \\
+\hline
+{\em keylen} & The length of the secret key (octets) \\
+\hline
+{\em mac} & \mbox{[}out\mbox{]} Destination of the authentication tag \\
+\hline
+{\em maclen} & \mbox{[}in/out\mbox{]} Max size and resulting size of authentication tag \\
+\hline
+{\em in} & The data to P\+O\+L\+Y1305 \\
+\hline
+{\em inlen} & The length of the data to P\+O\+L\+Y1305 (octets) \\
+\hline
+{\em ...} & tuples of (data,len) pairs to P\+O\+L\+Y1305, terminated with a (N\+U\+LL,x) (x=don\textquotesingle{}t care) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 31 of file poly1305\+\_\+memory\+\_\+multi.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{32 \{}
+\DoxyCodeLine{33    poly1305\_state st;}
+\DoxyCodeLine{34    \textcolor{keywordtype}{int} err;}
+\DoxyCodeLine{35    va\_list args;}
+\DoxyCodeLine{36    \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *curptr;}
+\DoxyCodeLine{37    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} curlen;}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(key    != NULL);}
+\DoxyCodeLine{40    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(in     != NULL);}
+\DoxyCodeLine{41    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(mac    != NULL);}
+\DoxyCodeLine{42    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(maclen != NULL);}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44    va\_start(args, inlen);}
+\DoxyCodeLine{45    curptr = in;}
+\DoxyCodeLine{46    curlen = inlen;}
+\DoxyCodeLine{47    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{poly1305_8c_a09bc8f3b4b3b4cbd2a2b10c9814a1619}{poly1305\_init}}(\&st, key, keylen)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}})          \{ \textcolor{keywordflow}{goto} LBL\_ERR; \}}
+\DoxyCodeLine{48    \textcolor{keywordflow}{for} (;;) \{}
+\DoxyCodeLine{49       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{poly1305_8c_a44ef0e35cc1f514f942c015c105b9f01}{poly1305\_process}}(\&st, curptr, curlen)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{ \textcolor{keywordflow}{goto} LBL\_ERR; \}}
+\DoxyCodeLine{50       curptr = va\_arg(args, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}*);}
+\DoxyCodeLine{51       \textcolor{keywordflow}{if} (curptr == NULL) \textcolor{keywordflow}{break};}
+\DoxyCodeLine{52       curlen = va\_arg(args, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long});}
+\DoxyCodeLine{53    \}}
+\DoxyCodeLine{54    err = \mbox{\hyperlink{poly1305_8c_af7ae26dde05dcb271ec4f15e6f406f8d}{poly1305\_done}}(\&st, mac, maclen);}
+\DoxyCodeLine{55 LBL\_ERR:}
+\DoxyCodeLine{56 \textcolor{preprocessor}{\#ifdef LTC\_CLEAN\_STACK}}
+\DoxyCodeLine{57    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(\&st, \textcolor{keyword}{sizeof}(poly1305\_state));}
+\DoxyCodeLine{58 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{59    va\_end(args);}
+\DoxyCodeLine{60    \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{61 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+OK, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, poly1305\+\_\+done(), poly1305\+\_\+init(), poly1305\+\_\+process(), and zeromem().
+
+Here is the call graph for this function\+:
+% FIG 1

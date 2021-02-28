@@ -1,0 +1,137 @@
+\hypertarget{der__encode__object__identifier_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/pk/asn1/der/object\+\_\+identifier/der\+\_\+encode\+\_\+object\+\_\+identifier.c File Reference}
+\label{der__encode__object__identifier_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/asn1/der/object\_identifier/der\_encode\_object\_identifier.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/asn1/der/object\_identifier/der\_encode\_object\_identifier.c}}
+
+
+A\+S\+N.\+1 D\+ER, Encode Object Identifier, Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for der\+\_\+encode\+\_\+object\+\_\+identifier.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{der__encode__object__identifier_8c_abd46e5c51bd1c05377fe63fd15bc35be}{der\+\_\+encode\+\_\+object\+\_\+identifier}} (const unsigned long $\ast$words, unsigned long nwords, unsigned char $\ast$out, unsigned long $\ast$outlen)
+\begin{DoxyCompactList}\small\item\em Encode an O\+ID. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A\+S\+N.\+1 D\+ER, Encode Object Identifier, Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{der__encode__object__identifier_8c_abd46e5c51bd1c05377fe63fd15bc35be}\label{der__encode__object__identifier_8c_abd46e5c51bd1c05377fe63fd15bc35be}} 
+\index{der\_encode\_object\_identifier.c@{der\_encode\_object\_identifier.c}!der\_encode\_object\_identifier@{der\_encode\_object\_identifier}}
+\index{der\_encode\_object\_identifier@{der\_encode\_object\_identifier}!der\_encode\_object\_identifier.c@{der\_encode\_object\_identifier.c}}
+\subsubsection{\texorpdfstring{der\_encode\_object\_identifier()}{der\_encode\_object\_identifier()}}
+{\footnotesize\ttfamily int der\+\_\+encode\+\_\+object\+\_\+identifier (\begin{DoxyParamCaption}\item[{const unsigned long $\ast$}]{words,  }\item[{unsigned long}]{nwords,  }\item[{unsigned char $\ast$}]{out,  }\item[{unsigned long $\ast$}]{outlen }\end{DoxyParamCaption})}
+
+
+
+Encode an O\+ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em words} & The words to encode (upto 32-\/bits each) \\
+\hline
+{\em nwords} & The number of words in the O\+ID \\
+\hline
+{\em out} & \mbox{[}out\mbox{]} Destination of O\+ID data \\
+\hline
+{\em outlen} & \mbox{[}in/out\mbox{]} The max and resulting size of the O\+ID \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 25 of file der\+\_\+encode\+\_\+object\+\_\+identifier.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{27 \{}
+\DoxyCodeLine{28    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} i, x, y, z, t, \mbox{\hyperlink{gcm__gf__mult_8c_a3a2325b458f400e186d773b14e6c1ed9}{mask}}, wordbuf;}
+\DoxyCodeLine{29    \textcolor{keywordtype}{int}           err;}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(words  != NULL);}
+\DoxyCodeLine{32    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(out    != NULL);}
+\DoxyCodeLine{33    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(outlen != NULL);}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35    \textcolor{comment}{/* check length */}}
+\DoxyCodeLine{36    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{der__length__object__identifier_8c_ae1fe5b2cd3f20a693cc571a2a8fc9af0}{der\_length\_object\_identifier}}(words, nwords, \&x)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{37       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{38    \}}
+\DoxyCodeLine{39    \textcolor{keywordflow}{if} (x > *outlen) \{}
+\DoxyCodeLine{40       *outlen = x;}
+\DoxyCodeLine{41       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06caccd878f5599f3036ffe759dbe1a1ac16}{CRYPT\_BUFFER\_OVERFLOW}};}
+\DoxyCodeLine{42    \}}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44    \textcolor{comment}{/* compute length to store OID data */}}
+\DoxyCodeLine{45    z = 0;}
+\DoxyCodeLine{46    wordbuf = words[0] * 40 + words[1];}
+\DoxyCodeLine{47    \textcolor{keywordflow}{for} (y = 1; y < nwords; y++) \{}
+\DoxyCodeLine{48        t = \mbox{\hyperlink{der__length__object__identifier_8c_aef2413878ded8dc303e150d31fca294d}{der\_object\_identifier\_bits}}(wordbuf);}
+\DoxyCodeLine{49        z += t/7 + ((t\%7) ? 1 : 0) + (wordbuf == 0 ? 1 : 0);}
+\DoxyCodeLine{50        \textcolor{keywordflow}{if} (y < nwords - 1) \{}
+\DoxyCodeLine{51           wordbuf = words[y + 1];}
+\DoxyCodeLine{52        \}}
+\DoxyCodeLine{53    \}}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55    \textcolor{comment}{/* store header + length */}}
+\DoxyCodeLine{56    x = 0;}
+\DoxyCodeLine{57    out[x++] = 0x06;}
+\DoxyCodeLine{58    y = *outlen - x;}
+\DoxyCodeLine{59    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__private_8h_ae0b6c1f1188a5aa201aa84de9a659550}{der\_encode\_asn1\_length}}(z, out + x, \&y)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{60       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{61    \}}
+\DoxyCodeLine{62    x += y;}
+\DoxyCodeLine{63 }
+\DoxyCodeLine{64    \textcolor{comment}{/* store first byte */}}
+\DoxyCodeLine{65    wordbuf = words[0] * 40 + words[1];}
+\DoxyCodeLine{66    \textcolor{keywordflow}{for} (i = 1; i < nwords; i++) \{}
+\DoxyCodeLine{67       \textcolor{comment}{/* store 7 bit words in little endian */}}
+\DoxyCodeLine{68       t    = wordbuf \& 0xFFFFFFFF;}
+\DoxyCodeLine{69       \textcolor{keywordflow}{if} (t) \{}
+\DoxyCodeLine{70          y    = x;}
+\DoxyCodeLine{71          \mbox{\hyperlink{gcm__gf__mult_8c_a3a2325b458f400e186d773b14e6c1ed9}{mask}} = 0;}
+\DoxyCodeLine{72          \textcolor{keywordflow}{while} (t) \{}
+\DoxyCodeLine{73             out[x++] = (\textcolor{keywordtype}{unsigned} char)((t \& 0x7F) | \mbox{\hyperlink{gcm__gf__mult_8c_a3a2325b458f400e186d773b14e6c1ed9}{mask}});}
+\DoxyCodeLine{74             t    >>= 7;}
+\DoxyCodeLine{75             \mbox{\hyperlink{gcm__gf__mult_8c_a3a2325b458f400e186d773b14e6c1ed9}{mask}}  |= 0x80;  \textcolor{comment}{/* upper bit is set on all but the last byte */}}
+\DoxyCodeLine{76          \}}
+\DoxyCodeLine{77          \textcolor{comment}{/* now swap bytes y...x-1 */}}
+\DoxyCodeLine{78          z = x - 1;}
+\DoxyCodeLine{79          \textcolor{keywordflow}{while} (y < z) \{}
+\DoxyCodeLine{80             t = out[y]; out[y] = out[z]; out[z] = (\textcolor{keywordtype}{unsigned} char)t;}
+\DoxyCodeLine{81             ++y;}
+\DoxyCodeLine{82             --z;}
+\DoxyCodeLine{83          \}}
+\DoxyCodeLine{84       \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{85          \textcolor{comment}{/* zero word */}}
+\DoxyCodeLine{86          out[x++] = 0x00;}
+\DoxyCodeLine{87       \}}
+\DoxyCodeLine{88 }
+\DoxyCodeLine{89       \textcolor{keywordflow}{if} (i < nwords - 1) \{}
+\DoxyCodeLine{90          wordbuf = words[i + 1];}
+\DoxyCodeLine{91       \}}
+\DoxyCodeLine{92    \}}
+\DoxyCodeLine{93 }
+\DoxyCodeLine{94    *outlen = x;}
+\DoxyCodeLine{95    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}};}
+\DoxyCodeLine{96 \}}
+
+\end{DoxyCode}
+
+
+References C\+R\+Y\+P\+T\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+O\+V\+E\+R\+F\+L\+OW, C\+R\+Y\+P\+T\+\_\+\+OK, der\+\_\+encode\+\_\+asn1\+\_\+length(), der\+\_\+length\+\_\+object\+\_\+identifier(), der\+\_\+object\+\_\+identifier\+\_\+bits(), L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, and mask.
+
+
+
+Referenced by der\+\_\+encode\+\_\+custom\+\_\+type(), and der\+\_\+encode\+\_\+sequence\+\_\+ex().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2

@@ -1,0 +1,60 @@
+\hypertarget{pkcs__1__os2ip_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/pk/pkcs1/pkcs\+\_\+1\+\_\+os2ip.c File Reference}
+\label{pkcs__1__os2ip_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/pkcs1/pkcs\_1\_os2ip.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/pk/pkcs1/pkcs\_1\_os2ip.c}}
+
+
+Octet to Integer O\+S2\+IP, Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for pkcs\+\_\+1\+\_\+os2ip.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{pkcs__1__os2ip_8c_a01ffcc3151232bebef61055d2c28b7bc}{pkcs\+\_\+1\+\_\+os2ip}} (void $\ast$n, unsigned char $\ast$in, unsigned long inlen)
+\begin{DoxyCompactList}\small\item\em Read a binary string into an mp\+\_\+int. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Octet to Integer O\+S2\+IP, Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{pkcs__1__os2ip_8c_a01ffcc3151232bebef61055d2c28b7bc}\label{pkcs__1__os2ip_8c_a01ffcc3151232bebef61055d2c28b7bc}} 
+\index{pkcs\_1\_os2ip.c@{pkcs\_1\_os2ip.c}!pkcs\_1\_os2ip@{pkcs\_1\_os2ip}}
+\index{pkcs\_1\_os2ip@{pkcs\_1\_os2ip}!pkcs\_1\_os2ip.c@{pkcs\_1\_os2ip.c}}
+\subsubsection{\texorpdfstring{pkcs\_1\_os2ip()}{pkcs\_1\_os2ip()}}
+{\footnotesize\ttfamily int pkcs\+\_\+1\+\_\+os2ip (\begin{DoxyParamCaption}\item[{void $\ast$}]{n,  }\item[{unsigned char $\ast$}]{in,  }\item[{unsigned long}]{inlen }\end{DoxyParamCaption})}
+
+
+
+Read a binary string into an mp\+\_\+int. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & \mbox{[}out\mbox{]} The mp\+\_\+int destination \\
+\hline
+{\em in} & The binary string to read \\
+\hline
+{\em inlen} & The length of the binary string \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 24 of file pkcs\+\_\+1\+\_\+os2ip.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{25 \{}
+\DoxyCodeLine{26    \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt__private_8h_a9e20e2044bb5a279e27512d1e1b65754}{mp\_read\_unsigned\_bin}}(n, in, inlen);}
+\DoxyCodeLine{27 \}}
+
+\end{DoxyCode}
+
+
+References mp\+\_\+read\+\_\+unsigned\+\_\+bin.
+

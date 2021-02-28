@@ -1,0 +1,415 @@
+\hypertarget{ccm__memory_8c}{}\section{M\+:/\+Office/!\+Doutorado/0. Repositorio\+S\+V\+N/\+H\+A\+M\+S\+T\+E\+R\+\_\+\+Prototype/branches/\+J\+I\+N\+T2018/include/libtomcrypt-\/develop/src/encauth/ccm/ccm\+\_\+memory.c File Reference}
+\label{ccm__memory_8c}\index{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/encauth/ccm/ccm\_memory.c@{M:/Office/"!Doutorado/0. RepositorioSVN/HAMSTER\_Prototype/branches/JINT2018/include/libtomcrypt-\/develop/src/encauth/ccm/ccm\_memory.c}}
+
+
+C\+CM support, process a block of memory, Tom St Denis.  
+
+
+{\ttfamily \#include \char`\"{}tomcrypt\+\_\+private.\+h\char`\"{}}\newline
+Include dependency graph for ccm\+\_\+memory.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{ccm__memory_8c_acdd7923e6aee8984662ed5000dc2d7fe}{ccm\+\_\+memory}} (int cipher, const unsigned char $\ast$key, unsigned long keylen, \mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$uskey, const unsigned char $\ast$nonce, unsigned long noncelen, const unsigned char $\ast$header, unsigned long headerlen, unsigned char $\ast$pt, unsigned long ptlen, unsigned char $\ast$ct, unsigned char $\ast$tag, unsigned long $\ast$taglen, int direction)
+\begin{DoxyCompactList}\small\item\em C\+CM encrypt/decrypt and produce an authentication tag. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+C\+CM support, process a block of memory, Tom St Denis. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{ccm__memory_8c_acdd7923e6aee8984662ed5000dc2d7fe}\label{ccm__memory_8c_acdd7923e6aee8984662ed5000dc2d7fe}} 
+\index{ccm\_memory.c@{ccm\_memory.c}!ccm\_memory@{ccm\_memory}}
+\index{ccm\_memory@{ccm\_memory}!ccm\_memory.c@{ccm\_memory.c}}
+\subsubsection{\texorpdfstring{ccm\_memory()}{ccm\_memory()}}
+{\footnotesize\ttfamily int ccm\+\_\+memory (\begin{DoxyParamCaption}\item[{int}]{cipher,  }\item[{const unsigned char $\ast$}]{key,  }\item[{unsigned long}]{keylen,  }\item[{\mbox{\hyperlink{tomcrypt__cipher_8h_ac5a146550efe94c415d95abc7e454362}{symmetric\+\_\+key}} $\ast$}]{uskey,  }\item[{const unsigned char $\ast$}]{nonce,  }\item[{unsigned long}]{noncelen,  }\item[{const unsigned char $\ast$}]{header,  }\item[{unsigned long}]{headerlen,  }\item[{unsigned char $\ast$}]{pt,  }\item[{unsigned long}]{ptlen,  }\item[{unsigned char $\ast$}]{ct,  }\item[{unsigned char $\ast$}]{tag,  }\item[{unsigned long $\ast$}]{taglen,  }\item[{int}]{direction }\end{DoxyParamCaption})}
+
+
+
+C\+CM encrypt/decrypt and produce an authentication tag. 
+
+1 \textquotesingle{}pt\textquotesingle{}, \textquotesingle{}ct\textquotesingle{} and \textquotesingle{}tag\textquotesingle{} can both be \textquotesingle{}in\textquotesingle{} or \textquotesingle{}out\textquotesingle{}, depending on \textquotesingle{}direction\textquotesingle{}
+
+
+\begin{DoxyParams}{Parameters}
+{\em cipher} & The index of the cipher desired \\
+\hline
+{\em key} & The secret key to use \\
+\hline
+{\em keylen} & The length of the secret key (octets) \\
+\hline
+{\em uskey} & A previously scheduled key \mbox{[}optional can be N\+U\+LL\mbox{]} \\
+\hline
+{\em nonce} & The session nonce \mbox{[}use once\mbox{]} \\
+\hline
+{\em noncelen} & The length of the nonce \\
+\hline
+{\em header} & The header for the session \\
+\hline
+{\em headerlen} & The length of the header (octets) \\
+\hline
+{\em pt} & \mbox{[}$\ast$1\mbox{]} The plaintext \\
+\hline
+{\em ptlen} & The length of the plaintext (octets) \\
+\hline
+{\em ct} & \mbox{[}$\ast$1\mbox{]} The ciphertext \\
+\hline
+{\em tag} & \mbox{[}$\ast$1\mbox{]} The destination tag \\
+\hline
+{\em taglen} & The max size and resulting size of the authentication tag \\
+\hline
+{\em direction} & Encrypt or Decrypt direction (0 or 1) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+R\+Y\+P\+T\+\_\+\+OK if successful 
+\end{DoxyReturn}
+
+
+Definition at line 39 of file ccm\+\_\+memory.\+c.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{48 \{}
+\DoxyCodeLine{49    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}  PAD[16], ctr[16], CTRPAD[16], ptTag[16], b, *pt\_real;}
+\DoxyCodeLine{50    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *pt\_work = NULL;}
+\DoxyCodeLine{51    \mbox{\hyperlink{unionSymmetric__key}{symmetric\_key}} *skey;}
+\DoxyCodeLine{52    \textcolor{keywordtype}{int}            err;}
+\DoxyCodeLine{53    \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long}  \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}, L, x, y, z, CTRlen;}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55    \textcolor{keywordflow}{if} (uskey == NULL) \{}
+\DoxyCodeLine{56       \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(key    != NULL);}
+\DoxyCodeLine{57    \}}
+\DoxyCodeLine{58    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(nonce  != NULL);}
+\DoxyCodeLine{59    \textcolor{keywordflow}{if} (headerlen > 0) \{}
+\DoxyCodeLine{60       \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(header != NULL);}
+\DoxyCodeLine{61    \}}
+\DoxyCodeLine{62    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(pt     != NULL);}
+\DoxyCodeLine{63    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(ct     != NULL);}
+\DoxyCodeLine{64    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(tag    != NULL);}
+\DoxyCodeLine{65    \mbox{\hyperlink{tomcrypt__argchk_8h_a683da3e041e49f196318b6ea951414ba}{LTC\_ARGCHK}}(taglen != NULL);}
+\DoxyCodeLine{66 }
+\DoxyCodeLine{67    pt\_real = pt;}
+\DoxyCodeLine{68 }
+\DoxyCodeLine{69 \textcolor{preprocessor}{\#ifdef LTC\_FAST}}
+\DoxyCodeLine{70    \textcolor{keywordflow}{if} (16 \% \textcolor{keyword}{sizeof}(LTC\_FAST\_TYPE)) \{}
+\DoxyCodeLine{71       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{72    \}}
+\DoxyCodeLine{73 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{74 }
+\DoxyCodeLine{75    \textcolor{comment}{/* check cipher input */}}
+\DoxyCodeLine{76    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_ac30eb68934c4ca07205344dc9d159221}{cipher\_is\_valid}}(cipher)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{77       \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{78    \}}
+\DoxyCodeLine{79    \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[cipher].block\_length != 16) \{}
+\DoxyCodeLine{80       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca302b958f5664adeb427c22f57c9d90a4}{CRYPT\_INVALID\_CIPHER}};}
+\DoxyCodeLine{81    \}}
+\DoxyCodeLine{82 }
+\DoxyCodeLine{83    \textcolor{comment}{/* make sure the taglen is valid */}}
+\DoxyCodeLine{84    \textcolor{keywordflow}{if} (*taglen < 4 || *taglen > 16 || (*taglen \% 2) == 1) \{}
+\DoxyCodeLine{85       \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca92aa8bad3930f08d5a188bf72094b066}{CRYPT\_INVALID\_ARG}};}
+\DoxyCodeLine{86    \}}
+\DoxyCodeLine{87 }
+\DoxyCodeLine{88    \textcolor{comment}{/* is there an accelerator? */}}
+\DoxyCodeLine{89    \textcolor{keywordflow}{if} (\mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[cipher].accel\_ccm\_memory != NULL) \{}
+\DoxyCodeLine{90        \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[cipher].\mbox{\hyperlink{structltc__cipher__descriptor_ab3ee346b39a88e9c756fc2c835e4abf2}{accel\_ccm\_memory}}(}
+\DoxyCodeLine{91            key,    keylen,}
+\DoxyCodeLine{92            uskey,}
+\DoxyCodeLine{93            nonce,  noncelen,}
+\DoxyCodeLine{94            header, headerlen,}
+\DoxyCodeLine{95            pt,     ptlen,}
+\DoxyCodeLine{96            ct,}
+\DoxyCodeLine{97            tag,    taglen,}
+\DoxyCodeLine{98            direction);}
+\DoxyCodeLine{99    \}}
+\DoxyCodeLine{100 }
+\DoxyCodeLine{101    \textcolor{comment}{/* let's get the L value */}}
+\DoxyCodeLine{102    \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}} = ptlen;}
+\DoxyCodeLine{103    L   = 0;}
+\DoxyCodeLine{104    \textcolor{keywordflow}{while} (\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}}) \{}
+\DoxyCodeLine{105       ++L;}
+\DoxyCodeLine{106       \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}} >>= 8;}
+\DoxyCodeLine{107    \}}
+\DoxyCodeLine{108    \textcolor{keywordflow}{if} (L <= 1) \{}
+\DoxyCodeLine{109       L = 2;}
+\DoxyCodeLine{110    \}}
+\DoxyCodeLine{111 }
+\DoxyCodeLine{112    \textcolor{comment}{/* increase L to match the nonce len */}}
+\DoxyCodeLine{113    noncelen = (noncelen > 13) ? 13 : noncelen;}
+\DoxyCodeLine{114    \textcolor{keywordflow}{if} ((15 - noncelen) > L) \{}
+\DoxyCodeLine{115       L = 15 - noncelen;}
+\DoxyCodeLine{116    \}}
+\DoxyCodeLine{117 }
+\DoxyCodeLine{118    \textcolor{comment}{/* allocate mem for the symmetric key */}}
+\DoxyCodeLine{119    \textcolor{keywordflow}{if} (uskey == NULL) \{}
+\DoxyCodeLine{120       skey = \mbox{\hyperlink{tomcrypt__cfg_8h_af363355f38fbaacdefacf270436ae1c9}{XMALLOC}}(\textcolor{keyword}{sizeof}(*skey));}
+\DoxyCodeLine{121       \textcolor{keywordflow}{if} (skey == NULL) \{}
+\DoxyCodeLine{122          \textcolor{keywordflow}{return} \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06ca0ce0d27adc7ea10b74b7ea904b8bfa82}{CRYPT\_MEM}};}
+\DoxyCodeLine{123       \}}
+\DoxyCodeLine{124 }
+\DoxyCodeLine{125       \textcolor{comment}{/* initialize the cipher */}}
+\DoxyCodeLine{126       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[cipher].\mbox{\hyperlink{multi2_8c_ad0625943f7d847668b869ed827c51d47}{setup}}(key, keylen, 0, skey)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{127          \mbox{\hyperlink{tomcrypt__cfg_8h_a260d66fc0690e0502cf3bfe7b5244b75}{XFREE}}(skey);}
+\DoxyCodeLine{128          \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{129       \}}
+\DoxyCodeLine{130    \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{131       skey = uskey;}
+\DoxyCodeLine{132    \}}
+\DoxyCodeLine{133 }
+\DoxyCodeLine{134    \textcolor{comment}{/* initialize buffer for pt */}}
+\DoxyCodeLine{135    \textcolor{keywordflow}{if} (direction == CCM\_DECRYPT \&\& ptlen > 0) \{}
+\DoxyCodeLine{136       pt\_work = \mbox{\hyperlink{tomcrypt__cfg_8h_af363355f38fbaacdefacf270436ae1c9}{XMALLOC}}(ptlen);}
+\DoxyCodeLine{137       \textcolor{keywordflow}{if} (pt\_work == NULL) \{}
+\DoxyCodeLine{138          \textcolor{keywordflow}{goto} error;}
+\DoxyCodeLine{139       \}}
+\DoxyCodeLine{140       pt = pt\_work;}
+\DoxyCodeLine{141    \}}
+\DoxyCodeLine{142 }
+\DoxyCodeLine{143    \textcolor{comment}{/* form B\_0 == flags | Nonce N | l(m) */}}
+\DoxyCodeLine{144    x = 0;}
+\DoxyCodeLine{145    PAD[x++] = (\textcolor{keywordtype}{unsigned} char)(((headerlen > 0) ? (1<<6) : 0) |}
+\DoxyCodeLine{146             (((*taglen - 2)>>1)<<3)        |}
+\DoxyCodeLine{147             (L-1));}
+\DoxyCodeLine{148 }
+\DoxyCodeLine{149    \textcolor{comment}{/* nonce */}}
+\DoxyCodeLine{150    \textcolor{keywordflow}{for} (y = 0; y < (16 - (L + 1)); y++) \{}
+\DoxyCodeLine{151        PAD[x++] = nonce[y];}
+\DoxyCodeLine{152    \}}
+\DoxyCodeLine{153 }
+\DoxyCodeLine{154    \textcolor{comment}{/* store len */}}
+\DoxyCodeLine{155    \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}} = ptlen;}
+\DoxyCodeLine{156 }
+\DoxyCodeLine{157    \textcolor{comment}{/* shift len so the upper bytes of len are the contents of the length */}}
+\DoxyCodeLine{158    \textcolor{keywordflow}{for} (y = L; y < 4; y++) \{}
+\DoxyCodeLine{159        \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}} <<= 8;}
+\DoxyCodeLine{160    \}}
+\DoxyCodeLine{161 }
+\DoxyCodeLine{162    \textcolor{comment}{/* store l(m) (only store 32-bits) */}}
+\DoxyCodeLine{163    \textcolor{keywordflow}{for} (y = 0; L > 4 \&\& (L-y)>4; y++) \{}
+\DoxyCodeLine{164        PAD[x++] = 0;}
+\DoxyCodeLine{165    \}}
+\DoxyCodeLine{166    \textcolor{keywordflow}{for} (; y < L; y++) \{}
+\DoxyCodeLine{167        PAD[x++] = (\textcolor{keywordtype}{unsigned} char)((\mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}} >> 24) \& 255);}
+\DoxyCodeLine{168        \mbox{\hyperlink{ocb__init_8c_afed088663f8704004425cdae2120b9b3}{len}} <<= 8;}
+\DoxyCodeLine{169    \}}
+\DoxyCodeLine{170 }
+\DoxyCodeLine{171    \textcolor{comment}{/* encrypt PAD */}}
+\DoxyCodeLine{172    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[cipher].\mbox{\hyperlink{ecb__encrypt_8c_affdcc93fca272998e2545fcabac4e7f0}{ecb\_encrypt}}(PAD, PAD, skey)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{173        \textcolor{keywordflow}{goto} error;}
+\DoxyCodeLine{174    \}}
+\DoxyCodeLine{175 }
+\DoxyCodeLine{176    \textcolor{comment}{/* handle header */}}
+\DoxyCodeLine{177    \textcolor{keywordflow}{if} (headerlen > 0) \{}
+\DoxyCodeLine{178       x = 0;}
+\DoxyCodeLine{179 }
+\DoxyCodeLine{180       \textcolor{comment}{/* store length */}}
+\DoxyCodeLine{181       \textcolor{keywordflow}{if} (headerlen < ((1UL<<16) - (1UL<<8))) \{}
+\DoxyCodeLine{182          PAD[x++] \string^= (headerlen>>8) \& 255;}
+\DoxyCodeLine{183          PAD[x++] \string^= headerlen \& 255;}
+\DoxyCodeLine{184       \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{185          PAD[x++] \string^= 0xFF;}
+\DoxyCodeLine{186          PAD[x++] \string^= 0xFE;}
+\DoxyCodeLine{187          PAD[x++] \string^= (headerlen>>24) \& 255;}
+\DoxyCodeLine{188          PAD[x++] \string^= (headerlen>>16) \& 255;}
+\DoxyCodeLine{189          PAD[x++] \string^= (headerlen>>8) \& 255;}
+\DoxyCodeLine{190          PAD[x++] \string^= headerlen \& 255;}
+\DoxyCodeLine{191       \}}
+\DoxyCodeLine{192 }
+\DoxyCodeLine{193       \textcolor{comment}{/* now add the data */}}
+\DoxyCodeLine{194       \textcolor{keywordflow}{for} (y = 0; y < headerlen; y++) \{}
+\DoxyCodeLine{195           \textcolor{keywordflow}{if} (x == 16) \{}
+\DoxyCodeLine{196              \textcolor{comment}{/* full block so let's encrypt it */}}
+\DoxyCodeLine{197              \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[cipher].\mbox{\hyperlink{ecb__encrypt_8c_affdcc93fca272998e2545fcabac4e7f0}{ecb\_encrypt}}(PAD, PAD, skey)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{198                 \textcolor{keywordflow}{goto} error;}
+\DoxyCodeLine{199              \}}
+\DoxyCodeLine{200              x = 0;}
+\DoxyCodeLine{201           \}}
+\DoxyCodeLine{202           PAD[x++] \string^= header[y];}
+\DoxyCodeLine{203       \}}
+\DoxyCodeLine{204 }
+\DoxyCodeLine{205       \textcolor{comment}{/* remainder */}}
+\DoxyCodeLine{206       \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[cipher].\mbox{\hyperlink{ecb__encrypt_8c_affdcc93fca272998e2545fcabac4e7f0}{ecb\_encrypt}}(PAD, PAD, skey)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{207          \textcolor{keywordflow}{goto} error;}
+\DoxyCodeLine{208       \}}
+\DoxyCodeLine{209    \}}
+\DoxyCodeLine{210 }
+\DoxyCodeLine{211    \textcolor{comment}{/* setup the ctr counter */}}
+\DoxyCodeLine{212    x = 0;}
+\DoxyCodeLine{213 }
+\DoxyCodeLine{214    \textcolor{comment}{/* flags */}}
+\DoxyCodeLine{215    ctr[x++] = (\textcolor{keywordtype}{unsigned} char)L-1;}
+\DoxyCodeLine{216 }
+\DoxyCodeLine{217    \textcolor{comment}{/* nonce */}}
+\DoxyCodeLine{218    \textcolor{keywordflow}{for} (y = 0; y < (16 - (L+1)); ++y) \{}
+\DoxyCodeLine{219       ctr[x++] = nonce[y];}
+\DoxyCodeLine{220    \}}
+\DoxyCodeLine{221    \textcolor{comment}{/* offset */}}
+\DoxyCodeLine{222    \textcolor{keywordflow}{while} (x < 16) \{}
+\DoxyCodeLine{223       ctr[x++] = 0;}
+\DoxyCodeLine{224    \}}
+\DoxyCodeLine{225 }
+\DoxyCodeLine{226    x      = 0;}
+\DoxyCodeLine{227    CTRlen = 16;}
+\DoxyCodeLine{228 }
+\DoxyCodeLine{229    \textcolor{comment}{/* now handle the PT */}}
+\DoxyCodeLine{230    \textcolor{keywordflow}{if} (ptlen > 0) \{}
+\DoxyCodeLine{231       y = 0;}
+\DoxyCodeLine{232 \textcolor{preprocessor}{\#ifdef LTC\_FAST}}
+\DoxyCodeLine{233       \textcolor{keywordflow}{if} (ptlen \& ~15)  \{}
+\DoxyCodeLine{234           \textcolor{keywordflow}{if} (direction == CCM\_ENCRYPT) \{}
+\DoxyCodeLine{235              \textcolor{keywordflow}{for} (; y < (ptlen \& ~15); y += 16) \{}
+\DoxyCodeLine{236                 \textcolor{comment}{/* increment the ctr? */}}
+\DoxyCodeLine{237                 \textcolor{keywordflow}{for} (z = 15; z > 15-L; z--) \{}
+\DoxyCodeLine{238                     ctr[z] = (ctr[z] + 1) \& 255;}
+\DoxyCodeLine{239                     \textcolor{keywordflow}{if} (ctr[z]) \textcolor{keywordflow}{break};}
+\DoxyCodeLine{240                 \}}
+\DoxyCodeLine{241                 \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[cipher].\mbox{\hyperlink{ecb__encrypt_8c_affdcc93fca272998e2545fcabac4e7f0}{ecb\_encrypt}}(ctr, CTRPAD, skey)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{242                    \textcolor{keywordflow}{goto} error;}
+\DoxyCodeLine{243                 \}}
+\DoxyCodeLine{244 }
+\DoxyCodeLine{245                 \textcolor{comment}{/* xor the PT against the pad first */}}
+\DoxyCodeLine{246                 \textcolor{keywordflow}{for} (z = 0; z < 16; z += \textcolor{keyword}{sizeof}(LTC\_FAST\_TYPE)) \{}
+\DoxyCodeLine{247                     *(LTC\_FAST\_TYPE\_PTR\_CAST(\&PAD[z]))  \string^= *(LTC\_FAST\_TYPE\_PTR\_CAST(\&pt[y+z]));}
+\DoxyCodeLine{248                     *(LTC\_FAST\_TYPE\_PTR\_CAST(\&ct[y+z])) = *(LTC\_FAST\_TYPE\_PTR\_CAST(\&pt[y+z])) \string^ *(LTC\_FAST\_TYPE\_PTR\_CAST(\&CTRPAD[z]));}
+\DoxyCodeLine{249                 \}}
+\DoxyCodeLine{250                 \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[cipher].\mbox{\hyperlink{ecb__encrypt_8c_affdcc93fca272998e2545fcabac4e7f0}{ecb\_encrypt}}(PAD, PAD, skey)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{251                    \textcolor{keywordflow}{goto} error;}
+\DoxyCodeLine{252                 \}}
+\DoxyCodeLine{253              \}}
+\DoxyCodeLine{254           \} \textcolor{keywordflow}{else} \{ \textcolor{comment}{/* direction == CCM\_DECRYPT */}}
+\DoxyCodeLine{255              \textcolor{keywordflow}{for} (; y < (ptlen \& ~15); y += 16) \{}
+\DoxyCodeLine{256                 \textcolor{comment}{/* increment the ctr? */}}
+\DoxyCodeLine{257                 \textcolor{keywordflow}{for} (z = 15; z > 15-L; z--) \{}
+\DoxyCodeLine{258                     ctr[z] = (ctr[z] + 1) \& 255;}
+\DoxyCodeLine{259                     \textcolor{keywordflow}{if} (ctr[z]) \textcolor{keywordflow}{break};}
+\DoxyCodeLine{260                 \}}
+\DoxyCodeLine{261                 \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[cipher].\mbox{\hyperlink{ecb__encrypt_8c_affdcc93fca272998e2545fcabac4e7f0}{ecb\_encrypt}}(ctr, CTRPAD, skey)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{262                    \textcolor{keywordflow}{goto} error;}
+\DoxyCodeLine{263                 \}}
+\DoxyCodeLine{264 }
+\DoxyCodeLine{265                 \textcolor{comment}{/* xor the PT against the pad last */}}
+\DoxyCodeLine{266                 \textcolor{keywordflow}{for} (z = 0; z < 16; z += \textcolor{keyword}{sizeof}(LTC\_FAST\_TYPE)) \{}
+\DoxyCodeLine{267                     *(LTC\_FAST\_TYPE\_PTR\_CAST(\&pt[y+z])) = *(LTC\_FAST\_TYPE\_PTR\_CAST(\&ct[y+z])) \string^ *(LTC\_FAST\_TYPE\_PTR\_CAST(\&CTRPAD[z]));}
+\DoxyCodeLine{268                     *(LTC\_FAST\_TYPE\_PTR\_CAST(\&PAD[z]))  \string^= *(LTC\_FAST\_TYPE\_PTR\_CAST(\&pt[y+z]));}
+\DoxyCodeLine{269                 \}}
+\DoxyCodeLine{270                 \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[cipher].\mbox{\hyperlink{ecb__encrypt_8c_affdcc93fca272998e2545fcabac4e7f0}{ecb\_encrypt}}(PAD, PAD, skey)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{271                    \textcolor{keywordflow}{goto} error;}
+\DoxyCodeLine{272                 \}}
+\DoxyCodeLine{273              \}}
+\DoxyCodeLine{274           \}}
+\DoxyCodeLine{275       \}}
+\DoxyCodeLine{276 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{277 }
+\DoxyCodeLine{278       \textcolor{keywordflow}{for} (; y < ptlen; y++) \{}
+\DoxyCodeLine{279           \textcolor{comment}{/* increment the ctr? */}}
+\DoxyCodeLine{280           \textcolor{keywordflow}{if} (CTRlen == 16) \{}
+\DoxyCodeLine{281              \textcolor{keywordflow}{for} (z = 15; z > 15-L; z--) \{}
+\DoxyCodeLine{282                  ctr[z] = (ctr[z] + 1) \& 255;}
+\DoxyCodeLine{283                  \textcolor{keywordflow}{if} (ctr[z]) \textcolor{keywordflow}{break};}
+\DoxyCodeLine{284              \}}
+\DoxyCodeLine{285              \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[cipher].\mbox{\hyperlink{ecb__encrypt_8c_affdcc93fca272998e2545fcabac4e7f0}{ecb\_encrypt}}(ctr, CTRPAD, skey)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{286                 \textcolor{keywordflow}{goto} error;}
+\DoxyCodeLine{287              \}}
+\DoxyCodeLine{288              CTRlen = 0;}
+\DoxyCodeLine{289           \}}
+\DoxyCodeLine{290 }
+\DoxyCodeLine{291           \textcolor{comment}{/* if we encrypt we add the bytes to the MAC first */}}
+\DoxyCodeLine{292           \textcolor{keywordflow}{if} (direction == CCM\_ENCRYPT) \{}
+\DoxyCodeLine{293              b     = pt[y];}
+\DoxyCodeLine{294              ct[y] = b \string^ CTRPAD[CTRlen++];}
+\DoxyCodeLine{295           \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{296              b     = ct[y] \string^ CTRPAD[CTRlen++];}
+\DoxyCodeLine{297              pt[y] = b;}
+\DoxyCodeLine{298           \}}
+\DoxyCodeLine{299 }
+\DoxyCodeLine{300           \textcolor{keywordflow}{if} (x == 16) \{}
+\DoxyCodeLine{301              \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[cipher].\mbox{\hyperlink{ecb__encrypt_8c_affdcc93fca272998e2545fcabac4e7f0}{ecb\_encrypt}}(PAD, PAD, skey)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{302                 \textcolor{keywordflow}{goto} error;}
+\DoxyCodeLine{303              \}}
+\DoxyCodeLine{304              x = 0;}
+\DoxyCodeLine{305           \}}
+\DoxyCodeLine{306           PAD[x++] \string^= b;}
+\DoxyCodeLine{307       \}}
+\DoxyCodeLine{308 }
+\DoxyCodeLine{309       \textcolor{keywordflow}{if} (x != 0) \{}
+\DoxyCodeLine{310          \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[cipher].\mbox{\hyperlink{ecb__encrypt_8c_affdcc93fca272998e2545fcabac4e7f0}{ecb\_encrypt}}(PAD, PAD, skey)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{311             \textcolor{keywordflow}{goto} error;}
+\DoxyCodeLine{312          \}}
+\DoxyCodeLine{313       \}}
+\DoxyCodeLine{314    \}}
+\DoxyCodeLine{315 }
+\DoxyCodeLine{316    \textcolor{comment}{/* setup CTR for the TAG (zero the count) */}}
+\DoxyCodeLine{317    \textcolor{keywordflow}{for} (y = 15; y > 15 - L; y--) \{}
+\DoxyCodeLine{318       ctr[y] = 0x00;}
+\DoxyCodeLine{319    \}}
+\DoxyCodeLine{320    \textcolor{keywordflow}{if} ((err = \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[cipher].\mbox{\hyperlink{ecb__encrypt_8c_affdcc93fca272998e2545fcabac4e7f0}{ecb\_encrypt}}(ctr, CTRPAD, skey)) != \mbox{\hyperlink{tomcrypt_8h_adc29c2ff13d900c2f185ee95427fb06cad0f4c9daf749fe6284266f9384b9e334}{CRYPT\_OK}}) \{}
+\DoxyCodeLine{321       \textcolor{keywordflow}{goto} error;}
+\DoxyCodeLine{322    \}}
+\DoxyCodeLine{323 }
+\DoxyCodeLine{324    \textcolor{keywordflow}{if} (skey != uskey) \{}
+\DoxyCodeLine{325       \mbox{\hyperlink{tomcrypt__cipher_8h_a47d36a5949d990da7da81e79c44820fb}{cipher\_descriptor}}[cipher].\mbox{\hyperlink{structltc__cipher__descriptor_a0ad1c101005c70a69e40fded0e606191}{done}}(skey);}
+\DoxyCodeLine{326 \textcolor{preprocessor}{\#ifdef LTC\_CLEAN\_STACK}}
+\DoxyCodeLine{327       \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(skey,   \textcolor{keyword}{sizeof}(*skey));}
+\DoxyCodeLine{328 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{329    \}}
+\DoxyCodeLine{330 }
+\DoxyCodeLine{331    \textcolor{keywordflow}{if} (direction == CCM\_ENCRYPT) \{}
+\DoxyCodeLine{332       \textcolor{comment}{/* store the TAG */}}
+\DoxyCodeLine{333       \textcolor{keywordflow}{for} (x = 0; x < 16 \&\& x < *taglen; x++) \{}
+\DoxyCodeLine{334           tag[x] = PAD[x] \string^ CTRPAD[x];}
+\DoxyCodeLine{335       \}}
+\DoxyCodeLine{336       *taglen = x;}
+\DoxyCodeLine{337    \} \textcolor{keywordflow}{else} \{ \textcolor{comment}{/* direction == CCM\_DECRYPT */}}
+\DoxyCodeLine{338       \textcolor{comment}{/* decrypt the tag */}}
+\DoxyCodeLine{339       \textcolor{keywordflow}{for} (x = 0; x < 16 \&\& x < *taglen; x++) \{}
+\DoxyCodeLine{340          ptTag[x] = tag[x] \string^ CTRPAD[x];}
+\DoxyCodeLine{341       \}}
+\DoxyCodeLine{342       *taglen = x;}
+\DoxyCodeLine{343 }
+\DoxyCodeLine{344       \textcolor{comment}{/* check validity of the decrypted tag against the computed PAD (in constant time) */}}
+\DoxyCodeLine{345       \textcolor{comment}{/* HACK: the boolean value of XMEM\_NEQ becomes either 0 (CRYPT\_OK) or 1 (CRYPT\_ERR).}}
+\DoxyCodeLine{346 \textcolor{comment}{       *       there should be a better way of setting the correct error code in constant}}
+\DoxyCodeLine{347 \textcolor{comment}{       *       time.}}
+\DoxyCodeLine{348 \textcolor{comment}{       */}}
+\DoxyCodeLine{349       err = \mbox{\hyperlink{tomcrypt__custom_8h_a22bba7b26be62fc532bd7927a23c5a91}{XMEM\_NEQ}}(ptTag, PAD, *taglen);}
+\DoxyCodeLine{350 }
+\DoxyCodeLine{351       \textcolor{comment}{/* Zero the plaintext if the tag was invalid (in constant time) */}}
+\DoxyCodeLine{352       \textcolor{keywordflow}{if} (ptlen > 0) \{}
+\DoxyCodeLine{353          \mbox{\hyperlink{tomcrypt__private_8h_a669fada75ab21a80b652dfbc2b54e346}{copy\_or\_zeromem}}(pt, pt\_real, ptlen, err);}
+\DoxyCodeLine{354       \}}
+\DoxyCodeLine{355    \}}
+\DoxyCodeLine{356 }
+\DoxyCodeLine{357 \textcolor{preprocessor}{\#ifdef LTC\_CLEAN\_STACK}}
+\DoxyCodeLine{358    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(PAD,    \textcolor{keyword}{sizeof}(PAD));}
+\DoxyCodeLine{359    \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(CTRPAD, \textcolor{keyword}{sizeof}(CTRPAD));}
+\DoxyCodeLine{360    \textcolor{keywordflow}{if} (pt\_work != NULL) \{}
+\DoxyCodeLine{361      \mbox{\hyperlink{tomcrypt__misc_8h_a63b6e188713790263bfd3612fe8b398f}{zeromem}}(pt\_work, ptlen);}
+\DoxyCodeLine{362    \}}
+\DoxyCodeLine{363 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{364 error:}
+\DoxyCodeLine{365    \textcolor{keywordflow}{if} (pt\_work) \{}
+\DoxyCodeLine{366       \mbox{\hyperlink{tomcrypt__cfg_8h_a260d66fc0690e0502cf3bfe7b5244b75}{XFREE}}(pt\_work);}
+\DoxyCodeLine{367    \}}
+\DoxyCodeLine{368    \textcolor{keywordflow}{if} (skey != uskey) \{}
+\DoxyCodeLine{369       \mbox{\hyperlink{tomcrypt__cfg_8h_a260d66fc0690e0502cf3bfe7b5244b75}{XFREE}}(skey);}
+\DoxyCodeLine{370    \}}
+\DoxyCodeLine{371 }
+\DoxyCodeLine{372    \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{373 \}}
+
+\end{DoxyCode}
+
+
+References ltc\+\_\+cipher\+\_\+descriptor\+::accel\+\_\+ccm\+\_\+memory, cipher\+\_\+descriptor, cipher\+\_\+is\+\_\+valid(), copy\+\_\+or\+\_\+zeromem(), C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+A\+RG, C\+R\+Y\+P\+T\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+C\+I\+P\+H\+ER, C\+R\+Y\+P\+T\+\_\+\+M\+EM, C\+R\+Y\+P\+T\+\_\+\+OK, ltc\+\_\+cipher\+\_\+descriptor\+::done, ecb\+\_\+encrypt(), len, L\+T\+C\+\_\+\+A\+R\+G\+C\+HK, setup(), X\+F\+R\+E\+E(), X\+M\+A\+L\+L\+O\+C(), X\+M\+E\+M\+\_\+\+N\+EQ, and zeromem().
+
+
+
+Referenced by ccm\+\_\+test().
+
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2

@@ -1,0 +1,12 @@
+digraph "chc_register"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node53 [label="chc_register",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Initialize the CHC state with a given cipher."];
+  Node53 -> Node54 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node54 [label="chc_test",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$chc_8c.html#a1467e832993ba079f27160687745fdcd",tooltip="Self-test the hash."];
+  Node53 -> Node55 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node55 [label="register_all_hashes",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$crypt__register__all__hashes_8c.html#a646235ec81bef5215708a56a23e43874",tooltip=" "];
+}
